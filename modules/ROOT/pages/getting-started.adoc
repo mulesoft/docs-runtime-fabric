@@ -1,0 +1,51 @@
+= Before You Begin Working with Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This describes the general requirements you must have and perform to successfully use Anypoint Runtime Fabric. Ensure the following criteria have been met before beginning the installation.
+
+You may need to consult your network or operations administrators before attempting installation.
+
+== Access Management
+
+* You're familiar with using Anypoint Runtime Manager to deploy and manage applications.
+* You're familiar with using Anypoint Access Management to manage permissions for Anypoint users.
+** Your Anypoint user account will require the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
+** You may also require permissions under the Secrets Manager tab in Access Management to enable inbound traffic to Runtime Fabric:
+*** Grant Access to Secrets
+*** Manage Secret Groups
+*** Read Secrets Metadata
+*** Write Secrets
+** To deploy applications, your Anypoint user account will require the Exchange Contributors role.
+
+== Network and Security
+
+* You're aware if your organization requires outbound connections to be routed to a proxy.
+* You've verified outbound access is allowed using the AMQP protocol to Anypoint Platform.
+* You're familiar with your organization's network and security policies:
+** Internal network's IP address range in CIDR notation.
+** The subnet range to use for Runtime Fabric in CIDR notation.
+** If virtual machines are allowed public IP addresses.
+** How to gain shell access to each VM.
+* You know if inbound traffic should be enabled for Anypoint Runtime Fabric. This will likely be based on the function of your organization's Mule applications.
+** If so, you have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
+** You're able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
+** You're able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
+
+== Infrastructure and Operations
+
+* You have the required hardware provisioned, or have enough quota with your infrastructure provider to create the required hardware.
+** Virtual machines
+** Disks with provisioned IOPS
+** Virtual networks
+** Firewall rules / security groups
+** Load balancers
+* If provisioning hardware with AWS or Azure, you have the right permissions to create the above resources.
+* Details on how to forward logs to your organization's logging provider.
+* Details on your organization's SMTP provider to configure alerts.
+
+== Mule
+* You have access to your organization's Mule license key(s).
+* You are able to install the Mule Enterprise license key using a standalone Mule runtime.
+* You have one or more Mule applications.

@@ -1,0 +1,58 @@
+= Network and Port Requirements for Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic describes the network settings and port settings required to install and run Anypoint Runtime Fabric.
+
+== Required Port Settings
+
+The following table lists the ports that must be accessible when running Anypoint Runtime Fabric.
+
+[%header%autowidth.spread]
+|===
+| Port | Protocol | Direction | Description
+| 5672 | TCP (AMQP) | Outbound to Internet | Anypoint Management Center
+| 443 | TCP (HTTPS) | Outbound to Internet | Management services, API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
+| 443 | TCP (HTTPS) | Ingress | Inbound traffic to Mules
+| 32009 | TCP (HTTPS) | Ingress | Runtime Fabric Ops Center
+| 2379, 2380, 4001, 7001 | TCP | Internal | Etcd distributed database
+| 6060 | TCP | Internal | Health check
+| 6443, 8080 | TCP | Internal | Kubernetes API server
+| 30000-32767 | TCP | Internal | Internal services port range
+| 53 | TCP / UDP | Internal | Internal DNS
+| 7496 | TCP | Internal  | Peer-to-peer connectivity
+| 5000 | TCP | Internal | Docker registry
+| 8472 | UDP | Internal | Overlay networking
+| 3022 - 3025 | TCP | Internal | Remote debugging services
+| 3080 | TCP | Internal | Runtime Fabric internal Ops Center
+| 3008 - 3012 | TCP | Internal | Runtime Fabric internal services
+| 7575, 7373 | TCP | Internal | Runtime Fabric internal services
+|===
+
+== Additional Ports Used During Installation
+
+The following table lists the ports that must be accessible when installing Anypoint Runtime Fabric. After completing the installation, you can safely disable these ports.
+
+[%header%autowidth.spread]
+|===
+| Port | Protocol | Direction | Description
+| 61008-61010 | TCP (HTTPS) | Internal | Used during installation
+| 61022-61024 | TCP (HTTPS) | Internal | Installer agent ports
+| 4242 | TCP | Internal | Bandwidth checker
+|===
+
+== Required Network Settings
+
+The following are the network settings required for Anypoint Runtime Fabric:
+
+* Outbound access to download the runtime images from one of the following endpoints:
+** US control plane: `ecr.us-east-1.amazonaws.com` on port 443.
+** EU control plane: `ecr.eu-central-1.amazonaws.com` on port 443.
+* A subnet with at least 300 IP addresses allottable, or more depending on the number of applications and API gateways running.
+** For example, the subnet 172.16.0.0/23 provides 512 usable IP addresses.
+* Shell/SSH access to each VM used to install Runtime Fabric.
+
+== See Also
+
+* xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]

@@ -1,0 +1,72 @@
+= Resource Allocation on Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic provides guidelines for how to determine the correct amount of resources to allocate when deploying Mule applications or configuring the internal load balancer on Anypoint Runtime Fabric.
+
+When an application is deployed to Runtime Fabric, it is deployed with its own Mule runtime. The number of replicas, or instances of that application and runtime, are also defined. The resources available for each replica are determined by the values set during deployment. Users can allocate the following resources:
+
+* vCPU cores
+* Memory
+
+== Minimum Resources
+
+There are minimum values for the amount of CPU and memory allottable for each replica of a Mule application:
+
+* *vCPU Cores:* 0.07 cores
+* *Memory:* 0.7 GiB memory
+
+== Startup Times
+
+The time it takes to start Mule applications are directly correlated with the amount of CPU cores it has access to.
+
+[%header,cols="2*a"]
+|===
+| vCPU Cores | Approximate Startup Time
+| `1.00` | Less than 1 minute
+| `0.50` | Under 2 minutes
+| `0.10` | 6 to 8 minutes
+| `0.07` | 10 to 14 minutes
+
+|===
+
+== Performance
+
+The amount of resources given to Mule correlate with the performance of your application. Below are approximate values for throughput based on the amount of vCPU cores allocated for a single Mule application performing simple processing on a 10 KB payload.
+
+[%header,cols="3*a"]
+|===
+| vCPU Cores | Concurrent Connections | Avg Response Time (ms)
+| `1.00` | 10 | 15
+| `0.50` | 5 | 15
+| `0.10` | 1 | 25
+| `0.07` | 1 | 78
+
+|===
+
+[NOTE]
+Performance and load testing should be performed on your Mule applications to determine the right amount of resources to allocate.
+
+== Internal Load Balancer
+
+Inbound traffic is processed using an internal load balancer within Anypoint Runtime Fabric. As this load balancer is responsible for TLS termination, the amount of resources required scales based on the number of incoming connections and the average payload size for each request.
+
+Below is a table of approximate requests averaging 10 KB that can be served with a single replica of the internal load balancer based on the amount of CPU cores.
+
+[%header,cols="3*a"]
+|===
+| vCPU Cores | Max Requests per Second (Connection Re-use) | Max Requests per Second (No Connection Re-use)
+| `1.00` | 2000 | 175
+| `0.75` | 1500 | 100
+| `0.50` | 1000 | 50
+| `0.25` | 100 | 10
+
+|===
+
+[NOTE]
+The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs appropriately based on the amount and type of inbound traffic. The internal load balancer can be allocated at most half of the CPU cores available on each VM.
+
+== See Also
+
+* xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]

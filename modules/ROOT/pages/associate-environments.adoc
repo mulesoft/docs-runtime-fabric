@@ -1,0 +1,23 @@
+= Associate Environments to Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Before you can deploy applications or API gateways to Anypoint Runtime Fabric, you must associate it with one or more Anypoint environments. You will not be able to select Runtime Fabric as a Deployment Target when deploying an application until this step has been completed for the environment you wish to deploy to.
+
+
+. Navigate to Runtime Manager.
+. Select the Runtime Fabric section on the left sidebar.
+. Select the Runtime Fabric based on the name used during installation.
+. On the Environments tab, select the environment you want to associate with this Runtime Fabric and click Add.
+. Click Apply to confirm the changes.
+
+== Production Environments
+
+When selecting a production environment, a dialog will appear to ensure Runtime Fabric has been set up appropriately to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting and familiarity with possible failure modes. It's highly recommended to ensure all these steps have been completed before operating and deploying production applications on Runtime Fabric.
+
+== See Also
+
+* xref:enable-inbound-traffic.adoc[Enable inbound traffic to Runtime Fabric]
+* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]

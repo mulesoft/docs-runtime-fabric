@@ -1,0 +1,59 @@
+= System Requirements for Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:noindex:
+
+Anypoint Runtime Fabric can run in a development or a production configuration. The requirements for each configuration are below.
+
+== Minimum Hardware Requirements
+
+=== Production Configuration
+
+The following systems requirements are the minimum requirements for a production environment:
+
+* Minimum of 3 controller VMs to operate Runtime Fabric; maximum of 5.
+** 2 cores each minimum.
+** 8 GiB memory minimum.
+** 80 GiB dedicated disk for the operating system.
+** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
+** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
+
+* Minimum of 3 worker VMs to run Mule applications and API gateways; maximum of 16.
+** 2 cores each minimum.
+** 15 GiB memory minimum.
+** 80 GiB dedicated disk for the operating system.
+** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
+
+=== Development Configuration
+
+* Minimum of 1 controller VM to operate Runtime Fabric; maximum of 5.
+** 2 cores each minimum
+** 15 GiB memory minimum
+** 80 GiB dedicated disk for the operating system.
+** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
+** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
+
+* Minimum of 2 worker VMs to run Mule applications and API gateways; maximum of 16.
+** 2 cores each minimum.
+** 15 GiB memory minimum.
+** 80 GiB dedicated disk for the operating system.
+** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
+
+=== Additional Resources
+
+In addition to the hardware required to run the configuration above, there are other resources which are required:
+
+* When used in production, an external load balancer is required if incoming traffic is enabled to Runtime Fabric. A TCP load balancer with a server pool consisting of each of the controller VMs is sufficient.
+* At least one additional worker VM and its required disks should be kept unutilized for use with performing rolling upgrades to major versions of Runtime Fabric, or with operating system level patches.
+
+== Operating System Requirements
+
+Anypoint Runtime Fabric requires one of the following operating systems. The same operating system should be used for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the installation process fails.
+
+* Red Hat (RHEL) v7.4
+* CentOS v7.4
+
+== See Also
+
+* xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric]

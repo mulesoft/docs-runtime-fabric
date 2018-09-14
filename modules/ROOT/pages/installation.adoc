@@ -1,0 +1,102 @@
+= Installation Overview
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This provides an overview of the Anypoint Runtime Fabric installation process and describes how the installer performs its work.
+
+Anypoint Runtime Fabric is a container service built to run Mule applications and API gateways on a set of VMs. The Anypoint Runtime Fabric installer is optimized to require minimal user interaction. However, there are important configuration steps to complete after installation.
+
+== Overview
+
+To begin installing Anypoint Runtime Fabric, download a ZIP file containing scripts based on the infrastructure provider, located under the Runtime Fabrics section in Runtime Manager. During installation, the installation package is downloaded to a VM that serves as the leader of the installation. In this document, this VM is referred to as the installer VM. After installation, it will serve the same function as a controller VM.
+
+Setting up Runtime Fabric occurs in the following steps:
+
+. Provision and configure infrastructure
+. Install & register Runtime Fabric
+. xref:configure-log-forwarding.adoc[Configure Log Forwarding]
+. xref:configure-alerting.adoc[Configure Alerting]
+. xref:associate-environments.adoc[Associate Runtime Fabric to an Environment]
+. xref:enable-inbound-traffic.adoc[Enable Inbound Traffic]
+
+== Infrastructure
+
+It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements have not been met.
+
+The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by the minimum requirements. It also creates a private network with the required network ports configured. This is optimal when evaluating Runtime Fabric before integrating within your primary network. You may need to consult with your network administrator to determine if the default behavior is compatible. You may need to modify the provisioning scripts to accommodate your organization's requirements.
+
+The disks required to run Anypoint Runtime Fabric are used for the following:
+
+* Each controller VM requires a minimum of 60 GiB dedicated disk with at least 3000 IOPS to run the etcd distributed database.
+* Each controller and worker VM requires a minimum of 250 GiB dedicated disk with at least 1000 IOPS for Docker overlay and other internal services.
+
+[NOTE]
+xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
+
+== Install and Register
+
+Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
+
+* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
+* Worker VMs are dedicated to run Mule applications.
+
+One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the installer VM, perform the installation, and join the installer VM to form a cluster.
+
+During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
+
+The installation process combines the following steps:
+
+* For AWS and Azure, provision infrastructure per the system requirements.
+* Install Runtime Fabric across the VMs.
+* Register Runtime Fabric to your Anypoint organization.
+* Install your organization's Mule Enterprise license.
+
+To complete theses steps, specify environment variables for each VM  at the beginning of installation. The installer VM requires additional variables to register and install the Mule license. A script runs on each VM to perform the following actions:
+
+* Format and mount each dedicated disk
+* Add mount entries for each disk to `/etc/fstab`
+* Add iptable rules
+* Enable required kernel modules
+* Start the installation
+
+On the installer VM, the following are performed:
+
+* Run the registration script after installation
+* Run the Mule license installation script after registration
+
+
+== Viewing Installation Progress
+
+To view the progress during the installation, you can tail the output log on each VM:
+
+. Open a shell (or SSH session) to the VM.
+. Tail the output log, located at `/var/log/rtf-init.log`
++
+----
+tail -f /var/log/rtf-init.log
+----
+
+== Configure Log Forwarding and Alerting
+
+Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
+
+Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
+
+== Environments and Inbound Traffic
+
+Anypoint Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric in order to enable application deployments. At least one environment must be associated with each Runtime Fabric to deploy Mule applications or API gateways using it as the target.
+
+Production applications must run in a separate instance of Runtime Fabric from non-production applications.
+
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. If API gateways or Mule applications listen on inbound connections, inbound traffic must be enabled. Before enabling, a valid TLS certificate must be provided. The certificate should require a passphrase and be set with a Common Name which is used as the domain for each deployed application on Runtime Fabric. If the Common Name contains a wildcard, the endpoint for each deployed application will take the form `{app-name}.{common-name}`; otherwise, the endpoint will take the form `{common-name}/{app-name}`.
+
+== See Also
+
+* xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
+* xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
+* xref:install-aws.adoc[Install Runtime Fabric on AWS]
+* xref:install-azure.adoc[Install Runtime Fabric on Azure]
+* xref:install-manual.adoc[Install Runtime Fabric Manually]
+* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]

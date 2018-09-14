@@ -1,0 +1,44 @@
+= Configure Log Forwarding on Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic describes how to configure Anypoint Runtime Fabric to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
+
+== Procedure
+
+. Using a terminal, open a shell/SSH connection to a controller VM.
+. Create a file named `log-forwarder.yaml`.
+. Add the following content to this file after customizing based on the table below:
++
+----
+kind: logforwarder
+version: v2
+metadata:
+   name: log-forwarder
+spec:
+   address: 192.168.100.1:514
+   protocol: udp
+----
++
+Using the following values specific to your environment:
++
+[%header,cols="2*a"]
+|===
+|Key | Description
+|`name` | Specifies the name of the log forwarding rule.
+|`address` | Specifies the endpoint and port to forward the log data
+|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP.
+|===
++
+. Run the following command on the controller VM, referencing the file created earlier.
+----
+gravity resource create log-forwarder.yaml
+----
+
+Your logs should now be forwarded to your external logging service.
+
+== See Also
+
+* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
+* xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]
