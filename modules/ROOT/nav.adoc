@@ -1,4 +1,5 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
+* xref:index.adoc[About Anypoint Runtime Fabric]
 * xref:getting-started.adoc[Before You Begin Working with Anypoint Runtime Fabric]
 * xref:overview.adoc[Anypoint Runtime Fabric Workflow]
 * xref:installation.adoc[Installation Overview]
