@@ -145,17 +145,17 @@ If a client exceeds this number, the exceeding requests will not be read until t
 The values to configure here depend on your scenario:
 
 . Runtime Fabric is not behind a load balancer. +
-::Runtime Fabric is not deployed behind a load balancer, these values should not be configured.
+Runtime Fabric is not deployed behind a load balancer, these values should not be configured.
 +
 *Source IP header name*: blank +
 *Enable proxy protocol*: Unchecked
 . Runtime Fabric is behind an AWS Load Balancer with a Proxy Protocol configured. +
-:: If Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol enabled, you must select the *enable proxy protocol* option.
+ If Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol enabled, you must select the *enable proxy protocol* option.
 +
 *Source IP header name*: blank +
 *Enable proxy protocol*: checked
 . Runtime Fabric is behind a non-AWS load balancer. +
-:: If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name will need to be provided. Two common source IP headers are:
+ If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name will need to be provided. Two common source IP headers are:
 +
 * Forwarded: An RFC7239 compliant IP header.
 * X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a Load Balancer (For example: “192.16.23.34, 172.16.21.36")
