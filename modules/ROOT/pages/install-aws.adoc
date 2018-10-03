@@ -135,7 +135,7 @@ docker run -v $(pwd):/src -w /src/aws \
 . Run the Terraform script:
 ----
 docker run -it -v $(pwd):/src -w /src/aws \
-  -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY \
+  -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN\
   hashicorp/terraform:0.11.7 apply \
   -var cluster_name= \
   -var key_pair= \
