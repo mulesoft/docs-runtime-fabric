@@ -17,7 +17,7 @@ Prepare the necessary steps and understand the core concepts prior to installing
 * Review the xref:installation.adoc[installation details] to ensure you are ready to install Runtime Fabric.
 * Provision the necessary hardware for the controller VMs and worker VMs as outlined in the system requirements page.
 * Ensure the required disks are listed as a block device for each VM. The disks should not be mounted or formatted.
-* Runtime Fabric supports RedHat v7.4 or CentOS v7.4/v7.5. Each VM should be running a compatible operating system.
+* Runtime Fabric supports Red Hat (RHEL) v7.4/v7.5 and CentOS v7.4/v7.5. Each VM should be running a compatible operating system.
 * The necessary ports should be opened as described on the port requirements page.
 
 == Download Script
