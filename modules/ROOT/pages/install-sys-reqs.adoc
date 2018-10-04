@@ -51,7 +51,7 @@ In addition to the hardware required to run the configuration above, there are o
 
 Anypoint Runtime Fabric requires one of the following operating systems. The same operating system should be used for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the installation process fails.
 
-* Red Hat (RHEL) v7.4
+* Red Hat (RHEL) v7.4, v7.5
 * CentOS v7.4, v7.5
 
 == See Also
