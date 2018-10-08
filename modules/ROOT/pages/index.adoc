@@ -13,6 +13,9 @@ Some of the capabilities Anypoint Runtime Fabric provides are the following:
 * Automated application fail-over capabilities.
 * Application management with Anypoint Runtime Manager.
 
+[NOTE]
+Please reach out to your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+
 == Architecture
 
 Anypoint Runtime Fabric is composed of a set of VMs, each serving as one of the following roles:
