@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+// tag::content[]
+
 == Before you Begin
 
 * Make sure that you are using API Gateway version 3.8.7, 3.9.1, or 4.1.2.
@@ -26,6 +28,8 @@ While deploying to Runtime Fabric, a deployment status appears
 image::runtime-fabric-3.png[]
 
 After deployment, you can manage the deployment from Runtime Manager.
+
+// end::content[]
 
 == See Also
 
