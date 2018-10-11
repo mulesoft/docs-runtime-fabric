@@ -26,7 +26,12 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Thi
 .. In the Runtime Manager tab, give yourself the “Manage Runtime Fabrics” permission for your Runtime Fabric environment.
 .. In the Secrets Manager tab, give yourself the “Manage Secret Groups”, “Write Secrets”, and “Read Secrets Metadata” permissions for your Runtime Fabric environment.
 . You’ll need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your Common Name should match the domain you’ll use in your Runtime Fabric. Otherwise, follow these steps to generate one for evaluation purposes:
-.. Run the following command on your machine to begin generating a certificate-key pair: `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`
+.. Run the following command on your machine to begin generating a certificate-key pair: 
++
+----
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+----
++
 .. Type a passphrase for your key.
 .. Fill out the requested information (Country, State, etc). When you’re asked for a Common Name, supply the domain you’ll use in your Runtime Fabric.
 +
@@ -77,7 +82,7 @@ _Note: If your secrets group doesn’t appear, make sure you have the “Manage 
 +
 .. In the TLS Context menu, select the TLS Context to be used for your Runtime Fabric.
 +
-_Note: If a wildcard certificate is used (for example, *.example.com), each application URL would take the format of *{app-name}.example.com* Otherwise, the application URL will be in the format of example.com/{app-name}._
+_Note: If a wildcard certificate is used (for example, *.example.com), each application URL would take the format of {app-name}.example.com. Otherwise, the application URL will be in the format of example.com/{app-name}._
 +
 . Click the Deploy button to begin the deployment on Runtime Fabric. A toast message should appear in the bottom-right of the page to indicate a successful response. The deployment may take up to a minute. You can see its status toward the top of the form. When the status transitions to “Applied”, the internal load balancer is successfully deployed and inbound traffic has been enabled.
 
@@ -85,8 +90,18 @@ _Note: If a wildcard certificate is used (for example, *.example.com), each appl
 
 To resolve the Common Name (CN) to applications deployed on Runtime Fabric, DNS will need to be configured to map the CN to the IP address of the external load balancer or of each controller VM. To test inbound traffic for enabled applications before configuring DNS, a request can be sent using the IP address along with a host header set to the domain. The structure of the domain depends on whether a wildcard was used in your certificate.
 
-* A CN with a wildcard (e.g. \*.example.com) will use the following request header format: `Host: {app-name}.example.com`. Here’s an example cURL command to verify: `curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'`
-* A CN without a wildcard (e.g. example.com) will will use the following request header format: `Host: example.com`. Here’s an example cURL command to verify: `curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
+* A CN with a wildcard (e.g. *.example.com) will use the following request header format: `Host: {app-name}.example.com`. Here’s an example cURL command to verify: 
++
+----
+curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
+----
++
+* A CN without a wildcard (e.g. example.com) will will use the following request header format: `Host: example.com`. Here’s an example cURL command to verify: 
++
+----
+curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
+----
++
 
 == Next Steps
 
