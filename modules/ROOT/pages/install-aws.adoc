@@ -26,6 +26,9 @@ In addition, ensure the following criteria have been met before beginning the in
 
 The installer script zip file includes the necessary scripts needed to install Runtime Fabric.
 
+[NOTE]
+If you're unable to follow these steps, please reach out to your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+
 . Log in to Anypoint platform and navigate to Runtime Manager.
 . On the left navigation pane, select "Runtime Fabrics".
 . Click "Create Runtime Fabric".
