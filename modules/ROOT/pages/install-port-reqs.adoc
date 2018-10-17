@@ -49,8 +49,7 @@ The following are the network settings required for Anypoint Runtime Fabric:
 * Outbound access to download the runtime images from one of the following endpoints:
 ** US control plane: `ecr.us-east-1.amazonaws.com` on port 443.
 ** EU control plane: `ecr.eu-central-1.amazonaws.com` on port 443.
-* A subnet with at least 300 IP addresses allottable, or more depending on the number of applications and API gateways running.
-** For example, the subnet 172.16.0.0/23 provides 512 usable IP addresses.
+* A subnet with enough IP address allotable to add additional VMs to Runtime Fabric.
 * Shell/SSH access to each VM used to install Runtime Fabric.
 
 == See Also
