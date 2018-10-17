@@ -30,8 +30,7 @@ If you're unable to follow these steps, contact your Customer Success Manager fo
 . Log in to Anypoint platform and navigate to Runtime Manager.
 . On the left navigation pane, select "Runtime Fabrics".
 . Click "Create Runtime Fabric".
-. Copy the "Download files" link.
-.. Right-click the button and select an option most similar to "Copy link location".
+. Right-click the "Download files" button and select an option most similar to "Copy link location".
 . Download the file to the installer VM.
 .. Open a shell (SSH session) to the installer VM.
 .. Download the file: `curl {INSTALLER_URL} --output rtf-install-scripts.zip`
@@ -71,32 +70,37 @@ To begin, we will run a configuration tool. This aids in generating the environm
 | `RTF_ENDPOINT` | The Anypoint control plane you're registering to, available on the Create Runtime Fabric page. | `anypoint.mulesoft.com`
 | `RTF_INSTALL_PACKAGE_URL` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. _If this is not specified, the installer will expect you to manually copy the installation package to_ `/opt/anypoint/runtimefabric/installer.tar.gz`. | `https://s3.amazonaws.com/runtimefabric/...`
 | `RTF_NAME` | The name of your Runtime Fabric cluster. | `runtime-fabric`
-| `RTF_TOKEN` | The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
-| `RTF_MULE_LICENSE` | The digest contents (`muleLicenseKey.lic`) of your organization's Mule Enterprise license key. Learn more on how to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install a Mule Enterprise license]. | `<xml>...`
+| `RTF_MULE_LICENSE` | A base64 encoded value of the Mule Enterprise license key binary file obtained from MuleSoft. | `==ABCD12934...`
+| `RTF_TOKEN` | Optional. The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
+| `RTF_HTTP_PROXY` | Optional. A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
+| `RTF_TCP_PROXY` | Optional. A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
+| `RTF_NO_PROXY` | Optional. A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
+| `RTF_SERVICE_UID` | Optional. An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
+| `RTF_SERVICE_GID` | Optional. An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
 |===
 
 [NOTE]
 To help identify the block device paths to your disks, run the `lsblk` command on the VMs.
 
 . If needed, open a shell/SSH on the installer VM and navigate to the `manual` directory from the unzipped directory.
-. Fill in the values to each variable and execute `generate-configs.sh`. It may be easier to paste the following command in a text editor to fill in the variables.
+. Copy the command below in a text editor to aid in filling in each of the variables.
 +
 ----
 RTF_CONTROLLER_IPS='' \
 RTF_WORKER_IPS='' \
-RTF_DOCKER_DEVICE= \
-RTF_ETCD_DEVICE= \
+RTF_DOCKER_DEVICE='' \
+RTF_ETCD_DEVICE='' \
 RTF_AUTH_TOKEN='' \
-RTF_REGION= \
-RTF_ORG_ID= \
-RTF_ENDPOINT= \
-RTF_INSTALL_PACKAGE_URL= \
-RTF_NAME= \
-RTF_TOKEN= \
+RTF_REGION='' \
+RTF_ORG_ID='' \
+RTF_ENDPOINT='' \
+RTF_INSTALL_PACKAGE_URL='' \
+RTF_NAME='' \
 RTF_MULE_LICENSE='' \
 ./generate-configs.sh
 ----
 +
+. Run the command with all values filled in and run it on the installer VM.
 . The output is a configuration snippet for the `installer`, `controller`, and `worker` VMs. Execute the snippet on each VM based on its desired role to add the expected environment variables.
 
 .. On the installer VM, paste and execute the `installer` snippet to prepare it for the installation script.
