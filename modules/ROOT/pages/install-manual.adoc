@@ -101,12 +101,7 @@ RTF_MULE_LICENSE='' \
 ----
 +
 . Run the command with all values filled in and run it on the installer VM.
-. The output is a configuration snippet for the `installer`, `controller`, and `worker` VMs. Execute the snippet on each VM based on its desired role to add the expected environment variables.
-
-.. On the installer VM, paste and execute the `installer` snippet to prepare it for the installation script.
-.. On the controller VM(s), paste and execute the `controller` snippet.
-.. On the worker VMs, paste and execute the `worker` snippet.
-
+. The output is a configuration snippet for each IP address specified. Execute the snippet on each VM based upon its IP address to apply the expected environment variables.
 . On each VM, copy the `installer/scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
 
 ----
