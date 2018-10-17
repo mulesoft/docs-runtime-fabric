@@ -25,7 +25,7 @@ Prepare the necessary steps and understand the core concepts prior to installing
 The installer script ZIP file includes the necessary scripts needed to install Runtime Fabric. Download it to a controller VM you wish to act as the leader during the installation. It'll be referred to as the installer VM.
 
 [NOTE]
-If you're unable to follow these steps, please reach out to your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
 
 . Log in to Anypoint platform and navigate to Runtime Manager.
 . On the left navigation pane, select "Runtime Fabrics".
