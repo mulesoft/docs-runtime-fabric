@@ -62,8 +62,8 @@ To begin, we will run a configuration tool. This aids in generating the environm
 |Parameter | Description | Example
 | `RTF_CONTROLLER_IPS` | IP addresses of the controller VMs, separated by whitespace. The first IP address serves as the installer VM. | `"10.3.0.4 10.3.0.5 10.3.0.6"`
 | `RTF_WORKER_IPS` | IP addresses of the worker VMs, separated by whitespace. | `"10.3.0.11 10.3.0.12 10.3.0.13"`
-| `RTF_DOCKER_DEVICE` |  Block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
-| `RTF_ETCD_DEVICE` |  Block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
+| `RTF_DOCKER_DEVICE` |  Block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. The minimum value required for development is 100 GiB; and for production is 250 GiB. | `/dev/xvdc`
+| `RTF_ETCD_DEVICE` |  Block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. The minimum value required is 60 GiB. | `/dev/xvdb`
 | `RTF_AUTH_TOKEN` | An active Anypoint authentication token, available on the Create Runtime Fabric page. | `Bearer 626d7810-0730-498b-bd48-544490c2226b`
 | `RTF_REGION` | The Anypoint broker region you're registering to, available on the Create Runtime Fabric page. | `us-east-1`
 | `RTF_ORG_ID` | The ID for your Anypoint organization, available on the Create Runtime Fabric page. | `2f99d26-a3c2-4023-b303-5528sdd5v022`
@@ -181,6 +181,7 @@ When the installation completes successfully, the file `/opt/anypoint/runtimefab
 
 If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
 
+For help with resolving common errors during installation, see xref:install-common-errors.adoc[Common errors during installation].
 
 == Next Steps
 
