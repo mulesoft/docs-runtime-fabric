@@ -116,24 +116,16 @@ mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh
 sudo /opt/anypoint/runtimefabric/init.sh foreground
 ----
 +
-. Once the installer VM has successfully completed the pre-flight checks and is running the installation process, run the same command to execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed across each VM concurrently. The log output should look similar to the following when the pre-flght checks are met.
+. Once the installer VM has successfully completed the pre-flight checks and is running the installation process, run the same command to execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed across each VM concurrently. The log output should continue past the "Execute preflight checks" message to indicate the checks have passed:
 +
 ----
 ...
-Extracting installer package...
-Done
-Tue Aug 14 02:27:43 UTC Starting installer
-Tue Aug 14 02:28:31 UTC Preparing for installation
-Tue Aug 14 02:28:51 UTC Installing application runtime-fabric:1.0.0-59e7ede
-Tue Aug 14 02:28:51 UTC Starting non-interactive install
-Tue Aug 14 02:28:52 UTC Bootstrapping local state
-Tue Aug 14 02:28:52 UTC Still waiting for 1 nodes of role "controller_node"
-Tue Aug 14 02:28:53 UTC All agents have connected!
 Tue Aug 14 02:28:54 UTC Starting the installation
 Tue Aug 14 02:28:56 UTC Operation has been created
-Tue Aug 14 02:28:57 UTC Execute preflight checks <-------------
+Tue Aug 14 02:28:57 UTC Execute preflight checks
 Tue Aug 14 02:29:48 UTC Configure packages for all nodes
 Tue Aug 14 02:29:59 UTC Bootstrap all nodes
+...
 ----
 
 [NOTE]
