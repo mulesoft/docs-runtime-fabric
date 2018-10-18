@@ -146,6 +146,8 @@ sudo /opt/anypoint/runtimefabric/init.sh foreground
 ----
 +
 . If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
++
+. After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
 
 [NOTE]
 This step will install Runtime Fabric across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
