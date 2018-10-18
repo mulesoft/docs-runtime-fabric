@@ -27,7 +27,7 @@ In addition, ensure the following criteria have been met before beginning the in
 The installer script zip file includes the necessary scripts needed to install Runtime Fabric.
 
 [NOTE]
-If you're unable to follow these steps, please reach out to your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
 
 . Log in to Anypoint platform and navigate to Runtime Manager.
 . On the left navigation pane, select "Runtime Fabrics".
@@ -69,7 +69,7 @@ Some of the values for the variables below are available on the Create Runtime F
 | `installer_url` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. | `runtime-fabric.s3.amazonaws.com/...`
 | `controllers` | The number of controller VMs to provision. | `3`
 | `workers` | The number of worker VMs to provision. | `3`
-| `mule_license` | The digest (`muleLicenseKey.lic`) of your organization's Mule Enterprise license key. Learn more on how to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install a Mule Enterprise license]. |
+| `mule_license` | A base64 encoded string of your organization's Mule Enterprise license key (`license.lic`). |
 
 |===
 
@@ -159,7 +159,7 @@ The installer VM will download the installer package, unpack it and begin instal
 
 When installation has been completed, a cluster will be formed across all VMs. The installer VM will then carry out the registration step using the Anypoint Organization ID, token, and region specified.
 
-After registration has completed, you'll see Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license digest in Runtime Fabric.
+After registration has completed, you'll see Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license key in Runtime Fabric.
 
 When finished, verify the installation by running this command to view the health of the Runtime Fabric cluster on any VM:
 ----
@@ -186,6 +186,10 @@ tail -f /var/log/rtf-init.log
 You can tail the same log on each VM to view its progress.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+
+=== Access to Ops Center
+
+After installation is completed successfully, the last few lines of the log output file located at `/var/log/rtf-init.log` will contain a host, username, and password to access the Ops Center. Copy these values and store them securely.
 
 == Next Steps
 
