@@ -110,13 +110,24 @@ mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh
 
 == Installation
 
+After the required values are defined and placed on each VM, an initialization script will be run on each VM to run through the installation. The script is the same on each VM; the values defined in the earlier step determine the role and verification checks for each VM during installation.
+
+=== Understanding the Process
+
+The installer VM will download the installer package, unpack it and begin installation. The other VMs will wait for the installer VM to progress with installation until it's able to make the installer files transferrable. Each VM will then transfer the files from the installer VM and carry out their own installation procedure.
+
+When installation has been completed, a cluster will be formed across all VMs. The installer VM will then carry out the registration step using the Anypoint Organization ID, token, and region specified.
+
+After registration has completed, you'll see the name used when provisioning Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license in Runtime Fabric.
+
+=== Steps
 . Run the `init.sh` script in privileged mode on the `installer` VM:
 +
 ----
 sudo /opt/anypoint/runtimefabric/init.sh foreground
 ----
 +
-. Once the installer VM has successfully completed the pre-flight checks and is running the installation process, run the same command to execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed across each VM concurrently. The log output should continue past the "Execute preflight checks" message to indicate the checks have passed:
+. Wait until the installer VM has successfully completed the pre-flight checks. The output should continue past the "Execute preflight checks" message to indicate the checks have passed:
 +
 ----
 ...
@@ -127,15 +138,17 @@ Tue Aug 14 02:29:48 UTC Configure packages for all nodes
 Tue Aug 14 02:29:59 UTC Bootstrap all nodes
 ...
 ----
++
+. Run the same command to execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed across each VM concurrently.
++
+----
+sudo /opt/anypoint/runtimefabric/init.sh foreground
+----
++
+. If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
 
 [NOTE]
 This step will install Runtime Fabric across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
-
-The installer VM will download the installer package, unpack it and begin installation. The other VMs will wait for the installer VM to progress with installation until it's able to make the installer files transferrable. Each VM will then transfer the files from the installer VM and carry out their own installation procedure.
-
-When installation has been completed, a cluster will be formed across all VMs. The installer VM will then carry out the registration step using the Anypoint Organization ID, token, and region specified.
-
-After registration has completed, you'll see the name used when provisioning Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license digest in Runtime Fabric.
 
 When finished, verify the installation by running this command to view the health of the Runtime Fabric cluster on any VM; you should see each VM in the cluster with a status equal to `healthy`.
 ----
@@ -161,6 +174,11 @@ tail -f /var/log/rtf-init.log
 You can tail the same log on each VM to view its progress.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+
+=== Errors During Installation
+
+If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
+
 
 == Next Steps
 
