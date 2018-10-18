@@ -83,7 +83,7 @@ To begin, we will run a configuration tool. This aids in generating the environm
 To help identify the block device paths to your disks, run the `lsblk` command on the VMs.
 
 . If needed, open a shell/SSH on the installer VM and navigate to the `manual` directory from the unzipped directory.
-. Copy the command below in a text editor to aid in filling in each of the variables.
+. Copy the command below in a text editor to aid in filling in each of the variables inside the single qoutes.
 +
 ----
 RTF_CONTROLLER_IPS='' \
