@@ -56,7 +56,7 @@ RTF_MULE_LICENSE='' \
 ./generate-templates.sh
 ----
 +
-* Using the terminal, convert the Mule Enterprise license key to base64, and paste as the value for `RTF_MULE_LICENSE` in the text editor.
+* Using the terminal, convert the Mule Enterprise license key to base64, and paste the contents as the value for `RTF_MULE_LICENSE` in the text editor.
 +
 ----
 base64 -b0 license.lic
