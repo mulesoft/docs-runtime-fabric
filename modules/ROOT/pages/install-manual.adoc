@@ -70,7 +70,7 @@ To begin, we will run a configuration tool. This aids in generating the environm
 | `RTF_ENDPOINT` | The Anypoint control plane you're registering to, available on the Create Runtime Fabric page. | `anypoint.mulesoft.com`
 | `RTF_INSTALL_PACKAGE_URL` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. _If this is not specified, the installer will expect you to manually copy the installation package to_ `/opt/anypoint/runtimefabric/installer.tar.gz`. | `https://s3.amazonaws.com/runtimefabric/...`
 | `RTF_NAME` | The name of your Runtime Fabric cluster. | `runtime-fabric`
-| `RTF_MULE_LICENSE` | A base64 encoded value of the Mule Enterprise license key binary file obtained from MuleSoft. | `==ABCD12934...`
+| `RTF_MULE_LICENSE` | The base64 encoded content of the Mule Enterprise license key binary file obtained from MuleSoft. | `==ABCD12934...`
 | `RTF_TOKEN` | Optional. The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
 | `RTF_HTTP_PROXY` | Optional. A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
 | `RTF_TCP_PROXY` | Optional. A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
@@ -175,7 +175,7 @@ tail -f /var/log/rtf-init.log
 [NOTE]
 You can tail the same log on each VM to view its progress.
 
-When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
 === Errors During Installation
 

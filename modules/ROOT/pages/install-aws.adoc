@@ -69,7 +69,7 @@ Some of the values for the variables below are available on the Create Runtime F
 | `installer_url` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. | `runtime-fabric.s3.amazonaws.com/...`
 | `controllers` | The number of controller VMs to provision. | `3`
 | `workers` | The number of worker VMs to provision. | `3`
-| `mule_license` | A base64 encoded string of your organization's Mule Enterprise license key (`license.lic`). |
+| `mule_license` | A base64 encoded content of your organization's Mule Enterprise license key (`license.lic`). |
 
 |===
 
@@ -185,7 +185,7 @@ tail -f /var/log/rtf-init.log
 [NOTE]
 You can tail the same log on each VM to view its progress.
 
-When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
 === Access to Ops Center
 

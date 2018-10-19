@@ -162,7 +162,7 @@ tail -f /var/log/rtf-init.log
 [NOTE]
 You can tail the same log on each VM to view its progress.
 
-When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
 === Access to Ops Center
 
