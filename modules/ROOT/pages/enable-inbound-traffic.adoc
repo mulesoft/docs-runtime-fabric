@@ -26,7 +26,7 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Thi
 .. In the Runtime Manager tab, give yourself the “Manage Runtime Fabrics” permission for your Runtime Fabric environment.
 .. In the Secrets Manager tab, give yourself the “Manage Secret Groups”, “Write Secrets”, and “Read Secrets Metadata” permissions for your Runtime Fabric environment.
 . You’ll need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your Common Name should match the domain you’ll use in your Runtime Fabric. Otherwise, follow these steps to generate one for evaluation purposes:
-.. Run the following command on your machine to begin generating a certificate-key pair: 
+.. Run the following command on your machine to generate a certificate-key pair: 
 +
 ----
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
