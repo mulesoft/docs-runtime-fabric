@@ -69,7 +69,7 @@ Some of the values for the variables below are available on the Create Runtime F
 | `installer_url` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. | `runtime-fabric.s3.amazonaws.com/...`
 | `controllers` | The number of controller VMs to provision. | `3`
 | `workers` | The number of worker VMs to provision. | `3`
-| `mule_license` | The digest (`muleLicenseKey.lic`) of your organization's Mule Enterprise license key. Learn more on how to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install a Mule Enterprise license]. |
+| `mule_license` | The XML content of the digest (`muleLicenseKey.lic`) of your organization's Mule Enterprise license key. Learn more on how to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install a Mule Enterprise license]. |
 
 |===
 
