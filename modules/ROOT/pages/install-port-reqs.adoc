@@ -57,8 +57,8 @@ These tables show you the ports and hostnames to add to your whitelists to allow
 | 443 | HTTPS | `*.anypoint.mulesoft.com`
 | 443 | HTTPS | `*.googleapis.com`
 | 443 | HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com`
-.2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com`
-| EU control plane: `ecr.eu-central-1.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `*.ecr.us-east-1.amazonaws.com`
+| EU control plane: `*.ecr.eu-central-1.amazonaws.com`
 
 |===
 
