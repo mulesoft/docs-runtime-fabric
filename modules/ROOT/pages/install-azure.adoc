@@ -25,7 +25,7 @@ Prepare the necessary steps and understand the core concepts prior to installing
 The installer script ZIP file includes the necessary scripts needed to install Runtime Fabric on Azure.
 
 [NOTE]
-If you're unable to follow these steps, please reach out to your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
 
 . Log in to Anypoint platform and navigate to Runtime Manager.
 . On the left navigation pane, select "Runtime Fabrics".
@@ -41,23 +41,28 @@ You'll find a directory named `azure` containing the following:
 
 == Provision Infrastructure
 
-First, the ARM templates will need to be generated to include the initialization script and Mule Enterprise license. The resulting templates will then be used to provision the infrastructure needed. The embedded script will automatically begin the process on each VM to install and register Runtime Fabric.
+First, the ARM templates will need to be generated to include the initialization script and Mule Enterprise license. The resulting templates will then be used to provision the infrastructure needed. The embedded script will automatically begin the process to install and register Runtime Fabric on each VM.
 
 === Prepare ARM Templates
 
 The included Azure Resource Manager template files describe the required hardware and network settings needed to install and operate Runtime Fabric on Azure. Follow these steps to insert your organization's Mule Enterprise license key and initialization script (located in `scripts/init.sh`). If you're using Windows, you'll need a shell terminal emulator (such as cygwin) or access to a Unix-based computer to follow these steps:
 
-. Follow the steps to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install your Mule Enterprise license] and save the generated `muleLicenseKey.lic` file.
+. Obtain your Mule Enterprise license key file and transfer to your Unix environment if necessary.
 . Open a terminal/shell and navigate to the `azure` directory of the unzipped scripts.
-. Run the following command to generate the ARM templates. It may be easier to use a text editor to prepare the script before running it:
+. Copy the command below in a text editor to make it easier to add in the Mule Enterprise license before running:
 +
 ----
 RTF_MULE_LICENSE='' \
 ./generate-templates.sh
 ----
 +
-* The Mule License contents should be XML, and should be surrounded in single quotes when passed in the script.
+* Using the terminal, convert the Mule Enterprise license key to base64, and paste the contents as the value for `RTF_MULE_LICENSE` in the text editor.
 +
+----
+base64 -b0 license.lic
+----
++
+. Copy the command from the text editor and run it in the terminal on the `azure` directory.
 . Confirm the output of the `ARM-template-dev.json` and `ARM-template-prod.json` files in the `azure` directory.
 
 === Deploy using ARM Template
@@ -157,7 +162,11 @@ tail -f /var/log/rtf-init.log
 [NOTE]
 You can tail the same log on each VM to view its progress.
 
-When the installation completes successfully, the file `/opt/anypoint/runtimefabric/init-succeeded` is created.
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+=== Access to Ops Center
+
+After installation is completed successfully, the last few lines of the log output file located at `/var/log/rtf-init.log` will contain a host, username, and password to access the Ops Center. Copy these values and store them securely.
 
 == Next Steps
 
