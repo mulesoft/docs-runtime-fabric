@@ -181,7 +181,6 @@ When the installation completes successfully, the file `/opt/anypoint/runtimefab
 
 If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
 
-For help with resolving common errors during installation, see xref:install-common-errors.adoc[Common errors during installation].
 
 == Next Steps
 
