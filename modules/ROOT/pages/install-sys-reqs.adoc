@@ -29,7 +29,7 @@ The following systems requirements are the minimum requirements for a production
 
 * Minimum of 1 controller VM to operate Runtime Fabric; maximum of 5.
 ** 2 cores each minimum
-** 15 GiB memory minimum
+** 8 GiB memory minimum
 ** 80 GiB dedicated disk for the operating system.
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
