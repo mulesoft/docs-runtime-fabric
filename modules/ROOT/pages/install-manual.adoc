@@ -62,10 +62,7 @@ To begin, we will run a configuration tool. This aids in generating the environm
 | `RTF_WORKER_IPS` | IP addresses of the worker VMs, separated by whitespace. | `"10.3.0.11 10.3.0.12 10.3.0.13"`
 | `RTF_DOCKER_DEVICE` |  Block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
 | `RTF_ETCD_DEVICE` |  Block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
-| `RTF_AUTH_TOKEN` | An active Anypoint authentication token, available on the Create Runtime Fabric page. | `Bearer 626d7810-0730-498b-bd48-544490c2226b`
-| `RTF_REGION` | The Anypoint broker region you're registering to, available on the Create Runtime Fabric page. | `us-east-1`
-| `RTF_ORG_ID` | The ID for your Anypoint organization, available on the Create Runtime Fabric page. | `2f99d26-a3c2-4023-b303-5528sdd5v022`
-| `RTF_ENDPOINT` | The Anypoint control plane you're registering to, available on the Create Runtime Fabric page. | `anypoint.mulesoft.com`
+| `RTF_ACTIVATION_DATA` | Specifies the encrypted Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
 | `RTF_INSTALL_PACKAGE_URL` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. _If this is not specified, the installer will expect you to manually copy the installation package to_ `/opt/anypoint/runtimefabric/installer.tar.gz`. | `https://s3.amazonaws.com/runtimefabric/...`
 | `RTF_NAME` | The name of your Runtime Fabric cluster. | `runtime-fabric`
 | `RTF_TOKEN` | The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
