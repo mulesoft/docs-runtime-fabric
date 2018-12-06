@@ -1,0 +1,30 @@
+= Create a Runtime Fabric in Runtime Manager
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Before provisioning your infrastructure and installing Runtime Fabric, you must create a Runtime Fabric using Runtime Manager.
+
+. Login to your Anypoint Platform Account, then select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Specify the name of your Runtime Fabric. You will use this name during Runtime Fabric Installation.
+. Click *Create*.
++
+Runtime Manager creates and activates the Runtime Fabric. It may take several minutes for activation to complete.
++
+image::runtime-fabric-arm.png
+
+. Click *Download Configuration Files*.
++
+This downloads a zip file containing configuration files for supported platforms. Use these scripts during Runtime Fabric installation.
+
+After creating a Runtime Fabric, ensure that you have recorded the following:
+
+* The location of the downloaded configuration files.
+* Name: the name of your Runtime Fabric. You must supply this name as a parameter of the installation scripts.
+* Activation data: an encoded token that specifies different parameters required for the installation.
+
+== See Also
+
+xref:installation.adoc[Installation Overview]

@@ -3,13 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This provides an overview of the Anypoint Runtime Fabric installation process and describes how the installer performs its work.
+This topic provides an overview of the Anypoint Runtime Fabric installation process and describes how the installer works.
 
 Anypoint Runtime Fabric is a container service built to run Mule applications and API gateways on a set of VMs. The Anypoint Runtime Fabric installer is optimized to require minimal user interaction. However, there are important configuration steps to complete after installation.
 
 == Overview
 
-To begin installing Anypoint Runtime Fabric, download a ZIP file containing scripts based on the infrastructure provider, located under the Runtime Fabrics section in Runtime Manager. During installation, the installation package is downloaded to a VM that serves as the leader of the installation. In this document, this VM is referred to as the installer VM. After installation, it will serve the same function as a controller VM.
+Before beginning to install Anypoint Runtime Fabric, you must create a Runtime Fabric using Runtime Manager. See xref:install-create-rtf-arm.adoc[Create a Runtime Fabric using Runtime Manager]. After creating the Runtime Fabric, you must perform the following:
+
+* Download a ZIP file containing the installation scripts. This ZIP file contains scripts specific to the infrastructure provider.
+* Record the name of the Runtime Fabric.
+* Record the activation data for the Runtime Fabric.
+
+During installation, the installation package is downloaded to a VM that serves as the leader of the installation. In this document, this VM is referred to as the installer VM. After installation, it will serve the same function as a controller VM.
 
 Setting up Runtime Fabric occurs in the following steps:
 
@@ -33,6 +39,7 @@ The disks required to run Anypoint Runtime Fabric are used for the following:
 
 [NOTE]
 xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
+
 
 == Install and Register
 

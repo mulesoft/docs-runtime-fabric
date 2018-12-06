@@ -59,11 +59,7 @@ Some of the values for the variables below are available on the Create Runtime F
 | `cluster_name` | The name for your Runtime Fabric cluster; will be visible in Runtime Manager, composed of alphanumeric characters, hyphens and underscores only. | `rtf-aws`
 | `key_pair` | The name of the keypair in the AWS region you are deploying to. | `my-keypair`
 | `enable_public_ips` | Provision public IP addresses for each VM. If left as false, ensure you've consulted with your network administrator on how to obtain shell/SSH access to VMs. | `false`
-| `anypoint_org_id` | The ID for your Anypoint organization, available on the Create Runtime Fabric page. | `2f99d26-a3c2-4023-b303-5528sdd5v022`
-| `anypoint_token` | An active Anypoint authentication token, available on the Create Runtime Fabric page. | `bearer 626d7810-0730-498b-bd48-544490c2226b`
-| `anypoint_region` | The Anypoint broker region you're registering to, available on the Create Runtime Fabric page. | `us-east-1`
-| `anypoint_endpoint` | The Anypoint control plane you're registering to, available on the Create Runtime Fabric page. | `anypoint.mulesoft.com`
-| `installer_url` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. | `runtime-fabric.s3.amazonaws.com/...`
+| `activation_data` | Specifies the encrypted Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
 | `controllers` | The number of controller VMs to provision. | `3`
 | `workers` | The number of worker VMs to provision. | `3`
 | `mule_license` | The digest (`muleLicenseKey.lic`) of your organization's Mule Enterprise license key. Learn more on how to xref:3.9@mule-runtime::installing-an-enterprise-license.adoc[install a Mule Enterprise license]. |
@@ -100,11 +96,7 @@ terraform apply \
   -var cluster_name= \
   -var key_pair= \
   -var enable_public_ips= \
-  -var anypoint_org_id= \
-  -var anypoint_token='' \
-  -var anypoint_region= \
-  -var anypoint_endpoint= \
-  -var installer_url= \
+  -var activation_data=<data> \
   -var controllers=3 \
   -var workers=3 \
   -var mule_license='' \
@@ -140,23 +132,19 @@ docker run -it -v $(pwd):/src -w /src/aws \
   -var cluster_name= \
   -var key_pair= \
   -var enable_public_ips= \
-  -var anypoint_org_id= \
-  -var anypoint_token='' \
-  -var anypoint_region= \
-  -var anypoint_endpoint= \
-  -var installer_url= \
+  -var activation_data=<data> \
   -var controllers=3 \
   -var workers=3 \
   -var mule_license='' \
   -state=tf-data/rtf.tfstate
 ----
 
-This step will execute the Terraform script to provision the infrastructure and run the installation script on each VM.
-The installer VM will download the installer package, unpack it and begin installation. The other VMs will wait for the installer VM to progress with installation until it's able to make the installer files transferrable. Each VM will then transfer the files from the installer VM and carry out their own installation procedure.
+This step runs the Terraform script to provision the infrastructure and run the installation script on each VM.
+The installer VM downloads the installer package, unpack it and begin installation. The other VMs waits for the installer VM to progress with installation until it can make the installer files transferrable. Each VM then transfers the files from the installer VM and carry out their own installation procedure.
 
-When installation has been completed, a cluster will be formed across all VMs. The installer VM will then carry out the registration step using the Anypoint Organization ID, token, and region specified.
+When installation has been completed, a cluster is formed across all VMs. The installer VM then completes the registration step using the Anypoint Organization ID, token, and region specified.
 
-After registration has completed, you'll see Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license digest in Runtime Fabric.
+After registration has completed, Runtime Fabric appears in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM  inserts the Mule Enterprise license digest in Runtime Fabric.
 
 When finished, verify the installation by running this command to view the health of the Runtime Fabric cluster on any VM:
 ----
@@ -164,7 +152,7 @@ gravity status
 ----
 
 [NOTE]
-This step will install Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
 
 === Monitoring the Installation
 
