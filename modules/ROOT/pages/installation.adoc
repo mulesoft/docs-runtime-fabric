@@ -34,8 +34,10 @@ The default behavior of the AWS and Azure provisioning scripts creates a set of 
 
 The disks required to run Anypoint Runtime Fabric are used for the following:
 
-* Each controller VM requires a minimum of 60 GiB dedicated disk with at least 3000 IOPS to run the etcd distributed database.
-* Each controller and worker VM requires a minimum of 250 GiB dedicated disk with at least 1000 IOPS for Docker overlay and other internal services.
+* Each controller VM requires a minimum of 60 GiB dedicated disk with at least 3000 IOPS to run the etcd distributed database. 
+** This disk is referred to as the `etcd` device.
+* Each controller and worker VM requires a minimum of 100 GiB (for development) or 250 GiB (for production) dedicated disk with at least 1000 IOPS for Docker overlay and other internal services. 
+** This disk is referred to as the `docker` device.
 
 [NOTE]
 xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.

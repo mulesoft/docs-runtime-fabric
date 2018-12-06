@@ -36,6 +36,19 @@ Verify port 32009 is open and accessible in your Security Group, Network Securit
 
 After logging into Ops Center, you'll see a list of tabs on the left of the page. Navigate to "Monitoring" to view the dashboards available for viewing.
 
+=== View Metrics from an Application
+
+With Ops Center, you can view metrics from a deployed application.
+
+. On Ops Center, click on Kubernetes on the left sidebar.
+. Click on the Pods tab.
+. Select the environment ID where the application was deployed on the right dropdown, near the search input.
+. Find the Pod name which begins with the name of your application.
+. Click on the Pod name and select "Monitoring".
+
+The page should redirect to the Monitoring tab with a filter applied to your application. By default, a set of graphs showing the CPU, Memory, Network, and Filesystem usage will be visible.
+
+
 === Cluster and Pods
 
 The dashboards are divided into two main categories:
@@ -48,6 +61,21 @@ The dashboards are divided into two main categories:
 == Viewing Logs
 
 Ops Center shows a stream of logs outputted by applications and services running on Runtime Fabric. Navigate to "Logging" on the left of the page to view the logging interface.
+
+=== View Logs from an Application
+
+With Ops Center, you can view the logs from a deployed application. This can be useful in cases where log forwarding is not set up.
+
+. On Ops Center, click on Kubernetes on the left sidebar.
+. Click on the Pods tab.
+. Select the environment ID where the application was deployed on the right dropdown, near the search input.
+. Find the Pod name which begins with the name of your application.
+. Click on the Pod name and select "Logs".
+
+The page should redirect to the Logs tab with a filter applied to your application.
+
+[NOTE]
+To view the latest logs, click the "Refresh" button on the upper right portion of the page.
 
 === Filters
 

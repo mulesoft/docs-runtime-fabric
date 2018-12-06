@@ -42,15 +42,37 @@ The following table lists the ports that must be accessible when installing Anyp
 | 4242 | TCP | Internal | Bandwidth checker
 |===
 
+== Port IPs and Hostnames to Whitelist
+
+In your network, you may need to whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Anypoint Runtime Fabric to communicate with the MuleSoft-managed online Anypoint Platform APIs and services, and to download dependencies during installation or upgrades.
+
+These tables show you the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
+
+[%header%autowidth.spread]
+|===
+| Port | Protocol | Hostnames
+| 5672 | TCP (AMQP) | `transport-layer.prod.cloudhub.io`
+| 443 | HTTPS | `*.prod.cloudhub.io`
+| 443 | HTTPS | `anypoint.mulesoft.com`
+| 443 | HTTPS | `*.anypoint.mulesoft.com`
+| 443 | HTTPS | `kubernetes-charts.storage.googleapis.com`
+| 443 | HTTPS | `*.docker.io`
+| 443 | HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com`
+| 443 | HTTPS | `docker-images-prod.s3.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com`
+| EU control plane: `ecr.eu-central-1.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `*.ecr.us-east-1.amazonaws.com`
+| EU control plane: `*.ecr.eu-central-1.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`
+| EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`
+
+|===
+
 == Required Network Settings
 
 The following are the network settings required for Anypoint Runtime Fabric:
 
-* Outbound access to download the runtime images from one of the following endpoints:
-** US control plane: `ecr.us-east-1.amazonaws.com` on port 443.
-** EU control plane: `ecr.eu-central-1.amazonaws.com` on port 443.
-* A subnet with at least 300 IP addresses allottable, or more depending on the number of applications and API gateways running.
-** For example, the subnet 172.16.0.0/23 provides 512 usable IP addresses.
+* A subnet with enough IP address allotable to add additional VMs to Runtime Fabric.
 * Shell/SSH access to each VM used to install Runtime Fabric.
 
 == See Also

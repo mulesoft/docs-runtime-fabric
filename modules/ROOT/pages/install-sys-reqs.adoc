@@ -6,38 +6,55 @@ endif::[]
 
 Anypoint Runtime Fabric can run in a development or a production configuration. The requirements for each configuration are below.
 
+[NOTE]
+Review these requirements with your Operations team to ensure the right infrastructure is provisioned before attempting installation.
+
 == Minimum Hardware Requirements
 
 === Production Configuration
 
-The following systems requirements are the minimum requirements for a production environment:
+A minimum of 6 VMs are required for a production configuration of Runtime Fabric. The following systems requirements are the minimum requirements for a production environment:
 
-* Minimum of 3 controller VMs to operate Runtime Fabric; maximum of 5.
+* At least 3 controller VMs to operate Runtime Fabric; maximum of 5.
 ** 2 cores each minimum.
 ** 8 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
+*** 20 GiB or more for `/tmp` directory.
+*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
+*** 1 GiB or more for `/var/log/` directory.
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-* Minimum of 3 worker VMs to run Mule applications and API gateways; maximum of 16.
+* At least 3 worker VMs to run Mule applications and API gateways; maximum of 16.
 ** 2 cores each minimum.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
+*** 20 GiB or more for `/tmp` directory.
+*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
+*** 1 GiB or more for `/var/log/` directory.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
 === Development Configuration
 
-* Minimum of 1 controller VM to operate Runtime Fabric; maximum of 5.
+A minimum of 3 VMs are required for a development configuration of Runtime Fabric:
+
+* At least 1 controller VM to operate Runtime Fabric; maximum of 5.
 ** 2 cores each minimum
-** 15 GiB memory minimum
+** 8 GiB memory minimum
 ** 80 GiB dedicated disk for the operating system.
+*** 20 GiB or more for `/tmp` directory.
+*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
+*** 1 GiB or more for `/var/log/` directory.
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-* Minimum of 2 worker VMs to run Mule applications and API gateways; maximum of 16.
+* At least 2 worker VMs to run Mule applications and API gateways; maximum of 16.
 ** 2 cores each minimum.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
+*** 20 GiB or more for `/tmp` directory.
+*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
+*** 1 GiB or more for `/var/log/` directory.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
 === Additional Resources
@@ -51,8 +68,8 @@ In addition to the hardware required to run the configuration above, there are o
 
 Anypoint Runtime Fabric requires one of the following operating systems. The same operating system should be used for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the installation process fails.
 
-* Red Hat (RHEL) v7.4
-* CentOS v7.4
+* Red Hat (RHEL) v7.4, v7.5
+* CentOS v7.4, v7.5
 
 == See Also
 
