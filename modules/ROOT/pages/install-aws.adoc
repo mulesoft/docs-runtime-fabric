@@ -18,7 +18,7 @@ Prepare the necessary steps and understand the core concepts prior to installing
 
 In addition, ensure the following criteria have been met before beginning the installation:
 
-* Your AWS user has access to create EC2 instances, Disks, VPCs, Security Groups.
+* Your AWS user has access to create EC2 instances, Disks, VPCs, and Security Groups.
 * Your AWS account has enough quota for the infrastructure being provisioned.
 * Your Anypoint user account has the *Manage Runtime Fabrics* permission.
 
@@ -29,10 +29,10 @@ The installer script zip file includes the necessary scripts needed to install R
 [NOTE]
 If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
 
-. Log in to Anypoint platform and navigate to Runtime Manager.
-. On the left navigation pane, select "Runtime Fabrics".
-. Click "Create Runtime Fabric".
-. Click the "Download files" link.
+. Sign in to Anypoint platform and navigate to Runtime Manager.
+. On the left navigation pane, select *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Click the *Download files* link.
 . Once downloaded, unzip the `rtf-install-scripts.zip` file.
 
 You'll find a directory named `aws` containing the following:
@@ -74,7 +74,7 @@ Some of the values for the variables below are available on the Create Runtime F
 There are a couple of methods to run the Terraform script:
 
 * If you have Terraform installed on your machine, use the native terraform method.
-** Check the version of terraform installed is `0.11.7` or higher by running `terraform --version` on your terminal.
+** Check the version of terraform installed is `0.11.7` or later by running `terraform --version` on your terminal.
 * If you do not have Terraform installed, but have Docker installed, use the Docker method.
 * If you do not have Terraform or Docker installed, pick your most comfortable option.
 
@@ -143,11 +143,11 @@ docker run -it -v $(pwd):/src -w /src/aws \
 ----
 
 This step runs the Terraform script to provision the infrastructure and run the installation script on each VM.
-The installer VM downloads the installer package, unpack it and begin installation. The other VMs waits for the installer VM to progress with installation until it can make the installer files transferrable. Each VM then transfers the files from the installer VM and carry out their own installation procedure.
+The installer VM downloads the installer package, unpacks it, and begins installation. The other VMs wait for the installer VM to progress with installation until it can make the installer files transferrable. Each VM then transfers the files from the installer VM and carries out the installation procedure.
 
-When installation has been completed, a cluster is formed across all VMs. The installer VM then completes the registration step using the Anypoint Organization ID, token, and region specified.
+When installation is complete, a cluster is formed across all VMs. The installer VM then completes the registration step using the Anypoint Organization ID, token, and region specified.
 
-After registration has completed, Runtime Fabric appears in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM  inserts the Mule Enterprise license digest in Runtime Fabric.
+After registration is complete, Runtime Fabric appears in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM  inserts the Mule Enterprise license digest in Runtime Fabric.
 
 
 When finished, verify the installation by running this command to view the health of the Runtime Fabric cluster on any VM:
@@ -160,7 +160,7 @@ This step installs Runtime Fabric across all servers to form a cluster. It may t
 
 === Monitoring the Installation
 
-The `cloud-init` library is used to execute the Runtime Fabric installation script. It's useful to monitor the installation on the installer VM to verify all pre-flight checks have passed; if an error were to occur during installation, it's likely to be visible by viewing the installer VM's log output.
+The `cloud-init` library is used to execute the Runtime Fabric installation script. It's useful to monitor the installation on the installer VM to verify all pre-flight checks have passed. If an error occurs during installation, it's likely to be visible by viewing the installer VM's log output.
 
 To view the progress during the installation, you can tail the output log on each VM:
 
