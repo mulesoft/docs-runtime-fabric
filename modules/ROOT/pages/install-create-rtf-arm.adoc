@@ -5,7 +5,7 @@ endif::[]
 
 == Before you Begin
 
-Review the xref:installation.adoc[Preparing to Install Anypoint Runtime Fabric] to ensure you are ready to create and install a Runtime Fabric.
+Review the xref:installation.adoc[steps to install Anypoint Runtime Fabric] to ensure you are ready to proceed.
 
 Before provisioning your infrastructure and installing Runtime Fabric, you must create a Runtime Fabric using Runtime Manager.
 
