@@ -62,6 +62,9 @@ Second, become familiar with the variables needed for installation. The value fo
 
 |===
 
+[NOTE]
+To base64 encode the Mule license key, use the `base64 -b0 license.lic` command.
+
 ==== Optional Variables
 
 The following variables can be defined based upon your organization's requirements.
