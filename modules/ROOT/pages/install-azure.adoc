@@ -91,7 +91,7 @@ You'll need a private and public key as a PEM file to provision the VMs. This is
 | `Runtime Fabric Name` | The name for your Runtime Fabric cluster. | `rtf-azure`
 | `Runtime Fabric Token` | The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
 | `Controller Instance Type` | The Azure machine type to provision for each controller VM. Default set to 2 cores and 8 GiB memory. | `Standard_D2s_v3`
-| `Anypoint Activation Data` | Specifies the encrypted Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
+| `Anypoint Activation Data` | Specifies the encoded Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
 | `Worker Instance Type` | The Azure machine type to provision for each worker VM. Default set to 2 cores and 16 GiB memory. | `Standard_E2s_v3`
 | `Virtual Network CIDR` | The address range to specify for the Virtual Network. Refer to your network specialist for assistance, if necessary. | `172.31.0.0/16`
 | `Virtual Network Subnet` | The address range to specify for subnet to use within the Virtual Network. Refer to your network specialist for assistance, if necessary. | `172.31.3.0/28`

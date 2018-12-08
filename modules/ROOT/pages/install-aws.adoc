@@ -62,7 +62,7 @@ Some of the values for the variables below are available on the Create Runtime F
 | `cluster_name` | The name for your Runtime Fabric cluster; will be visible in Runtime Manager, composed of alphanumeric characters, hyphens and underscores only. | `rtf-aws`
 | `key_pair` | The name of the keypair in the AWS region you are deploying to. | `my-keypair`
 | `enable_public_ips` | Provision public IP addresses for each VM. If left as false, ensure you've consulted with your network administrator on how to obtain shell/SSH access to VMs. | `false`
-| `activation_data` | Specifies the encrypted Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
+| `activation_data` | Specifies the encoded Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
 | `controllers` | The number of controller VMs to provision. | `3`
 | `workers` | The number of worker VMs to provision. | `3`
 | `mule_license` | The base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). |
