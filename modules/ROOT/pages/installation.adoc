@@ -12,15 +12,14 @@ Anypoint Runtime Fabric is a container service built to run Mule applications an
 Before beginning to install Anypoint Runtime Fabric, you must create a Runtime Fabric using Runtime Manager. See xref:install-create-rtf-arm.adoc[Create a Runtime Fabric using Runtime Manager]. After creating the Runtime Fabric, you must perform the following:
 
 * Download a ZIP file containing the installation scripts. This ZIP file contains scripts specific to the infrastructure provider.
-* Record the name of the Runtime Fabric.
 * Record the activation data for the Runtime Fabric.
 
-During installation, the installation package is downloaded to a VM that serves as the leader of the installation. In this document, this VM is referred to as the installer VM. After installation, it will serve the same function as a controller VM.
+During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation. 
 
 Setting up Runtime Fabric occurs in the following steps:
 
 . Provision and configure infrastructure
-. Install & register Runtime Fabric
+. Install & activate Runtime Fabric
 . xref:configure-log-forwarding.adoc[Configure Log Forwarding]
 . xref:configure-alerting.adoc[Configure Alerting]
 . xref:associate-environments.adoc[Associate Runtime Fabric to an Environment]
@@ -30,7 +29,7 @@ Setting up Runtime Fabric occurs in the following steps:
 
 It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements have not been met.
 
-The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by the minimum requirements. It also creates a private network with the required network ports configured. This is optimal when evaluating Runtime Fabric before integrating within your primary network. You may need to consult with your network administrator to determine if the default behavior is compatible. You may need to modify the provisioning scripts to accommodate your organization's requirements.
+The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by the minimum requirements. It also creates a private network with the required network ports configured. This is optimal when evaluating Runtime Fabric before integrating within your primary network. You should consult with your network administrator to determine if the default behavior is compatible. You may need to modify the provisioning scripts to accommodate your organization's requirements.
 
 The disks required to run Anypoint Runtime Fabric are used for the following:
 
@@ -42,15 +41,14 @@ The disks required to run Anypoint Runtime Fabric are used for the following:
 [NOTE]
 xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
 
-
-== Install and Register
+== Install and Activate
 
 Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
 
 * Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
 * Worker VMs are dedicated to run Mule applications.
 
-One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the installer VM, perform the installation, and join the installer VM to form a cluster.
+One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
 
 During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
 
@@ -58,10 +56,10 @@ The installation process combines the following steps:
 
 * For AWS and Azure, provision infrastructure per the system requirements.
 * Install Runtime Fabric across the VMs.
-* Register Runtime Fabric to your Anypoint organization.
+* Activate Runtime Fabric with your Anypoint organization.
 * Install your organization's Mule Enterprise license.
 
-To complete theses steps, specify environment variables for each VM  at the beginning of installation. The installer VM requires additional variables to register and install the Mule license. A script runs on each VM to perform the following actions:
+To complete theses steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
 
 * Format and mount each dedicated disk
 * Add mount entries for each disk to `/etc/fstab`
@@ -69,11 +67,10 @@ To complete theses steps, specify environment variables for each VM  at the begi
 * Enable required kernel modules
 * Start the installation
 
-On the installer VM, the following are performed:
+On the controller VM acting as the leader for installation, the following are performed:
 
-* Run the registration script after installation
-* Run the Mule license installation script after registration
-
+* Run the activation script after installation
+* Run the Mule license insertion script after registration
 
 == Viewing Installation Progress
 
@@ -104,8 +101,4 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 * xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
 * xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
-* xref:install-aws.adoc[Install Runtime Fabric on AWS]
-* xref:install-azure.adoc[Install Runtime Fabric on Azure]
-* xref:install-manual.adoc[Install Runtime Fabric Manually]
-* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
-* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
+* xref:install-create-rtf-arm.adoc[Create a Runtime Fabric in Runtime Manager]
