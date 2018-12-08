@@ -18,10 +18,9 @@ Before using Anypoint Runtime Fabric, you must make decisions about the resource
 +
 Before installing Runtime Fabric in your environment, create a Runtime Fabric using Runtime Manager. This enables you to:
 
-* Specify the name of your runtime fabric.
+* Specify the name of your Runtime Fabric.
 * Download the installation scripts.
-* Record the Runtime Fabric activation data used durint the installation.
-
+* Record the Runtime Fabric activation data used during the installation.
 
 . Install Runtime Fabric
 +
