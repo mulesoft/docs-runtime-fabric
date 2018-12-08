@@ -7,46 +7,21 @@ This topic describes how to install and register Anypoint Runtime Fabric on VMs 
 
 [WARNING]
 ====
-Before running the installer, ensure that your infrastructure meets the minimum hardware, operating system, and networking requirements. An operations and networking specialist may be needed to provision the required infrastructure.
+Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. These requirements should be reviewed by your organization's operations, networking and security teams.
 ====
 
 == Before you Begin
 
-Prepare the necessary steps and understand the core concepts prior to installing Runtime Fabric. In addition, ensure the following criteria have been met before beginning the installation:
+Ensure the following criteria have been met before beginning the installation:
 
-* Review the xref:installation.adoc[installation details] to ensure you are ready to install Runtime Fabric.
-* Provision the necessary hardware for the controller VMs and worker VMs as outlined in the system requirements page.
-* Ensure the required disks are listed as a block device for each VM. The disks should not be mounted or formatted.
-* Runtime Fabric supports Red Hat (RHEL) v7.4/v7.5 and CentOS v7.4/v7.5. Each VM should be running a compatible operating system.
-* The necessary ports should be opened as described on the port requirements page.
+* You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
+* The necessary hardware has been provisioned as outlined in the xref:install-sys-reqs.adoc[system requirements] page.
+* The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
+* The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
 
-== Download Script
+=== Operations Performed During Installation
 
-The installer script ZIP file includes the necessary scripts needed to install Runtime Fabric. Download it to a controller VM you wish to act as the leader during the installation. It'll be referred to as the installer VM.
-
-[NOTE]
-If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
-
-. Log in to Anypoint platform and navigate to Runtime Manager.
-. On the left navigation pane, select "Runtime Fabrics".
-. Click "Create Runtime Fabric".
-. Right-click the "Download files" button and select an option most similar to "Copy link location".
-. Download the file to the installer VM.
-.. Open a shell (SSH session) to the installer VM.
-.. Download the file: `curl {INSTALLER_URL} --output rtf-install-scripts.zip`
-. Once downloaded, unzip the `rtf-install-scripts.zip` file in a separate directory.
-+
-----
-mkdir -p ./rtf-install-scripts && unzip rtf-install-scripts.zip -d ./rtf-install-scripts
-----
-
-Inside `rtf-install-scripts/`, you'll find a directory named `manual` containing the following:
-
-* `generate-configs.sh`: a script to help generate environment variables for each VM.
-* `README.md`: a markdown file containing instructions to aid with installation.
-
-== Prepare VMs for Installation
-The initialization process performs the following actions:
+The installation performs the following actions on each VM:
 
 * Formats the dedicated disks.
 * Mounts the dedicated disks to the appropriate path.
@@ -54,77 +29,95 @@ The initialization process performs the following actions:
 * Enables the required kernel modules.
 * Enables and reloads system services.
 
-To begin, we will run a configuration tool. This aids in generating the environment variables required on each machine. The script reads these variables during execution.
+== Installation
 
-=== Variables to specify:
+First, download the scripts ZIP file on the controller VM which will act as the leader in the installation.
+
+. Sign in to Anypoint platform and navigate to Runtime Manager.
+. On the left navigation pane, select *Runtime Fabrics*.
+. Click on the Runtime Fabric you created. It should be in the Activating state.
+. Right-click the *Download files* button and select "Copy link location".
+. Download the file to the controller VM.
+.. Open a shell (SSH session) to the controller VM.
+.. Download the file: `curl {INSTALLER_URL} --output rtf-install-scripts.zip`
+. Once downloaded, unzip the `rtf-install-scripts.zip` file in a separate directory.
++
+----
+mkdir -p ./rtf-install-scripts && unzip rtf-install-scripts.zip -d ./rtf-install-scripts
+----
+
+Inside the `rtf-install-scripts/` directory, you'll find a sub-directory named `manual` containing the following:
+
+* `generate-configs.sh`: a script to help generate environment variables for each VM.
+* `README.md`: a markdown file containing instructions to aid with installation.
+
+=== Variables to Define
+
+Second, become familiar with the variables needed for installation. The value for the `RTF_ACTIVATION_DATA` variable can be found on the Runtime Fabric page on Runtime Manager.
+
 [%header,cols="3*a"]
 |===
 |Parameter | Description | Example
-| `RTF_CONTROLLER_IPS` | IP addresses of the controller VMs, separated by whitespace. The first IP address serves as the installer VM. | `"10.3.0.4 10.3.0.5 10.3.0.6"`
+| `RTF_CONTROLLER_IPS` | IP addresses of the controller VMs, separated by whitespace. The first IP address will need to be the leader of the installation. | `"10.3.0.4 10.3.0.5 10.3.0.6"`
 | `RTF_WORKER_IPS` | IP addresses of the worker VMs, separated by whitespace. | `"10.3.0.11 10.3.0.12 10.3.0.13"`
-| `RTF_DOCKER_DEVICE` |  Block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
-| `RTF_ETCD_DEVICE` |  Block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
-| `RTF_ACTIVATION_DATA` | Specifies the encoded Runtime Fabric activation data | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
-| `RTF_INSTALL_PACKAGE_URL` | The URL of the Runtime Fabric installation package, available on the Create Runtime Fabric page. _If this is not specified, the installer will expect you to manually copy the installation package to_ `/opt/anypoint/runtimefabric/installer.tar.gz`. | `https://s3.amazonaws.com/runtimefabric/...`
-| `RTF_NAME` | The name of your Runtime Fabric cluster. | `runtime-fabric`
-| `RTF_MULE_LICENSE` | The base64 encoded contents of the Mule Enterprise license key binary file obtained from MuleSoft. | `==ABCD12934...`
-| `RTF_TOKEN` | Optional. The token used to join each other VM to the installer VM. This should be a unique value to avoid conflicts during installation. | `my-rtf-token`
-| `RTF_HTTP_PROXY` | Optional. A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
-| `RTF_TCP_PROXY` | Optional. A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
-| `RTF_NO_PROXY` | Optional. A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
-| `RTF_SERVICE_UID` | Optional. An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
-| `RTF_SERVICE_GID` | Optional. An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
+| `RTF_DOCKER_DEVICE` |  The full block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
+| `RTF_ETCD_DEVICE` |  The full block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
+| `RTF_ACTIVATION_DATA` | The encoded Runtime Fabric activation data found in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
+| `RTF_MULE_LICENSE` | The base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). | `==ABCD12934...`
+
 |===
 
 [NOTE]
-To help identify the block device paths to your disks, run the `lsblk` command on the VMs.
+To help identify the block device paths to your disks, use the `lsblk` command on the VMs.
 
-. If needed, open a shell/SSH on the installer VM and navigate to the `manual` directory from the unzipped directory.
-. Copy the command below in a text editor to aid in filling in each of the variables inside the single qoutes.
+==== Optional Variables
+
+The following variables can be defined based upon your organization's requirements.
+
+[%header,cols="3*a"]
+|===
+|Parameter | Description | Example
+| `RTF_HTTP_PROXY` | A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
+| `RTF_TCP_PROXY` | A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
+| `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
+| `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
+| `RTF_SERVICE_GID` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
+
+|===
+
+[NOTE]
+To install a specific version of Runtime Fabric, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
+
+Third, use the `./generate-configs.sh` script to generate the environment variables for each VM.
+
+. Copy the command below in a text editor and fill in the values of each variable inside the single quotes.
 +
 ----
 RTF_CONTROLLER_IPS='' \
 RTF_WORKER_IPS='' \
 RTF_DOCKER_DEVICE='' \
 RTF_ETCD_DEVICE='' \
-RTF_AUTH_TOKEN='' \
-RTF_REGION='' \
-RTF_ORG_ID='' \
-RTF_ENDPOINT='' \
-RTF_INSTALL_PACKAGE_URL='' \
-RTF_NAME='' \
+RTF_ACTIVATION_DATA='' \
 RTF_MULE_LICENSE='' \
 ./generate-configs.sh
 ----
 +
-. Run the command with all values filled in and run it on the installer VM.
-. The output is a configuration snippet for each IP address specified. Execute the snippet on each VM based upon its IP address to apply the expected environment variables.
-. On each VM, copy the `installer/scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
-
+. Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. 
+.. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
+.. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
++
 ----
 mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh /opt/anypoint/runtimefabric/init.sh && chmod +x /opt/anypoint/runtimefabric/init.sh
 ----
 
-== Installation
-
-After the required values are defined and placed on each VM, an initialization script will be run on each VM to run through the installation. The script is the same on each VM; the values defined in the earlier step determine the role and verification checks for each VM during installation.
-
-=== Understanding the Process
-
-The installer VM will download the installer package, unpack it and begin installation. The other VMs will wait for the installer VM to progress with installation until it's able to make the installer files transferrable. Each VM will then transfer the files from the installer VM and carry out their own installation procedure.
-
-When installation has been completed, a cluster will be formed across all VMs. The installer VM will then carry out the registration step using the Anypoint Organization ID, token, and region specified.
-
-After registration has completed, you'll see the name used when provisioning Runtime Fabric in Anypoint Runtime Manager, under the Runtime Fabrics tab. The installation script on the installer VM will proceed to insert the Mule Enterprise license in Runtime Fabric.
-
-=== Steps
-. Run the `init.sh` script in privileged mode on the `installer` VM:
+. Run the `init.sh` script in privileged mode on the controller VM.
 +
 ----
 sudo /opt/anypoint/runtimefabric/init.sh foreground
 ----
 +
-. Wait until the installer VM has successfully completed the pre-flight checks. The output should continue past the "Execute preflight checks" message to indicate the checks have passed:
+. Wait until the installation has successfully completed the pre-flight checks. The output should continue past the *Execute preflight checks* message to indicate the checks have passed:
 +
 ----
 ...
@@ -136,52 +129,30 @@ Tue Aug 14 02:29:59 UTC Bootstrap all nodes
 ...
 ----
 +
-. Run the same command to execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed across each VM concurrently.
+. Execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed on each VM concurrently.
 +
 ----
 sudo /opt/anypoint/runtimefabric/init.sh foreground
 ----
 +
 . If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
-+
-. After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
 
 [NOTE]
 This step will install Runtime Fabric across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
 
-When finished, verify the installation by running this command to view the health of the Runtime Fabric cluster on any VM; you should see each VM in the cluster with a status equal to `healthy`.
-----
-gravity status
-----
-
-=== Monitoring the Installation
-
-It's useful to monitor the installation on the installer VM to verify all pre-flight checks have passed; if an error were to occur during installation, it's likely to be visible by viewing the installer VM's log output.
-
-When the `foreground` parameter is applied to the `init.sh` script, logs are outputted to the user for realtime feedback on the installation. If this parameter was omitted, logs are sent to a specific location on each VM.
-
-To view the progress during the installation, you can tail the output log on each VM:
-
-. Open a shell (or SSH session) to the VM.
-. Tail the output log, located at `/var/log/rtf-init.log`
-+
-----
-tail -f /var/log/rtf-init.log
-----
-
-[NOTE]
-You can tail the same log on each VM to view its progress.
-
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
-=== Errors During Installation
+=== Access to Ops Center
 
-If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
+. After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
 
+== Common Errors
+
+If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more values in the `/opt/anypoint/runtimefabric/env` file to the correct value, and re-running the `init.sh` script.
 
 == Next Steps
 
 Before deploying applications on Anypoint Runtime Fabric, you'll need to perform the following steps:
 
 * xref:associate-environments.adoc[Associate an environment to Runtime Fabric]
-* xref:enable-inbound-traffic.adoc[Enable inbound traffic to Runtime Fabric] (optional)
+* xref:enable-inbound-traffic.adoc[Enable inbound traffic to Runtime Fabric]

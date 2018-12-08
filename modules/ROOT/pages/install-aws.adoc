@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install and register Anypoint Runtime Fabric on your AWS account.
+This topic describes how to install Anypoint Runtime Fabric on your AWS account.
 
 [WARNING]
 ====
