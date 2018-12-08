@@ -5,6 +5,7 @@
 * xref:installation.adoc[Installation Overview]
  ** xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
  ** xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
+ ** xref:install-create-rtf-arm.adoc[Create a Runtime Fabric using Runtime Manager]
  ** xref:install-aws.adoc[Install Runtime Fabric on AWS]
  ** xref:install-azure.adoc[Install Runtime Fabric on Azure]
  ** xref:install-manual.adoc[Install Runtime Fabric Manually]
