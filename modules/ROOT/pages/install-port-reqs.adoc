@@ -7,7 +7,11 @@ This topic describes the network settings and port settings required to install 
 
 == Required Port Settings
 
-The following table lists the ports that must be accessible when running Anypoint Runtime Fabric.
+Below are the TCP and UDP network port requirements for Anypoint Runtime Fabric.
+
+=== TCP Ports
+
+The following table lists the *TCP* ports that must be accessible:
 
 [%header%autowidth.spread]
 |===
@@ -20,14 +24,26 @@ The following table lists the ports that must be accessible when running Anypoin
 | 6060 | TCP | Internal | Health check
 | 6443, 8080 | TCP | Internal | Kubernetes API server
 | 30000-32767 | TCP | Internal | Internal services port range
-| 53 | TCP / UDP | Internal | Internal DNS
+| 10248-10250 | TCP | Internal | Kubernetes components
+| 10255 | TCP | Internal | Kubernetes components
+| 53 | TCP | Internal | Internal DNS
 | 7496 | TCP | Internal  | Peer-to-peer connectivity
 | 5000 | TCP | Internal | Docker registry
-| 8472 | UDP | Internal | Overlay networking
 | 3022 - 3025 | TCP | Internal | Remote debugging services
 | 3080 | TCP | Internal | Runtime Fabric internal Ops Center
 | 3008 - 3012 | TCP | Internal | Runtime Fabric internal services
 | 7575, 7373 | TCP | Internal | Runtime Fabric internal services
+|===
+
+=== UDP Ports
+
+The following table lists the *UDP* ports that must be accessible:
+
+[%header%autowidth.spread]
+|===
+| Port | Protocol | Direction | Description
+| 53 | UDP | Internal | Internal DNS
+| 8472 | UDP | Internal | Overlay networking
 |===
 
 == Additional Ports Used During Installation
