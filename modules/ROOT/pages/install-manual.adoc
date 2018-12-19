@@ -69,7 +69,7 @@ Second, become familiar with the variables needed for installation. The value fo
 
 [NOTE]
 To help identify the block device paths to your disks, use the `lsblk` command on the VMs. 
-To base64 encode the Mule license key, use the `base64 -b0 license.lic` command.
+To base64 encode the Mule license key, use the `base64 -w0 license.lic` command. (`base64 -b0 license.lic` in OSX)
 
 ==== Optional Variables
 
