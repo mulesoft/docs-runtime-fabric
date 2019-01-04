@@ -55,7 +55,8 @@ RTF_MULE_LICENSE='' \
 * Using the terminal, encode the Mule Enterprise license key to base64 and paste the contents as the value for `RTF_MULE_LICENSE` in the text editor.
 +
 ----
-base64 -b0 license.lic
+base64 -w0 license.lic # Linux
+base64 -b0 license.lic # OSX
 ----
 +
 . Copy the command from the text editor and run in the terminal pointed to the `azure` directory.
