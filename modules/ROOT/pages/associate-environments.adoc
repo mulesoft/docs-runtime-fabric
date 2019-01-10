@@ -15,7 +15,7 @@ To associate a business group or environment to a Runtime Fabric:
 
 == Production Environments
 
-When selecting a production environment, a dialog appears to verify Runtime Fabric has been set up appropriately to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting and familiarity with possible failure modes. We recommend you verify that all these steps have been completed before operating and deploying production applications on Runtime Fabric.
+When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting and familiarity with possible failure modes. We recommend you verify that all these steps have been completed before operating and deploying production applications on Runtime Fabric.
 
 == Sharing across Business Groups
 
