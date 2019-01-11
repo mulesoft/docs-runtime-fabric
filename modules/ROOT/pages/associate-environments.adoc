@@ -3,31 +3,36 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Before you can deploy applications or API gateways to Anypoint Runtime Fabric, you must associate it with one or more Anypoint environments. You will not be able to select Runtime Fabric as a Deployment Target when deploying an application until this step has been completed for the environment you wish to deploy to.
+Before deploying applications or API gateways to Anypoint Runtime Fabric, you must associate a runtime fabric with one or more Anypoint Platform environments. When deploying a Mule application, you cannot select a Runtime Fabric as a deployment target until you have performed this in the environment where you want to deploy.
 
+To associate a business group or environment to a Runtime Fabric:
 
-. Navigate to Runtime Manager.
-. Select the Runtime Fabric section on the left sidebar.
+. From Anypoint Platform, select Runtime Manager.
+. Select the *Runtime Fabric* section on the left sidebar.
 . Select the Runtime Fabric based on the name used during installation.
-. On the Associated Environments tab, select the environment you want to associate with this Runtime Fabric.
-. Click Apply to confirm the changes.
+. From the *Associated Environments* tab, select the environment you want to associate with this Runtime Fabric.
+. Click *Apply* to confirm the changes.
 
 == Production Environments
 
-When selecting a production environment, a dialog will appear to ensure Runtime Fabric has been set up appropriately to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting and familiarity with possible failure modes. It's highly recommended to ensure all these steps have been completed before operating and deploying production applications on Runtime Fabric.
+When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting and familiarity with possible failure modes. We recommend you verify that all these steps have been completed before operating and deploying production applications on Runtime Fabric.
 
 == Sharing across Business Groups
 
-Runtime Fabric can be shared with the organization's business groups. This is useful to allow other business groups to deploy applications to a single Runtime Fabric. To use this feature, the business groups must fall under the scope of the organization the Runtime Fabric is registered to.
+Runtime Fabric can be shared with an organization's business groups. This allows other business groups to deploy applications to a single Runtime Fabric. To use this feature, the business groups must fall under the scope of the organization the Runtime Fabric is registered to.
 
+To share a Runtime Fabric across Business Groups:
 
-. Navigate to Runtime Manager.
-. Select the Runtime Fabric section on the left sidebar.
+. From Anypoint Platform, select Runtime Manager.
+. Select the *Runtime Fabric* tab on the left sidebar.
 . Select the Runtime Fabric to manage.
-. On the Associated Environments tab, click Add business group.
-. Select the business group to share this Runtime Fabric with. A list of the environments for the business group should be added.
+. On the *Associated Environments* tab, click Add business group.
+. Select the business group where you want to share this Runtime Fabric. 
++
+A list of the environments for the business group appears.
+
 . Select the environments under the business group you want to associate with this Runtime Fabric.
-. Click Apply to confirm the changes.
+. Click *Apply* to confirm the changes.
 
 
 == See Also
