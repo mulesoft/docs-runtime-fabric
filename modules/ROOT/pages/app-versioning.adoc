@@ -1,4 +1,7 @@
 = Application Deployment Versioning
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 Applications and their configurations deployed to Runtime Fabric are automatically versioned by ARM. This versioning feature enables you to:
 
