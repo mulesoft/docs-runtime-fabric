@@ -1,7 +1,10 @@
 = Deploy an API Proxy to Runtime Fabric
+// tag::content[]
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-partial:
+:incimagesdir: ../../../runtime-fabric/1.0/_images
 
 == Before you Begin
 
@@ -12,20 +15,22 @@ endif::[]
 . In API Manager, click *Manage API* > *Manage API From Exchange*, and configure management of the proxy asset.
 . In *API Configurations*: Fill API configuration, and in *Proxy deployment target*, select *Runtime Fabric*.
 +
-image::runtime-fabric-1.png[]
+image::{incimagesdir}/runtime-fabric-1.png[]
 +
 . Click *Save* and the *Deployment Configuration* appears.
 . Select the Runtime Fabric target.
 . Select the Mule version.
 . Type the name of the proxy
 +
-image::runtime-fabric-2.png[]
+image::{incimagesdir}/runtime-fabric-2.png[]
 
 While deploying to Runtime Fabric, a deployment status appears
 
-image::runtime-fabric-3.png[]
+image::{incimagesdir}/runtime-fabric-3.png[]
 
 After deployment, you can manage the deployment from Runtime Manager.
+
+// end::content[]
 
 == See Also
 
