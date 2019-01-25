@@ -1,0 +1,27 @@
+= Deploy Applications and API Proxies to Runtime Fabric
+
+Anypoint Runtime Fabric enables you to deploy Mule applications and API Proxies to a Mule runtime managed on Runtime Fabric.
+
+= Prerequisites
+
+Before deploying a Mule application or API proxy to Runtime Fabric, perform the following:
+
+* Install and configure a Runtime Fabric.
+* Publish your Mule application or API proxy to Exchange. Before they can be deployed to Runtime Fabric, Mule applications and API proxies must first be published to Exchange. When deploying from Runtime Manager, this is performed automatically.
+* Ensure that you understand how resources are allocated as described in xref:deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric]
+
+== Deploy Using Runtime Manager
+
+You can manually deploy Mule applications and API proxies using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
+
+
+== Deploy Using Maven
+
+To automate deployment of Mule applications and API proxies, use Anypoint Runtime Fabric supports Maven.
+
+* For information on using Maven to deploy to a 4.x Mule runtime, see xref:4.1@mule-runtime::runtime-fabric-deploy-mule-application-mmp-task.adoc[Deploying a Mule Application to Runtime Fabric]
+* For information on using Maven to deploy to a 3.9 Mule runtime, see xref:3.9@mule-runtime::runtime-fabric-deploy-mule-application-mmp-task.adoc[Deploying a Mule Application to Runtime Fabric]
+
+== Deploy Using the <name> API
+
+<link to API documentation>
