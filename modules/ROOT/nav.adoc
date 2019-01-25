@@ -18,4 +18,6 @@
  ** xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Anypoint Runtime Fabric]
  ** xref:app-versioning.adoc[Application Versioning]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
-* xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
+* xref:manage-index.adoc[Manage Runtime Fabric]
+ ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
+ ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
