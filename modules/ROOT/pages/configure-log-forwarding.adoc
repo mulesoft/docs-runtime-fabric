@@ -5,6 +5,11 @@ endif::[]
 
 This topic describes how to configure Anypoint Runtime Fabric to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
 
+Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
+
+Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
+
+
 == Procedure
 
 . Using a terminal, open a shell/SSH connection to a controller VM.

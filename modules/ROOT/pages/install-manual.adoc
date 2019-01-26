@@ -68,10 +68,10 @@ Second, become familiar with the variables needed for installation. The value fo
 |===
 
 [NOTE]
-To help identify the block device paths to your disks, use the `lsblk` command on the VMs. 
+To help identify the block device paths to your disks, use the `lsblk` command on the VMs.
 To base64 encode the Mule license key, use the `base64 -w0 license.lic` command. (`base64 -b0 license.lic` in OSX)
 
-==== Optional Variables
+=== Optional Variables
 
 The following variables can be defined based upon your organization's requirements.
 
@@ -104,7 +104,7 @@ RTF_MULE_LICENSE='' \
 ----
 +
 . Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
-. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. 
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM.
 .. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
 .. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
 +
@@ -143,7 +143,24 @@ This step will install Runtime Fabric across all VMs to form a cluster. It may t
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
-=== Access to Ops Center
+== Monitoring Installation Progress
+
+To view the progress during the installation, you can tail the output log on each VM:
+
+. Open a shell (or SSH session) to the first controller VM.
+. Tail the output log, located at `/var/log/rtf-init.log`
++
+----
+tail -f /var/log/rtf-init.log
+----
+
+[NOTE]
+You can tail the same log on each VM to view its progress.
+
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+
+== Access the Ops Center
 
 . After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
 
