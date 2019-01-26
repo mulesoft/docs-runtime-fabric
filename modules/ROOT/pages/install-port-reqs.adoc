@@ -11,7 +11,7 @@ Below are the TCP and UDP network port requirements for Anypoint Runtime Fabric.
 
 === TCP Ports
 
-The following table lists the *TCP* ports that must be accessible:
+The following table lists the TCP ports that must be accessible:
 
 [%header%autowidth.spread]
 |===
