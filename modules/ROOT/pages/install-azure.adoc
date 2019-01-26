@@ -104,7 +104,7 @@ This step installs Runtime Fabric across all servers to form a cluster. It may t
 [NOTE]
 By default, the ARM templates are configured to set a public IP address for each VM. The template can be modified to remove the `publicIPAddresses`, if necessary.
 
-== Monitoring the Installation
+== Monitoring Installation Progress
 
 Your infrastructure will be created. Follow these steps to view the progress:
 

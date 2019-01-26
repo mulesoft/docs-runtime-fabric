@@ -5,7 +5,15 @@ endif::[]
 
 Anypoint Runtime Fabric includes built-in load balancing capabilities to manage inbound traffic to its Mule applications and API gateways. Traffic is balanced across multiple replicas of your application, which by default reside across different worker VMs.
 
-_Note: This capability is disabled by default, and will need to be enabled before inbound requests can be received by Mule applications and API gateways._
+Anypoint Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric in order to enable application deployments. At least one environment must be associated with each Runtime Fabric to deploy Mule applications or API gateways using it as the target.
+
+Production applications must run in a separate instance of Runtime Fabric from non-production applications.
+
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. If API gateways or Mule applications listen on inbound connections, inbound traffic must be enabled. Before enabling, a valid TLS certificate must be provided. The certificate should require a passphrase and be set with a Common Name which is used as the domain for each deployed application on Runtime Fabric. If the Common Name contains a wildcard, the endpoint for each deployed application will take the form `{app-name}.{common-name}`; otherwise, the endpoint will take the form `{common-name}/{app-name}`.
+
+
+[NOTE]
+This capability is disabled by default, and will need to be enabled before inbound requests can be received by Mule applications and API gateways._
 
 == Overview
 
@@ -26,7 +34,7 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Thi
 .. In the Runtime Manager tab, give yourself the “Manage Runtime Fabrics” permission for your Runtime Fabric environment.
 .. In the Secrets Manager tab, give yourself the “Manage Secret Groups”, “Write Secrets”, and “Read Secrets Metadata” permissions for your Runtime Fabric environment.
 . You’ll need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your Common Name should match the domain you’ll use in your Runtime Fabric. Otherwise, follow these steps to generate one for evaluation purposes:
-.. Run the following command on your machine to generate a certificate-key pair: 
+.. Run the following command on your machine to generate a certificate-key pair:
 +
 ----
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
@@ -95,13 +103,13 @@ _Note: If a wildcard certificate is used (for example, *.example.com), each appl
 
 To resolve the Common Name (CN) to applications deployed on Runtime Fabric, DNS will need to be configured to map the CN to the IP address of the external load balancer or of each controller VM. To test inbound traffic for enabled applications before configuring DNS, a request can be sent using the IP address along with a host header set to the domain. The structure of the domain depends on whether a wildcard was used in your certificate.
 
-* A CN with a wildcard (e.g. *.example.com) will use the following request header format: `Host: {app-name}.example.com`. Here’s an example cURL command to verify: 
+* A CN with a wildcard (e.g. *.example.com) will use the following request header format: `Host: {app-name}.example.com`. Here’s an example cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
 ----
 +
-* A CN without a wildcard (e.g. example.com) will will use the following request header format: `Host: example.com`. Here’s an example cURL command to verify: 
+* A CN without a wildcard (e.g. example.com) will will use the following request header format: `Host: example.com`. Here’s an example cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`

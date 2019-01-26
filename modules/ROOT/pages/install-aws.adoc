@@ -154,7 +154,7 @@ The Terraform script will provision the infrastructure and run the installation 
 [NOTE]
 This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
 
-=== Monitoring the Installation
+=== Monitoring Installation Progress
 
 To view the progress during the installation, you can tail the output log on each VM:
 
