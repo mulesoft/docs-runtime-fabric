@@ -1,5 +1,5 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
-* xref:index.adoc[About Anypoint Runtime Fabric]
+* xref:index.adoc[Anypoint Runtime Fabric Overview]
  ** xref:architecture.adoc[Runtime Fabric Architecture]
  ** xref:install-prerequisites.adoc[Pre-installation Requirements]
  ** xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
