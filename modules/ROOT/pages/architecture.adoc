@@ -17,7 +17,7 @@ The disks required to run Anypoint Runtime Fabric are used for the following:
 ** This disk is referred to as the `docker` device.
 
 [NOTE]
-xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
+See xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
 
 == Supported Configurations
 

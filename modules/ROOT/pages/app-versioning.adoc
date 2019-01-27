@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Applications and their configurations deployed to Runtime Fabric are automatically versioned by ARM. This versioning feature enables you to:
+Applications and their configurations deployed to Runtime Fabric are automatically versioned by Runtime Manager. Applicationg versioning enables you to:
 
 * View the configuration change history of the application.
 * Roll back configurations to an earlier version in case the currently applied configuration has issues or is unstable.
