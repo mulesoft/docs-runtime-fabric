@@ -5,7 +5,7 @@ endif::[]
 
 This topic describes how to use the built-in Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
 
-== Accessing Ops Center
+== Access Ops Center
 
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.
 

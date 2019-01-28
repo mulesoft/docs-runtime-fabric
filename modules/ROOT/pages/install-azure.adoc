@@ -129,9 +129,10 @@ You can tail the same log on each VM to view its progress.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
-=== Access to Ops Center
+== Access Ops Center
 
-After installation is completed successfully, the last few lines of the log output file located at `/var/log/rtf-init.log` will contain a host, username, and password to access the Ops Center. Copy these values and store them securely.
+After installation is completed successfully, login to Ops Center to view that status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
+
 
 == Common Errors
 
@@ -139,6 +140,7 @@ Depending on the policies set and the quotas defined with your Azure account, yo
 
 * *Exceed max core quota:* File a ticket with Azure Support to increase quota for your deployment region. If you believe you have enough quota, ensure the right region is selected with the increased quota. Also, try modifying the Resource Group name to ensure it is unique to your account.
 * *Network policy violation:* By default, the Network Security Groups defined in the Azure Resource Template are associated at the subnet level and the NIC for each VM. Depending on your company's policy, you may need to adjust the template to remove an association.
+
 
 == Next Steps
 

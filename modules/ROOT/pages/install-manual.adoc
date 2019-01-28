@@ -52,7 +52,6 @@ RTF_MULE_LICENSE='' \
 ./generate-templates.sh
 ----
 
-
 == Operations Performed During Installation
 
 The installation performs the following actions on each VM:
@@ -193,10 +192,10 @@ You can tail the same log on each VM to view its progress.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
+== Access Ops Center
 
-== Access the Ops Center
+After installation is completed successfully, login to Ops Center to view that status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
 
-. After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
 
 == Common Errors
 

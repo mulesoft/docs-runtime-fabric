@@ -102,11 +102,10 @@ Depending on your environment, you may need to modify environment variables spec
 |Variable | Description | Example
 | `activation_data` | The encoded Runtime Fabric activation data found in Runtime Manager. This is the activation data that you recorded when creating the Runtime Fabic using Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
 | `key_pair` | The name of the keypair in the AWS region you are deploying to. | `my-keypair`
-| `enable_public_ips` | Provision public IP addresses for each VM. If left as false, ensure you have consulted with your network administrator on how to obtain shell/SSH access to VMs. | `false`
-| `controllers` | The number of controller VMs to provision. | `3`
-| `workers` | The number of worker VMs to provision. | `3`
-| `mule_license` | The base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). |
-
+| `enable_elastic_ips` | specifies whether the installer creates public IP addresses for each VM. Public IPs enable you to `ssh` directly to the VMs from your network. If this value is set to `false`(default) each VM  only has access to the private network configured by its VPC. If you specify `false`, ensure you have consulted with your network administrator on how to obtain shell/SSH access to VMs. | `true`
+| `controllers` | the number of controller VMs to provision. | `3`
+| `workers` | the number of worker VMs to provision. | `3`
+| `mule_license` | the base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). |
 |===
 
 
@@ -123,7 +122,6 @@ Depending on your environment, you may need to modify environment variables spec
 | `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `existing_vpc_id` | specifies an existing AWS virtual private cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
 | `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new ones. |
-| `enable_elastic_ips` | specifies whether the installer creates public IP addresses for each VM. Public IPs enable you to `ssh` directly to the VMs from your network. If this value is set to `no`(default) each VM will only have access to the private network configured by its VPC. | `true`
 |===
 
 == Configure Your Environment to Access AWS
@@ -240,7 +238,7 @@ When the installation completes successfully, the installer creates the `/opt/an
 
 == Access Ops Center
 
-After installation is completed successfully, the last few lines of the log output file located at `/var/log/rtf-init.log` contain a host, username, and password to access the Ops Center. Copy these values and store them securely.
+After installation is completed successfully, login to Ops Center to view that status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
 
 == Post Installation Configuration
 
