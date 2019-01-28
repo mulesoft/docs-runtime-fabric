@@ -7,7 +7,7 @@ This topic describes how to install and register Anypoint Runtime Fabric on VMs 
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. These requirements should be reviewed by your organization's operations, networking and security teams.
+Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
 ====
 
 == Before you Begin
@@ -19,7 +19,41 @@ Ensure the following criteria have been met before beginning the installation:
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
 * The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
 
-=== Operations Performed During Installation
+== Ensure Your Mule License Key is Base64 Encoded
+
+To install Runtime Fabric, your Mule license key must be Base64 encoded.
+
+=== Linux
+
+To encode your license file on Linux, run the following:
++
+----
+base64 -w0 license.lic
+----
+
+=== MacOS
+
+To encode your license file on MacOS, run the following from the terminal:
++
+----
+base64 -b0 license.lic
+----
+
+=== Windows
+
+To encode your license file on Widows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer to follow these steps:
+
+. Find your organization's Mule Enterprise license key file (`license.lic`) and transfer to your Unix environment if necessary.
+. Open a terminal/shell and navigate to the `azure` sub-directory.
+. Copy the command below in a text editor to make it easier to add in the Mule Enterprise license before running:
++
+----
+RTF_MULE_LICENSE='' \
+./generate-templates.sh
+----
+
+
+== Operations Performed During Installation
 
 The installation performs the following actions on each VM:
 

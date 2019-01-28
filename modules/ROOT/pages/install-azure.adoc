@@ -8,7 +8,7 @@ This topic describes how to install Anypoint Runtime Fabric on your Azure accoun
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. These requirements should be reviewed by your organization's operations, networking and security teams.
+Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
 ====
 
 == Before you Begin
