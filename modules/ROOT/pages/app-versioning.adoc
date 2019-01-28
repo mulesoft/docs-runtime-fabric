@@ -1,13 +1,13 @@
-= Application Deployment Versioning
+= Application Versioning on Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Applications and their configurations deployed to Runtime Fabric are automatically versioned by Runtime Manager. Applicationg versioning enables you to:
+When an appliction is deployed to Runtime Fabric, Runtime Manager automatically versions the application and its configuration. Applicationg versioning enables you to:
 
 * View the configuration change history of the application.
-* Roll back configurations to an earlier version in case the currently applied configuration has issues or is unstable.
-* View the application status:
+* Roll back the configurations to an earlier version in case the currently applied configuration has issues or is unstable.
+* View the application status. Possible values are:
 ** Running: At least one replica is receiving traffic (Started state).
 ** Not running: None of the replicas are receiving traffic.
 ** Unknown: The target is disconnected.
@@ -15,25 +15,32 @@ Applications and their configurations deployed to Runtime Fabric are automatical
 ** The application package.
 ** Application deployment package version.
 ** Deployment target settings, such as runtime version, number of replicas, and whether the application is running in cluster mode.
-** Resource allocations such as number of cores and memory allocation.
+** Resource allocations, including number of cores and memory allocation.
 ** Ingress and property values.
 
 
 == Access the Application's Settings Page
 
-. Sign into Anypoint Platform and navigate to Runtime Manager (*Management Center > Runtime Manager*). +
-The Applications page is displayed.
-. In the *Applications* page, select one of the applications running on Runtime Fabric to open the management panel on the right side.
-. On the management panel, click the *Manage Application* button to open the application’s *Settings* page. +
-The Settings page displays information about the application's status, configuration history, and other useful information about the application. +
-Each change to the application's configuration that is successfully deployed to Runtime Fabric is displayed in the *Config changes* tab on the applications *Settings* page. The last 10 configuration deployments are displayed in order of their respective configuration date. Each configuration in the history has a unique hash to identify it.
+. Sign into Anypoint Platform and navigate to Runtime Manager
++
+The *Applications* page is displayed.
+
+. From the *Applications* page, select an application deployed to Runtime Fabric.
+. Open the management panel on the right side.
+. On the management panel, click the *Manage Application* button
++
+The *Settings* page displays information about the application's status, configuration history, and other useful information about the application.
++
+Runtime Fabric displays each change to the application configuration that is successfully deployed to in the *Config changes* tab on the applications *Settings* page.
++
+The last 10 configuration deployments are displayed in order of their respective configuration date. Each configuration in the history has a unique hash to identify it.
 
 image::app-versioning.png[]
 
 [NOTE]
-The configuration history displays the last 10 configuration deployments in order of creation date.
+The configuration history displays the last ten configuration deployments in order of creation date.
 
-The *All changes* tab displays a history of versions created from the configuration deployment, and the actions (stopped, started) taken on each version.
+The *All changes* tab displays a history of versions created from the configuration deployment, and the actions performed on each version.
 
 
 == Apply Configuration Changes
