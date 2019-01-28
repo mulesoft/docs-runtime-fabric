@@ -95,7 +95,7 @@ Second, become familiar with the variables needed for installation. The value fo
 | `RTF_WORKER_IPS` | IP addresses of the worker VMs, separated by whitespace. | `"10.3.0.11 10.3.0.12 10.3.0.13"`
 | `RTF_DOCKER_DEVICE` |  The full block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
 | `RTF_ETCD_DEVICE` |  The full block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
-| `RTF_ACTIVATION_DATA` | The encoded Runtime Fabric activation data found in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
+| `RTF_ACTIVATION_DATA` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
 | `RTF_MULE_LICENSE` | The base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). | `==ABCD12934...`
 
 |===
