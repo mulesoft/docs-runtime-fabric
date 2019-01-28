@@ -30,9 +30,9 @@ The time it takes to start Mule applications are directly correlated with the am
 | `0.07` | 10 to 14 minutes
 |===
 
-== Differences Between CloudHub and Runtime Fabric
+== Calculating Memory Allocation on CloudHub and Runtime Fabric
 
-Anypoint Platform allocates both core and heap memory for an application. Heap memory is dynamically allocated and used for things like handling payload. Both CloudHub and Runtime fabric allocate both types of memory. However, they differ in how memory allocation of each type is calculated.
+Anypoint Platform allocates native and heap memory for deployments. Heap memory is a portion of the total memory that is made available to the Mule runtime and the application. Heap memory used for things like handling payload. Both CloudHub and Runtime fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
 
 On CloudHub, the minimum memory requirements described are specific to the heap memory available to an application. In contrast, Runtime Fabric lists the total memory available for an application. The available heap memory is approximately half of the total memory allocated to an application.
 
