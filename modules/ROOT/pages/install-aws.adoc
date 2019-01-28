@@ -100,7 +100,7 @@ Depending on your environment, you may need to modify environment variables spec
 [%header,cols="3*a"]
 |===
 |Variable | Description | Example
-| `activation_data` | The encoded Runtime Fabric activation data found in Runtime Manager. This is the activation data that you recorded when creating the Runtime Fabic using Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
+| `activation_data` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
 | `key_pair` | The name of the keypair in the AWS region you are deploying to. | `my-keypair`
 | `enable_elastic_ips` | specifies whether the installer creates public IP addresses for each VM. Public IPs enable you to `ssh` directly to the VMs from your network. If this value is set to `false`(default) each VM  only has access to the private network configured by its VPC. If you specify `false`, ensure you have consulted with your network administrator on how to obtain shell/SSH access to VMs. | `true`
 | `controllers` | the number of controller VMs to provision. | `3`

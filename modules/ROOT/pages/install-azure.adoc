@@ -84,7 +84,7 @@ You'll need a private and public key as a PEM file to provision the VMs. This is
 |===
 |Variable | Description | Example
 | `Public Key` | The public key string. This will enable you to SSH into each VM with your associated private key. | `ssh rsa ...`
-| `Anypoint Activation Data` | The encoded Runtime Fabric activation data found in Runtime Manager. | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
+| `Anypoint Activation Data` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx
 | `SSH User Name` | The user name to use when establishing a SSH connection to each VM. | `rtf-user`
 | `Controller Instance Type` | The Azure machine type to provision for each controller VM. Default set to 2 cores and 8 GiB memory. | `Standard_D2s_v3`
 | `Worker Instance Type` | The Azure machine type to provision for each worker VM. Default set to 2 cores and 16 GiB memory. | `Standard_E2s_v3`
