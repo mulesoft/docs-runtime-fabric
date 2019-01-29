@@ -42,11 +42,11 @@ Deployments of applications and gateways not powered by Mule on Anypoint Runtime
 
 The minimum requirements are 1 controller and 2 worker nodes. Only controllers run the internal load balancer and agents used to connect to Anypoint Platform. Agent communication is always outbound. Multiple replicas of application can run across workers.
 
-image::architecture-development.png
+image::architecture-development.png[]
 
 *Production Configuration*
 
-image::architecture-production.png
+image::architecture-production.png[]
 
 Only controllers run the internal load balancer and agents used to connect to Anypoint Platform.
 
