@@ -19,12 +19,13 @@ The disks required to run Anypoint Runtime Fabric are used for the following:
 [NOTE]
 See xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
 
-== Supported Configurations
+== Controllers and Workers
 
 Anypoint Runtime Fabric is composed of a set of VMs, each serving as one of the following roles:
 
 * *Controller* - VMs dedicated for operating Runtime Fabric, including orchestration services, distributed database, load balancing, and services enabling Anypoint Platform management.
-* *Worker* - VMs dedicated for running Mule applications and API gateways.
+
+* *Worker* - VMs dedicated for running Mule applications and API gateways. Mule applications and API proxies run on workers.
 
 This separation of responsibilities enables scaling of the worker VMs based on the number of Mule applications. It also enables scaling the controller VMs based on the the frequency of deployments, changes in application state, and amount of inbound traffic. To ensure resources are available to re-schedule and re-deploy applications in the event of a hardware failure, we recommended over-provisioning the number of worker VMs.
 
@@ -36,6 +37,24 @@ Anypoint Runtime Fabric uses a set of technologies, including Docker and Kuberne
 Deployments of applications and gateways not powered by Mule on Anypoint Runtime Fabric is not supported.
 
 == Network Architecture
+
+*Development Configuration*
+
+The minimum requirements are 1 controller and 2 worker nodes. Only controllers run the internal load balancer and agents used to connect to Anypoint Platform. Agent communication is always outbound. Multiple replicas of application can run across workers.
+
+image::architecture-development.png
+
+*Production Configuration*
+
+image::architecture-production.png
+
+Only controllers run the internal load balancer and agents used to connect to Anypoint Platform.
+
+Agents can run on any controller. Agent communication is always outbound.
+
+The minimum requirements are 3 controller and 3 worker nodes. 3 controllers enable a fault-tolerance of losing 1 controller. Mule applications run on workers. Multiple replicas of applications can run across workers.
+
+
 
 
 == Installer Life-Cycle
