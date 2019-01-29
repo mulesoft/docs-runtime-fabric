@@ -1,4 +1,4 @@
-= Add and Remove a Node from a Runtime Fabric
+= Add or Remove a Node from a Runtime Fabric
 
 Runtime Fabric enables you to add and remove nodes from a Runtime Fabric. Scenarios where you may need to add or remove a node include:
 

@@ -33,7 +33,7 @@ To install Runtime Fabric, your Mule license key must be Base64 encoded.
 === Linux
 
 To encode your license file on Linux, run the following:
-+
+
 ----
 base64 -w0 license.lic
 ----
@@ -41,7 +41,7 @@ base64 -w0 license.lic
 === MacOS
 
 To encode your license file on MacOS, run the following from the terminal:
-+
+
 ----
 base64 -b0 license.lic
 ----
