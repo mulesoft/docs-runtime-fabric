@@ -4,18 +4,35 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-Anypoint Runtime Fabric can run in a development or a production configuration. The requirements for each configuration are below.
+Anypoint Runtime Fabric support development and production configurations. The requirements for each configuration are described below. See xref:architecture.adoc[Runtime Fabric Architecture] for a description of these environments.
 
-[NOTE]
-Review these requirements with your Operations team to ensure the right infrastructure is provisioned before attempting installation.
+[WARNING]
+Review these requirements with your operations and IT teams to ensure you have the right infrastructure provisioned before installing Runtime Fabric.
 
-== Minimum Hardware Requirements
+== Operating System Requirements
 
-=== Production Configuration
+Anypoint Runtime Fabric requires one of the following operating systems.
 
-A minimum of 6 VMs are required for a production configuration of Runtime Fabric. The following systems requirements are the minimum requirements for a production environment:
+* Red Hat (RHEL) v7.4, v7.5
+* CentOS v7.4, v7.5
 
-* At least 3 controller VMs to operate Runtime Fabric; maximum of 5.
+Use the same operating system for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the Runtime Fabric installer fails.
+
+
+== Production Configuration
+
+A minimum of 6 VMs are required for a production configuration of Runtime Fabric as shown in the following diagram.
+
+image::architecture-production.png[]
+
+The following sections describe the minimum system requirements of each controller and worker VMs in a production configuration.
+
+=== Controller VMs
+
+The minimum number of controller VMs in a production environment is three. The maximum is five. These requirements reflect the minimum requirements to maintain high-availability and ensure system performance.
+
+Each contoller VM must have the following:
+
 ** 2 cores each minimum.
 ** 8 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
@@ -25,7 +42,12 @@ A minimum of 6 VMs are required for a production configuration of Runtime Fabric
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-* At least 3 worker VMs to run Mule applications and API gateways; maximum of 16.
+=== Worker VMs
+
+Runtime Fabric requires at least three worker VMs to run Mule applications and API gateways. The maximum number of worker VMs supported is 16.
+
+Each worker VM must have the following:
+
 ** 2 cores each minimum.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
@@ -34,11 +56,30 @@ A minimum of 6 VMs are required for a production configuration of Runtime Fabric
 *** 1 GiB or more for `/var/log/` directory.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-=== Development Configuration
+=== Additional Resource Requirements for Production Environments
 
-A minimum of 3 VMs are required for a development configuration of Runtime Fabric:
+To use Runtime Fabric in a production environments, you must also have the following:
 
-* At least 1 controller VM to operate Runtime Fabric; maximum of 5.
+* An external load balancer: required if incoming traffic is enabled to Runtime Fabric. A TCP load balancer with a server pool consisting of each of the controller VMs is sufficient.
+* At least one additional worker VM, including hard disks. This VM should be used when:
+  ** Performing rolling upgrades to major versions of Runtime Fabric
+  ** Performing operating system level patches.
+
+
+== Development Configuration
+
+Runtime Fabric requires a minimum of three VMs in a development environment as shown in the following diagram:
+
+image::architecture-development.png[]
+
+The following sections describe the minimum system requirements of each controller and worker VMs in a development configuration.
+
+=== Controller VM
+
+Runtime Fabric requires at least one controller VM in a development environment. The maximum supported is 5.
+
+Each contoller VM must have the following:
+
 ** 2 cores each minimum
 ** 8 GiB memory minimum
 ** 80 GiB dedicated disk for the operating system.
@@ -48,7 +89,12 @@ A minimum of 3 VMs are required for a development configuration of Runtime Fabri
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-* At least 2 worker VMs to run Mule applications and API gateways; maximum of 16.
+=== Worker VMs
+
+Runtime Fabric requires at least two worker VMs to run Mule applications and API gateways. The maximum number of workers VMs supported is 16.
+
+Each worker VM must have the following:
+
 ** 2 cores each minimum.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
@@ -57,19 +103,13 @@ A minimum of 3 VMs are required for a development configuration of Runtime Fabri
 *** 1 GiB or more for `/var/log/` directory.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker.
 
-=== Additional Resources
+=== Additional Resource Requirements for Development Environments
 
-In addition to the hardware required to run the configuration above, there are other resources which are required:
+To keep your Runtime Fabric installation running during upgrades requires at least one additional worker VM, including hard disks. This VM should only be used when:
 
-* When used in production, an external load balancer is required if incoming traffic is enabled to Runtime Fabric. A TCP load balancer with a server pool consisting of each of the controller VMs is sufficient.
-* At least one additional worker VM and its required disks should be kept unutilized for use with performing rolling upgrades to major versions of Runtime Fabric, or with operating system level patches.
+* Performing rolling upgrades to major versions of Runtime Fabric
+* Performing operating system level patches.
 
-== Operating System Requirements
-
-Anypoint Runtime Fabric requires one of the following operating systems. The same operating system should be used for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the installation process fails.
-
-* Red Hat (RHEL) v7.4, v7.5
-* CentOS v7.4, v7.5
 
 == See Also
 
