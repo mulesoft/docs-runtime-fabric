@@ -62,11 +62,11 @@ Replica statuses include:
 * Stopping: The replica's stopping process is in progress.
 * Stopped: The replica has stopped (is not receiving traffic).
 * Failed (red): The configuration failed to deploy. +
-The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed. 
+The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed.
 +
 New configurations are applied as "rolling updates." For example: +
-* A replica is created with the desired configuration, 
-* Once that configuration is successfully applied, the replica with the old configuration is deleted, 
+* A replica is created with the desired configuration,
+* Once that configuration is successfully applied, the replica with the old configuration is deleted,
 * This process is repeated with each replica in the deployment. +
 This model means there is zero downtime while updates are applied to the application. +
 [NOTE]
@@ -85,7 +85,7 @@ If the updates to the configuration fail to deploy, you get an `Desired configur
 image::app-versioning-update-failed.png[]
 +
 In cases of failure, the deployment attempts to roll back to the last successful version of the configuration, but in certain situations, the rollback may not succeed. The status of the configuration displays `Update failed`.
-
++
 If it’s the first deployment of the application the rollback version won’t be defined and in case of a failed deployment, it remains in the failed status.
 
 == Roll Back to a Previous Successful Configuration

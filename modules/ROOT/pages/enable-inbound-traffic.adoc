@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Runtime Fabric includes built-in load balancing capabilities to manage inbound traffic to its Mule applications and API gateways. Traffic is balanced across multiple replicas of your application, which by default reside across different worker VMs.
+Anypoint Runtime Fabric includes built-in load balancing capabilities to manage inbound traffic to a Mule applications and API gateways. Traffic is balanced across multiple replicas of your application, which by default reside across different worker VMs.
 
 Anypoint Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric in order to enable application deployments. At least one environment must be associated with each Runtime Fabric to deploy Mule applications or API gateways using it as the target.
 

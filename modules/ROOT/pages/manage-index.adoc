@@ -1,2 +1,4 @@
 = Manage Runtime Fabric
 
+* xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+* xref:using-ops-center.adoc[Using Ops Center on Anypoint Runtime Fabric]
