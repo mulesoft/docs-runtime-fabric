@@ -1,0 +1,121 @@
+= Deploy an Application to RTF using Maven (Mule 4)
+
+== Prerequesites
+
+To successfully deploy your Mule app to Runtime Fabric, consider the following requirement:
+
+* The application must be published in Exchange. +
+You can do this from Studio following the instructions  xref:studio::export-to-exchange-task.adoc[here]. +
+Or you can use the Mule Maven Plugin following the instructions xref:exchange::to-publish-assets-maven.adoc[here].
+
+== Deploying to Runtime Fabric
+
+. Make sure you added the Mule Maven Plugin to your `pom.xml` file.
+. Inside the plugin you element, add a configuration for your Runtime Fabric deployment as shown below:
++
+[source,xml,linenums]
+----
+<plugin>
+  ...
+    <configuration>
+        <runtimeFabricDeployment>
+            <uri>https://anypoint.mulesoft.com</uri>
+            <muleVersion>${mule.version}</muleVersion>
+            <username>${username}</username>
+            <password>${password}</password>
+            <applicationName>${runtime.fabric.application.name}</applicationName>
+            <environment>${environment}</environment>
+            <provider>${provider}</provider>
+            <properties>
+                <key>value</key>
+            </properties>
+            <deploymentSettings>
+                <cpuReserved>500m</cpuReserved>
+                <memoryReserved>800Mi</memoryReserved>
+            </deploymentSettings>
+        </runtimeFabricDeployment>
+    </configuration>
+
+</plugin>
+----
++
+The example is using placeholder values. Configure each value with your own Runtime Fabric information.
+. From the command line in your project's folder, package the application and run the deploy goal:
++
+[source,bash,linenums]
+----
+> mvn clean package deploy -DmuleDeploy
+----
+
+== Redeploying to Runtime Fabric
+
+To redeploy the application, run the same command as you did to deploy. +
+Runtime Fabric rewrites the application you had deployed.
+
+
+== Runtime Fabric Deployment Reference
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Parameter | Description
+|runtimeFabricDeployment | Top Level Element.
+| uri | Your Anypoint Platform URI. +
+If not set, by default this value is set to +https://anypoint.mulesoft.com+.
+| muleVersion | The Mule runtime version that will run in your Runtime Fabric instance. +
+You need to ensure that this value is at equal or higher than the minimum required runtime version of your application.
+| username | Your Anypoint Platform username.
+| password | Your Anypoint Platform password.
+| applicationName | The name of your application deployed in Exchange. +
+This name is part of the domain of your deployed app.
+|skip | Boolean value. When set to true, skips the plugin deployment goal. Its default value is false.
+| target | The Runtime Fabric target name where to deploy the app.
+| provider | Provider type. Possible values are: MC, SERVER, CLUSTER, SERVER_GROUP.
+| environment | The Anypoint Platform environment to which you want to deploy.
+| properties | Top level element. +
+If you need to set properties for your Mule application being deployed, you can use the <properties> top level element:
+
+<properties> +
+  <key>value</key> +
+</properties>
+
+
+For example:
+
+<properties> +
+  <http.port>8081</http.port> +
+</properties>
+| replicationFactor | The number of instances for your application. +
+By default, it is set to 1.
+| publicUrl | Url of the deployed application.
+| lastMileSecurity | Enable Last-Mile security to forward HTTPS connections to be decrypted by this application. +
+This requires an SSL certificate to be included in the Mule application, and also requires more CPU resources. +
+By default, is set to false.
+| clusteringEnabled | Enable Mule clustering across each replica of the application. It requires to have at least two replicas. +
+By default, is set to false. +
+| memoryReserved | Amount of memory to be allocated for each replica of the application. If not present, the default value is 700MB. +
+
+For example:
+
+<deploymentSettings> +
+    <memoryReserved>100Mi</memoryReserved> +
+</deploymentSettings> +
+
+This will set 100MB of memory to each replica.
+
+| cpuReserved | Amount of cores to be allocated for each replica of the application. If not present, the default value is 0.5 vCores. +
+
+For example:
+
+<deploymentSettings> +
+    <cpuReserved>500m</cpuReserved> +
+</deploymentSettings> +
+
+This will set 0.5 vCores to each replica.
+| server | Maven server with Anypoint Platform credentials. This is only needed if you want to use your credentials stored in your Maven `settings.xml` file. This is not the Mule server name.
+|===
+
+See how to xref:runtime-fabric::deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
+
+== See Also
+
+//Need to link back to Maven docs
