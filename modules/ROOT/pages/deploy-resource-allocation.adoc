@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-When deploying a Mule application to Runtime Fabric, you must determine the correct amount of resources to allocate. This is also applicable when configuring the internal load balancer on Anypoint Runtime Fabric.
+Before deploying a Mule application to Runtime Fabric, determine the correct amount of resources to allocate. Determining resource allocation is also applicable when configuring the internal load balancers on Anypoint Runtime Fabric.
 
-When a Mule application is deployed to Runtime Fabric, it is deployed with its own Mule runtime. The number of replicas, or instances of that application and runtime, are also defined. The resources available for each replica are determined by the values set during deployment.
+When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime. The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
-You can allocate the following resources during deployment:
+You can allocate the following resources when deploying an application:
 
 * vCPU cores
 * Memory
@@ -21,14 +21,16 @@ The minimum values for the amount of CPU and memory allocated to each replica of
 
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
-Anypoint Platform allocates native and heap memory for deployments. Heap memory is a portion of the total memory that is made available to the Mule runtime and the application. Heap memory used for things like handling payload. Both CloudHub and Runtime fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
+Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload.
 
-On CloudHub, the minimum memory requirements described are specific to the heap memory available to an application. In contrast, Runtime Fabric lists the total memory available for an application. The available heap memory is approximately half of the total memory allocated to an application.
+Both CloudHub and Runtime fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
 
+* Runtime Fabric: lists the total memory available for an application. The available heap memory is approximately half of the total memory allocated to an application.
+* CloudHub: describes minimum memory requirements in terms of the heap memory available to an application.
 
 == Application Startup Times
 
-The time it takes to start Mule applications is directly correlated to the amount of CPU cores it has access to.
+The startup time for a Mule applications is correlated to the amount of vCPU cores the application has access to:
 
 [%header,cols="2*a"]
 |===
@@ -41,7 +43,7 @@ The time it takes to start Mule applications is directly correlated to the amoun
 
 == Application Performance
 
-The amount of resources given to Mule correlate with the performance of your application. Below are approximate values for throughput based on the amount of vCPU cores allocated for a single Mule application performing simple processing on a 10 KB payload.
+The amount of resources allocated to your Mule application determin the application's performance. Below are the approximate values for throughput based on the amount of vCPU cores allocated for a single Mule application performing simple processing on a 10 KB payload.
 
 [%header,cols="3*a"]
 |===
@@ -50,17 +52,16 @@ The amount of resources given to Mule correlate with the performance of your app
 | `0.50` | 5 | 15
 | `0.10` | 1 | 25
 | `0.07` | 1 | 78
-
 |===
 
 [NOTE]
-Performance and load testing should be performed on your Mule applications to determine the right amount of resources to allocate.
+Run performance and load testing on your Mule applications to determine the number of resources to allocate.
 
 == Internal Load Balancer
 
-Inbound traffic is processed using an internal load balancer within Anypoint Runtime Fabric. As this load balancer is responsible for TLS termination, the amount of resources required scales based on the number of incoming connections and the average payload size for each request.
+Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Since this load balancer is responsible for TLS termination, the amount of resources required scales based on the number of incoming connections and the average payload size for each request.
 
-Below is a table of approximate requests averaging 10 KB that can be served with a single replica of the internal load balancer based on the amount of CPU cores.
+The following table lists the approximate requests averaging 10 KB that can be served with a single replica of the internal load balancer based on the amount of CPU cores.
 
 [%header,cols="3*a"]
 |===
@@ -69,11 +70,10 @@ Below is a table of approximate requests averaging 10 KB that can be served with
 | `0.75` | 1500 | 100
 | `0.50` | 1000 | 50
 | `0.25` | 100 | 10
-
 |===
 
 [NOTE]
-The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs appropriately based on the amount and type of inbound traffic. The internal load balancer can be allocated at most half of the CPU cores available on each VM.
+The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs appropriately based on the amount and type of inbound traffic. You can only allocate half of the available CPU cores on each VM to the internal load balancer.
 
 == See Also
 
