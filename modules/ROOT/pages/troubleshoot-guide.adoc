@@ -22,7 +22,7 @@ The installation can be resumed where it stopped by running the init script:
 
 The following steps are performed on all nodes.
 
-=== Step: Detect Properties
+=== Detect Properties
 
 This step detects the variables which the installation process needs to carry out its procedures. The methods for providing these variables to the installation vary based upon where the installation is running.
 
@@ -61,7 +61,7 @@ curl https://anypoint.mulesoft.com
 
 If you are still encountering issues, please file a support ticket for further assistance.
 
-=== Step: Install Packages
+=== Install Packages
 
 This step will install required packages on the instance. It uses the `yum` package repository to download and install the required packages.
 
@@ -91,7 +91,7 @@ sudo yum install -y chrony
 
 If manual installation of a package was successful, or if you still require assitance, please file a support ticket.
 
-=== Step: Format and Mount Disks
+=== Format and Mount Disks
 
 This step performs the following tasks on the block devices or disks provided with the `RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables:
 
@@ -125,33 +125,33 @@ If this error occurs:
 
 
 
-=== Step: Configure iptables Rules
+=== Configure iptables Rules
 
-=== Step: Configure Kernel Modules
+=== Configure Kernel Modules
 
-=== Step: Start System Services
+=== Start System Services
 
-=== Step: Configure dockerd Proxy
+=== Configure dockerd Proxy
 
 == Controller VM Starting the Installation
 
 The following steps are performed on the node used to start the installation.
 
-=== Step: Fetch Installation Package
+=== Fetch Installation Package
 
-=== Step: Create Cluster
+=== Create Cluster
 
-=== Step: Install RTF Components
+=== Install RTF Components
 
-=== Step: Install Mule License
+=== Install Mule License
 
-=== Step: Generate Ops Center Credentials
+=== Generate Ops Center Credentials
 
 == Joining Nodes
 
 The following steps are performed on the nodes which join the controller VM used to start installation.
 
-=== Step: Join Cluster
+=== Join Cluster
 
 
 ==== Deployment failed to become ready within the time limit
