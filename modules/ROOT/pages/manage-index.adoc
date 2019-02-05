@@ -1,4 +1,11 @@
 = Manage Runtime Fabric
 
-* xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
-* xref:using-ops-center.adoc[Using Ops Center on Anypoint Runtime Fabric]
+After installing and configuring Runtime Fabric and deploying Mule applications and API proxies, there are additional tasks you may need to perform.
+
+* Add or remove nodes from a cluster to maintain cluster health or to perform upgrade. See xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
+* Monitor the performance and health of your Runtime Fabric installation. See xref:using-ops-center.adoc[Using Ops Center on Anypoint Runtime Fabric]
+* Troubleshooting.
+
+== See Also
+
+* xref:configure-alerting.adoc[Configure Alerting on Runtime Fabric]
