@@ -1,7 +1,26 @@
-= Configure Log Forwarding on Anypoint Runtime Fabric
+= Configure Logging in Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+Runtime Fabric generates log files that
+
+== Log Levels
+
+- how to adjust log levels
+- logging is different on RTF
+- mention logs in deployment topic
+
+[WARNING]
+Log levels are specified when deploying a Mule application or an API proxy. After deployment you cannot change the log levels.
+
+
+== View Logs
+
+You can view Runtime Fabric logs directly using Ops Center.
+
+
+== Configure Log Forwarding on Anypoint Runtime Fabric
 
 Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
 
@@ -10,7 +29,7 @@ Log data from Anypoint Runtime Fabric components and Mule applications can be fo
 Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
 
 
-== Procedure
+=== Procedure
 
 . Using a terminal, open a shell/SSH connection to a controller VM.
 . Create a file named `log-forwarder.yaml`.
