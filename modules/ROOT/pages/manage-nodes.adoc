@@ -1,0 +1,69 @@
+= Add or Remove a Node from a Runtime Fabric
+
+Runtime Fabric enables you to add and remove nodes from a Runtime Fabric. Scenarios where you may need to add or remove a node include:
+
+* Add a node to scale-up a Runtime Fabric.
+* Delete or add nodes to ensure the health and stability of a Runtime Fabric.
+* Delete a node, perform an OS patch, then re-add the node to a Runtime Fabric.
+
+== Add a Node to Runtime Fabric
+
+Before adding a node, provision the infrastructure for the new node. To be able to join the cluster, the new node must be on the same network as your Runtime Fabric installation.
+
+. On the virtual machine of the new node create the `/opt/anypoint/runtimefabric` directory:
++
+----
+mkdir -p /opt/anypoint/runtimefabric
+----
+
+. Copy the `init.sh` installation script to the new node under the `/opt/anypoint/runtimefabric` directory.
++
+This script is included in the files you downloaded when installing Runtime Fabric.
+
+. Copy the environment file from the `/opt/anypoint/runtimefabric` directory of an existing node to the same directory on the new node.
++
+Ensure that you copy the environment file from the correct node type (controller or worker).
+
+. Modify the following environment variables in the environment file you just copied:
++
+* RTF_PRIVATE_IP
+* RTF_DOCKER_DEVICE
+* RTF_ETCD_DEVICE (controller node only)
+
+. Run the `init.sh` script on the new node as a privileged user. You may need to add executable permissions when running this script:
++
+----
+sudo chmod +x ./init.sh
+----
++
+This script causes the new node to join the Runtime Fabric cluster.
+
+. Verify the new node was 2added to the Runtime Fabric:
++
+----
+sudo gravity status
+----
+
+== Remove a Node from Runtime Fabric
+
+To remove a node from a Runtime Fabric cluster, run the following command:
+
+----
+sudo gravity leave
+----
+
+This command shuts down all Runtime Fabric services running on the node. Additionally, all software and data is removed.
+
+If successful, this command outputs the ID of the initiated removal operation. You can monitor the the progress of this command using the following command:
+
+----
+gravity status
+----
+
+If the node cannot be removed using `sudo gravity leave` you may need to run the command again using the `--force` option. You can also remove a node remotely by running the following command:
+
+----
+sudo gravity remove <node-name>
+----
+
+`<node>` specifies the node to remove and can be either the node's assigned hostname or its IP address.

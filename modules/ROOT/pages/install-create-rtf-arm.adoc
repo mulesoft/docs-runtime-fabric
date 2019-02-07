@@ -1,32 +1,39 @@
-= Create a Runtime Fabric in Runtime Manager
+= Begin Runtime Fabric Installation
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+The first step to install Anypoint Runtime Fabric is to create a Runtime Fabric using Runtime Manager.
+
 == Before you Begin
 
-Review the xref:installation.adoc[steps to install Anypoint Runtime Fabric] to ensure you are ready to proceed.
-
-Before provisioning your infrastructure and installing Runtime Fabric, you must create a Runtime Fabric using Runtime Manager.
+Before installing Anypoint Runtime Fabric, review the xref:install-prerequisites.adoc[Pre-installation Requirements] to ensure that you are ready to proceed.
 
 [NOTE]
-If you're unable to follow these steps, contact your Customer Success Manager for more information on how to get Anypoint Runtime Fabric enabled for your account.
+If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
 
-. Login to your Anypoint Platform Account, then select Runtime Manager.
+== Create a Runtime Fabric using Runtime Manager
+
+. From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
 . Specify the name of your Runtime Fabric.
 . Click *Create*.
-+
-Runtime Manager will remain in the Activating state until the Runtime Fabric is installed and activated with Runtime Manager. An activation data is generated and will be used during installation and activation.
-+
+
+[NOTE]
+After creating the Runtime Fabric, Runtime Manage displays the corresponding activation data. Record this data to be used later when installing the infrastucture.
+
 image::runtime-fabric-arm.png
 
-To proceed with installing and activating Runtime Fabric, follow one of the guides below:
+Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after the Runtime Fabric is installed and connected to Runtime Manager.
+
+== Install Runtime Fabric on Your Infrastructure
+
+After creating a Runtime Fabric in Runtime Manager, install Runtime Fabric on your infrastructure. Click the following link that corresponds to your infrastructure:
 
 * xref:install-aws.adoc[Install Runtime Fabric on AWS]
 * xref:install-azure.adoc[Install Runtime Fabric on Azure]
-* xref:install-manual.adoc[Install Runtime Fabric manually]
+* xref:install-manual.adoc[Install Runtime Fabric Manually]
 
 == See Also
 

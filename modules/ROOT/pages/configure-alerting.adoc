@@ -1,15 +1,14 @@
-= Configure Alerting on Anypoint Runtime Fabric
+= Configure Alerting on Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to configure Anypoint Runtime Fabric to send alerts through an existing SMTP server. Runtime Fabric comes bundled with alerts to raise visibility when its health may be compromised.
+Runtime Fabric enables you to send alerts through an existing SMTP server. Runtime Fabric provides alert functionality to send notifications when system health is compromised.
 
 == Procedure
 
 . Using a terminal, open a shell/SSH connection to a controller VM.
-. Create a file named `alert-smtp.yaml`.
-. Add the following content to this file after customizing based on the table below:
+. Create a file named `alert-smtp.yaml` that contains the following:
 +
 ----
 kind: smtp
@@ -29,8 +28,8 @@ metadata:
 spec:
   email: <email>
 ----
-+
-Using the following values specific to your environment:
+
+. Modify the contents of `alert-smtp.yaml` using the following values specific to your environment:
 +
 [%header,cols="2*a"]
 |===
@@ -43,7 +42,7 @@ Using the following values specific to your environment:
 
 |===
 +
-. Run the following command on the controller VM, referencing the file created earlier.
+. Run the following on the controller VM.
 ----
 $ gravity resource create -f alert-smtp.yaml
 ----
@@ -52,17 +51,16 @@ Alerts should now be configured to send through your STMP server.
 
 == Built-in Alerts
 
-The following are some of the alerts built-in to Anypoint Runtime Fabric:
+The following table lists some of default alerts provided by Anypoint Runtime Fabric:
 
 [%header,cols="2*a"]
 |===
 |Alert | Description
-| High CPU usage | Sends a warning when > 75% used; triggers a critical error when > 90% used.
-| High memory usage | Sends a warning when > 80% used; triggers a critical error when > 90% used.
-| High disk space usage | Sends a warning when > 80% used; triggers a critical error when > 90% used.
-| High inode usage | Sends a warning when > 90% used; triggers a critical error when > 95% used.
-| Etcd instance health | Sends an error when etcd master is unaccessible for longer than 5 min.
-
+| High CPU usage | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
+| High memory usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
+| High disk space usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
+| High inode usage | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
+| etcd instance health | Sends an error when the etcd master is unaccessible for longer than 5 min.
 |===
 
 

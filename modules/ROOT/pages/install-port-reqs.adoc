@@ -3,24 +3,37 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes the network settings and port settings required to install and run Anypoint Runtime Fabric.
+Runtime Fabric requires specifc network and port settings for installation and normal operations.
 
-== Required Port Settings
+== Additional Ports Used During Installation
 
-Below are the TCP and UDP network port requirements for Anypoint Runtime Fabric.
-
-=== TCP Ports
-
-The following table lists the *TCP* ports that must be accessible:
+The following table lists the ports that must be accessible when installing Anypoint Runtime Fabric. After completing the installation, you can safely disable these ports.
 
 [%header%autowidth.spread]
 |===
-| Port | Protocol | Direction | Description
+| Port | Protocol | Direction | Usage
+| 61008-61010 | TCP (HTTPS) | Internal | Used during installation
+| 61022-61024 | TCP (HTTPS) | Internal | Installer agent ports
+| 4242 | TCP | Internal | Bandwidth checker
+|===
+
+== Required Port Settings
+
+The following sections list the TCP and UDP network port requirements for Anypoint Runtime Fabric.
+
+
+=== TCP Ports
+
+The following table lists the TCP ports that must be accessible:
+
+[%header%autowidth.spread]
+|===
+| Port | Protocol | Direction | Usage
 | 5672 | TCP (AMQP) | Outbound to Internet | Anypoint Management Center
 | 443 | TCP (HTTPS) | Outbound to Internet | Management services, API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 443 | TCP (HTTPS) | Ingress | Inbound traffic to Mules
 | 32009 | TCP (HTTPS) | Ingress | Runtime Fabric Ops Center
-| 2379, 2380, 4001, 7001 | TCP | Internal | Etcd distributed database
+| 2379, 2380, 4001, 7001 | TCP | Internal | etcd distributed database
 | 6060 | TCP | Internal | Health check
 | 6443, 8080 | TCP | Internal | Kubernetes API server
 | 30000-32767 | TCP | Internal | Internal services port range
@@ -37,32 +50,20 @@ The following table lists the *TCP* ports that must be accessible:
 
 === UDP Ports
 
-The following table lists the *UDP* ports that must be accessible:
+The following table lists the UDP ports that must be accessible to Runtime Fabric:
 
 [%header%autowidth.spread]
 |===
-| Port | Protocol | Direction | Description
+| Port | Protocol | Direction | Usage
 | 53 | UDP | Internal | Internal DNS
 | 8472 | UDP | Internal | Overlay networking
 |===
 
-== Additional Ports Used During Installation
-
-The following table lists the ports that must be accessible when installing Anypoint Runtime Fabric. After completing the installation, you can safely disable these ports.
-
-[%header%autowidth.spread]
-|===
-| Port | Protocol | Direction | Description
-| 61008-61010 | TCP (HTTPS) | Internal | Used during installation
-| 61022-61024 | TCP (HTTPS) | Internal | Installer agent ports
-| 4242 | TCP | Internal | Bandwidth checker
-|===
-
 == Port IPs and Hostnames to Whitelist
 
-In your network, you may need to whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Anypoint Runtime Fabric to communicate with the MuleSoft-managed online Anypoint Platform APIs and services, and to download dependencies during installation or upgrades.
+In your network configuration, you may need to whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation or upgrades.
 
-These tables show you the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
+The following table lists the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
 
 [%header%autowidth.spread]
 |===
@@ -80,12 +81,11 @@ These tables show you the ports and hostnames to add to your whitelists to allow
 | EU control plane: `*.ecr.eu-central-1.amazonaws.com`
 .2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`
 | EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`
-
 |===
 
 == Required Network Settings
 
-The following are the network settings required for Anypoint Runtime Fabric:
+The network settings are required for Anypoint Runtime Fabric:
 
 * A subnet with enough IP address allotable to add additional VMs to Runtime Fabric.
 * Shell/SSH access to each VM used to install Runtime Fabric.

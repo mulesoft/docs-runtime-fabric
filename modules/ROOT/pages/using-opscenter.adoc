@@ -5,7 +5,7 @@ endif::[]
 
 This topic describes how to use the built-in Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
 
-== Accessing Ops Center
+== Access Ops Center
 
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.
 
@@ -60,29 +60,7 @@ The dashboards are divided into two main categories:
 
 == Viewing Logs
 
-Ops Center shows a stream of logs outputted by applications and services running on Runtime Fabric. Navigate to "Logging" on the left of the page to view the logging interface.
-
-=== View Logs from an Application
-
-With Ops Center, you can view the logs from a deployed application. This can be useful in cases where log forwarding is not set up.
-
-. On Ops Center, click on Kubernetes on the left sidebar.
-. Click on the Pods tab.
-. Select the environment ID where the application was deployed on the right dropdown, near the search input.
-. Find the Pod name which begins with the name of your application.
-. Click on the Pod name and select "Logs".
-
-The page should redirect to the Logs tab with a filter applied to your application.
-
-[NOTE]
-To view the latest logs, click the "Refresh" button on the upper right portion of the page.
-
-=== Filters
-
-There are two levels of filters to help drill down on the logs to make visible:
-
-* _Containers_ filter on names of containers.
-* _Pods_ filter on the names of pods. This is useful for specifying application names followed by a wildcard (`%`).
+See xref:runtime-fabric-logs.adoc[View and Configure Logs in Runtime Fabric]
 
 == Download Debug Info
 

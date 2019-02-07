@@ -7,7 +7,7 @@ This topic describes how to install and register Anypoint Runtime Fabric on VMs 
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. These requirements should be reviewed by your organization's operations, networking and security teams.
+Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
 ====
 
 == Before you Begin
@@ -19,7 +19,40 @@ Ensure the following criteria have been met before beginning the installation:
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
 * The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
 
-=== Operations Performed During Installation
+== Ensure Your Mule License Key is Base64 Encoded
+
+To install Runtime Fabric, your Mule license key must be Base64 encoded.
+
+=== Linux
+
+To encode your license file on Linux, run the following:
++
+----
+base64 -w0 license.lic
+----
+
+=== MacOS
+
+To encode your license file on MacOS, run the following from the terminal:
++
+----
+base64 -b0 license.lic
+----
+
+=== Windows
+
+To encode your license file on Widows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer to follow these steps:
+
+. Find your organization's Mule Enterprise license key file (`license.lic`) and transfer to your Unix environment if necessary.
+. Open a terminal/shell and navigate to the `azure` sub-directory.
+. Copy the command below in a text editor to make it easier to add in the Mule Enterprise license before running:
++
+----
+RTF_MULE_LICENSE='' \
+./generate-templates.sh
+----
+
+== Operations Performed During Installation
 
 The installation performs the following actions on each VM:
 
@@ -62,16 +95,16 @@ Second, become familiar with the variables needed for installation. The value fo
 | `RTF_WORKER_IPS` | IP addresses of the worker VMs, separated by whitespace. | `"10.3.0.11 10.3.0.12 10.3.0.13"`
 | `RTF_DOCKER_DEVICE` |  The full block device path for the dedicated disk used for Docker, supporting 1000 provisioned IOPS. | `/dev/xvdc`
 | `RTF_ETCD_DEVICE` |  The full block device path for the dedicated disk used for etcd, supporting 3000 provisioned IOPS. | `/dev/xvdb`
-| `RTF_ACTIVATION_DATA` | The encoded Runtime Fabric activation data found in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
+| `RTF_ACTIVATION_DATA` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
 | `RTF_MULE_LICENSE` | The base64 encoded contents of your organization's Mule Enterprise license key (`license.lic`). | `==ABCD12934...`
 
 |===
 
 [NOTE]
-To help identify the block device paths to your disks, use the `lsblk` command on the VMs. 
+To help identify the block device paths to your disks, use the `lsblk` command on the VMs.
 To base64 encode the Mule license key, use the `base64 -w0 license.lic` command. (`base64 -b0 license.lic` in OSX)
 
-==== Optional Variables
+=== Optional Variables
 
 The following variables can be defined based upon your organization's requirements.
 
@@ -104,7 +137,7 @@ RTF_MULE_LICENSE='' \
 ----
 +
 . Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
-. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. 
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM.
 .. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
 .. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
 +
@@ -143,9 +176,26 @@ This step will install Runtime Fabric across all VMs to form a cluster. It may t
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
-=== Access to Ops Center
+== Monitoring Installation Progress
 
-. After the installation has completed, a host, username and password will be outputted to access the Ops Center. Copy these credentials and store them securely.
+To view the progress during the installation, you can tail the output log on each VM:
+
+. Open a shell (or SSH session) to the first controller VM.
+. Tail the output log, located at `/var/log/rtf-init.log`
++
+----
+tail -f /var/log/rtf-init.log
+----
+
+[NOTE]
+You can tail the same log on each VM to view its progress.
+
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+== Access Ops Center
+
+After installation is completed successfully, login to Ops Center to view that status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
+
 
 == Common Errors
 

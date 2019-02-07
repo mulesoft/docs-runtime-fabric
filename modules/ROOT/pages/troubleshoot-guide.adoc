@@ -1,0 +1,143 @@
+= Troubleshooting Guide for Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic describes common errors and steps to resolve them when installing Anypoint Runtime Fabric.
+
+You can resume a failed installation at the point where it stopped by running the init script:
+
+*AWS and Manual installations*:
+----
+/opt/anypoint/runtimefabric/init.sh
+----
+
+*Azure installations*:
+----
+/opt/anypoint/runtimefabric/script.sh
+----
+
+
+== Troubleshooting Steps Performed on All Nodes
+
+The following steps are performed on all nodes.
+
+=== Detect Properties
+
+This step detects the variables which the installation process needs to carry out its procedures. The methods for providing these variables to the installation vary based upon where the installation is running.
+
+* For AWS, the variables are set in the terraform script, and outputted to a file located in `/opt/anypoint/runtimefabric/env`.
+* For Azure, the variaables are set when running the ARM template, and are retrieved as tags on the Virtual Machine instances.
+* For manual installations, the user creates a file with the values located in `/opt/anypoint/runtimefabric/env`.
+
+After these properites are retrieved, a procedure will run to connect to Anypoint Platform and retrieve additional values based upon the `RTF_ACTIVATION_DATA` value.
+
+==== Common errors
+
+The following error may occur if there is an issue with the activation data value, or if there is trouble reaching the internet on the instance:
+
+----
+curl: (7) Failed connect to anypoint.mulesoft.com:443; Operation now in progress
+Error: Failed to fetch registration properties. (000). Please check your token is valid
+
+
+============ Error ============
+Exit code: 1
+Line:
+----
+
+If this error is observed, try the following:
+
+* Ensure your instance has outbound internet connectivity. A simple way to validate is to run the following command and verify a 301 response is returned:
++
+----
+curl https://anypoint.mulesoft.com
+----
++
+* Re-try running the installation procedure, in case the network connectivity was not finished initalizing.
+** On Azure, the script should be located at `/opt/anypoint/runtimefabric/script.sh foreground`
+** On AWS and manual installatons, the script should be located at `/opt/anypoint/runtimefabric/init.sh foreground`
+* Validate the activation data value is correct by comparing with the Runtime Fabric created in Anypoint Runtime Manager.
+
+If you are still encountering issues, please file a support ticket for further assistance.
+
+=== Install Packages
+
+This step will install required packages on the instance. It uses the `yum` package repository to download and install the required packages.
+
+==== Common errors
+
+If there is a failure on this step, verify the following:
+
+* Ensure your instance has outbound internet connectivity. A simple way to validate is to run the following command and verify a 301 response is returned:
++
+----
+curl https://anypoint.mulesoft.com
+----
++
+* If running a manual installation, ensure the `init.sh` script is run with root privledges:
++
+----
+sudo ./init.sh foreground
+----
++
+* Manually install one of the required packages to determine if it is successful outside of the installation script:
++
+----
+sudo yum install -y chrony
+----
++
+** If not successful, please work with your operations team for assistance. You may need to ask for elevated access to the instance.
+
+If manual installation of a package was successful, or if you still require assitance, please file a support ticket.
+
+=== Format and Mount Disks
+
+This step performs the following tasks on the block devices or disks provided with the `RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables:
+
+. Performs a check to confirm the values map to block devices available on the instance.
+. Unmounts the disks in case they were previously mounted.
+. Formats the disks.
+. Adds an mount entry in the `/etc/fstab` file.
+. Creates directories based upon the values in `$DOCKER_MOUNT` and/or `$ETCD_MOUNT`.
+. Mounts the disks to the expected directories created above.
+
+=== Install RTF Components
+
+This step connects to Anypoint Platform to download and install the Runtime Fabric components on the cluster.
+
+In some cases, this step may return an error if the deployment failed to complete within the time limit:
+
+----
+...
+[OK]
+Installing Runtime Fabric Agent. This may take several minutes...
+configmap "grafana-dashboards" deleted
+configmap "kapacitor-alerts" deleted
+Release "runtime-fabric" does not exist. Installing it now.
+The following deployments failed to become ready within the time limit:
+monitor ---
+Name:           monitor-79c7564b77-wb9c6
+Namespace:      rtf
+Node:           10.165.12.87/10.165.12.87
+Start Time:     Thu, 13 Dec 2018 20:23:59 +0000
+Labels:         app=monitor
+                pod-template-hash=3573120633
+Annotations:    checksum/config=4c4aac48d9cc8b24828b38ba0eb587840bc17b2449a54d593f74e2d58e5c12ae
+                kubernetes.io/psp=privileged
+                seccomp.security.alpha.kubernetes.io/pod=docker/default
+Status:         Running
+IP:             10.244.82.17
+Controlled By:  ReplicaSet/monitor-79c7564b77
+Containers:
+...
+<< More information displayed that describes the deployment manifest and stack trace >>
+----
+
+If this error is observed:
+
+ * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet.
+ * A TCP proxy may be needed to establish a connection to the Internet. Check with your network team to verify and configure if needed. The xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the information required.
+
+== See Also
+xref:getting-started.adoc[Before You Begin Working with Anypoint Runtime Fabric]
