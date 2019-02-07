@@ -96,6 +96,7 @@ Ensure that this value is at equal or higher than the minimum required Mule runt
 | password | specifies your Anypoint Platform password.
 | applicationName | specifies the name of your application deployed in Exchange. +
 This name is part of the domain of your deployed app.
+| businessGroup | specifies the business group where you want to deploy the application.
 | skip | (boolean value) When set to true, skips the plugin deployment goal. The default value is `false`.
 | target | specifies the Runtime Fabric target name where the applicateion is deployed.
 | provider | specifies the rovider type. The only supported value for Runtime Fabric is `MC`.
