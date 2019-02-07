@@ -7,7 +7,9 @@ This topic describes how to install Anypoint Runtime Fabric on your AWS account.
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
+Before installing Runtime Fabric ensure your infrastructure meets the minimum hardware, operating system, and networking requirements.
+
+Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
 ====
 
 == Before you Begin
@@ -28,7 +30,7 @@ See xref:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testin
 
 == Ensure Your Mule License Key is Base64 Encoded
 
-To install Runtime Fabric, your Mule license key must be Base64 encoded.
+To install Runtime Fabric, your Mule license key must be Base64 encoded. Locate your organization’s Mule Enterprise license key file (license.lic) and perform the following according to your operating system.
 
 === Linux
 
