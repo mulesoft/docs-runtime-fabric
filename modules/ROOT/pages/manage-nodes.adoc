@@ -35,6 +35,8 @@ Ensure that you copy the environment file from the correct node type (controller
 ----
 sudo chmod +x ./init.sh
 ----
++
+This script causes the new node to join the Runtime Fabric cluster.
 
 . Verify the new node was 2added to the Runtime Fabric:
 +
@@ -44,4 +46,24 @@ sudo gravity status
 
 == Remove a Node from Runtime Fabric
 
+To remove a node from a Runtime Fabric cluster, run the following command:
 
+----
+sudo gravity leave
+----
+
+This command shuts down all Runtime Fabric services running on the node. Additionally, all software and data is removed.
+
+If successful, this command outputs the ID of the initiated removal operation. You can monitor the the progress of this command using the following command:
+
+----
+gravity status
+----
+
+If the node cannot be removed using `sudo gravity leave` you may need to run the command again using the `--force` option. You can also remove a node remotely by running the following command:
+
+----
+sudo gravity remove <node-name>
+----
+
+`<node>` specifies the node to remove and can be either the node's assigned hostname or its IP address.
