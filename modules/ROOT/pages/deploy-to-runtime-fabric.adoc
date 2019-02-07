@@ -21,7 +21,7 @@ To deploy an application, perform the following steps:
 . Sign into https://anypoint.mulesoft.com[Anypoint Platform].
 . Navigate to *Runtime Manager*, and select the *Applications* section.
 . Click *Deploy application*.
-. Provide a name for your application in the *Application Name* field. 
+. Provide a name for your application in the *Application Name* field.
 +
 The name can contain only lowercase alphanumeric characters, hyphens, and underscores.
 . Click *Choose File* to select the application to deploy, then select one of the following options:
@@ -39,7 +39,7 @@ This tab displays the name and type of the deployment target you selected above.
 
 . Select the Mule runtime engine version from the *Runtime Version* drop-down list.
 
-. Select the number of replicas, or instances, of the application to deploy. 
+. Select the number of replicas, or instances, of the application to deploy.
 +
 [NOTE]
 A minimum of two replicas is required for high availability.

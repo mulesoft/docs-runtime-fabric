@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Runtime Fabric enables you to send alerts through an existing SMTP server. Runtime Fabric has built-in alert functionality to send notifications when system health is compromised.
+Runtime Fabric enables you to send alerts through an existing SMTP server. Runtime Fabric provides alert functionality to send notifications when system health is compromised.
 
 == Procedure
 
