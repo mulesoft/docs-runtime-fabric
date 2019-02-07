@@ -65,11 +65,9 @@ RTF_MULE_LICENSE='' \
 
 MuleSoft provides a Terraform script that you run to provision the required AWS resources. You can run the Terrform script in one of the following ways:
 
-* Manually
-+
-Download and install https://terraform.io/[Terraform] on your machine. Verify that the version of Terraform installed is `0.11.7` or later by running `terraform --version` on your terminal.
+* Download and manually install https://terraform.io/[Terraform] on your machine. Verify that the version of Terraform installed is `0.11.7` or later by running `terraform --version` on your terminal.
 
-* Using Docker.
+* Use Terraform within Docker.
 
 == Download the Terraform Script
 
@@ -92,7 +90,7 @@ Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the
 
 === Modify the fabric.tf Script
 
-Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below list the require and optional environment variables.
+Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below list the required and optional environment variables.
 
 [NOTE]
 Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not listed in the tables below. This is common if you need to use existing AWS resources.

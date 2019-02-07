@@ -23,7 +23,7 @@ If you do not see the *Runtime Fabrics* tab in Runtime Manager as described belo
 [NOTE]
 After creating the Runtime Fabric, Runtime Manage displays the corresponding activation data. Record this data to be used later when installing the infrastucture.
 
-image::runtime-fabric-arm.png
+image::runtime-fabric-arm.png[]
 
 Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after the Runtime Fabric is installed and connected to Runtime Manager.
 
