@@ -24,8 +24,6 @@ Before using Anypoint Runtime Fabric, you must make decisions about the resource
 
 == Create a Runtime Fabric in Runtime Manager
 
-. xref:install-create-rtf-arm.adoc[Create a Runtime Fabric in Runtime Manager]
-
 Before beginning to install Anypoint Runtime Fabric, you must create a Runtime Fabric using Runtime Manager. See xref:install-create-rtf-arm.adoc[Create a Runtime Fabric using Runtime Manager]. After creating the Runtime Fabric, you must perform the following:
 
 * Download a ZIP file containing the installation scripts. This ZIP file contains scripts specific to the infrastructure provider.
@@ -49,7 +47,7 @@ After determining resource requirements and creating a Runtime Fabric in Runtime
 == Configure Runtime Fabric
 
 After installing Runtime Fabric, perform additional configuration procedures as described in the following topics:
-+
+
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic for Anypoint Runtime Fabric]
 * xref:runtime-fabric-logs.adoc[Set up Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Set up Alerting on Anypoint Runtime Fabric]

@@ -26,7 +26,7 @@ To install Runtime Fabric, your Mule license key must be Base64 encoded.
 === Linux
 
 To encode your license file on Linux, run the following:
-+
+
 ----
 base64 -w0 license.lic
 ----
@@ -34,7 +34,7 @@ base64 -w0 license.lic
 === MacOS
 
 To encode your license file on MacOS, run the following from the terminal:
-+
+
 ----
 base64 -b0 license.lic
 ----
@@ -122,7 +122,7 @@ The following variables can be defined based upon your organization's requiremen
 [NOTE]
 To install a specific version of Runtime Fabric, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
 
-Third, use the `./generate-configs.sh` script to generate the environment variables for each VM.
+Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 
 . Copy the command below in a text editor and fill in the values of each variable inside the single quotes.
 +
