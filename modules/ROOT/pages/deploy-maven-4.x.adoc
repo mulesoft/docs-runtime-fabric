@@ -96,12 +96,12 @@ Ensure that this value is at equal or higher than the minimum required Mule runt
 | password | specifies your Anypoint Platform password.
 | applicationName | specifies the name of your application deployed in Exchange. +
 This name is part of the domain of your deployed app.
-| businessGroup | specifies the business group where you want to deploy the application.
+| businessGroup (optional) | specifies the business group where you want to deploy the application. If not defined, name of the master organization is used as the default.
 | skip | (boolean value) When set to true, skips the plugin deployment goal. The default value is `false`.
 | target | specifies the Runtime Fabric target name where the applicateion is deployed.
 | provider | specifies the rovider type. The only supported value for Runtime Fabric is `MC`.
 | environment | specifies the Anypoint Platform environment where you want to deploy your application.
-| properties | specifies a top-level element. +
+| properties (optional) | specifies a top-level element. +
 To set properties for your Mule application, use the <properties> element:
 
 <properties> +
@@ -114,13 +114,13 @@ For example:
 <properties> +
   <http.port>8081</http.port> +
 </properties>
-| replicationFactor | specifies the number of instances created for your application. +
+| replicationFactor (optional) | specifies the number of instances created for your application. +
 The default value is `1`
-| publicUrl | specifies the Url of the deployed application.
-| lastMileSecurity | enables Last-Mile security to forward HTTPS connections to be decrypted by this application. +
+| publicUrl (optional) | specifies the Url of the deployed application.
+| lastMileSecurity (optional) | enables Last-Mile security to forward HTTPS connections to be decrypted by this application. +
 This requires an SSL certificate to be included in the Mule application and also requires more CPU resources. The default value is `false`.
-| clusteringEnabled | enable Mule clustering across each replica of the application. You must have at least two replicas of your application. The default value is `false`.
-| memoryReserved | defines the amount of memory allocated for each replica of the application. The default value is `700MB`. +
+| clusteringEnabled (optional) | enable Mule clustering across each replica of the application. You must have at least two replicas of your application. The default value is `false`.
+| memoryReserved (optional) | defines the amount of memory allocated for each replica of the application. The default value is `700MB`. +
 
 For example:
 
@@ -130,7 +130,7 @@ For example:
 
 This allocates 100MB of memory to each replica.
 
-| cpuReserved | specifies the number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. +
+| cpuReserved (optional) | specifies the number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. +
 
 For example:
 
@@ -139,6 +139,6 @@ For example:
 </deploymentSettings> +
 
 This allocates 0.5 vCores to each replica.
-| server | specifies the Maven server that contains Anypoint Platform credentials. This is property is only required if you want to use the credentials stored in your Maven `settings.xml` file. Note: This is not the Mule server name.
+| server (optional) | specifies the Maven server that contains Anypoint Platform credentials. This is property is only required if you want to use the credentials stored in your Maven `settings.xml` file. Note: This is not the Mule server name.
 |===
 
