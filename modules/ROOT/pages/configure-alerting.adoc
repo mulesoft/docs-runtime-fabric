@@ -66,5 +66,5 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 
 == See Also
 
-* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]

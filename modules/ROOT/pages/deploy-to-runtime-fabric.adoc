@@ -9,7 +9,7 @@ Deploy a Mule application to Anypoint Runtime Fabric and test the inbound traffi
 
 Before deploying an application to Anypoint Runtime Fabric, you must perform the following:
 
-* Install and configure Anypoint Runtime Fabric. See xref:installation.adoc[Install Anypoint Runtime Fabric] for more information.
+* Install and configure Anypoint Runtime Fabric. See xref:install-create-rtf-arm.adoc[Begin Runtime Fabric Installation] for more information.
 * Ensure that Runtime Fabric is associated with an environment.
 * Determine the resource allocation requirements for your application. See xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Your Anypoint user may require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.

@@ -15,7 +15,7 @@ To associate a business group or environment to a Runtime Fabric:
 
 == Production Environments
 
-When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and familiarity with possible failure modes. 
+When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and familiarity with possible failure modes.
 
 [IMPORTANT]
 Verify that all these steps are complete before operating and deploying production applications on Runtime Fabric.
@@ -30,7 +30,7 @@ To share a Runtime Fabric across business groups:
 . Select the *Runtime Fabric* tab on the left sidebar.
 . Select the Runtime Fabric to manage.
 . On the *Associated Environments* tab, click *Add business group*.
-. Select the business group where you want to share this Runtime Fabric. 
+. Select the business group where you want to share this Runtime Fabric.
 +
 A list of the environments for the business group appears.
 
@@ -41,5 +41,5 @@ A list of the environments for the business group appears.
 == See Also
 
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic to Runtime Fabric]
-* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
