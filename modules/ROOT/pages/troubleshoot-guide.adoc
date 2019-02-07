@@ -102,60 +102,12 @@ This step performs the following tasks on the block devices or disks provided wi
 . Creates directories based upon the values in `$DOCKER_MOUNT` and/or `$ETCD_MOUNT`.
 . Mounts the disks to the expected directories created above.
 
-==== Common errors
-
-If the values provided with the `RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables did not match with block devices on the instance, the following error may be outputted:
-
-----
-----
-
-If this error occurs:
-
-* 
-
-If the block devices have already been mounted and are in use or locked by another resource, the following error may be outputted:
-
-
-----
-----
-
-If this error occurs:
-
-*
-
-
-
-=== Configure iptables Rules
-
-=== Configure Kernel Modules
-
-=== Start System Services
-
-=== Configure dockerd Proxy
-
-== Controller VM Starting the Installation
-
-The following steps are performed on the node used to start the installation.
-
-=== Fetch Installation Package
-
-=== Create Cluster
-
 === Install RTF Components
 
-=== Install Mule License
+This step connects to Anypoint Platform to download and install the Runtime Fabric components on the cluster.
 
-=== Generate Ops Center Credentials
+In some cases, this step may return an error if the deployment failed to complete within the time limit:
 
-== Joining Nodes
-
-The following steps are performed on the nodes which join the controller VM used to start installation.
-
-=== Join Cluster
-
-
-==== Deployment failed to become ready within the time limit
-Example of the error:
 ----
 ...
 [OK]
@@ -182,8 +134,9 @@ Containers:
 << More information outputted describing deployment manifest and stack trace >>
 ----
 
-==== Remediation Steps:
- * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet: 
+If this error is observed:
+
+ * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet. 
  * A TCP proxy may be needed to establish a connection to the Internet. Check with your network team to verify and configure if needed. The xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the information required.
 
 == See Also

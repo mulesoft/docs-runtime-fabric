@@ -8,7 +8,6 @@
  ** xref:install-aws.adoc[Install Runtime Fabric on AWS]
  ** xref:install-azure.adoc[Install Runtime Fabric on Azure]
  ** xref:install-manual.adoc[Install Runtime Fabric Manually]
- ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
 * xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
@@ -23,3 +22,4 @@
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+ ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
