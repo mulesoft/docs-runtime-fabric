@@ -9,7 +9,7 @@ Setting up Runtime Fabric occurs in the following steps:
 
 . Provision and configure infrastructure
 . Install & activate Runtime Fabric
-. xref:configure-log-forwarding.adoc[Configure Log Forwarding]
+. xref:runtime-fabric-logs.adoc[Configure Log Forwarding]
 . xref:configure-alerting.adoc[Configure Alerting]
 . xref:associate-environments.adoc[Associate Runtime Fabric to an Environment]
 . xref:enable-inbound-traffic.adoc[Enable Inbound Traffic]

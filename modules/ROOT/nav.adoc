@@ -10,7 +10,7 @@
  ** xref:install-manual.adoc[Install Runtime Fabric Manually]
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
-* xref:configure-log-forwarding.adoc[View and Configure Logs in Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[View and Configure Logs in Runtime Fabric]
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
  ** xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Anypoint Runtime Fabric]
