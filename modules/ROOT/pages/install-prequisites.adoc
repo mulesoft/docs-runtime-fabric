@@ -51,7 +51,7 @@ After determining resource requirements and creating a Runtime Fabric in Runtime
 After installing Runtime Fabric, perform additional configuration procedures as described in the following topics:
 +
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic for Anypoint Runtime Fabric]
-* xref:configure-log-forwarding.adoc[Set up Log Forwarding on Anypoint Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[Set up Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Set up Alerting on Anypoint Runtime Fabric]
 * xref:using-opscenter.adoc[Access Ops Center on Anypoint Runtime Fabric]
 

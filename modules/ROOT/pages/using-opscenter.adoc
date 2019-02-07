@@ -75,5 +75,5 @@ If you encounter an issue with Runtime Fabric, MuleSoft Support team may ask for
 
 == See Also
 
-* xref:runtime-fabric-logs.adoc[Configure Alerting on Anypoint Runtime Fabric]
-* xref:configure-log-forwarding.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
