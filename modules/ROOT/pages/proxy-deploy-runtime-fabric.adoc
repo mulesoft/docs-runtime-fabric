@@ -46,4 +46,3 @@ After deployment, you can manage the deployed API proxy from Runtime Manager.
 == See Also
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
-* xref:api-manager::index.adoc[]
