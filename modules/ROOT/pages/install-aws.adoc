@@ -90,7 +90,7 @@ Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the
 
 === Modify the fabric.tf Script
 
-Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below list the require and optional environment variables.
+Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below list the required and optional environment variables.
 
 [NOTE]
 Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not listed in the tables below. This is common if you need to use existing AWS resources.
