@@ -3,22 +3,22 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This guide provides a list of common errors and steps to resolve them when installing Anypoint Runtime Fabric.
+This topic describes common errors and steps to resolve them when installing Anypoint Runtime Fabric.
 
-The installation can be resumed where it stopped by running the init script:
+You can resume a failed installation at the point where it stopped by running the init script:
 
 *AWS and Manual installations*:
 ----
-/opt/anypoint/runtimefabric/init.sh 
+/opt/anypoint/runtimefabric/init.sh
 ----
 
 *Azure installations*:
 ----
-/opt/anypoint/runtimefabric/script.sh 
+/opt/anypoint/runtimefabric/script.sh
 ----
 
 
-== All Nodes
+== Troubleshooting Steps Performed on All Nodes
 
 The following steps are performed on all nodes.
 
@@ -131,12 +131,12 @@ IP:             10.244.82.17
 Controlled By:  ReplicaSet/monitor-79c7564b77
 Containers:
 ...
-<< More information outputted describing deployment manifest and stack trace >>
+<< More information displayed that describes the deployment manifest and stack trace >>
 ----
 
 If this error is observed:
 
- * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet. 
+ * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet.
  * A TCP proxy may be needed to establish a connection to the Internet. Check with your network team to verify and configure if needed. The xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the information required.
 
 == See Also
