@@ -7,7 +7,11 @@ The first step to install Anypoint Runtime Fabric is to create a Runtime Fabric 
 
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric, review the xref:install-prequisites.adoc[Pre-installation Requirements] to ensure that you are ready to proceed.
+Before installing Anypoint Runtime Fabric, review the following topics to ensure that you are ready to install Runtime Fabric:
+
+* xref:architecture.adoc[Runtime Fabric Architecture]
+* xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
+* xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
 
 [NOTE]
 If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
