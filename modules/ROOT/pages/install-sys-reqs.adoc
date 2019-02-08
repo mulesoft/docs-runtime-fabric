@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-Anypoint Runtime Fabric support development and production configurations. The requirements for each configuration are described below. See xref:architecture.adoc[Runtime Fabric Architecture] for a description of these environments.
+Anypoint Runtime Fabric supports development and production configurations. The requirements for each configuration are described below. See xref:architecture.adoc[Runtime Fabric Architecture] for a description of these environments.
 
 [WARNING]
 Review these requirements with your operations and IT teams to ensure you have the right infrastructure provisioned before installing Runtime Fabric.
@@ -13,8 +13,8 @@ Review these requirements with your operations and IT teams to ensure you have t
 
 Anypoint Runtime Fabric requires one of the following operating systems.
 
-* Red Hat (RHEL) v7.4, v7.5
-* CentOS v7.4, v7.5
+* Red Hat (RHEL) v7.4, v7.5, v7.6
+* CentOS v7.4, v7.5, v7.6
 
 Use the same operating system for each VM. If you attempt to install Runtime Fabric on another operating system version or distribution, the Runtime Fabric installer fails.
 
