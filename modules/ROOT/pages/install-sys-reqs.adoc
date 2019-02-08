@@ -29,7 +29,7 @@ The following sections describe the minimum system requirements of each controll
 
 === Controller VMs
 
-The minimum number of controller VMs in a production environment is three. The maximum is five. These requirements reflect the minimum requirements to maintain high-availability and ensure system performance.
+The minimum number of controller VMs in a production environment is three. The maximum is five, and even numbers of controllers are not supported. These requirements reflect the minimum requirements to maintain high-availability and ensure system performance.
 
 Each contoller VM must have the following:
 
@@ -76,7 +76,7 @@ The following sections describe the minimum system requirements of each controll
 
 === Controller VM
 
-Runtime Fabric requires at least one controller VM in a development environment. The maximum supported is 5.
+Runtime Fabric requires at least one controller VM in a development environment. The maximum supported is five, and even numbers of controllers are not supported.
 
 Each contoller VM must have the following:
 
@@ -105,7 +105,7 @@ Each worker VM must have the following:
 
 === Additional Resource Requirements for Development Environments
 
-To keep your Runtime Fabric installation running during upgrades requires at least one additional worker VM, including hard disks. This VM should only be used when:
+To keep your Runtime Fabric running during upgrades, at least one additional worker VM is required, including hard disks. This VM should only be used when:
 
 * Performing rolling upgrades to major versions of Runtime Fabric
 * Performing operating system level patches.
