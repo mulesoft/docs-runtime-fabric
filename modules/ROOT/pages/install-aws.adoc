@@ -7,7 +7,7 @@ This topic describes how to install Anypoint Runtime Fabric on your AWS account.
 
 [WARNING]
 ====
-Before installing Runtime Fabric ensure your infrastructure meets the minimum hardware, operating system, and networking requirements.
+Before installing Runtime Fabric, ensure your infrastructure meets the minimum hardware, operating system, and networking requirements.
 
 Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
 ====
@@ -23,12 +23,11 @@ Before installing Anypoint Runtime Fabric on AWS, ensure the following requireme
 +
 See xref:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html[Testing IAM Policies with the IAM Policy Simulator] for more information.
 
-* Your AWS account has enough quota for the infrastructure required to run Anypoint Runtime Fabric. This includes having the capacity to create an additional VPC, ED2 instance, disk, security group, and other required resources.
+* Your AWS account has enough quota for the infrastructure required to run Anypoint Runtime Fabric. This includes having the capacity to create an additional VPC, EC2 instances, disks, security group, and other required resources.
 * You have the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[AWS key pair] required to provision virtual machines. This key pair is required to enable secure access to your VMs via SSH (Secure Shell).
-* You have access to the following AWS-specific environment variables: `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`, `AWS_DEFAULT_REGION`. These are required to run the Terraform script. If you do not know these values contact your AWS administrator.
+* You have access to the following AWS-specific environment variables: `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET_KEY`, `AWS_SESSION_TOKEN`, `AWS_REGION`, `AWS_DEFAULT_REGION`. These are required to run the Terraform script. If you do not know these values, contact your AWS administrator.
 
-
-== Ensure Your Mule License Key is Base64 Encoded
+== Base64 Encode Your Mule License Key
 
 To install Runtime Fabric, your Mule license key must be Base64 encoded. Locate your organization’s Mule Enterprise license key file (license.lic) and perform the following according to your operating system.
 
@@ -50,15 +49,13 @@ base64 -b0 license.lic
 
 === Windows
 
-To encode your license file on Widows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer to follow these steps:
+To encode your license file on Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer is required to follow these steps:
 
 . Find your organization's Mule Enterprise license key file (`license.lic`) and transfer to your Unix environment if necessary.
-. Open a terminal/shell and navigate to the `azure` sub-directory.
-. Copy the command below in a text editor to make it easier to add in the Mule Enterprise license before running:
+. Run the following command to Base64 encode the license key:
 +
 ----
-RTF_MULE_LICENSE='' \
-./generate-templates.sh
+base64 -w0 license.lic
 ----
 
 == Install Terraform
@@ -71,7 +68,7 @@ MuleSoft provides a Terraform script that you run to provision the required AWS 
 
 == Download the Terraform Script
 
-. Sign in to Anypoint platform and navigate to Runtime Manager.
+. Sign in to Anypoint Platform and navigate to Runtime Manager.
 . On the left navigation pane, select *Runtime Fabrics*.
 . Click the name of your Runtime Fabric. It should be in the Activating state.
 . Click *Download files*.
@@ -93,7 +90,7 @@ Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the
 Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below list the required and optional environment variables.
 
 [NOTE]
-Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not listed in the tables below. This is common if you need to use existing AWS resources.
+Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not listed in the tables below. This is common if you need to use existing AWS resources such as an existing VPC.
 
 *Required Environment Variables*
 
@@ -120,8 +117,8 @@ Depending on your environment, you may need to modify environment variables spec
 | `http_proxy` | A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
 | `tcp_proxy` | A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
 | `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
-| `existing_vpc_id` | specifies an existing AWS virtual private cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
-| `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new ones. |
+| `existing_vpc_id` | specifies an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
+| `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
 |===
 
 == Configure Your Environment to Access AWS
@@ -164,7 +161,7 @@ terraform apply \
 ----
 +
 . Modify this using the data in the environment variables tables above.
-. Ensure your terminal has access to the require AWS-specific environment variables as described above.
+. Ensure your terminal has access to the AWS-specific environment variables required as described above.
 +
 If you experience an error related to AWS authorization, ensure you're using the same terminal window for verifying the variables and running the Terraform command.
 
@@ -215,7 +212,7 @@ docker run -it -v $(pwd):/src -w /src/aws \
   -state=tf-data/rtf.tfstate
 ----
 
-The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, the Runtime Fabric update to Active status in Runtime Manager.
+The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, the Runtime Fabric updates to Active status in Runtime Manager.
 
 [NOTE]
 This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
@@ -238,7 +235,7 @@ When the installation completes successfully, the installer creates the `/opt/an
 
 == Access Ops Center
 
-After installation is completed successfully, login to Ops Center to view that status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
+After installation is completed successfully, login to Ops Center to view the status of your Runtime Fabric infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on accessing Ops Center and determining the Ops Center username and password.
 
 == Post Installation Configuration
 
