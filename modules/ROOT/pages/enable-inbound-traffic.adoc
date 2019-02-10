@@ -3,26 +3,24 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric provides load balancing to manage inbound traffic to a Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which by default are deployed across different worker VMs.
+Runtime Fabric provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which by default are deployed across different worker VMs.
 
-Runtime Fabric can be shared across multiple environments. After installation, configure one or more environment for each Runtime Fabric to enable application deployment. You must associate at least one environment with each Runtime Fabric to be able to deploy Mule applications or API gateways.
+Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric to enable application deployment. You must associate at least one environment with each Runtime Fabric to be able to deploy Mule applications or API gateways.
 
 Applications deployed to a production environment must be deployed to a instance of Runtime Fabric that is separated from non-production applications.
 
-By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, inbound traffic must be enabled.
-
 [NOTE]
-By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inboud traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inbound traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
 
 
 Before enabling inboud traffic, you must provide a valid TLS certificate. The certificate must require a passphrase and be set with a Common Name (CN) which specifies the domain for each application deployed to Runtime Fabric.
 
-* If the Common Name contains a wildcard, the endpoint for each deployed application takes form `{app-name}.{common-name}`.
+* If the Common Name contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 * If the Common Name does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 
 == External Load Balancer Requirements
 
-Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443 on each VM. When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs. The external load balancer must support TCP load balancing. The load balancer must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be set up on the external load balancer, listening on port 443.
+Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs. The external load balancer must support TCP load balancing. The load balancer must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be set up on the external load balancer, listening on port 443.
 
 This configuration of the external load balancer:
 
@@ -31,7 +29,7 @@ This configuration of the external load balancer:
 * Gracefully handles automated failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
 
 [NOTE]
-Controller VMs are virtual machines dedicated to run the components which power Anypoint Runtime Fabric._
+Controller VMs are virtual machines dedicated to run the components which power Anypoint Runtime Fabric.
 
 All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. The following procedures describe how to configure and use a TLS certificate to enable inbound traffic. Once enabled, HTTP requests sent to Runtime Fabric will receive a 301 response to redirect to HTTPS on port 443.
 
@@ -76,7 +74,7 @@ ifconfig | grep eth0
 
 == Create a TLS Context
 
-To include your certificate-key pair in a TLS context and store it in Secrets Manager. This will be used later to encrypt inbound traffic to your Runtime Fabric.
+Follow these steps to include your certificate-key pair in a TLS context and store it in Secrets Manager. This will be used later to encrypt inbound traffic to your Runtime Fabric.
 
 . Navigate to Secrets Manager from the Anypoint Platform homepage.
 +
@@ -115,7 +113,7 @@ If you do not see *Add TLS Context*, ensure you are viewing your secret group in
 .. Under *Keystore*, select the name of the keystore you configured previously.
 .. Click *Save*.
 
-. After saving your TLS context, click *Secret Groups*, then click the *Finish*. This enables TLS Context for your *Runtime Fabric.*
+. After saving your TLS context, click *Secret Groups*, and then click the *Finish*. This enables TLS Context for your *Runtime Fabric.*
 
 == Enable Inbound Traffic
 
@@ -123,8 +121,7 @@ After creating a TLS context, apply the TLS context to your Runtime Fabric enabl
 
 . Navigate to Runtime Manager, the click *Runtime Fabric*.
 . Click the name of your Runtime Fabric to open the management page.
-. In the *Environments* tab, ensure your Runtime Fabric environment is associated with your Runtime Fabric.
-. If the Runtime Fabric is not listed under *Associated Environments*, select it from the menu, then click *Apply*.
+. In the *Associated Environments* tab, ensure your Runtime Fabric environment is associated with your Runtime Fabric.
 . Select the *Inbound Traffic* tab and turn on the Enable inbound traffic toggle.
 . Click *Basic Configuration*, then perform the following:
 .. Set the number of replicas to run the internal load balancer with.
@@ -147,21 +144,21 @@ If your secrets group does not appear, ensure you have the *Manage Runtime Fabri
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
 
 
-. Click *Deploy* to deploy Runtime Fabric. If successful, a message appears in the bottom-right of the page. The deployment may take up to a minute. You can view the deployment status at top of the form. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic enabled.
+. Click *Deploy* to deploy the internal load balancer. If successful, a message appears in the bottom-right of the page. The deployment may take up to a minute. You can view the deployment status at thw top of the form. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic enabled.
 
 == Verify that Inbound Traffic is Enabled
 
 To resolve the Common Name (CN) of applications deployed on Runtime Fabric, DNS must be configured to map the CN to the IP address of the external load balancer or of each controller VM. To test inbound traffic for applications before configuring DNS, send a request to the application using the IP address and a host header set to the domain.
 
-The structure of the domain depends on whether a wildcard was used in your certificate, for example:
+The structure of the domain depends on whether a wildcard was used in the CN of your certificate, for example:
 
-* A CN with a wildcard (e.g. *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command to verify:
+* A CN *with a wildcard* (e.g. *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
 ----
 
-* A CN without a wildcard (e.g. example.com) uses the following request header format: `Host: example.com`. Use the following cURL command to verify:
+* A CN *without a wildcard* (e.g. example.com) uses the following request header format: `Host: example.com`. Use the following cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
@@ -169,13 +166,13 @@ curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
 
 == After Enabling Traffic
 
-Runtime Fabric must be configured to route incoming traffic to each enabled application. To complete in order for clients to send requests to deployed applications.
+Runtime Fabric must be configured to route incoming traffic to each enabled application. To complete in order for clients to send requests to deployed applications:
 
 * Configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
 * Review the advanced options described below when adding an external load balancer.
-* Configure DNS before using the Common Name obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. An "A record" should be added to your DNS provider to map the Common Name to the IP address of the external load balancer or controller VM.
+* Configure DNS before using the Common Name obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. An "A record" should be added to your DNS provider to map the Common Name to the IP address of the external load balancer or controller VMs.
 
-When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. This tab allows you to specify if inbound traffic should be allowed.
+When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default behavior switches to allowed for new application deployments. If there are applications deployed to Runtime Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
 
 == Additional Configruation Options
 
