@@ -18,7 +18,7 @@ Contact your Customer Success Manager for information on how enable Anypoint Run
 
 == Runtime Fabric and Other PaaS Providers
 
-Anypoint Runtime Fabric contains alls of the compentent it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
+Anypoint Runtime Fabric contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
 
 [WARNING]
 Installing Runtime Fabric within an existing Kubernetes-based PaaS is not supported.
