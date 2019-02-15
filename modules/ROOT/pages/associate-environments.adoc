@@ -29,7 +29,7 @@ To share a Runtime Fabric across business groups:
 . From Anypoint Platform, select *Runtime Manager*.
 . Select the *Runtime Fabric* tab on the left sidebar.
 . Select the Runtime Fabric to manage.
-. On the *Associated Environments* tab, click *Add business group* on the bottom of the page.
+. On the *Associated Environments* tab, click *Add business group*.
 . Select the business group you want to share with this Runtime Fabric.
 +
 A list of the environments for the business group appears.

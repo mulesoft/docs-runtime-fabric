@@ -113,7 +113,7 @@ If you do not see *Add TLS Context*, ensure you are viewing your secret group in
 .. Under *Keystore*, select the name of the keystore you configured previously.
 .. Click *Save*.
 
-. After saving your TLS context, click *Secret Groups*, and then click the *Finish*. This enables TLS Context for your *Runtime Fabric.*
+. After saving your TLS context, click *Secret Groups*, then click the *Finish*. This enables TLS Context for your *Runtime Fabric.*
 
 == Enable Inbound Traffic
 
@@ -152,13 +152,13 @@ To resolve the Common Name (CN) of applications deployed on Runtime Fabric, DNS 
 
 The structure of the domain depends on whether a wildcard was used in the CN of your certificate, for example:
 
-* A CN *with a wildcard* (e.g. *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command to verify:
+* A CN with a wildcard (e.g. *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
 ----
 
-* A CN *without a wildcard* (e.g. example.com) uses the following request header format: `Host: example.com`. Use the following cURL command to verify:
+* A CN without a wildcard (e.g. example.com) uses the following request header format: `Host: example.com`. Use the following cURL command to verify:
 +
 ----
 curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`

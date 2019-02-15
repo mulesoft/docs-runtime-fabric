@@ -11,7 +11,7 @@ image::architecture-controller-worker.png[]
 * Controller: a VM dedicated for operating Runtime Fabric, including orchestration services, a distributed database, load balancing, and services that enable you to manage the cluster from Anypoint Platform.
 * Worker: a VM dedicated for running Mule applications and API gateways. Mule applications and API proxies run on workers.
 
-This separation of responsibilities enables scaling of the worker nodes based on the number of Mule applications. It also enables scaling the controller nodes based on the frequency of deployments, changes in application state, and amount of inbound traffic. To ensure resources are available to re-schedule and re-deploy applications in the event of a hardware failure, we recommended over-provisioning the number of worker nodes.
+This separation of responsibilities enables scaling of the worker nodes based on the number of Mule applications. It also enables scaling the controller nodes based on the frequency of deployments, changes in application state, and amount of inbound traffic. To ensure resources are available to re-schedule and re-deploy applications in the event of a hardware failure, MuleSoft recommends over-provisioning the number of worker nodes.
 
 By default, the services operating Runtime Fabric are deployed across the controller nodes to avoid a single point of failure in the system.
 
