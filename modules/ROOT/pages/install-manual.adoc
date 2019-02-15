@@ -19,7 +19,7 @@ Ensure the following criteria have been met before beginning the installation:
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
 * The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
 
-== Ensure Your Mule License Key is Base64 Encoded
+== Base64 Encode your Mule License Key
 
 To install Runtime Fabric, your Mule license key must be Base64 encoded.
 
@@ -41,15 +41,13 @@ base64 -b0 license.lic
 
 === Windows
 
-To encode your license file on Widows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer to follow these steps:
+To encode your license file on Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer is required to follow these steps:
 
 . Find your organization's Mule Enterprise license key file (`license.lic`) and transfer to your Unix environment if necessary.
-. Open a terminal/shell and navigate to the `azure` sub-directory.
-. Copy the command below in a text editor to make it easier to add in the Mule Enterprise license before running:
+. Run the following command to Base64 encode the license key:
 +
 ----
-RTF_MULE_LICENSE='' \
-./generate-templates.sh
+base64 -w0 license.lic
 ----
 
 == Operations Performed During Installation
@@ -66,7 +64,7 @@ The installation performs the following actions on each VM:
 
 First, download the scripts ZIP file on the controller VM which will act as the leader in the installation.
 
-. Sign in to Anypoint platform and navigate to Runtime Manager.
+. Sign in to Anypoint Platform and navigate to Runtime Manager.
 . On the left navigation pane, select *Runtime Fabrics*.
 . Click on the Runtime Fabric you created. It should be in the Activating state.
 . Right-click the *Download files* button and select "Copy link location".
@@ -102,7 +100,7 @@ Second, become familiar with the variables needed for installation. The value fo
 
 [NOTE]
 To help identify the block device paths to your disks, use the `lsblk` command on the VMs.
-To base64 encode the Mule license key, use the `base64 -w0 license.lic` command. (`base64 -b0 license.lic` in OSX)
+To base64 encode the Mule license key, see the instructions above under Base64 Encode your Mule License Key.
 
 === Optional Variables
 
@@ -124,7 +122,7 @@ To install a specific version of Runtime Fabric, transfer the installation packa
 
 Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 
-. Copy the command below in a text editor and fill in the values of each variable inside the single quotes.
+. Copy the command below in a text editor and fill in the values of each variable inside the single quotes. Add and define any additional variables if required. A common example is if an HTTP proxy is required for outbound  internet connectivity.
 +
 ----
 RTF_CONTROLLER_IPS='' \
@@ -137,7 +135,7 @@ RTF_MULE_LICENSE='' \
 ----
 +
 . Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
-. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM.
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. You may need to scroll up to see the outputted instructions.
 .. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
 .. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
 +
@@ -178,9 +176,10 @@ When the installation completes successfully, the file `/opt/anypoint/runtimefab
 
 == Monitoring Installation Progress
 
-To view the progress during the installation, you can tail the output log on each VM:
+If the `forground` parameter was passed when running the `init.sh` script, the install logs will output on the terminal. Otherwise to view the progress during the installation, you can tail the output log on each VM:
 
-. Open a shell (or SSH session) to the first controller VM.
+. 
+. Open another shell (or SSH session) to the VM.
 . Tail the output log, located at `/var/log/rtf-init.log`
 +
 ----
@@ -205,5 +204,7 @@ If the installation process encounters an error, it'll exit with a message to he
 
 Before deploying applications on Anypoint Runtime Fabric, you'll need to perform the following steps:
 
-* xref:associate-environments.adoc[Associate an environment to Runtime Fabric]
-* xref:enable-inbound-traffic.adoc[Enable inbound traffic to Runtime Fabric]
+* xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
+* xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
+* xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
+* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]

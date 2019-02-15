@@ -29,7 +29,6 @@ The following table lists the TCP ports that must be accessible:
 [%header%autowidth.spread]
 |===
 | Port | Protocol | Direction | Usage
-| 5672 | TCP (AMQP) | Outbound to Internet | Anypoint Management Center
 | 443 | TCP (HTTPS) | Outbound to Internet | Management services, API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 443 | TCP (HTTPS) | Ingress | Inbound traffic to Mules
 | 32009 | TCP (HTTPS) | Ingress | Runtime Fabric Ops Center
@@ -61,14 +60,14 @@ The following table lists the UDP ports that must be accessible to Runtime Fabri
 
 == Port IPs and Hostnames to Whitelist
 
-In your network configuration, you may need to whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation or upgrades.
+In your network configuration, you may need to whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
 The following table lists the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
 
 [%header%autowidth.spread]
 |===
 | Port | Protocol | Hostnames
-| 5672 | TCP (AMQP) | `transport-layer.prod.cloudhub.io`
+| 443 | AMQP over WebSockets | `transport-layer.prod.cloudhub.io`
 | 443 | HTTPS | `*.prod.cloudhub.io`
 | 443 | HTTPS | `anypoint.mulesoft.com`
 | 443 | HTTPS | `*.anypoint.mulesoft.com`

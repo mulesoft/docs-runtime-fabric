@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Before deploying applications or API gateways to Anypoint Runtime Fabric, you must associate a Runtime Fabric with one or more Anypoint Platform environments. When deploying a Mule application, you cannot select a Runtime Fabric as a deployment target until you have performed this in the environment where you want to deploy.
+Before deploying applications or API gateways to Anypoint Runtime Fabric, you must associate a Runtime Fabric with one or more Anypoint Platform environments. When deploying a Mule application, you cannot select a Runtime Fabric as a deployment target until you have performed this step in the environment where you want to deploy.
 
-To associate a business group or environment to a Runtime Fabric:
+To associate an environment to a Runtime Fabric:
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Select the *Runtime Fabric* section on the left sidebar.
@@ -30,7 +30,7 @@ To share a Runtime Fabric across business groups:
 . Select the *Runtime Fabric* tab on the left sidebar.
 . Select the Runtime Fabric to manage.
 . On the *Associated Environments* tab, click *Add business group*.
-. Select the business group where you want to share this Runtime Fabric.
+. Select the business group you want to share with this Runtime Fabric.
 +
 A list of the environments for the business group appears.
 

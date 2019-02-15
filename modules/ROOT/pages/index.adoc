@@ -25,24 +25,24 @@ Installing Runtime Fabric within an existing Kubernetes-based PaaS is not suppor
 
 If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
 
-== Connecting Runtime Fabric to the Anypoint Management Center
+== Connecting Runtime Fabric to Anypoint Management Center
 
 Anypoint Runtime Fabric supports the following:
 
 * Deploying applications from Anypoint Runtime Manager.
 * Deploying policy updates of API gateways using API Manager.
-* Integrating Anypoint Exchange to store and retrieve related assets.
+* Storing and retrieving assets with Anypoint Exchange.
 
-To enable integration with the Anypoint Management Center, Runtime Fabric establishes an outbound connection using the AMQP protocol. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
+To enable integration with the Anypoint Management Center, Runtime Fabric establishes an outbound connection using Advanced Message Queuing Protocol (AMQP) over websockets over port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
 
 [NOTE]
-Anypoint Runtime Fabric uses the AMQP protocol to connect to the Anypoint Management Center. Check with your network administrator about enabling outbound connections from your organization's network using this protocol.
+Check with your network administrator about enabling all required outbound connections from your organization's network.
 
 == Anypoint Runtime Fabric and Standalone Mule Runtimes (Hybrid Deployments)
 
-Hybrid deployments of Mule applications require you to install a version of the Mule runtime on a server and deploy one or more applications on the server. Each application shares the resources available to the Mule runtime. Other resources such as certificates or database connections may also be shared using domains.
+Hybrid deployments of Mule applications require you to install a version of the Mule runtime on a server and deploy one or more applications on the server. Each application shares the Mule runtime and the resources made available to it. Other resources such as certificates or database connections may also be shared using domains.
 
-Anypoint Runtime Fabric provisions resources differently. Each Mule application and API gateway runs within their own Mule runtime and in their own container. The amount of resources the container can access is specified when deploying a Mule application or API proxy. This enables Mule applications to horizontally scale across VMs without relying on other dependencies. It also ensures that different applications do not compete with each other for resources on the same VM.
+Anypoint Runtime Fabric provisions resources differently. Each Mule application and API gateway runs within their own Mule runtime and in their own container. The resources the container can access is specified when deploying a Mule application or API proxy. This enables Mule applications to horizontally scale across VMs without relying on other dependencies. It also ensures that different applications do not compete with each other for resources on the same VM.
 
 == Checklist for Using Anypoint Runtime Fabric
 
@@ -71,7 +71,7 @@ These permissions are available from the *Secrets Manager* tab in Access Managem
 To succesfully install and use Anypoint Runtime Fabric, you must know and verify the following about your network:
 
 * Your organization requires outbound connections to be routed to a proxy.
-* Outbound access is allowed using the AMQP protocol to Anypoint Platform.
+* Outbound access is allowed using AMQP over websockets (port 443) to Anypoint Platform.
 * Your organization's network and security policies, including:
 ** Internal network IP address range in CIDR notation.
 ** The subnet range used for Runtime Fabric in CIDR notation.
@@ -92,7 +92,7 @@ To succesfully install and use Anypoint Runtime Fabric, your network infrastruct
 ** Virtual networks
 ** Firewall rules / security groups
 ** Load balancers
-* If provisioning hardware with AWS or Azure, you must have right permissions to create the above resources.
+* If provisioning hardware with AWS or Azure, you must have the right permissions to create the above resources.
 * You must understand how to forward logs to your organization's logging provider.
 * Details on your organization's SMTP provider to configure alerts.
 
@@ -101,7 +101,6 @@ To succesfully install and use Anypoint Runtime Fabric, your network infrastruct
 To deploy Mule applications and API proxies, you must have the following:
 
 * Access to your organization's Mule license key(s).
-* Ability to install the Mule Enterprise license key using a standalone Mule runtime.
 * One or more Mule applications.
 
 == See Also
