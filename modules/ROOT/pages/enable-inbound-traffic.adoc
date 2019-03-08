@@ -174,7 +174,7 @@ Runtime Fabric must be configured to route incoming traffic to each enabled appl
 
 When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default behavior switches to allowed for new application deployments. If there are applications deployed to Runtime Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
 
-== Additional Configruation Options
+== Additional Configuration Options
 
 The following table describes additonal configuration options you may need to set for your environment.
 
