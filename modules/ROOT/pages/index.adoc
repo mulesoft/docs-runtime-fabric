@@ -68,7 +68,7 @@ These permissions are available from the *Secrets Manager* tab in Access Managem
 
 === Network and Security
 
-To succesfully install and use Anypoint Runtime Fabric, you must know and verify the following about your network:
+To successfully install and use Anypoint Runtime Fabric, you must know and verify the following about your network:
 
 * Your organization requires outbound connections to be routed to a proxy.
 * Outbound access is allowed using AMQP over websockets (port 443) to Anypoint Platform.
@@ -84,7 +84,7 @@ To succesfully install and use Anypoint Runtime Fabric, you must know and verify
 
 === Infrastructure and Operations
 
-To succesfully install and use Anypoint Runtime Fabric, your network infrastructure must have:
+To successfully install and use Anypoint Runtime Fabric, your network infrastructure must have:
 
 * Required hardware provisioned, or have enough quota with your infrastructure provider to create the required hardware. This includes:
 ** Virtual machines
