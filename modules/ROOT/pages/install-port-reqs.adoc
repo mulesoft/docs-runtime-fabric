@@ -73,7 +73,7 @@ The following table lists the ports and hostnames to add to your whitelists to a
 | 443 | HTTPS | `anypoint.mulesoft.com`
 | 443 | HTTPS | `*.anypoint.mulesoft.com`
 .2+| 443 .2+| HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com`
-| EU control plane: `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com`
+| EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com` `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com`
 .2+| 443 .2+| HTTPS | `exchange2-asset-manager-kprod.s3.amazonaws.com`
 | EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`
 .2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com`
