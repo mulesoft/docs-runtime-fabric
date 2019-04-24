@@ -33,10 +33,10 @@ Anypoint Runtime Fabric supports the following:
 * Deploying policy updates of API gateways using API Manager.
 * Storing and retrieving assets with Anypoint Exchange.
 
-To enable integration with the Anypoint Management Center, Runtime Fabric establishes an outbound connection using Advanced Message Queuing Protocol (AMQP) over websockets over port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
+To enable integration with the Anypoint Management Center, Runtime Fabric allows outbound access to Anypoing Platform on port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
 
 [NOTE]
-Check with your network administrator about enabling all required outbound connections from your organization's network.
+Check with your network administrator about enabling required outbound connections from your organization's network.
 
 == Anypoint Runtime Fabric and Standalone Mule Runtimes (Hybrid Deployments)
 
@@ -71,7 +71,7 @@ These permissions are available from the *Secrets Manager* tab in Access Managem
 To successfully install and use Anypoint Runtime Fabric, you must know and verify the following about your network:
 
 * Your organization requires outbound connections to be routed to a proxy.
-* Outbound access is allowed using AMQP over websockets (port 443) to Anypoint Platform.
+* Outbound access is allowed using websockets (via port 443) to Anypoint Platform.
 * Your organization's network and security policies, including:
 ** Internal network IP address range in CIDR notation.
 ** The subnet range used for Runtime Fabric in CIDR notation.
