@@ -48,11 +48,13 @@ From Ops Center, you can view metrics from a deployed application.
 The dashboad should populate the metrics for your application. By default, Ops Center displays a set of graphs showing the CPU, JVM Heap Memory, Total Memory, Network, and Filesystem usage.
 
 
-=== Cluster and Pods
+=== Dashboards
 
-The dashboards are divided into two main categories:
+The dashboards are divided into the following categories:
 
 * *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing you to filter by specific VM.
+* *Applications* shows metrics on all the replicas for an application deployment. Filters include the environment ID the application is deployed in, and the application deployment name.
+* *Ingress* shows metrics on all the replicas running the internal load balancer.
 * *Pods*  shows metrics on each individual service running within the Runtime Fabric cluster. Filters include the `namespace` and `podname`, allowing you to specify the specific service to monitor.
 ** When selecting `namespace`, you'll see GUIDs which correspond to your Anypoint environment IDs where your applications are deployed under.
 ** When selecting `podname`, you'll see values prefixed by the application name. These refer to replicas of each application deployment.
