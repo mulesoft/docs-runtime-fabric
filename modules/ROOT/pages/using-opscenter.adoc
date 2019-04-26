@@ -40,13 +40,12 @@ After logging into Ops Center, you'll see a list of tabs on the left of the page
 
 From Ops Center, you can view metrics from a deployed application.
 
-. In Ops Center, click * *Kubernetes* on the left sidebar.
-. Click the * *Application*  tab.
-. Select the environment ID where the application was deployed on the right dropdown, near the search input.
-. Find the Pod name which begins with the name of your application.
-. Click on the Pod name and select * *Monitoring*.
+. In Ops Center, click * *Monitoring* on the left sidebar.
+. Click the * *Cluster*  tab to open the dashboards pane and click * *Applications*.
+. Select the environment ID where the application was deployed on the Environment dropdown.
+. Select the application name on the Application dropdown.
 
-The page should redirect to the *Monitoring* tab with a filter applied to your application. By default, Ops Center displays a set of graphs showing the CPU, Memory, Network, and Filesystem usage.
+The dashboad should populate the metrics for your application. By default, Ops Center displays a set of graphs showing the CPU, JVM Heap Memory, Total Memory, Network, and Filesystem usage.
 
 
 === Cluster and Pods
