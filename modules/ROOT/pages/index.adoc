@@ -33,7 +33,7 @@ Anypoint Runtime Fabric supports the following:
 * Deploying policy updates of API gateways using API Manager.
 * Storing and retrieving assets with Anypoint Exchange.
 
-To enable integration with the Anypoint Management Center, Runtime Fabric allows outbound access to Anypoing Platform on port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
+To enable integration with the Anypoint Management Center, Runtime Fabric requires outbound access to Anypoing Platform on port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
 
 [NOTE]
 Check with your network administrator about enabling required outbound connections from your organization's network.
