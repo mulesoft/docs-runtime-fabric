@@ -7,7 +7,7 @@ Anypoint Runtime Fabric enables you to deploy Mule applications and API Proxies 
 Anypoint Runtime Fabric supports deploying to the following versions of Mule runtime:
 
 * 3.8.7, 3.9.1, 3.9.2
-* 4.1.2, 4.1.4, 4.1.5
+* 4.1.2, 4.1.3, 4.1.4
 
 == Prerequisites
 
