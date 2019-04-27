@@ -38,23 +38,24 @@ After logging into Ops Center, you'll see a list of tabs on the left of the page
 
 === View Metrics from an Application
 
-With Ops Center, you can view metrics from a deployed application.
+From Ops Center, you can view metrics from a deployed application.
 
-. On Ops Center, click on Kubernetes on the left sidebar.
-. Click on the Pods tab.
-. Select the environment ID where the application was deployed on the right dropdown, near the search input.
-. Find the Pod name which begins with the name of your application.
-. Click on the Pod name and select "Monitoring".
+. In Ops Center, click * *Monitoring* on the left sidebar.
+. Click the * *Cluster*  tab to open the dashboards pane and click * *Applications*.
+. Select the environment ID where the application was deployed on the Environment dropdown.
+. Select the application name on the Application dropdown.
 
-The page should redirect to the Monitoring tab with a filter applied to your application. By default, a set of graphs showing the CPU, Memory, Network, and Filesystem usage will be visible.
+The dashboad should populate the metrics for your application. By default, Ops Center displays a set of graphs showing the CPU, JVM Heap Memory, Total Memory, Network, and Filesystem usage.
 
 
-=== Cluster and Pods
+=== Dashboards
 
-The dashboards are divided into two main categories:
+The dashboards are divided into the following categories:
 
-* _Cluster_ shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing you to filter by specific VM.
-* _Pods_ show metrics on each individual service running within the Runtime Fabric cluster. Filters include the `namespace` and `podname`, allowing you to specify the specific service to monitor.
+* *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing you to filter by specific VM.
+* *Applications* shows metrics on all the replicas for an application deployment. Filters include the environment ID the application is deployed in, and the application deployment name.
+* *Ingress* shows metrics on all the replicas running the internal load balancer.
+* *Pods*  shows metrics on each individual service running within the Runtime Fabric cluster. Filters include the `namespace` and `podname`, allowing you to specify the specific service to monitor.
 ** When selecting `namespace`, you'll see GUIDs which correspond to your Anypoint environment IDs where your applications are deployed under.
 ** When selecting `podname`, you'll see values prefixed by the application name. These refer to replicas of each application deployment.
 
@@ -66,12 +67,12 @@ See xref:runtime-fabric-logs.adoc[View and Configure Logs in Runtime Fabric]
 
 If you encounter an issue with Runtime Fabric, MuleSoft Support team may ask for a packaged file containing debugging information. Follow these steps to generate the debug information package:
 
-. On Ops Center, click on the Admin link on the left side of the page.
-. Click "Download Debug Info" button on the upper right corner of the page.
+. From Ops Center, click *Admin* in the left side of the page.
+. Click *Download Debug Info* in the upper right corner of the page.
 +
-* A new tab may open while the request is being processed by Runtime Fabric. Generating this file can take several minutes.
+A new tab may open while the request is being processed by Runtime Fabric. Generating this file can take several minutes.
 +
-. A file will begin to download, named `report.tar.gz`.
+Ops Center downloads a file named `report.tar.gz`.
 
 == See Also
 
