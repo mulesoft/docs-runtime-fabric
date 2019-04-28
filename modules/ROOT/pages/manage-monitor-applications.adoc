@@ -8,7 +8,7 @@ Anypoint Platform provides multiple applications that enable you to monitor appl
 
 == Anypoint Monitoring
 
-xref:monitoring/index.adoc[Anypoint Monitoring] provides tools that give feedback from Mule flows and components in your application network. For applications deployed to Runtime Fabric, Anypoint monitoring provides basic metrics to all customers. Titanium customers have access to advanced metrics and application-level logging.
+xref:monitoring::index.adoc[Anypoint Monitoring] provides tools that give feedback from Mule flows and components in your application network. For applications deployed to Runtime Fabric, Anypoint monitoring provides basic metrics to all customers. Titanium customers have access to advanced metrics and application-level logging.
 
 When you deploy an application to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint Monitoring, pass the following custom property when deploying your application:
 
@@ -33,4 +33,4 @@ To avoid performance issues with the logging agent, you should not deploy more t
 
 == Anypoint Visualizer
 
-xref:visualizer/index.adoc[Anypoint Visualizer] displays views of different aspects of an application network graph. You can use the graph to explore your application network, identify problems, and make decisions.
+xref:visualizer::index.adoc[Anypoint Visualizer] displays views of different aspects of an application network graph. You can use the graph to explore your application network, identify problems, and make decisions.
