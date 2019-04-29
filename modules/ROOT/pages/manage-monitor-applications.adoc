@@ -31,7 +31,5 @@ To avoid performance issues with the logging agent, you should not deploy more t
 
 xref:visualizer::index.adoc[Anypoint Visualizer] displays views of different aspects of an application network graph. You can use the graph to explore your application network, identify problems, and make decisions.
 
-- Can also disable visualizer
-- For Mule4 visualizer is disabled by default.
-- Must be enabled via custom prop
-- Important for perf reasons
+[WARNING]
+By default, Anypoint Visualizer is disabled by default when deploying an application to Mule runtime 4.x. See xref:visualizer::setup.adoc#enable-header-injection[Enable Header Injection] for more information.
