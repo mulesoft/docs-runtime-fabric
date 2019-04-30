@@ -17,7 +17,7 @@ Password: ***********************
 ----
 
 [NOTE]
-You must retrieve the Ops Center URL from the logs on the installer node. Although the log file is available on all nodes of the cluster, only the installer node has admin access.
+You must retrieve the Ops Center URL from the logs on the installer node. Although the log file is available on all nodes of the cluster, only the installer node has the URL and credentials for the Ops Center.
 
 . Using a terminal, open a shell/SSH connection to the installer VM.
 . Run this command to open the log file and search for the credentials:
