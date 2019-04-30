@@ -13,7 +13,7 @@ This topic describes how to set or update proxy settings used by Runtime Fabric 
 . Run the following command, replacing the placeholder values with the following: `rtfctl apply monitoring_proxy "<user>:<pass>@<10.0.0.2>:<8080>"`
 .. *<user>*: the username needed to authenticate to the SOCKS5 proxy.
 .. *<pass>*: the password needed to authenticate to the SOCKS5 proxy.
-.. *<10.0.0.2>: the IP address or hostname to access the SOCKS5 proxy.
+.. *<10.0.0.2>*: the IP address or hostname to access the SOCKS5 proxy.
 .. *<8080>*: the port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: `rtfctl get monitoring_proxy`
 
