@@ -22,4 +22,5 @@
  ** xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+ ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
