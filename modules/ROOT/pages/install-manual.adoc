@@ -110,7 +110,7 @@ The following variables can be defined based upon your organization's requiremen
 |===
 |Parameter | Description | Example
 | `RTF_HTTP_PROXY` | A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
-| `RTF_TCP_PROXY` | A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
+| `RTF_MONITORING_PROXY` | A hostname and port, and optional username and password, for a SOCKS5 proxy server to forward metrics and logs to Anypoint Monitoring. | `user:pass@1.1.1.2:800`
 | `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `RTF_SERVICE_GID` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
