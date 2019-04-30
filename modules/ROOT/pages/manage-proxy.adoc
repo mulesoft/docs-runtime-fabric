@@ -5,7 +5,7 @@ endif::[]
 
 This topic describes how to set or update proxy settings used by Runtime Fabric to connect outbound to the internet. This includes managing HTTP proxies for connecting out to Anypoint control plane, and SOCKS5 proxies for sending metrics and logs out to Anypoint Monitoring.
 
-== Procedure For Updating the Monitoring Proxy
+== Update the Monitoring Proxy
 
 . Obtain the xref:https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
@@ -19,7 +19,7 @@ This topic describes how to set or update proxy settings used by Runtime Fabric 
 
 The output should match the value expected.
 
-== Procedure For Updating the HTTP Proxy
+== Update the HTTP Proxy
 
 . Obtain the xref:https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
