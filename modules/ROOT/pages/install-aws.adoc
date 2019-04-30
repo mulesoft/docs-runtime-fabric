@@ -115,7 +115,7 @@ Depending on your environment, you may need to modify environment variables spec
 | `service_uid` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `service_gid` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
 | `http_proxy` | A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
-| `tcp_proxy` | A hostname and port for a TCP proxy server to forward outbound TCP requests. | `1.1.1.2:800`
+| `monitoring_proxy` | A hostname and port, and optional username and password, for a SOCKS5 proxy server to forward metrics and logs to Anypoint Monitoring. | `user:pass@1.1.1.2:800`
 | `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `existing_vpc_id` | specifies an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
 | `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |

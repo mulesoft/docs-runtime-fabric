@@ -19,6 +19,8 @@
  ** xref:app-versioning.adoc[Application Versioning]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
 * xref:manage-index.adoc[Manage Runtime Fabric]
+ ** xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+ ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]

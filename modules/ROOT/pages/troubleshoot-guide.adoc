@@ -5,24 +5,43 @@ endif::[]
 
 This topic describes common errors and steps to resolve them when installing Anypoint Runtime Fabric.
 
+== Resuming a Failed Installation
+
 You can resume a failed installation at the point where it stopped by running the init script:
 
-*AWS and Manual installations*:
+* AWS and Manual installations:
++
 ----
 /opt/anypoint/runtimefabric/init.sh
 ----
 
-*Azure installations*:
+* Azure installations:
++
 ----
 /opt/anypoint/runtimefabric/script.sh
 ----
 
+== Troubleshooting Application Deployment Issues
 
-== Troubleshooting Steps Performed on All Nodes
+In rare situations, the Anypoint Monitoring agent may cause an application to not deploy.  In these sitations, you may see the following:
 
-The following steps are performed on all nodes.
+* The application remains in the `Deploying` state, or
+* `Error starting monitoring agent (code -1)`
 
-=== Detect Properties
+In this situation, redeploy your application and set the following custom property:
++
+----
+anypoint.platform.config.analytics.agent.enabled=false
+----
+
+The Anypoint Monitoring agent may also change the state of a deployed application. If you see one of the following:
+
+* The application transitions from Running to Applying, or
+* `Monitoring agent has exited with code -1`
+
+This indicates that the agent is restarting. There should be no impact to the running application. Application metrics will be queued and resume being collected after the agent restarts.
+
+== Troubleshooting Issues with Environment Variables
 
 This step detects the variables which the installation process needs to carry out its procedures. The methods for providing these variables to the installation vary based upon where the installation is running.
 
@@ -32,7 +51,7 @@ This step detects the variables which the installation process needs to carry ou
 
 After these properites are retrieved, a procedure will run to connect to Anypoint Platform and retrieve additional values based upon the `RTF_ACTIVATION_DATA` value.
 
-==== Common errors
+=== Common errors
 
 The following error may occur if there is an issue with the activation data value, or if there is trouble reaching the internet on the instance:
 
@@ -61,11 +80,11 @@ curl https://anypoint.mulesoft.com
 
 If you are still encountering issues, please file a support ticket for further assistance.
 
-=== Install Packages
+== Troubleshooting Issues with the Install Packages
 
 This step will install required packages on the instance. It uses the `yum` package repository to download and install the required packages.
 
-==== Common errors
+=== Common errors
 
 If there is a failure on this step, verify the following:
 
@@ -91,7 +110,7 @@ sudo yum install -y chrony
 
 If manual installation of a package was successful, or if you still require assitance, please file a support ticket.
 
-=== Format and Mount Disks
+== Format and Mount Disks
 
 This step performs the following tasks on the block devices or disks provided with the `RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables:
 
