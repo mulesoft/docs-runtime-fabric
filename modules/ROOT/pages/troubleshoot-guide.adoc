@@ -10,6 +10,7 @@ This topic describes common errors and steps to resolve them when installing Any
 You can resume an installation at the point where it failed by running the init script:
 
 * AWS and manual installations:
+
 +
 ----
 /opt/anypoint/runtimefabric/init.sh
@@ -24,6 +25,7 @@ You can resume an installation at the point where it failed by running the init 
 == Troubleshooting Application Deployment Issues
 
 In rare situations, the Anypoint Monitoring agent may cause an application to not deploy.  In these situations, you may see the following:
+
 
 * The application remains in the `Deploying` state, or
 * `Error starting monitoring agent (code -1)`

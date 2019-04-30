@@ -4,7 +4,7 @@ Applications and API gateways deployed to Runtime Fabric include native support 
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] provides tools that provide feedback from Mule flows and components in your application network. For applications and API gateways deployed to Runtime Fabric, Anypoint Monitoring provides basic metrics to all customers. Titanium customers have access to additional capabilities including application log retrieval and search.
+xref:monitoring::index.adoc[Anypoint Monitoring] provides tools that give feedback from Mule flows and components in your application network. For applications and API gateways deployed to Runtime Fabric, Anypoint Monitoring provides basic metrics to all customers. Titanium customers have access to additional capabilities including application log retrieval and search.
 
 When you deploy an application to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint Monitoring, pass the following custom property when deploying your application:
 
@@ -31,3 +31,4 @@ xref:visualizer::index.adoc[Anypoint Visualizer] displays views of different asp
 
 [WARNING]
 By default, Anypoint Visualizer is disabled when deploying an application to Mule runtime 4.x. See xref:visualizer::setup.adoc#enable-header-injection[Enable Header Injection] for more information.
+
