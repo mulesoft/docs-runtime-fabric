@@ -30,6 +30,7 @@ The following table lists the TCP ports that must be accessible:
 |===
 | Port | Protocol | Direction | Usage
 | 443 | TCP (HTTPS) | Outbound to internet | Management services, API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
+| 5044 | TCP | Outbound to internet | Anypoint Monitoring, Anypoint Visualizer
 | 443 | TCP (HTTPS) | Ingress | Inbound traffic to Mules
 | 32009 | TCP (HTTPS) | Ingress | Runtime Fabric Ops Center
 | 2379, 2380, 4001, 7001 | TCP | Internal | etcd distributed database
@@ -41,7 +42,6 @@ The following table lists the TCP ports that must be accessible:
 | 53 | TCP | Internal | Internal DNS
 | 7496 | TCP | Internal  | Peer-to-peer connectivity
 | 5000 | TCP | Internal | Docker registry
-| 5044 | TCP | Outbound to internet | Anypoint Monitoring, Anypoint Visualizer
 | 3022 - 3025 | TCP | Internal | Remote debugging services
 | 3080 | TCP | Internal | Runtime Fabric internal Ops Center
 | 3008 - 3012 | TCP | Internal | Runtime Fabric internal services
@@ -70,6 +70,8 @@ The following table lists the ports and hostnames to add to your whitelists to a
 | Port | Protocol | Hostnames
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io`
 | EU control plane: `transport-layer.prod-eu.msap.io`
+.2+| 5044 .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
+| EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
 | 443 | HTTPS | `*.prod.cloudhub.io`
 | 443 | HTTPS | `anypoint.mulesoft.com`
 | 443 | HTTPS | `*.anypoint.mulesoft.com`
