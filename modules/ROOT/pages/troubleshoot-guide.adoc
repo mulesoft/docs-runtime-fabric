@@ -7,9 +7,10 @@ This topic describes common errors and steps to resolve them when installing Any
 
 == Resuming a Failed Installation
 
-You can resume a failed installation at the point where it stopped by running the init script:
+You can resume an installation at the point where it failed by running the init script:
 
-* AWS and Manual installations:
+* AWS and manual installations:
+
 +
 ----
 /opt/anypoint/runtimefabric/init.sh
@@ -23,7 +24,8 @@ You can resume a failed installation at the point where it stopped by running th
 
 == Troubleshooting Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent may cause an application to not deploy.  In these sitations, you may see the following:
+In rare situations, the Anypoint Monitoring agent may cause an application to not deploy.  In these situations, you may see the following:
+
 
 * The application remains in the `Deploying` state, or
 * `Error starting monitoring agent (code -1)`
@@ -36,7 +38,7 @@ anypoint.platform.config.analytics.agent.enabled=false
 
 The Anypoint Monitoring agent may also change the state of a deployed application. If you see one of the following:
 
-* The application transitions from Running to Applying, or
+* The application transitions from `Running` to `Applying`, or
 * `Monitoring agent has exited with code -1`
 
 This indicates that the agent is restarting. There should be no impact to the running application. Application metrics will be queued and resume being collected after the agent restarts.
@@ -108,7 +110,7 @@ sudo yum install -y chrony
 +
 ** If not successful, please work with your operations team for assistance. You may need to ask for elevated access to the instance.
 
-If manual installation of a package was successful, or if you still require assitance, please file a support ticket.
+If manual installation of a package was successful, or if you still require assistance, please file a support ticket.
 
 == Format and Mount Disks
 
