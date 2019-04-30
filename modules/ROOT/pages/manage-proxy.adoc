@@ -10,7 +10,12 @@ This topic describes how to set or update proxy settings used by Runtime Fabric 
 . Obtain the xref:https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
-. Run the following command, replacing the placeholder values with the following: `rtfctl apply monitoring_proxy "<user>:<pass>@<10.0.0.2>:<8080>"`
+. Run the following command, replacing the placeholder values with the following:
++
+----
+rtfctl apply monitoring_proxy "<user>:<pass>@<10.0.0.2>:<8080>"
+----
++
 .. *<user>*: the username needed to authenticate to the SOCKS5 proxy.
 .. *<pass>*: the password needed to authenticate to the SOCKS5 proxy.
 .. *<10.0.0.2>*: the IP address or hostname to access the SOCKS5 proxy.
@@ -24,7 +29,12 @@ The output should match the value expected.
 . Obtain the xref:https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
-. Run the following command, replacing the placeholder values with the following: `rtfctl apply http_proxy "<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2.:9999>"`
+. Run the following command, replacing the placeholder values with the following: 
++
+----
+rtfctl apply http_proxy "<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2.:9999>"
+----
++
 .. *<user>*: the username needed to authenticate to the HTTP proxy.
 .. *<pass>*: the password needed to authenticate to the HTTP proxy.
 .. *<10.0.0.1>: the IP address or hostname to access the HTTP proxy.
