@@ -55,7 +55,7 @@ After these properites are retrieved, a procedure will run to connect to Anypoin
 
 === Common errors
 
-The following error may occur if there is an issue with the activation data value, or if there is trouble reaching the internet on the instance:
+The following error may occur if there is an issue with the activation data value, or if the instance has trouble connecting to the internet:
 
 ----
 curl: (7) Failed connect to anypoint.mulesoft.com:443; Operation now in progress
