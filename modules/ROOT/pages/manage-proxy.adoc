@@ -32,7 +32,7 @@ The output should match the value expected.
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
-rtfctl apply http-proxy "<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2.:9999>"
+rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2.:9999>"
 ----
 +
 .. *<user>*: the username needed to authenticate to the HTTP proxy.
