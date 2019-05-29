@@ -7,7 +7,7 @@ This topic describes how to set or update proxy settings used by Runtime Fabric 
 
 == Update the Monitoring Proxy
 
-. Obtain the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
+. Obtain the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.30[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
 . Run the following command, replacing the placeholder values with the following:
