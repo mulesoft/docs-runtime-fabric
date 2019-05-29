@@ -26,7 +26,20 @@ The output should match the value expected.
 
 == Update the HTTP Proxy
 
-. Obtain the xref:https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
+This operation requires two procedures: running a script on each node of your Runtime Fabric to update the cluster, and applying the proxy values to the services running within the Runtime Fabric.
+
+=== Run script on each node
+
+. Copy the `set_dockerd_proxy.sh` from the controller node used to install Runtime Fabric located under `/opt/anypoint/runtimefabric/scripts/` to each controller and worker node under the same location (`/opt/anypoint/runtimefabric/scripts/`).
+. Update the `/opt/anypoint/runtimefabric/env` file to set the values for `RTF_HTTP_PROXY` and `RTF_NO_PROXY` variables. 
+.. The `RTF_HTTP_PROXY` value accepts authentication values in-line; for example: `http://user:Password@1.1.1.1:80`.
+.. The `RTF_NO_PROXY` value accepts a comma separated list of hosts that should not go through the proxy; for example: `1.1.1.1,no-proxy.com`
+. Run the script `/opt/anypoint/runtimefabric/scripts/set_dockerd_proxy.sh`.
+. After repeating these steps on each controller and worker node, proceed to apply these proxy values to the services running within Runtime Fabric.
+
+=== Apply proxy values to Runtime Fabric services
+
+. Obtain the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.0[latest version] of `rtfctl` and transfer to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. You may need root access to perform this operation.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
 . Run the following command, replacing the placeholder values with the following:
@@ -40,7 +53,7 @@ rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.
 .. *<10.0.0.1>*: the IP address or hostname to access the HTTP proxy.
 .. *<8080>*: the port on the host where the HTTP proxy is listening for requests.
 .. *<1.1.1.1:8888,2.2.2.2.:9999>*: the NO_PROXY hosts and ports, delimited by commas.
-. To verify the change was successful, run the following command to output the current value of the HTTP proxy: `rtfctl get http-proxy`
+. To verify the change was successful, run the following command to output the current value of the HTTP proxy: `rtfctl get http-proxy`.
 
 The output should match the value expected.
 
