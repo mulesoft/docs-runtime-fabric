@@ -31,6 +31,7 @@ This operation requires two procedures: running a script on each node of your Ru
 === Run script on each node
 
 . Copy the `set_dockerd_proxy.sh` from the controller node used to install Runtime Fabric located under `/opt/anypoint/runtimefabric/scripts/` to each controller and worker node under the same location (`/opt/anypoint/runtimefabric/scripts/`).
+.. If you are not able to locate this script, please open a support ticket for assistance.
 . Update the `/opt/anypoint/runtimefabric/env` file to set the values for `RTF_HTTP_PROXY` and `RTF_NO_PROXY` variables. 
 .. The `RTF_HTTP_PROXY` value accepts authentication values in-line; for example: `http://user:Password@1.1.1.1:80`.
 .. The `RTF_NO_PROXY` value accepts a comma separated list of hosts that should not go through the proxy; for example: `1.1.1.1,no-proxy.com`
