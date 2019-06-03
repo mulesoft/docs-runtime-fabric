@@ -79,7 +79,8 @@ MuleSoft provides a Terraform script that you run to provision the required AWS 
 Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the following:
 
 * `fabric.tf`: Terraform script that provisions the infrastructure on your AWS account.
-* `security_group.tf`: Terraform script containing the Security Groups used by the `fabric.tf` script.
+* `network_ingress.tf`: Terraform script containing the Security Group rules used for network ingress.
+* `network_egress.tf`: Terraform script containing the Security Group rules used for network egress.
 * `installer_env.sh`: shell script of environment variables added to the controller VM acting as a leader during the installation.
 * `controller_env.sh`: shell script of environment variables added to the other controller VM(s).
 * `worker_env.sh`: shell script of environment variables added to the worker VM(s).
