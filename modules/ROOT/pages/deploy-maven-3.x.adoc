@@ -63,7 +63,9 @@ This enables the Mule Maven Plugin in your project.
             </properties>
             <deploymentSettings>
                 <cpuReserved>500m</cpuReserved>
+                <cpuMax>500m</cpuMax>
                 <memoryReserved>800Mi</memoryReserved>
+                <memoryMax>800Mi</memoryMax>
             </deploymentSettings>
         </runtimeFabricDeployment>
     </configuration>
@@ -122,22 +124,26 @@ The default value is `1`
 | lastMileSecurity (optional) | enables Last-Mile security to forward HTTPS connections to be decrypted by this application. +
 This requires an SSL certificate to be included in the Mule application and also requires more CPU resources. The default value is `false`.
 | clusteringEnabled (optional) | enable Mule clustering across each replica of the application. You must have at least two replicas of your application. The default value is `false`.
-| memoryReserved (optional) | defines the amount of memory allocated for each replica of the application. The default value is `700MB`. +
+| memoryReserved (optional) | defines the amount of memory allocated for each replica of the application. The default value is `700MB`. memoryReserved has to be less or equal to memoryMax
+| memoryMax (optional) | defines the maximumm amout of memory allocated for each replica of the application. The default value is `700MB`. memoryMax has to be equal to or greater than memoryReserved. If you not sure, just set it the same as memoryReserved. + 
 
 For example:
 
 <deploymentSettings> +
     <memoryReserved>100Mi</memoryReserved> +
+    <memoryMax>100Mi</memoryMax> + 
 </deploymentSettings> +
 
 This will set 100MB of memory to each replica.
 
-| cpuReserved (optional) | specifies the number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. +
+| cpuReserved (optional) | specifies the number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. cpuReserved has to be less or equal to cpuMax
+| cpuMax (Optional) | specifies the maximum number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. cpuMax has to be equal to or greater than cpuReserved. If you not sure, just set it the same as cpuReserved. +
 
 For example:
 
 <deploymentSettings> +
     <cpuReserved>500m</cpuReserved> +
+    <cpuMax>500m</cpuMax> +
 </deploymentSettings> +
 
 This will set 0.5 vCores for each replica.
