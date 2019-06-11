@@ -4,6 +4,8 @@ After installing and configuring Runtime Fabric and deploying Mule applications 
 
 * Add or remove nodes from a cluster to maintain cluster health or to perform upgrade. See xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 * Monitor the performance and health of your Runtime Fabric installation. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric].
+* Use Anypoint Monitoring and Visualizer to monitor applications deployed to Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
+* Install rtfctl to manage Runtime Fabric settings. See xref:install-rtfctl.adoc[Install rtfctl].
 * Troubleshoot errors with installation or post-installation. See xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric].
 
 == See Also
