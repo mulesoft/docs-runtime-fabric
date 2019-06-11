@@ -5,12 +5,13 @@ endif::[]
 
 Update the proxy settings used by Runtime Fabric outbound connections to the internet. This includes managing HTTP proxies for connecting out to the Anypoint control plane, and SOCKS5 proxies for sending metrics and logs out to Anypoint Monitoring.
 
+== Install rtfctl 
+
+The rtftl tool is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with configuring proxy settings.
+
 == Update the Monitoring Proxy
 
-. Obtain the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.30[latest version] of `rtfctl` and transfer it to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. +
-You may need root access to perform this operation.
-. Make the script executable by running `chmod +x /usr/bin/rtfctl`.
-. On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
+. Log in to a controller node where `rtfctl` has been installed. 
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
@@ -48,10 +49,7 @@ The `RTF_NO_PROXY` value accepts a comma-separated list of hosts that should not
 
 === Apply Proxy Values to Runtime Fabric Services
 
-. Obtain the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.30[latest version] of `rtfctl` and transfer it to a controller node under the `/usr/local/bin` folder with the name `rtfctl`. +
-You may need root access to perform this operation.
-. Run `chmod +x /usr/bin/rtfctl` to make the script executable.
-. On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use the utility.
+. Log in to a controller node where `rtfctl` has been installed. 
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
