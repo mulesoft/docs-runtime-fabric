@@ -1,0 +1,34 @@
+= Install rtfctl
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Install the rtfctl utility to manage Runtime Fabrics locally, with support for the following actions:
+
+* Get the status of a Runtime Fabric
+* Perform a heap dump or a thread dump of a running application
+* Display memory usage of a running application
+* Manage proxy settings
+* Manage secure properties
+
+== Install rtfctl 
+
+[WARNING]
+You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
+
+. Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.31[latest version] of the `rtfctl` utility.
+. Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
+. Rename the binary to `rtfctl`.
+. Make the script executable by running `chmod +x /usr/bin/rtfctl`.
+. On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use `rtfctl`.
+
+== Supported Commands
+
+To view a list of all supported commands, run `rtfctl -h`. 
+
+To get more information on a specific command, run `rtfctl <command> -h`.
+
+== See Also
+
+* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
+* xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]

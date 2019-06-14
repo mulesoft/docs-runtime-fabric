@@ -1,0 +1,39 @@
+= Manage Secure Properties in Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Secure properties are added in the Runtime Fabric cluster locally, are stored securely, and are scoped per environment. Secure properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
+
+== Install rtfctl 
+
+The rtftl tool is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with managing secure properties.
+
+== Set secure properties
+
+. Log into a controller node where `rtfctl` is installed. 
+. Run the following command to set a secure property to the Runtime Fabric under a specific environment, substituting the placeholder fields:
++
+----
+rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_id>
+----
++
+* *<my_key>*: the key for the secure property used in the Mule application to reference the value.
+* *<my_value>*: the value for the secure property to store.
+* *<environment_id>*: the Anypoint environment ID to scope this secure property to. Only applications deployed to this environment will have access to this secure property.
+
+== View secure properties
+
+. Log into a controller node where `rtfctl` is installed. 
+. Run the following command to view the secure properties applied to the Runtime Fabric under a specific environment, substituting the placeholder fields:
++
+----
+rtfctl get secure-properties -n <environment_id>
+----
++
+* *<environment_id>*: the Anypoint environment ID to list the secure properties under.
+
+== See Also
+
+* xref:install-rtfctl.adoc[Install rtfctl]
+* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
