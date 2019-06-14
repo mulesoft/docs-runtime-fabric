@@ -3,18 +3,18 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic provides instructions on how to install the rtfctl utility. This utility helps manage Runtime Fabrics locally with support for the following actions:
+Install the rtfctl utility to manage Runtime Fabrics locally, with support for the following actions:
 
-* Get a status of the Runtime Fabric
+* Get the status of a Runtime Fabric
 * Perform a heap dump or a thread dump of a running application
 * Display memory usage of a running application
-* Manage proxy settigns
+* Manage proxy settings
 * Manage secure properties
 
 == Install rtfctl 
 
 [WARNING]
-You may need root privledges to a controller node running Runtime Fabric to follow this procedure.
+You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
 
 . Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.31[latest version] of the `rtfctl` utility.
 . Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
@@ -22,9 +22,11 @@ You may need root privledges to a controller node running Runtime Fabric to foll
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use `rtfctl`.
 
-== Commands Supported
+== Supported Commands
 
-To view a list of all commands supported, run `rtfctl -h`. To get more information on a specific command, run `rtfctl <command> -h`.
+To view a list of all supported commands, run `rtfctl -h`. 
+
+To get more information on a specific command, run `rtfctl <command> -h`.
 
 == See Also
 

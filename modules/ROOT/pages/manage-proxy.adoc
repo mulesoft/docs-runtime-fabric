@@ -11,7 +11,7 @@ The rtftl tool is required to manage proxy settings on Runtime Fabric. Follow th
 
 == Update the Monitoring Proxy
 
-. Log in to a controller node where `rtfctl` has been installed. 
+. Log into a controller node where `rtfctl` is installed. 
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
