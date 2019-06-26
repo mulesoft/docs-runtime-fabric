@@ -10,6 +10,7 @@ Install the rtfctl utility to manage Runtime Fabrics locally, with support for t
 * Display memory usage of a running application
 * Manage proxy settings
 * Manage secure properties
+* Update Mule license
 
 == Install rtfctl 
 
