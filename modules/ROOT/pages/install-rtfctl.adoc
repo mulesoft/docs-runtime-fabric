@@ -10,13 +10,14 @@ Install the rtfctl utility to manage Runtime Fabrics locally, with support for t
 * Display memory usage of a running application
 * Manage proxy settings
 * Manage secure properties
+* Manage Mule license
 
 == Install rtfctl 
 
 [WARNING]
 You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
 
-. Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.31[latest version] of the `rtfctl` utility.
+. Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.32[latest version] of the `rtfctl` utility.
 . Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
 . Rename the binary to `rtfctl`.
 . Make the script executable by running `chmod +x /usr/bin/rtfctl`.
