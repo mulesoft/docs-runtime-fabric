@@ -1,11 +1,11 @@
-= Resource Allocation on Anypoint Runtime Fabric
+= Resource Allocation and Performance on Anypoint Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 Before deploying a Mule application to Runtime Fabric, determine the correct amount of resources to allocate. Determining resource allocation is also applicable when configuring the internal load balancers on Anypoint Runtime Fabric.
 
-When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime. The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
+When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
 You can allocate the following resources when deploying an application:
 
@@ -23,10 +23,10 @@ The minimum values for the amount of CPU and memory allocated to each replica of
 
 Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload.
 
-Both CloudHub and Runtime fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
+Both CloudHub and Runtime Fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
 
-* Runtime Fabric: lists the total memory available for an application. The available heap memory is approximately half of the total memory allocated to an application.
-* CloudHub: describes minimum memory requirements in terms of the heap memory available to an application.
+* Runtime Fabric lists the total memory available for an application. The available heap memory is approximately half of the total memory allocated to an application.
+* CloudHub describes minimum memory requirements in terms of the heap memory available to an application.
 
 == Application Startup Times
 
@@ -43,7 +43,7 @@ The startup time for a Mule applications is correlated to the amount of vCPU cor
 
 == Application Performance
 
-The amount of resources allocated to your Mule application determin the application's performance. Below are the approximate values for throughput based on the amount of vCPU cores allocated for a single Mule application performing simple processing on a 10 KB payload.
+The resources allocated to your Mule application determine the application's performance. Below are the approximate values for throughput based on the amount of vCPU cores allocated for a single Mule application performing simple processing on a 10 KB payload.
 
 [%header,cols="3*a"]
 |===
@@ -59,9 +59,13 @@ Run performance and load testing on your Mule applications to determine the numb
 
 == Internal Load Balancer
 
-Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Since this load balancer is responsible for TLS termination, the amount of resources required scales based on the number of incoming connections and the average payload size for each request.
+Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Since this load balancer is responsible for TLS termination, the number of resources required scales based on the number of incoming connections and the average payload size for each request.
 
-The following table lists the approximate requests averaging 10 KB that can be served with a single replica of the internal load balancer based on the amount of CPU cores.
+Performance tests were run on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. The load generator that was used was hosted on a separate AWS instance in the same region. The M4 instances featured a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2, which runs at a base clock rate of 2.4 GHz. Using Intel Turbo Boost, the clock rate can go as high as 3.0.
+
+A C++ based load generator with better efficiency in SSL connections was used to yield the maximum throughput.
+
+The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the amount of CPU cores.
 
 [%header,cols="3*a"]
 |===
@@ -73,7 +77,7 @@ The following table lists the approximate requests averaging 10 KB that can be s
 |===
 
 [NOTE]
-The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs appropriately based on the amount and type of inbound traffic. You can only allocate half of the available CPU cores on each VM to the internal load balancer.
+The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs appropriately based on the amount and type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
 
 == See Also
 
