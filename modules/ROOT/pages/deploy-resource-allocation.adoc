@@ -44,7 +44,7 @@ The startup time for a Mule applications is correlated to the number of vCPU cor
 
 == Application Performance
 
-The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload.
+The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
 
 [%header,cols="3*a"]
 |===
@@ -66,7 +66,7 @@ Performance test results are based on an Anypoint Runtime Fabric cluster with co
 
 A C++ based load generator with better efficiency in SSL connections was used to yield the maximum throughput.
 
-The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores.
+The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores:
 
 [%header,cols="3*a"]
 |===
