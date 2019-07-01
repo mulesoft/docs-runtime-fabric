@@ -1,0 +1,56 @@
+= Backup and Restore Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+This topic describes how to configure backups for Anypoint Runtime Fabric. It also describes how to perform a restoration from a backup.
+
+== Prerequisites
+
+To preserve your application  in case of system failure, ensure that your Runtime Fabrics are automatically backed up. MuleSoft highly recommends configuring backups to run hourly. Your backup archive should be stored on external storage outside the Runtime Fabric cluster.
+
+== Create a Backup
+
+To create a backup, run the following command on any controller node in the cluster.
+
+----
+gravity backup /var/lib/gravity/planet/share/backup.tar.gz
+----
+
+This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the `gravity backup` command:
+
+* `--follow`: outputs the backup job logs to the terminal
+* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+* `--log-file`: outputs logs to a file
+
+== Perform a System Restore
+
+To restore a system from your backup, use the existing Runtime Fabric cluster or create a new Runtime Fabric cluster with the same hardware (number of servers, disks, etc.) as the cluster being restored.
+
+[WARNING]
+You can not restore Runtime Fabric on a newer version of the Runtime Fabric cluster. The new installation must use the same version of Runtime Fabric installation bundle as your backup.
+
+. Log in to one of the controller nodes in your Runtime Fabric.
+
+. Move the compressed backup archive file to a folder in any of the nodes of the to-restore environment. You can transfer this file securely via the following command:
++
+----
+scp /backup-path/to-restore.tar.gz your_username@remotehost:/var/lib/gravity/planet/share
+----
+
+. Restore the cluster from the backup archive:
++
+----
+sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
+----
+
+This will take a few minutes. You can pass the following optional parameters:
+
+* `--follow`: outputs the backup job logs to stdout
+* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+* `--log-file`: outputs logs to a file
+
+== See Also
+
+* xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+* xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric]
