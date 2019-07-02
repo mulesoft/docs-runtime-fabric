@@ -11,7 +11,7 @@ To preserve your application  in case of system failure, ensure that your Runtim
 
 == Create a Backup
 
-To create a backup, run the following command on any controller node in the cluster.
+To create a backup, run the following command on any controller node in the cluster as a privileged user (with root access):
 
 ----
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
@@ -30,7 +30,7 @@ To restore a system from your backup, use the existing Runtime Fabric cluster or
 [WARNING]
 You can not restore Runtime Fabric on a newer version of the Runtime Fabric cluster. The new installation must use the same version of Runtime Fabric installation bundle as your backup.
 
-. Log in to one of the controller nodes in your Runtime Fabric.
+. Log in to one of the controller nodes in your Runtime Fabric as a privileged user (with root access).
 
 . Move the compressed backup archive file to a folder in any of the nodes of the to-restore environment. You can transfer this file securely via the following command:
 +
