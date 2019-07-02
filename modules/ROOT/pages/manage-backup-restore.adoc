@@ -7,7 +7,9 @@ This topic describes how to configure backups for Anypoint Runtime Fabric. It al
 
 == Prerequisites
 
-To preserve your application  in case of system failure, ensure that your Runtime Fabrics are automatically backed up. MuleSoft highly recommends configuring backups to run hourly. Your backup archive should be stored on external storage outside the Runtime Fabric cluster.
+Before using the backup and restore functionality, verify your Runtime Fabric was installed or upgraded using the link:https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1561762676] or greater. The version of the installer can be verified by running `gravity status` on a Runtime Fabric node.
+
+To preserve your application in case of system failure, ensure that your Runtime Fabrics are automatically backed up. MuleSoft highly recommends configuring backups to run hourly. Your backup archive should be stored on external storage outside the Runtime Fabric cluster.
 
 == Create a Backup
 
