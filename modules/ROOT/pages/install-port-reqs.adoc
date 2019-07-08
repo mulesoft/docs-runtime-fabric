@@ -29,10 +29,10 @@ The following table lists all the ports that must be open, along with the respec
 [%header%autowidth.spread]
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
-| 443 | TCP | AMQP over websockets | Controller nodes | Internet | Anypoint Platform Management services
+| 443 | TCP | AMQP over websockets | Controller nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
-| 443 | TCP | HTTPS | Internet | Controller nodes | Inbound traffic to Mules
+| 443 | TCP | HTTPS | Internet | Controller nodes | Inbound requests to Mules
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
 | 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Runtime Fabric internal services
@@ -96,6 +96,8 @@ In addition to the port requirements above, the following network settings are r
 * Bridge-netfilter to enable the host Linux kernel to translate packets to and from hosted containers. This kernel module is enabled on each VM during installation.
 * Access to an SMTP server to manage e-mail alerts triggered by Runtime Fabric.
 * An external load balancer to balance external requests to the internal load balancer running on each controller VM.
+* Your environment's HTTP proxy configuration if outgoing requests to the Internet must route through a proxy.
+* A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy.
 
 == See Also
 
