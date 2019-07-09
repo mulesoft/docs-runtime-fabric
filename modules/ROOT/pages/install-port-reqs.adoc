@@ -3,24 +3,23 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric requires specifc network and port settings for installation and normal operations.
-
-== Ports Used During Installation
-
-The following table lists the ports that must be accessible when installing Anypoint Runtime Fabric. After completing the installation, you can safely disable these ports.
-
-[%header%autowidth.spread]
-|===
-| Port | Protocol | Direction | Usage
-| 61008-61010 | TCP (HTTPS) | Internal | Used during installation
-| 61022-61024 | TCP (HTTPS) | Internal | Installer agent ports
-| 4242 | TCP | Internal | Bandwidth checker
-|===
+Runtime Fabric requires specific network and port configuration for installation and operation.
 
 == Required Port Settings
 
 The following sections list the TCP and UDP network port requirements for Anypoint Runtime Fabric.
 
+=== Ports Used During Installation
+
+The following table lists the ports that must be accessible when installing Anypoint Runtime Fabric. After completing the installation, you can safely disable these ports.
+
+[%header%autowidth.spread]
+|===
+| Port | Layer 4 Protocol | Layer 5 Proocol | Source | Destination | Description
+| 61008-61010 | TCP | HTTPS | All nodes | All nodes | Used during installation
+| 61022-61024 | TCP | HTTPS | All nodes | All nodes | Installer agent ports
+| 4242 | TCP | ? | All nodes | All nodes | Bandwidth checker
+|===
 
 === Network TCP and UDP Ports
 
@@ -39,7 +38,7 @@ The following table lists all the ports that must be open, along with the respec
 | 3022 - 3025 | TCP | SSH | All nodes | All nodes | Internal SSH control services
 | 3080 | TCP | HTTPS | All nodes | Controller nodes | Runtime Fabric internal Ops Center
 | 5000 | TCP | HTTPS | All nodes | Controller nodes | Internal container registry
-| 6060 | TCP | ? | All nodes | All nodes | Health check
+| 6060  | TCP | HTTPS / gRPC | All nodes | All nodes | Runtime Fabric internal services
 | 6443, 8080 | TCP | HTTPS / HTTP | All nodes | Controller nodes | Kubernetes API server
 | 7373 | TCP | RPC | localhost | localhost | Serf RPC for peer-to-peer connectivity
 | 7496 | TCP | HTTPs | All nodes | All nodes | Serf (health checking agent) / Peer-to-peer connectivity
