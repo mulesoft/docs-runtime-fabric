@@ -15,10 +15,10 @@ The following table lists the ports that must be accessible when installing Anyp
 
 [%header%autowidth.spread]
 |===
-| Port | Layer 4 Protocol | Layer 5 Proocol | Source | Destination | Description
-| 61008-61010 | TCP | HTTPS | All nodes | All nodes | Used during installation
-| 61022-61024 | TCP | HTTPS | All nodes | All nodes | Installer agent ports
-| 4242 | TCP | ? | All nodes | All nodes | Bandwidth checker
+| Port | Protocol | Description
+| 4242 | TCP | Bandwidth checker
+| 61008-61010 | TCP | Used during installation
+| 61022-61024 | TCP | Installer agent ports
 |===
 
 === Network TCP and UDP Ports
