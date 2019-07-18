@@ -23,7 +23,7 @@ You must retrieve the Ops Center URL from the logs on the installer node. Althou
 . Run this command to open the log file and search for the credentials:
 +
 ----
-cat /var/log/rtf-init.log | grep -B 1 -A 3 "Administrator access"
+cat /var/log/rtf-init.log | grep -B 1 -A 3 "Ops Center"
 ----
 +
 . Store the details in a safe location.
