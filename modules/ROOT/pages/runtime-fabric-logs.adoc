@@ -205,13 +205,15 @@ docker0 device. You must also forward any packets being sent from or to the 10.0
 
 This can occur if  sending logs to Splunk in the following ways: 
 
-. There is a Splunk Agent running and reading messages into Splunk that are being written to the /var/lib/gravity/planet/log/ directory 
-. Log Forwarder - pushing the logs to Splunk via TCP 
+. There is a Splunk Agent running and reading messages into Splunk that are being written to 
+the /var/lib/gravity/planet/log/ directory .
+. Log Forwarder - pushing the logs to Splunk via TCP. 
 
 Configure the following solution for log collection:
 
 .. Install your log forwarder agent (such as the Splunk log forwarder) on every controller and worker node.
-.. Configure each agent to watch `/var/lib/gravity/planet/log/messages`. In this directory, there are multiple subdirectories grouped by pods running on that node.
+.. Configure each agent to watch `/var/lib/gravity/planet/log/messages`. In this directory, there are 
+multiple subdirectories grouped by pods running on that node.
 .. Follow the recommended practices for log forwarding on k8s. Link?????
 
 [NOTE]
@@ -221,10 +223,13 @@ Only one controller will have all the logs collected and written to /var/lib/gra
 
 * What is the maximum memory storage for Runtime Fabric logs?
 
-** Runtime Fabric stores logs of up to 100 MB per application and per worker (or is storage allocated per production core and shared globally for all applications???), or for up to xx days, whichever limit is reached first. Once this limit has been reached, older logs are overwritten by newer logs.
+** Runtime Fabric stores logs of up to 100 MB per application and per worker (or is storage allocated per 
+production core and shared globally for all applications???), or for up to xx days, whichever limit is reached 
+first. Once this limit has been reached, older logs are overwritten by newer logs.
 * What time zone is used for logs?
 
-** Runtime Fabric stores log data in Universal Time (UTC); however, the console displays the log using your computer’s local time zone.
+** Runtime Fabric stores log data in Universal Time (UTC); however, the console displays the log using your 
+computer’s local time zone.
 * Can I store more than <the max> MB of logs if we use bigger workers?
 
 ** No, the size of the log is exact the same for all the Mule workers (no matter the vCore assignment).
@@ -239,12 +244,18 @@ Only one controller will have all the logs collected and written to /var/lib/gra
 ** No.
 * Can we recover logs if an application is deleted?
 
-** After you delete an application, your log data is no longer accessible Is old log data archived for a limited period of time before being purged??? This allows you to recover the data if needed. Contact Support for more information.
+** After you delete an application, your log data is no longer accessible Is old log data archived for a 
+limited period of time before being purged??? This allows you to recover the data if needed. Contact Support for 
+more information.
 * How can I persist Runtime logs?
 
-** You can do backups or forward them to an external logging system. The recommended approach is to persist your logs to an external logging system of your choice (such as Splunk). Please note that this solution results in the logs no longer being stored on our platform, so any support cases you lodge will require for you to provide the appropriate logs for review and case resolution.???????????????????????????
+** You can do backups or forward them to an external logging system. The recommended approach is to persist your 
+logs to an external logging system of your choice (such as Splunk). Please note that this solution results in the 
+logs no longer being stored on our platform, so any support cases you lodge will require for you to provide the 
+appropriate logs for review and case resolution.???????????????????????????
 
-* Does the 'Logs' setting for a cluster under 'Runtime Manager' interact or affect the /affect the retention and duration of log entries for an API, for a container, etc.? 
+* Does the 'Logs' setting for a cluster under 'Runtime Manager' interact or affect the /affect the retention and 
+duration of log entries for an API, for a container, etc.? 
 
 * What else drives the retention and content found in Logs? 
 
@@ -252,7 +263,8 @@ Only one controller will have all the logs collected and written to /var/lib/gra
 
 * Is any of this relevant: https://docs.mulesoft.com/mule-runtime/4.2/logging-in-mule
 
-* Can you configure log levels for Runtime Fabric services and Kubernetes services? The docs say you can specify this for apps and API proxies at time of app and proxy deployment.
+* Can you configure log levels for Runtime Fabric services and Kubernetes services? The docs say you can specify 
+this for apps and API proxies at time of app and proxy deployment.
 
 * How do I split RunTime Fabric logs from rest of the logs in Rsyslog Server?
 
