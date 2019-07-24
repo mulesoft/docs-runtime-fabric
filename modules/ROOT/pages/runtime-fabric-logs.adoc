@@ -14,6 +14,7 @@ The following sections describe how to configure and customize your log informat
 
 * <<set-log-levels>>
 * <<view-logs>>
+* <<set-log-retention>>
 * <<forward-logs-to-external-services>>
 * <<troubleshooting>>
 * <<frequently-asked-questions>>
@@ -96,6 +97,10 @@ There are two levels of filters to help drill down on the logs to make visible:
 
 * _Containers_ filter on names of containers.
 * _Pods_ filter on the names of pods. This is useful for specifying application names followed by a wildcard (`%`).
+
+== Set Log Retention [[set-log-retention]]
+
+TBD
 
 == Forward Logs to External Services
 
