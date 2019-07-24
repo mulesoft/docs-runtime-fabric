@@ -10,7 +10,15 @@ Runtime Fabric generates log files that provide information about the following:
 * Runtime Fabric services
 * Kubernetes services
 
-== Log Levels
+The following sections describe how to configure and customize your log information:
+
+* <<set-log-levels>>
+* <<view-logs>>
+* <<forward-logs-to-external-services>>
+* <<troubleshooting>>
+* <<frequently-asked-questions>>
+
+== Set Log Levels [[set-log-levels]]
 
 Runtime Fabric enables you to specify the level of severity of the message written to the log file.
 
@@ -54,21 +62,22 @@ Runtime Fabric enables you to specify the level of severity of the message writt
 |===
 
 Log levels are specified per Mule application or API proxy during deployment.
-
-
-
+//Can you specify the log level for Runtime Fabric and Kubernetes services? 
 
 [WARNING]
-Log levels are specified when deploying a Mule application or an API proxy. After deployment you cannot change the log levels.
+Log levels are specified when deploying a Mule application or an API proxy. After deployment you cannot 
+change the log levels.
 
 
-== Viewing Logs
+== View Logs [[view-logs]]
 
-Ops Center shows a stream of logs outputted by applications and services running on Runtime Fabric. Navigate to "Logging" on the left of the page to view the logging interface.
+Ops Center shows a stream of logs outputted by applications and services running on Runtime Fabric. Navigate to *Logging*
+to view the logging interface.
 
 === View Logs from an Application
 
-With Ops Center, you can view the logs from a deployed application. This can be useful in cases where log forwarding is not set up.
+With Ops Center, you can view the logs from a deployed application. This can be useful in cases where log forwarding is 
+not set up.
 
 . On Ops Center, click on Kubernetes on the left sidebar.
 . Click on the Pods tab.
@@ -81,22 +90,25 @@ The page should redirect to the Logs tab with a filter applied to your applicati
 [NOTE]
 To view the latest logs, click the "Refresh" button on the upper right portion of the page.
 
-=== Filters
+=== Filters [[filters]]
 
 There are two levels of filters to help drill down on the logs to make visible:
 
 * _Containers_ filter on names of containers.
 * _Pods_ filter on the names of pods. This is useful for specifying application names followed by a wildcard (`%`).
 
-
 == Forward Logs to External Services
 
-Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
+Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. 
+The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
 
-Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
+Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging 
+solution for viewing, retention, and alerting in a centralized destination. An `rsyslog` client service is 
+included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. 
+Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
 
-Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
-
+Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability 
+are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
 
 === Procedure
 
@@ -130,6 +142,122 @@ gravity resource create log-forwarder.yaml
 ----
 
 Your logs should now be forwarded to your external logging service.
+
+=== Forwarding Limitations [[configuration-limitations]]
+
+Modifying Log4J appenders is not supported for forwarding or manipulating logs within Mule. Runtime Fabric 
+collects logs for each running Mule instance and centrally forwards logs to the location specified by the user 
+in the configuration.
+
+== Troubleshooting [[troubleshooting]]
+
+=== OpsCenter Monitoring and Logs not Functioning After Restart
+
+* After restarting nodes, if monitoring and logging is not functioning, ensure that you have applied port forwarding 
+rules on all VMs to allow traffic to communicate with the Kubernetes pods running on the VMs. 
+
+**** Rules for Port Forwarding
+//What information applies here???
+
+***** `firewalld` is an iptables controller that defines rules for persistent network traffic. If you are 
+using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the 
+docker0 device. You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
+
+****** To determine if You Are Using firewalld, run the following command:
+
+       ----
+       systemctl status firewalld.service
+       ----
+
+******* If firewalld is installed, this command returns the following:
+
+        ----
+        $ sudo systemctl status firewalld.service
+        * firewalld.service - firewalld - dynamic firewall daemon
+        Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+        Active: inactive (dead)
+        Docs: man:firewalld(1)
+        ----
+
+******* If `firewalld is not installed, this command returns an error message.
+
+***** Enabling Forwarding
+
+****** To enable forwarding on the docker0 device, run the following commands:
+
+        ----
+        firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
+
+        firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+        ----
+
+****** To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+
+        ----
+        firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+
+        firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+        ----
+
+// RTF Network document should be ideally corrected. - add to network requirements also.????
+
+=== Logging not functioning during and after RTF upgrade
+
+This can occur if  sending logs to Splunk in the following ways: 
+
+. There is a Splunk Agent running and reading messages into Splunk that are being written to the /var/lib/gravity/planet/log/ directory 
+. Log Forwarder - pushing the logs to Splunk via TCP 
+
+Configure the following solution for log collection:
+
+.. Install your log forwarder agent (such as the Splunk log forwarder) on every controller and worker node.
+.. Configure each agent to watch `/var/lib/gravity/planet/log/messages`. In this directory, there are multiple subdirectories grouped by pods running on that node.
+.. Follow the recommended practices for log forwarding on k8s. Link?????
+
+[NOTE]
+Only one controller will have all the logs collected and written to /var/lib/gravity/planet/log/messages. 
+
+== Frequently Asked Questions [[frequently-asked-questions]]
+
+* What is the maximum memory storage for Runtime Fabric logs?
+
+** Runtime Fabric stores logs of up to 100 MB per application and per worker (or is storage allocated per production core and shared globally for all applications???), or for up to xx days, whichever limit is reached first. Once this limit has been reached, older logs are overwritten by newer logs.
+* What time zone is used for logs?
+
+** Runtime Fabric stores log data in Universal Time (UTC); however, the console displays the log using your computer’s local time zone.
+* Can I store more than <the max> MB of logs if we use bigger workers?
+
+** No, the size of the log is exact the same for all the Mule workers (no matter the vCore assignment).
+* Is there any time limit for log persistence?
+
+** Runtime Fabric stores logs for up to 30 days. 
+* What happens when the time limit is reached?
+
+** Logs older than 30-days are permanently removed (overwritten)?
+* Can we recover logs if they were overwritten or deleted (more than 30-days)?
+
+** No.
+* Can we recover logs if an application is deleted?
+
+** After you delete an application, your log data is no longer accessible Is old log data archived for a limited period of time before being purged??? This allows you to recover the data if needed. Contact Support for more information.
+* How can I persist Runtime logs?
+
+** You can do backups or forward them to an external logging system. The recommended approach is to persist your logs to an external logging system of your choice (such as Splunk). Please note that this solution results in the logs no longer being stored on our platform, so any support cases you lodge will require for you to provide the appropriate logs for review and case resolution.???????????????????????????
+
+* Does the 'Logs' setting for a cluster under 'Runtime Manager' interact or affect the /affect the retention and duration of log entries for an API, for a container, etc.? 
+
+* What else drives the retention and content found in Logs? 
+
+* Why are  logs are not written to disk anymore?
+
+* Is any of this relevant: https://docs.mulesoft.com/mule-runtime/4.2/logging-in-mule
+
+* Can you configure log levels for Runtime Fabric services and Kubernetes services? The docs say you can specify this for apps and API proxies at time of app and proxy deployment.
+
+* How do I split RunTime Fabric logs from rest of the logs in Rsyslog Server?
+
+** To split RunTime Fabric logs from the other Linux system logs, refer to 
+https://support.mulesoft.com/s/article/How-to-split-RunTime-Fabric-logs-from-rest-of-the-logs-in-Rsyslog-Server
 
 == See Also
 
