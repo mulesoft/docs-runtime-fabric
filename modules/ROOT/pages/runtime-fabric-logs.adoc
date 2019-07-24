@@ -181,9 +181,9 @@ docker0 device. You must also forward any packets being sent from or to the 10.0
 
 ******* If `firewalld is not installed, this command returns an error message.
 
-***** Enabling Forwarding
+****** Enabling Forwarding
 
-****** To enable forwarding on the docker0 device, run the following commands:
+******* To enable forwarding on the docker0 device, run the following commands:
 
         ----
         firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
@@ -191,7 +191,7 @@ docker0 device. You must also forward any packets being sent from or to the 10.0
         firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
         ----
 
-****** To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+******* To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
 
         ----
         firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
