@@ -1,6 +1,7 @@
 = Deploy an Application to Runtime Fabric using Maven (Mule 3.x)
 
-Runtime Fabric supports using Maven to manage and deploy Mule applications using Maven. The information in this topic is specific to deploying an application to Mule runtime, version 3.x.
+Runtime Fabric supports using Maven to manage and deploy Mule applications using Maven. The information 
+in this topic is specific to deploying an application to Mule runtime, version 3.x.
 
 [NOTE]
 To deploy an application to Runtime Fabric, the application must be published in Exchange. 
@@ -69,9 +70,7 @@ This enables the Mule Maven Plugin in your project.
             </properties>
             <deploymentSettings>
                 <cpuReserved>500m</cpuReserved>
-                <cpuMax>500m</cpuMax>
                 <memoryReserved>800Mi</memoryReserved>
-                <memoryMax>800Mi</memoryMax>
             </deploymentSettings>
         </runtimeFabricDeployment>
     </configuration>
@@ -134,31 +133,23 @@ The default value is `false`.
 | clusteringEnabled (optional) | Enables Mule clustering across each replica of the application. 
 You must have at least two replicas of your application. The default value is `false`.
 | memoryReserved (optional) | Defines the amount of memory allocated for each replica of the application. 
-The default value is `700MB`. The value of `memoryReserved` must be less than or equal to `memoryMax`.
-| memoryMax (optional) | Defines the maximum amount of memory allowed for each replica of the application. 
-The default value is `700MB`. The value of `memoryMax` must be equal to or greater than `memoryReserved`. 
-If you don't know what value to use, set it equal to `memoryReserved`. + 
+The default value is `700MB`. 
 
 For example:
 
 <deploymentSettings> +
-    <memoryReserved>100Mi</memoryReserved> +
-    <memoryMax>100Mi</memoryMax> + 
+    <memoryReserved>100Mi</memoryReserved> + 
 </deploymentSettings> +
 
 This will set 100MB of memory to each replica.
 
 | cpuReserved (optional) | Specifies the number of cores to be allocated for each replica of the application. 
-The default value is `0.5 vCores`. The value of `cpuReserved` must be less than or equal to `cpuMax`.
-| cpuMax (Optional) | Specifies the maximum number of cores allowed for each replica of the application. 
-The default value is `0.5 vCores`. The value of `cpuMax` must be equal to or greater than `cpuReserved`. 
-If you don't know what value to use, set it equal to `cpuReserved`. +
+The default value is `0.5 vCores`. 
 
 The following example specifies 0.5 vCores for each replica:
 
 <deploymentSettings> +
     <cpuReserved>500m</cpuReserved> +
-    <cpuMax>500m</cpuMax> +
 </deploymentSettings> +
 
 | server (optional) | Specifies the Maven server that contains Anypoint Platform credentials. This is property is only required if you want to use the credentials stored in your Maven `settings.xml` file. Note: This is not the Mule server name.
