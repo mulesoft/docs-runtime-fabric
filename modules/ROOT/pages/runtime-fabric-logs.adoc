@@ -268,7 +268,11 @@ duration of log entries for an API, for a container, etc.?
 
 * How do I export logs using a Splunk agent?
 
-** Assigning to me to update our docs
+** The general approach is to not recommend using the rsyslog component, and to instruct the user to add their logging agent on every node, pointed to a specific location. Three things needed to chase down before we’re ready to add in the docs:
+
+... The specific location where the logs are stored per node (both worker and controller).
+... A way to enable the customer to enrich the log data from the Kubernetes API, so they get better log data flowing to their logging system.
+... A performance consideration for how much CPU they should allocate per worker VM depending on how many logs they expect this log agent to process and forward.
 
 ** The general approach is to not recommend using the rsyslog component, and to instruct the user to add their 
 logging agent on every node, pointed to a specific location. ???Need the following:
