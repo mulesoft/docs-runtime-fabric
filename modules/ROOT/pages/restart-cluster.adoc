@@ -1,0 +1,90 @@
+= Stop and Restart a Cluster
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+//https://github.com/mulesoft/docs-private-cloud/edit/v2.0/modules/ROOT/pages/restarting-a-node.adoc
+
+If any of the following situations occur, stopping and restarting the cluster often solves the issue:
+
+* ???
+
+For node maintenance, or to stop and restart a single node, refer to ????
+
+
+== Notes
+
+[NOTE]
+This procedure is only to be used if you have a quorum of controller nodes. If you lose quorum, you must perform 
+a restore.???
+[WARNING]
+Attempting to perform a backup when you have lost a majority of controller nodes is not guaranteed to succeed. 
+Make sure you schedule regular backups to ensure that a complete restore can be performed if needed.
+[NOTE]
+The steps below must be performed on a single node at a time.  If maintenance is required on more than one node, 
+the entire process must be completed on a single node before the next node is addressed.
+
+== Drain the Node
+
+Before any maintenance or restart of a node can be performed, it must be removed from the cluster and its workload reassigned to the other nodes in the cluster.
+
+. Check if the firewalld service is running and enabled:
++
+----
+service firewalld status
+----
+. If firewalld is running, stop, disable, and mask it:
++
+----
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+sudo systemctl mask firewalld
+----
+. Retrieve the *name* of target node:
++
+----
+kubectl get nodes
+----
+. Drain the node:
++
+----
+kubectl drain --delete-local-data --ignore-daemonsets <node_name>
+----
+. Stop Gravity
++
+----
+systemctl list-units | grep "planet-master"
+  # note the full name of the Gravity "planet-master" unit
+systemctl stop <garvity_unit_name>
+----
+
+== Apply Node Maintenance
+
+Once the node has been drained and cordoned, any desired maintenance or a system reboot may be performed.  Caution must be used, however, to avoid any updates to the system that violate the requirements of Anypoint Platform PCE.
+
+== Rejoin the Node
+
+. Check Gravity Planet Master and Teleport status:
++
+----
+systemctl list-units | grep gravity__gravitational
+----
+. If either Gravity service is not “loaded active running”, then enable it:
++
+----
+systemctl enable <name_of_the_gravity_unit>
+----
+. Uncordon the node:
++
+----
+kubectl uncordon <node_name>
+----
+. Verify cluster status:
++
+----
+gravity status
+----
++
+****
+This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
+****
