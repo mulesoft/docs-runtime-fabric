@@ -170,7 +170,8 @@ When deploying new applications or managing existing applications on Runtime Fab
 
 == Additional Configuration Options
 
-The following table describes additonal configuration options you may need to set for your environment.
+The following table describes additonal configuration options you may need to set for your environment. In this case,
+*Source IP* refers to the client making the request.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -212,7 +213,7 @@ If a client exceeds this number, the exceeding requests will not be read until t
 
 *Default value*: 10 requests per client
 
-| *Source IP header name* and *enable proxy protocol*
+| *Source IP header name* and *enable proxy protocol* 
 | Set these configurations if Runtime Fabric is behind a load balancer.
 
 The values to configure here depend on your scenario:
@@ -238,7 +239,7 @@ Runtime Fabric is not deployed behind a load balancer, these values should not b
 
 *Default value*: blank and unchecked.
 
-|===
+|=== 
 
 == Internal Load Balancer Logs
 
