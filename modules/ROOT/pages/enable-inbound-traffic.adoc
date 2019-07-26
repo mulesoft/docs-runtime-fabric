@@ -170,8 +170,8 @@ When deploying new applications or managing existing applications on Runtime Fab
 
 == Additional Configuration Options
 
-The following table describes additonal configuration options you may need to set for your environment. In this case,
-*Source IP* refers to the client making the request.
+The following table describes additonal configuration options you may need to set for your environment. In this 
+case, *Source IP* refers to the client making the request.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
