@@ -3,30 +3,32 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+The following steps describe how to stop and restart a cluster. To stop and restart a single node, refer to ????
 //https://github.com/mulesoft/docs-private-cloud/edit/v2.0/modules/ROOT/pages/restarting-a-node.adoc
 
-If any of the following situations occur, stopping and restarting the cluster often solves the issue:
-
-* ???
-
-For node maintenance, or to stop and restart a single node, refer to ????
 
 
-== Notes
+
+
+== Stop an Anypoint Runtime Fabric cluster.
 
 [NOTE]
-This procedure is only to be used if you have a quorum of controller nodes. If you lose quorum, you must perform 
-a restore.???
+This procedure is only to be used if the majority of controller nodes are healthy. If you have lost a 
+majority of controller nodes, you must perform a restore.???
 [WARNING]
 Attempting to perform a backup when you have lost a majority of controller nodes is not guaranteed to succeed. 
 Make sure you schedule regular backups to ensure that a complete restore can be performed if needed.
 [NOTE]
-The steps below must be performed on a single node at a time.  If maintenance is required on more than one node, 
-the entire process must be completed on a single node before the next node is addressed.
+The steps below must be performed on a single node at a time. The entire process must be completed on a 
+single node before the next node is addressed.
+
+. If you do not have a recent backup, perform a backup using the procedure in xxx[link to backup]. 
+Verify successful completion of the backup.
+. Select a "worker" node.
 
 == Drain the Node
 
-Before any maintenance or restart of a node can be performed, it must be removed from the cluster and its workload reassigned to the other nodes in the cluster.
+Remove it from the cluster.
 
 . Check if the firewalld service is running and enabled:
 +
@@ -58,9 +60,14 @@ systemctl list-units | grep "planet-master"
 systemctl stop <garvity_unit_name>
 ----
 
-== Apply Node Maintenance
+Is anything else needed to shut down the node????
 
-Once the node has been drained and cordoned, any desired maintenance or a system reboot may be performed.  Caution must be used, however, to avoid any updates to the system that violate the requirements of Anypoint Platform PCE.
+Repeat the previous step for all worker nodes. When all of the "workers" are drained, repeat for the controllers???.
+
+
+== Restart an Anypoint Runtime Fabric cluster. 
+
+Each cluster node can be restarted as any linux server would. A rolling restart (i.e. one node at a time) is recommended, starting with the worker nodes and then the controller nodes (or controller nodes done first???). For each node:
 
 == Rejoin the Node
 
@@ -88,3 +95,40 @@ gravity status
 ****
 This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
 ****
+
+Repeat for all the other worker nodes.
+
+Once all of the "workers" are brought online, repeat the same process with the controllers.
+
+Ensure that before you proceed to the next manager, the current manager being worked on is backed up and in a healthy state.
+
+After the restart is completed, cluster status should be validated in the following ways:
+1 - Going into he Runtime Manager UI -> Runtime Fabrics, the status should show as Running.
+
+2 - Logging on to a controller node and running:
+# sudo gravity status
+
+The cluster status should show up as active and all cluster nodes should have a healthy status.
+
+
+Do we need to do anything for K8s:
+
+1. On the master node stop the following services:
+kupe-apiserver
+kube-scheduler
+kube-controllers
+2. on the nodes stop the following services:
+kubelet
+kube-proxy
+3. Backup your etcd https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md 2 and backup the root certificate files.
+Stop controller components running inside pods using “docker stop”. Then on the nodes, stop the services using “systemctl stop”.
+
+===
+Scale all applications down to 0 excluding cluster services e.g. CNI DaemonSets, DNS etc.
+Drain all nodes excluding the control plane.
+Shut down nodes.
+Shut down all components but kube-apiserver and etcd. – If using kubelet to manage components (kubeadm), just move the manifests out of the /etc/kubernetes/manifests dir and kubelet will stop the containers gracefully.
+shut down kube-apiserver
+Stop kubelet on control plane, just ensure the etcd leader is the last one to be stopped.
+Backup dirs/etcd if needed.
+Bringing it backup is essentially the opposite order. Make sure the control plane is up before the nodes.
