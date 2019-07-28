@@ -102,24 +102,17 @@ There are two levels of filters to help drill down on the logs to make visible:
 
 TBD
 
-== Forward Logs to External Services
+== Configure Log Forwarding
 
-Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. 
-The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
-
-Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging 
-solution for viewing, retention, and alerting in a centralized destination. An `rsyslog` client service is 
-included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. 
-Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
-
-Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability 
-are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
+Anypoint Runtime Fabric enables you to forward application and cluster logs to any on-premise log services 
+that accept syslog format log data. The built-in rsyslog client service enables you to send log data to an rsyslog server 
+over TCP or UDP. 
 
 === Procedure
 
 . Using a terminal, open a shell/SSH connection to a controller VM.
 . Create a file named `log-forwarder.yaml`.
-. Add the following content to this file after customizing based on the table below:
+. Add the following content to this file after customizing based on the following table:
 +
 ----
 kind: logforwarder
@@ -268,11 +261,13 @@ duration of log entries for an API, for a container, etc.?
 
 * How do I export logs using a Splunk agent?
 
-** The general approach is to not recommend using the rsyslog component, and to instruct the user to add their logging agent on every node, pointed to a specific location. Three things needed to chase down before we’re ready to add in the docs:
+** Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients. To run a 
+custom agent, such as Splunk, on the node itself, install the log forwarder agent on each controller VM, and 
+configure it to watch the logs stored in /var/lib/gravity/planet/log/messages.
+This file contains all the logs across all the services running across each node in Runtime Fabric, and start 
+getting rotated after it collects 350 MB of log data. 
 
-... The specific location where the logs are stored per node (both worker and controller).
-... A way to enable the customer to enrich the log data from the Kubernetes API, so they get better log data flowing to their logging system.
-... A performance consideration for how much CPU they should allocate per worker VM depending on how many logs they expect this log agent to process and forward.
+These logs are aggregated on a single controller VM, but it may shift to another controller VM if exists and if there is a period of unavailability, so it's recommended to run the log agent on each controller VM.?????
 
 ** The general approach is to not recommend using the rsyslog component, and to instruct the user to add their 
 logging agent on every node, pointed to a specific location. ???Need the following:
