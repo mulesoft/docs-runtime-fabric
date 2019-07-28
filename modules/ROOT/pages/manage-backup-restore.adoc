@@ -1,0 +1,67 @@
+= Back up and Restore Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Prerequisites
+
+Before performing a backup or restore operation, verify that Runtime Fabric was installed or upgraded 
+using  https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1561762676, role=external, window=_blank] or greater. 
+The installer version can be verified by running `gravity status` on a Runtime Fabric node.
+
+To preserve applications in the event of system failure, ensure that Runtime Fabric is automatically backed up. 
+MuleSoft highly recommends configuring hourly backups. Store your backup archive on external storage outside 
+the Runtime Fabric cluster.
+
+== Create a Backup
+
+To create a backup, run the following command on any controller node in the cluster as a privileged user (with root access):
+
+----
+gravity backup /var/lib/gravity/planet/share/backup.tar.gz
+----
+
+You can pass the following optional parameters to the `gravity backup` command:
+
+* `--follow`: outputs the backup job logs to the terminal
+* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+* `--log-file`: outputs logs to a file
+
+This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. 
+
+== Restore a System
+
+To restore a system from a backup, you can use the existing Runtime Fabric cluster or create a new Runtime Fabric 
+cluster with the same hardware (number of servers, disks, and so on) as the cluster being restored.
+
+[WARNING]
+You can not restore Runtime Fabric on a newer version of the Runtime Fabric cluster. The new installation must use 
+the same version of Runtime Fabric installation bundle as the backup.
+
+. Log in to a controller node in your Runtime Fabric as a privileged user (with root access).
+
+. Move the compressed backup archive file to a folder in any of the nodes of the environment to be restored. 
+You can transfer this file securely via the following command:
++
+----
+scp /backup-path/to-restore.tar.gz your_username@remotehost:/var/lib/gravity/planet/share
+----
+
+. Restore the cluster from the backup archive:
++
+----
+sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
+----
+
+You can pass the following optional parameters:
+
+* `--follow`: outputs the backup job logs to stdout
+* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+* `--log-file`: outputs logs to a file
+
+This process requires a few minutes. 
+
+== See Also
+
+* xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+* xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric]
