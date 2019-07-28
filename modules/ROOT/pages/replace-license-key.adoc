@@ -1,0 +1,42 @@
+= Replace a Mule License Key
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+When your Mule license expires, you must replace your Mule license key.
+
+Perform the following steps on the controller VM used to start the installation. For Azure and AWS installations, 
+this VM is named `rtf-controller-1` by default.
+
+. Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
+
+** On MacOS, run the following command in the terminal: 
++
+----
+base64 -b0 license.lic
+----
+** On Unix, run the following command:
++
+----
+base64 -w0 license.lic
+----
+** On Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based 
+computer is required.
+
+... Transfer to your Unix environment if necessary.
+... Run the following command to Base64 encode the license key:
++
+----
+base64 -w0 license.lic
+----
+
+. On the controller node acting as the leader during installation (the installer node), set the `RTF_MULE_LICENSE` 
+variable with the base64 value of your license key.
+
+ ** `RTF_MULE_LICENSE=<base64-license-key>`
+. On the controller node acting as the leader during installation (the installer node), run the following script:
+`/usr/local/bin/rtf-set-mule-license.sh $RTF_MULE_LICENSE`.
+
+If the message 
+`License digest appears to be invalid` is displayed, you are running an older version of the script, probably due to 
+an old version of the install bundle. Contact your customer success manager to get the latest version of the script.
