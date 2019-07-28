@@ -17,7 +17,7 @@ Password: ***********************
 ----
 
 [NOTE]
-You must retrieve the Ops Center URL from the logs on the installer node. Although the log file is available on all nodes of the cluster, only the installer node has the URL and credentials for the Ops Center.
+You must retrieve the Ops Center URL from the logs on the installer node. Although the log file is available on all nodes of the cluster, only the installer node has the URL and credentials for the Ops Center. 
 
 . Using a terminal, open a shell/SSH connection to the installer VM.
 . Run this command to open the log file and search for the credentials:
@@ -32,6 +32,15 @@ cat /var/log/rtf-init.log | grep -B 1 -A 3 "Ops Center"
 
 [NOTE]
 Verify port 32009 is open and accessible in your Security Group, Network Security Group or firewall rules. If using a private IP address, ensure you have access to the same internal network as the VM resides in.
+
+== Regain Access to the Ops Center
+If you lose the install logs, perform the following steps:
+
+. SSH into one of the nodes of the Runtime Fabric installation.
+. From the SSH terminal, run the following command to create a new user with admin rights to log into the Ops Center. Provide the appropriate values for `--email` and `--password`.
+----
+sudo gravity planet enter -- --notty /usr/bin/gravity -- user create --ops-url=https://gravity-site.kube-system.svc.cluster.local:3009 --insecure --email=username@myorganization.com --password=myNewPassword --type=admin
+----
 
 == Viewing Dashboards
 
