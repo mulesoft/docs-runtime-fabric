@@ -25,5 +25,6 @@
  ** xref:install-rtfctl.adoc[Install rtfctl]
  ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
+ ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
  ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric Manually]
