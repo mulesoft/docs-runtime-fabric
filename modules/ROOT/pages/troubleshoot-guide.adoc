@@ -43,6 +43,26 @@ The Anypoint Monitoring agent may also change the state of a deployed applicatio
 
 This indicates that the agent is restarting. There should be no impact to the running application. Application metrics will be queued and resume being collected after the agent restarts.
 
+== Troubleshooting Application Runtime Issues
+If any of the following Runtime Fabric alert messages are reported, you might need to recover one or more controller nodes. 
+----
+Management plane is unreachable
+
+InfluxDB is down or no connection between Kapacitor and InfluxDB
+
+Node is down
+
+CRITICAL / Kubernetes node is not ready: 168.189.5.22
+
+CRITICAL / etcd: cluster is unhealthy
+----
+Run the `gravity status` command to obtain the health status of the cluster as well as individual components. For example, to remotely log in to a cluster and check the status of the cluster named `production`, run the following command:
+----
+$ tsh --cluster=production ssh admin@node gravity status
+----
+
+To recover a node, follow the instructions provided in https://gravitational.com/gravity/docs/cluster/#recovering-a-node[Recovering a Node, role=external, window=_blank].
+
 == Troubleshooting Issues with Environment Variables
 
 This step detects the variables which the installation process needs to carry out its procedures. The methods for providing these variables to the installation vary based upon where the installation is running.
