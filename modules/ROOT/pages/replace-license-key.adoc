@@ -3,7 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-When your Mule license expires, you must replace your Mule license key.
+When your Mule license expires, you must replace your Mule license key. Also use this procedure if you 
+entered an incorrect license key during installation.
 
 Perform the following steps on the controller VM used to start the installation. For Azure and AWS installations, 
 this VM is named `rtf-controller-1` by default.
@@ -36,6 +37,8 @@ variable with the base64 value of your license key.
  ** `RTF_MULE_LICENSE=<base64-license-key>`
 . On the controller node acting as the leader during installation (the installer node), run the following script:
 `/usr/local/bin/rtf-set-mule-license.sh $RTF_MULE_LICENSE`.
+
+`$RTF_MULE_LICENSE` can be an environment variable or copied and pasted in string format.
 
 If the message 
 `License digest appears to be invalid` is displayed, you are running an older version of the script, probably due to 
