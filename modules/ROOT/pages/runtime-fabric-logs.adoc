@@ -78,7 +78,7 @@ to view the logging interface.
 === View Logs from an Application
 
 With Ops Center, you can view the logs from a deployed application. This can be useful in cases where log forwarding is 
-not set up.
+not set up. However, log forwarding is recommended for durable log storage, viewing, and retrieval.
 
 . On Ops Center, click on Kubernetes on the left sidebar.
 . Click on the Pods tab.
