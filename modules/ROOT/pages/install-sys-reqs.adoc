@@ -21,6 +21,15 @@ Anypoint Runtime Fabric requires one of the following operating systems.
 Use the same operating system for each VM. If you attempt to install Runtime Fabric on another operating system version 
 or distribution, the Runtime Fabric installer fails.
 
+== Hardware Requirements
+Runtime Fabric reserves a fixed amount of CPU, 0.3 cores per worker VM, for internal services. This is an important factor when determining the amount of CPU cores and worker nodes needed.
+
+The Runtime Manager UI displays the amount of available CPU across worker VMs. For example, given a cluster with 3 worker 
+VMs, each with 2 cores, Runtime Fabric reserves a total of 0.9 cores (0.3 x 3). The number of available cores displayed 
+in the Runtime Manager is 5.1 instead of the full 6 cores.
+
+Overprovisioning RTF worker nodes is recommended to preserve uptime in the event a node becomes unavailable or during
+maintenance operations such as OS patching.
 
 == Production Configuration
 
