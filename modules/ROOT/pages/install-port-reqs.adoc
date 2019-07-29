@@ -5,6 +5,13 @@ endif::[]
 
 Runtime Fabric requires specific network and port configuration for installation and operation.
 
+== Bandwidth Requirements
+
+A high bandwidth network is required, with a minimum of 1 GBps connectivity in the internal network running the RTF nodes. 
+[NOTE]
+Due to data center connectivity being lower than the minimum requirement, cross-regional deployments of a Runtime Fabric 
+is not supported. Latency can cause problems with cluster health.
+
 == Required Port Settings
 
 The following sections list the TCP and UDP network port requirements for Anypoint Runtime Fabric.
