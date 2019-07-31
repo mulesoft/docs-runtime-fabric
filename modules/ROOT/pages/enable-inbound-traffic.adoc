@@ -38,7 +38,7 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. The
 . Determine the environment you want to use for applications that run in your Runtime Fabric.
 . Ensure you have the necessary permissions.
 +
-It may take up to 5 minutes for any permissions you gain to propagate.
+It can take up to 5 minutes for any permissions you gain to propagate.
 
 .. From Anypoint Platform, click *Access Management*.
 +
@@ -94,7 +94,7 @@ This name identifies the keystore when you add it to your TLS context below.
 .. Click *Save*.
 +
 [NOTE]
-If you receive an unknown error, it may be because your Certificate file contains a CA path. You must move the CA path into its own file and upload it separately before continuing.
+If you receive an unknown error, it might be due to your Certificate file containing a CA path. You must move the CA path into its own file and upload it separately before continuing.
 
 . Click *TLS Context*, then perform the following:
 +
@@ -138,7 +138,7 @@ If your secrets group does not appear, ensure you have the *Manage Runtime Fabri
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
 
 
-. Click *Deploy* to deploy the internal load balancer. If successful, a message appears in the bottom-right of the page. The deployment may take up to a minute. You can view the deployment status at thw top of the form. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic enabled.
+. Click *Deploy* to deploy the internal load balancer. If successful, a message appears in the bottom-right of the page. The deployment can take up to a minute. You can view the deployment status at thw top of the form. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic enabled.
 
 == Verify that Inbound Traffic is Enabled
 
