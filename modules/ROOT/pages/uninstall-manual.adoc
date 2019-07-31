@@ -14,21 +14,17 @@ environments that all applications have been removed.
 . On each Worker VM, run the following command and confirm by typing “yes” when prompted:
 +
 ----
-# Leave the Runtime Fabric and remove services
 sudo gravity leave --force
 ----
 . Run `gravity status` on any other node until the node is no longer visible when running `gravity status`.
 . On each Worker VM, run the following commands sequentially:
 +
 ----
-# Ensure mounts are removed
 sudo umount /var/lib/gravity/planet/etcd
 sudo umount /var/lib/gravity
 
-# Remove Runtime Fabric installation files
 sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /home/rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/gravity-wizard*
 
-# Remove systemd services
 sudo rm /etc/systemd/system/install-teleport-*.service /etc/systemd/system/install-planet-*.service /etc/systemd/system/shrink-*.service /etc/systemd/system/gravity__gravitational.io__teleport__*.service /etc/systemd/system/gravity__gravitational.io__planet-*.service
 ----
 . Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
@@ -39,22 +35,17 @@ sudo rm /etc/systemd/system/install-teleport-*.service /etc/systemd/system/insta
 If the previous steps fail, a manual cleanup can be performed by running the following commands sequentially:
 
 ----
-# Stop Runtime Fabric services
 sudo systemctl stop gravity__gravitational.io__planet-*.service
 sudo systemctl stop gravity__gravitational.io__teleport*.service
 
-# Disable Runtime Fabric services
 sudo systemctl disable gravity__gravitational.io__teleport__2.4.7.service
 sudo systemctl disable gravity__gravitational.io__planet-master__5.0.8-1906.service
 
-# Uninstall Runtime Fabric services
 sudo gravity system uninstall --confirm
 
-# Ensure mounts are removed
 sudo umount /var/lib/gravity/planet/etcd
 sudo umount /var/lib/gravity
 
-# Remove Runtime Fabric files
 sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/assets393106389 /tmp/gravity-wizard167466702 
 ----
 Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
