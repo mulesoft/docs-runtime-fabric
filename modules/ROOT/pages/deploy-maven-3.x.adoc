@@ -14,7 +14,7 @@ xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets U
 Before using Maven to deploy a Mule application, you should be familiar with Maven, managing pom.xml files, 
 and working with Maven plugins.
 
-Before deploying an application to Runtime Fabric you should understand the number of resources it requires. 
+Before deploying an application to Runtime Fabric, you should understand the number of resources it requires. 
 See xref:runtime-fabric::deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] 
 for more information.
 
@@ -33,7 +33,7 @@ Add the plugin to your project by adding the following dependency:
 ----
 
 [NOTE]
-It is important to enable extensions for this plugin using `<extensions>true</extensions>`
+It is important to enable extensions for this plugin using `<extensions>true</extensions>`.
 
 In addition to the plugin, you must also add `pluginRepositories` to your Mule application project:
 
@@ -51,7 +51,7 @@ This enables the Mule Maven Plugin in your project.
 == Deploying to Runtime Fabric
 
 . Ensure the Mule Maven Plugin is added to your pom.xml file.
-. In the `<plugin>` element, add a configuration for your Runtime Fabric deployment as shown below:
+. In the `<plugin>` element, add a configuration for your Runtime Fabric deployment as shown in the following example:
 +
 ----
 <plugin>
@@ -113,11 +113,9 @@ This name is part of the domain of your deployed app. Depending on the configura
 | properties (optional) | Specifies a top-level element. +
 To set properties for your Mule application, use the <properties> element:
 
-
 <properties> +
   <key>value</key> +
 </properties>
-
 
 For example:
 
@@ -141,7 +139,7 @@ For example:
     <memoryReserved>100Mi</memoryReserved> + 
 </deploymentSettings> +
 
-This will set 100MB of memory to each replica.
+This sets 100MB of memory to each replica.
 
 | cpuReserved (optional) | Specifies the number of cores to be allocated for each replica of the application. 
 The default value is `0.5 vCores`. 
