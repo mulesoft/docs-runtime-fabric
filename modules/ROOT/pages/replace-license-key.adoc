@@ -31,15 +31,5 @@ computer is required.
 base64 -w0 license.lic
 ----
 
-. On the controller node acting as the leader during installation (the installer node), set the `RTF_MULE_LICENSE` 
-variable with the base64 value of your license key.
-
- ** `RTF_MULE_LICENSE=<base64-license-key>`
-. On the controller node acting as the leader during installation (the installer node), run the following script:
-`/usr/local/bin/rtf-set-mule-license.sh $RTF_MULE_LICENSE`.
-
-`$RTF_MULE_LICENSE` can be an environment variable or copied and pasted in string format.
-
-If the message 
-`License digest appears to be invalid` is displayed, you are running an older version of the script, probably due to 
-an old version of the install bundle. Contact your customer success manager to get the latest version of the script.
+. On the controller node acting as the leader during installation (the installer node), run the `rtfctl` command with the
+base64 value of your license key. For more information on the `rtfctl` command, refer to xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
