@@ -3,14 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric requires specific network and port configuration for installation and operation.
+Anypoint Runtime Fabric requires specific network and port configuration for installation and operation.
 
 == Bandwidth Requirements
 
-A high bandwidth network is required, with a minimum of 1 GBps connectivity in the internal network running the RTF nodes. 
+A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet. 
 [NOTE]
-Due to data center connectivity being lower than the minimum requirement, cross-regional deployments of a Runtime Fabric 
-is not supported. Latency can cause problems with cluster health.
+Cross-regional deployments of Anypoint Runtime Fabric are not supported. Latency can cause problems with cluster health.
 
 == Required Port Settings
 
@@ -18,7 +17,7 @@ The following sections list the TCP and UDP network port requirements for Anypoi
 
 === Ports Used During Installation
 
-The table below lists the ports that must be accessible for Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
+The following table lists the ports that must be accessible for Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
 
 [%header%autowidth.spread]
 |===
@@ -30,7 +29,7 @@ The table below lists the ports that must be accessible for Anypoint Runtime Fab
 
 === Network TCP and UDP Ports
 
-The table below lists all the ports that must be open, along with the respective protocols used and the request origin and destination:
+The following table lists all ports that must be open, along with the respective protocols used and the request origin and destination:
 
 [%header%autowidth.spread]
 |===
@@ -42,11 +41,11 @@ The table below lists all the ports that must be open, along with the respective
 | 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
-| 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Runtime Fabric internal services
+| 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
 | 3022 - 3025 | TCP | SSH | All nodes | All nodes | Internal SSH control services
-| 3080 | TCP | HTTPS | All nodes | Controller nodes | Runtime Fabric internal Ops Center
+| 3080 | TCP | HTTPS | All nodes | Controller nodes | Anypoint Runtime Fabric internal Ops Center
 | 5000 | TCP | HTTPS | All nodes | Controller nodes | Internal container registry
-| 6060  | TCP | HTTPS / gRPC | All nodes | All nodes | Runtime Fabric internal services
+| 6060  | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
 | 6443, 8080 | TCP | HTTPS / HTTP | All nodes | Controller nodes | Kubernetes API server
 | 7373 | TCP | RPC | localhost | localhost | Serf RPC for peer-to-peer connectivity
 | 7496 | TCP | HTTPs | All nodes | All nodes | Serf (health checking agent) / Peer-to-peer connectivity
@@ -54,7 +53,7 @@ The table below lists all the ports that must be open, along with the respective
 | 10248-10250 | TCP | HTTPS | All nodes | All nodes | Kubernetes components
 | 10255 | TCP | HTTPS | All nodes | All nodes | Kubernetes components
 | 30000-32767 | TCP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
-| 32009 | TCP | HTTPS | Internal network | Controller nodes | Runtime Fabric Ops Center
+| 32009 | TCP | HTTPS | Internal network | Controller nodes | Anypoint Runtime Fabric Ops Center
 | 32009 | TCP | HTTPS | Controller nodes | All nodes | Ops Center internal API
 | 53 | UDP | DNS | localhost | localhost | Internal cluster DNS
 | 7496 | UDP | HTTPs | All nodes | All nodes | Serf (health checking agent) / Peer-to-peer connectivity
@@ -64,9 +63,12 @@ The table below lists all the ports that must be open, along with the respective
 
 == Port IPs and Hostnames to Whitelist
 
-In your network configuration, you may need to whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
+In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components 
+and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download 
+dependencies during installation and upgrades.
 
-The table below lists the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
+The following table lists the ports and hostnames to add to your whitelists to allow communication between 
+Anypoint Runtime Fabric and Anypoint Platform:
 
 [%header%autowidth.spread]
 |===
@@ -94,14 +96,15 @@ The table below lists the ports and hostnames to add to your whitelists to allow
 
 == Required Network Settings
 
-In addition to the port requirements above, these network settings are required to operate Anypoint Runtime Fabric:
+In addition to the previous port requirements, the following network settings are required to operate 
+Anypoint Runtime Fabric:
 
-* A subnet with enough IP addresses allotable to add additional VMs to Runtime Fabric.
-* Shell/SSH access to each VM used to install Runtime Fabric.
+* A subnet with enough IP addresses allotable to add additional VMs to Anypoint Runtime Fabric.
+* Shell/SSH access to each VM used to install Anypoint Runtime Fabric.
 * Static private IPv4 addresses assigned to each VM, which persist between restarts.
 * Kernel IP forwarding to enable internal Kubernetes load balancing. IPv4 forwarding is enabled on each VM during installation.
 * Bridge-netfilter to enable the host Linux kernel to translate packets to and from hosted containers. This kernel module is enabled on each VM during installation.
-* Access to an SMTP server to manage e-mail alerts triggered by Runtime Fabric.
+* Access to an SMTP server to manage e-mail alerts triggered by Anypoint Runtime Fabric.
 * An external load balancer to balance external requests to the internal load balancer running on each controller VM.
 * Your environment's HTTP proxy configuration if outgoing requests to the Internet must route through a proxy.
 * A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy.
