@@ -130,20 +130,26 @@ TLS termination is computationally expensive. Allocate more CPU to increase thro
 
 . Under TLS Configuration:
 .. From the *Environment* menu, select your Runtime Fabric environment.
-.. From the *Secrets Group* menu, select the secrets group containing the TLS context created earlier.
+.. From the *Secrets Group* menu, select the secrets group containing the TLS context 
+created earlier.
 +
 [NOTE]
-If your secrets group does not appear, ensure you have the *Manage Runtime Fabrics* permission on your account.
+If your secrets group does not appear, ensure you have the *Manage Runtime Fabrics* 
+permission on your account.
 
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
 
 
-. Click *Deploy* to deploy the internal load balancer. If successful, a message appears in the bottom-right of the page. The deployment may take up to a minute. You can view the deployment status at thw top of the form. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic enabled.
+. Click *Deploy* to deploy the internal load balancer. If successful, a message appears 
+in the bottom-right of the page. The deployment may take up to a minute. You can view the
+deployment status at thw top of the form. When the status transitions to *Applied*, the 
+internal load balancer is successfully deployed and inbound traffic enabled.
 
 [IMPORTANT]
-When deploying a mule application to Runtime Fabric through the Runtime Manager UI, the Runtime Manager always 
-selects the first domain name that is listed in the certificate to use for calls made to deployer. 
-Only this single domain or SAN is made active in the RTF.
+When deploying a Mule application to Runtime Fabric using the Runtime Manager UI, only the 
+first domain that is used in the internal load balancer's certificate is selected to create 
+the application endpoint. Other domains specified in the certificate via the 
+`Subject Alternative Name` or `Common Name` are not used.
 
 == Verify that Inbound Traffic is Enabled
 
