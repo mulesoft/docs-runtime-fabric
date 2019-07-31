@@ -5,7 +5,7 @@ in this topic is specific to deploying an application to Mule runtime, version 3
 
 [NOTE]
 To deploy an application to Runtime Fabric, the application must be published in Exchange. 
-You can use Studio, as describe in  xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. 
+You can use Studio, as described in xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. 
 Alternatively, use the Mule Maven Plugin. See 
 xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven] for more information.
 
@@ -14,7 +14,7 @@ xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets U
 Before using Maven to deploy a Mule application, you should be familiar with Maven, managing pom.xml files, 
 and working with Maven plugins.
 
-Before deploying an application to Runtime Fabric, you should understand the number of resources it requires. 
+Before deploying an application to Runtime Fabric, you should understand the number of resources the application requires. 
 See xref:runtime-fabric::deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] 
 for more information.
 
@@ -100,15 +100,15 @@ application.
 | uri | Specifies your Anypoint Platform URI. +
 If not set, the default value is `+https://anypoint.mulesoft.com+`.
 | muleVersion | Specifies the Mule runtime version installed in your Runtime Fabric instance. +
-Ensure that this value is equal to or later than the minimum required Mule runtime version of your application.
+Ensure that the version is equal to or later than the minimum required Mule runtime version of your application.
 | username | Specifies your Anypoint Platform username.
 | password | Specifies your Anypoint Platform password.
-| applicationName | Specifies the name of your application stored in Exchange. +
+| applicationName | Specifies the name of your application that is stored in Exchange. +
 This name is part of the domain of your deployed app. Depending on the configuration of your internal load balancer, this name can be used as a subdomain used to access your application.
 | businessGroup (optional) | Specifies the business group where you want to deploy the application. If not defined, the master organization is used as the default.
 | skip | (boolean value) When set to true, skips the plugin deployment goal. The default value is `false`.
 | target | Specifies the Runtime Fabric target name where the application is deployed.
-| provider | Specifies the provider type. for Runtime Fabric, set this value to `MC`.
+| provider | Specifies the provider type. For Runtime Fabric, set this value to `MC`.
 | environment | Specifies the Anypoint Platform environment where you want to deploy your application.
 | properties (optional) | Specifies a top-level element. +
 To set properties for your Mule application, use the <properties> element:
