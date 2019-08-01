@@ -3,90 +3,168 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following steps describe how to stop and restart a cluster. To stop and restart a single node, refer to ????
+The following steps describe how to stop and restart a cluster. To stop and restart a single node, refer to 
 //https://github.com/mulesoft/docs-private-cloud/edit/v2.0/modules/ROOT/pages/restarting-a-node.adoc
 
+== Stop a Runtime Fabric Cluster
 
-
-
-
-== Stop an Anypoint Runtime Fabric cluster.
-
-[NOTE]
 This procedure is only to be used if the majority of controller nodes are healthy. If you have lost a 
-majority of controller nodes, you must perform a restore.???
-[WARNING]
-Attempting to perform a backup when you have lost a majority of controller nodes is not guaranteed to succeed. 
-Make sure you schedule regular backups to ensure that a complete restore can be performed if needed.
-[NOTE]
-The steps below must be performed on a single node at a time. The entire process must be completed on a 
-single node before the next node is addressed.
+majority of controller nodes, you must perform a restore. Is this statement correct?
+
+Perform the following steps on one node at a time. The entire process must be completed on each
+node before the next node is addressed.
 
 . If you do not have a recent backup, perform a backup using the procedure in xxx[link to backup]. 
-Verify successful completion of the backup.
-. Select a "worker" node.
+Verify successful completion of the backup. How? Are there specific contents that can be looked for, or is no error code sufficient?
+[WARNING]
+Attempting to perform a backup when you have lost a majority of controller nodes is not guaranteed to succeed. Is this statement correct?
+Make sure you schedule regular backups to ensure that a complete restore can be performed if needed.
 
-== Drain the Node
+. Select a worker node.
 
-Remove it from the cluster.
-
-. Check if the firewalld service is running and enabled:
+. Check if the `firewalld` service is running and enabled:
 +
 ----
 service firewalld status
 ----
-. If firewalld is running, stop, disable, and mask it:
+. If `firewalld` is running, stop, disable, and mask it:
 +
 ----
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 sudo systemctl mask firewalld
 ----
-. Retrieve the *name* of target node:
+. Retrieve the *name* of the node to be stopped:
 +
 ----
 kubectl get nodes
+----
+
+. Run the pre-update application hook to scale down resources on the node. (From  https://gravitational.com/gravity/docs/cluster/, https://gravitational.com/gravity/docs/cluster/#cluster-management)
+
+.. In order to scale down resources prior to stopping the node, the Application Manifest must be changed to accommodate a new hook:
++
+----
+  preUpdate:
+    job: |
+      apiVersion: batch/v1
+      kind: Job
+      metadata:
+        name: application-pre-update
+        namespace: default
+      spec:
+        activeDeadlineSeconds: 2400
+        template:
+          metadata:
+            name: application-pre-update
+          spec:
+            restartPolicy: Never
+            containers:
+              - name: update
+                image: application-hooks:latest
+                command: ["/scale-down.sh"]
+----
+.. With the `preUpdate` hook, the Gravity Cluster scales down the application resources in preparation for the stop. The scaling logic needs to be aware of the cluster size to make appropriate scaling decisions.
+
+. Apply a system taint to the node 
+
+** The node taint is required so that the node only schedules the system applications after a restart. User application pods are scheduled after the taint has been removed.
++
+----
+sudo gravity upgrade --phase=/masters/<node_name>/taint
+----
+
+. Cordon the node (Drain or cordon the node? Including both commands here for now.)
++
+----
+kubectl cordon <node_name>
 ----
 . Drain the node:
 +
 ----
 kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ----
-. Stop Gravity
+
+. Repeat steps 2 - 9 for all worker nodes. When all worker nodes are drained, repeat for the controller/master nodes.
+
+. After all nodes are drained, stop Gravity:
 +
 ----
 systemctl list-units | grep "planet-master"
   # note the full name of the Gravity "planet-master" unit
-systemctl stop <garvity_unit_name>
+systemctl stop <gravity_unit_name>
 ----
-
-Is anything else needed to shut down the node????
-
-Repeat the previous step for all worker nodes. When all of the "workers" are drained, repeat for the controllers???.
 
 
 == Restart an Anypoint Runtime Fabric cluster. 
 
-Each cluster node can be restarted as any linux server would. A rolling restart (i.e. one node at a time) is recommended, starting with the worker nodes and then the controller nodes (or controller nodes done first???). For each node:
+To restart a healthy cluster that you previously stopped but did not upgrade, perform the following steps:
+[NOTE]
+For upgrade operations, follow the procedure outlined in ????. 
 
-== Rejoin the Node
+. Restart gravity
++
+----
+systemctl reload gravity
+----
 
-. Check Gravity Planet Master and Teleport status:
+. Perform a rolling restart (i.e. one node at a time), starting with the worker nodes and followed by
+the controller nodes. For each node, perform the following actions:
+
+.. Rejoin the node:
+
+... Check Gravity Planet Master and Teleport status:
 +
 ----
 systemctl list-units | grep gravity__gravitational
 ----
-. If either Gravity service is not “loaded active running”, then enable it:
+.. If either Gravity service is not “loaded active running”, then enable it:
 +
 ----
 systemctl enable <name_of_the_gravity_unit>
 ----
-. Uncordon the node:
+.. Uncordon the node to mark it as schedulable to let the system applications run 
 +
 ----
 kubectl uncordon <node_name>
 ----
-. Verify cluster status:
+
+.. Remove the system taint after the system applications have started to allow application pods to be scheduled on the node.
++
+----
+$ sudo gravity upgrade --phase=/masters/<node_name>/untaint
+----
+.. Run post-upgrade hooks to scale the application back up.
++
+----
+  postUpdate:
+    job: |
+      apiVersion: batch/v1
+      kind: Job
+      metadata:
+        name: application-post-update
+        namespace: default
+      spec:
+        activeDeadlineSeconds: 2400
+        template:
+          metadata:
+            name: application-post-update
+          spec:
+            restartPolicy: Never
+            containers:
+              - name: update
+                image: application-hooks:latest
+                command: ["/scale-up.sh"]
+----
+
+.. Enable Firewall???
+
+... Verify `firewalld` service is running and enabled:
++
+----
+service firewalld status
+----
+.. Verify cluster status:
 +
 ----
 gravity status
@@ -96,39 +174,15 @@ gravity status
 This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
 ****
 
-Repeat for all the other worker nodes.
+.. Repeat steps 2 - ??? for all the other worker nodes. After all worker nodes are brought online, repeat the same process with the controller/master nodes. Ensure that before you proceed to the next manager, the current manager being worked on is backed up and in a healthy state.
 
-Once all of the "workers" are brought online, repeat the same process with the controllers.
+.. Validate cluster status in the following ways:
 
-Ensure that before you proceed to the next manager, the current manager being worked on is backed up and in a healthy state.
-
-After the restart is completed, cluster status should be validated in the following ways:
-1 - Going into he Runtime Manager UI -> Runtime Fabrics, the status should show as Running.
-
-2 - Logging on to a controller node and running:
+... Navigate to the Runtime Manager UI and select *Runtime Fabric*. The status should show as Running.
+... Log on to a controller node and run:
++
+----
 # sudo gravity status
+----
 
-The cluster status should show up as active and all cluster nodes should have a healthy status.
-
-
-Do we need to do anything for K8s:
-
-1. On the master node stop the following services:
-kupe-apiserver
-kube-scheduler
-kube-controllers
-2. on the nodes stop the following services:
-kubelet
-kube-proxy
-3. Backup your etcd https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md 2 and backup the root certificate files.
-Stop controller components running inside pods using “docker stop”. Then on the nodes, stop the services using “systemctl stop”.
-
-===
-Scale all applications down to 0 excluding cluster services e.g. CNI DaemonSets, DNS etc.
-Drain all nodes excluding the control plane.
-Shut down nodes.
-Shut down all components but kube-apiserver and etcd. – If using kubelet to manage components (kubeadm), just move the manifests out of the /etc/kubernetes/manifests dir and kubelet will stop the containers gracefully.
-shut down kube-apiserver
-Stop kubelet on control plane, just ensure the etcd leader is the last one to be stopped.
-Backup dirs/etcd if needed.
-Bringing it backup is essentially the opposite order. Make sure the control plane is up before the nodes.
+*** The cluster status should show up as active and all cluster nodes should have a healthy status.
