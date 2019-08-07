@@ -267,7 +267,28 @@ configure it to watch the logs stored in /var/lib/gravity/planet/log/messages.
 This file contains all the logs across all the services running across each node in Runtime Fabric, and start 
 getting rotated after it collects 350 MB of log data. 
 
-These logs are aggregated on a single controller VM, but it may shift to another controller VM if exists and if there is a period of unavailability, so it's recommended to run the log agent on each controller VM.?????
+*** These logs are aggregated on a single controller VM, but it may shift to another controller VM if exists and if there is a period of unavailability, so it's recommended to run the log agent on each controller VM.?????
+*** For example, to configure log forwarding with Splunk:
+
+.... If you are using Mule Runtime version < 3.8, update the Mule Agent version using the ./amc_setup -U command. For more details, please read the following documentation: https://docs.mulesoft.com/runtime-manager/installing-and-configuring-runtime-manager-agent.
+.... Configure Splunk Token
+
+..... After installing Splunk on-premises or accessing the cloud version, log in.
+..... Navigate to Data Inputs -> HTTP Event Collector.
+..... Create a token using the default values and enable it.
+
+.... Configure Mule Runtime
+
+..... Select the Mule on-premises server in the Runtime Manager, select Manage Server, and then Plugins. Splunk and ELK configuration options are displayed.
+..... Select Splunk.
+..... Copy the Splunk token into Token. Optionally, configure the Splunk Source, Splunk Index, and Source Type. Select a logging Level.
+
+.... Test
+
+..... Create a simple Mule application and publish it.
+..... Send some requests and check Splunk. To check the logs, you have to go to Search & Reporting in Splunk GUI:
+..... Then click Data Summary to choose the Host/Sources/Sourcetypes.
+
 
 ** The general approach is to not recommend using the rsyslog component, and to instruct the user to add their 
 logging agent on every node, pointed to a specific location. ???Need the following:
@@ -278,14 +299,10 @@ flowing to their logging system.
 ... A performance consideration for how much CPU they should allocate per worker VM depending on how many logs 
 they expect this log agent to process and forward.
 
-* Is any of this relevant: https://docs.mulesoft.com/mule-runtime/4.2/logging-in-mule?
-
-* Can you configure log levels for Runtime Fabric services and Kubernetes services? The docs say you can specify 
+** Is any of this relevant: https://docs.mulesoft.com/mule-runtime/4.2/logging-in-mule?
+** Can you configure log levels for Runtime Fabric services and Kubernetes services? The docs say you can specify 
 this for apps and API proxies at time of app and proxy deployment.
-
-* How do I split RunTime Fabric logs from rest of the logs in Rsyslog Server?
-
-** To split RunTime Fabric logs from the other Linux system logs, refer to 
+** How do I split RunTime Fabric logs from rest of the logs in Rsyslog Server? To split RunTime Fabric logs from the other Linux system logs, refer to 
 https://support.mulesoft.com/s/article/How-to-split-RunTime-Fabric-logs-from-rest-of-the-logs-in-Rsyslog-Server
 
 == See Also
