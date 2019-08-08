@@ -6,8 +6,8 @@ endif::[]
 When your Mule license expires, you must replace your Mule license key. Also use this procedure if you 
 entered an incorrect license key during installation.
 
-Perform the following steps on the controller VM used to start the installation. For Azure and AWS installations, 
-this VM is named `rtf-controller-1` by default.
+Perform the following steps on the controller node used to start the installation. For Azure and AWS installations, 
+this node is named `rtf-controller-1` by default.
 
 . Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
 
@@ -31,5 +31,20 @@ computer is required.
 base64 -w0 license.lic
 ----
 
-. On the controller node acting as the leader during installation (the installer node), run the `rtfctl` command with the
+. On the controller node acting as the leader during installation (the installer node), use the `rtfctl` utility with the
 base64 value of your license key. For more information on the `rtfctl` command, refer to xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
++
+----
+rtfctl apply mule-license 'BASE64_ENCODED_LICENSE'
+----
++
+. To verify the Mule license key has applied correctly, retrieve the contents using the `rtfctl` utility:
++
+----
+rtfctl get mule-license
+----
+
+
+== See Also
+
+* xref:runtime-fabric::install-rtfctl[Install rtfctl Utility]
