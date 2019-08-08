@@ -65,7 +65,7 @@ CRITICAL / etcd: cluster is unhealthy
 Open a terminal and run the `gravity status` command to obtain the health status of the cluster
 as well as individual components. 
 
-To recover a node, follow the instructions provided in https://gravitational.com/gravity/docs/cluster/#recovering-a-node[Recovering a Node, role=external, window=_blank].
+To recover a node, follow the instructions provided in xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 
 == Troubleshooting Issues with Environment Variables
 
