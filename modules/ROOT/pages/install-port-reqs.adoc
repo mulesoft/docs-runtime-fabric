@@ -9,7 +9,7 @@ Anypoint Runtime Fabric requires specific network and port configuration for ins
 
 A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet. 
 [NOTE]
-Cross-regional deployments of Anypoint Runtime Fabric are not supported. Latency can cause problems with cluster health.
+Cross-regional deployments of Anypoint Runtime Fabric are not supported. Network latency between each node can cause problems with cluster health.
 
 == Required Port Settings
 
