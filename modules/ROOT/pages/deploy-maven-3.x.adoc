@@ -104,7 +104,7 @@ Ensure that the version is equal to or later than the minimum required Mule runt
 | username | Specifies your Anypoint Platform username.
 | password | Specifies your Anypoint Platform password.
 | applicationName | Specifies the name of your application that is stored in Exchange. +
-This name is part of the domain of your deployed app. Depending on the configuration of your internal load balancer, this name can be used as a subdomain used to access your application.
+Depending on the configuration of your internal load balancer, this name may be used as a subdomain for the application endpoint used to access your application.
 | businessGroup (optional) | Specifies the business group where you want to deploy the application. If not defined, the master organization is used as the default.
 | skip | (boolean value) When set to true, skips the plugin deployment goal. The default value is `false`.
 | target | Specifies the Runtime Fabric target name where the application is deployed.
