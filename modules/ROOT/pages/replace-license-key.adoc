@@ -32,7 +32,8 @@ base64 -w0 license.lic
 ----
 
 . On the controller node acting as the leader during installation (the installer node), use the `rtfctl` utility with the
-base64 value of your license key. For more information on the `rtfctl` command, refer to xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
+Base64 value of your license key. For more information on the `rtfctl` command, refer to 
+xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
 +
 ----
 rtfctl apply mule-license 'BASE64_ENCODED_LICENSE'
