@@ -38,7 +38,7 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. The
 . Determine the environment you want to use for applications that run in your Runtime Fabric.
 . Ensure you have the necessary permissions.
 +
-It may take up to 5 minutes for any permissions you gain to propagate.
+It can take up to 5 minutes for any permissions you gain to propagate.
 
 .. From Anypoint Platform, click *Access Management*.
 +
@@ -94,7 +94,7 @@ This name identifies the keystore when you add it to your TLS context below.
 .. Click *Save*.
 +
 [NOTE]
-If you receive an unknown error, it may be because your Certificate file contains a CA path. You must move the CA path into its own file and upload it separately before continuing.
+If you receive an unknown error, it might be due to your Certificate file containing a CA path. You must move the CA path into its own file and upload it separately before continuing.
 
 . Click *TLS Context*, then perform the following:
 +
@@ -139,7 +139,6 @@ permission on your account.
 
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
 
-
 . Click *Deploy* to deploy the internal load balancer. If successful, a message appears 
 in the bottom-right of the page. The deployment may take up to a minute. You can view the
 deployment status at the top of the form. When the status transitions to *Applied*, the 
@@ -171,17 +170,24 @@ curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
 
 == After Enabling Traffic
 
-Runtime Fabric must be configured to route incoming traffic to each enabled application. To complete in order for clients to send requests to deployed applications:
+Runtime Fabric must be configured to route incoming traffic to each enabled application. To complete in order for 
+clients to send requests to deployed applications:
 
 * Configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
 * Review the advanced options described below when adding an external load balancer.
-* Configure DNS before using the Common Name obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. An "A record" should be added to your DNS provider to map the Common Name to the IP address of the external load balancer or controller VMs.
+* Configure DNS before using the Common Name obtained from the TLS certificate. DNS is required to send 
+requests to applications or API gateways deployed to Runtime Fabric. An "A record" should be added to your 
+DNS provider to map the Common Name to the IP address of the external load balancer or controller VMs.
 
-When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default behavior switches to allowed for new application deployments. If there are applications deployed to Runtime Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
+When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. 
+This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default 
+behavior switches to allowed for new application deployments. If there are applications deployed to Runtime 
+Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
 
 == Additional Configuration Options
 
-The following table describes additonal configuration options you may need to set for your environment.
+The following table describes additonal configuration options you might need to set for your environment. In this 
+case, *Source IP* refers to the client making the request.
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -223,7 +229,7 @@ If a client exceeds this number, the exceeding requests will not be read until t
 
 *Default value*: 10 requests per client
 
-| *Source IP header name* and *enable proxy protocol*
+| *Source IP header name* and *enable proxy protocol* 
 | Set these configurations if Runtime Fabric is behind a load balancer.
 
 The values to configure here depend on your scenario:
@@ -249,7 +255,7 @@ Runtime Fabric is not deployed behind a load balancer, these values should not b
 
 *Default value*: blank and unchecked.
 
-|===
+|=== 
 
 == Internal Load Balancer Logs
 
