@@ -142,7 +142,7 @@ permission on your account.
 
 . Click *Deploy* to deploy the internal load balancer. If successful, a message appears 
 in the bottom-right of the page. The deployment may take up to a minute. You can view the
-deployment status at thw top of the form. When the status transitions to *Applied*, the 
+deployment status at the top of the form. When the status transitions to *Applied*, the 
 internal load balancer is successfully deployed and inbound traffic enabled.
 
 [IMPORTANT]
