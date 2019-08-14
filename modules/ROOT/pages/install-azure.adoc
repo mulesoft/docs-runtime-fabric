@@ -170,7 +170,8 @@ accessing Ops Center and determining the Ops Center username and password.
 
 [NOTE]
 By default, the Resource Manager script configures the Azure Network Security Group to not expose the Ops Center port 
-to the internet. To use a private IP to manage your cluster using the Ops Center, you must adjust your 
+to the internet. To use a public IP to manage your cluster using the Ops Center, the controller nodes must be 
+provisioned with a public IP. Update your 
 Network Security Group to allow 0.0.0.0 internet access for TCP connections on port 32009.
 
 == Post Installation Configuration
