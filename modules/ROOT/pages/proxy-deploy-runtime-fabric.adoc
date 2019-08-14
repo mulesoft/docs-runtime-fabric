@@ -43,6 +43,8 @@ image::runtime-fabric-3.png[]
 
 After deployment, you can manage the deployed API proxy from Runtime Manager.
 
+Additional network configuration, such as enabling an HTTPS Proxy, is performed when you xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
+
 == See Also
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
