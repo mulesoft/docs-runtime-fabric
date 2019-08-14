@@ -95,7 +95,9 @@ To use Runtime Fabric in a production environments, you must also have the follo
 
 * An external load balancer: required if incoming traffic is enabled to Runtime Fabric. A TCP
 load balancer with a server pool consisting of each of the controller nodes is sufficient.
-* At least one additional worker node, including hard disks. This node should be used when:
+* At least one additional worker node, including hard disks. If preserving uptime for the cluster and applications 
+is necessary, additional resources are needed when updating the operating system or other packages that require 
+restarts. The additional node should also be used when:
   ** Performing rolling upgrades to major versions of Runtime Fabric
   ** Performing operating system level patches.
 
