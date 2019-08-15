@@ -48,4 +48,4 @@ rtfctl get mule-license
 
 == See Also
 
-* xref:runtime-fabric::install-rtfctl[Install rtfctl Utility]
+* xref:runtime-fabric::install-rtfctl.adoc[Install rtfctl Utility]
