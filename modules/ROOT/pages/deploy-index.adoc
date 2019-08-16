@@ -34,3 +34,36 @@ To deploy Mule applications and API proxies using Maven, see the topic specific 
 
 * xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
 * xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3.x)]
+
+== Eventual consistency
+
+Runtime Fabric is a self healing, eventually consistent platform. 
+
+=== When an application is deployed, heres what happens:
+
+* The expected state of your application is stored (application bundle, number of replicas, etc).
+* Your application replica is now `PENDING`.
+* Once there is enough compute and memory available, each replica will be attached to a node.
+* A Docker image corresponding to the Mule Runtime version is downloaded if not already present.
+* Your replica is now `STARTING`.
+* The replica finishes loading your application.
+* Your replica is now `STARTED` and is able to perform work.
+
+=== If an application fails (for example runs of out memory), heres what happens:
+
+* Your replica is now `TERMINATED`.
+* Runtime Fabric will immediately attempt to restart it.
+* Your replica is now `RECOVERING`.
+* The replica finishes loading your application.
+* Your replica is now `STARTED` and is able to perform work.
+
+=== When an application fails and is unable to start again, heres what happens:
+
+* Your replica is now `TERMINATED`.
+* Runtime Fabric will immediately attempt to restart it.
+* Your replica is now `RECOVERING`.
+* The replica fails to start (for example it relies on a network resource which temporarily unavailable)
+* Your replica is now `PENDING`, with a message describing "CrashLoopBackoff". Runtime Fabric uses exponential backoff to avoid trying to restart a failing application too often. Your replica will now bounce between `RECOVERING` and `PENDING` until the issue preventing successful start is resolved.
+* Your replica is now `STARTED` and is able to perform work.
+
+When building a CI pipeline to deploy into Runtime Fabric, you should take eventual consistency into consideration. After triggering a deploy, you should wait for your application to become `RUNNING` within an expected amount of time. If the application does _not_ become `RUNNING`, the replicas contain a `state` and `reason` to indicate why the application is not `RUNNING`.
