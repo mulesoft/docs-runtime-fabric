@@ -29,6 +29,25 @@ To view a list of all supported commands, run `rtfctl -h`.
 
 To get more information on a specific command, run `rtfctl <command> -h`.
 
+== Usage
+
+* Install a Mule license
+
+.. Make sure to base64 encode the license following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
+.. Run the following command:
++
+----
+$ sudo ./rtfctl apply mule-license '<license-key-information>'
+Updating rtf namespace... OK
+----
+
+* Collect debug package information for an application
++
+----
+sudo ./rtfctl package delay
+----
+For additional troubleshooting information for your running application, refer to xref:troubleshoot-guide.adoc[Troubleshooting Guide for Runtime Fabric].
+
 == See Also
 
 * xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
