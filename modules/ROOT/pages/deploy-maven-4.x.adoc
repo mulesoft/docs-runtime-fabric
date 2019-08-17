@@ -1,9 +1,8 @@
 = Deploy an Application to Runtime Fabric using Maven (Mule 4)
 
-Runtime Fabric supports using Maven to manage and deploy Mule applications using Maven. The information in this topic is specific to deploying an application to Mule runtime, version 4.
+Runtime Fabric supports using Maven to manage and deploy Mule applications using Maven. The information in this topic is specific to deploying a Mule application to Mule runtime, version 4.
 
-[NOTE]
-To deploy an application to Runtime Fabric, the application must be published in Exchange. You can use Studio, as describe in  xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. Alternatively, use the Mule Maven Plugin. See xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven] for more information.
+To deploy an application to Runtime Fabric, the application must be published in Exchange. You can use Studio to publish your application, as described in xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. See xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven] for more information.
 
 == Prerequisites
 
