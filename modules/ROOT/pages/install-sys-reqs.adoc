@@ -91,15 +91,16 @@ formats and mounts the disks needed during installation.
 
 === Additional Resource Requirements for Production Environments
 
-To use Runtime Fabric in a production environments, you must also have the following:
+When using Runtime Fabric in a production environment, you must have the following components:
 
-* An external load balancer: required if incoming traffic is enabled to Runtime Fabric. A TCP
+* An external load balancer if incoming traffic is enabled to Runtime Fabric. A TCP
 load balancer with a server pool consisting of each of the controller nodes is sufficient.
 * At least one additional worker node, including hard disks. If preserving uptime for the cluster and applications 
-is necessary, additional resources are needed when updating the operating system or other packages that require 
-restarts. The additional node should also be used when:
-  ** Performing rolling upgrades to major versions of Runtime Fabric
-  ** Performing operating system level patches.
+is necessary, you will need additional resources when updating the operating system or other packages that require 
+restarts. Also use the additional node when:
+
+** Performing rolling upgrades to major versions of Runtime Fabric
+** Performing operating system level patches.
 
 == Development Configuration
 
