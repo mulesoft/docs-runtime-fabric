@@ -34,3 +34,39 @@ To deploy Mule applications and API proxies using Maven, see the topic specific 
 
 * xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
 * xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3.x)]
+
+== Deployment Considerations
+
+=== Eventual consistency
+
+Runtime Fabric is a self healing, eventually consistent platform. When building a CI pipeline for Runtime Fabric deployment, you must take eventual consistency into consideration. After triggering a deployment, the application status should become  `RUNNING`. If the application status never indicates `RUNNING`, the replicas contain a `state` and `reason` to indicate why the application is not `RUNNING`.
+
+=== Application Deployment
+When an application is deployed, the following events occur:
+
+* The expected state of your application is stored, including application bundle and number of replicas.
+* The application replica status shows as `PENDING`.
+* When adequate compute and memory resources are available, each replica is attached to a node.
+* If not already present, a Docker image corresponding to the Mule Runtime version is downloaded.
+* The replica status shows as `STARTING`.
+* The replica finishes loading the application.
+* The replica status shows as `STARTED` and is able to perform work.
+
+=== Application Failure
+
+If an application fails, for example, due to running of out memory, the following events occur:
+
+* The replica status shows as `TERMINATED`.
+* Runtime Fabric immediately attempts to restart the replica.
+* The replica status shows as `RECOVERING`.
+* If the replica is able to restart:
+
+** The replica finishes loading the application.
+** The replica status shows as `STARTED` and is able to perform work.
+
+* If the replica is initially unable to restart, for example, it relies on a network resource which temporarily unavailable, the following events occur:
+
+** The replica status shows as `PENDING`, with a message indicating "CrashLoopBackoff". Runtime Fabric attempts to restart the replica, using exponential backoff to avoid an excessive number of restart attempts. 
+** The replica status alternates between `RECOVERING` and `PENDING` until the issue preventing a successful restart is resolved.
+** The replica loads the application.
+** After a successful restart, the replica shows as `STARTED` and is able to perform work.
