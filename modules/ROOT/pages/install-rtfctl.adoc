@@ -41,13 +41,6 @@ $ sudo ./rtfctl apply mule-license '<license-key-information>'
 Updating rtf namespace... OK
 ----
 
-* Collect debug package information for an application
-+
-----
-sudo ./rtfctl package delay
-----
-For additional troubleshooting information for your running application, refer to xref:troubleshoot-guide.adoc[Troubleshooting Guide for Runtime Fabric].
-
 == See Also
 
 * xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
