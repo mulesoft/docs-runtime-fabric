@@ -92,7 +92,7 @@ The installation process combines the following steps:
 * Activate Runtime Fabric with your Anypoint organization.
 * Install your organization's Mule Enterprise license.
 
-To complete theses steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
+To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
 
 * Format and mount each dedicated disk
 * Add mount entries for each disk to `/etc/fstab`
