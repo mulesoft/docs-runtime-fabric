@@ -46,4 +46,4 @@ Enable extensions. If `<extensions>true</extensions>` is not present, the plugin
 
 == Deployment and Reference Information.
 
-For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying_to_rtf[Deploy a Mule Application to Runtime Fabric]. 
+For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric]. 
