@@ -27,6 +27,9 @@ To add the Mule Maven Plugin, you need to add its maven dependency to the projec
 </plugin>
 ----
 
+[IMPORTANT]
+Enable extensions. If `<extensions>true</extensions>` is not present, the plugin does not work.
+
 From this repository:
 
 [source,xml,linenums]
@@ -41,9 +44,6 @@ From this repository:
 
 This enables the Mule Maven Plugin in your project.
 
-[IMPORTANT]
-Enable extensions. If `<extensions>true</extensions>` is not present, the plugin does not work.
-
 == Deployment and Reference Information.
 
-For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric]. 
+For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric].
