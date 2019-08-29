@@ -46,6 +46,6 @@ This enables the Mule Maven Plugin in your project.
 
 == Deployment and Reference Information.
 
-For deployment instructions using Mule Maven Plugin 2.3.x and complete reference information, see xref:3.9@mule-runtime::mule-maven-plugin#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric].
+For deployment instructions using Mule Maven Plugin 2.3.x and complete reference information, see xref:3.9@mule-runtime::mule-maven-plugin.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric].
 
-If you are using Mule Maven Plugin 2.2.x or earlier, see xref:3.9@mule-runtime::mule-maven-plugin-v2.2[Mule Maven Plugin 2.2.x].
+If you are using Mule Maven Plugin 2.2.x or earlier, see xref:3.9@mule-runtime::mule-maven-plugin-v2.2.adoc[Mule Maven Plugin 2.2.x].
