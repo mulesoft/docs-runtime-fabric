@@ -9,7 +9,7 @@ You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 
 == To Determine if You Are Using firewalld
 
-To determine if your system is using firewall run the following command:
+To determine if your system is using firewalld, run the following command:
 
 ----
 systemctl status firewalld.service
