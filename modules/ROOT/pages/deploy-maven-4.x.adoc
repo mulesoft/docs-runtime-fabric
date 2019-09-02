@@ -1,33 +1,38 @@
 = Deploy an Application to Runtime Fabric using Maven (Mule 4)
 
-Runtime Fabric supports using Maven to manage and deploy Mule applications using Maven. The information in this topic is specific to deploying a Mule application to Mule runtime, version 4.
+Runtime Fabric supports using Mule Maven Plugin 3.x to manage and deploy Mule applications. The information in this topic is specific to deploying a Mule application to Mule runtime engine 4.x.
 
-To deploy an application to Runtime Fabric, the application must be published in Exchange. You can use Studio to publish your application, as described in xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. See xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven] for more information.
+To deploy Mule 3 applications using Mule Maven Plugin 2.x, see xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
 
 == Prerequisites
 
-Before using Maven to deploy a Mule application, you should be familiar with Maven, managing pom.xml files, and working with Maven plugins.
+* The application must be published in Exchange. +
+** To do this from Studio, see xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. +
+** To do this using Maven, see xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven].
 
-Before deploying an application to Runtime Fabric you should understand the number of resource it requires. See xref:runtime-fabric::deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] for more information.
+[NOTE]
+Studio allows you to select only two project types when uploading an application to Exchange: `example` and `template`. To specify a different project type, publish your application using Maven.
 
 == Add the Mule Maven Plugin to a Mule Project
 
-To deploy a Mule application using Maven, you must add the Mule Maven Plugin to the application project. Add the plugin to you project by adding the following dependency:
+To add the Mule Maven Plugin, you need to add its maven dependency to the project:
 
+[source,xml,linenums]
 ----
 <plugin>
   <groupId>org.mule.tools.maven</groupId>
   <artifactId>mule-maven-plugin</artifactId>
-  <version>3.2.3</version>
-  <extensions>true</extensions> <1>
+  <version>3.3.2</version>
+  <extensions>true</extensions>
 </plugin>
 ----
 
-[NOTE]
-It is important to enable extensions for this plugin using `<extensions>true</extensions>`
+[IMPORTANT]
+Enable extensions. If `<extensions>true</extensions>` is not present, the plugin does not work.
 
-In addition to the plugin, you must also add `pluginRepositories` to your Mule application project:
+From this repository:
 
+[source,xml,linenums]
 ----
 <pluginRepositories>
     <pluginRepository>
@@ -39,105 +44,6 @@ In addition to the plugin, you must also add `pluginRepositories` to your Mule a
 
 This enables the Mule Maven Plugin in your project.
 
-== Deploy to Runtime Fabric
+== Deployment and Reference Information.
 
-. Ensure the Mule Maven Plugin is added to your pom.xml file.
-. In the `<plugin>` element, add a configuration for your Runtime Fabric deployment as shown below:
-+
-----
-<plugin>
-  ...
-    <configuration>
-        <runtimeFabricDeployment>
-            <uri>https://anypoint.mulesoft.com</uri>
-            <muleVersion>${mule.version}</muleVersion>
-            <username>${username}</username>
-            <password>${password}</password>
-            <applicationName>${runtime.fabric.application.name}</applicationName>
-            <environment>${environment}</environment>
-            <provider>${provider}</provider>
-            <properties>
-                <key>value</key>
-            </properties>
-            <deploymentSettings>
-                <cpuReserved>500m</cpuReserved>
-                <memoryReserved>800Mi</memoryReserved>
-            </deploymentSettings>
-        </runtimeFabricDeployment>
-    </configuration>
-
-</plugin>
-----
-+
-This example uses placeholder values. Configure each value with values specific to your Runtime Fabric installation.
-
-. From the command line in your project's folder, package the application and run the deploy goal:
-+
-----
-> mvn clean package deploy -DmuleDeploy
-----
-
-== Redeploy to Runtime Fabric
-
-To redeploy the application, run the same command as you did to deploy. Runtime Fabric rewrites the application you had deployed.
-
-== Runtime Fabric Deployment Reference
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Parameter | Description
-|runtimeFabricDeployment | specifies the top-level element.
-| uri | specifies your Anypoint Platform URI. +
-If not set, the default value is `+https://anypoint.mulesoft.com+`.
-| muleVersion | specifies the Mule runtime version installed in your Runtime Fabric instance. +
-Ensure that this value is at equal or higher than the minimum required Mule runtime version of your application.
-| username | specifies your Anypoint Platform username.
-| password | specifies your Anypoint Platform password.
-| applicationName | specifies the name of your application deployed in Exchange. +
-This name is part of the domain of your deployed app.
-| businessGroup (optional) | specifies the business group where you want to deploy the application. If not defined, name of the master organization is used as the default.
-| skip | (boolean value) When set to true, skips the plugin deployment goal. The default value is `false`.
-| target | specifies the Runtime Fabric target name where the applicateion is deployed.
-| provider | specifies the rovider type. The only supported value for Runtime Fabric is `MC`.
-| environment | specifies the Anypoint Platform environment where you want to deploy your application.
-| properties (optional) | specifies a top-level element. +
-To set properties for your Mule application, use the <properties> element:
-
-<properties> +
-  <key>value</key> +
-</properties>
-
-
-For example:
-
-<properties> +
-  <http.port>8081</http.port> +
-</properties>
-| replicationFactor (optional) | specifies the number of instances created for your application. +
-The default value is `1`
-| publicUrl (optional) | specifies the Url of the deployed application.
-| lastMileSecurity (optional) | enables Last-Mile security to forward HTTPS connections to be decrypted by this application. +
-This requires an SSL certificate to be included in the Mule application and also requires more CPU resources. The default value is `false`.
-| clusteringEnabled (optional) | enable Mule clustering across each replica of the application. You must have at least two replicas of your application. The default value is `false`.
-| memoryReserved (optional) | defines the amount of memory allocated for each replica of the application. The default value is `700MB`. +
-
-For example:
-
-<deploymentSettings> +
-    <memoryReserved>100Mi</memoryReserved> +
-</deploymentSettings> +
-
-This allocates 100MB of memory to each replica.
-
-| cpuReserved (optional) | specifies the number of cores to be allocated for each replica of the application. The default value is `0.5 vCores`. +
-
-For example:
-
-<deploymentSettings> +
-    <cpuReserved>500m</cpuReserved> +
-</deploymentSettings> +
-
-This allocates 0.5 vCores to each replica.
-| server (optional) | specifies the Maven server that contains Anypoint Platform credentials. This is property is only required if you want to use the credentials stored in your Maven `settings.xml` file. Note: This is not the Mule server name.
-|===
-
+For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric].
