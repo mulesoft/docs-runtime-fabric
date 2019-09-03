@@ -42,6 +42,9 @@ the following diagram.
 
 image::architecture-production.png[]
 
+[NOTE]
+Runtime Fabric does not support running controller or worker nodes using burstable VMs.
+
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a production configuration.
 
@@ -53,14 +56,14 @@ requirements to maintain high-availability and ensure system performance.
 
 Each contoller node must have the following:
 
-** 2 cores each minimum.
+** A minimum of 2 dedicated cores.
 ** 8 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
 *** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
 *** 1 GiB or more for `/var/log/` directory.
 ** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd. This translates to a minimum of 12
-Megabytes per second 
+Megabytes per second.
 (MBps) disk read/write performance.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum of
 4 MBps disk read/write performance.
@@ -76,7 +79,7 @@ The maximum number of worker nodes supported is 16.
 
 Each worker node must have the following:
 
-** 2 cores each minimum.
+** A minimum of 2 dedicated cores.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
@@ -109,6 +112,9 @@ following diagram:
 
 image::architecture-development.png[]
 
+[NOTE]
+Runtime Fabric does not support running controller or worker nodes using burstable VMs.
+
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a development configuration.
 
@@ -119,8 +125,8 @@ controllers are not supported.
 
 Each contoller node must have the following:
 
-** 2 cores each minimum
-** 8 GiB memory minimum
+** A minimum of 2 dedicated cores.
+** 8 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
 *** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
@@ -141,7 +147,7 @@ The maximum number of workers nodes supported is 16.
 
 Each worker node must have the following:
 
-** 2 cores each minimum.
+** A minimum of 2 dedicated cores.
 ** 15 GiB memory minimum.
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
