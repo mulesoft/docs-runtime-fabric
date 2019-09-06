@@ -21,7 +21,7 @@ Ensure the following criteria have been met before beginning the installation:
 
 == Base64 Encode your Mule License Key
 
-To install Runtime Fabric, your Mule license key must be Base64 encoded.
+To install Runtime Fabric, your Mule license key must be Base64 encoded. Copy the license file, `license.lic`, to the installer node.
 
 === Linux
 
@@ -206,5 +206,6 @@ Before deploying applications on Anypoint Runtime Fabric, you'll need to perform
 
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
+* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
 * xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]

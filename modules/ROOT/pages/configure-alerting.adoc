@@ -47,7 +47,7 @@ spec:
 $ gravity resource create -f alert-smtp.yaml
 ----
 
-Alerts should now be configured to send through your STMP server.
+Alerts should now be configured to send through your SMTP server.
 
 == Built-in Alerts
 
@@ -59,7 +59,7 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 | High CPU usage | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
 | High memory usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
 | High disk space usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
-| High inode usage | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
+| High node usage | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
 | etcd instance health | Sends an error when the etcd master is unaccessible for longer than 5 min.
 |===
 

@@ -55,13 +55,15 @@ At the top of the *Settings* page, a status bar appears.
 image:app-versioning-applying-config.png[]
 . Click *View Status* to view the status for each replica in the deployment. +
 Replica statuses include:
-* Started (green): The replica is receiving traffic.
-* Starting: The process is starting on the replica.
+* Started: The replica is receiving traffic.
+* Pending: The replica is waiting to start.
+* Starting: The replica is starting.
 * Deleting: The deletion of the replica is in progress.
 * Deleted: The replica has been deleted.
-* Stopping: The replica's stopping process is in progress.
+* Stopping: The replica is stopping.
 * Stopped: The replica has stopped (is not receiving traffic).
-* Failed (red): The configuration failed to deploy. +
+* Failed: The configuration failed to deploy.
+* Recovering: The replica is attempting to restart after terminating. +
 The last successfully deployed configuration is retained until the new (desired) configuration is successfully deployed.
 +
 New configurations are applied as "rolling updates." For example: +

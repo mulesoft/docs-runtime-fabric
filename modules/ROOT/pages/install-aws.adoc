@@ -31,7 +31,7 @@ with the IAM Policy Simulator] for more information.
 having the capacity to create an additional VPC, EC2 instances, disks, security group, and other required resources.
 * You have the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[AWS key pair] required to 
 provision virtual machines. This key pair is required to enable secure access to your VMs via SSH (Secure Shell).
-* You have access to the following AWS-specific environment variables: `AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET_KEY`,
+* You have access to the following AWS-specific environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
 `AWS_SESSION_TOKEN`, `AWS_REGION`, `AWS_DEFAULT_REGION`. These are required to run the Terraform script. If you do 
 not know these values, contact your AWS administrator.
 
@@ -75,7 +75,7 @@ MuleSoft provides a Terraform script that you run to provision the required AWS 
 Terraform script in one of the following ways:
 
 * Download and manually install https://terraform.io/[Terraform] on your machine. Verify that the version of 
-Terraform installed is `0.11.7` or later by running `terraform --version` on your terminal.
+Terraform installed is `0.12.6` or later by running `terraform --version` on your terminal.
 
 * Use Terraform within Docker.
 
@@ -141,7 +141,7 @@ listed in the tables below. This is common if you need to use existing AWS resou
 == Configure Your Environment to Access AWS
 
 To run the Terraform script, AWS API access should be configured in your terminal. Define values for 
-`AWS_ACCESS_KEY`, `AWS_ACCESS_SECRET_KEY`, and other environment variables including `AWS_SESSION_TOKEN`, 
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and other environment variables including `AWS_SESSION_TOKEN`, 
 `AWS_REGION`, or `AWS_DEFAULT_REGION`. These are required to access the AWS API for your account.
 
 To verify that these are set correctly, you should be able to run the `aws-cli` tool, if installed on your machine.
@@ -207,7 +207,7 @@ see the `aws` directory listed, along with other directories (`azure`, `manual`,
 ----
 docker run -v $(pwd):/src -w /src/aws \
   -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
-  hashicorp/terraform:0.11.7 init
+  hashicorp/terraform:0.12.6 init
 ----
 
 . Copy the following to a text editor:
@@ -227,7 +227,7 @@ docker run -v $(pwd):/src -w /src/aws \
 ----
 docker run -it -v $(pwd):/src -w /src/aws \
   -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
-  hashicorp/terraform:0.11.7 apply \
+  hashicorp/terraform:0.12.6 apply \
   -var activation_data='' \
   -var key_pair='' \
   -var enable_public_ips='' \

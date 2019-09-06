@@ -40,7 +40,7 @@ sudo chmod +x ./init.sh
 +
 This script causes the new node to join the Runtime Fabric cluster.
 
-. Verify the new node was 2added to the Runtime Fabric:
+. Verify the new node was added to the Runtime Fabric:
 +
 ----
 sudo gravity status

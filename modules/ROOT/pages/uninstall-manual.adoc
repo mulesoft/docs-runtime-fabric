@@ -1,0 +1,51 @@
+= Uninstall Runtime Fabric Manually
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[NOTE]
+It's important to keep all nodes running and joined to the cluster for these instructions to be performed successfully. 
+Alternatively, you can perform the first step and delete all applications and the Runtime Fabric on Runtime Manager, and 
+skip the remaining steps by reimaging the VM disks.
+
+. Delete all applications running on the Runtime Fabric in Runtime Manager. Verify across all associated 
+environments that all applications have been removed.
+. Delete the Runtime Fabric from Runtime Manager.
+. On each Worker VM, run the following command and confirm by typing “yes” when prompted:
++
+----
+sudo gravity leave --force
+----
+. Run `gravity status` on any other node until the node is no longer visible when running `gravity status`.
+. On each Worker VM, run the following commands sequentially:
++
+----
+sudo umount /var/lib/gravity/planet/etcd
+sudo umount /var/lib/gravity
+
+sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /home/rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/gravity-wizard*
+
+sudo rm /etc/systemd/system/install-teleport-*.service /etc/systemd/system/install-planet-*.service /etc/systemd/system/shrink-*.service /etc/systemd/system/gravity__gravitational.io__teleport__*.service /etc/systemd/system/gravity__gravitational.io__planet-*.service
+----
+. Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
+. Restart the VM.
+. Repeat steps 3 through 7 on each Controller VM.
+
+[NOTE]
+If the previous steps fail, a manual cleanup can be performed by running the following commands sequentially:
+
+----
+sudo systemctl stop gravity__gravitational.io__planet-*.service
+sudo systemctl stop gravity__gravitational.io__teleport*.service
+
+sudo systemctl disable gravity__gravitational.io__teleport__2.4.7.service
+sudo systemctl disable gravity__gravitational.io__planet-master__5.0.8-1906.service
+
+sudo gravity system uninstall --confirm
+
+sudo umount /var/lib/gravity/planet/etcd
+sudo umount /var/lib/gravity
+
+sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/assets393106389 /tmp/gravity-wizard167466702 
+----
+Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 

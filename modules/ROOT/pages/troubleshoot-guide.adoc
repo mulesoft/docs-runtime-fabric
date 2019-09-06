@@ -3,7 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes common errors and steps to resolve them when installing Anypoint Runtime Fabric.
+This topic describes common errors and steps to resolve them when installing Anypoint Runtime
+Fabric.
 
 == Resuming a Failed Installation
 
@@ -24,7 +25,8 @@ You can resume an installation at the point where it failed by running the init 
 
 == Troubleshooting Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent may cause an application to not deploy.  In these situations, you may see the following:
+In rare situations, the Anypoint Monitoring agent may cause an application to not deploy. In
+these situations, you might see the following:
 
 
 * The application remains in the `Deploying` state, or
@@ -36,26 +38,55 @@ In this situation, redeploy your application and set the following custom proper
 anypoint.platform.config.analytics.agent.enabled=false
 ----
 
-The Anypoint Monitoring agent may also change the state of a deployed application. If you see one of the following:
+The Anypoint Monitoring agent may also change the state of a deployed application. If you see
+one of the following:
 
 * The application transitions from `Running` to `Applying`, or
 * `Monitoring agent has exited with code -1`
 
-This indicates that the agent is restarting. There should be no impact to the running application. Application metrics will be queued and resume being collected after the agent restarts.
+This indicates that the agent is restarting. There should be no impact to the running
+application. Application metrics are queued, and are again collected after the agent
+restarts.
+
+== Troubleshooting Application Runtime Issues
+If any of the following Runtime Fabric alert messages are reported, you might need to recover
+one or more controller nodes. 
+----
+Management plane is unreachable
+
+InfluxDB is down or no connection between Kapacitor and InfluxDB
+
+Node is down
+
+CRITICAL / Kubernetes node is not ready: <ip_address>
+
+CRITICAL / etcd: cluster is unhealthy
+----
+Open a terminal and run the `gravity status` command to obtain the health status of the cluster
+as well as individual components. 
+
+To recover a node, follow the instructions provided in xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 
 == Troubleshooting Issues with Environment Variables
 
-This step detects the variables which the installation process needs to carry out its procedures. The methods for providing these variables to the installation vary based upon where the installation is running.
+This step detects the variables which the installation process needs to carry out its
+procedures. The methods for providing these variables to the installation vary based upon where
+the installation is running.
 
-* For AWS, the variables are set in the terraform script, and outputted to a file located in `/opt/anypoint/runtimefabric/env`.
-* For Azure, the variaables are set when running the ARM template, and are retrieved as tags on the Virtual Machine instances.
-* For manual installations, the user creates a file with the values located in `/opt/anypoint/runtimefabric/env`.
+* For AWS, the variables are set in the terraform script, and outputted to a file located in
+`/opt/anypoint/runtimefabric/env`.
+* For Azure, the variaables are set when running the ARM template, and are retrieved as tags on
+the Virtual Machine instances.
+* For manual installations, the user creates a file with the values located in
+`/opt/anypoint/runtimefabric/env`.
 
-After these properites are retrieved, a procedure will run to connect to Anypoint Platform and retrieve additional values based upon the `RTF_ACTIVATION_DATA` value.
+After these properites are retrieved, a procedure will run to connect to Anypoint Platform and
+retrieve additional values based upon the `RTF_ACTIVATION_DATA` value.
 
 === Common errors
 
-The following error may occur if there is an issue with the activation data value, or if there is trouble reaching the internet on the instance:
+The following error may occur if there is an issue with the activation data value, or if there
+is trouble reaching the internet on the instance:
 
 ----
 curl: (7) Failed connect to anypoint.mulesoft.com:443; Operation now in progress
@@ -69,28 +100,34 @@ Line:
 
 If this error is observed, try the following:
 
-* Ensure your instance has outbound internet connectivity. A simple way to validate is to run the following command and verify a 301 response is returned:
+* Ensure your instance has outbound internet connectivity. A simple way to validate is to run
+the following command and verify a 301 response is returned:
 +
 ----
 curl https://anypoint.mulesoft.com
 ----
 +
-* Re-try running the installation procedure, in case the network connectivity was not finished initalizing.
+* Re-try running the installation procedure, in case the network connectivity was not finished
+initalizing.
 ** On Azure, the script should be located at `/opt/anypoint/runtimefabric/script.sh foreground`
-** On AWS and manual installatons, the script should be located at `/opt/anypoint/runtimefabric/init.sh foreground`
-* Validate the activation data value is correct by comparing with the Runtime Fabric created in Anypoint Runtime Manager.
+** On AWS and manual installatons, the script should be located at
+`/opt/anypoint/runtimefabric/init.sh foreground`
+* Validate the activation data value is correct by comparing with the Runtime Fabric created in
+Anypoint Runtime Manager.
 
 If you are still encountering issues, please file a support ticket for further assistance.
 
 == Troubleshooting Issues with the Install Packages
 
-This step will install required packages on the instance. It uses the `yum` package repository to download and install the required packages.
+This step will install required packages on the instance. It uses the `yum` package repository
+to download and install the required packages.
 
 === Common errors
 
 If there is a failure on this step, verify the following:
 
-* Ensure your instance has outbound internet connectivity. A simple way to validate is to run the following command and verify a 301 response is returned:
+* Ensure your instance has outbound internet connectivity. A simple way to validate is to run
+the following command and verify a 301 response is returned:
 +
 ----
 curl https://anypoint.mulesoft.com
@@ -102,19 +139,23 @@ curl https://anypoint.mulesoft.com
 sudo ./init.sh foreground
 ----
 +
-* Manually install one of the required packages to determine if it is successful outside of the installation script:
+* Manually install one of the required packages to determine if it is successful outside of the
+installation script:
 +
 ----
 sudo yum install -y chrony
 ----
 +
-** If not successful, please work with your operations team for assistance. You may need to ask for elevated access to the instance.
+** If not successful, please work with your operations team for assistance. You may need to ask
+for elevated access to the instance.
 
-If manual installation of a package was successful, or if you still require assistance, please file a support ticket.
+If manual installation of a package was successful, or if you still require assistance, 
+file a support ticket.
 
 == Format and Mount Disks
 
-This step performs the following tasks on the block devices or disks provided with the `RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables:
+This step performs the following tasks on the block devices or disks provided with the
+`RTF_DOCKER_DEVICE` and/or `RTF_ETCD_DEVICE` variables:
 
 . Performs a check to confirm the values map to block devices available on the instance.
 . Unmounts the disks in case they were previously mounted.
@@ -125,9 +166,11 @@ This step performs the following tasks on the block devices or disks provided wi
 
 === Install RTF Components
 
-This step connects to Anypoint Platform to download and install the Runtime Fabric components on the cluster.
+This step connects to Anypoint Platform to download and install the Runtime Fabric components
+on the cluster.
 
-In some cases, this step may return an error if the deployment failed to complete within the time limit:
+In some cases, this step may return an error if the deployment failed to complete within the
+time limit:
 
 ----
 ...
@@ -157,5 +200,9 @@ Containers:
 
 If this error is observed:
 
- * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from the controller VM(s) running in your internal network to this hostname on the Internet.
- * A TCP proxy may be needed to establish a connection to the Internet. Check with your network team to verify and configure if needed. The xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the information required.
+ * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from 
+ the controller VM(s) running in your internal network to this hostname on the Internet.
+ * A TCP proxy may be needed to establish a connection to the Internet. Check with your network
+ team to verify and configure if needed. The 
+ xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the 
+ information required.
