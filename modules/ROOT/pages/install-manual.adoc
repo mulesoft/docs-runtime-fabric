@@ -146,7 +146,7 @@ mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh
 . Run the `init.sh` script in privileged mode on the controller VM.
 +
 ----
-sudo /opt/anypoint/runtimefabric/init.sh foreground
+sudo /opt/anypoint/runtimefabric/init.sh
 ----
 +
 . Wait until the installation has successfully completed the pre-flight checks. The output should continue past the *Execute preflight checks* message to indicate the checks have passed:
@@ -164,7 +164,7 @@ Tue Aug 14 02:29:59 UTC Bootstrap all nodes
 . Execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed on each VM concurrently.
 +
 ----
-sudo /opt/anypoint/runtimefabric/init.sh foreground
+sudo /opt/anypoint/runtimefabric/init.sh
 ----
 +
 . If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
