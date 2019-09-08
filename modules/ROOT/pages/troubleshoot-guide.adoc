@@ -152,6 +152,10 @@ for elevated access to the instance.
 If manual installation of a package was successful, or if you still require assistance, 
 file a support ticket.
 
+== Troubleshooting Issues with Ops Center Monitoring and Logs
+
+If Ops Center monitoring and logging fails to restart after restarting one or more nodes, ensure port forwarding rules are applied on all VMs so that traffic can communicate with the Kubernetes pods running on the VMs. Refer to xref:prereq-firewalld-forwarding.adoc[Enable Forwarding When Using firewalld] for additional information.
+
 == Format and Mount Disks
 
 This step performs the following tasks on the block devices or disks provided with the
