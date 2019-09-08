@@ -20,7 +20,7 @@ You may need root privileges to a controller node running Runtime Fabric to foll
 . Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.32[latest version] of the `rtfctl` utility.
 . Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
 . Rename the binary to `rtfctl`.
-. Make the script executable by running `chmod +x /usr/bin/rtfctl`.
+. Make the script executable by running `chmod +x /usr/local/bin/rtfctl`.
 . On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use `rtfctl`.
 
 == Supported Commands
