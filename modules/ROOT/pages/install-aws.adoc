@@ -21,7 +21,7 @@ Before installing Anypoint Runtime Fabric on AWS, ensure the following requireme
 * You are able to run Terraform on your machine.
 * Your AWS user has access to create EC2 instances, Disks, VPCs, and Security Groups.
 +
-See xref:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html[Testing IAM Policies with the IAM Policy Simulator] for more information.
+See https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html[Testing IAM Policies with the IAM Policy Simulator] for more information.
 
 * Your AWS account has enough quota for the infrastructure required to run Anypoint Runtime Fabric. This includes having the capacity to create an additional VPC, EC2 instances, disks, security group, and other required resources.
 * You have the https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html[AWS key pair] required to provision virtual machines. This key pair is required to enable secure access to your VMs via SSH (Secure Shell).
