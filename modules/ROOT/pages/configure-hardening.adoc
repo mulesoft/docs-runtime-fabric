@@ -6,8 +6,8 @@ endif::[]
 By design, Runtime Fabric automatically provides multiple aspects of environment hardening for your Mule installation. 
 For example, by leveraging Docker and Kubernetes, app isolation is achieved by default.  
 
-The following hardening checklist provides additional information about environment hardening already provided by 
-Runtime Fabric, and specifies Runtime Fabric coverage as well as areas that require additional configuration.
+The following hardening checklist provides additional information and best practices for environment hardening with 
+Runtime Fabric.
 
 == Hardening Checklist
 
