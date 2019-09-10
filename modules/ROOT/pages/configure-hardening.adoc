@@ -1,0 +1,23 @@
+= Configure Environment Hardening on Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+By design, Runtime Fabric automatically provides multiple aspects of environment hardening for your Mule installation. 
+For example, by leveraging Docker and Kubernetes, app isolation is achieved by default.  
+
+The following hardening checklist provides additional information about environment hardening already provided by 
+Runtime Fabric, and specifies Runtime Fabric coverage as well as areas that require additional configuration.
+
+== Hardening Checklist
+
+[%header%autowidth.spread]
+|===
+| Hardening Step | Action Required
+| Run Mule as a Non-privileged User. | RTF provides this functionality.
+| Install Mule as a Service |	RTF provides this functionality by deploying a Mule runtime for each application within its own container.
+| Configure Mule to write logs or temporary files within appropriate locations. Configure logs, passwords, and keystore files. | RTF provides this functionality.  Mule writes to a temporary file system that is deleted when the application terminates. Monitoring information is collected from a sidecar agent in a specific location on disk where metrics are outputted and stored. Logs are collected from standard out and standard error streams.
+| In some situations, you must configure usernames, passwords, and keystores on Mule. Usually, these settings are made available externally, so that dev/ops can change these settings. |	RTF provides this functionality. Refer to xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric] for additional information.
+| Manage certificates in a keystore file. | This is supported on RTF, but you are responsible for importing the certificates into the keystore. In addition, RTF includes a load balancer which can handle SSL termination for all Mules deployed within it.
+| Use a separate property file to store usernames and passwords and secure it using file system permissions. | RTF provides this functionality. Refer to xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric] for additional information.
+|===
