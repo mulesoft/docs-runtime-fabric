@@ -7,16 +7,16 @@ The following limitations exist for Runtime Fabric. These are important to under
 and managing Runtime Fabric.
 
 == Controller Nodes
-The maximum number of controller nodes supported is ??.
+The maximum number of controller nodes supported is ???.
 
 == Worker Nodes
 The maximum number of worker nodes supported is 16.
 
 == Apps Per Worker Node
-The maximum number of apps that can be deployed per worker node without performance degradation is
+The maximum number of apps that can be deployed per worker node is ???
 
 == Environments Per Runtime Fabric Instance???
-The maximum number of environments per RTF is ??? 
+The maximum number of environments per Runtime Fabric instance is ??? 
 
 == Business Groups
 The maximum number of Runtime Fabrics you can create in a business group is 50. Refer to xref:?file in RTF[Create Runtime Fabrics] 
@@ -24,18 +24,7 @@ for instructions on how to create Runtime Fabric instances???? in Runtime Manage
 
 == Internal Load Balancer
 
-Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. 
-Because this load balancer is responsible for TLS termination, the number of resources required scales 
-based on the number of incoming connections and the average payload size for each request.
-
-Performance test results are based on an Anypoint Runtime Fabric cluster with controller nodes using 
-AWS EC2 M4 instances. The load generator used in the performance test was hosted on a separate AWS instance 
-in the same region. The M4 instances featured a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2, which ran at a base clock rate of 2.4 GHz. Using Intel Turbo Boost increased the clock rate to go as high as 3.0 GHz.
-
-A C++ based load generator with better efficiency in SSL connections was used to yield the maximum throughput.
-
-The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica 
-of the internal load balancer based on the number of CPU cores:
+The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:https:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
 
 [%header,cols="3*a"]
 |===
@@ -49,4 +38,4 @@ of the internal load balancer based on the number of CPU cores:
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and 
 type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
-Refer to xref: resource allocation topic for additional information.https://docs.mulesoft.com/runtime-fabric/1.3/deploy-resource-allocation#internal-load-balancer
+Refer to xref:https:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
