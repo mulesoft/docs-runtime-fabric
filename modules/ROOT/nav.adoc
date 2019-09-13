@@ -12,7 +12,7 @@
 * xref:runtime-fabric-logs.adoc[View and Configure Logs in Runtime Fabric]
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
- ** xref:configure-hardening.adoc[Perform Environment Hardening]
+ ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
  ** xref:deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
  ** xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
