@@ -44,14 +44,20 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 == Scaling Considerations
 
-* Required number of controller nodes. The maximum number of controller nodes supported is 3.
+* Minimum required number of controller nodes. 
 
 ** Production environment: 3
 ** Non-production environment: 1
++
+Consider scaling the number of controller nodes in the following situations:
+
+*** fault-tolernace is desired in case of a hardware failure on a controller node
+*** production traffic is being served with applications running on Runtime Fabric
++
 
 * CPU/Memory required for controller nodes
 
-** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. Refer to <link to page with performance numbers???> for additional information.
+** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
 
 * Required number of worker nodes. The maximum number of worker nodes supported is 16.
 
@@ -63,9 +69,7 @@ Plan to overprovision with one extra worker node for fault-tolerance and for app
 
 * CPU/memory required for worker nodes
 
-** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.4 cores per worker node for overhead.
-
-
+** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
 
 
 == Network Architecture
