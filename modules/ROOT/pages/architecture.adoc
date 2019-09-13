@@ -51,8 +51,8 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 +
 Consider scaling the number of controller nodes in the following situations:
 
-*** fault-tolernace is desired in case of a hardware failure on a controller node
-*** production traffic is being served with applications running on Runtime Fabric
+*** Fault tolerance is desired to mitigate hardware failure on a controller node.
+*** Production traffic is being served with applications running on Runtime Fabric.
 +
 
 * CPU/Memory required for controller nodes
