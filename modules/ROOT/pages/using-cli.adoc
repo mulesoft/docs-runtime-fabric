@@ -1,0 +1,15 @@
+= Using CLI for Anypoint Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+You can use CLI commands for listing available Runtime Fabric instances as well as deploying APIs.
+
+CLI support for Runtime Fabric includes the following commands:
+
+* xref:runtime-manager/anypoint-platform-cli-commands#api-mgr-api-deploy[`api-mgr api deploy`] - Deploys an API to CloudHub, hybrid server, or Runtime Fabric
+* xref:runtime-manager/anypoint-platform-cli-commands#api-mgr-api-redeploy[`api-mgr api redeploy`] - Redeploys an API to CloudHub, hybrid server, or Runtime Fabric
+* xref:runtime-manager/anypoint-platform-cli-commands#runtime-mgr-rtf-list[`runtime-mgr rtf list`] - Lists available Runtime Fabric instances
+
+Refer to xref:runtime-manager/anypoint-platform-cli-commands.adoc[Anypoint Platform CLI 3.x] for detailed 
+Anypoint Platform CLI 3.x command information.
