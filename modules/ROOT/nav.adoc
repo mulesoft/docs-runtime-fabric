@@ -21,6 +21,7 @@
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
+ ** xref:manage-backup-restore.adoc[Backup and Restore Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
  ** xref:install-rtfctl.adoc[Install rtfctl]
  ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
