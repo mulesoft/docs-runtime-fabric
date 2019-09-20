@@ -48,6 +48,12 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 ** Production environment: 3
 ** Non-production environment: 1
+
+* The maximum number of supported controller nodes is 5.
+
+[NOTE]
+Make sure to provision an odd number of controller nodes, because an odd number of controller nodes is required for fault tolerance.
+
 +
 Consider scaling the number of controller nodes in the following situations:
 
