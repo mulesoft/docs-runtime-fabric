@@ -17,8 +17,8 @@ infrastructure provisioned before installing Runtime Fabric.
 
 Anypoint Runtime Fabric requires one of the following operating systems.
 
-* Red Hat (RHEL) v7.4, v7.5, v7.6
-* CentOS v7.4, v7.5, v7.6
+* Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7
+* CentOS v7.4, v7.5, v7.6, v7.7
 
 Use the same operating system for each node. If you attempt to install Runtime Fabric on 
 a different operating system version or distribution, the Runtime Fabric installer will fail.
