@@ -44,7 +44,7 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 == Scaling Considerations
 
-* Minimum required number of controller nodes. 
+* Minimum required number of controller nodes 
 
 ** Production environment: 3
 ** Non-production environment: 1
@@ -52,12 +52,12 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 * The maximum number of supported controller nodes is 5.
 
 [NOTE]
-Make sure to provision an odd number of controller nodes, because an odd number of controller nodes is required for fault tolerance.
+An odd number of controller nodes is required for fault tolerance.
 
 +
 Consider scaling the number of controller nodes in the following situations:
 
-*** Fault tolerance is desired to mitigate hardware failure on a controller node.
+*** Fault tolerance is needed to mitigate the impact of controller node hardware failure.
 *** Production traffic is being served with applications running on Runtime Fabric.
 +
 
