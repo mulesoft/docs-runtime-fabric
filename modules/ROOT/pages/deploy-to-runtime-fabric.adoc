@@ -70,10 +70,19 @@ For newly deployed applications, the status initially displays as *Starting*. Th
 
 == Verification
 
-To test inbound traffic for deployed applications, you can send a request using the IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
+To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
 
-* An application URL with the format of _{app-name}.domain.com_ uses the following request header format: `Host: {app-name}.domain.com`. Here’s an example cURL command to verify: `curl -Lvk -XGET https://{ip-address}/{path} -H "Host: {app-name}.domain.com"`
-* An application URL with domain.com/{app-name}_ uses the following request header format: `Host: domain.com`. Here’s an example cURL command to verify: `curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H "Host: domain.com"`
+* An application URL with the format of _{app-name}.domain.com_ uses the following request header format: `Host: {app-name}.domain.com`. Here’s an example cURL command to verify:
++
+====
+`curl -Lvk -XGET https://{controller-ip-address}/{path} -H "Host: {app-name}.domain.com"`
+====
+
+* An application URL with domain.com/{app-name}_ uses the following request header format: `Host: domain.com`. Here’s an example cURL command to verify: 
++
+====
+`curl -Lvk -XGET https://{controller-ip-address}/{app-name}/{path} -H "Host: domain.com"`
+====
 
 == Common Issues
 
