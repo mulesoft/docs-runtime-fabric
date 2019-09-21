@@ -42,6 +42,42 @@ The minimum requirements are 3 controller and 3 worker nodes. 3 controllers enab
 
 Mule applications run on workers. Multiple replicas of applications can run across workers.
 
+== Scaling Considerations
+
+* Minimum required number of controller nodes 
+
+** Production environment: 3
+** Non-production environment: 1
+
+* The maximum number of supported controller nodes is 5.
+
+[NOTE]
+An odd number of controller nodes is required for fault tolerance.
+
++
+Consider scaling the number of controller nodes in the following situations:
+
+*** Fault tolerance is needed to mitigate the impact of controller node hardware failure.
+*** Production traffic is being served with applications running on Runtime Fabric.
++
+
+* CPU/Memory required for controller nodes
+
+** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
+
+* Required number of worker nodes. The maximum number of worker nodes supported is 16.
+
+** Production environment: 3
+** Non-production environment: 2
+
+[NOTE]
+Plan to overprovision with one extra worker node for fault-tolerance and for applying upgrades to avoid downtime for applications.
+
+* CPU/memory required for worker nodes
+
+** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
+
+
 == Network Architecture
 
 The following diagram shows the general network architecture of Runtime Fabric.
