@@ -12,6 +12,8 @@ You can allocate the following resources when deploying an application:
 * vCPU cores
 * Memory
 
+Performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. They run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+
 == Minimum Core and Memory Requirements
 
 The minimum values for the amount of CPU and memory allocated to each replica of a Mule application are:
