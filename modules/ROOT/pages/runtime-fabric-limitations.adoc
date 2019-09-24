@@ -3,24 +3,24 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following limitations exist for Runtime Fabric. These are important to understand when installing, configuring, 
+The following information is important when installing, configuring, 
 and managing Runtime Fabric.
 
 == Controller Nodes
-The maximum number of controller nodes supported is ???.
+The maximum number of controller nodes supported is 5.
 
 == Worker Nodes
 The maximum number of worker nodes supported is 16.
 
-== Apps Per Worker Node
-The maximum number of apps that can be deployed per worker node is ???
+== Replicas Per Worker Node
+The maximum number of replicas that can be deployed per worker node is 40.
 
-== Environments Per Runtime Fabric Instance???
-The maximum number of environments per Runtime Fabric instance is ??? 
+== Associated Environments per Runtime Fabric
+The maximum number of environments per Runtime Fabric is ??? 
 
 == Business Groups
 The maximum number of Runtime Fabrics you can create in a business group is 50. Refer to xref:?file in RTF[Create Runtime Fabrics] 
-for instructions on how to create Runtime Fabric instances???? in Runtime Manager.
+for instructions on how to create Runtime Fabrics in Runtime Manager.
 
 == Internal Load Balancer
 
