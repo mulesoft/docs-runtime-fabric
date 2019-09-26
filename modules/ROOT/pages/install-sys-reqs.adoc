@@ -24,6 +24,8 @@ Use the same operating system for each node. If you attempt to install Runtime F
 a different operating system version or distribution, the Runtime Fabric installer will fail.
 
 == Hardware Requirements
+Only x86 and x64 architectures are supported.
+
 Runtime Fabric reserves 0.3 cores per worker node for internal services. This is important 
 when determining the amount of CPU cores and worker nodes needed.
 
