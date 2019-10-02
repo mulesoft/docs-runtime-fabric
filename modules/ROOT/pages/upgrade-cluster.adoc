@@ -71,6 +71,7 @@ sudo chmod +x /opt/anypoint/runtimefabric/rtfctl
 sudo ./rtfctl upgrade-cluster --url <cluster-installer-url>
 ----
 +
+.. Note: this command also supports referencing an installer package already downloaded on the node, with the `--file` parameter.
 .. The command will output a confirmation indicating the upgrade is being performed in the background.
 .. The cluster status, as reported when running `gravity status` on a node, should report as “updating”.
 . Follow the progress on the upgrade procedure:
