@@ -19,6 +19,8 @@
  ** xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
  ** xref:app-versioning.adoc[Application Versioning]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
+* xref:upgrade-index.adoc[Upgrade Runtime Fabric]
+ ** xref:upgrade-cluster.adoc[Upgrade cluster]
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
