@@ -122,7 +122,6 @@ chmod +x /opt/anypoint/runtimefabric/rtfctl
 ----
 sudo ./rtfctl apply system-configuration 
 ----
-+
 
 == Resume an Upgrade
 
@@ -154,7 +153,7 @@ A specific sequence of steps is performed during a cluster upgrade. If an error 
 
 Most errors encountered are commonly attributed to insufficient disk performance on the `etcd` block device running on the controller nodes. Perform the following steps to resolve common errors:
 
-. Use the `gravity plan` command to identify in which phase the upgrade paused: 
+. Use the `gravity plan` command to identify the phase in which the upgrade paused: 
 +
 ----
 sudo ./gravity plan
