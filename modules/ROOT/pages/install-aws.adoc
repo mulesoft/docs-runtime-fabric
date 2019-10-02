@@ -33,6 +33,7 @@ provision virtual machines. This key pair is required to enable secure access to
 * You have access to the following AWS-specific environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
 `AWS_SESSION_TOKEN`, `AWS_REGION`, `AWS_DEFAULT_REGION`. These are required to run the Terraform script. If you do 
 not know these values, contact your AWS administrator.
+* You have disabled any antivirus agents, such as McAfee, running in your environment.
 
 == Base64 Encode Your Mule License Key
 
