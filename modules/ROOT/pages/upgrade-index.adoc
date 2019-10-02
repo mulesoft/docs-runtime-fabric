@@ -1,6 +1,6 @@
 = Upgrade Runtime Fabric
 
-Anypoint Runtime Fabric is a package of components which work together to provide its full set of capabilities. Updates will be delivered to these components in the following methods:
+Anypoint Runtime Fabric is a package of components that work together. Updates are delivered to these components in the following methods:
 
 * Cluster-level components are delivered as an updated installer package. These components include Docker, Kubernetes, and the Ops Center.
 
@@ -14,7 +14,7 @@ Upgrades to cluster-level and node configuration components are performed using 
 
 ## Downloads page
 
-The latest versions of each downloadable package are found in the Downloads page, located in Anypoint Runtime Manager under the Runtime Fabrics tab. A link to each package’s release notes are provided to show the changes.
+The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
 
 ## Applying upgrades
 
