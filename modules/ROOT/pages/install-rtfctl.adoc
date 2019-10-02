@@ -17,7 +17,7 @@ Install the rtfctl utility to manage Runtime Fabrics locally, with support for t
 [WARNING]
 You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
 
-. Download the latest version of the `rtfctl` utility following the instructions provided in xref:install-create-rtf-arm#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
+. Download the latest version of the `rtfctl` utility by navigating to the *Downloads* page from the *Runtime Fabrics* tab in Anypoint Runtime Manager.
 . Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
 . Rename the binary to `rtfctl`.
 . Make the script executable by running `chmod +x /usr/local/bin/rtfctl`.
