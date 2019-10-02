@@ -128,49 +128,50 @@ sudo ./rtfctl apply system-configuration
 
 If the upgrade procedure encountered a failed step, try to resume the upgrade. 
 
-Resumed upgrades are attached to your terminal session. Ensure you’re on a stable connection before attempting to resume an upgrade.
+Resumed upgrades are attached to your terminal session. Ensure you have a stable connection before attempting to resume an upgrade.
 
-. Resume the upgrade from where it stopped on the controller node used to start the upgrade: 
-.. On a terminal open to the controller node performing the upgrade, change to the directory with the installer bundle files:
+Resume the upgrade from where it stopped on the controller node used to start the upgrade:
+
+. On a terminal open to the controller node performing the upgrade, change to the directory with the installer bundle files, as shown in the following example:
 +
 ----
 cd /tmp/rtf-upgrade
 ----
 +
-.. Run the command to resume the upgrade: 
+. Run the command to resume the upgrade: 
 +
 ----
 sudo ./gravity upgrade --resume
 ----
 +
-.. The upgrade continues streaming output to your terminal session. 
+. The upgrade continues streaming output to your terminal session. 
 
-If the error occurs again, follow the troubleshooting steps.
+If the error occurs again, follow the troubleshooting steps described in the following section.
  
 == Troubleshooting errors
 
-A sequence of steps are performed during a cluster upgrade. If an error occurs on a step, the upgrade will pause and output an error. In most cases, the availability of running applications should not be impacted when running multiple replicas of each application on a production configuration of Runtime Fabric.
+A specific sequence of steps is performed during a cluster upgrade. If an error occurs, the upgrade pauses and outputs an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
-Most errors encountered are commonly attributed to insufficient disk performance on the etcd block device running on the controller nodes. Follow the steps below to resolve common errors:
+Most errors encountered are commonly attributed to insufficient disk performance on the `etcd` block device running on the controller nodes. Perform the following steps to resolve common errors:
 
-. Use the `gravity plan` command to identify which phase the upgrade paused: 
+. Use the `gravity plan` command to identify in which phase the upgrade paused: 
 +
 ----
 sudo ./gravity plan
 ----
 +
-. Resume the upgrade using the debug flag on the phase where the error occurred: 
+. Resume the upgrade using the debug flag on the phase in which the error occurred: 
 +
 ----
 sudo ./gravity upgrade --phase=< insert phase > --force --debug
 ----
 +
 .. Example:  `--phase=/gc/rtf-controller-1`
-. Wait for the command to run and error again. If it does not error again, resume the upgrade by running the following command: `sudo ./gravity upgrade --resume`
-. After the command terminates with an error, read the logs to identify which node requires repair.
+. Wait for the command to run and output an error again. If it does not output an error again, resume the upgrade by running the following command: `sudo ./gravity upgrade --resume`
+. If the command terminates with an error, read the logs to identify which node requires repair.
 .. Submit a ticket to MuleSoft support if assistance is required.
-. Open another terminal to the Runtime Fabric node outputted in the error.
-. Repair the upgrade plan for the node outputted in the terminal:
+. Open another terminal to the Runtime Fabric node identified in the error.
+. Repair the upgrade plan for the identified node in the terminal:
 +
 ----
 sudo gravity plan --repair
@@ -182,7 +183,7 @@ sudo gravity plan --repair
 sudo ./gravity plan execute --phase=< insert phase > --force --debug
 ----
 
-The command should complete successfully. If it does not, wait a few minutes and repeat these steps again.
+The command should complete successfully. If it does not, wait a few minutes and repeat the previous steps.
 
 == See Also
 
