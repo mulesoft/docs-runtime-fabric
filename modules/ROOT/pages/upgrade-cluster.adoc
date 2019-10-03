@@ -59,13 +59,14 @@ Keep your web session open to use in later steps.
 .. Using your terminal open on a controller node, run the following command: 
 +
 ----
-sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o /opt/anypoint/runtimefabric/rtfctl
+cd /opt/anypoint/runtimefabric
+sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 +
 .. Change file permissions for the `rtfctl` binary: 
 +
 ----
-sudo chmod +x /opt/anypoint/runtimefabric/rtfctl
+sudo chmod +x rtfctl
 ----
 +
 . Get the latest version of the Runtime Fabric installer URL:
@@ -108,13 +109,14 @@ After the cluster has upgraded successfully, perform the following step on *ever
 .. Download the latest `rtfctl` command-line utility:
 +
 ----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o /opt/anypoint/runtimefabric/rtfctl
+cd /opt/anypoint/runtimefabric
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 +
 .. Change file permissions for the `rtfctl` binary: 
 +
 ----
-chmod +x /opt/anypoint/runtimefabric/rtfctl
+chmod +x rtfctl
 ----
 +
 . Run the `apply system-configurations` command in `rtfctl`:
