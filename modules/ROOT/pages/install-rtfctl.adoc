@@ -15,13 +15,22 @@ Install the rtfctl utility to manage Runtime Fabrics locally, with support for t
 == Install rtfctl 
 
 [WARNING]
-You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
+You will need root privileges to a controller node running Runtime Fabric to follow this procedure.
 
-. Download the https://runtime-fabric.s3.amazonaws.com/rtfctl/rtfctl-0.2.32[latest version] of the `rtfctl` utility.
-. Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
-. Rename the binary to `rtfctl`.
-. Make the script executable by running `chmod +x /usr/local/bin/rtfctl`.
-. On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use `rtfctl`.
+. Download the latest version of the `rtfctl` command-line utility:
+.. Using your terminal open on a controller node, run the following command: 
++
+----
+cd /opt/anypoint/runtimefabric
+sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
++
+.. Change file permissions for the `rtfctl` binary: 
++
+----
+sudo chmod +x rtfctl
+----
++
 
 == Supported Commands
 
