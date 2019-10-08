@@ -44,7 +44,7 @@ When using AWS or Azure, deploy Runtime Fabric on a VPC or VirtualNetwork with a
 
 For AWS, Runtime Fabric provides a Terraform provisioning script that creates VPC and divides the addressable network space into multiple subnets within each AZ. A similar configuration can also be applied when using Azure with manual changes to the MuleSoft provided Azure Resource Manager provisioning scripts. 
 
-[NOTE]
+=== Availability Across Applications
 Runtime Fabric does not rely on the Anypoint Platform control plane. If the Anypoint Platform control plane becomes unavailable, applications already running in Runtime Fabric are not impacted - they continue to run with no downtime. Self-healing capabilities in Runtime Fabric can detect when a Mule runtime engine crashes and automatically restart it. You don’t have to configure tuning parameters or log sizes, or worry about log cleanup to avoid an out of disk condition during a control plane outage.
 
 === Node Configuration 
