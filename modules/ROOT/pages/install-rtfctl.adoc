@@ -17,7 +17,6 @@ Install the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` uti
 [NOTE]
 To perform this procedure, you must have root privileges to a controller node running Runtime Fabric.
 
-=======
 . Download the latest version of the `rtfctl` command-line utility:
 .. On a controller node, use your terminal to run the following command: 
 +
