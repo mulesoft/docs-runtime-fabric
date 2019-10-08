@@ -1,0 +1,25 @@
+= Upgrade Runtime Fabric
+
+Anypoint Runtime Fabric is a package of components that work together. Updates are delivered to these components in the following methods:
+
+* Cluster-level components are delivered as an updated installer package. These components include Docker, Kubernetes, and the Ops Center.
+
+* Runtime Fabric components are delivered via Anypoint Runtime Manager in Anypoint Platform. These components include the agent used to connect Runtime Fabric to Anypoint Platform.
+
+* Node configuration changes are reflected in newer versions of the installer scripts, and are also delivered via the `rtfctl` command-line utility. These changes include adjusting operating system limits and performing jobs to clean up system resources.
+
+* The `rtfctl` command-line utility upgrades are provided as a new binary that replaces the existing binary. The `rtfctl` utility is used to manage Runtime Fabric locally.
+
+Upgrades to cluster-level and node configuration components are performed using the `rtfctl` command-line utility.
+
+## Downloads page
+
+The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
+
+## Applying upgrades
+
+Upgrades to the cluster-level components and node configuration components are performed using the `rtfctl` command-line utility. Upgrades to the Runtime Fabric components are performed in Anypoint Runtime Manager.
+
+== See Also
+
+* xref:upgrade-cluster.adoc[Perform Runtime Fabric Cluster Upgrades]

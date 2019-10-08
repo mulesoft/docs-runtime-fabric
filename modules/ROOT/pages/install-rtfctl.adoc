@@ -3,37 +3,46 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Install the rtfctl utility to manage Runtime Fabrics locally, with support for the following actions:
+Install the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
 
-* Get the status of a Runtime Fabric
-* Perform a heap dump or a thread dump of a running application
-* Display memory usage of a running application
-* Manage proxy settings
-* Manage secure properties
-* Manage Mule license
+* Get the status of a Runtime Fabric.
+* Perform a heap dump or a thread dump of a running application.
+* Display memory usage of a running application.
+* Manage proxy settings.
+* Manage secure properties.
+* Manage a Mule license.
 
 == Install rtfctl 
 
-[WARNING]
-You may need root privileges to a controller node running Runtime Fabric to follow this procedure.
+[NOTE]
+To perform this procedure, you must have root privileges to a controller node running Runtime Fabric.
 
-. Download the latest version of the `rtfctl` utility by navigating to the *Downloads* page from the *Runtime Fabrics* tab in Anypoint Runtime Manager.
-. Transfer the `rtfctl` binary to a controller node under the `/usr/local/bin` folder.
-. Rename the binary to `rtfctl`.
-. Make the script executable by running `chmod +x /usr/local/bin/rtfctl`.
-. On the controller node, run `rtfctl -h` to verify the script works as expected by outputting instructions on how to use `rtfctl`.
+=======
+. Download the latest version of the `rtfctl` command-line utility:
+.. On a controller node, use your terminal to run the following command: 
++
+----
+cd /opt/anypoint/runtimefabric
+sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
++
+.. Change file permissions for the `rtfctl` binary: 
++
+----
+sudo chmod +x rtfctl
+----
 
-== Supported Commands
+== List Supported Commands
 
-To view a list of all supported commands, run `rtfctl -h`. 
+To list all supported commands, run `rtfctl -h`. 
 
-To get more information on a specific command, run `rtfctl <command> -h`.
+For more information on a specific command, run `rtfctl <command> -h`.
 
 == Usage
 
 * Install a Mule license
 
-.. Make sure to base64 encode the license following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
+.. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 .. Run the following command:
 +
 ----
