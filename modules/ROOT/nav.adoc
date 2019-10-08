@@ -32,3 +32,4 @@
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
  ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric Manually]
+* xref:ha-dr.adoc[High Availability and Disaster Recovery for Runtime Fabric]
