@@ -35,6 +35,10 @@ Runtime Fabric is configured according to the type of environment:
 
 For environments with two availability zones, deploy the controller and worker nodes into the two availability zones. You can deploy multiple controllers and workers into specific availability zones.
 Deploy applications and services with two replicas. ( How does this work if we have more replicas than availability zones??? For example, > 3 Replicas. ) In the case of two replicas, if one replica fails, it must be manually restarted to maintain a minimum of 2 active nodes.
+
+Comments/Questions from Donald/Mark: (MARK)Re 3 AZs - Most AWS/Azure regions have 3 AZs, and the minimum number of 3 control zones and 3 worker zones could then be deployed into the 3 AZs. However if the region only has 2 AZs it would be possible to deploy the controller and worker nodes into 2 AZs with multiple controllers/workers into specific AZs. 
+(DONALD)If we want to say something about AWS/Azure outages we need to be more specific. What kind of AWS Azure outages. This is something where we need to be careful creating some sort of indirect SLA guarantee.
+Additional questions are in https://docs.google.com/document/d/11JOja4UIn92NiLieVNM7PthoOwcMuxhCo9IrTtqoNeI/edit#.
  
 For environments with three availability zones, which is the default for both AWS and Azure, the minimum number of 3 controller nodes and 3 worker nodes can be deployed into the 3 availability zones. Deploy applications and services with two or more replicas across <x> availability zones??? In this case, if a replica fails, is there is automatic failover????
  
