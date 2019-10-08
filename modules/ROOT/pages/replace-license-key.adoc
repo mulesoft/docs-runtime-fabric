@@ -36,7 +36,7 @@ Base64 value of your license key. For more information on the `rtfctl` command, 
 xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
 +
 ----
-rtfctl apply mule-license 'BASE64_ENCODED_LICENSE'
+rtfctl apply mule-license BASE64_ENCODED_LICENSE
 ----
 +
 . To verify the Mule license key has applied correctly, retrieve the contents using the `rtfctl` utility:
