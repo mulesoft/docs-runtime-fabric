@@ -170,7 +170,7 @@ For example,  `--phase=/gc/rtf-controller-1`
 . Wait for the command to run again. If the command does not terminate with an error, resume the upgrade by running the following command:
 +
 ----
-`sudo ./gravity upgrade --resume`
+sudo ./gravity upgrade --resume
 ----
 . If the command again terminates with an error:
 .. Read the logs to identify which node requires repair.
