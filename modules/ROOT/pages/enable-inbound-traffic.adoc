@@ -138,7 +138,6 @@ If your secrets group does not appear, ensure you have the *Manage Runtime Fabri
 permission on your account.
 
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
-
 . Click *Deploy* to deploy the internal load balancer. If successful, a message appears 
 in the bottom-right of the page. The deployment may take up to a minute. You can view the
 deployment status at the top of the form. When the status transitions to *Applied*, the 
@@ -183,6 +182,9 @@ When deploying new applications or managing existing applications on Runtime Fab
 This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default 
 behavior switches to allowed for new application deployments. If there are applications deployed to Runtime 
 Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
+
+== Route Requests to the Ops Center
+. To configure the external load balancer to route requests to the Ops Center, ???
 
 == Additional Configuration Options
 
