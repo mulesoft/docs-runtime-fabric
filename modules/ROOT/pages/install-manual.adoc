@@ -19,6 +19,7 @@ Ensure the following criteria have been met before beginning the installation:
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
 * The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
+* Your controller VMs have outbound internet access. Adjust proxy configuration if needed. To add a proxy when using a cURL or `nc` command to manually download the installer bundle from the internet, ???
 
 == Base64 Encode your Mule License Key
 

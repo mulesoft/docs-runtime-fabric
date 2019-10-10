@@ -31,6 +31,23 @@ image::runtime-fabric-arm.png[]
 
 Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after the Runtime Fabric is installed and connected to Runtime Manager.
 
+== Actions Performed During Installation
+ 
+The `init.sh` script, used in the Runtime Fabric installation process, performs the following operating system configuration changes:
+
+* Overrides the iptable rules. To what?
+* Modifies the kernel. How?
+* Modifies services, including stops and restarts. What should the user do?
+
+** `firewalld` is permanently killed.
+** `iptables.services` is not restarted properly.
+* Requires an NTP agent and, by default, attempts to install `chronyd`. This can break other NTP configurations. - what does the user need to do?
+* Etc. (This can be supplemented by another NTP client) What does the user need to do?
+* Changes made to /etc/resolv.conf after installation are not taken into affect. ?
+* Other file modifications?
+
+Understanding the OS configuration actions performed during Runtime Fabric installation helps you better utilize OS configuration management tools for automation and other tasks, for example, automating the steps in this script to manage configuration across multiple VMs. You can auto-generate a secure configuration by the installer using standard RTF configuration variables.
+
 == Install Runtime Fabric on Your Infrastructure
 
 After creating a Runtime Fabric in Runtime Manager, install Runtime Fabric on your infrastructure. Click the following link that corresponds to your infrastructure:

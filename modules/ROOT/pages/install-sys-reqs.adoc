@@ -20,14 +20,18 @@ Anypoint Runtime Fabric requires one of the following operating systems.
 * Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7
 * CentOS v7.4, v7.5, v7.6, v7.7
 
+If using CentOS 7.6.x or later, perform a full installation.
+
 Use the same operating system for each node. If you attempt to install Runtime Fabric on 
 a different operating system version or distribution, the Runtime Fabric installer will fail.
 
 == Hardware Requirements
 Only x86 and x64 architectures are supported.
 
-Runtime Fabric reserves 0.3 cores per worker node for internal services. This is important 
+Runtime Fabric reserves 0.3 cores per worker node for internal services. This does not account for hyperthreading - Runtime Fabric requires dedicated cores. This is important 
 when determining the amount of CPU cores and worker nodes needed.
+
+For fault tolerance, run different sets of controller nodes and worker nodes on separate physical machines.
 
 The Runtime Manager UI displays the amount of available CPU across worker nodes. For example,
 given a cluster with 3 worker nodes, each with 2 cores, Runtime Fabric reserves a total of 0.9
