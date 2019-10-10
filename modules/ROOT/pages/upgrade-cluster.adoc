@@ -1,18 +1,28 @@
 = Perform Runtime Fabric Cluster Upgrades
 
-Anypoint Runtime Fabric is powered by a set of components including Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster. To perform an upgrade to these cluster-level components and apply updates to node configurations, follow the procedure below.
+Anypoint Runtime Fabric is powered by a set of components including Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster. Perform the following steps to upgrade these cluster-level components and apply updates to node configurations.
 
 == Before You Begin
 
+* Run the upgrade procedure on a non-production Runtime Fabric to verify compatibility with your environment and to gain familiarity with the procedure.
+* Plan the upgrade procedure when your team does not need to deploy new applications or managing existing applications on Runtime Fabric.
 
-* Run the upgrade procedure on a non-production Runtime Fabric first to verify compatibility with your environment and to gain familiarity with the procedure.
-* Run the upgrade procedure when your team does not need to deploy new applications or managing existing applications on Runtime Fabric.
+** The upgrade can take over an hour to complete.
+** The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
+* Make sure the `/tmp` directory has a minimum of 4 GiB of disk space available.
+* Verify you have root privileges. Root privileges are required to perform an upgrade.
+
+=== Environment Prerequisites
+
+* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
+* The internal load balancer must run on at least 3 replicas to maintain availability.
+* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
+* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
 +
-The upgrade can take over an hour to complete.
-+
-The connection between Runtime Fabric and Anypoint Runtime Manager might become disconnected multiple times during the upgrade procedure. Connectivity will be restored after the upgrade has completed.
-* The `/tmp` directory must have minimum of 4 GiB of disk space available.
-* Root privileges are required to perform the upgrade.
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
+* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
+
+[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter downtime to applications if configured to use an HTTP proxy. You must perform an additional step in the procedure by applying the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `gravity status` on a node and referencing the cluster version.
 
 == Availability of Deployed Applications
 
@@ -24,32 +34,21 @@ The upgrade procedure is designed to keep deployed applications running and avai
 . The upgrade is applied on the selected node.
 . The selected node is added to the cluster after upgrading.
 
-=== Ensuring Availability of Deployed Applications
-
-* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
-* The internal load balancer must run on at least 3 replicas to maintain availability.
-* An external load balancer should be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
-* At least one worker node’s worth of CPU and memory resources are required to be available in the cluster.
-+
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability to applications.
-* Applications serving inbound requests should be scaled to a minimum of 2 replicas.
-
-[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter downtime to applications if configured to use an HTTP proxy. An additional step in the procedure is required to apply the HTTP proxy configuration on each node after the upgrade. Please factor this downtime accordingly. The version of Runtime Fabric can be found by running `gravity status` on a node and referencing the cluster version.
-
 == Apply the Cluster Upgrade
 
-. Provision additional worker VMs if required to maintain availability of applications:
+. Provision additional worker VMs as needed to maintain availability of applications:
+
 .. If the amount of available resources for application deployments is less than one worker node’s worth, add another worker VM with equal CPU, memory, and disk resources to the Runtime Fabric.
 +
 See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
 . Upgrade Runtime Fabric components to the latest version available:
-.. Using a web browser, navigate to Anypoint Runtime Manager and click on the *Runtime Fabrics* tab.
+.. Using a web browser, navigate to Anypoint Runtime Manager and select the *Runtime Fabrics* tab.
 .. Find the desired Runtime Fabric and verify there is no upgrade available.
-.. If an upgrade is available, select the Runtime Fabric, select the *Manage* button, and click *Upgrade to 1.x.x*.
+.. If an upgrade is available, select the Runtime Fabric, select *Manage*, and select *Upgrade to 1.x.x*.
 +
 Wait until the upgrade completes. After the upgrade completes, the status transitions to Active.
 +
-Keep your web session open to use in later steps.
+Keep your browser session open to use in later steps.
 . Verify Runtime Fabric is healthy:
 .. Using your web browser, navigate to the *Runtime Fabrics* tab in Anypoint Runtime Manager and verify that the Runtime Fabric reports an Active status.
 .. Open a terminal to a Runtime Fabric controller node.
@@ -70,8 +69,8 @@ sudo chmod +x rtfctl
 ----
 +
 . Get the latest version of the Runtime Fabric installer URL:
-.. Using your web browser, navigate to Anypoint Runtime Manager and click the *Runtime Fabrics* tab to view a list of your Runtime Fabrics.
-.. Click the *Downloads* link on the upper right area of the page.
+.. Using your web browser, navigate to Anypoint Runtime Manager and select the *Runtime Fabrics* tab to view a list of your Runtime Fabrics.
+.. Select the *Downloads* link.
 .. Select the *Copy Link* icon next to *Installer package* to copy the URL.
 .. Paste the URL in a text editor for reference. 
 . Start the upgrade procedure:
@@ -83,7 +82,7 @@ sudo ./rtfctl upgrade-cluster --url <cluster-installer-url>
 +
 This command also supports referencing an installer package already downloaded on the node, with the `--file` parameter.
 +
-The command will output a confirmation indicating the upgrade is being performed in the background.
+The command outputs a confirmation indicating the upgrade is being performed in the background.
 +
 . Run `gravity status` on a node and verify that the cluster status is “updating”.
 . Follow the progress on the upgrade procedure:
@@ -101,19 +100,19 @@ sudo ./gravity plan
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
 
-== Verify System Configurations are Up-To-Date
+== Verify System Configurations are Up To Date
 
-After the cluster has upgraded successfully, perform the following step on *every node* to make sure system configurations are up-to-date:
+After the cluster has successfully upgraded, perform the following step on *every node* to make sure system configurations are up to date:
 
 . Open a terminal to your Runtime Fabric controller/worker node.
-.. Download the latest `rtfctl` command-line utility:
+. Download the latest `rtfctl` command-line utility:
 +
 ----
 cd /opt/anypoint/runtimefabric
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 +
-.. Change file permissions for the `rtfctl` binary: 
+. Change file permissions for the `rtfctl` binary: 
 +
 ----
 chmod +x rtfctl
@@ -131,9 +130,7 @@ If the upgrade procedure encountered a failed step, try to resume the upgrade.
 
 Resumed upgrades are attached to your terminal session. Ensure you have a stable connection before attempting to resume an upgrade.
 
-Resume the upgrade from where it stopped on the controller node used to start the upgrade:
-
-. On a terminal open to the controller node performing the upgrade, change to the directory with the installer bundle files, as shown in the following example:
+. On a terminal open to the controller node that was used to start the upgrade, change to the directory with the installer bundle files, as shown in the following example:
 +
 ----
 cd /tmp/rtf-upgrade
@@ -149,11 +146,13 @@ sudo ./gravity upgrade --resume
 
 If the error occurs again, follow the troubleshooting steps described in the following section.
  
-== Troubleshooting errors
+== Troubleshooting Upgrade Errors
 
 A specific sequence of steps is performed during a cluster upgrade. If an error occurs, the upgrade pauses and outputs an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
-Most errors encountered are commonly attributed to insufficient disk performance on the `etcd` block device running on the controller nodes. Perform the following steps to resolve common errors:
+Most errors encountered are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
+
+Perform the following steps to resolve common errors:
 
 . Use the `gravity plan` command to identify the phase in which the upgrade paused: 
 +
@@ -167,11 +166,16 @@ sudo ./gravity plan
 sudo ./gravity upgrade --phase=< insert phase > --force --debug
 ----
 +
-.. Example:  `--phase=/gc/rtf-controller-1`
-. Wait for the command to run and output an error again. If it does not output an error again, resume the upgrade by running the following command: `sudo ./gravity upgrade --resume`
-. If the command terminates with an error, read the logs to identify which node requires repair.
-.. Submit a ticket to MuleSoft support if assistance is required.
-. Open another terminal to the Runtime Fabric node identified in the error.
+For example,  `--phase=/gc/rtf-controller-1`.
+. Wait for the command to run again. If the command does not terminate with an error, resume the upgrade by running the following command:
++
+----
+sudo ./gravity upgrade --resume
+----
+. If the command again terminates with an error:
+.. Read the logs to identify which node requires repair.
+... Submit a ticket to MuleSoft support if assistance is required.
+. Open another terminal to the Runtime Fabric node identified in the error logs.
 . Repair the upgrade plan for the identified node in the terminal:
 +
 ----
@@ -184,7 +188,7 @@ sudo gravity plan --repair
 sudo ./gravity plan execute --phase=< insert phase > --force --debug
 ----
 
-The command should complete successfully. If it does not, wait a few minutes and repeat the previous steps.
+If an error is returned, wait a few minutes and repeat the previous steps.
 
 == See Also
 
