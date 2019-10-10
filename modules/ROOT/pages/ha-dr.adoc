@@ -29,8 +29,8 @@ Combining the availability across nodes with distributing nodes across different
 
 Runtime Fabric is configured according to the type of environment:
 
-* Non-production environments require a minimum of two availability zones for high availability.
-* Production environments require a minimum of three availability zones for high availability.
+* Non-production environments require a minimum of two availability zones for improved availability.
+* Production environments require a minimum of three availability zones for improved availability.
 * DR environments require require a minimum of three availability zones.
 
 For environments with two availability zones, deploy the controller and worker nodes into the two availability zones. You can deploy multiple controllers and workers into specific availability zones.
