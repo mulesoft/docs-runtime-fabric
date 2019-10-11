@@ -31,7 +31,7 @@ Runtime Fabric is configured according to the type of environment:
 
 * Non-production environments require a minimum of two availability zones for improved availability.
 * Production environments require a minimum of three availability zones for improved availability.
-* DR environments require require a minimum of three availability zones.
+* DR environments require require a minimum of three availability zones. DR availability zones are in addition to production environment availability zones. Having a DR environment necessitates double the capacity of only having a production environment.
 
 For environments with two availability zones, deploy the controller and worker nodes into the two availability zones. You can deploy multiple controllers and workers into specific availability zones.
 Deploy applications and services with two replicas. ( How does this work if we have more replicas than availability zones??? For example, > 3 Replicas. ) In the case of two replicas, if one replica fails, it must be manually restarted to maintain a minimum of 2 active nodes.
