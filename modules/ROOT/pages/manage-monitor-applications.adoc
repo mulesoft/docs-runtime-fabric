@@ -4,20 +4,22 @@ Applications and API gateways deployed to Runtime Fabric include native support 
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] provides tools that give feedback from Mule flows and components 
+xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components 
 in your application network. For applications and API gateways deployed to Runtime Fabric, Anypoint Monitoring 
-provides basic metrics to all customers. Titanium customers have access to additional capabilities including 
+provides basic metrics to all customers. Titanium customers have access to additional capabilities, including 
 application log retrieval and search.
 
 === Enable Anypoint Monitoring
 
-Runtime Fabric is configured to send application metrics to Anypoint Monitoring by default. Titanium customers will also automatically have application logs sent to Anypoint Monitoring by default. In order for metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available.
+By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Titanium customers also have application logs automatically sent to Anypoint Monitoring by default. In order for metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
+
+If an outbound proxy is needed, configure Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
+
+To verify outbound network connectivity:
 
 . Ensure each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 5044 to:
 .. US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
 .. EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
-. If an outbound proxy is needed, configure Runtime Fabric to use a SOCKS5 proxy by following the instructions on xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
-
 
 === Disable Anypoint Monitoring for an application
 
