@@ -9,6 +9,18 @@ in your application network. For applications and API gateways deployed to Runti
 provides basic metrics to all customers. Titanium customers have access to additional capabilities including 
 application log retrieval and search.
 
+=== Enable Anypoint Monitoring
+
+Runtime Fabric is configured to send application metrics to Anypoint Monitoring by default. Titanium customers will also automatically have application logs sent to Anypoint Monitoring by default. In order for metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available.
+
+. Ensure each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 5044 to:
+.. US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
+.. EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
+. If an outbound proxy is needed, configure Runtime Fabric to use a SOCKS5 proxy by following the instructions on xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
+
+
+=== Disable Anypoint Monitoring for an application
+
 When you deploy an application to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint 
 Monitoring, pass the following custom property when deploying your application:
 
