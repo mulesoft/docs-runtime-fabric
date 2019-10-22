@@ -21,6 +21,7 @@
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
 * xref:upgrade-index.adoc[Upgrade Runtime Fabric]
  ** xref:upgrade-cluster.adoc[Upgrade Cluster]
+ ** xref:upgrade-14path.adoc[Upgrade Path to Runtime Fabric Version 1.4]
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric]
