@@ -7,12 +7,51 @@ Before deploying a Mule application to Anypoint Runtime Fabric, determine the co
 
 When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
+The performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. They run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+
+=== Runtime Fabric v1.3 and earlier
+
 You can allocate the following resources when deploying an application:
 
 * vCPU cores
 * Memory
 
-Performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. They run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+CPU is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on the same Runtime Fabric.
+
+Guaranteed CPU allocation works well when you run large apps and you want to ensure there is no CPU contention between them. It gives guaranteed performance in all cases. However, performance can suffer when you allocate a smaller amount of CPU cores, for example, apps with less than 0.5 vCPU.
+
+=== Runtime Fabric v1.4 and later
+
+As of Runtime Fabric version 1.4, you can allocate CPU in a burstable model by configuring each application’s requested CPU and CPU limit using the following parameters:
+
+* `Reserved CPU` - Amount of vCPU guaranteed to the app and reserved for its use.
+* `CPU limit` : The maximum amount of vCPU that the app can use (the level to which it can burst). This is shared CPU on the worker node. When you set `CPU limit` to be a higher value than `Reserved CPU`, the application can burst up to the limit of shared CPU in addition to the cores it has reserved.
+
+CPU bursting works better for deployments with smaller amounts of CPU cores, and provides the following additional benefits:
+
+* More control over your CPU cores.
+* Set the values equal to each other in order to get the same guaranteed quality of service experienced with Runtime Fabric v1.3 and earlier.
+* Better density: You can deploy more apps per CPU core.
+
+When you enable CPU bursting, you must consider the following factors:
+
+* CPU Bursting Limitations
+
+** Minimum reserve: 0.02 vCPU.
+** Minimum limit: 0.07 vCPU. This aligns with the minimum for Runtime Fabric v1.3 and earlier.
+** The CPU limit is bounded by the CPU cores provided on the worker nodes.
+** The maximum suggested utilization per CPU core is 20 - 25 simple apps and API gateways. More complex apps that are frequently used should get more capacity. When the minimum reserve and minimum limit are specified, this provides approximately .5 cores to share across all apps when needed.
+* Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 cores, depending on whether log forwarding is enabled for Anypoint Monitoring.
+* CPU contention. With CPU bursting, applications can compete for a shared resource- the unallocated CPU remaining on the worker node. As more apps are deployed on a worker node, each app has less unallocated CPU to share with other nodes, apps can suffer from poor performance due to not getting enough CPU. The following strategies can be considered for minimizing CPU contention with your applications:
+
+** Deploy intensive nightly batch applications with API that have peak load during the day.
+** Deploy multiple replicas of an application so that they are distributed across worker nodes to maximize the surface area for the unallocated CPU.
++
+Regardless of what approach is chosen, make sure you run tests to validate performance.
+* The number of replicas and the CPU and memory configuration do not change dynamically, so there is no horizontal or vertical autoscaling. 
+* To achieve high availability with deployed applications, deploy multiple replicas. 
+* When sizing your worker nodes, make sure to keep your CPU usage in compliance with your Mule license. Mule licensing is based upon the amount of CPU cores Mule apps and API gateways have access to use. 
+
 
 == Minimum Core and Memory Requirements
 
