@@ -1,0 +1,16 @@
+= Upgrade Path to Runtime Fabric Version 1.4
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Although upgrading to Runtime Fabric version 1.4 will not impact running applications, make sure to first perform an 
+upgrade on a non-production environment.
+
+. Upgrade the Runtime Fabric installer to the latest version. Perform this upgrade during your next scheduled maintenance window. You must complete this step before starting the upgrade to version 1.4.
+. Upgrade to Runtime Fabric version 1.4. You must select Runtime Fabric version 1.4 in Runtime Manager and follow 
+the instructions provided in xref:upgrade-index.adoc[Upgrade Runtime Fabric]. 
+. After completing the upgrade, deploy an app.
+
+== See Also
+
+* xref:upgrade-cluster.adoc[Perform Runtime Fabric Cluster Upgrades]
