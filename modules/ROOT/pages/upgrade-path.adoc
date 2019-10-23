@@ -1,9 +1,11 @@
-= Upgrade Path to Runtime Fabric Version 1.4
+= Upgrade Runtime Fabric Components
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 Anypoint Runtime Fabric contains a collection of services which run within the cluster, including the agent used to connect to Anypoint Platform. Perform the following steps to upgrade these services.
+
+The following instructions are applicable to Runtime Fabric Versions 1.3 and 1.4.
 
 == Before You Begin
 
