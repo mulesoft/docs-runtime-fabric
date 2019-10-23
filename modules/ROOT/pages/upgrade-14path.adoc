@@ -3,16 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-
-. Upgrade the Runtime Fabric installer to the latest version. Perform this upgrade during your next scheduled maintenance window. You must complete this step before starting the upgrade to version 1.4.
-. Upgrade to Runtime Fabric version 1.4. You must select Runtime Fabric version 1.4 in Runtime Manager and follow 
-the instructions provided in xref:upgrade-index.adoc[Upgrade Runtime Fabric]. 
-. After completing the upgrade, deploy an app.
-
-== See Also
-
-* xref:upgrade-cluster.adoc[Perform Runtime Fabric Cluster Upgrades]
-
 Anypoint Runtime Fabric contains a collection of services which run within the cluster, including the agent used to connect to Anypoint Platform. Perform the following steps to upgrade these services.
 
 == Before You Begin
