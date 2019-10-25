@@ -9,31 +9,22 @@ When a Mule application is deployed to Runtime Fabric, the application is deploy
 
 The performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. They run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
 
-=== Runtime Fabric v1.3 and earlier
-
 You can allocate the following resources when deploying an application:
 
 * vCPU cores
+** `Reserved vCPU` - the amount of vCPU guaranteed to the application and reserved for its use.
+** `vCPU Limit` - the maximium amount of vCPU the application can use (the level to which it can burst). This is shared CPU on the worker node. 
 * Memory
 
-CPU is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on the same Runtime Fabric.
+== vCPU Allocation
 
-Guaranteed CPU allocation works well when you run large apps and you want to ensure there is no CPU contention between them. It gives guaranteed performance in all cases. However, performance can suffer when you allocate a smaller amount of CPU cores, for example, apps with less than 0.5 vCPU.
+When the Reserved vCPU and vCPU limit are equal, the CPU on the worker node is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on the Runtime Fabric.
 
-=== Runtime Fabric v1.4 and later
+Guaranteed CPU allocation allows applications to perform consistently by ensuring there is no CPU contention between other applications. It gives guaranteed performance in all cases.
 
-As of Runtime Fabric version 1.4, you can allocate CPU in a burstable model by configuring each application’s requested CPU and CPU limit using the following parameters:
+When the `vCPU Limit` is set to a higher value than the `Reserved vCPU`, the application can burst up to the either the vCPU limit value or the amount of unreserved vCPU on the worker node, which ever is lesser.
 
-* `Reserved CPU` - Amount of vCPU guaranteed to the app and reserved for its use.
-* `CPU limit` : The maximum amount of vCPU that the app can use (the level to which it can burst). This is shared CPU on the worker node. When you set `CPU limit` to be a higher value than `Reserved CPU`, the application can burst up to the limit of shared CPU in addition to the cores it has reserved.
-
-CPU bursting works better for deployments with smaller amounts of CPU cores, and provides the following additional benefits:
-
-* More control over your CPU cores.
-* Set the values equal to each other in order to get the same guaranteed quality of service experienced with Runtime Fabric v1.3 and earlier.
-* Better density: You can deploy more apps per CPU core.
-
-When you enable CPU bursting, you must consider the following factors:
+When using CPU bursting, you must consider the following factors:
 
 * CPU Bursting Limitations
 
@@ -58,7 +49,7 @@ Regardless of what approach is chosen, make sure you run tests to validate perfo
 The minimum values for the amount of CPU and memory allocated to each replica of a Mule application are:
 
 * vCPU Cores: 0.07 cores
-* Memory: 0.7 GiB memory (Mule 4) or 0.5 GiB (Mule 3.x)
+* Memory: 0.7 GiB memory (Mule 4) or 0.5 GiB (Mule 3)
 
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
