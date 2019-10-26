@@ -68,16 +68,18 @@ Performance test results are based on an Anypoint Runtime Fabric cluster with co
 
 A C++ based load generator with better efficiency in SSL connections was used to yield the maximum throughput.
 
-The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores:
+The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. In most cases, ECDSA provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
 
-[%header,cols="3*a"]
+[%header,cols="5*a"]
 |===
-| vCPU Cores | Max Requests per Second (Connection Re-use) | Max Requests per Second (No Connection Re-use)
-| `1.00` | 2000 | 175
-| `0.75` | 1500 | 100
-| `0.50` | 1000 | 50
-| `0.25` | 100 | 10
+| vCPU Cores | Max Requests per Second (Connection Re-use)* | Max Requests per Second (No Connection Re-use  with 2K RSA key)| Max Requests per Second (No Connection Re-use with 4K RSA key) |Max Requests per Second (No Connection Re-use with ECDSA key - curve p256)
+| `1.00` | 2000 | 175 | |
+| `0.75` | 1500 | 100 | |
+| `0.50` | 1000 | 50 | |
+| `0.25` | 100 | 10 | |
 |===
+
+*Public key exchange is not applicable because it becomes a small part of CPU consumption.
 
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
