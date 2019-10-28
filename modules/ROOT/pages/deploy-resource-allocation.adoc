@@ -29,7 +29,7 @@ When using CPU bursting, you must consider the following factors:
 * CPU Bursting Limitations
 
 ** Minimum reserve: 0.02 vCPU.
-** Minimum limit: 0.07 vCPU. This aligns with the minimum for Runtime Fabric v1.3 and earlier.
+** Minimum limit: 0.07 vCPU.
 ** The CPU limit is bounded by the CPU cores provided on the worker nodes.
 ** The maximum suggested utilization per CPU core is 20 - 25 simple apps and API gateways. More complex apps that are frequently used should get more capacity. When the minimum reserve and minimum limit are specified, this provides approximately .5 cores to share across all apps when needed.
 * Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 cores, depending on whether log forwarding is enabled for Anypoint Monitoring.
