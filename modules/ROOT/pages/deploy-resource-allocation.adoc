@@ -26,30 +26,24 @@ When the `vCPU Limit` is set to a higher value than the `Reserved vCPU`, the app
 
 When using CPU bursting, you must consider the following factors:
 
-* CPU Bursting Limitations
+* Minimum reserved vCPU: 0.02 vCPU.
+* Minimum vCPU limit: 0.07 vCPU.
+* The CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
+* The maximum recommended utilization per CPU core is 20 - 25 simple applications and API gateways. More complex applications with higher usage may need more capacity.
+* Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
+* Applications compete for the unallocated CPU remaining on their worker node. As more applications are deployed on a worker node, less unallocated CPU is available to share with other applications and can result in poor performance. The following strategies can be considered for minimizing CPU contention with your applications:
 
-** Minimum reserve: 0.02 vCPU.
-** Minimum limit: 0.07 vCPU.
-** The CPU limit is bounded by the CPU cores provided on the worker nodes.
-** The maximum suggested utilization per CPU core is 20 - 25 simple apps and API gateways. More complex apps that are frequently used should get more capacity. When the minimum reserve and minimum limit are specified, this provides approximately .5 cores to share across all apps when needed.
-* Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 cores, depending on whether log forwarding is enabled for Anypoint Monitoring.
-* CPU contention. With CPU bursting, applications can compete for a shared resource- the unallocated CPU remaining on the worker node. As more apps are deployed on a worker node, each app has less unallocated CPU to share with other nodes, apps can suffer from poor performance due to not getting enough CPU. The following strategies can be considered for minimizing CPU contention with your applications:
-
-** Deploy intensive nightly batch applications with API that have peak load during the day.
-** Deploy multiple replicas of an application so that they are distributed across worker nodes to maximize the surface area for the unallocated CPU.
+** Deploy nightly batch applications with other applications that have peak load during the day.
+** Deploy multiple replicas of an application so that they are distributed across worker nodes to maximize the surface area for unallocated CPU.
 +
 Regardless of what approach is chosen, make sure you run tests to validate performance.
-* The number of replicas and the CPU and memory configuration do not change dynamically, so there is no horizontal or vertical autoscaling. 
-* To achieve high availability with deployed applications, deploy multiple replicas. 
-* When sizing your worker nodes, make sure to keep your CPU usage in compliance with your Mule license. Mule licensing is based upon the amount of CPU cores Mule apps and API gateways have access to use. 
 
+== Memory Allocation
 
-== Minimum Core and Memory Requirements
+The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
 
-The minimum values for the amount of CPU and memory allocated to each replica of a Mule application are:
-
-* vCPU Cores: 0.07 cores
-* Memory: 0.7 GiB memory (Mule 4) or 0.5 GiB (Mule 3)
+* 0.7 GiB memory for Mule 4
+* 0.5 GiB memory for Mule 3
 
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
@@ -63,7 +57,7 @@ The available heap memory is approximately half of the total memory allocated to
 
 == Application Startup Times
 
-The startup time for a Mule applications is correlated to the number of vCPU cores the application has access to:
+The startup time for a Mule applications is correlated to the total number of vCPU cores the application has access to:
 
 [%header,cols="2*a"]
 |===
@@ -76,7 +70,7 @@ The startup time for a Mule applications is correlated to the number of vCPU cor
 
 == Application Performance
 
-The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
+The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the total umber of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
 
 [%header,cols="3*a"]
 |===
