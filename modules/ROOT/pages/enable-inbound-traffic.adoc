@@ -64,7 +64,7 @@ ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a
 * secp384r1 (P-384)
 * secp256r1 (also known as prime256v1 (P-256))
 
-Use the following steps steps to generate a certificate-key pair for evaluation purposes.
+Use the following steps to generate a certificate-key pair for evaluation purposes.
 
 . Run the following command on your machine to generate a certificate-key pair:
 +
@@ -124,12 +124,12 @@ If you do not see *Add TLS Context*, ensure you are viewing your secret group in
 == Enable Inbound Traffic
 The Runtime Fabric internal load balancer supports OpenSSL 1.1.1 and TLS 1.3, which provide the following security enhancements and performance improvements over TLS 1.2:
  
-* 2x or greater TLS 1.2 Connection Performance Throughput Boost.
+* 2x or greater TLS 1.2 connection performance throughput boost versus prior Runtime Fabric internal load balancer running on OpenSSL 1.0.2.
 * Reduction of one round trip in full handshake for TLS 1.3 vs. TLS 1.2.
 * TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support.
 * TLS 1.3 Protection against downgrade attacks.
 * Continued support for both RSA and ECDSA keys.
-* TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to xref:release-notes::runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] for a complete list of supported and deprecated ciphers. 
+* TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to the xref:release-notes/anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a complete list of supported and deprecated ciphers. 
 
 The TLS 1.3 protocol is enabled by default for those clients that support it.
 
