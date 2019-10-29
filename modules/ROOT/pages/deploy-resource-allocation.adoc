@@ -7,19 +7,47 @@ Before deploying a Mule application to Anypoint Runtime Fabric, determine the co
 
 When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
+The performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. The processors run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+
 You can allocate the following resources when deploying an application:
 
 * vCPU cores
+** `Reserved vCPU`
++
+The amount of vCPU guaranteed to the application and reserved for its use.
+** `vCPU Limit`
++
+The maximium amount of vCPU the application can use (the level to which it can burst). This is shared CPU on the worker node. 
 * Memory
 
-Performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. They run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+== vCPU Allocation
 
-== Minimum Core and Memory Requirements
+When the `Reserved vCPU` and `vCPU Limit` are equal, the CPU on the worker node is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on Runtime Fabric.
 
-The minimum values for the amount of CPU and memory allocated to each replica of a Mule application are:
+Guaranteed CPU allocation allows applications to perform consistently by ensuring there is no CPU contention between other applications. It guarantees performance in all cases.
 
-* vCPU Cores: 0.07 cores
-* Memory: 0.7 GiB memory (Mule 4) or 0.5 GiB (Mule 3.x)
+When the value of `vCPU Limit` is set higher than the value of `Reserved vCPU`, the application can burst up to the either the vCPU limit value or the amount of unreserved vCPU on the worker node, whichever is less.
+
+When using CPU bursting, you must consider the following factors:
+
+* Minimum reserved vCPU: 0.02 vCPU.
+* Minimum vCPU limit: 0.07 vCPU.
+* The CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
+* The maximum recommended utilization per CPU core is 20 - 25 simple applications and API gateways. More complex applications with higher usage may need more capacity.
+* Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
+* Applications compete for the unallocated CPU remaining on their worker node. As more applications are deployed on a worker node, less unallocated CPU is available to share with other applications and can result in poor performance. The following strategies can be considered for minimizing CPU contention with your applications:
+
+** Deploy nightly batch applications with other applications that have peak load during the day.
+** Deploy multiple replicas of an application so that they are distributed across worker nodes to maximize the surface area for unallocated CPU.
++
+Regardless of what approach is chosen, make sure you run tests to validate performance.
+
+== Memory Allocation
+
+The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
+
+* 0.7 GiB memory for Mule 4
+* 0.5 GiB memory for Mule 3
 
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
@@ -33,7 +61,7 @@ The available heap memory is approximately half of the total memory allocated to
 
 == Application Startup Times
 
-The startup time for a Mule applications is correlated to the number of vCPU cores the application has access to:
+The startup time for a Mule applications is correlated to the total number of vCPU cores the application has access to:
 
 [%header,cols="2*a"]
 |===
@@ -46,7 +74,7 @@ The startup time for a Mule applications is correlated to the number of vCPU cor
 
 == Application Performance
 
-The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
+The resources allocated to your Mule application determine the application's performance. Following are the approximate values for throughput based on the total number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
 
 [%header,cols="3*a"]
 |===

@@ -1,0 +1,30 @@
+= Upgrade Runtime Fabric Components
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Runtime Fabric contains a collection of services that run within the cluster, including the agent used to connect to Anypoint Platform. Perform the following steps to upgrade these services.
+
+== Before You Begin
+
+* Run the upgrade procedure on a nonproduction Runtime Fabric to verify compatibility with your environment.
+* Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
+
+** The upgrade takes fewer than 10 minutes in most cases.
+** If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, Connectivity is restored after the upgrade finishes.
+
+== Availability of Deployed Applications
+
+The upgrade procedure is designed to keep deployed applications running and available to serve requests. The majority of the services that are upgradable via this process run within the controller nodes. Impact to running Mule instances and worker nodes is minimal by design.
+
+== Apply the Component Upgrade
+
+. Navigate to your Runtime Fabric by selecting it on the Runtime Fabrics tab in Runtime Manager.
+. If an upgrade is available, select "Upgrade to v1.x". The status of the Runtime Fabric is updated to reflect the upgrade procedure is in progress.
+. Wait for the status to transition to Active. 
++
+When the status transitions to Active, and the version of the Runtime Fabric reflects the new version, the upgrade is complete.
+
+== See Also
+
+* xref:upgrade-cluster.adoc[Upgrade Runtime Fabric Cluster]

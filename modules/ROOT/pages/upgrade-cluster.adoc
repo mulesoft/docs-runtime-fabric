@@ -192,4 +192,4 @@ If an error is returned, wait a few minutes and repeat the previous steps.
 
 == See Also
 
-* xref:upgrade-cluster.adoc[Upgrade Runtime Fabric]
+* xref:upgrade-components.adoc[Upgrade Runtime Fabric Components]
