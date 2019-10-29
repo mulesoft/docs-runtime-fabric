@@ -75,7 +75,7 @@ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365
 . Type a passphrase for your key.
 . Fill out the requested information (Country, State, etc). When you’re asked for a Common Name, supply the domain you’ll use in your Runtime Fabric.
 
-If you use a wildcard for example, *.example.com in your Common Name, your application URLs use the following format: `{app-name}.example.com`. Otherwise, your application URLs use this format: `example.com/{app-name}`._
+If you use a wildcard for example, *.example.com in your Common Name, your application URLs use the following format: `{app-name}.example.com`. Otherwise, your application URLs use the format: `example.com/{app-name}`.
 
 
 == Create a TLS Context
