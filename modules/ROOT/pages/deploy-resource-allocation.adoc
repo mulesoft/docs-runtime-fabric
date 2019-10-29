@@ -70,16 +70,21 @@ A C++ based load generator with better efficiency in SSL connections was used to
 
 The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. In most cases, ECDSA provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
 
-[%header,cols="5*a"]
+[%header,cols="4*a"]
 |===
-| vCPU Cores | Max Requests per Second (Connection Re-use)* | Max Requests per Second (No Connection Re-use  with 2K RSA key)| Max Requests per Second (No Connection Re-use with 4K RSA key) |Max Requests per Second (No Connection Re-use with ECDSA key - curve p256)
-| `1.00` | 2000 | 175 | |
-| `0.75` | 1500 | 100 | |
-| `0.50` | 1000 | 50 | |
-| `0.25` | 100 | 10 | |
+| Key Type | CPU | TLS Without Connection Reuse | TLS With Connection Reuse
+| RSA 2K  | 0.25 | 94 msg/sec | 1100 msg/sec 
+| RSA 2K | 0.5 | 189 msg/sec | 2250 msg/sec 
+| RSA 2K | 1 | 380 msg/sec | 4000 msg/sec 
+| RSA 4K* | 0.25 | 14 msg/sec | 1048 msg/sec 
+| RSA 4K* | 0.5 | 30 msg/sec | 2087 msg/sec 
+| RSA 4K* | 1 | 59 msg/sec | 3700 msg/sec
+| ECDSA P-256 | 0.25 | 234 msg/sec | 1150 msg/sec
+| ECDSA P-256 | 0.5 | 451 msg/sec | 2257 msg/sec
+| ECDSA P-256 | 1 | 860 msg/sec | 4100 msg/sec
 |===
 
-*Public key exchange is not applicable because it becomes a small part of CPU consumption.
+*Doubling the RSA key length degrades performance by at least a factor of 6.
 
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
