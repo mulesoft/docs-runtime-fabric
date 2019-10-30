@@ -49,12 +49,12 @@ See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
 Wait until the upgrade completes. After the upgrade completes, the status transitions to Active.
 +
 Keep your browser session open to use in later steps.
-. Update your Mule deployments running on this Runtime Fabric to the latest patch version.
+. Update your Mule deployments running on this Anypoint Runtime Fabric instance to the latest patch version.
 .. Using your web browser, navigate to the *Applications* tab in Anypoint Runtime Manager.
 .. Select an application and select *Manage Application*. 
 .. The value in the Runtime version field indicates if an update is available. Select the updated version of Mule runtime engine.
 .. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
-.. Repeat this for each application running on this Runtime Fabric.
+.. Repeat this for each application running on this instance of Runtime Fabric.
 . Verify Runtime Fabric is healthy:
 .. Using your web browser, navigate to the *Runtime Fabrics* tab in Anypoint Runtime Manager and verify that the Runtime Fabric reports an Active status.
 .. Open a terminal to a Runtime Fabric controller node.
