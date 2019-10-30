@@ -4,11 +4,11 @@ Anypoint Runtime Fabric is powered by a set of components including Docker, Kube
 
 == Before You Begin
 
-* Run the upgrade procedure on a nonproduction instance of Runtime Fabric to verify compatibility with your environment and to gain familiarity with the procedure.
+* Run the upgrade procedure on a non-production Runtime Fabric to verify compatibility with your environment and to gain familiarity with the procedure.
 * Plan the upgrade procedure when your team does not need to deploy new applications or managing existing applications on Runtime Fabric.
 
 ** The upgrade can take over an hour to complete.
-** The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. connectivity is restored after the upgrade completes.
+** The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
 * Make sure the `/tmp` directory has a minimum of 4 GiB of disk space available.
 * Verify you have root privileges. Root privileges are required to perform an upgrade.
 
@@ -49,12 +49,12 @@ See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
 Wait until the upgrade completes. After the upgrade completes, the status transitions to Active.
 +
 Keep your browser session open to use in later steps.
-. Update your Mule deployments running on this Anypoint Runtime Fabric instance to the latest patch version.
+. Update your Mule deployments running on this Anypoint Runtime Fabric to the latest patch version.
 .. Using your web browser, navigate to the *Applications* tab in Anypoint Runtime Manager.
 .. Select an application running on this Runtime Fabric and select *Manage Application*. 
 .. The value in the Runtime version field indicates if an update is available. Select the updated version of Mule runtime engine.
 .. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
-.. Repeat this for each application running on this instance of Runtime Fabric.
+.. Repeat this for each application running on this Runtime Fabric.
 . Verify Runtime Fabric is healthy:
 .. Using your web browser, navigate to the *Runtime Fabrics* tab in Anypoint Runtime Manager and verify that the Runtime Fabric reports an Active status.
 .. Open a terminal to a Runtime Fabric controller node.
