@@ -11,7 +11,7 @@ Anypoint Runtime Fabric contains a collection of services that run within the cl
 * Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
 
 ** The upgrade takes fewer than 10 minutes in most cases.
-** If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, Connectivity is restored after the upgrade finishes.
+** If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
 
 == Availability of Deployed Applications
 
