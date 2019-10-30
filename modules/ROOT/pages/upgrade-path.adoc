@@ -19,11 +19,11 @@ The upgrade procedure is designed to keep deployed applications running and avai
 
 == Apply the Component Upgrade
 
-. Navigate to your Runtime Fabric by selecting it on the Runtime Fabrics tab in Runtime Manager.
-. If an upgrade is available, select "Upgrade to v1.x". The status of the Runtime Fabric is updated to reflect the upgrade procedure is in progress.
+. Navigate to your instance of Runtime Fabric by selecting it on the Runtime Fabrics tab in Runtime Manager.
+. If an upgrade is available, select "Upgrade to v1.x". The status of the Runtime Fabric instance is updated to reflect the upgrade procedure is in progress.
 . Wait for the status to transition to Active. 
 +
-When the status transitions to Active, and the version of the Runtime Fabric reflects the new version, the upgrade is complete.
+When the status transitions to Active, and Runtime Fabric reflects the new version, the upgrade is complete.
 
 == See Also
 
