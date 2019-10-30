@@ -51,7 +51,7 @@ Wait until the upgrade completes. After the upgrade completes, the status transi
 Keep your browser session open to use in later steps.
 . Update your Mule deployments running on this Runtime Fabric to the latest patch version.
 .. Using your web browser, navigate to the *Applications* tab in Anypoint Runtime Manager.
-.. Select an application running on this Runtime Fabric and select *Manage Application*. 
+.. Select an application and select *Manage Application*. 
 .. The value in the Runtime version field indicates if an update is available. Select the updated version of Mule runtime engine.
 .. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
 .. Repeat this for each application running on this Runtime Fabric.
