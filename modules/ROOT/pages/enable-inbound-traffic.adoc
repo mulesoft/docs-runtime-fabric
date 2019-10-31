@@ -129,7 +129,7 @@ The Runtime Fabric internal load balancer supports OpenSSL 1.1.1 and TLS 1.3, wh
 * Added TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support.
 * TLS 1.3 protection against downgrade attacks.
 * Continued support for both RSA and ECDSA keys.
-* TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to the xref:release-notes/anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a complete list of supported and deprecated ciphers. 
+* TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to the xref:release-notes::anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a complete list of supported and deprecated ciphers.
 
 The TLS 1.3 protocol is enabled by default for those clients that support it.
 
