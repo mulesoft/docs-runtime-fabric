@@ -66,13 +66,13 @@ Inbound traffic is processed using an internal load balancer managed by Anypoint
 
 Performance test results are based on an Anypoint Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. The load generator used in the performance test was hosted on a separate AWS instance in the same region. The M4 instances featured a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2, which ran at a base clock rate of 2.4 GHz. Using Intel Turbo Boost increased the clock rate to go as high as 3.0 GHz.
 
-A C++ based load generator with better efficiency in SSL connections was used to yield the maximum throughput.
+A load generator based on C++, which has better efficiency in SSL connections was used to yield the maximum throughput.
 
-The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. In most cases, ECDSA provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
+The following table summarizes the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer, based on the number of CPU cores. In most cases, ECDSA provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
 
 [%header,cols="4*a"]
 |===
-| Key Type | CPU | TLS Without Connection Reuse | TLS With Connection Reuse
+| Key Type | CPU | TLS Without Connection Reuse | TLS with Connection Reuse
 | RSA 2K  | 0.25 | 94 msg/sec | 1100 msg/sec 
 | RSA 2K | 0.5 | 189 msg/sec | 2250 msg/sec 
 | RSA 2K | 1 | 380 msg/sec | 4000 msg/sec 
