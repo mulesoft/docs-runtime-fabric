@@ -40,19 +40,19 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. The
 +
 It can take up to 5 minutes for any permissions you gain to propagate.
 
-.. From Anypoint Platform, click *Access Management*.
+.. From Anypoint Platform, select *Access Management*.
 +
 If you do not have access to Access Management, request access from your system administrator.
 
-.. Click *Users*
-.. Locate the row with your username, then click on the blue link.
+.. Select *Users*
+.. Locate the row with your username, then select the blue link.
 .. On the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
 
 .. On the *Secrets Manager* tab, enable the *Manage Secret Groups*, *Write Secrets*, and *Read Secrets Metadata* permissions for your Runtime Fabric environment.
 
 == Generate a Certificate-Key Pair
 
-You’ll need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your Common Name should match the domain you’ll use in your Runtime Fabric. 
+You need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your common name should match the domain you use in your Runtime Fabric. 
 
 RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance. 
 [NOTE]
@@ -87,47 +87,47 @@ Follow these steps to include your certificate-key pair in a TLS context and sto
 [NOTE]
 Make sure you’re in the right business group and select your Runtime Fabric environment in the sidebar on the left.
 
-. Click the *Create Secret Group* button.
+. Select *Create Secret Group*.
 . Under *General*, type the name of your secret group.
-. Click *Save*.
-. Click *Keystore* in the sidebar on the left and create your keystore:
-.. Click *Add Keystore* button.
+. Select *Save*.
+. Select *Keystore* in the sidebar and create your keystore:
+.. Select *Add Keystore*.
 +
-If you don’t see the *Add Keystore* button, ensure that you are viewing your secret group in edit mode. Return to *Secret Groups*, then click the *Edit* next to your group.
+If you don’t see the *Add Keystore* button, ensure that you are viewing your secret group in edit mode. Return to *Secret Groups*, then select *Edit* next to your group.
 
 .. Enter a name for your keystore.
 +
 This name identifies the keystore when you add it to your TLS context below.
 
-.. Under *Certificate File*, select *Choose File*, then select your `.pem` certificate` file.
-.. Under *Key File*, select *Choose File*, then select your `.pem` key file.
+.. Under *Certificate File*, select *Choose File* and then select your `.pem` certificate` file.
+.. Under *Key File*, select *Choose File* and then select your `.pem` key file.
 .. Enter your key passphrase.
 .. Optionally, upload a separate certificate file containing a CA path.
-.. Click *Save*.
+.. Select *Save*.
 +
 [NOTE]
 If you receive an unknown error, it might be due to your Certificate file containing a CA path. You must move the CA path into its own file and upload it separately before continuing.
 
-. Click *TLS Context*, then perform the following:
+. Select *TLS Context*, then perform the following:
 +
 [NOTE]
-If you do not see *Add TLS Context*, ensure you are viewing your secret group in edit mode. Return to the *Secret Groups* page, then click *Edit* next to your group.
+If you do not see *Add TLS Context*, ensure you are viewing your secret group in edit mode. Return to the *Secret Groups* page, then select *Edit* next to your group.
 
 .. Type a name for your TLS context. This will identify it when you apply it to your Runtime Fabric later.
 .. Use the default TLS version (TLS 1.2).
 .. Under *Target*, select *Anypoint Security*. This configures your TLS context so it can be applied to a Runtime Fabric.
 .. Under *Keystore*, select the name of the keystore you configured previously.
-.. Click *Save*.
+.. Select *Save*.
 
-. After saving your TLS context, click *Secret Groups*, then click the *Finish*. This enables TLS Context for your *Runtime Fabric.*
+. After saving your TLS context, select *Secret Groups*, then select *Finish*. This enables TLS Context for your *Runtime Fabric.*
 
 == Enable Inbound Traffic
 The Runtime Fabric internal load balancer supports OpenSSL 1.1.1 and TLS 1.3, which provide the following security enhancements and performance improvements over TLS 1.2:
  
 * 2x or greater TLS 1.2 connection performance throughput boost versus prior Runtime Fabric internal load balancer running on OpenSSL 1.0.2.
 * Reduction of one round trip in full handshake for TLS 1.3 vs. TLS 1.2.
-* TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support.
-* TLS 1.3 Protection against downgrade attacks.
+* Added TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support.
+* TLS 1.3 protection against downgrade attacks.
 * Continued support for both RSA and ECDSA keys.
 * TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to the xref:release-notes/anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a complete list of supported and deprecated ciphers. 
 
@@ -135,11 +135,11 @@ The TLS 1.3 protocol is enabled by default for those clients that support it.
 
 After creating a TLS context, enable secure incoming traffic by applying the TLS context to your Runtime Fabric:
 
-. Navigate to Runtime Manager, the click *Runtime Fabric*.
-. Click the name of your Runtime Fabric to open the management page.
+. Navigate to Runtime Manager and select *Runtime Fabric*.
+. Select the name of your Runtime Fabric to open the management page.
 . In the *Associated Environments* tab, ensure your Runtime Fabric environment is associated with your Runtime Fabric.
-. Select the *Inbound Traffic* tab and turn on the Enable inbound traffic toggle.
-. Click *Basic Configuration*, then perform the following:
+. Select *Inbound Traffic* and turn on the Enable inbound traffic toggle.
+. Select *Basic Configuration*, then perform the following:
 .. Set the number of replicas to run the internal load balancer with.
 +
 [NOTE]
@@ -161,7 +161,7 @@ permission on your account.
 
 .. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
 
-. Click *Deploy* to deploy the internal load balancer. If successful, a message appears 
+. Select *Deploy* to deploy the internal load balancer. If successful, a message appears 
 in the bottom-right of the page. The deployment may take up to a minute. You can view the
 deployment status at the top of the form. When the status transitions to *Applied*, the 
 internal load balancer is successfully deployed and inbound traffic enabled.
@@ -298,12 +298,12 @@ By default, the activity across all IPs addresses behind your endpoint are logge
 === Configuring Internal Load Balancer Logs
 
 . From Anypoint Platform select Runtime Manager.
-. Click *Runtime Fabric*.
-. From the *Inbound Traffic* tab, click the "Logs +" link.
-. Click *Add Filter*.
+. Select *Runtime Fabric*.
+. From the *Inbound Traffic* tab, select the "Logs +" link.
+. Select *Add Filter*.
 . In the *IP* field, enter a single IP address or subset of addresses using CIDR notation.
 . Select the log level to apply for this IP filter.
-. Click *OK*.
+. Select *OK*.
 
 == See Also
 
