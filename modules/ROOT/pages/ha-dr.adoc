@@ -119,7 +119,7 @@ If you are maintaining a Hot-Standby for your DR site in an active-passive model
 
 To ensure licensing compliance, you can create an identical stand-by secondary RTF cluster in your DR site with no Mules deployed on it, and fail-over in the event of a disaster via one of the following methods:
 
-* Restore from an earlier backup taken on the active RTF. For information on how to back up and restore Runtime Fabric, refer to xref:https://docs.mulesoft.com/runtime-fabric/1.3/manage-backup-restore[Backup and Restore Runtime Fabric].
+* Restore from an earlier backup taken on the active RTF. For information on how to back up and restore Runtime Fabric, refer to xref:runtime-fabric::manage-backup-restore[Backup and Restore Runtime Fabric].
 +
 ** You must have regular backups executed and transferred to the DR site. 
 ** The secondary RTF assumes the role of the primary RTF, so the primary RTF must be disconnected from Anypoint control plane prior to applying the backup on the secondary RTF.
