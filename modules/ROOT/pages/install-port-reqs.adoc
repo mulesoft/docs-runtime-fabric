@@ -48,7 +48,7 @@ The following table lists all ports that must be open, along with the respective
 | 6060  | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
 | 6443, 8080 | TCP | HTTPS / HTTP | All nodes | Controller nodes | Kubernetes API server
 | 7373 | TCP | RPC | localhost | localhost | Serf RPC for peer-to-peer connectivity
-| 7496 | TCP | HTTPs | All nodes | All nodes | Serf (health checking agent) / Peer-to-peer connectivity
+| 7496 | TCP | HTTPS | All nodes | All nodes | Serf (health checking agent) / Peer-to-peer connectivity
 | 7575 | TCP | gRPC | All nodes | All nodes | Cluster status API
 | 10248-10250 | TCP | HTTPS | All nodes | All nodes | Kubernetes components
 | 10255 | TCP | HTTPS | All nodes | All nodes | Kubernetes components
