@@ -81,9 +81,9 @@ Anypoint Runtime Fabric and Anypoint Platform:
 | 443 | HTTPS | `anypoint.mulesoft.com`
 | 443 | HTTPS | `kubernetes-charts.storage.googleapis.com`
 | 443 | HTTPS | `docker-images-prod.s3.amazonaws.com`
-.2+| 443 .2+| HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `worker-cloud-helm-prod.s3.amazonaws.com`
 | EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com` `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com`
-.2+| 443 .2+| HTTPS | `exchange2-asset-manager-kprod.s3.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `exchange2-asset-manager-kprod.s3.amazonaws.com`
 | EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com` `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com`
 .2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com`
 | EU control plane: `ecr.eu-central-1.amazonaws.com`
