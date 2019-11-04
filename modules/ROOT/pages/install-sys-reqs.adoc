@@ -122,7 +122,7 @@ nodes in a development configuration.
 
 === Controller Nodes
 
-The number of controller nodes required for a production environment is three. Even numbers of
+The number of controller nodes required for a production environment is one. Even numbers of
 controllers are not supported.
 
 Each contoller node must have the following:
