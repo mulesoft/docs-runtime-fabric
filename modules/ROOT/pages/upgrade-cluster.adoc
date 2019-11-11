@@ -9,7 +9,7 @@ Anypoint Runtime Fabric is powered by a set of components including Docker, Kube
 
 ** The upgrade can take over an hour to complete.
 ** The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
-* Make sure the `/tmp` directory has a minimum of 4 GiB of disk space available.
+* Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
 * Verify you have root privileges. Root privileges are required to perform an upgrade.
 
 === Environment Prerequisites
@@ -139,7 +139,7 @@ Resumed upgrades are attached to your terminal session. Ensure you have a stable
 . On a terminal open to the controller node that was used to start the upgrade, change to the directory with the installer bundle files, as shown in the following example:
 +
 ----
-cd /tmp/rtf-upgrade
+cd /opt/anypoint/runtimefabric/installer
 ----
 +
 . Run the command to resume the upgrade: 
