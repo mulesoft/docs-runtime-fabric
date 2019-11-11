@@ -4,10 +4,20 @@ Applications and API gateways deployed to Runtime Fabric include native support 
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] provides tools that give feedback from Mule flows and components 
-in your application network. For applications and API gateways deployed to Runtime Fabric, Anypoint Monitoring 
-provides basic metrics to all customers. Titanium customers have access to additional capabilities including 
-application log retrieval and search.
+xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network. For applications and API gateways deployed to Anypoint Runtime Fabric (Runtime Fabric), Anypoint Monitoring provides basic metrics to all customers. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+
+=== Enable Anypoint Monitoring
+
+By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
+
+If you need an outbound proxy, configure Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
+
+To verify outbound network connectivity, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 5044 to:
+
+. US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
+. EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
+
+=== Disable Anypoint Monitoring for an Application
 
 When you deploy an application to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint 
 Monitoring, pass the following custom property when deploying your application:
