@@ -213,12 +213,12 @@ case, *Source IP* refers to the client making the request.
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Value |Description
-| *Max connections*
+| *Max Connections*
 | The maximum amount of simultaneous connections to allow.
 
 *Default value*: 512 connections
 
-| *Max requests per connection*
+| *Max Requests per Connection*
 | The maximum number of requests per connections to allow. +
 This value will determine how much reuse a connection can allow; consider the amount of CPU required to terminate and re-establish a TLS encrypted connection when lowering this value.
 
@@ -226,24 +226,35 @@ This value will determine how much reuse a connection can allow; consider the am
 
 *Default value*: 1000
 
-| *Connection idle time-out*
+| *Connection Idle Time-out*
 | The maximum amount of time that you allow an idle connection. +
 This value helps you terminate idle connections and free up resources. +
 This value should always be higher than your *read request time-out*.
 
 *Default value*: 15 seconds
 
-| *Read request time-out*
+| *Read Request Time-out*
 | The maximum amount of time spent to read a request before it is terminated.+
 This value enables requests with large payloads or slow clients to be terminated to keep resources available.+
 This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
 
-If a Mule application takes longer to respond than this value, the connection will automatically be closed. +
-This value should always be lower than the *connection idle time-out* value configured above.
+If a Mule application takes longer to respond than this value, the connection is automatically closed. +
+This value should always be lower than the *connection idle time-out* value previously configured.
 
 *Default value*: 10 seconds
 
-| *Max pipeline depth*
+| *Read Response Time-out*
+| The maximum amount of time spent to initiate a response before the connection is terminated.+
+This value enables large payloads be terminated to keep resources available.+
+
+*Default value*: 300 seconds
+
+| *Write Response Time-out*
+| The maximum amount of time spent from the end of the request header read to the end of the response write before the request is terminated.+
+
+*Default value*: 10 seconds
+
+| *Max Pipeline Depth*
 | The maximum amount of requests to allow from the same client. +
 This value defines how many simultaneous requests a client can send. +
 If a client exceeds this number, the exceeding requests will not be read until the requests in the queue receive a response.
