@@ -52,6 +52,12 @@ When an application is deployed, the following events occur:
 * The replica finishes loading the application.
 * The replica status shows as `STARTED` and is able to perform work.
 
+=== Application Update
+When performing an application update, you can use the `rtf.readiness.delay.seconds` custom property in the Anypoint Runtime Manager UI to specify a time delay before traffic starts flowing to the updated replica. You can tune the delay time according to application and environment needs to ensure that initialization is complete before the updated replica receives traffic.
+
+When specified, readiness is delayed by the number of seconds specified by `rtf.readiness.delay.seconds`. Inbound requests will not hit the updated replica until the replica has been successfully deployed and the readiness delay time has elapsed.
+By default, the value of `rtf.readiness.delay.seconds` is 0."
+
 === Application Failure
 
 If an application fails, for example, due to running of out memory, the following events occur:
