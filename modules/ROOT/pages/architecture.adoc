@@ -22,7 +22,7 @@ Deployments of applications and gateways not powered by Mule on Anypoint Runtime
 
 == Development and Production Configurations
 
-Anypoint Runtime Fabric supports development and production configurations. These supported configurations specify the minmum nodes and resources required.
+Anypoint Runtime Fabric supports development and production configurations. These supported configurations specify the minimum nodes and resources required.
 
 === Development Configuration
 
