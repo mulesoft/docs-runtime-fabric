@@ -165,11 +165,6 @@ in the bottom-right of the page. The deployment may take up to a minute. You can
 deployment status at the top of the form. When the status transitions to *Applied*, the 
 internal load balancer is successfully deployed and inbound traffic enabled.
 
-[IMPORTANT]
-When deploying a Mule application to Runtime Fabric using the Runtime Manager UI, only the 
-first domain that is used in the internal load balancer's certificate is selected to create 
-the application endpoint. Other domains specified in the certificate via the 
-`Subject Alternative Name` or `Common Name` are not used.
 
 == Verify that Inbound Traffic is Enabled
 
