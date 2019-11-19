@@ -21,6 +21,14 @@ Anypoint Runtime Fabric is powered by a set of components including Docker, Kube
 +
 This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
 * Applications serving inbound requests must be scaled to a minimum of 2 replicas.
+* To ensure proper cluster load balancing and routing, you must enable IP forwarding and bridging:
+
+** Kernel IP forwarding
++
+To enable internal Kubernetes load balancing, you must enable IPv4 forwarding on all servers.
+** Bridge-netfilter
++
+Enable the Linux kernel to translate packets to and from hosted containers.
 
 [WARNING] Runtime Fabrics running on cluster version 1.0.x encounter downtime to applications if configured to use an HTTP proxy. You must perform an additional step in the procedure by applying the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `gravity status` on a node and referencing the cluster version.
 
