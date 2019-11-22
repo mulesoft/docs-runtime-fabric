@@ -199,9 +199,7 @@ This step installs Runtime Fabric across all servers to form a cluster. It may t
 
 ==== Run using Docker
 
-. Navigate to the `../rtf-install-scripts/aws/` directory. You must run terraform from this directory.
-. Verify your current directory is the unzipped directory. When running the `dir` command, you should 
-see the `aws` directory listed, along with other directories (`azure`, `manual`, etc).
+. Navigate to the `../rtf-install-scripts/` directory. You must run terraform from this directory. When running the `dir` or `ls` command, you should see the `aws` directory listed along with other directories (`azure`, `manual`, etc).
 . Initialize terraform (this only has to be performed once):
 +
 ----
