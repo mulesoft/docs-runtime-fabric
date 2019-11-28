@@ -43,7 +43,8 @@ This tab displays the name and type of the deployment target you selected above.
 +
 [NOTE]
 A minimum of two replicas is required for high availability.
-.. To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
+
+. To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
 See how to xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
