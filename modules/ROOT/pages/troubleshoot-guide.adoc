@@ -6,6 +6,14 @@ endif::[]
 This topic describes common errors and steps to resolve them when installing Anypoint Runtime
 Fabric.
 
+== Get a full assessment with rtfctl
+
+Before starting troubleshooting, you can run rtfctl to get an assessment of the cluster health:
+
+----
+/opt/anypoint/runtimefabric/rtfctl status
+----
+
 == Resuming a Failed Installation
 
 You can resume an installation at the point where it failed by running the init script:
