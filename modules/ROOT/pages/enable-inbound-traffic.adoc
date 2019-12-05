@@ -220,7 +220,7 @@ case, *Source IP* refers to the client making the request.
 *Default value*: 512 connections
 
 | *Max Requests per Connection*
-| The maximum number of requests per connections to allow. +
+| The maximum number of requests per connection to allow. +
 Because this value determines how much reuse a connection allows, consider the amount of CPU required to terminate and reestablish a TLS-encrypted connection when lowering this value.
 
 *Maximum allowed*: 1000 requests per connection
