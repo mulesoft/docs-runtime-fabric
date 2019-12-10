@@ -17,7 +17,7 @@ The following sections list the TCP and UDP network port requirements for Anypoi
 
 === Ports Used During Installation
 
-The following table lists the ports that must be accessible on all nodes for Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
+The following table lists the ports that must be accessible on all nodes. These ports are used for internal communication between nodes during Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
 
 [%header%autowidth.spread]
 |===
