@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Update the proxy settings used by Runtime Fabric outbound connections to the internet. This includes managing HTTP proxies for connecting out to the Anypoint control plane, and SOCKS5 proxies for sending metrics and logs out to Anypoint Monitoring.
+You can update the proxy settings used by Anypoint Runtime Fabric outbound connections to the internet. This includes updating both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring.
 
 == Install rtfctl 
 
@@ -26,26 +26,15 @@ The password must be URL encoded.
 * *<8080>*: the port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: +
 `rtfctl get monitoring-proxy`
-
++
 The output should match the value expected.
 
 == Update the HTTP Proxy
 
-This operation requires two procedures: 
+Updating the HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window.
 
-* Run a script on each node of your Runtime Fabric to update the cluster.
 * Apply the proxy values to the services running within Runtime Fabric.
-
-=== Run the Script on Each Node
-
-. Copy the `set_dockerd_proxy.sh` from the controller node used to install Runtime Fabric, which is located under `/opt/anypoint/runtimefabric/scripts/`, to each controller and worker node under the same location (`/opt/anypoint/runtimefabric/scripts/`). +
-[NOTE]
-If you are not able to locate this script, please open a support ticket for assistance.
-. Update the `/opt/anypoint/runtimefabric/env` file to set the values for `RTF_HTTP_PROXY` and `RTF_NO_PROXY` variables. + 
-The `RTF_HTTP_PROXY` value accepts authentication values in-line. For example: `http://user:Password@1.1.1.1:80` +
-The `RTF_NO_PROXY` value accepts a comma-separated list of hosts that should not go through the proxy. For example: `1.1.1.1,no-proxy.com`
-. Run the script `/opt/anypoint/runtimefabric/scripts/set_dockerd_proxy.sh`.
-. After repeating these steps on each controller and worker node, apply these proxy values to the services running within Runtime Fabric.
+* If you are using Runtime Fabric installer 1.0.x, run the script on each node of your Runtime Fabric to update the cluster.
 
 === Apply Proxy Values to Runtime Fabric Services
 
@@ -53,7 +42,7 @@ The `RTF_NO_PROXY` value accepts a comma-separated list of hosts that should not
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
-rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2.:9999>"
+rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
 ----
 +
 * *<user>*: the username needed to authenticate to the HTTP proxy.
@@ -62,10 +51,21 @@ rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.
 The password must be URL encoded.
 * *<10.0.0.1>*: the IP address or hostname to access the HTTP proxy.
 * *<8080>*: the port on the host where the HTTP proxy is listening for requests.
-* *<1.1.1.1:8888,2.2.2.2.:9999>*: the `NO_PROXY` hosts and ports, delimited by commas.
+* *<1.1.1.1:8888,2.2.2.2:9999>*: the `NO_PROXY` hosts and ports, delimited by commas.
 . To verify the change was successful, run the following command to output the current value of the HTTP proxy: `rtfctl get http-proxy`.
 
 The output should match the value expected.
+
+=== Run the Script on Each Node
+
+. From the controller node used to install Runtime Fabric, copy `set_dockerd_proxy.sh`, which is located under `/opt/anypoint/runtimefabric/scripts/`, to the same location (`/opt/anypoint/runtimefabric/scripts/`) on each controller and worker node. +
+[NOTE]
+If you are not able to locate this script, open a support ticket for assistance.
+. Update the `/opt/anypoint/runtimefabric/env` file to set the values for `RTF_HTTP_PROXY` and `RTF_NO_PROXY` variables. + 
+The `RTF_HTTP_PROXY` value accepts authentication values in-line, for example, `http://user:Password@1.1.1.1:80` +
+The `RTF_NO_PROXY` value accepts a comma-separated list of hosts that should not go through the proxy, for example, `1.1.1.1,no-proxy.com`
+. Run the script `/opt/anypoint/runtimefabric/scripts/set_dockerd_proxy.sh`.
+. After repeating these steps on each controller and worker node, apply these proxy values to the services running within Runtime Fabric.
 
 == See Also
 
