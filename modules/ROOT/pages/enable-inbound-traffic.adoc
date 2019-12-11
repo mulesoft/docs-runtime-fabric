@@ -13,7 +13,7 @@ Applications deployed to a production environment must be deployed to a instance
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inbound traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
 
 
-Before enabling inboud traffic, you must provide a valid TLS certificate. The certificate must require a passphrase and be set with a Common Name (CN) which specifies the domain for each application deployed to Runtime Fabric.
+Before enabling inbound traffic, you must provide a valid TLS certificate. The certificate must require a passphrase and be set with a Common Name (CN) which specifies the domain for each application deployed to Runtime Fabric.
 
 * If the Common Name contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 * If the Common Name does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
