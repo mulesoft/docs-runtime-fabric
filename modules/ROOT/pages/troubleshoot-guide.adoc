@@ -6,11 +6,11 @@ endif::[]
 This topic describes common errors and steps to resolve them when installing Anypoint Runtime
 Fabric.
 
-== Assess Network Connectivity Using rtfctl
+== Troubleshoot Network Connectivity Using rtfctl
 
 Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
 
-== Obtain a Full Assessment
+=== Obtain a Full Assessment
 Run the following command for an overall health assessment of the network:
 ```
 /opt/anypoint/runtimefabric/rtfctl status
