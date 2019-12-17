@@ -146,6 +146,9 @@ mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh
 
 . Run the `init.sh` script in privileged mode on the controller VM.
 +
+[NOTE]
+You must have root privileges to run the `init.sh` script.
++
 ----
 sudo /opt/anypoint/runtimefabric/init.sh
 ----
@@ -179,7 +182,6 @@ When the installation completes successfully, the file `/opt/anypoint/runtimefab
 
 If the `forground` parameter was passed when running the `init.sh` script, the install logs will output on the terminal. Otherwise to view the progress during the installation, you can tail the output log on each VM:
 
-. 
 . Open another shell (or SSH session) to the VM.
 . Tail the output log, located at `/var/log/rtf-init.log`
 +
