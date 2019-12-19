@@ -116,3 +116,4 @@ Anypoint Runtime Fabric:
 
 * xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
 * xref:architecture.adoc[Anypoint Runtime Fabric Architecture]
+* xref:troubleshoot-guide.adoc#troubleshoot-network-connectivity-using-rtfctl[Troubleshoot Network Connectivity Using rtfctl]
