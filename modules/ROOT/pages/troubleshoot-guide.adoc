@@ -20,7 +20,7 @@ You can use `rtfctl` to verify that Runtime Fabric has the required outbound con
 
 === Verify Outbound Connectivity
 
-On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install rtfctl. 
+On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`. 
 Run the following command in all controller and worker nodes on the cluster to verify the required outbound connectivity:
 ```
 rtfctl test outbound-network
@@ -43,7 +43,7 @@ https://runtime-fabric.s3.amazonaws.com ✔
 tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
 ```
  
-If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have the required whitelisting completed as described in xref:install-port-reqs#port-ips-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
+If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-port-reqs#port-ips-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
 == Resuming a Failed Installation
 
@@ -64,7 +64,7 @@ You can resume an installation at the point where it failed by running the init 
 
 == Troubleshooting Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent may cause an application to not deploy. In
+In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
 these situations, you might see the following:
 
 
@@ -185,7 +185,7 @@ installation script:
 sudo yum install -y chrony
 ----
 +
-** If not successful, please work with your operations team for assistance. You may need to ask
+** If not successful, work with your operations team for assistance. You may need to ask
 for elevated access to the instance.
 
 If manual installation of a package was successful, or if you still require assistance, 
