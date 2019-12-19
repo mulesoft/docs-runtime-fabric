@@ -20,7 +20,7 @@ You can use `rtfctl` to verify that Runtime Fabric has the required outbound con
 
 === Verify Outbound Connectivity
 
-On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install rtfctl. 
+On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`. 
 Run the following command in all controller and worker nodes on the cluster to verify the required outbound connectivity:
 ```
 rtfctl test outbound-network
@@ -64,7 +64,7 @@ You can resume an installation at the point where it failed by running the init 
 
 == Troubleshooting Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent may cause an application to not deploy. In
+In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
 these situations, you might see the following:
 
 
