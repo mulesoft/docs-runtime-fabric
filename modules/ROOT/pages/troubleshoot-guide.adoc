@@ -6,6 +6,45 @@ endif::[]
 This topic describes common errors and steps to resolve them when installing Anypoint Runtime
 Fabric.
 
+== Obtain a Full Network Assessment
+Run the following command for an overall health assessment of the network:
+```
+/opt/anypoint/runtimefabric/rtfctl status
+```
+
+== Troubleshoot Network Connectivity Using rtfctl
+
+Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
+
+You can use `rtfctl` to verify that Runtime Fabric has the required outbound connectivity as well as troubleshoot connectivity issues. 
+
+=== Verify Outbound Connectivity
+
+On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`. 
+Run the following command in all controller and worker nodes on the cluster to verify the required outbound connectivity:
+```
+rtfctl test outbound-network
+```
+
+Sample output:
+```
+[root@rtf-controller-1 runtimefabric]# ./rtfctl test outbound-network
+Using proxy configuration from Runtime Fabric (proxy "", no proxy "")
+
+Using 'US' region
+transport-layer.prod.cloudhub.io:443 ✔
+https://anypoint.mulesoft.com ✔
+https://worker-cloud-helm-prod.s3.amazonaws.com ✔
+https://exchange2-asset-manager-kprod.s3.amazonaws.com ✔
+https://ecr.us-east-1.amazonaws.com ✔
+https://494141260463.dkr.ecr.us-east-1.amazonaws.com ✔
+https://prod-us-east-1-starport-layer-bucket.s3.amazonaws.com ✔
+https://runtime-fabric.s3.amazonaws.com ✔
+tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
+```
+ 
+If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-port-reqs#port-ips-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
+
 == Resuming a Failed Installation
 
 You can resume an installation at the point where it failed by running the init script:
@@ -25,7 +64,7 @@ You can resume an installation at the point where it failed by running the init 
 
 == Troubleshooting Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent may cause an application to not deploy. In
+In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
 these situations, you might see the following:
 
 
@@ -115,7 +154,7 @@ initalizing.
 * Validate the activation data value is correct by comparing with the Runtime Fabric created in
 Anypoint Runtime Manager.
 
-If you are still encountering issues, please file a support ticket for further assistance.
+If you are still encountering issues, file a support ticket for further assistance.
 
 == Troubleshooting Issues with the Install Packages
 
@@ -146,7 +185,7 @@ installation script:
 sudo yum install -y chrony
 ----
 +
-** If not successful, please work with your operations team for assistance. You may need to ask
+** If not successful, work with your operations team for assistance. You may need to ask
 for elevated access to the instance.
 
 If manual installation of a package was successful, or if you still require assistance, 
