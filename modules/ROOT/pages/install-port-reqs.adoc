@@ -89,7 +89,7 @@ Anypoint Runtime Fabric and Anypoint Platform:
 | EU control plane: `ecr.eu-central-1.amazonaws.com`
 .2+| 443 .2+| HTTPS | US control plane: `494141260463.dkr.ecr.us-east-1.amazonaws.com`
 | EU control plane: `494141260463.dkr.ecr.eu-central-1.amazonaws.com`
-.2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`
+.2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com`
 | EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com` `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com`
 .2+| 443 .2+| HTTPS | US control plane: `runtime-fabric.s3.amazonaws.com`
 | EU control plane: `runtime-fabric-eu.s3.amazonaws.com`
