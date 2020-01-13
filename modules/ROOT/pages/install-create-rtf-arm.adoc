@@ -35,7 +35,7 @@ Runtime Manager initially indicates that the Runtime Fabric is in the activation
  
 The `init.sh` script, used in the Runtime Fabric installation process, performs the following operating system configuration changes:
 
-* Overrides the iptable rules. To what?
+* Overrides the iptable rules.
 * Modifies the kernel. How?
 * Modifies services, including stops and restarts. What should the user do?
 
