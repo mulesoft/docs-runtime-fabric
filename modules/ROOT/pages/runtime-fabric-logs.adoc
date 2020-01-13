@@ -91,9 +91,9 @@ There are two levels of filters to help drill down on the logs to make visible:
 
 == Forward Logs to External Services
 
-Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an rsyslog server over TCP or UDP.
+Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP.
 
-Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an rsyslog server. Logging services such as Splunk or Logstash provide methods to receive log data from rysslog clients.
+Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an `rsyslog` server. Logging services such as Splunk or Logstash provide methods to receive log data from `rsyslog` clients.
 
 Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
 
@@ -120,7 +120,7 @@ Using the following values specific to your environment:
 |===
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.
-|`address` | Specifies the endpoint and port to forward the log data
+|`address` | Specifies the endpoint and port to forward the log data.
 |`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP.
 |===
 +
