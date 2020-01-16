@@ -112,6 +112,8 @@ create a separate Resource group.
 | `Installer IP Address` | specifies the IP address to assign the controller VM acting as the installer VM. This should be an available address which is within the subnet range specified. | `172.31.3.4`
 | `Availability Set Update Domains` | specifies the number of update domains supported in the Azure region selected. | `3`
 | `Availability Set Fault Domains` | specifies the number of fault domains supported in the Azure region selected. | `3`
+| `Pod Network CIDR` | specifies a custom CIDR block to use for the pod network. | `10.244.0.0/16`
+| `Service CIDR` | specifies a custom CIDR block to use for the service network. | `10.100.0.0/16`
 
 |===
 

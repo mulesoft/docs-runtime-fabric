@@ -115,6 +115,8 @@ The following variables can be defined based upon your organization's requiremen
 | `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `RTF_SERVICE_GID` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
+| `POD_NETWORK_CIDR` | Support for a custom pod CIDR block. | `10.244.0.0/16`
+| `SERVICE_CIDR` | Support for a custom service CIDR block. | `10.100.0.0/16`
 
 |===
 

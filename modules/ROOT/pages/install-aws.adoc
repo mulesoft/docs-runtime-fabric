@@ -136,6 +136,8 @@ listed in the tables below. This is common if you need to use existing AWS resou
 | `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `existing_vpc_id` | specifies an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
 | `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
+| `pod_network_cidr_block` | Support for a custom pod CIDR block. | `10.244.0.0/16`
+| `service_cidr_block` | Support for a custom service CIDR block. | `10.100.0.0/16`
 |===
 
 == Configure Your Environment to Access AWS
