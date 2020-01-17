@@ -7,7 +7,7 @@ Secure properties are added in the Runtime Fabric cluster locally, are stored se
 
 == Install rtfctl 
 
-The rtftl tool is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with managing secure properties.
+The rtfctl tool is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with managing secure properties.
 
 == Set secure properties
 
