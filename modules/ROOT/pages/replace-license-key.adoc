@@ -9,6 +9,12 @@ entered an incorrect license key during installation.
 Perform the following steps on the controller node used to start the installation. For Azure and AWS installations, 
 this node is named `rtf-controller-1` by default.
 
+== Install rtfctl 
+
+The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward.
+
+== Procedure
+
 . Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
 
 ** On MacOS, run the following command in the terminal: 
@@ -36,13 +42,13 @@ Base64 value of your license key. For more information on the `rtfctl` command, 
 xref:runtime-fabric::install-rtfctl#supported-commands[rtfctl Supported commands].
 +
 ----
-rtfctl apply mule-license BASE64_ENCODED_LICENSE
+sudo ./rtfctl apply mule-license BASE64_ENCODED_LICENSE
 ----
 +
 . To verify the Mule license key has applied correctly, retrieve the contents using the `rtfctl` utility:
 +
 ----
-rtfctl get mule-license
+sudo ./rtfctl get mule-license
 ----
 
 

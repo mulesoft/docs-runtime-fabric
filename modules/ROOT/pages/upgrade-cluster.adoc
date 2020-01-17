@@ -58,7 +58,7 @@ Keep your browser session open to use in later steps.
 . Verify Runtime Fabric is healthy:
 .. Using your web browser, navigate to the *Runtime Fabrics* tab in Anypoint Runtime Manager and verify that the Runtime Fabric reports an Active status.
 .. Open a terminal to a Runtime Fabric controller node.
-.. Run `gravity status` and confirm the cluster status is healthy.
+.. Run `sudo gravity status` and confirm the cluster status is healthy.
 .. Keep your terminal open to use in later steps.
 . Download the latest version of the `rtfctl` command-line utility:
 .. Using your terminal open on a controller node, run the following command: 
@@ -90,16 +90,16 @@ This command also supports referencing an installer package already downloaded o
 +
 The command outputs a confirmation indicating the upgrade is being performed in the background.
 +
-. Run `gravity status` on a node and verify that the cluster status is “updating”.
+. Run `sudo gravity status` on a node and verify that the cluster status is “updating”.
 . Follow the progress on the upgrade procedure:
 .. Using your terminal open on a controller node, run the following command: 
 +
 ----
-sudo ./gravity plan
+sudo gravity plan
 ----
 +
 . Confirm the upgrade has completed successfully:
-.. Run `sudo ./gravity status` and verify that the cluster status transitioned from “updating” to “active”.
+.. Run `sudo gravity status` and verify that the cluster status transitioned from “updating” to “active”.
 . If the Runtime Fabric cluster version was 1.0.x prior to upgrading, and an HTTP proxy is in use, run this command to apply the HTTP proxy settings: 
 +
 ----
@@ -145,7 +145,7 @@ cd /opt/anypoint/runtimefabric/installer
 . Run the command to resume the upgrade: 
 +
 ----
-sudo ./gravity upgrade --resume
+sudo gravity upgrade --resume
 ----
 +
 . The upgrade continues streaming output to your terminal session. 
@@ -163,20 +163,20 @@ Perform the following steps to resolve common errors:
 . Use the `gravity plan` command to identify the phase in which the upgrade paused: 
 +
 ----
-sudo ./gravity plan
+sudo gravity plan
 ----
 +
 . Resume the upgrade using the debug flag on the phase in which the error occurred: 
 +
 ----
-sudo ./gravity upgrade --phase=< insert phase > --force --debug
+sudo gravity upgrade --phase=< insert phase > --force --debug
 ----
 +
 For example,  `--phase=/gc/rtf-controller-1`.
 . Wait for the command to run again. If the command does not terminate with an error, resume the upgrade by running the following command:
 +
 ----
-sudo ./gravity upgrade --resume
+sudo gravity upgrade --resume
 ----
 . If the command again terminates with an error:
 .. Read the logs to identify which node requires repair.
@@ -191,7 +191,7 @@ sudo gravity plan --repair
 . On the controller node running the upgrade, run the failed phase manually:
 +
 ----
-sudo ./gravity plan execute --phase=< insert phase > --force --debug
+sudo gravity plan execute --phase=< insert phase > --force --debug
 ----
 
 If an error is returned, wait a few minutes and repeat the previous steps.
