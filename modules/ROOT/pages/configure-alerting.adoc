@@ -61,8 +61,6 @@ $ sudo ./rtfctl appliance apply alert-smtp-from "sender@example.com"`
 
 Alerts should now be configured to send through your SMTP server with the designated alert sender email address.
 
-
-
 == Built-in Alerts
 
 The following table lists some of default alerts provided by Anypoint Runtime Fabric:
