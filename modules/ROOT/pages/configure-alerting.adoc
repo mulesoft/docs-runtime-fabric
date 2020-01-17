@@ -34,7 +34,7 @@ spec:
 [%header,cols="2*a"]
 |===
 |Key | Description
-|`smtp.host` | The endpoint of the SMTP server.
+|`<smtp host>` | The endpoint of the SMTP server.
 |`<smtp port>` | The port used to connect to the SMTP server. (465 by default).
 |`<username>` | The username to use when connecting to the SMTP server.
 |`<password>` | The password to use when connecting to the SMTP server.
@@ -43,11 +43,20 @@ spec:
 |===
 +
 . Run the following on the controller VM.
++
 ----
 $ gravity resource create -f alert-smtp.yaml
 ----
 
-Alerts should now be configured to send through your SMTP server.
+. Use the `rtfctl` utility to set the alert sender email address with your SMTP sending domain. We recommend using a distinguishable email address for each cluster to determine which cluster triggers the alert.
++
+----
+$ rtfctl appliance apply alert-smtp-from "sender@example.com"`
+----
+
+Alerts should now be configured to send through your SMTP server with the designated alert sender email address.
+
+
 
 == Built-in Alerts
 
@@ -68,3 +77,4 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 
 * xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]
+* xref:install-rtfctl.adoc[Install rtfctl Utility]
