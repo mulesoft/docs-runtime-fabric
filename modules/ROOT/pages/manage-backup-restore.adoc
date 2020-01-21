@@ -29,6 +29,9 @@ You can pass the following optional parameters to the `gravity backup` command:
 
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. 
 
+[NOTE]
+Backup operations are only performed at the cluster level. Backups cannot be performed for individual nodes.
+
 == Restore a System
 
 To restore a system from a backup, you can use the existing Runtime Fabric cluster or create a new Runtime Fabric 
@@ -59,7 +62,10 @@ You can pass the following optional parameters:
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
 
-This process requires a few minutes. 
+This process requires a few minutes.
+
+[NOTE]
+Restore operations are only performed at the cluster level. You cannot restore individual nodes.
 
 == See Also
 
