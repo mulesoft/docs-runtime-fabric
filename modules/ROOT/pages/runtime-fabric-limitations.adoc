@@ -24,7 +24,7 @@ for instructions on how to create Runtime Fabrics in Runtime Manager.
 
 == Internal Load Balancer
 
-The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:https:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
+The following table lists the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
 
 [%header,cols="3*a"]
 |===
