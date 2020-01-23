@@ -38,4 +38,4 @@ The following table lists the approximate requests (averaging 10 KB) that can be
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and 
 type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
-Refer to xref:https:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+Refer to xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
