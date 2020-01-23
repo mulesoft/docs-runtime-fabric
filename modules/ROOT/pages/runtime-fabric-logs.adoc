@@ -94,14 +94,14 @@ Depending on your Anypoint Platform subscription, you can forward log informatio
 
 . From Anypoint Platform, select *Runtime Manager*.
 . Select *Runtime Fabrics* in the sidebar navigation.
-. Select the Runtime Fabric based on the name used during installation.
-. From the *Log Forwarding* tab, select *Forward application logs to Anypoint Monitoring* checkbox.
+. Select the applicable Runtime Fabric based on the name used during installation.
+. Select the *Log Forwarding* tab, and then select the *Forward application logs to Anypoint Monitoring* checkbox.
 . Click *Apply changes* to confirm the changes.
 
 [NOTE]
 ====
 * The *Log Forwarding* tab is hidden if the Runtime Fabric version is earlier than version 1.4.44.
-* Your organization must have a Titanium subscription for Anypoint platform to have the *Forward application logs to Anypoint Monitoring* checkbox enabled.
+* An Anypoint Platform Titanium subscription is required for enabling the *Forward application logs to Anypoint Monitoring* checkbox.
 ====
 
 == Forward Logs to External Services
