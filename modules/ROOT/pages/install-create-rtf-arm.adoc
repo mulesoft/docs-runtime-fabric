@@ -12,6 +12,7 @@ Before installing Anypoint Runtime Fabric, review the following topics to ensure
 * xref:architecture.adoc[Runtime Fabric Architecture]
 * xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
 * xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
+* xref:runtime-fabric-limitations.adoc[Limitations]
 
 [NOTE]
 If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
