@@ -7,6 +7,7 @@ After installing and configuring Runtime Fabric and deploying Mule applications 
 * Use Anypoint Monitoring and Visualizer to monitor applications deployed to Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric].
 * Install rtfctl to manage Runtime Fabric settings. See xref:install-rtfctl.adoc[Install rtfctl].
 * Troubleshoot errors with installation or post-installation. See xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric].
+* Stop and restart a Runtime Fabric. This requires stopping and restarting each instance.
 
 == See Also
 
