@@ -100,7 +100,7 @@ Depending on your Anypoint Platform subscription, you can forward log informatio
 
 [NOTE]
 ====
-* The *Log Forwarding* tab is hidden if the Runtime Fabric version is earlier than version 1.4.44.
+* The *Log Forwarding* tab is hidden if the Runtime Fabric version is earlier than version 1.4.54.
 * An Anypoint Platform Titanium subscription is required for enabling the *Forward application logs to Anypoint Monitoring* checkbox.
 ====
 
