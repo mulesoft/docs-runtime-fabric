@@ -13,6 +13,11 @@ To preserve applications in the event of system failure, ensure that Runtime Fab
 MuleSoft highly recommends configuring hourly backups. Store your backup archive on external storage outside 
 the Runtime Fabric cluster.
 
+[NOTE]
+The state of Runtime Fabric is distributed across its controller nodes. This procedure backs up and restores
+the required state necessary to restore all deployed applications, management services, and their configurations. 
+Individual node backups and restores are not supported.
+
 == Create a Backup
 
 To create a backup, run the following command on any controller node in the cluster as a privileged user (with root access):
@@ -28,9 +33,6 @@ You can pass the following optional parameters to the `gravity backup` command:
 * `--log-file`: outputs logs to a file
 
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. 
-
-[NOTE]
-Backup operations are only performed at the cluster level. Backups cannot be performed for individual nodes.
 
 == Restore a System
 
@@ -63,9 +65,6 @@ You can pass the following optional parameters:
 * `--log-file`: outputs logs to a file
 
 This process requires a few minutes.
-
-[NOTE]
-Restore operations are only performed at the cluster level. You cannot restore individual nodes.
 
 == See Also
 
