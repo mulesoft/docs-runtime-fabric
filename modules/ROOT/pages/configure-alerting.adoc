@@ -56,7 +56,7 @@ $ sudo gravity resource create -f alert-smtp.yaml
 . Use the `rtfctl` utility to set the alert sender email address with your SMTP sending domain. We recommend using a distinguishable email address for each cluster to determine which cluster triggers the alert.
 +
 ----
-$ sudo ./rtfctl appliance apply alert-smtp-from "sender@example.com"`
+$ sudo ./rtfctl appliance apply alert-smtp-from "sender@example.com"
 ----
 
 Alerts should now be configured to send through your SMTP server with the designated alert sender email address.
