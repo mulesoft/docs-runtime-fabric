@@ -7,7 +7,7 @@ Runtime Fabric enables you to send alerts through an existing SMTP server. Runti
 
 == Install rtfctl 
 
-The `rtfctl` utility is required to manage alert sender email on Runtime Fabric. Perform the steps in xref:install-rtfctl.adoc[install rtfctl] before completing the following steps.
+The `rtfctl` utility is required to manage alert sender email on Runtime Fabric. Perform the steps in xref:install-rtfctl.adoc[Install rtfctl] before completing the following steps.
 
 == Procedure
 
@@ -79,4 +79,4 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 
 * xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]
-* xref:install-rtfctl.adoc[Install rtfctl Utility]
+* xref:install-rtfctl.adoc[Install rtfctl]
