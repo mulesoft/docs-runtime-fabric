@@ -58,7 +58,7 @@ Keep your browser session open to use in later steps.
 . Verify Runtime Fabric is healthy:
 .. Using your web browser, navigate to the *Runtime Fabrics* tab in Anypoint Runtime Manager and verify that the Runtime Fabric reports an Active status.
 .. Open a terminal to a Runtime Fabric controller node.
-.. Run `gravity status` and confirm the cluster status is healthy.
+.. Run `sudo gravity status` and confirm the cluster status is healthy.
 .. Keep your terminal open to use in later steps.
 . Download the latest version of the `rtfctl` command-line utility:
 .. Using your terminal open on a controller node, run the following command: 
@@ -90,16 +90,16 @@ This command also supports referencing an installer package already downloaded o
 +
 The command outputs a confirmation indicating the upgrade is being performed in the background.
 +
-. Run `gravity status` on a node and verify that the cluster status is “updating”.
+. Run `sudo gravity status` on a node and verify that the cluster status is “updating”.
 . Follow the progress on the upgrade procedure:
 .. Using your terminal open on a controller node, run the following command: 
 +
 ----
-sudo ./gravity plan
+sudo gravity plan
 ----
 +
 . Confirm the upgrade has completed successfully:
-.. Run `sudo ./gravity status` and verify that the cluster status transitioned from “updating” to “active”.
+.. Run `sudo gravity status` and verify that the cluster status transitioned from “updating” to “active”.
 . If the Runtime Fabric cluster version was 1.0.x prior to upgrading, and an HTTP proxy is in use, run this command to apply the HTTP proxy settings: 
 +
 ----

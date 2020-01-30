@@ -7,7 +7,7 @@ Secure properties are added in the Runtime Fabric cluster locally, are stored se
 
 == Install rtfctl 
 
-The rtfctl tool is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with managing secure properties.
+The `rtfctl` utility is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before continuing with managing secure properties.
 
 == Set secure properties
 
@@ -15,7 +15,7 @@ The rtfctl tool is required to manage secure properties on Runtime Fabric locall
 . Run the following command to set a secure property to the Runtime Fabric under a specific environment, substituting the placeholder fields:
 +
 ----
-rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_id>
+sudo ./rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_id>
 ----
 +
 * *<my_key>*: the key for the secure property used in the Mule application to reference the value.
@@ -28,7 +28,7 @@ rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_i
 . Run the following command to view the secure properties applied to the Runtime Fabric under a specific environment, substituting the placeholder fields:
 +
 ----
-rtfctl get secure-properties -n <environment_id>
+sudo ./rtfctl get secure-properties -n <environment_id>
 ----
 +
 * *<environment_id>*: the Anypoint environment ID to list the secure properties under.

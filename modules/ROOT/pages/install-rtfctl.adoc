@@ -11,6 +11,7 @@ Install the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` uti
 * Manage proxy settings.
 * Manage secure properties.
 * Manage a Mule license.
+* Manage the alert sender email address.
 
 == Install rtfctl 
 

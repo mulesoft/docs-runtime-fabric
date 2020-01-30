@@ -7,7 +7,7 @@ You can update the proxy settings used by Anypoint Runtime Fabric outbound conne
 
 == Install rtfctl 
 
-The rtftl tool is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward with configuring proxy settings.
+The `rtfctl` utility is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[Install rtfctl] before configuring proxy settings.
 
 == Update the Monitoring Proxy
 
@@ -15,7 +15,7 @@ The rtftl tool is required to manage proxy settings on Runtime Fabric. Follow th
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
-rtfctl apply monitoring-proxy "socks5://<user>:<pass>@<10.0.0.2>:<8080>"
+sudo ./rtfctl apply monitoring-proxy "socks5://<user>:<pass>@<10.0.0.2>:<8080>"
 ----
 +
 * *<user>*: the username needed to authenticate to the SOCKS5 proxy.
@@ -25,7 +25,7 @@ The password must be URL encoded.
 * *<10.0.0.2>*: the IP address or hostname used to access the SOCKS5 proxy.
 * *<8080>*: the port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: +
-`rtfctl get monitoring-proxy`
+`sudo ./rtfctl get monitoring-proxy`
 
 The output should match the value expected.
 
@@ -42,7 +42,7 @@ Updating the HTTP proxy causes each machine in the cluster to restart all pods r
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
-rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
+sudo ./rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
 ----
 +
 * *<user>*: the username needed to authenticate to the HTTP proxy.
@@ -53,13 +53,17 @@ The password must be URL encoded.
 * *<8080>*: Specifies the port on the host where the HTTP proxy is listening for requests.
 * *<1.1.1.1:8888,2.2.2.2:9999>*: Specifies the `NO_PROXY` hosts and ports, delimited by commas.
 * (Optional) `--confirm`: Skips manual acknowledgement of the change. If not specified, the `rtfctl apply proxy` command prompts you to confirm the change before continuing.
-. To verify the change was successful, run the following command to output the current value of the HTTP proxy: `rtfctl get http-proxy`.
+. To verify the change was successful, run the following command to output the current value of the HTTP proxy:
++
+----
+sudo ./rtfctl get http-proxy
+----
 
 The output should match the value expected.
 
 === Run the Script on Each Node
 
-Perform the following steps _only_ if you are using Runtime Fabric installer 1.0.x. Run `rtfctl version` to verify results, reported as the *Server version*.
+Perform the following steps _only_ if you are using Runtime Fabric installer 1.0.x. Run `sudo ./rtfctl version` to verify results, reported as the *Server version*.
 
 . From the controller node used to install Runtime Fabric, copy `set_dockerd_proxy.sh`, which is located under `/opt/anypoint/runtimefabric/scripts/`, to each controller and worker node in the same location (`/opt/anypoint/runtimefabric/scripts/`). +
 [NOTE]

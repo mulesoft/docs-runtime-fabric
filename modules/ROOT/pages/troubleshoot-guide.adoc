@@ -23,12 +23,12 @@ You can use `rtfctl` to verify that Runtime Fabric has the required outbound con
 On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`. 
 Run the following command in all controller and worker nodes on the cluster to verify the required outbound connectivity:
 ```
-rtfctl test outbound-network
+sudo ./rtfctl test outbound-network
 ```
 
 Sample output:
 ```
-[root@rtf-controller-1 runtimefabric]# ./rtfctl test outbound-network
+[root@rtf-controller-1 runtimefabric]# sudo ./rtfctl test outbound-network
 Using proxy configuration from Runtime Fabric (proxy "", no proxy "")
 
 Using 'US' region
