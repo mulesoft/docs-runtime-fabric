@@ -11,7 +11,7 @@ this node is named `rtf-controller-1` by default.
 
 == Install rtfctl 
 
-The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before moving forward.
+The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before continuing.
 
 == Procedure
 
