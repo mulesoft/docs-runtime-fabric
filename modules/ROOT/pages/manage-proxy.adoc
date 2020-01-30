@@ -7,7 +7,7 @@ You can update the proxy settings used by Anypoint Runtime Fabric outbound conne
 
 == Install rtfctl 
 
-The `rtfctl` utility is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before configuring proxy settings.
+The `rtfctl` utility is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[Install rtfctl] before configuring proxy settings.
 
 == Update the Monitoring Proxy
 
