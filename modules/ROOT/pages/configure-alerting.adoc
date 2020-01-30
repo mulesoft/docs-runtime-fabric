@@ -52,7 +52,7 @@ spec:
 $ sudo gravity resource create -f alert-smtp.yaml
 ----
 
-. Use the `rtfctl` utility to set the alert sender email address containing your SMTP domain. Use a distinguishable email address for each cluster to easily identify the cluster triggering the alert.
+. Use the `rtfctl` utility to set the alert sender email address containing your SMTP domain. Use a distinguishable email address for each cluster to identify the cluster triggering the alert.
 +
 ----
 $ sudo ./rtfctl appliance apply alert-smtp-from "sender@example.com"
