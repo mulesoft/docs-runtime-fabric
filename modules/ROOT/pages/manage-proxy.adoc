@@ -53,7 +53,11 @@ The password must be URL encoded.
 * *<8080>*: Specifies the port on the host where the HTTP proxy is listening for requests.
 * *<1.1.1.1:8888,2.2.2.2:9999>*: Specifies the `NO_PROXY` hosts and ports, delimited by commas.
 * (Optional) `--confirm`: Skips manual acknowledgement of the change. If not specified, the `rtfctl apply proxy` command prompts you to confirm the change before continuing.
-. To verify the change was successful, run the following command to output the current value of the HTTP proxy: `sudo ./rtfctl get http-proxy`.
+. To verify the change was successful, run the following command to output the current value of the HTTP proxy:
++
+----
+sudo ./rtfctl get http-proxy
+----
 
 The output should match the value expected.
 
