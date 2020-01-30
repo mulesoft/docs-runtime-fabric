@@ -88,22 +88,6 @@ There are two levels of filters to help drill down on the logs to make visible:
 * _Containers_ filter on names of containers.
 * _Pods_ filter on the names of pods. This is useful for specifying application names followed by a wildcard (`%`).
 
-== Forward Logs to Anypoint Monitoring
-
-Depending on your Anypoint Platform subscription, you can forward log information to Anypoint Monitoring:
-
-. From Anypoint Platform, select *Runtime Manager*.
-. Select *Runtime Fabrics* in the sidebar navigation.
-. Select the applicable Runtime Fabric based on the name used during installation.
-. Select the *Log Forwarding* tab, and then select the *Forward application logs to Anypoint Monitoring* checkbox.
-. Click *Apply changes* to confirm the changes.
-
-[NOTE]
-====
-* The *Log Forwarding* tab is hidden if the Runtime Fabric version is earlier than version 1.4.54.
-* An Anypoint Platform Titanium subscription is required for enabling the *Forward application logs to Anypoint Monitoring* checkbox.
-====
-
 == Forward Logs to External Services
 
 Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP.
