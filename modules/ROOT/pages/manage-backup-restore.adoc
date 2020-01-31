@@ -36,7 +36,7 @@ You can pass the following optional parameters to the `gravity backup` command:
 +
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. 
 
-. Move the archive file to secure storage (a different machine that is not part of the RTF cluster),
+. Move the archive file to secure storage (a different machine that is not part of the RTF cluster);
 for example:
 +
 ----
