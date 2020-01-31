@@ -2,6 +2,9 @@
 
 Applications and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring to allow viewing metrics within Anypoint Platform.
 
+[NOTE]
+Monitoring solutions other than Anypoint Monitoring are not supported.
+
 == Anypoint Monitoring
 
 xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network. For applications and API gateways deployed to Anypoint Runtime Fabric (Runtime Fabric), Anypoint Monitoring provides basic metrics to all customers. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
