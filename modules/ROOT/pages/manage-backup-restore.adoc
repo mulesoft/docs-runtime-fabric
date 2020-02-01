@@ -20,23 +20,32 @@ Individual node backup and restore operations are not supported.
 
 == Create a Backup
 
-To create a backup, run the following command on any controller node in the cluster as a privileged user (with root access):
+To create a backup:
 
+. Run the following command on any controller node in the cluster as a privileged user (with root access):
++
 ----
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 ----
-
++
 You can pass the following optional parameters to the `gravity backup` command:
 
 * `--follow`: outputs the backup job logs to the terminal
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
-
++
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. 
 
-== Restore a System
+. Move the archive file to secure storage (a different machine that is not part of the RTF cluster);
+for example:
++
+----
+scp your_username@remotehost:/var/lib/gravity/planet/share /backup-path/to-restore.tar.gz
+----
 
-To restore a system from a backup, you can use the existing Runtime Fabric cluster or create a new Runtime Fabric 
+== Restore a Cluster
+
+To restore a Runtime Fabric cluster from a backup, you can use the existing Runtime Fabric cluster or create a new Runtime Fabric 
 cluster with the same hardware (number of servers, disks, and so on) as the cluster being restored.
 
 [WARNING]
@@ -45,7 +54,7 @@ the same version of Runtime Fabric installation bundle as the backup.
 
 . Log in to a controller node in your Runtime Fabric as a privileged user (with root access).
 
-. Move the compressed backup archive file to a folder in any of the nodes of the environment to be restored. 
+. Move the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. 
 You can transfer this file securely via the following command:
 +
 ----
