@@ -220,7 +220,7 @@ By default, the activity across all IPs addresses behind your endpoint is logged
 
 .. From Anypoint Platform select *Runtime Manager*.
 .. Select *Runtime Fabric*.
-.. Select the *Inbound Traffic* tab, and then select *Logs +*.
+.. Select the *Inbound Traffic* tab, and then select *Logs*.
 .. Select *Add Filter*.
 .. In the *IP* field, enter a single IP address or subset of addresses using CIDR notation.
 .. Select the log level to apply to this IP filter.
