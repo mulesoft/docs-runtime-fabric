@@ -9,11 +9,9 @@ Runtime Fabric can be shared across multiple environments. After installation, c
 
 Applications deployed to a production environment must be deployed to an instance of Runtime Fabric that is separate from non-production applications.
 
-== Enable Inbound Traffic
-
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inbound traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
 
-=== Step 1: Assign Required Roles and Permissions
+== Step 1: Assign Required Roles and Permissions
 Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications.
 
 . From Anypoint Platform, select *Access Management*.
@@ -26,7 +24,7 @@ If you do not have access to Anypoint Access Management, request access from you
 [NOTE]
 It can take up to 5 minutes for any permissions you gain to propagate.
 
-=== Step 2: Configure Inbound Traffic Using Runtime Manager
+== Step 2: Configure Inbound Traffic Using Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
@@ -44,7 +42,7 @@ The number of Inbound load balancer replicas is determined by the number of cont
 .. Select the resource allocation type for the ingress configuration:
 
 *** Shared Mode. This is the default setting if no dedicated mode is available. A minimum of 2 replicas is required for production environments, and these replicas only run on the controller VMs.
-.. Specify the minimum number of cores for each replica of the internal load balancer. Note that the RTF can use up to the maximum number shown if they are available. TLS termination is computationally expensive, so make sure to allocate enough CPU to increase throughput and decrease latency.
+.. Specify the minimum number of cores for each replica of the internal load balancer. Note that the RTF can use up to the maximum number shown if they are available. Transport Layer Security (TLS) termination is computationally expensive, so make sure to allocate enough CPU to increase throughput and decrease latency.
 .. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
 . Configure a TLS context:
 +
@@ -233,7 +231,7 @@ By default, the activity across all IPs addresses behind your endpoint is logged
 +
 The deployment can take up to a minute to complete. If successful, a message is displayed. You can view the deployment status at the beginning of the page. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic is enabled.
 
-=== Step 3: Verify that Inbound Traffic is Enabled
+== Step 3: Verify that Inbound Traffic is Enabled
 To resolve the CN of applications deployed on Runtime Fabric, DNS must be configured to map the CN to the IP address of the external load balancer or of each controller VM. 
 
 To test inbound traffic for applications before configuring DNS, send a request to the application using the IP address and a host header set to the domain.
@@ -252,7 +250,7 @@ curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
 curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
 ----
 
-=== Step 4: After Enabling Inbound Traffic
+== Step 4: After Enabling Inbound Traffic
 Runtime Fabric must be configured to route incoming traffic to each enabled application in order for clients to send requests to deployed applications:
 . Configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
 
@@ -269,32 +267,18 @@ This configuration of the external load balancer provides the following benefits
 . Review the information described in *Advanced Options* when adding an external load balancer.
 . Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
-=== Step 5: Deploy Applications
+== Step 5: Deploy Applications
 When you are ready to deploy an application, follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 
 The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
+== TLS Certificate Expiration
+Certificates (both self-signed and CA-signed) always have an expiration date. By default, certificates expire one year after they are created. 
 
+The following warnings are displayed for certificates that will expire within 30 days to allow you to upload a new certificate-key pair before a certificate expires:
 
-
-
-== Generate a Certificate-Key Pair
-You need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your common name should match the domain you use in your Runtime Fabric. 
-
-Use the following steps to generate a certificate-key pair for evaluation purposes.
-
-. Run the following command on your machine to generate a certificate-key pair:
-+
-----
-openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365
-----
-
-. Type a passphrase for your key.
-. Complete the requested information. When asked for a common name, supply the domain to be used in your Runtime Fabric.
-
-If you use a wildcard, for example, `*.example.com` in your common name, your application URLs use the following format: `{app-name}.example.com`. Otherwise, your application URLs use the format `example.com/{app-name}`.
-
-
+* On the *Runtime Fabrics* page, when a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column. On the `Runtime Fabrics` page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that RTF.
+In the *Inbound TrafficI tab, when a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
 
 == See Also
 
