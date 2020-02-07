@@ -35,7 +35,7 @@ It can take up to 5 minutes for any permissions you gain to propagate.
 Disabling the Inbound Traffic tab can take several minutes to complete.
 
 . In the *Basic Configuration* section, verify *Secure Port* is set to `443` and *Non Secure Port* is set to `80`.  The nonsecure port redirects to the secure port.
-. Select *Resource Allocation* and perform the following steps:
+. Select *Resource Allocation*.
 +
 [NOTE]
 The number of Inbound load balancer replicas is determined by the number of controller nodes configured in the RTF. Refer to https://docs.mulesoft.com/runtime-fabric/1.4/manage-index for detailed information.
