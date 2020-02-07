@@ -37,10 +37,10 @@ If you disable the Inbound Traffic tab, changes can take several minutes to comp
 . In the *Basic Configuration* section, verify *Secure Port* is set to `443` and *Non Secure Port* is set to `80`.  The nonsecure port redirects to the secure port.
 . Select *Resource Allocation*.
 +
-[NOTE]
 The number of inbound load balancer replicas is determined by the number of controller nodes configured in the RTF. A minimum of 2 replicas is required for production environments, and these replicas only run on the controller VMs. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
++
+*Shared Mode* is automatically selected for the ingress configuration if no dedicated mode is available.
 
-.. *Shared Mode* is the default setting for the ingress configuration if no dedicated mode is available.
 .. Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if they are available. Transport Layer Security (TLS) termination is computationally expensive, so make sure to allocate enough CPU to increase throughput and decrease latency.
 .. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
 . Configure a TLS context.
@@ -53,16 +53,10 @@ You can configure the private key and public certificate for a TLS-enabled serve
 ** Import a TLS Context from Secrets Manager.
 +
 This option supports advanced configuration such as mutual authentication, selecting ciphers, and selecting TLS versions. This option is automatically selected for Runtime Fabrics for which inbound traffic was enabled before the PEM and JKS upload options became available.
-+
-To import a TLS context from Secrets Manager, you need additional Secrets Manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
-+
-To generate key material for testing purposes and create a TLS context in Secrets Manager, follow the instructions provided in xref:anypoint-security::secret-group-add-tls-context.adoc[Generate a TLS Certificate for Testing].
 
 ** Option 1: Upload PEM
 +
-Use this option to upload a public certificate and private key in PEM format. 
-+
-This option uses the TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
+Use this option to upload a public certificate and private key in PEM format and use TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for  information about TLS default values.
 
 ... Specify a *Certificate File*. When you specify a PEM public certificate file, the *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
@@ -111,6 +105,10 @@ The JKS file information is saved in the global secrets group for your organizat
 ** Option 3: Import from Secrets Manager (for advanced users)
 +
 Select this option to create a TLS context or change TLS defaults, including adding or removing a TLS version, configuring mutual authentication, or changing cipher suites. This option is automatically selected for Runtime Fabrics that were configured prior to the availability of PEM and JKS uploads. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
++
+To import a TLS context from Secrets Manager, you need additional Secrets Manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
++
+To generate key material for testing purposes and create a TLS context in Secrets Manager, follow the instructions provided in xref:anypoint-security::secret-group-add-tls-context.adoc[Generate a TLS Certificate for Testing].
 
 . (Optional) Select Security Policies
 +
@@ -252,9 +250,9 @@ curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
 ----
 
 == Step 4: Configure an External Load Balancer
-After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application in order for clients to send requests to deployed applications. You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
+After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application in order for clients to send requests to deployed applications. 
 
-Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
+You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
 
 === External Load Balancer Requirements
 When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs.
@@ -262,10 +260,13 @@ When running multiple controller VMs, you must have an external load balancer ou
 The external load balancer must support TCP load balancing and must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be configured on the external load balancer, listening on port 443.
 
 This configuration of the external load balancer provides the following benefits:
+
 * Maintains high availability.
 * Protects against failures.
 * Gracefully handles automated failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
+
 To configure an external load balancer:
+
 . Review the information described in *Advanced Options* when adding an external load balancer.
 . Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
