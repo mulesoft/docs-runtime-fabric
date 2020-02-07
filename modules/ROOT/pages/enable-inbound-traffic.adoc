@@ -184,13 +184,13 @@ If a client exceeds this number, the exceeding requests are not read until the r
 . Runtime Fabric is not deployed behind a load balancer. +
 These values should not be configured.
 +
-*Source IP header name*: blank +
+*Source IP header name*: Blank +
 *Enable proxy protocol*: Unchecked
 . Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol configured. +
  You must select the *enable proxy protocol* option.
 +
-*Source IP header name*: blank +
-*Enable proxy protocol*: checked
+*Source IP header name*: Blank +
+*Enable proxy protocol*: Checked
 . Runtime Fabric is behind a non-AWS load balancer. +
  If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. 
 +
@@ -202,7 +202,7 @@ HTTP messages not containing this header field will be rejected. Two common HTTP
 *Source IP header name*: Non-blank +
 *Enable proxy protocol*: Unchecked
 
-*Default value*: blank and unchecked.
+*Default value*: Blank and unchecked.
 
 |=== 
 
