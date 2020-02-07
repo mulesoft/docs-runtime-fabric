@@ -49,7 +49,7 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Whe
 +
 You can configure the private key and public certificate for a TLS-enabled server in one of the following ways:
 
-** Option 1: Upload PEM
+** Option 1: *Upload PEM*
 +
 Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for  information about TLS default values.
 +
@@ -68,7 +68,7 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 +
 The PEM file information is saved in the global secrets group for your organization.
 
-** Option 2: Upload JKS
+** Option 2: *Upload JKS*
 +
 Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
@@ -99,7 +99,7 @@ This field is enabled after you specify an alias.
 +
 The JKS file information is saved in the global secrets group for your organization.
 
-** Option 3: Import from Secrets Manager (for advanced users)
+** Option 3: *Import from Secrets Manager* (for advanced users)
 +
 This option imports a TLS context from Secrets Manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
 +
