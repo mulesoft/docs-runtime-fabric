@@ -40,10 +40,9 @@ If you disable the Inbound Traffic tab, changes can take several minutes to comp
 [NOTE]
 The number of inbound load balancer replicas is determined by the number of controller nodes configured in the RTF. A minimum of 2 replicas is required for production environments, and these replicas only run on the controller VMs. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
-.. In the *Resource Allocation* section:
-... *Shared Mode* is the default setting for the ingress configuration if no dedicated mode is available.
-... Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if they are available. Transport Layer Security (TLS) termination is computationally expensive, so make sure to allocate enough CPU to increase throughput and decrease latency.
-... Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
+.. *Shared Mode* is the default setting for the ingress configuration if no dedicated mode is available.
+.. Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if they are available. Transport Layer Security (TLS) termination is computationally expensive, so make sure to allocate enough CPU to increase throughput and decrease latency.
+.. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
 . Configure a TLS context.
 +
 All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. Once enabled, HTTP requests sent to Runtime Fabric receive a `301` response to redirect to HTTPS on port 443.
@@ -59,59 +58,57 @@ To import a TLS context from Secrets Manager, you need additional Secrets Manage
 +
 To generate key material for testing purposes and create a TLS context in Secrets Manager, follow the instructions provided in xref:anypoint-security::secret-group-add-tls-context.adoc[Generate a TLS Certificate for Testing].
 
-.. Select one of the following options:
-
-*** Option 1: Upload PEM
+** Option 1: Upload PEM
 +
 Use this option to upload a public certificate and private key in PEM format. 
 +
 This option uses the TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
-.... Specify a *Certificate File*. When you specify a PEM public certificate file, the *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications*->*Ingress* page.
+... Specify a *Certificate File*. When you specify a PEM public certificate file, the *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
-***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
-***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
+**** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
+**** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 
-.... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
-.... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
-.... Optionally, specify a value for *CA Path Certificate File (Optional)*. This is the certificate signed by a certification authority (CA). The CA path contains the intermediary and root certificates that are related to the certificate file you want to use.
-.... Select *Deploy*. The *Key Passcode* field is disabled. If you upload a new key file, the *Key Passcode* field is again enabled.
+... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
+... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
+... Optionally, specify a value for *CA Path Certificate File (Optional)*. This is the certificate signed by a certification authority (CA). The CA path contains the intermediary and root certificates that are related to the certificate file you want to use.
+... Select *Deploy*. The *Key Passcode* field is disabled. If you upload a new key file, the *Key Passcode* field is again enabled.
 +
 The PEM file information is saved in the global secrets group for your organization.
 
-*** Option 2: Upload JKS
+** Option 2: Upload JKS
 +
 This option uses the TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
-.... Specify a value for *Keystore File*, the keystore file to use.
-.... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
-.... Specify a value for *Alias*. The alias is used to access the keystore entries (key and trusted certificate entries).
+... Specify a value for *Keystore File*, the keystore file to use.
+... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
+... Specify a value for *Alias*. The alias is used to access the keystore entries (key and trusted certificate entries).
 +
 [NOTE]
 This field is enabled after you specify a keystore file and keystore passcode.
 
-.... In the  `Choose Alias From Keystore` window, select an alias. The following information is displayed:
-***** The URL format to be used for your apps, based on the certificate’s CN.
+... In the  `Choose Alias From Keystore` window, select an alias. The following information is displayed:
+**** The URL format to be used for your apps, based on the certificate’s CN.
 +
 The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric.
 
-****** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
-****** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
-***** The expiration date of the secret.
-.... Specify a value for *Key Passcode*, the word or phrase that protects the private key.
+***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
+***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
+**** The expiration date of the secret.
+... Specify a value for *Key Passcode*, the word or phrase that protects the private key.
 +
 [NOTE]
 This field is enabled after you specify an alias.
 
-.... Make sure you have entered values for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before continuing.
-.... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are disabled.
-***** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
-***** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
+... Make sure you have entered values for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before continuing.
+... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are disabled.
+**** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
+**** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
 +
 The JKS file information is saved in the global secrets group for your organization.
 
-*** Option 3: Import from Secrets Manager (for advanced users)
+** Option 3: Import from Secrets Manager (for advanced users)
 +
 Select this option to create a TLS context or change TLS defaults, including adding or removing a TLS version, configuring mutual authentication, or changing cipher suites. This option is automatically selected for Runtime Fabrics that were configured prior to the availability of PEM and JKS uploads. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
 
@@ -121,7 +118,7 @@ A security policy must be defined in Anypoint Security to be displayed as an opt
 +
 If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
 +
-Refer to xref:anypoint-security::index-policies[Anypoint Security Policies for Edge] for additional information.
+Refer to xref:anypoint-security::index-policies.adoc[Anypoint Security Policies for Edge] for additional information.
 
 . (Optional) Select Advanced Options
 +
@@ -254,22 +251,21 @@ curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
 curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
 ----
 
-== Step 4: After Enabling Inbound Traffic
-Runtime Fabric must be configured to route incoming traffic to each enabled application in order for clients to send requests to deployed applications. You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
+== Step 4: Configure an External Load Balancer
+After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application in order for clients to send requests to deployed applications. You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
 
 Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
 
-* External Load Balancer Requirements
-+
+=== External Load Balancer Requirements
 When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs.
-+
+
 The external load balancer must support TCP load balancing and must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be configured on the external load balancer, listening on port 443.
-+
+
 This configuration of the external load balancer provides the following benefits:
-** Maintains high availability.
-** Protects against failures.
-** Gracefully handles automated failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
-* To configure an external load balancer:
+* Maintains high availability.
+* Protects against failures.
+* Gracefully handles automated failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
+To configure an external load balancer:
 . Review the information described in *Advanced Options* when adding an external load balancer.
 . Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
