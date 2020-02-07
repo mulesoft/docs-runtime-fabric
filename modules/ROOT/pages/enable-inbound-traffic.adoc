@@ -41,8 +41,8 @@ The number of inbound load balancer replicas is determined by the number of cont
 +
 *Shared Mode* is automatically selected for the ingress configuration if no dedicated mode is available.
 
-.. Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency.
-.. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
+.. Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to See the xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
+.. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available. 
 . Configure a TLS context.
 +
 All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a `301` response to redirect to HTTPS on port 443.
@@ -57,7 +57,7 @@ With this option, you cannot change the default values for TLS versions, ciphers
 +
 This is the default option when no TLS context exists for Runtime Fabric.
 
-... Specify a *Certificate File*. When you specify a PEM public certificate file, the *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
+... Specify a *Certificate File* in PEM format with the public certificate. The *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
 **** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
@@ -65,18 +65,18 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
 ... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
-... Optionally, specify a value for *CA Path Certificate File (Optional)*. This is the certificate signed by a certification authority (CA). The CA path contains the intermediary and root certificates that are related to the certificate file you want to use.
-... Select *Deploy*. The *Key Passcode* field is disabled. If you upload a new key file, the *Key Passcode* field is again enabled.
+... Optionally, specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. When you provide an entry in this field, the path is sent along with the certificate during the TLS handshake.
+... Select *Deploy*. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details.
 +
-The PEM file information is saved in the global secrets group for your organization.
+The public certificate, private key, and key passcode are saved in the secrets manager.
 
 ** Option 2: *Upload JKS*
 +
 Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
-... Specify a value for *Keystore File*, the keystore file to use.
+... Specify a value for *Keystore File. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
 ... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
-... Specify a value for *Alias*. The alias is used to access the keystore entries (key and trusted certificate entries).
+... Specify a value for *Alias*. The alias is used to select a specific key pair.
 +
 [NOTE]
 This field is enabled after you specify a keystore file and keystore passcode.
@@ -84,7 +84,7 @@ This field is enabled after you specify a keystore file and keystore passcode.
 ... In the  `Choose Alias From Keystore` window, select an alias. The following information is displayed:
 **** The URL format to be used for your apps, based on the certificate’s CN.
 +
-The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric:
+The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric. The domain is used for routing requests to an application. Other values can be selected via the *Applications->Ingress* page.
 
 ***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 ***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
@@ -94,8 +94,8 @@ The certificate must be set with a passphrase and a CN that specifies the domain
 [NOTE]
 This field is enabled after you specify an alias.
 
-... Verify you have entered values for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before continuing.
-... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are disabled.
+... Verify you have entered values for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before selecting other options or deploying.
+... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
 **** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
 **** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
 +
@@ -113,9 +113,10 @@ To generate key material for testing purposes and create a TLS context in the se
 
 . (Optional) Select Security Policies
 +
-A security policy must be defined in Anypoint Security to be displayed as an option in *Security Policies*. To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account.
+A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists. 
 +
-If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
+[NOTE]
+To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account. If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
 +
 Refer to xref:anypoint-security::index-policies.adoc[Anypoint Security Policies for Edge] for additional information.
 
@@ -133,7 +134,7 @@ case, *Source IP* refers to the client making the request.
 *Default value*: 512 connections
 
 | *Max Requests per Connection*
-| The maximum number of requests per connections to allow. +
+| The maximum number of requests per connections to allow. This value ranges from 1 to 4194304. The default value is 1000, which balances security and performance. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.+
 Because this value determines how much reuse a connection allows, consider the amount of CPU required to terminate and reestablish a TLS-encrypted connection when lowering this value.
 
 *Maximum allowed*: 1000 requests per connection
@@ -152,7 +153,7 @@ This value should always be higher than your *Read Request Time-out*.
 This value enables requests with large payloads or slow clients to be terminated to keep resources available.+
 This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
 
-If a Mule application takes longer than this value to respond, the connection is automatically closed. +
+For example, if a Mule application takes longer than this value to respond, the connection is automatically closed. +
 This value should always be lower than the *Connection Idle Time-out* value previously configured.
 
 *Default value*: 10 seconds
@@ -191,7 +192,7 @@ These values should not be configured.
 *Source IP header name*: blank +
 *Enable proxy protocol*: checked
 . Runtime Fabric is behind a non-AWS load balancer. +
- If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name must be provided. Two common source IP headers are:
+ If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
 +
 * Forwarded: An RFC7239 compliant IP header.
 * X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a load balancer (For example: “192.16.23.34, 172.16.21.36")
@@ -229,7 +230,9 @@ By default, the activity across all IPs addresses behind your endpoint is logged
 
 . Select *Deploy* to deploy the internal load balancer.
 +
-The deployment can take up to a minute to complete. If successful, a message is displayed. You can view the deployment status at the beginning of the page. When the status transitions to *Applied*, the internal load balancer is successfully deployed and inbound traffic is enabled.
+The deployment can take up to a minute to complete. 
++
+If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
 
 == Step 3: Verify that Inbound Traffic is Enabled
 To resolve the CN of applications deployed on Runtime Fabric, DNS must be configured to map the CN to the IP address of the external load balancer or of each controller VM. 
