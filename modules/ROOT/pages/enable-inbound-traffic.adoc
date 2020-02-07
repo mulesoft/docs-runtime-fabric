@@ -60,6 +60,7 @@ This is the default option when no TLS context exists for Runtime Fabric.
 ... Specify a *Certificate File* in PEM format with the public certificate. The *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
+
 **** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 **** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 
@@ -74,14 +75,14 @@ The public certificate, private key, and key passcode are saved in the secrets m
 +
 Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
-... Specify a value for *Keystore File. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
+... Specify a value for *Keystore File*. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
 ... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
 ... Specify a value for *Alias*. The alias is used to select a specific key pair.
 +
 [NOTE]
 This field is enabled after you specify a keystore file and keystore passcode.
 
-... In the  `Choose Alias From Keystore` window, select an alias. The following information is displayed:
+... In the *Choose Alias From Keystore* window, select an alias. The following information is displayed:
 **** The URL format to be used for your apps, based on the certificate’s CN.
 +
 The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric. The domain is used for routing requests to an application. Other values can be selected via the *Applications->Ingress* page.
@@ -134,12 +135,13 @@ case, *Source IP* refers to the client making the request.
 *Default value*: 512 connections
 
 | *Max Requests per Connection*
-| The maximum number of requests per connections to allow. This value ranges from 1 to 4194304. The default value is 1000, which balances security and performance. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.+
+| The maximum number of requests per connections to allow. +
+This value ranges from 1 to 4194304. +
 Because this value determines how much reuse a connection allows, consider the amount of CPU required to terminate and reestablish a TLS-encrypted connection when lowering this value.
 
 *Maximum allowed*: 1000 requests per connection
 
-*Default value*: 1000
+*Default value*: 1000. This value balances security and performance. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information. +
 
 | *Connection Idle Time-out*
 | The maximum amount of time that allowed for an idle connection. +
@@ -149,8 +151,8 @@ This value should always be higher than your *Read Request Time-out*.
 *Default value*: 15 seconds
 
 | *Read Request Time-out*
-| The maximum amount of time spent to read a request before it is terminated.+
-This value enables requests with large payloads or slow clients to be terminated to keep resources available.+
+| The maximum amount of time spent to read a request before it is terminated. +
+This value enables requests with large payloads or slow clients to be terminated to keep resources available.v+
 This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
 
 For example, if a Mule application takes longer than this value to respond, the connection is automatically closed. +
@@ -159,13 +161,13 @@ This value should always be lower than the *Connection Idle Time-out* value prev
 *Default value*: 10 seconds
 
 | *Read Response Time-out*
-| The maximum amount of time spent to initiate a response before the connection is terminated.+
-This value enables requests with large payloads be terminated to keep resources available.+
+| The maximum amount of time spent to initiate a response before the connection is terminated. +
+This value enables requests with large payloads be terminated to keep resources available.
 
 *Default value*: 300 seconds
 
 | *Write Response Time-out*
-| The maximum amount of time spent from the end of the request header read to the end of the response write before the request is terminated.+
+| The maximum amount of time spent from the end of the request header read to the end of the response write before the request is terminated.
 
 *Default value*: 10 seconds
 
@@ -177,9 +179,7 @@ If a client exceeds this number, the exceeding requests are not read until the r
 *Default value*: 10 requests per client
 
 | *Source IP header name* and *enable proxy protocol* 
-| Set these configurations if Runtime Fabric is behind a load balancer.
-
-The values to configure here depend on your scenario:
+| Configure the following values based on the applicable scenario:
 
 . Runtime Fabric is not deployed behind a load balancer. +
 These values should not be configured.
@@ -192,13 +192,15 @@ These values should not be configured.
 *Source IP header name*: blank +
 *Enable proxy protocol*: checked
 . Runtime Fabric is behind a non-AWS load balancer. +
- If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
+ If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. 
++
+HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
 +
 * Forwarded: An RFC7239 compliant IP header.
 * X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a load balancer (For example: “192.16.23.34, 172.16.21.36")
 +
-*Source IP header name*: non-blank +
-*Enable proxy protocol*: unchecked
+*Source IP header name*: Non-blank +
+*Enable proxy protocol*: Unchecked
 
 *Default value*: blank and unchecked.
 
