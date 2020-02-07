@@ -49,14 +49,11 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Whe
 +
 You can configure the private key and public certificate for a TLS-enabled server in one of the following ways:
 
-** Upload Privacy-Enhanced Mail (PEM) or Java Keystore (JKS) information. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. A JKS file is a repository for authorization or public key certificates and does not store secret keys. The default option is `Upload PEM`  when no TLS context exists for Runtime Fabric. When you select the *Upload PEM* or *Upload JKS* option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. 
-** Import a TLS Context from Secrets Manager.
-+
-This option supports advanced configuration such as mutual authentication, selecting ciphers, and selecting TLS versions. This option is automatically selected for Runtime Fabrics for which inbound traffic was enabled before the PEM and JKS upload options became available.
-
 ** Option 1: Upload PEM
 +
-Use this option to upload a public certificate and private key in PEM format and use TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for  information about TLS default values.
+Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for  information about TLS default values.
++
+This is the default option when no TLS context exists for Runtime Fabric.
 
 ... Specify a *Certificate File*. When you specify a PEM public certificate file, the *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
@@ -73,7 +70,7 @@ The PEM file information is saved in the global secrets group for your organizat
 
 ** Option 2: Upload JKS
 +
-This option uses the TLS default values. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
+Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 
 ... Specify a value for *Keystore File*, the keystore file to use.
 ... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
@@ -104,7 +101,9 @@ The JKS file information is saved in the global secrets group for your organizat
 
 ** Option 3: Import from Secrets Manager (for advanced users)
 +
-Select this option to create a TLS context or change TLS defaults, including adding or removing a TLS version, configuring mutual authentication, or changing cipher suites. This option is automatically selected for Runtime Fabrics that were configured prior to the availability of PEM and JKS uploads. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
+This option imports a TLS context from Secrets Manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
++
+This option is automatically selected for Runtime Fabrics for which inbound traffic was enabled before the PEM and JKS upload options became available. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
 +
 To import a TLS context from Secrets Manager, you need additional Secrets Manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 +
@@ -179,18 +178,18 @@ If a client exceeds this number, the exceeding requests are not read until the r
 
 The values to configure here depend on your scenario:
 
-. Runtime Fabric is not behind a load balancer. +
-Runtime Fabric is not deployed behind a load balancer, these values should not be configured.
+. Runtime Fabric is not deployed behind a load balancer. +
+These values should not be configured.
 +
 *Source IP header name*: blank +
 *Enable proxy protocol*: Unchecked
-. Runtime Fabric is behind an AWS Load Balancer with a Proxy Protocol configured. +
- If Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol enabled, you must select the *enable proxy protocol* option.
+. Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol configured. +
+ You must select the *enable proxy protocol* option.
 +
 *Source IP header name*: blank +
 *Enable proxy protocol*: checked
 . Runtime Fabric is behind a non-AWS load balancer. +
- If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name will need to be provided. Two common source IP headers are:
+ If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name must be provided. Two common source IP headers are:
 +
 * Forwarded: An RFC7239 compliant IP header.
 * X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a Load Balancer (For example: “192.16.23.34, 172.16.21.36")
