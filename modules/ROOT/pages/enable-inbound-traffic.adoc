@@ -16,7 +16,7 @@ Ensure you have the necessary permissions for the Runtime Fabric environment you
 
 . From Anypoint Platform, select *Access Management*.
 +
-If you do not have access to Anypoint Access Management, request access from your system administrator.
+If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
 . Select *Users*.
 . Locate the row with your username and then select the blue link in the *Username* column.
 . In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
