@@ -57,7 +57,7 @@ With this option, you cannot change the default values for TLS versions, ciphers
 +
 This is the default option when no TLS context exists for Runtime Fabric.
 
-... Specify a *Certificate File* in PEM format with the public certificate. The *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
+... Specify a *Certificate File* in PEM format with the public certificate. This file contains the public certificate of the inbound traffic server. The *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
 
@@ -282,7 +282,7 @@ When you are ready to deploy an application, follow the instructions in xref:dep
 The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
 == Generate a TLS Certificate for Testing
-Use the following steps to generate a certificate-key pair for evaluation purposes.
+For testing purposes, you can use the following steps to generate a certificate-key pair:
 
 . Run the following command on your machine to generate a certificate-key pair:
 +
