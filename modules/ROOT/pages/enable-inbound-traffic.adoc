@@ -35,11 +35,11 @@ It can take up to five minutes for any permissions you add to propagate.
 If you disable the Inbound Traffic tab, changes can take several minutes to complete.
 
 . In the *Basic Configuration* section, verify that *Secure Port* is set to `443` and that *Non Secure Port* is set to `80`.  The nonsecure port redirects to the secure port.
-. Select *Resource Allocation*.
+. In the *Resource Allocation* section:
 +
-The number of inbound load balancer replicas is determined by the number of controller nodes configured in Runtime Fabric. A minimum of two replicas is required for production environments, and these replicas run only on the controller VMs. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+The number of inbound load balancer replicas is determined by the number of controller nodes configured in Runtime Fabric. A minimum of three replicas is required for production environments, and these replicas run only on the controller VMs. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 +
-*Shared Mode* is automatically selected for the ingress configuration if no dedicated mode is available.
+*Shared Mode* is automatically selected for the ingress configuration if dedicated mode is not available.
 
 .. Specify the minimum number of cores for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to See the xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
 .. Specify the minimum memory for each replica of the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available. 
