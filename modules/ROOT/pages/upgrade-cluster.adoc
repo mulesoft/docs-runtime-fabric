@@ -83,7 +83,7 @@ sudo chmod +x rtfctl
 .. Using your terminal open on a controller node, run the following command, substituting the value of the URL parameter with the *Installer package* URL: 
 +
 ----
-sudo ./rtfctl upgrade-cluster --url <cluster-installer-url>
+sudo ./rtfctl appliance upgrade --url <cluster-installer-url>
 ----
 +
 This command also supports referencing an installer package already downloaded on the node, with the `--file` parameter.
