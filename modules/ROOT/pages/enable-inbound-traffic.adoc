@@ -9,7 +9,7 @@ Runtime Fabric can be shared across multiple environments. After installation, c
 
 Applications deployed to a production environment must be deployed to an instance of Runtime Fabric that is separate from nonproduction applications.
 
-By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inbound traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic.
 
 == Step 1: Assign Required Roles and Permissions
 Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
