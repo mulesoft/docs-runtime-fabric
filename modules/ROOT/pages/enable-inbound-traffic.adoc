@@ -237,23 +237,21 @@ The deployment can take up to a minute to complete.
 If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
 
 == Step 3: Verify that Inbound Traffic is Enabled
-To resolve the CN of applications deployed on Runtime Fabric, DNS must be configured to map the CN to the IP address of the external load balancer or of each controller VM. 
+To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
 
-To test inbound traffic for applications before configuring DNS, send a request to the application using the IP address and a host header set to the domain.
+. Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
 
-The structure of the domain depends on whether a wildcard was used in the CN of your certificate, for example:
-
-* A CN with a wildcard (such as *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command for verification:
+. Run the following cURL command for verification:
 +
-----
-curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
-----
-
-* A CN without a wildcard (such as example.com) uses the following request header format: `Host: example.com`. Use the following cURL command for vierfication:
+```
+curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
+```
 +
-----
-curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
-----
+In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
++
+```
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
+```
 
 == Step 4: Configure an External Load Balancer
 After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application for clients to send requests to deployed applications. 
