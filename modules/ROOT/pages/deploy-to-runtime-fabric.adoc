@@ -80,9 +80,10 @@ To test inbound traffic for deployed applications, you can send a request using 
 curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
 ```
 +
-In the following example, {application-path-from-runtime-manager} is set to https://newapp.example-rtf.dev, and 192.168.64.14 is the IP address of a controller machine in your cluster.
+In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
 ```
 curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
+```
 
 == Common Issues
 
