@@ -3,67 +3,288 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which by default are deployed across different worker VMs.
+Runtime Fabric provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
 
 Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric to enable application deployment. You must associate at least one environment with each Runtime Fabric to be able to deploy Mule applications or API gateways.
 
-Applications deployed to a production environment must be deployed to a instance of Runtime Fabric that is separated from non-production applications.
+Applications deployed to a production environment must be deployed to an instance of Runtime Fabric that is separate from nonproduction applications.
 
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic.
+
+== Step 1: Assign Required Roles and Permissions
+Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+
+. From Anypoint Platform, select *Access Management*.
++
+If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
+. Select *Users*.
+. Locate the row containing your username and then select the blue link in the *Username* column.
+. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
++
 [NOTE]
-By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic. Inbound traffic is disabled by default and must be manually enabled before inbound requests can be received by Mule applications and API gateways.
+It can take up to five minutes for any permissions you add to propagate.
 
+== Step 2: Configure Inbound Traffic Using Runtime Manager
 
-Before enabling inbound traffic, you must provide a valid TLS certificate. The certificate must require a passphrase and be set with a Common Name (CN) which specifies the domain for each application deployed to Runtime Fabric.
+. Navigate to Runtime Manager and select *Runtime Fabric*.
+. Select the name of your Runtime Fabric to open the management page.
+. In the *Associated Environments* tab, ensure that your Runtime Fabric is associated with the environments in which applications are to be deployed.
+. Select *Inbound Traffic* and toggle *Enable inbound traffic* to on.
++
+[NOTE]
+If you disable the Inbound Traffic tab, changes can take several minutes to complete.
 
-* If the Common Name contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
-* If the Common Name does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
+. In the *Basic Configuration* section, verify that *Secure Port* is set to `443` and that *Non Secure Port* is set to `80`.  The nonsecure port redirects to the secure port.
+. In the *Resource Allocation* section:
++
+The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
++
+*Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
++
+*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of cores and memory. If *Dedicated Mode* is disabled, then all nodes are already in sharing mode, which prevents them from being dedicated.
 
-== External Load Balancer Requirements
+.. Specify the minimum number of cores to allocate for each controller node for the internal load balancer. 
++
+Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to See the xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
+.. Specify the minimum memory to allocate for each controller node for the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available. 
+. Configure a TLS context.
++
+All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a `301` response to redirect to HTTPS on port 443.
++
+You can configure the private key and public certificate for a TLS-enabled server in one of the following ways:
 
-Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs. The external load balancer must support TCP load balancing. The load balancer must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be set up on the external load balancer, listening on port 443.
+** Option 1: *Upload PEM*
++
+Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. 
++
+With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for information about TLS default values.
++
+This is the default option when no TLS context exists for Runtime Fabric.
 
-This configuration of the external load balancer:
+... For *Certificate File*, specify a public certificate for the inbound traffic server in PEM format. The *Derived URL Format* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
++
+The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
 
-* Maintains high availability
-* Protects against failures
+**** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
+**** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
+
+... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
+... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
+... Optionally, specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. When you provide an entry in this field, the path is sent along with the certificate during the TLS handshake.
+... Select *Deploy*. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
++
+The public certificate, private key, and key passcode are saved in the secrets manager.
+
+** Option 2: *Upload JKS*
++
+Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
+
+... Specify a value for *Keystore File*. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
+... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
+... Specify a value for *Alias*. The alias is used to select a specific key pair.
++
+[NOTE]
+This field is enabled after you specify a keystore file and keystore passcode.
+
+... In the *Choose Alias From Keystore* window, select an alias. The following information is displayed:
+**** The URL format to be used for your apps, based on the certificate’s CN.
++
+The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric. The domain is used for routing requests to an application. Other values can be selected via the *Applications->Ingress* page.
+
+***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
+***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
+**** The expiration date of the secret.
+... Specify a value for *Key Passcode*, the word or phrase that protects the private key.
++
+[NOTE]
+This field is enabled after you specify an alias.
+
+... Verify you have entered values for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before selecting other options or deploying.
+... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
+**** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
+**** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
++
+The JKS file information is saved in the global secrets group for your organization.
+
+** Option 3: *Import from Secrets Manager* (for advanced users)
++
+This option is automatically selected for Runtime Fabrics for which inbound traffic was enabled before the PEM and JKS upload options became available. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
++
+This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
++
+To import a TLS context from the secrets manager, you need additional secrets manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
++
+To generate key material for testing purposes and create a TLS context in the secrets manager, follow the instructions provided in Generate a TLS Certificate for Testing later in this topic.
+
+. (Optional) Select Security Policies
++
+A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists. 
++
+[NOTE]
+To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account. If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
++
+Refer to xref:anypoint-security::index-policies.adoc[Anypoint Security Policies for Edge] for additional information.
+
+. (Optional) Select Advanced Options
++
+The following table describes additional configuration options you might need to set for your environment. In this 
+case, *Source IP* refers to the client making the request.
++
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Value |Description
+| *Max Connections*
+| The maximum number of simultaneous connections to allow.
+
+*Default value*: 512 connections
+
+| *Max Requests per Connection*
+| The maximum number of requests per connections to allow. +
+This value ranges from 1 to 4194304. +
+Because this value determines how much reuse a connection allows, consider the amount of CPU required to terminate and reestablish a TLS-encrypted connection when lowering this value.
+
+*Maximum allowed*: 1000 requests per connection
+
+*Default value*: 1000. This value balances security and performance. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information. +
+
+| *Connection Idle Time-out*
+| The maximum amount of time that allowed for an idle connection. +
+This value helps you terminate idle connections and free resources. +
+This value should always be higher than your *Read Request Time-out*.
+
+*Default value*: 15 seconds
+
+| *Read Request Time-out*
+| The maximum amount of time spent to read a request before it is terminated. +
+This value enables requests with large payloads or slow clients to be terminated to keep resources available.v+
+This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
+
+For example, if a Mule application takes longer than this value to respond, the connection is automatically closed. +
+This value should always be lower than the *Connection Idle Time-out* value previously configured.
+
+*Default value*: 10 seconds
+
+| *Read Response Time-out*
+| The maximum amount of time spent to initiate a response before the connection is terminated. +
+This value enables requests with large payloads be terminated to keep resources available.
+
+*Default value*: 300 seconds
+
+| *Write Response Time-out*
+| The maximum amount of time spent from the end of the request header read to the end of the response write before the request is terminated.
+
+*Default value*: 10 seconds
+
+| *Max Pipeline Depth*
+| The maximum number of requests to allow from the same client. +
+This value defines how many simultaneous requests a client can send. +
+If a client exceeds this number, the exceeding requests are not read until the requests in the queue receive a response.
+
+*Default value*: 10 requests per client
+
+| *Source IP header name* and *enable proxy protocol* 
+| Configure the following values based on the applicable scenario:
+
+. Runtime Fabric is not deployed behind a load balancer. +
+These values should not be configured.
++
+*Source IP header name*: Blank +
+*Enable proxy protocol*: Unchecked
+. Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol configured. +
+ You must select the *enable proxy protocol* option.
++
+*Source IP header name*: Blank +
+*Enable proxy protocol*: Checked
+. Runtime Fabric is behind a non-AWS load balancer. +
+ If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. 
++
+HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
++
+* Forwarded: An RFC7239 compliant IP header.
+* X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a load balancer (For example: “192.16.23.34, 172.16.21.36")
++
+*Source IP header name*: Non-blank +
+*Enable proxy protocol*: Unchecked
+
+*Default value*: Blank and unchecked.
+
+|=== 
+
+. (Optional) Configure Internal Load Balancer Logs
++
+You can define the log levels for the internal load balancer. Runtime Fabric supports the following log levels, listed in descending order of verbosity:
++
+** FATAL
+** ERROR
+** WARNING
+** INFO
+** VERBOSE
+** DEBUG
+** TRACE
++
+The more verbose log levels, which include WARNING, INFO, VERBOSE, DEBUG, and TRACE, consume more CPU resources for each request. Consider this when adjusting the log level and allocating resources for the internal load balancer.
++
+By default, the activity across all IPs addresses behind your endpoint is logged. To help reduce CPU consumption when using more verbose log levels, add IP filters to only log-specific IP addresses. This feature also reduces the quantity of logs when debugging a connection for a specific or limited number of IP addresses.
+
+.. From Anypoint Platform select *Runtime Manager*.
+.. Select *Runtime Fabric*.
+.. Select the *Inbound Traffic* tab, and then select *Logs*.
+.. Select *Add Filter*.
+.. In the *IP* field, enter a single IP address or subset of addresses using CIDR notation.
+.. Select the log level to apply to this IP filter.
+.. Select *OK*.
+
+. Select *Deploy* to deploy the internal load balancer.
++
+The deployment can take up to a minute to complete. 
++
+If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
+
+== Step 3: Verify that Inbound Traffic is Enabled
+To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
+
+. Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
+
+. Run the following cURL command for verification:
++
+```
+curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
+```
++
+In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
++
+```
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
+```
+
+== Step 4: Configure an External Load Balancer
+After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application for clients to send requests to deployed applications. 
+
+You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
+
+=== External Load Balancer Requirements
+When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs.
+
+The external load balancer must support TCP load balancing and must be configured with a server pool containing the IP addresses of each controller VM. A health check must also be configured on the external load balancer, listening on port 443.
+
+This configuration of the external load balancer provides the following benefits:
+
+* Maintains high availability.
+* Protects against failures.
 * Gracefully handles automated failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
 
-[NOTE]
-Controller VMs are virtual machines dedicated to run the components which power Anypoint Runtime Fabric.
+To configure an external load balancer:
 
-All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. The following procedures describe how to configure and use a TLS certificate to enable inbound traffic. Once enabled, HTTP requests sent to Runtime Fabric will receive a 301 response to redirect to HTTPS on port 443.
+. Review the information described in *Advanced Options* when adding an external load balancer.
+. Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
-== Assign Required Roles and Permissions
+== Step 5: Deploy Applications
+When you are ready to deploy an application, follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 
-. Determine the environment you want to use for applications that run in your Runtime Fabric.
-. Ensure you have the necessary permissions.
-+
-It can take up to 5 minutes for any permissions you gain to propagate.
+The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
-.. From Anypoint Platform, select *Access Management*.
-+
-If you do not have access to Access Management, request access from your system administrator.
-
-.. Select *Users*
-.. Locate the row with your username and then select the blue link.
-.. On the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
-
-.. On the *Secrets Manager* tab, enable the *Manage Secret Groups*, *Write Secrets*, and *Read Secrets Metadata* permissions for your Runtime Fabric environment.
-
-== Generate a Certificate-Key Pair
-You need a certificate-key pair for the internal load balancer in Runtime Fabric. If you have one already, both files must be of the .pem type, your keystore must have a passcode, and your common name should match the domain you use in your Runtime Fabric. 
-
-RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance. 
-[NOTE]
-RSA keys larger than 2K protect against brute force cracking and are appropriate for certificates that have expirations of many years. However, whenever key length is doubled, for example, from 2k to 4k, performance is reduced by a factor greater than 6.
- 
-ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a 2K RSA key. Supported curves are:
-
-* secp521r1 (P-521)
-* secp384r1 (P-384)
-* secp256r1 (also known as prime256v1 (P-256))
-
-Use the following steps to generate a certificate-key pair for evaluation purposes.
+== Generate a TLS Certificate for Testing
+For testing purposes, you can use the following steps to generate a certificate-key pair:
 
 . Run the following command on your machine to generate a certificate-key pair:
 +
@@ -76,239 +297,14 @@ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365
 
 If you use a wildcard, for example, `*.example.com` in your common name, your application URLs use the following format: `{app-name}.example.com`. Otherwise, your application URLs use the format `example.com/{app-name}`.
 
+== TLS Certificate Expiration
+Certificates (both self-signed and CA-signed) always have an expiration date. By default, certificates expire one year after they are created. 
 
-== Create a TLS Context
+The following warnings are displayed for certificates that will expire within 30 days to remind you to upload a new certificate-key pair before a certificate expires:
 
-Follow these steps to include your certificate-key pair in a TLS context and store it in Secrets Manager. This will be used later to encrypt inbound traffic to your Runtime Fabric.
-
-. Navigate to Secrets Manager from the Anypoint Platform homepage.
-+
-[NOTE]
-Make sure you’re in the right business group and select your Runtime Fabric environment in the sidebar on the left.
-
-. Select the *Create Secret Group* button.
-. Under *General*, type the name of your secret group.
-. Select *Save*.
-. Select *Keystore* in the sidebar and create your keystore:
-.. Select *Add Keystore*.
-+
-If you don’t see the *Add Keystore* button, ensure that you are viewing your secret group in edit mode. Return to *Secret Groups* and then select the *Edit* next to your group.
-
-.. Enter a name for your keystore.
-+
-This name identifies the keystore when you add it to your TLS context below.
-
-.. Under *Certificate File*, select *Choose File* and then select your `.pem` certificate` file.
-.. Under *Key File*, select *Choose File* and then select your `.pem` key file.
-.. Enter your key passphrase.
-.. Optionally, upload a separate certificate file containing a CA path.
-.. Select *Save*.
-+
-[NOTE]
-If you receive an unknown error, it might be due to your Certificate file containing a CA path. You must move the CA path into its own file and upload it separately before continuing.
-
-. Select *TLS Context* and then perform the following:
-+
-[NOTE]
-If you do not see *Add TLS Context*, ensure you are viewing your secret group in edit mode. Return to the *Secret Groups* page and then select *Edit* next to your group.
-
-.. Type a name for your TLS context. This will identify it when you apply it to your Runtime Fabric later.
-.. Use the default TLS version (TLS 1.2).
-.. Under *Target*, select *Anypoint Security*. This configures your TLS context so it can be applied to a Runtime Fabric.
-.. Under *Keystore*, select the name of the keystore you configured previously.
-.. Select *Save*.
-
-. After saving your TLS context, select *Secret Groups* and then select *Finish*. This enables TLS Context for your *Runtime Fabric.*
-
-== Enable Inbound Traffic
-The Runtime Fabric internal load balancer supports OpenSSL 1.1.1 and TLS 1.3, which provide the following security enhancements and performance improvements over TLS 1.2:
- 
-* 2x or greater TLS 1.2 connection performance throughput boost versus prior Runtime Fabric internal load balancer running on OpenSSL 1.0.2
-* Reduction of one round trip in full handshake for TLS 1.3 vs. TLS 1.2
-* Added TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support
-* TLS 1.3 protection against downgrade attacks
-* Continued support for both RSA and ECDSA keys
-* TLS 1.3 removes obsolete and insecure features from TLS 1.2 and TLS 1.1. Refer to the xref:release-notes::anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a complete list of supported and deprecated ciphers. 
-
-The TLS 1.3 protocol is enabled by default for those clients that support it.
-
-After creating a TLS context, apply the TLS context to your Runtime Fabric to enable secure incoming traffic.
-
-. Navigate to Runtime Manager and then select *Runtime Fabric*.
-. Select the name of your Runtime Fabric to open the management page.
-. In the *Associated Environments* tab, ensure your Runtime Fabric environment is associated with your Runtime Fabric.
-. Select the *Inbound Traffic* tab and turn on the Enable inbound traffic toggle.
-. Select *Basic Configuration* and then perform the following:
-.. Set the number of replicas to run the internal load balancer with.
-+
-[NOTE]
-A minimum of 2 replicas is required for production environments. These replicas only run on the controller VMs.
-
-.. Determine the amount of CPU and memory to allocate for each replica of the internal load balancer.
-+
-[NOTE]
-TLS termination is computationally expensive. Allocate more CPU to increase throughput and decrease latency.
-
-. Under TLS Configuration:
-.. From the *Environment* menu, select your Runtime Fabric environment.
-.. From the *Secrets Group* menu, select the secrets group containing the TLS context 
-created earlier.
-+
-[NOTE]
-If your secrets group does not appear, ensure you have the *Manage Runtime Fabrics* 
-permission on your account.
-
-.. From the *TLS Context* menu, select the TLS Context to be used for your Runtime Fabric.
-
-. Select *Deploy* to deploy the internal load balancer. If successful, a message appears 
-in the bottom-right of the page. The deployment may take up to a minute. You can view the
-deployment status at the top of the form. When the status transitions to *Applied*, the 
-internal load balancer is successfully deployed and inbound traffic enabled.
-
-
-== Verify that Inbound Traffic is Enabled
-
-To resolve the Common Name (CN) of applications deployed on Runtime Fabric, DNS must be configured to map the CN to the IP address of the external load balancer or of each controller VM. To test inbound traffic for applications before configuring DNS, send a request to the application using the IP address and a host header set to the domain.
-
-The structure of the domain depends on whether a wildcard was used in the CN of your certificate, for example:
-
-* A CN with a wildcard (e.g. *.example.com) uses the following request header format: `Host: {app-name}.example.com`. Use the following cURL command to verify:
-+
-----
-curl -Lvk -XGET https://{ip-address}/{path} -H 'Host: {app-name}.example.com'
-----
-
-* A CN without a wildcard (e.g. example.com) uses the following request header format: `Host: example.com`. Use the following cURL command to verify:
-+
-----
-curl -Lvk -XGET https://{ip-address}/{app-name}/{path} -H 'Host: example.com'`
-----
-
-== After Enabling Traffic
-
-Runtime Fabric must be configured to route incoming traffic to each enabled application. To complete in order for 
-clients to send requests to deployed applications:
-
-* Configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric.
-* Review the advanced options described below when adding an external load balancer.
-* Configure DNS before using the Common Name obtained from the TLS certificate. DNS is required to send 
-requests to applications or API gateways deployed to Runtime Fabric. An "A record" should be added to your 
-DNS provider to map the Common Name to the IP address of the external load balancer or controller VMs.
-
-When deploying new applications or managing existing applications on Runtime Fabric, the Ingress tab is enabled. 
-This tab allows you to specify if inbound traffic should be allowed. After enabling inbound traffic, the default 
-behavior switches to allowed for new application deployments. If there are applications deployed to Runtime 
-Fabric before enabling inbound traffic, they will not receive inbound requests until this setting is enabled.
-
-== Additional Configuration Options
-
-The following table describes additional configuration options you might need to set for your environment. In this 
-case, *Source IP* refers to the client making the request.
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Value |Description
-| *Max Connections*
-| The maximum number of simultaneous connections to allow.
-
-*Default value*: 512 connections
-
-| *Max Requests per Connection*
-| The maximum number of requests per connections to allow. +
-Because this value determines how much reuse a connection allows, consider the amount of CPU required to terminate and reestablish a TLS-encrypted connection when lowering this value.
-
-*Maximum allowed*: 1000 requests per connection
-
-*Default value*: 1000
-
-| *Connection Idle Time-out*
-| The maximum amount of time that allowed for an idle connection. +
-This value helps you terminate idle connections and free resources. +
-This value should always be higher than your *Read Request Time-out*.
-
-*Default value*: 15 seconds
-
-| *Read Request Time-out*
-| The maximum amount of time spent to read a request before it is terminated.+
-This value enables requests with large payloads or slow clients to be terminated to keep resources available.+
-This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
-
-If a Mule application takes longer than this value to respond, the connection is automatically closed. +
-This value should always be lower than the *Connection Idle Time-out* value previously configured.
-
-*Default value*: 10 seconds
-
-| *Read Response Time-out*
-| The maximum amount of time spent to initiate a response before the connection is terminated.+
-This value enables requests with large payloads be terminated to keep resources available.+
-
-*Default value*: 300 seconds
-
-| *Write Response Time-out*
-| The maximum amount of time spent from the end of the request header read to the end of the response write before the request is terminated.+
-
-*Default value*: 10 seconds
-
-| *Max Pipeline Depth*
-| The maximum number of requests to allow from the same client. +
-This value defines how many simultaneous requests a client can send. +
-If a client exceeds this number, the exceeding requests are not read until the requests in the queue receive a response.
-
-*Default value*: 10 requests per client
-
-| *Source IP header name* and *enable proxy protocol* 
-| Set these configurations if Runtime Fabric is behind a load balancer.
-
-The values to configure here depend on your scenario:
-
-. Runtime Fabric is not behind a load balancer. +
-Runtime Fabric is not deployed behind a load balancer, these values should not be configured.
-+
-*Source IP header name*: blank +
-*Enable proxy protocol*: Unchecked
-. Runtime Fabric is behind an AWS Load Balancer with a Proxy Protocol configured. +
- If Runtime Fabric is deployed behind an AWS load balancer with a proxy protocol enabled, you must select the *enable proxy protocol* option.
-+
-*Source IP header name*: blank +
-*Enable proxy protocol*: checked
-. Runtime Fabric is behind a non-AWS load balancer. +
- If Runtime Fabric is deployed behind another type of load balancer, such as F5 or nginx, the source IP header name will need to be provided. Two common source IP headers are:
-+
-* Forwarded: An RFC7239 compliant IP header.
-* X-Forwarded-For: Non-standard pre-2014 header containing one or more IPs from a Load Balancer (For example: “192.16.23.34, 172.16.21.36")
-+
-*Source IP header name*: non-blank +
-*Enable proxy protocol*: unchecked
-
-*Default value*: blank and unchecked.
-
-|=== 
-
-== Internal Load Balancer Logs
-
-You can define the log levels for the internal load balancer. Runtime Fabric supports the following log levels, listed in descending order of verbosity:
-
-* FATAL
-* ERROR
-* WARNING
-* INFO
-* VERBOSE
-* DEBUG
-* TRACE
-
-The more verbose log levels, WARNING to TRACE, consume more CPU resources for each request. Consider this when adjusting the log level and allocating resources for the internal load balancer.
-
-By default, the activity across all IPs addresses behind your endpoint are logged. To help reduce CPU consumption when using more verbose log levels, add IP filters to only log specific IP addresses. This feature also reduces the quantity of logs when debugging a connection for a specific or limited number of IP addresses.
-
-=== Configuring Internal Load Balancer Logs
-
-. From Anypoint Platform select Runtime Manager.
-. Select *Runtime Fabric*.
-. From the *Inbound Traffic* tab, select the "Logs +" link.
-. Select *Add Filter*.
-. In the *IP* field, enter a single IP address or subset of addresses using CIDR notation.
-. Select the log level to apply for this IP filter.
-. Select *OK*.
+* On the *Runtime Fabrics* page, if a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column. 
+* On the `Runtime Fabrics` page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that RTF.
+* On the *Inbound Traffic tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
 
 == See Also
 

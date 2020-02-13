@@ -96,7 +96,7 @@ Performance test results are based on an Anypoint Runtime Fabric cluster with co
 
 A load generator based on C++, which has better efficiency in SSL connections was used to yield the maximum throughput.
 
-The following table summarizes the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer, based on the number of CPU cores. In most cases, ECDSA provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
+The following table summarizes the approximate requests (averaging 10 KB) that can be served with a single replica of the internal load balancer, based on the number of CPU cores. In most cases, Elliptical Curve Digital Signature Algorithm (ECDSA) provides double the performance of a 2K RSA key. Supported curves are secp521r1 (P-521), secp384r1 (P-384), and secp256r1, also known as prime256v1 (P-256).
 
 [%header,cols="4*a"]
 |===
@@ -116,6 +116,18 @@ The following table summarizes the approximate requests (averaging 10 KB) that c
 
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
+
+== Key Types
+
+RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance. 
+[NOTE]
+RSA keys larger than 2K protect against brute force cracking and are appropriate for certificates that have expirations of many years. However, whenever key length is doubled, for example, from 2k to 4k, performance is reduced by a factor greater than 6.
+ 
+ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a 2K RSA key. Supported curves are:
+
+* secp521r1 (P-521)
+* secp384r1 (P-384)
+* secp256r1 (also known as prime256v1 (P-256))
 
 == See Also
 

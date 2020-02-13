@@ -72,62 +72,18 @@ For newly deployed applications, the status initially displays as *Starting*. Th
 
 To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
 
-. Determine the URL path (if it exists) for the application by locating the worker node for the application, for example:
-+
-```
-kubectl get pods --all-namespaces | grep {app-name}
+. Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
 
-873835cd-273a-4623-9203-ecaa1b975a5e   {app-name}-f9b7d85d-59df7                   2/2     Running     0          2m48s
-```
-. On the controller node, get the connection to the worker node for the application:
+. Run the following cURL command for verification:
 +
 ```
-kubectl exec -n 873835cd-273a-4623-9203-ecaa1b975a5e {app-name}-f9b7d85d-59df7 -c app -it -- /bin/bash
-```
-. On the worker node for the application, get the URL path. In this example, the URL path is `/helloWorld`:
-+
-```
-app@{app-name}-f9b7d85d-59df7:/opt/mule/apps/{app-name}$ cat hello-world.xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d6132ed6-b549-4a5a-ab30-b0006362476b" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
-	</http:listener-config>
-	<flow name="hello-worldFlow" doc:id="fb709ee4-0263-492c-92e3-ba5bb6287cd7" >
-		<http:listener doc:name="Listener" doc:id="b4f5d981-3869-46e4-879b-2ba9e8e1c2b7" config-ref="HTTP_Listener_config" path="/helloWorld"/>
-		<logger level="INFO" doc:name="Logger" doc:id="d254b372-8ea9-4b59-bb07-04cc2bf715a5" message="#[attributes.requestPath]"/>
-		<set-payload value="Hello World!" doc:name="Set Payload" doc:id="c04ac342-40dd-48ec-bf80-206d3aaa77e3" mimeType="text/plain"/>
-	</flow>
-</mule>
-```
-. Using the {path} information obtained, use one of the following cURL commands for verification, based on the application URL format:
-
-** An application URL with the format `{app-name}.domain.com` uses the following request header format: `Host: {app-name}.domain.com`. Use the following cURL command for verification:
-+
-```
-curl -Lvk -XGET -H 'Host: {app_name}.<domain of worker>' https://{worker-ip-address>}/{path}
+curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
 ```
 +
-For example:
+In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
 +
 ```
-curl -Lvk -XGET -H 'Host: hworld-app.eu-north-1.compute.amazonaws.com' https://13.53.214.196/helloWorld
-```
-** An application URL with the format `domain.com/{app-name}` uses the following request header format: `Host: domain.com`. Use the following cURL command for verification: 
-+
-```
-curl -Lvk -XGET https://{worker-ip-address}/{app-name}/{path} -H "Host: <domain of worker>"
-```
-+
-For example:
-+
-```
-curl -Lvk -XGET https://{worker-ip-address}/hworld-app/helloWorld -H "Host: eu-north-1.compute.amazonaws.com"
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
 ```
 
 == Common Issues
