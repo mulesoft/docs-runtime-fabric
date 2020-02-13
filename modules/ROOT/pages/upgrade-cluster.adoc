@@ -160,7 +160,7 @@ Most errors encountered are due to insufficient disk performance on the `etcd` b
 
 Perform the following steps to resolve common errors:
 
-. On a terminal open to the controller node that was used to start the upgrade, change to the directory with the installer bundle files, as shown in the following example:
+. On a terminal open to the controller node that was used to start the upgrade, navigate to the directory with the installer bundle files, as shown in the following example:
 +
 ----
 cd /opt/anypoint/runtimefabric/installer
