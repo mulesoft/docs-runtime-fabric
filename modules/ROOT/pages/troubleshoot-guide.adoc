@@ -46,9 +46,13 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-port-reqs#port-ips-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
 == Troubleshoot Cluster Issues
-Run the `rtfctl report` command to generate an archive containing only Kubernetes objects and logs.
+When filing a support case, the support team might ask you to run one or both of the following commands to generate debugging information:
 
-Run the `rtfctl appliance report` command to collect diagnostics from all cluster nodes.
+* The `rtfctl report` command to generate an archive containing only Kubernetes objects and logs.
+
+* The `rtfctl appliance report` command to collect diagnostics from all cluster nodes.
+
+The support team might also ask you to download information through Ops Center as described in xref:using-opscenter#download-debug-info[Download Debug Info].
 
 == Troubleshoot Application Deployment Issues
 
