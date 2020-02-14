@@ -1,9 +1,9 @@
-= Configure pod CIDR range for Runtime Fabric
+= Configure Pod CIDR Range for Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To configure the Pod Classless inter-domain routing (CIDR) range on an existing Runtime Fabric cluster:
+To configure the pod Classless Inter-Domain Routing (CIDR) range on an existing Runtime Fabric cluster:
 
 . On a controller node, run the following command to retrieve the current pod CIDR range configuration:
 +
