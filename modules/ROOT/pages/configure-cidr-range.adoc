@@ -17,7 +17,7 @@ spec:
 . Run the following gravity command:
 +
 ```
-sudo gravity resource create pod-cidr.yaml
+sudo gravity resource create pod-cidr.yaml --confirm
 ```
 . Monitor the update and wait for the pod CIDR change to be configured on all cluster nodes. 
 Note: This operation causes a brief disruption to existing pods and redeploys each node as the 
