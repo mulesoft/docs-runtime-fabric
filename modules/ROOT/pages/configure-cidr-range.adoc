@@ -5,30 +5,20 @@ endif::[]
 
 To configure the pod Classless Inter-Domain Routing (CIDR) range on an existing Runtime Fabric cluster:
 
-. On a controller node, run the following command to retrieve the current pod CIDR range configuration:
-+
-```
-sudo gravity resource get clusterconfiguration --format yaml
-```
-. Create a resource definition yaml file with a new `podCIDR` value. In this example, the yaml file 
-created is named `pod-cidr.yaml` and `x.x.x.x/16` represents the new pod CIDR range:
+. Create a resource definition using a new `podCIDR` value. In the following example, the yaml file is named `pod-cidr.yaml` and `x.x.x.x/16` represents the new pod CIDR range:
 +
 ```
 kind: clusterconfiguration
-metadata:
-  name: cluster-configuration
+version: v1
 spec:
   global:
     podCIDR: x.x.x.x/16
-version: v1
 ```
-. Run the following gravity command to configure the new pod CIDR range.
+. Run the following gravity command:
 +
 ```
 sudo gravity resource create pod-cidr.yaml
 ```
-+
-. Confirm the pod CIDR update when prompted.
 . Monitor the update and wait for the pod CIDR change to be configured on all cluster nodes. 
 Note: This operation causes a brief disruption to existing pods and redeploys each node as the 
 configuration is applied.
