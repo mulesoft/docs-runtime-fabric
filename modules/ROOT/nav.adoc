@@ -29,7 +29,7 @@
  ** xref:manage-backup-restore.adoc[Backup and Restore Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
  ** xref:install-rtfctl.adoc[Install rtfctl]
- ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
+ ** xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
  ** xref:configure-cidr-range.adoc[Configure Pod CIDR Range]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
