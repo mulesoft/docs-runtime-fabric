@@ -3,9 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To configure the pod Classless Inter-Domain Routing (CIDR) range on an existing Runtime Fabric cluster:
+To configure the pod Classless Inter-Domain Routing (CIDR) range on an existing Anypoint Runtime Fabric cluster:
 
-. Create a resource definition using a new `podCIDR` value. In the following example, the yaml file is named `pod-cidr.yaml` and `x.x.x.x/16` represents the new pod CIDR range:
+. Create a resource definition using a new `podCIDR` value.
++
+In the following example, the yaml file is named `pod-cidr.yaml` and `x.x.x.x/16` represents the new pod CIDR range:
 +
 ```
 kind: clusterconfiguration
@@ -19,6 +21,8 @@ spec:
 ```
 sudo gravity resource create pod-cidr.yaml --confirm
 ```
-. Monitor the update and wait for the pod CIDR change to be configured on all cluster nodes. 
-Note: This operation causes a brief disruption to existing pods and redeploys each node as the 
+. Monitor the update and wait for the pod CIDR change to be configured on all cluster nodes.
+
+[NOTE]
+This operation causes a brief disruption to existing pods and redeploys each node as the 
 configuration is applied.
