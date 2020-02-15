@@ -10,7 +10,7 @@ To configure the pod Classless Inter-Domain Routing (CIDR) range on an existing 
 In the following example, the yaml file is named `pod-cidr.yaml` and `x.x.x.x/16` represents the new pod CIDR range:
 +
 ```
-kind: clusterconfiguration
+kind: ClusterConfiguration
 version: v1
 spec:
   global:
