@@ -45,24 +45,20 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
  
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-port-reqs#port-ips-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
-== Resuming a Failed Installation
+== Troubleshoot Cluster Issues
 
-You can resume an installation at the point where it failed by running the init script:
+When filing a support case, the support team might ask you to run one or both of the following commands to generate debugging information:
 
-* AWS and manual installations:
+* The `rtfctl report` command to generate an archive containing only Kubernetes objects and logs.
+* The `rtfctl appliance report` command to collect diagnostics from all cluster nodes.
 
-+
-----
-/opt/anypoint/runtimefabric/init.sh
-----
+The support team might also ask you to download information through Ops Center as described in xref:using-opscenter#download-debug-info[Download Debug Info].
 
-* Azure installations:
-+
-----
-/opt/anypoint/runtimefabric/script.sh
-----
 
-== Troubleshooting Application Deployment Issues
+
+
+
+== Troubleshoot Application Deployment Issues
 
 In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
 these situations, you might see the following:
@@ -87,7 +83,7 @@ This indicates that the agent is restarting. There should be no impact to the ru
 application. Application metrics are queued, and are again collected after the agent
 restarts.
 
-== Troubleshooting Application Runtime Issues
+== Troubleshoot Application Runtime Issues
 If any of the following Runtime Fabric alert messages are reported, you might need to recover
 one or more controller nodes. 
 ----
@@ -106,7 +102,7 @@ as well as individual components.
 
 To recover a node, follow the instructions provided in xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 
-== Troubleshooting Issues with Environment Variables
+== Troubleshoot Environment Variable Issues
 
 This step detects the variables which the installation process needs to carry out its
 procedures. The methods for providing these variables to the installation vary based upon where
@@ -156,7 +152,24 @@ Anypoint Runtime Manager.
 
 If you are still encountering issues, file a support ticket for further assistance.
 
-== Troubleshooting Issues with the Install Packages
+== Resume a Failed Installation
+
+You can resume an installation at the point where it failed by running the init script:
+
+* AWS and manual installations:
+
++
+----
+/opt/anypoint/runtimefabric/init.sh
+----
+
+* Azure installations:
++
+----
+/opt/anypoint/runtimefabric/script.sh
+----
+
+== Troubleshoot Install Package Issues
 
 This step will install required packages on the instance. It uses the `yum` package repository
 to download and install the required packages.
@@ -191,7 +204,7 @@ for elevated access to the instance.
 If manual installation of a package was successful, or if you still require assistance, 
 file a support ticket.
 
-== Troubleshooting Issues with Ops Center Monitoring and Logs
+== Troubleshoot Ops Center Monitoring and Logs Issues
 
 If Ops Center monitoring and logging fails to restart after restarting one or more nodes, ensure port forwarding rules are applied on all VMs so that traffic can communicate with the Kubernetes pods running on the VMs. Refer to xref:prereq-firewalld-forwarding.adoc[Enable Forwarding When Using firewalld] for additional information.
 
