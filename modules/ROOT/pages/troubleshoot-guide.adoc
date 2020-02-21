@@ -56,7 +56,7 @@ The support team might also ask you to download information through Ops Center a
 
 == Troubleshoot Application Deployment Issues
 
-In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
+In rare situations, the Anypoint Monitoring agent might prevent an application from deploying. In
 these situations, you might see the following messages:
 
 * The application remains in the `Deploying` state, or
