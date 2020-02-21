@@ -54,26 +54,20 @@ When filing a support case, the support team might ask you to run one or both of
 
 The support team might also ask you to download information through Ops Center as described in xref:using-opscenter#download-debug-info[Download Debug Info].
 
-
-
-
-
 == Troubleshoot Application Deployment Issues
 
 In rare situations, the Anypoint Monitoring agent might cause an application to not deploy. In
-these situations, you might see the following:
-
+these situations, you might see the following messages:
 
 * The application remains in the `Deploying` state, or
 * `Error starting monitoring agent (code -1)`
 
 In this situation, redeploy your application and set the following custom property:
-+
 ----
 anypoint.platform.config.analytics.agent.enabled=false
 ----
 
-The Anypoint Monitoring agent may also change the state of a deployed application. If you see
+The Anypoint Monitoring agent might also change the state of a deployed application. If you see
 one of the following:
 
 * The application transitions from `Running` to `Applying`, or
