@@ -26,12 +26,11 @@ a different operating system version or distribution, the Runtime Fabric install
 == Hardware Requirements
 Only x86 and x64 architectures are supported.
 
-Runtime Fabric reserves up to 0.5 cores per worker node for internal services. This is important 
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
 when determining the amount of CPU cores and worker nodes needed.
 
-The Runtime Manager UI displays the amount of available CPU across worker nodes. For example,
-given a cluster with 3 worker nodes, each with 2 cores, Runtime Fabric reserves a total of 0.9
-cores (0.3 x 3). The number of available cores displayed in the Runtime Manager is 5.1 instead
+The Runtime Manager UI displays the amount of available CPU across worker nodes. For example, you might have a cluster with 3 worker nodes and 2 cores for each worker node. If Runtime Fabric reserves a total of 0.9
+cores (0.3 x 3), the number of available cores displayed in the Runtime Manager would be 5.1 instead
 of the full 6 cores.
 
 Overprovisioning Runtime Fabric worker nodes is recommended to preserve uptime in the event a
@@ -56,7 +55,7 @@ The number of controller nodes required for a production environment is three.
 Even numbers of controller nodes are not supported. These requirements reflect the minimum
 requirements to maintain high-availability and ensure system performance.
 
-Each contoller node must have the following:
+Each controller node must have the following:
 
 ** A minimum of 2 dedicated cores.
 ** 8 GiB memory minimum.
