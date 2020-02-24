@@ -26,7 +26,7 @@ a different operating system version or distribution, the Runtime Fabric install
 == Hardware Requirements
 Only x86 and x64 architectures are supported.
 
-Runtime Fabric reserves 0.3 cores per worker node for internal services. This is important 
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
 when determining the amount of CPU cores and worker nodes needed.
 
 For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
