@@ -75,8 +75,7 @@ Plan to overprovision with one extra worker node for fault-tolerance and for app
 
 * CPU/memory required for worker nodes
 
-** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
-
+** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead. Refer to xref:install-sys-reqs.adoc#hardware-requirements[Hardware Requirements] for additional information.
 
 == Network Architecture
 

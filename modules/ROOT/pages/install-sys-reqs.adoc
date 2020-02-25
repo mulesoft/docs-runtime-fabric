@@ -86,6 +86,8 @@ Each worker node must have the following:
 *** 1 GiB or more for `/var/log/` directory.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum 
 of 4 MBps disk read/write performance.
++ 
+Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
 
 [NOTE]
 Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer 
