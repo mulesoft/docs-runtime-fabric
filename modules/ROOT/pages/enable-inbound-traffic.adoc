@@ -43,17 +43,18 @@ The inbound load balancer runs on each controller node configured in Runtime Fab
 
 *** *Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
 
-*** *Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of cores and memory. If *Dedicated Mode* is disabled, then all nodes are already in sharing mode, which prevents them from being dedicated.
+*** *Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of cores and memory. If you are setting up a Runtime Fabric with dedicated nodes, include only the dedicated node IP addresses. If *Dedicated Mode* is disabled, then all nodes are already in sharing mode, which prevents them from being dedicated. 
++
+The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of ingress nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated ingress nodes in your load balancer or DNS resolution. 
 +
 [WARNING]
 ====
 When switching between shared and dedicated mode:
 
-* All traffic is lost if the shared or dedicated IP addresses are not included in the load balancer/DNS resolution 
+* All traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or DNS resolution 
 prior to making the change.
 
-* If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated ingress node IPs in your load balancer in place of the controller node IPs. If you are setting up a Runtime Fabric with dedicated nodes, include 
-only the dedicated node IPs.
+* If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated ingress node IPs in your load balancer in place of the controller node IPs. It might be necessary to temporarily include both controller and dedicated ingress nodes until the switch is completed to properly route input requests.
 
 * If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your 
 deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*. 
