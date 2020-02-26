@@ -121,7 +121,18 @@ The following variables can be defined based upon your organization's requiremen
 |===
 
 [NOTE]
+====
 To install a specific version of Runtime Fabric, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
+
+In Runtime Fabric, the inbound load balancer runs on each controller node in either shared or dedicated mode: 
+
+*Shared Mode* is the default setting and specifies the internal load balancer runs with the amount of CPU cores and memory you specify.
+
+*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of CPU cores and memory.
+
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+====
+
 
 Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 
