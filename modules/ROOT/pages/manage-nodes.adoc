@@ -28,9 +28,13 @@ Ensure that you copy the environment file from the correct node type (controller
 +
 * RTF_PRIVATE_IP
 * RTF_DOCKER_DEVICE
-* RTF_ETCD_DEVICE (controller node only)
+* RTF_ETCD_DEVICE (controller nodes only)
 * Remove RTF_ACTIVATION_DATA if it is present
 * RTF_INSTALL_ROLE=joiner
+* RTF_INSTALLER_IP=<IP address of the lead controller node>, as shown in the following example:
++
+`RTF_INSTALLER_IP=10.1.255.93`
+* RTF_NODE_ROLE=worker_node (worker nodes only)
 
 . Run the `init.sh` script on the new node as a privileged user. You may need to add executable permissions when running this script:
 +
