@@ -106,8 +106,17 @@ Before running Terraform, modify the `fabric.tf` script to reflect your specific
 list the required and optional environment variables.
 
 [NOTE]
+====
 Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not 
 listed in the tables below. This is common if you need to use existing AWS resources such as an existing VPC.
+
+In Runtime Fabric, the inbound load balancer runs on each controller node in either shared or dedicated mode: 
+
+*Shared Mode* is the default setting and specifies the internal load balancer runs with the amount of CPU cores and memory you specify.
+*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of CPU cores and memory.
+
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+====
 
 *Required Environment Variables*
 
