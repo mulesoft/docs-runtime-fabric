@@ -116,8 +116,15 @@ create a separate Resource group.
 | `Service CIDR` | specifies a custom CIDR block to use for the service network. | `10.100.0.0/16`
 
 |===
-
 +
+In Runtime Fabric, the inbound load balancer runs on each controller node in either shared or dedicated mode: 
++
+*Shared Mode* is the default setting and specifies the internal load balancer runs with the amount of CPU cores and memory you specify.
++
+*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of CPU cores and memory.
++
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+
 . Review and select the *Terms and Conditions* on the bottom of the page, then click *Purchase*.
 
 Runtime Fabric is installed across all servers to form a cluster. This process takes time to complete. When 
