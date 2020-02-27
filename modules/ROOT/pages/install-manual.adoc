@@ -124,11 +124,11 @@ The following variables can be defined based upon your organization's requiremen
 ====
 To install a specific version of Runtime Fabric, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
 
-In Runtime Fabric, the inbound load balancer runs on each controller node in either shared or dedicated mode: 
+In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
 
-*Shared Mode* is the default setting and specifies the internal load balancer runs with the amount of CPU cores and memory you specify.
+*Shared Mode* allows you to specify the amount of CPU cores and memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
 
-*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of CPU cores and memory.
+*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the amount of CPU cores and memory. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
@@ -184,12 +184,16 @@ Tue Aug 14 02:29:59 UTC Bootstrap all nodes
 sudo /opt/anypoint/runtimefabric/init.sh
 ----
 +
-. If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
-
+. If the installation process encounters an error, it exits with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
++
 [NOTE]
+====
 This step will install Runtime Fabric across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+The internal load balancer is distributed across the controller nodes for shared mode, and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 
