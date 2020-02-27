@@ -117,22 +117,25 @@ create a separate Resource group.
 
 |===
 +
-In Runtime Fabric, the inbound load balancer runs on each controller node in either shared or dedicated mode: 
+In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
 +
-*Shared Mode* is the default setting and specifies the internal load balancer runs with the amount of CPU cores and memory you specify.
-+
-*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of CPU cores and memory.
+*Shared Mode* allows you to specify the amount of CPU cores and memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the amount of CPU cores and memory. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 +
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 . Review and select the *Terms and Conditions* on the bottom of the page, then click *Purchase*.
-
++
 Runtime Fabric is installed across all servers to form a cluster. This process takes time to complete. When 
 complete, the status of Runtime Fabric displayed in Runtime Manager changes to `Active` status.
-
++
 [NOTE]
-By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to 
+====
+
+* By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to 
 remove the `publicIPAddresses`, if necessary.
+* The internal load balancer is distributed across the controller nodes for shared mode, and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 
