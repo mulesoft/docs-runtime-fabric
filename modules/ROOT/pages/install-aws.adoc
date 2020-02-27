@@ -230,6 +230,7 @@ docker run -v $(pwd):/src -w /src/aws \
 
 .. Modify this using the data in the environment variables tables above.
 .. Run the Terraform script:
++
 ----
 docker run -it -v $(pwd):/src -w /src/aws \
   -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
@@ -247,7 +248,11 @@ The Terraform script provisions the infrastructure and runs the installation scr
 the Runtime Fabric updates to Active status in Runtime Manager.
 +
 [NOTE]
-This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+====
+
+* This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+* The internal load balancer is distributed across the controller nodes for shared mode, and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 
