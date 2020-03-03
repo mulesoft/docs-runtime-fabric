@@ -35,6 +35,7 @@ Ensure that you copy the environment file from the correct node type (controller
 +
 `RTF_INSTALLER_IP=10.1.255.93`
 * RTF_NODE_ROLE=worker_node (worker nodes only)
+* RTF_TOKEN (worker nodes only)
 
 . Run the `init.sh` script on the new node as a privileged user. You may need to add executable permissions when running this script:
 +
