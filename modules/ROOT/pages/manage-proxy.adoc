@@ -7,7 +7,7 @@ Anypoint Runtime Fabric clusters consistently communicate with the control plane
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
 
-Proxies used by Runtime Fabric can be configured during or after installation using the rtfctl utility. Application proxies are configured during application deployment.
+Proxies used by Runtime Fabric can be configured during or after installation using the `rtfctl` utility. Application proxies are configured during application deployment.
 
 == Install rtfctl 
 
@@ -30,8 +30,8 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply monitoring-proxy "socks5://<user>:
 * *<pass>*: the password needed to authenticate to the SOCKS5 proxy. +
 [NOTE]
 The password must be URL encoded.
-* *<10.0.0.2>*: the IP address or hostname used to access the SOCKS5 proxy.
-* *<8080>*: the host port on the host where the SOCKS5 proxy is listening for requests.
+* *<10.0.0.2>*: The IP address or hostname used to access the SOCKS5 proxy.
+* *<8080>*: The host port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: +
 `sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy`
 
@@ -45,7 +45,7 @@ Updating the HTTP proxy causes each machine in the cluster to restart all pods r
 * If you are using Runtime Fabric installer 1.0.x, run the script on each node of your Runtime Fabric to update the cluster.
 
 === Apply Proxy Values to Runtime Fabric
-Configure a proxy at the Runtime level for all the outbound components running in the Runtime to use. 
+Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
 
 [NOTE]
 This step is performed one time on one controller node.
