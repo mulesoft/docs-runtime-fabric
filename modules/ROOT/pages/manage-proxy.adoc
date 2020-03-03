@@ -7,7 +7,7 @@ Anypoint Runtime Fabric clusters consistently communicate with the control plane
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
 
-The proxies used by Runtime Fabric can be configured during or after installation using the rtfctl utility. The proxies for applications are configured during application deployment.
+Proxies used by Runtime Fabric can be configured during or after installation using the rtfctl utility. Application proxies are configured during application deployment.
 
 == Install rtfctl 
 
