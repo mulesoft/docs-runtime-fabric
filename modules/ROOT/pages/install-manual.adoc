@@ -110,7 +110,7 @@ The following variables can be defined based upon your organization's requiremen
 [%header,cols="3*a"]
 |===
 |Parameter | Description | Example
-| `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `http://1.1.1.1:80`
+| `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `+http://1.1.1.1:80+`
 | `RTF_MONITORING_PROXY` | The hostname, port, and optional username and password of the SOCKS5 proxy server that will forward metrics and logs to Anypoint Monitoring. | `socks5://user:pass@1.1.1.2:800`
 | `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
