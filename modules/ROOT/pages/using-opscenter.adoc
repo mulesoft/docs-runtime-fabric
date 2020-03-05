@@ -1,11 +1,19 @@
-= Using Ops Center on Anypoint Runtime Fabric
+= Monitor Anypoint Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to use the built-in Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
+This topic describes how to use Runtime Manager or the built-in Ops Center to monitor the health of your Anypoint Runtime Fabric clusters.
+
+== Runtime Manager
+For Runtime Fabric version 1.5 or later:
+
+. Navigate to Runtime Manager and select *Runtime Fabric*.
+. Select the name of your Runtime Fabric to open the management page.
+. Select *Health Details*.
 
 == Access Ops Center
+You can use the Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
 
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.
 
