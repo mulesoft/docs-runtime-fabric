@@ -126,9 +126,9 @@ To install a specific version of Runtime Fabric, transfer the installation packa
 
 In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
 
-*Shared Mode* allows you to specify the amount of CPU cores and memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+*Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
 
-*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the amount of CPU cores and memory. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
+*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
@@ -192,7 +192,7 @@ This step will install Runtime Fabric across all VMs to form a cluster. It may t
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
 
-The internal load balancer is distributed across the controller nodes for shared mode, and is deployed on the internal load balancer nodes for dedicated mode.
+The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
 ====
 
 == Monitoring Installation Progress
