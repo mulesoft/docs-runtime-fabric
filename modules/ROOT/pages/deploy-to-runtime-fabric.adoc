@@ -31,7 +31,7 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
-_Result_: The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
+The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
 . Select the *Deployment Target* tab.
 +
