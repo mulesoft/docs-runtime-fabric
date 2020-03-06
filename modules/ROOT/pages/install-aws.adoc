@@ -112,8 +112,8 @@ listed in the tables below. This is common if you need to use existing AWS resou
 
 In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
 
-*Shared Mode* allows you to specify the amount of CPU cores and memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
-*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the amount of CPU cores and memory. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
+*Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
@@ -173,8 +173,8 @@ the number of worker or controller VMs.
 
 === Run Using Native Terraform
 
-. Navigate to the `../rtf-install-scripts/aws/` directory. You must run terraform from this directory.
-. Initialize terraform (this only has to be performed once):
+. Navigate to the `../rtf-install-scripts/aws/` directory. You must run Terraform from this directory.
+. Initialize Terraform (this only has to be performed once):
 +
 ----
 terraform init
@@ -207,8 +207,8 @@ the Runtime Fabric update to Active status in Runtime Manager.
 [NOTE]
 This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
 
-.. Navigate to the `../rtf-install-scripts/` directory. You must run terraform from this directory. When running the `dir` or `ls` command, you should see the `aws` directory listed along with other directories (`azure`, `manual`, etc).
-.. Initialize terraform (this only has to be performed once):
+.. Navigate to the `../rtf-install-scripts/` directory. You must run Terraform from this directory. When running the `dir` or `ls` command, you should see the `aws` directory listed along with other directories (`azure`, `manual`, etc).
+.. Initialize Terraform (this only has to be performed once):
 +
 ----
 docker run -v $(pwd):/src -w /src/aws \
@@ -228,7 +228,7 @@ docker run -v $(pwd):/src -w /src/aws \
   -state=tf-data/rtf.tfstate
 ----
 
-.. Modify this using the data in the environment variables tables above.
+.. Modify this using the data in the environment variables tables previously provided.
 .. Run the Terraform script:
 +
 ----
@@ -251,7 +251,7 @@ the Runtime Fabric updates to Active status in Runtime Manager.
 ====
 
 * This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
-* The internal load balancer is distributed across the controller nodes for shared mode, and is deployed on the internal load balancer nodes for dedicated mode.
+* The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
 ====
 
 == Monitoring Installation Progress
