@@ -4,7 +4,7 @@ Anypoint Runtime Fabric is a package of components that work together. Updates a
 
 * Cluster-level components are delivered as an updated installer package. These components include Docker, Kubernetes, and the Ops Center.
 
-* Runtime Fabric components are delivered via Anypoint Runtime Manager in Anypoint Platform. These components include the agent used to connect Runtime Fabric to Anypoint Platform. If an updated application or appliance version is available, a link to the downloads page is displayed in the *Upgrade Available* or *Appliance Version* field, as applicable.
+* Runtime Fabric components are delivered via Anypoint Runtime Manager in Anypoint Platform. These components include the agent used to connect Runtime Fabric to Anypoint Platform. If an updated application or appliance version is available, a link to the downloads page is displayed in the *Upgrade Available* and *Appliance Version* field, as applicable.
 
 * Node configuration changes are reflected in newer versions of the installer scripts, and are also delivered via the `rtfctl` command-line utility. These changes include adjusting operating system limits and performing jobs to clean up system resources.
 
