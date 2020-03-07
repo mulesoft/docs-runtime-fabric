@@ -112,8 +112,8 @@ listed in the tables below. This is common if you need to use existing AWS resou
 
 In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
 
-*Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
-*Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
+* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+* *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
