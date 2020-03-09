@@ -106,8 +106,17 @@ Before running Terraform, modify the `fabric.tf` script to reflect your specific
 list the required and optional environment variables.
 
 [NOTE]
+====
 Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not 
 listed in the tables below. This is common if you need to use existing AWS resources such as an existing VPC.
+
+In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
+
+* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+* *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
+
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+====
 
 *Required Environment Variables*
 
@@ -164,8 +173,8 @@ the number of worker or controller VMs.
 
 === Run Using Native Terraform
 
-. Navigate to the `../rtf-install-scripts/aws/` directory. You must run terraform from this directory.
-. Initialize terraform (this only has to be performed once):
+. Navigate to the `../rtf-install-scripts/aws/` directory. You must run Terraform from this directory.
+. Initialize Terraform (this only has to be performed once):
 +
 ----
 terraform init
@@ -190,19 +199,16 @@ terraform apply \
 If you experience an error related to AWS authorization, ensure you're using the same terminal window for 
 verifying the variables and running the Terraform command.
 
-. Run the script.
-
+. Run the script using Docker.
++
 The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, 
 the Runtime Fabric update to Active status in Runtime Manager.
-
++
 [NOTE]
 This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
 
-
-==== Run using Docker
-
-. Navigate to the `../rtf-install-scripts/` directory. You must run terraform from this directory. When running the `dir` or `ls` command, you should see the `aws` directory listed along with other directories (`azure`, `manual`, etc).
-. Initialize terraform (this only has to be performed once):
+.. Navigate to the `../rtf-install-scripts/` directory. You must run Terraform from this directory. When running the `dir` or `ls` command, you should see the `aws` directory listed along with other directories (`azure`, `manual`, etc).
+.. Initialize Terraform (this only has to be performed once):
 +
 ----
 docker run -v $(pwd):/src -w /src/aws \
@@ -210,7 +216,7 @@ docker run -v $(pwd):/src -w /src/aws \
   hashicorp/terraform:0.12.6 init
 ----
 
-. Copy the following to a text editor:
+.. Copy the following to a text editor:
 +
 ----
   -var activation_data='' \
@@ -222,8 +228,9 @@ docker run -v $(pwd):/src -w /src/aws \
   -state=tf-data/rtf.tfstate
 ----
 
-. Modify this using the data in the environment variables tables above.
-. Run the Terraform script:
+.. Modify this using the data in the environment variables tables previously provided.
+.. Run the Terraform script:
++
 ----
 docker run -it -v $(pwd):/src -w /src/aws \
   -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
@@ -236,12 +243,16 @@ docker run -it -v $(pwd):/src -w /src/aws \
   -var mule_license='' \
   -state=tf-data/rtf.tfstate
 ----
-
++
 The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, 
 the Runtime Fabric updates to Active status in Runtime Manager.
-
++
 [NOTE]
-This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+====
+
+* This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+* The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 

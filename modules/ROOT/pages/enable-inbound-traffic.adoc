@@ -38,10 +38,26 @@ If you disable the Inbound Traffic tab, changes can take several minutes to comp
 . In the *Resource Allocation* section:
 +
 The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+
+.. Select a mode.
+
+*** *Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
+
+*** *Dedicated Mode* is enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory. If you are setting up a Runtime Fabric with dedicated nodes, include the IP addresses of the dedicated load balancer nodes only when configuring the external load balancer.
 +
-*Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
+The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
 +
-*Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of cores and memory. If *Dedicated Mode* is disabled, then all nodes are already in sharing mode, which prevents them from being dedicated.
+[WARNING]
+====
+When switching between shared and dedicated modes:
+
+* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or 
+DNS resolution prior to making the change.
+
+* If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until the switch is completed to properly route inbound requests.
+
+* If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*. 
+====
 
 .. Specify the minimum number of cores to allocate for each controller node for the internal load balancer. 
 +
@@ -303,8 +319,8 @@ Certificates (both self-signed and CA-signed) always have an expiration date. By
 The following warnings are displayed for certificates that will expire within 30 days to remind you to upload a new certificate-key pair before a certificate expires:
 
 * On the *Runtime Fabrics* page, if a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column. 
-* On the `Runtime Fabrics` page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that RTF.
-* On the *Inbound Traffic tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
+* On the *Runtime Fabrics* page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that Runtime Fabric instance.
+* On the *Inbound Traffic* tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
 
 == See Also
 

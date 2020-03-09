@@ -110,7 +110,7 @@ The following variables can be defined based upon your organization's requiremen
 [%header,cols="3*a"]
 |===
 |Parameter | Description | Example
-| `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `http://1.1.1.1:80`
+| `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `+http://1.1.1.1:80+`
 | `RTF_MONITORING_PROXY` | The hostname, port, and optional username and password of the SOCKS5 proxy server that will forward metrics and logs to Anypoint Monitoring. | `socks5://user:pass@1.1.1.2:800`
 | `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
@@ -121,7 +121,18 @@ The following variables can be defined based upon your organization's requiremen
 |===
 
 [NOTE]
+====
 To install a specific version of Runtime Fabric, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
+
+In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
+
+* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+
+* *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
+
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+====
+
 
 Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 
@@ -173,12 +184,16 @@ Tue Aug 14 02:29:59 UTC Bootstrap all nodes
 sudo /opt/anypoint/runtimefabric/init.sh
 ----
 +
-. If the installation process encounters an error, it'll exit with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
-
+. If the installation process encounters an error, it exits with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
++
 [NOTE]
+====
 This step will install Runtime Fabric across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
 
 When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 

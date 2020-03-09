@@ -31,7 +31,7 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
-_Result_: The *Deployment Target*, *Ingress*, and *Properties* tabs are displayed. Use these tabs to enter additional configuration information for your application.
+The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
 . Select the *Deployment Target* tab.
 +
@@ -44,6 +44,7 @@ This tab displays the name and type of the deployment target you selected above.
 [NOTE]
 A minimum of two replicas is required for high availability.
 . To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
+
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
 See how to xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.

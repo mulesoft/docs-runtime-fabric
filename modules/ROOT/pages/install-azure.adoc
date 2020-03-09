@@ -116,16 +116,26 @@ create a separate Resource group.
 | `Service CIDR` | specifies a custom CIDR block to use for the service network. | `10.100.0.0/16`
 
 |===
-
 +
-. Review and select the *Terms and Conditions* on the bottom of the page, then click *Purchase*.
+In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
++
+* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+* *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
++
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
+. Review and select the *Terms and Conditions* on the bottom of the page and then click *Purchase*.
++
 Runtime Fabric is installed across all servers to form a cluster. This process takes time to complete. When 
 complete, the status of Runtime Fabric displayed in Runtime Manager changes to `Active` status.
-
++
 [NOTE]
-By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to 
-remove the `publicIPAddresses`, if necessary.
+====
+
+* By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to 
+remove `publicIPAddresses`, if necessary.
+* The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
+====
 
 == Monitoring Installation Progress
 

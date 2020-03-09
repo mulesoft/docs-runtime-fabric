@@ -85,6 +85,11 @@ image::architecture-network.png[]
 
 This diagram shows the TCP load balancer used to load balance requests across the internal load balancers running on the controllers. It also shows the internal load balancer that distributes requests to each replica of Mule applications running on the workers.
 
+For internal load balancers:
+
+* *Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
+* *Dedicated Mode* is a setting that is available if one or more dedicated internal load balancer nodes are available in Runtime Fabric. All available resources in these nodes are used for running the internal load balancer, so the options to specify the amount of CPU cores and memory are not available.
+
 image::architecture-network2.png[]
 
 . The incoming HTTP request is forwarded to the external TCP load balancer.
