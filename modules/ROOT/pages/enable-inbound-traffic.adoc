@@ -306,7 +306,7 @@ The following warnings are displayed for certificates that will expire within 30
 
 * On the *Runtime Fabrics* page, if a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column. 
 * On the *Runtime Fabrics* page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that RTF.
-* On the *Inbound Traffic tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
+* On the *Inbound Traffic* tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
 
 == See Also
 
