@@ -39,7 +39,7 @@ If you disable the Inbound Traffic tab, changes can take several minutes to comp
 +
 The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 +
-*Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.	.. Select a mode.
+*Shared Mode* is the default setting if no dedicated load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
 +	
 *Dedicated Mode* specifies that the entire node is available, so you cannot specify the amount of cores and memory. If *Dedicated Mode* is disabled, then all nodes are already in sharing mode, which prevents them from being dedicated.
 
