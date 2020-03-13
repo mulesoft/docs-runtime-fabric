@@ -1,0 +1,38 @@
+= Access an Application in the Same Cluster
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+In an Anypoint Runtime Fabric cluster, each application replica exposes an endpoint inside the cluster, and 
+Anypoint Security then exposes that endpoint externally. 
+
+To send a request to an application from outside the cluster, requests are routed using the load balancer. 
+Refer to https://docs.mulesoft.com/runtime-fabric/1.5/enable-inbound-traffic for additional information.
+
+To send a request from one application to another application in the same cluster:
+
+. Obtain the application name from its DNS record.
++
+A DNS record is created for each application deployed in the cluster. In the following example DNS record, the domain is 
+`cluster.local`, `hello-world` is the application name, and `2abc2ce6-cce6-463b-afaa-a1979e3xxxxx` is the namespace name 
+(environment ID): 
++
+```
+hello-world.2abc2ce6-cce6-463b-afaa-a1979e3xxxxx.svc.cluster.local
+```
+. Send a request to the application:
++
+** To send a request to an application in the same namespace, use the application name:
++
+```
+http://hello-world:8081/api
+```
++
+If required, replace `http` with `https`.
++
+** To send a request to an application in another namespace, append the namespace name as the parent domain.
++
+```
+Example????
+```
+
