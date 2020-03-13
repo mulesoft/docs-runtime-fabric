@@ -32,7 +32,39 @@ sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 sudo chmod +x rtfctl
 ----
 
-== List Supported Commands
+== Supported Commands
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+| appliance | Specify appliance on which to perform operations.
+| apply | Apply changes to a Runtime Fabric configuration.
+| backup | Back up local Runtime Fabric state.
+| disk | Display disk space used by an application.
+| get | Display one or more resources.
+| heapdump | Trigger a JVM heap dump.
+| help | Display help for a command.
+| memory | Display the JVM memory usage in a pod.
+| package | Create a debugging information package for an application.
+| ping | Test network connectivity.
+| report | Generate diagnostics report.
+| restart | Restart an application.
+| restore | Restore local Runtime Fabric state from a backup.
+| status | Display status of Runtime Fabric.
+| test | Test Runtime Fabric environment.
+| threaddump | Display the JVM thread dump for an application.
+| update | Update `rtfctl`.
+| upgrade-cluster | Upgrade Runtime Fabric cluster.
+| version | Display version information.
+|=== 
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Flag |Description
+| -h, --help | Display `rtfctl` help information.
+| -n, --namespace string | If present, display the namespace scope.
+| --pod string | If present, display the pod name.
+|===
 
 To list all supported commands, run `rtfctl -h`. 
 
