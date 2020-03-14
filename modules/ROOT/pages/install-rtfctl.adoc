@@ -66,13 +66,13 @@ sudo chmod +x rtfctl
 | --pod string | If present, display the pod name.
 |===
 
-To list all supported commands, run `rtfctl -h`. 
-
-For more information on a specific command, run `rtfctl <command> -h`.
-
 == Usage
 
-* Install a Mule license
+* To list all supported commands, run `rtfctl -h`. 
+
+* For more information on a specific command, run `rtfctl <command> -h`.
+
+* To install a Mule license:
 
 .. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 .. Run the following command:
