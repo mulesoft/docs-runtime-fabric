@@ -60,6 +60,22 @@ On the controller VM acting as the leader for installation, the following are pe
 * Run the activation script after installation
 * Run the Mule license insertion script after registration
 
+
+
+=== Environment Prerequisites
+
+* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
+* The internal load balancer must run on at least 3 replicas to maintain availability.
+* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
+* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
++
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
+* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
+
+
+
+
+
 == Scaling Considerations
 
 * Minimum required number of controller nodes 
