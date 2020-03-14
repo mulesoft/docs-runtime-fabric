@@ -23,6 +23,16 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 These permissions are available from the *Secrets Manager* tab in Access Management .
 ** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
+=== Environment Prerequisites
+
+* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
+* The internal load balancer must run on at least 3 replicas to maintain availability.
+* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
+* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
++
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
+* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
+
 === Network and Security
 
 To successfully install and use Anypoint Runtime Fabric, you must know and verify the following about your network:
