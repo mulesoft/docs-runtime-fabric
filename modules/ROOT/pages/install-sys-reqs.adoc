@@ -5,34 +5,26 @@ endif::[]
 :noindex:
 
 Anypoint Runtime Fabric supports development and production configurations. The requirements 
-for each configuration 
-are described below. See xref:architecture.adoc[Runtime Fabric Architecture] for a 
-description of these environments.
+for each configuration are described in the following sections. 
+See xref:architecture.adoc[Runtime Fabric Architecture] for a description of these environments.
 
 [WARNING]
-Review these requirements with your operations and IT teams to ensure you have the right
+Review these requirements with your operations and IT teams to ensure you have the correct
 infrastructure provisioned before installing Runtime Fabric.
 
+It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements are not met.
 
+The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
+the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
+when evaluating Runtime Fabric before integrating within your primary network. You should consult with your 
+network administrator to determine if the default behavior is compatible. You may need to modify the 
+provisioning scripts to accommodate your organization's requirements.
 
+What info is needed for these items????????
 
-=== Environment Prerequisites
-
-* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
-* The internal load balancer must run on at least 3 replicas to maintain availability.
-* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
-* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
-+
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
-* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
-
-
-
-
-
-
-
-
+* Have 2 rtf cluster, one for DMZ and one for internal
+* Have multiple clustering within DMZ/internal for HA
+* Disable swap memory
 
 
 == Operating System Requirements
@@ -43,215 +35,105 @@ Anypoint Runtime Fabric requires one of the following operating systems.
 * CentOS v7.4, v7.5, v7.6, v7.7
 
 Use the same operating system for each node. If you attempt to install Runtime Fabric on 
-a different operating system version or distribution, the Runtime Fabric installer will fail.
+a different operating system version or distribution, the Runtime Fabric installer fails.
 
 == Hardware Requirements
 Only x86 and x64 architectures are supported.
 
-Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
-when determining the amount of CPU cores and worker nodes needed.
-
-For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
-
-Overprovisioning Runtime Fabric worker nodes is recommended to preserve uptime in the event a
-node becomes unavailable or during maintenance operations such as OS patching.
-
-
-
-
-
-
-It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements have not been met.
-
-The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by the minimum requirements. It also creates a private network with the required network ports configured. This is optimal when evaluating Runtime Fabric before integrating within your primary network. You should consult with your network administrator to determine if the default behavior is compatible. You may need to modify the provisioning scripts to accommodate your organization's requirements.
-
-The disks required to run Anypoint Runtime Fabric are used for the following:
-
-* Each controller VM requires a minimum of 60 GiB dedicated disk with at least 3000 IOPS to run the etcd distributed database.
-** This disk is referred to as the `etcd` device.
-* Each controller and worker VM requires a minimum of 100 GiB (for development) or 250 GiB (for production) dedicated disk with at least 1000 IOPS for Docker overlay and other internal services.
-** This disk is referred to as the `docker` device.
-
 [NOTE]
+Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
+and mounts the disks needed during installation.
 
-During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
-
-Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
-
-* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
-* Worker VMs are dedicated to run Mule applications.
-
-One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
-
-During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
-
-The installation process combines the following steps:
-
-* For AWS and Azure, provision infrastructure per the system requirements.
-* Install Runtime Fabric across the VMs.
-* Activate Runtime Fabric with your Anypoint organization.
-* Install your organization's Mule Enterprise license.
-
-To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
-
-* Format and mount each dedicated disk
-* Add mount entries for each disk to `/etc/fstab`
-* Add iptable rules
-* Enable required kernel modules
-* Start the installation
-
-On the controller VM acting as the leader for installation, the following are performed:
-
-* Run the activation script after installation
-* Run the Mule license insertion script after registration
-
-
-
-=== Environment Prerequisites
-
-* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
-* The internal load balancer must run on at least 3 replicas to maintain availability.
-* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
-* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
-+
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
-* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-== Production Configuration
+== Production Configuration Requirements
 
 A minimum of 6 nodes are required for a production configuration of Runtime Fabric as shown in
 the following diagram.
 
 image::architecture-production.png[]
 
-[NOTE]
-Runtime Fabric does not support running controller or worker nodes using burstable VMs.
-
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a production configuration.
 
+[NOTE]
+Runtime Fabric does not support running controller or worker nodes using burstable VMs.????
+
 === Controller Nodes
 
-The minimum number of controller nodes required for a production environment is three. 
-Even numbers of controller nodes are not supported. These requirements reflect the minimum
-requirements to maintain high-availability and ensure system performance.
+The minimum number of controller nodes required for a production environment is three. This requirement reflects 
+the minimum requirements to maintain high-availability and ensure system performance.
+
+An odd number of controller nodes is required for fault tolerance. Even numbers of controller nodes are not supported. 
 
 The maximum number of supported controller nodes is 5.
-
-[NOTE]
-An odd number of controller nodes is required for fault tolerance.
 
 Each controller node must have the following:
 
 ** A minimum of 2 dedicated cores.
-** 8 GiB memory minimum.
-???
-*** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
-
+** 8 GiB memory minimum for each dedicated core.
++
+You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
 *** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
 *** 1 GiB or more for `/var/log/` directory.
-** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd. This translates to a minimum of 12
-Megabytes per second.
-(MBps) disk read/write performance.
+** A minimium of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
+
+*** This disk is referred to as the `etcd` device.
 ** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum of
 4 MBps disk read/write performance.
 
-[NOTE]
-Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
-and mounts the disks needed during installation.
+*** This disk is referred to as the `docker` device.
 
-=== Worker Nodes
-
-Runtime Fabric requires at least three worker nodes to run Mule applications and API gateways.
-The maximum number of worker nodes supported is 16.
-
-Each worker node must have the following:
-
-** A minimum of 2 dedicated cores.
-** 15 GiB memory minimum.
-** 80 GiB dedicated disk for the operating system.
-*** 20 GiB or more for `/tmp` directory.
-*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
-*** 1 GiB or more for `/var/log/` directory.
-** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum 
-of 4 MBps disk read/write performance.
-+ 
-Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
-
-[NOTE]
-Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer 
-formats and mounts the disks needed during installation.
-
-=== Additional Resource Requirements for Production Environments
-
-When using Runtime Fabric in a production environment, you must have the following components:
-
-* An external load balancer if incoming traffic is enabled to Runtime Fabric. A TCP
-load balancer with a server pool consisting of each of the controller nodes is sufficient.
-* At least one additional worker node, including hard disks. If preserving uptime for the cluster and applications 
-is necessary, you will need additional resources when updating the operating system or other packages that require 
-restarts. Also use the additional node when:
-
-** Performing rolling upgrades to major versions of Runtime Fabric
-** Performing operating system level patches.
-
-
-
-
-== Scaling Considerations
+==== Scaling Considerations
 
 Consider scaling the number of controller nodes in the following situations:
 
 * Fault tolerance is needed to mitigate the impact of controller node hardware failure. The minimum requirement of 3 controller nodes enables fault-tolerance of losing 1 controller. To improve fault-tolerance to lose 2 controllers, a total of 5 controllers should be configured.
 * Production traffic is being served with applications running on Runtime Fabric.
 
-Plan to overprovision with one extra worker node for fault-tolerance and for applying upgrades to avoid downtime for applications.
+=== Worker Nodes
+
+Runtime Fabric requires at least three worker nodes to run Mule applications and API gateways.
+
+The maximum number of worker nodes supported is 16.
+
+Provision at least one extra worker node to preserve uptime in the event a
+node becomes unavailable (fault-tolerance) or during maintenance operations that require restarts, such as OS patching.
+
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications. 
 
 
+[NOTE]
+====
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
+when determining the amount of CPU cores and worker nodes needed.
 
-* CPU/memory required for worker nodes
-** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead. Refer to xref:install-sys-reqs.adoc#hardware-requirements[Hardware Requirements] for additional information.
+For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
+====
 
+Each worker node must have the following:
 
+** A minimum of 2 dedicated cores. 
+** 15 GiB memory minimum for each dedicated core.
++
+You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
+** 80 GiB dedicated disk for the operating system.
+*** 20 GiB or more for `/tmp` directory.
+*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
+*** 1 GiB or more for `/var/log/` directory.
+** A minimium of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
++ 
+Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
 
-What info is needed for these????????
-Have 2 rtf cluster, one for DMZ and one for internal
-Have multiple clustering within DMZ/internal for HA
-Disable swap memory
+=== Additional Resource Requirements for Production Environments
 
+When using Runtime Fabric in a production environment:
 
-
-
-
-
-
-
-
-
-
+* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a 
+health check configured for TCP port 443. A TCP load balancer with a server pool consisting of each of the 
+controller nodes is sufficient.
+* An internal load balancer that runs on at least 3 replicas to maintain availability.
+* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
 
 == Development Configuration
 
@@ -286,14 +168,23 @@ Megabytes per second (MBps) disk read/write performance.
 ** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum of
 4 MBps disk read/write performance.
 
-[NOTE]
-Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
-and mounts the disks needed during installation.
-
 === Worker Nodes
 
 Runtime Fabric requires at least two worker nodes to run Mule applications and API gateways. 
 The maximum number of workers nodes supported is 16.
+
+Provision at least one extra worker node to preserve uptime in the event a
+node becomes unavailable (fault-tolerance) or during maintenance operations that require restarts, such as OS patching.
+
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications. 
+
+[NOTE]
+====
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
+when determining the amount of CPU cores and worker nodes needed.
+
+For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
+====
 
 Each worker node must have the following:
 
@@ -303,21 +194,42 @@ Each worker node must have the following:
 *** 20 GiB or more for `/tmp` directory.
 *** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
 *** 1 GiB or more for `/var/log/` directory.
-** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum 
-of 4 MBps disk read/write performance.
+** A minimum of 100 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
++
+Having 100 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
 
-[NOTE]
-Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer 
-formats and mounts the disks needed during installation.
+== Installation Considerations
 
-=== Additional Resource Requirements for Development Environments
+During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
 
-To keep your Runtime Fabric running during upgrades, at least one additional worker node is
-required, including hard disks. This node should only be used when:
+Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
 
-* Performing rolling upgrades to major versions of Runtime Fabric
-* Performing operating system level patches.
+* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
+* Worker VMs are dedicated to run Mule applications.
 
+One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
+
+During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
+
+The installation process combines the following steps:
+
+* For AWS and Azure, provision infrastructure per the system requirements.
+* Install Runtime Fabric across the VMs.
+* Activate Runtime Fabric with your Anypoint organization.
+* Install your organization's Mule Enterprise license.
+
+To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
+
+* Format and mount each dedicated disk
+* Add mount entries for each disk to `/etc/fstab`
+* Add iptable rules
+* Enable required kernel modules
+* Start the installation
+
+On the controller VM acting as the leader for installation, the following are performed:
+
+* Run the activation script after installation
+* Run the Mule license insertion script after registration
 
 == See Also
 
