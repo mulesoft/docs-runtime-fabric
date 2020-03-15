@@ -24,7 +24,8 @@ What info is needed for these items????
 * Have 2 rtf cluster, one for DMZ and one for internal
 * Have multiple clustering within DMZ/internal for HA
 * Disable swap memory
-
+* RTF default pod & services CIDR block should not interfere with regions network
+* chrony (system clocks) status should in sync 
 
 == Operating System Requirements
 
@@ -128,9 +129,9 @@ Having 250 GiB ensures there is enough space to run applications, cache docker i
 
 When using Runtime Fabric in a production environment:
 
-* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a 
-health check configured for TCP port 443. A TCP load balancer with a server pool consisting of each of the 
-controller nodes is sufficient.
+* An external load balancer must be configured to load balance external requests to the internal load balancer 
+running on each controller VM, with a health check configured for TCP port 443. A TCP load balancer with a 
+server pool consisting of each of the controller nodes is sufficient.
 * An internal load balancer that runs on at least 3 replicas to maintain availability.
 * Applications serving inbound requests must be scaled to a minimum of 2 replicas.
 
