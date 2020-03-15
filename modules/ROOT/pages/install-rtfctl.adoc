@@ -32,15 +32,47 @@ sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 sudo chmod +x rtfctl
 ----
 
-== List Supported Commands
+== Supported Commands
 
-To list all supported commands, run `rtfctl -h`. 
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+| appliance | Specifies an appliance on which to perform operations.
+| apply | Applies changes to a Runtime Fabric configuration.
+| backup | Backs up the local Runtime Fabric state.
+| disk | Displays the disk space used by an application.
+| get | Displays one or more resources.
+| heapdump | Triggers a JVM heap dump.
+| help | Displays help for a command.
+| memory | Displays the JVM memory usage in a pod.
+| package | Creates a debugging information package for an application.
+| ping | Tests network connectivity.
+| report | Generates a diagnostics report.
+| restart | Restarts an application.
+| restore | Restores the local Runtime Fabric state from a backup.
+| status | Displays status of Runtime Fabric.
+| test | Tests Runtime Fabric environment.
+| threaddump | Displays the JVM thread dump for an application.
+| update | Updates `rtfctl`.
+| upgrade-cluster | Upgrades the Runtime Fabric cluster.
+| version | Displays version information.
+|=== 
 
-For more information on a specific command, run `rtfctl <command> -h`.
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Flag |Description
+| -h, --help | Displays `rtfctl` help information.
+| -n, --namespace string | If present, displays the namespace scope.
+| --pod string | If present, displays the pod name.
+|===
 
 == Usage
 
-* Install a Mule license
+* To list all supported commands, run `rtfctl -h`. 
+
+* For more information about a specific command, run `rtfctl <command> -h`.
+
+* To install a Mule license:
 
 .. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 .. Run the following command:
