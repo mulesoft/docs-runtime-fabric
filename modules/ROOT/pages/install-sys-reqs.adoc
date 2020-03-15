@@ -142,7 +142,7 @@ following diagram:
 image::architecture-development.png[]
 
 [NOTE]
-Runtime Fabric does not support running controller or worker nodes using burstable VMs.
+Runtime Fabric does not support running controller or worker nodes using burstable VMs.??? Link to resource allocation topic?
 
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a development configuration.
