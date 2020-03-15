@@ -37,40 +37,40 @@ sudo chmod +x rtfctl
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
-| appliance | Specify appliance on which to perform operations.
-| apply | Apply changes to a Runtime Fabric configuration.
-| backup | Back up local Runtime Fabric state.
-| disk | Display disk space used by an application.
-| get | Display one or more resources.
-| heapdump | Trigger a JVM heap dump.
-| help | Display help for a command.
-| memory | Display the JVM memory usage in a pod.
-| package | Create a debugging information package for an application.
-| ping | Test network connectivity.
-| report | Generate diagnostics report.
-| restart | Restart an application.
-| restore | Restore local Runtime Fabric state from a backup.
-| status | Display status of Runtime Fabric.
-| test | Test Runtime Fabric environment.
-| threaddump | Display the JVM thread dump for an application.
-| update | Update `rtfctl`.
-| upgrade-cluster | Upgrade Runtime Fabric cluster.
-| version | Display version information.
+| appliance | Specifies an appliance on which to perform operations.
+| apply | Applies changes to a Runtime Fabric configuration.
+| backup | Backs up the local Runtime Fabric state.
+| disk | Displays the disk space used by an application.
+| get | Displays one or more resources.
+| heapdump | Triggers a JVM heap dump.
+| help | Displays help for a command.
+| memory | Displays the JVM memory usage in a pod.
+| package | Creates a debugging information package for an application.
+| ping | Tests network connectivity.
+| report | Generates a diagnostics report.
+| restart | Restarts an application.
+| restore | Restores the local Runtime Fabric state from a backup.
+| status | Displays status of Runtime Fabric.
+| test | Tests Runtime Fabric environment.
+| threaddump | Displays the JVM thread dump for an application.
+| update | Updates `rtfctl`.
+| upgrade-cluster | Upgrades the Runtime Fabric cluster.
+| version | Displays version information.
 |=== 
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Flag |Description
-| -h, --help | Display `rtfctl` help information.
-| -n, --namespace string | If present, display the namespace scope.
-| --pod string | If present, display the pod name.
+| -h, --help | Displays `rtfctl` help information.
+| -n, --namespace string | If present, displays the namespace scope.
+| --pod string | If present, displays the pod name.
 |===
 
 == Usage
 
 * To list all supported commands, run `rtfctl -h`. 
 
-* For more information on a specific command, run `rtfctl <command> -h`.
+* For more information about a specific command, run `rtfctl <command> -h`.
 
 * To install a Mule license:
 
