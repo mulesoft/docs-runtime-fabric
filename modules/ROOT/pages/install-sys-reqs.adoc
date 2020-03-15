@@ -13,7 +13,53 @@ description of these environments.
 Review these requirements with your operations and IT teams to ensure you have the right
 infrastructure provisioned before installing Runtime Fabric.
 
-== Infrastructure Requirements
+
+
+
+=== Environment Prerequisites
+
+* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
+* The internal load balancer must run on at least 3 replicas to maintain availability.
+* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
+* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
++
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
+* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
+
+
+
+
+
+
+
+
+
+
+== Operating System Requirements
+
+Anypoint Runtime Fabric requires one of the following operating systems.
+
+* Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7
+* CentOS v7.4, v7.5, v7.6, v7.7
+
+Use the same operating system for each node. If you attempt to install Runtime Fabric on 
+a different operating system version or distribution, the Runtime Fabric installer will fail.
+
+== Hardware Requirements
+Only x86 and x64 architectures are supported.
+
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
+when determining the amount of CPU cores and worker nodes needed.
+
+For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
+
+Overprovisioning Runtime Fabric worker nodes is recommended to preserve uptime in the event a
+node becomes unavailable or during maintenance operations such as OS patching.
+
+
+
+
+
 
 It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements have not been met.
 
@@ -27,7 +73,6 @@ The disks required to run Anypoint Runtime Fabric are used for the following:
 ** This disk is referred to as the `docker` device.
 
 [NOTE]
-See xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
 
 During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
 
@@ -76,46 +121,6 @@ This enables safe removal of a worker node from the cluster to apply upgrades, w
 
 
 
-== Scaling Considerations
-
-* Minimum required number of controller nodes 
-
-** Production environment: 3
-** Non-production environment: 1
-
-* The maximum number of supported controller nodes is 5.
-
-[NOTE]
-An odd number of controller nodes is required for fault tolerance.
-
-+
-Consider scaling the number of controller nodes in the following situations:
-
-*** Fault tolerance is needed to mitigate the impact of controller node hardware failure.
-*** Production traffic is being served with applications running on Runtime Fabric.
-+
-
-* CPU/Memory required for controller nodes
-
-** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
-
-* Required number of worker nodes. The maximum number of worker nodes supported is 16.
-
-** Production environment: 3
-** Non-production environment: 2
-
-[NOTE]
-Plan to overprovision with one extra worker node for fault-tolerance and for applying upgrades to avoid downtime for applications.
-
-* CPU/memory required for worker nodes
-
-** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead. Refer to xref:install-sys-reqs.adoc#hardware-requirements[Hardware Requirements] for additional information.
-
-The minimum requirements are 3 controller and 3 worker nodes. 3 controllers enable a fault-tolerance of losing 1 controller. To improve fault-tolerance to lose 2 controllers, a total of 5 controllers should be configured.
-
-Have 2 rtf cluster, one for DMZ and one for internal
-Have multiple clustering within DMZ/internal for HA
-Disable swap memory
 
 
 
@@ -125,26 +130,13 @@ Disable swap memory
 
 
 
-== Operating System Requirements
 
-Anypoint Runtime Fabric requires one of the following operating systems.
 
-* Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7
-* CentOS v7.4, v7.5, v7.6, v7.7
 
-Use the same operating system for each node. If you attempt to install Runtime Fabric on 
-a different operating system version or distribution, the Runtime Fabric installer will fail.
 
-== Hardware Requirements
-Only x86 and x64 architectures are supported.
 
-Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
-when determining the amount of CPU cores and worker nodes needed.
 
-For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
 
-Overprovisioning Runtime Fabric worker nodes is recommended to preserve uptime in the event a
-node becomes unavailable or during maintenance operations such as OS patching.
 
 == Production Configuration
 
@@ -161,14 +153,22 @@ nodes in a production configuration.
 
 === Controller Nodes
 
-The number of controller nodes required for a production environment is three. 
+The minimum number of controller nodes required for a production environment is three. 
 Even numbers of controller nodes are not supported. These requirements reflect the minimum
 requirements to maintain high-availability and ensure system performance.
+
+The maximum number of supported controller nodes is 5.
+
+[NOTE]
+An odd number of controller nodes is required for fault tolerance.
 
 Each controller node must have the following:
 
 ** A minimum of 2 dedicated cores.
 ** 8 GiB memory minimum.
+???
+*** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
+
 ** 80 GiB dedicated disk for the operating system.
 *** 20 GiB or more for `/tmp` directory.
 *** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
@@ -218,6 +218,41 @@ restarts. Also use the additional node when:
 ** Performing rolling upgrades to major versions of Runtime Fabric
 ** Performing operating system level patches.
 
+
+
+
+== Scaling Considerations
+
+Consider scaling the number of controller nodes in the following situations:
+
+* Fault tolerance is needed to mitigate the impact of controller node hardware failure. The minimum requirement of 3 controller nodes enables fault-tolerance of losing 1 controller. To improve fault-tolerance to lose 2 controllers, a total of 5 controllers should be configured.
+* Production traffic is being served with applications running on Runtime Fabric.
+
+Plan to overprovision with one extra worker node for fault-tolerance and for applying upgrades to avoid downtime for applications.
+
+
+
+* CPU/memory required for worker nodes
+** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead. Refer to xref:install-sys-reqs.adoc#hardware-requirements[Hardware Requirements] for additional information.
+
+
+
+What info is needed for these????????
+Have 2 rtf cluster, one for DMZ and one for internal
+Have multiple clustering within DMZ/internal for HA
+Disable swap memory
+
+
+
+
+
+
+
+
+
+
+
+
 == Development Configuration
 
 Runtime Fabric requires a minimum of three nodes in a development environment as shown in the
@@ -233,8 +268,10 @@ nodes in a development configuration.
 
 === Controller Nodes
 
-The number of controller nodes required for a development environment is one. Even numbers of
+The minimum number of controller nodes required for a non-production environment is one. Even numbers of
 controllers are not supported.
+
+The maximum number of supported controller nodes is 5.
 
 Each controller node must have the following:
 
