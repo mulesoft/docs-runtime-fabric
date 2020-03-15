@@ -19,7 +19,7 @@ when evaluating Runtime Fabric before integrating within your primary network. Y
 network administrator to determine if the default behavior is compatible. You may need to modify the 
 provisioning scripts to accommodate your organization's requirements.
 
-What info is needed for these items????????
+What info is needed for these items????
 
 * Have 2 rtf cluster, one for DMZ and one for internal
 * Have multiple clustering within DMZ/internal for HA
@@ -54,7 +54,7 @@ The following sections describe the minimum system requirements of each controll
 nodes in a production configuration.
 
 [NOTE]
-Runtime Fabric does not support running controller or worker nodes using burstable VMs.???? Link to resource allocation topic???
+Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. see xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
 === Controller Nodes
 
@@ -142,7 +142,7 @@ following diagram:
 image::architecture-development.png[]
 
 [NOTE]
-Runtime Fabric does not support running controller or worker nodes using burstable VMs.??? Link to resource allocation topic?
+Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. see xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a development configuration.
