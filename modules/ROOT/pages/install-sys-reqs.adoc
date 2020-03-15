@@ -9,10 +9,9 @@ for each configuration are described in the following sections.
 See xref:architecture.adoc[Runtime Fabric Architecture] for a description of these environments.
 
 [WARNING]
-Review these requirements with your operations and IT teams to ensure you have the correct
-infrastructure provisioned before installing Runtime Fabric.
-
-It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements are not met.
+Review these requirements with your operations and IT teams to ensure your
+infrastructure is provisioned correctly before installing Runtime Fabric. 
+The Runtime Fabric installation process fails if the minimum requirements are not met.
 
 The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
 the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
@@ -55,7 +54,7 @@ The following sections describe the minimum system requirements of each controll
 nodes in a production configuration.
 
 [NOTE]
-Runtime Fabric does not support running controller or worker nodes using burstable VMs.????
+Runtime Fabric does not support running controller or worker nodes using burstable VMs.???? Link to resource allocation topic???
 
 === Controller Nodes
 
@@ -69,17 +68,17 @@ The maximum number of supported controller nodes is 5.
 Each controller node must have the following:
 
 ** A minimum of 2 dedicated cores.
-** 8 GiB memory minimum for each dedicated core.
+** A minimum of 8 GiB memory for each dedicated core.
 +
 You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
-** 80 GiB dedicated disk for the operating system.
-*** 20 GiB or more for `/tmp` directory.
-*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
-*** 1 GiB or more for `/var/log/` directory.
+** A minimum of 80 GiB dedicated disk for the operating system.
+*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
+*** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimium of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
 
 *** This disk is referred to as the `etcd` device.
-** 250 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum of
+** A minimum of 250 GiB dedicated disk with 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of
 4 MBps disk read/write performance.
 
 *** This disk is referred to as the `docker` device.
@@ -114,13 +113,13 @@ For example, your Runtime Fabric could have three worker nodes and two CPU cores
 Each worker node must have the following:
 
 ** A minimum of 2 dedicated cores. 
-** 15 GiB memory minimum for each dedicated core.
+** A minimum of 15 GiB memory for each dedicated core.
 +
 You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
-** 80 GiB dedicated disk for the operating system.
-*** 20 GiB or more for `/tmp` directory.
-*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
-*** 1 GiB or more for `/var/log/` directory.
+** A minimum of 80 GiB dedicated disk for the operating system.
+*** A minimum of  20 GiB for `/tmp` directory.
+*** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
+*** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimium of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
 + 
 Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
@@ -158,14 +157,14 @@ The maximum number of supported controller nodes is 5.
 Each controller node must have the following:
 
 ** A minimum of 2 dedicated cores.
-** 8 GiB memory minimum.
-** 80 GiB dedicated disk for the operating system.
-*** 20 GiB or more for `/tmp` directory.
-*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
-*** 1 GiB or more for `/var/log/` directory.
-** 60 GiB dedicated disk with 3000 provisioned IOPS for etcd. This translates to a minimum of 12
+** A minimum of 8 GiB memory.
+** A minimum of 80 GiB dedicated disk for the operating system.
+*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
+*** A minimum of 1 GiB for `/var/log/` directory.
+** A minimum of 60 GiB dedicated disk with 3000 provisioned IOPS for etcd. This translates to a minimum of 12
 Megabytes per second (MBps) disk read/write performance.
-** 100 GiB dedicated disk with 1000 provisioned IOPS for Docker. This translates to a minimum of
+** A minimum of 100 GiB dedicated disk with 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of
 4 MBps disk read/write performance.
 
 === Worker Nodes
@@ -189,11 +188,11 @@ For example, your Runtime Fabric could have three worker nodes and two CPU cores
 Each worker node must have the following:
 
 ** A minimum of 2 dedicated cores.
-** 15 GiB memory minimum.
-** 80 GiB dedicated disk for the operating system.
-*** 20 GiB or more for `/tmp` directory.
-*** 8 GiB or more for `/opt/anypoint/runtimefabric` directory.
-*** 1 GiB or more for `/var/log/` directory.
+** A minimum of 15 GiB memory.
+** A minimum of 80 GiB dedicated disk for the operating system.
+*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
+*** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimum of 100 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
 +
 Having 100 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
