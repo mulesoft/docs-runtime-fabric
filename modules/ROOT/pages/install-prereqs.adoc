@@ -5,8 +5,8 @@ endif::[]
 
 Before you install Anypoint Runtime Fabric (Runtime Fabric):
 
-* Complete all prerequisites in <list of topics>. If needed, contact your MuleSoft representative for assistance.
-* Knowledge in the following areas is required:
+* Make sure your environment meets all the general, system, and network prerequisites. If needed, contact your MuleSoft representative for assistance.
+* Make sure you have knowledge in the following areas:
 
 ** Linux system commands.
 ** Working in Linux with root access. Installation requires root access (permission to run the sudo command) on all servers in your environment.
