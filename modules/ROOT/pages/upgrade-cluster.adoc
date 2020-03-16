@@ -166,13 +166,32 @@ Perform the following steps to resolve common errors:
 sudo ./gravity plan
 ----
 +
-. Resume the upgrade using the debug flag on the phase in which the error occurred: 
+The following partial list provides upgrade phase examples:
 +
 ----
-sudo ./gravity upgrade --phase=< insert phase > --force --debug
+* init 
+* checks
+* bootstrap
+  * node-1
+* masters
+  * node-1   
+    * drain
+    * system-upgrade
+    * taint
+    ...
+* runtime
+  * rbac-app
+  * site
+  * kubernetes
+* app
+  * telekube     
 ----
 +
-For example,  `--phase=/gc/rtf-controller-1`.
+. Resume the upgrade using the debug flag on the phase in which the error occurred. The following example resumes the upgrade by restarting the `masters/node-1/drain` phase: 
++
+----
+sudo ./gravity upgrade --phase=/masters/node-1/drain --force --debug
+----
 . Wait for the command to run again. If the command does not terminate with an error, resume the upgrade by running the following command:
 +
 ----
