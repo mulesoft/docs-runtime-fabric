@@ -3,36 +3,21 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-In an Anypoint Runtime Fabric cluster, each application replica exposes an endpoint inside the cluster, and 
-Anypoint Security then exposes that endpoint externally. 
+In an Anypoint Runtime Fabric cluster, each application replica exposes an endpoint inside the cluster. When you enable inbound traffic, that endpoint is exposed externally. Refer to xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric] for additional information about servicing external requests and configuring the load balancer. 
 
-To send a request to an application from outside the cluster, requests are routed using the load balancer. 
-Refer to https://docs.mulesoft.com/runtime-fabric/1.5/enable-inbound-traffic for additional information.
+To send a request from one application to another application inside the cluster, use the application name and environment ID. 
 
-To send a request from one application to another application in the same cluster:
-
-. Obtain the application name from its DNS record.
-+
-A DNS record is created for each application deployed in the cluster. In the following example DNS record, the domain is 
-`cluster.local`, `hello-world` is the application name, and `2abc2ce6-cce6-463b-afaa-a1979e3xxxxx` is the namespace name 
-(environment ID): 
-+
+Every application has an DNS record in the cluster internal domain. For example, the DNS record for the application `hello-world` in the  `2abc2ce6-cce6-463b-afaa-a1979e3xxxxx` environment is:
 ```
 hello-world.2abc2ce6-cce6-463b-afaa-a1979e3xxxxx.svc.cluster.local
 ```
-. Send a request to the application:
-+
-** To send a request to an application in the same namespace, use the application name:
-+
+Because application replicas first search DNS records in the same domain before searching the parent domain, you only need the application name and environment ID to send a request to another application in the same cluster. If both applications are in the same namespace, you only need the application name:
 ```
 http://hello-world:8081/api
 ```
-+
 If required, replace `http` with `https`.
-+
-** To send a request to an application in another namespace, append the namespace name as the parent domain.
-+
-```
-Example????
-```
 
+The following example sends a request from one application to an application in another namespace. In this example, `1abc2ce6-cce6-463b-afaa-a1979e3xxxxx` is another envionment in the same Runtime Fabric cluster, and this environment ID is appended to the application name:
+```
+http://hello-world.1abc2ce6-cce6-463b-afaa-a1979e3xxxxx:8081/api
+```
