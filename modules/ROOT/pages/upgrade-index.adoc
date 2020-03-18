@@ -24,7 +24,7 @@ rtfctl appliance upgrade --url https://<upgrade-package-information>
 ```
 
 [IMPORTANT]
-To upgrade to Runtime Fabric version 1.5 or later, you must be running version 1.4.54 or first upgrade to 1.4.54 before upgrading to 1.5.
+To upgrade to Runtime Fabric version 1.5 or later, you must be running version 1.4.54. If you are not running version 1.4.54, upgrade to 1.4.54 before upgrading to 1.5.
 
 ## Applying upgrades
 
