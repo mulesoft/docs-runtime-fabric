@@ -23,6 +23,9 @@ If an appliance upgrade is available, a code snippet for performing the upgrade 
 rtfctl appliance upgrade --url https://<upgrade-package-information>
 ```
 
+[IMPORTANT]
+You must be running Runtime Fabric version 1.4.54 in order to upgrade to Runtime Fabric version 1.5 or later. If you are using an earlier version than Runtime Fabric version 1.4.54, you must upgrade to Runtime Fabric version 1.4.54 before upgrading to version 1.5 or later.
+
 ## Applying upgrades
 
 Upgrades to the cluster-level components and node configuration components are performed using the `rtfctl` command-line utility. Upgrades to the Runtime Fabric components are performed in Anypoint Runtime Manager.
