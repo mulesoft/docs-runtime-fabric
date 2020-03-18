@@ -299,6 +299,9 @@ When you are ready to deploy an application, follow the instructions in xref:dep
 
 The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
+== Upgrade Changes
+For Runtime Fabric versions 1.5.0 or later, the internal load balancer is upgraded during the Runtime Fabric component upgrade process. 
+
 == Generate a TLS Certificate for Testing
 For testing purposes, you can use the following steps to generate a certificate-key pair:
 
