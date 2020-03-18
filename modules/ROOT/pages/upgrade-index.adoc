@@ -17,7 +17,7 @@ Upgrades to cluster-level and node configuration components are performed using 
 The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
 
 [IMPORTANT]
-To upgrade to Runtime Fabric version 1.5 or later, you must be running version 1.4.54 or first upgrade to 1.4.54 before upgrading to 1.5.
+To upgrade to Runtime Fabric version 1.5 or later, you must be running version 1.4.54. If you are not running version 1.4.54, upgrade to 1.4.54 before upgrading to 1.5.
 
 ## Applying upgrades
 
