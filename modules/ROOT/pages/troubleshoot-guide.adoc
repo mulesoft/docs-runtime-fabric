@@ -120,7 +120,7 @@ time="2020-02-25T17:43:00Z" level=warning msg="/opt/mule/conf/tokenpolicyapigw-4
 time="2020-02-25T17:43:01Z" level=warning msg="/opt/mule/apps/tokenpolicyapigw-4-2-2.jar: dial tcp 10.100.167.56:80: i/o timeout, retrying in 2.095634783s"
 ```
 
-In this case, upgrading your installer version and redeploying your applications resolves the problem. Refer to xref:upgrade-index.adoc[Upgrade Runtime Fabric] for additional information.
+In this case, upgrading your installer package version to 1.1.1581474166-1f657f1 or later and redeploying your applications resolves the problem. Refer to xref:https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[Anypoint Runtime Fabric Installer Release Notes] and xref:upgrade-index.adoc[Upgrade Runtime Fabric] for additional information.
 
 == Troubleshoot Environment Variable Issues
 
