@@ -1,8 +1,46 @@
 = Perform Runtime Fabric Cluster Upgrades
 
-Anypoint Runtime Fabric is powered by a set of components including Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster. Perform the following steps to upgrade these cluster-level components and apply updates to node configurations.
+Anypoint Runtime Fabric is powered by a set of components including Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster. 
+
+It is important to run with the most current versions of these components, which is accomplished by upgrading to the most recent versions of the Installer package and rtfctl. The Installer package contains the Runtime Fabric cluster-level components, including Kubernetes, Docker, and the Ops Center. When using the install scripts, the latest version of this installer is downloaded automatically and used. This installer should be used to apply upgrades to the cluster-level components. rtfctl is the command-line utility used to manage your Runtime Fabric.
+
+Perform the following steps to upgrade these cluster-level components and apply updates to node configurations.
 
 == Before You Begin
+
+* Review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+* Determine the Installer package and rtfctl versions you are currently using:
+
+.. Run the  `/opt/anypoint/runtimefabric/rtfctl version` command.
++
+```
+[root@ip-10-0-245-74 /]# /opt/anypoint/runtimefabric/rtfctl version
+COMPONENT    VERSION                  
+rtfctl       0.2.96+2868e14           
+agent        1.5.4                    
+appliance    1.1.1581641679-5884bce   
+kubernetes   1.13.12
+```
++
+The `appliance` field provides the Installer package version. The `agent` field provides the Runtime Fabric version.
++
+[IMPORTANT]
+Only perform an upgrade for the components that are not running the most recent version.
+
+
+It is important to run with the most recent versions of the Installer package and rtfctl.
+
+Check the release notes   https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-release-notes for the latest available version of the installer, and run the following command to see if your cluster has the most recent installer version:
+
+/opt/anypoint/runtimefabric/rtfctl version
+
+If you are not running the most recent version of the RTF installer, perform an RTF cluster upgrade: https://docs.mulesoft.com/runtime-fabric/1.4/upgrade-cluster
+
+
+
+
+
+
 
 * Run the upgrade procedure on a non-production Runtime Fabric to verify compatibility with your environment and to gain familiarity with the procedure.
 * Plan the upgrade procedure when your team does not need to deploy new applications or managing existing applications on Runtime Fabric.
