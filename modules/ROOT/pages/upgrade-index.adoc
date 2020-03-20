@@ -47,7 +47,7 @@ kubernetes   1.13.12
 +
 [NOTE]
 The Runtime Fabric version is also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, "Upgrade to vx.x" is displayed.
-* Determine the install script version you are using by - HOW??????????
+* Determine the install script version you are using by ???????????
 
 == Determine the Latest Available Component Versions
 The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
@@ -118,7 +118,7 @@ sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 ----
 sudo chmod +x rtfctl
 ----
-. If you are not using the latest version of the installer package, upgrade to the latest version:
+. If you are not using the latest version of the cluster-level components (installer package), upgrade to the latest version:
 
 .. Update your Mule deployments running on this Anypoint Runtime Fabric to the latest patch version.
 ... Using your web browser, navigate to the *Applications* tab in Anypoint Runtime Manager.
@@ -132,7 +132,7 @@ sudo chmod +x rtfctl
 ... Run `sudo gravity status` and confirm the cluster status is healthy.
 ... Keep your terminal open to use in later steps.
 
-.. Get the latest version of the Runtime Fabric installer URL:
+.. Get the latest version of the Runtime Fabric installer package:
 ... Using your web browser, navigate to Anypoint Runtime Manager and select the *Runtime Fabrics* tab to view a list of your Runtime Fabrics.
 ... Select the *Downloads* link.
 ... Select the *Copy Link* icon next to *Installer package* to copy the code snippetL, as shown in the following example:
@@ -167,27 +167,23 @@ sudo gravity plan
 ----
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
+.. Perform the following step on *every node* to make sure system configurations are up to date:
 
-
-== Verify System Configurations are Up To Date
-
-After cluster-level (installer package) components are upgraded, perform the following step on *every node* to make sure system configurations are up to date:
-
-. Open a terminal to your Runtime Fabric controller/worker node.
-. Download the latest `rtfctl` command-line utility:
+... Open a terminal to your Runtime Fabric controller/worker node.
+... If needed, download the latest `rtfctl` command-line utility:
 +
 ----
 cd /opt/anypoint/runtimefabric
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 +
-. Change file permissions for the `rtfctl` binary: 
+... Change file permissions for the `rtfctl` binary: 
 +
 ----
 chmod +x rtfctl
 ----
 +
-. Run the `apply system-configurations` command in `rtfctl`:
+... Run the `apply system-configurations` command in `rtfctl`:
 +
 ----
 sudo ./rtfctl apply system-configuration 
@@ -217,7 +213,7 @@ If the error occurs again, follow the troubleshooting steps described in the fol
  
 == Troubleshooting Upgrade Errors
 
-A specific sequence of steps is performed during a cluster upgrade. If an error occurs, the upgrade pauses and outputs an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
+A specific sequence of steps is performed during a cluster-level component (installer package) upgrade. If an error occurs, the upgrade pauses and outputs an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
 Most errors encountered are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
 
