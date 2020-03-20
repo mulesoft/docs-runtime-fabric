@@ -16,14 +16,14 @@ Updates are delivered via the Runtime Fabric page in Anypoint Runtime Manager. I
 
 * The `rtfctl` command-line utility, which is used to manage Runtime Fabric and perform the actual upgrades to cluster-level and node configuration components.
 +
-Upgrades are provided as a new binary that replaces the existing binary and are delivered via the *Runtime Fabric downloads* page in Runtime Manager.
+Upgrades are delivered as a new binary via the *Runtime Fabric downloads* page in Runtime Manager.
 
 * Node configuration, which includes scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
 +
-Changes are provided in newer install script versions and are delivered via the *Runtime Fabric downloads* page in Runtime Manager.
+Changes are delivered as an updated install script version via the *Runtime Fabric downloads* page in Runtime Manager.
 +
 [NOTE]
-If you are using the install scripts, the latest version of the installer package is automatically downloaded and used.
+If you are upgrading the node configuration with install scripts, the latest version of the cluster-level components (installer package) is automatically downloaded and used.
 
 It is important to run with the most current versions of the cluster-level (installer package) and `rtfctl` components.
 
@@ -52,7 +52,7 @@ The Runtime Fabric version is also displayed in the *Runtime Fabrics* tab in Run
 == Determine the Latest Available Component Versions
 The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
 
-* Review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+You can also review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 
 == Runtime Fabric Component Upgrade Considerations
 * Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
@@ -60,7 +60,7 @@ The latest versions of each downloadable package are found in the *Downloads* pa
 * If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
 * The upgrade procedure is designed to keep deployed applications running and available to serve requests. The majority of the services that are upgradable via this process run within the controller nodes. Impact to running Mule instances and worker nodes is minimal by design.
 
-== Installer Package Upgrade Considerations
+== Cluster-level Component Upgrade Considerations
 * The upgrade can take over an hour to complete.
 * The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
 * Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
@@ -88,6 +88,7 @@ This enables safe removal of a worker node from the cluster to apply upgrades, w
 === Apply the Upgrade
 Before upgrading your production environment, first run the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
 
+. Review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 . Provision additional worker VMs as needed to maintain availability of applications:
 
 .. If the amount of available resources for application deployments is less than one worker node’s worth, add another worker VM with equal CPU, memory, and disk resources to the Runtime Fabric.
@@ -170,7 +171,7 @@ sudo ./rtfctl apply http-proxy --confirm existing
 
 == Verify System Configurations are Up To Date
 
-After the cluster has successfully upgraded, perform the following step on *every node* to make sure system configurations are up to date:
+After cluster-level (installer package) components are upgraded, perform the following step on *every node* to make sure system configurations are up to date:
 
 . Open a terminal to your Runtime Fabric controller/worker node.
 . Download the latest `rtfctl` command-line utility:
@@ -194,7 +195,7 @@ sudo ./rtfctl apply system-configuration
 
 == Resume an Upgrade
 
-If the upgrade procedure encountered a failed step, try to resume the upgrade. 
+If the cluster-level (installer package) components upgrade procedure encountered a failed step, try to resume the upgrade. 
 
 Resumed upgrades are attached to your terminal session. Ensure you have a stable connection before attempting to resume an upgrade.
 
