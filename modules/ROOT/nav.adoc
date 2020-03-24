@@ -1,7 +1,7 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
 * xref:index.adoc[Anypoint Runtime Fabric Overview]
  ** xref:architecture.adoc[Runtime Fabric Architecture]
- ** xref:install-prereqs.adoc[Installation Prerequisites]
+ ** xref:install-sys-reqs.adoc[Installation Prerequisites]
  ** xref:runtime-fabric-limitations.adoc[Limitations]
 *  xref:install-create-rtf-arm.adoc[Begin Runtime Fabric Installation]
  ** xref:install-aws.adoc[Install Runtime Fabric on AWS]
