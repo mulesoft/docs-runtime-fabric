@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a package of components that work together, and component updates are delivered in different ways:
+Anypoint Runtime Fabric is a package of components that work together, and updates are delivered in different ways:
 
 * Cluster-level components, which include Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster.
 +
