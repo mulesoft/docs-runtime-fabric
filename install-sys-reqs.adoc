@@ -4,17 +4,17 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-port-reqs.adoc
 
-== Before you install Anypoint Runtime Fabric (Runtime Fabric):
+* Make sure your environment meets all prerequisites described in the following sections. If needed, contact your MuleSoft representative for assistance.
 
-* Make sure your environment meets all the general, system, and network prerequisites. If needed, contact your MuleSoft representative for assistance.
-* Make sure you have knowledge in the following areas:
+== Knowledge Required to Install Anypoint Runtime Fabric (Runtime Fabric)
+Make sure you have knowledge in the following areas:
 
-** Linux system commands.
-** Working in Linux with root access. Installation requires root access (permission to run the sudo command) on all servers in your environment.
-** Working with Terraform. This is only required if your environment includes AWS.
-** Remote connection mechanisms, such as SSL and SSH.
+* Linux system commands.
+* Working in Linux with root access. Installation requires root access (permission to run the sudo command) on all servers in your environment.
+* Working with Terraform. This is only required if your environment includes AWS.
+* Remote connection mechanisms, such as SSL and SSH.
 
-== General Prerequisites for Anypoint Runtime Fabric
+== General Prerequisites for Anypoint Runtime Fabric Installation
 
 The following sections list the general requirements and considerations for successfully using Anypoint Runtime Fabric. Ensure the following criteria have been met before beginning the installation.
 
@@ -173,7 +173,6 @@ node becomes unavailable (fault-tolerance) or during maintenance operations that
 
 This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications. 
 
-
 [NOTE]
 ====
 Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
@@ -305,5 +304,3 @@ On the controller VM acting as the leader for installation, the following are pe
 == See Also
 
 * xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric]
-
-
