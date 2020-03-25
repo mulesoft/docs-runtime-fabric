@@ -4,30 +4,33 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a package of components that work together, and updates are delivered in different ways:
+Anypoint Runtime Fabric is a package of components that work together, and updates for all appliance components are obtained using Anypoint Runtime Manager.
 
-* Cluster-level components, which include Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster.
-+
-Updates are delivered as an updated installer package via the *Runtime Fabric downloads* page in Anypoint Runtime Manager.  The installer package is also referred to as the Runtime Fabric appliance.
+* Appliance components
+Appliance components include:
 
-* Runtime Fabric components, which include the agent used to connect Runtime Fabric to Anypoint Platform.
+** Cluster-level components, which include Docker, Kubernetes, and the Ops Center. These components run on virtual machines or bare-metal servers that act as nodes on the cluster. Cluster-level components are also referred to as appliance components.
 +
-Updates are delivered via the Runtime Fabric page in Anypoint Runtime Manager. If an updated application or appliance version is available, a link to the downloads page is displayed in the *Upgrade Available* and *Appliance Version* fields, as applicable.
+Cluster-level component upgrades are delivered as an updated installer package via the *Runtime Fabric downloads* page.
+
+** Runtime Fabric components, which include the agent used to connect Runtime Fabric to Anypoint Platform.
++
+Runtime Fabric updates are delivered via a link to the downloads page in the *Upgrade Available* and *Appliance Version* fields, as applicable.
 
 * The `rtfctl` command-line utility, which is used to manage Runtime Fabric and perform the actual upgrades to cluster-level and node configuration components.
 +
-Upgrades are delivered as a new binary via the *Runtime Fabric downloads* page in Runtime Manager.
+Upgrades are delivered as a new binary via the *Runtime Fabric downloads* page.
 
 * Node configuration, which includes scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
 +
-Changes are delivered as an updated install script version via the *Runtime Fabric downloads* page in Runtime Manager.
+Changes are delivered as an updated install script version via the *Runtime Fabric downloads* page.
 +
 [NOTE]
 If you are upgrading the node configuration with install scripts, the latest version of the cluster-level components (installer package) is automatically downloaded and used.
 
 It is important to run with the most current versions of the cluster-level (installer package) and `rtfctl` components.
 
-== Determine the Component Versions You Are Using
+== Determine Each Component Version You Are Using
 
 * Run the following command:
 +
@@ -46,44 +49,12 @@ kubernetes   1.13.12
 ```
 +
 [NOTE]
-The Runtime Fabric version is also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, "Upgrade to vx.x" is displayed.
-* Determine the install script version you are using by ???????????
+The Runtime Fabric component version and the cluster-level component (appliance) version are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, "Upgrade to vx.x" is displayed.
 
 == Determine the Latest Available Component Versions
 The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
 
 You can also review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
-
-== Runtime Fabric Component Upgrade Considerations
-* Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
-* The upgrade takes fewer than 10 minutes in most cases.
-* If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
-* The upgrade procedure is designed to keep deployed applications running and available to serve requests. The majority of the services that are upgradable via this process run within the controller nodes. Impact to running Mule instances and worker nodes is minimal by design.
-
-== Cluster-level Component Upgrade Considerations
-* The upgrade can take over an hour to complete.
-* The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
-* Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
-* Verify you have root privileges. Root privileges are required to perform an upgrade.
-* The upgrade procedure is designed to keep deployed applications running and available to serve requests. The upgrade is applied in a rolling method:
-
-.. A node is selected by the procedure to apply the upgrade.
-.. Applications running on the selected node are redeployed to another node.
-.. The selected node is removed from the cluster.
-.. The upgrade is applied on the selected node.
-.. The selected node is added to the cluster after upgrading.
-
-=== Environment Prerequisites
-
-* A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
-* The internal load balancer must run on at least 3 replicas to maintain availability.
-* An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
-* At least one worker node’s worth of CPU and memory resources must be available in the cluster.
-+
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
-* Applications serving inbound requests must be scaled to a minimum of 2 replicas.
-
-[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter downtime to applications if configured to use an HTTP proxy. You must perform an additional step in the procedure by applying the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `gravity status` on a node and referencing the cluster version.
 
 === Apply the Upgrade
 Before upgrading your production environment, first run the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
@@ -94,12 +65,16 @@ Before upgrading your production environment, first run the following steps on a
 .. If the amount of available resources for application deployments is less than one worker node’s worth, add another worker VM with equal CPU, memory, and disk resources to the Runtime Fabric.
 +
 See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
-. To upgrade Runtime Fabric components to a newer version:
+. To upgrade Runtime Fabric components to a later version:
+
+.. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.  
 .. Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
 .. Select "Upgrade to vx.x". The status of the Runtime Fabric is updated to reflect the upgrade procedure is in progress.
 .. Wait for the status to transition to Active. 
 +
-When the status transitions to Active, and the version of the Runtime Fabric reflects the new version, the upgrade is complete.
+In most cases, the upgrade takes fewer than 10 minutes. When the status transitions to Active, and the version of the Runtime Fabric reflects the new version, the upgrade is complete.
++
+If the Runtime Fabric and Anypoint Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
 +
 Keep your browser session open to use in later steps.
 +
@@ -119,6 +94,20 @@ sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 sudo chmod +x rtfctl
 ----
 . If you are not using the latest version of the cluster-level components (installer package), upgrade to the latest version:
+
+.. Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
+.. Verify you have root privileges. Root privileges are required to perform an upgrade.
+.. Verify your environment meets the prerequisites:
+
+*** A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
+*** The internal load balancer must run on at least 3 replicas to maintain availability.
+*** An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
+*** At least one worker node’s worth of CPU and memory resources must be available in the cluster.
++
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
+*** Applications serving inbound requests must be scaled to a minimum of 2 replicas.
++
+[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter downtime to applications if configured to use an HTTP proxy. You must perform an additional step in the procedure by applying the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `gravity status` on a node and referencing the cluster version.
 
 .. Update your Mule deployments running on this Anypoint Runtime Fabric to the latest patch version.
 ... Using your web browser, navigate to the *Applications* tab in Anypoint Runtime Manager.
@@ -160,6 +149,20 @@ The command outputs a confirmation indicating the upgrade is being performed in 
 sudo gravity plan
 ----
 +
+The upgrade can take over an hour to complete.
++
+The Runtime Fabric and Anypoint Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
++
+The upgrade procedure is designed to keep deployed applications running and available to serve requests. The upgrade is applied in a rolling method:
++
+.... A node is selected by the procedure to apply the upgrade.
+.... Applications running on the selected node are redeployed to another node.
+.... The selected node is removed from the cluster.
+.... The upgrade is applied on the selected node.
+.... The selected node is added to the cluster after upgrading.
+
+
+
 .. Confirm the upgrade has completed successfully:
 ... Run `sudo gravity status` and verify that the cluster status transitioned from “updating” to “active”.
 .. If the Runtime Fabric cluster version was 1.0.x prior to upgrading, and an HTTP proxy is in use, run this command to apply the HTTP proxy settings: 
@@ -189,7 +192,7 @@ chmod +x rtfctl
 sudo ./rtfctl apply system-configuration 
 ----
 
-== Resume an Upgrade
+== Resume a Cluster-level Component (Appliance) Upgrade
 
 If the cluster-level (installer package) components upgrade procedure encountered a failed step, try to resume the upgrade. 
 
@@ -211,7 +214,7 @@ sudo ./gravity upgrade --resume
 
 If the error occurs again, follow the troubleshooting steps described in the following section.
  
-== Troubleshooting Upgrade Errors
+== Troubleshooting Component-level (Appliance) Upgrade Errors
 
 A specific sequence of steps is performed during a cluster-level component (installer package) upgrade. If an error occurs, the upgrade pauses and outputs an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
