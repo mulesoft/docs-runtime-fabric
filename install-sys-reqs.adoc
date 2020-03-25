@@ -4,8 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-port-reqs.adoc
 
-Review the following requirements with your operations and IT teams to ensure your
-infrastructure is provisioned correctly before installing Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
+Review the following requirements with your operations and IT teams to ensure all prerequisites are met before installing Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
 
 If needed, contact your MuleSoft representative for assistance.
  
@@ -17,7 +16,7 @@ What info is needed for these items????
 * Have multiple clustering within DMZ/internal for HA
 * Disable swap memory
 * RTF default pod & services CIDR block should not interfere with regions network
-* chrony (system clocks) status should in sync
+* chrony (system clocks) status should be in sync
 
 === General Knowledge
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
@@ -33,7 +32,7 @@ Knowledge in the following areas is required to perform a Runtime Fabric install
 Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
 and mounts the disks needed during installation.
 
-* Required hardware provisioned, or have enough quota with your infrastructure provider to create the required hardware. This includes:
+* Provision the required hardware, or have enough quota with your infrastructure provider to create the required hardware. This includes:
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
 ** Virtual machines
 ** Disks with provisioned IOPS
@@ -42,14 +41,13 @@ and mounts the disks needed during installation.
 ** Load balancers
 * If provisioning hardware with AWS or Azure, you must have the right permissions to create the above resources.
 +
-[IMPORTANT]
 The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
 the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
 when evaluating Runtime Fabric before integrating within your primary network. You should consult with your 
 network administrator to determine if the default behavior is compatible. You may need to modify the 
 provisioning scripts to accommodate your organization's requirements.
 * You must understand how to forward logs to your organization's logging provider.
-* Details on your organization's SMTP provider to configure alerts.
+* Obtain your organization's SMTP provider information so that you can configure alerts.
 
 * Verify the following items for your network:
 
@@ -60,10 +58,10 @@ provisioning scripts to accommodate your organization's requirements.
 *** The subnet range used for Runtime Fabric in CIDR notation.
 *** If virtual machines are allowed public IP addresses.
 *** How to gain shell access to each VM.
-** Know if inbound traffic should be enabled for Anypoint Runtime Fabric. This will likely be based on the function of your organization's Mule applications.
-*** If so, you must have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
-*** Ability to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
-*** Ability to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
+** Know if inbound traffic should be enabled for Anypoint Runtime Fabric. This will likely be based on the function of your organization's Mule applications. If so, you must:
+*** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
+*** Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
+*** Be able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
 
 == Operating System Requirements
 
@@ -249,7 +247,6 @@ To deploy Mule applications and API proxies, you must have the following:
 
 * Access to your organization's Mule license key(s).
 * One or more Mule applications.
-
 
 == Installation Considerations
 
