@@ -49,6 +49,9 @@ $ gravity resource create -f alert-smtp.yaml
 
 Alerts should now be configured to send through your SMTP server.
 
+[NOTE]
+Currently only a single alerts email recipient is supported.
+
 == Built-in Alerts
 
 The following table lists some of default alerts provided by Anypoint Runtime Fabric:
