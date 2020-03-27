@@ -54,7 +54,7 @@ The Runtime Fabric component version and the cluster-level component (appliance)
 == Determine the Latest Available Component Versions
 The latest versions of each downloadable package are found in the *Downloads* page, located in Anypoint Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
 
-You can also review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+You can also review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 
 === Apply the Upgrade
 Before upgrading your production environment, first run the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
