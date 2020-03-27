@@ -59,7 +59,7 @@ You can also review the xref:release-notes::runtime-fabric/runtime-fabric-releas
 === Apply the Upgrade
 Before upgrading your production environment, first run the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
 
-. Review the xref:release-notes/runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+. Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 . Provision additional worker VMs as needed to maintain availability of applications:
 
 .. If the amount of available resources for application deployments is less than one worker node’s worth, add another worker VM with equal CPU, memory, and disk resources to the Runtime Fabric.
