@@ -54,6 +54,7 @@ Perform the following actions:
 * Provision the required hardware, or have enough quota with your infrastructure provider to create the required hardware. 
 +
 This includes:
+
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
 ** Virtual machines
 ** Disks with provisioned IOPS
@@ -209,7 +210,57 @@ Anypoint Runtime Fabric:
 * Your environment's HTTP proxy configuration if outgoing requests to the Internet must route through a proxy.
 * A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy.
 
+== Mule License
 
+To deploy Mule applications and API proxies, you must have access to your organization's Mule license file.
+
+== Installation Requirements
+
+During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
+
+Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
+
+* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
+* Worker VMs are dedicated to run Mule applications.
+
+One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
+
+During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
+
+The installation process combines the following steps:
+
+* For AWS and Azure, provision infrastructure per the system requirements.
+* Install Runtime Fabric across the VMs.
+* Activate Runtime Fabric with your Anypoint organization.
+* Install your organization's Mule Enterprise license.
+
+To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
+
+* Format and mount each dedicated disk
+* Add mount entries for each disk to `/etc/fstab`
+* Add iptable rules
+* Enable required kernel modules
+* Start the installation
+
+On the controller VM acting as the leader for installation, the following are performed:
+
+* Run the activation script after installation
+* Run the Mule license insertion script after registration
+
+== Anypoint Platform Roles and Permissions
+To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
+
+* Ability to use Anypoint Runtime Manager to deploy and manage applications.
+* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users.
+** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
+* You may also require the following permissions to enable inbound traffic to Runtime Fabric:
+** Grant Access to Secrets
+** Manage Secret Groups
+** Read Secrets Metadata
+** Write Secrets
++
+These permissions are available from the *Secrets Manager* tab in Access Management .
+** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
 
@@ -363,59 +414,3 @@ Each worker node must have the following:
 ** A minimum of 100 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
 +
 Having 100 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
-
-== Anypoint Platform Roles and Permissions
-To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
-
-* Ability to use Anypoint Runtime Manager to deploy and manage applications.
-* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users.
-** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-* You may also require the following permissions to enable inbound traffic to Runtime Fabric:
-** Grant Access to Secrets
-** Manage Secret Groups
-** Read Secrets Metadata
-** Write Secrets
-+
-These permissions are available from the *Secrets Manager* tab in Access Management .
-** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
-
-== Mule License
-
-To deploy Mule applications and API proxies, you must have access to your organization's Mule license file.
-
-== Installation Considerations
-
-During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
-
-Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
-
-* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
-* Worker VMs are dedicated to run Mule applications.
-
-One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
-
-During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
-
-The installation process combines the following steps:
-
-* For AWS and Azure, provision infrastructure per the system requirements.
-* Install Runtime Fabric across the VMs.
-* Activate Runtime Fabric with your Anypoint organization.
-* Install your organization's Mule Enterprise license.
-
-To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
-
-* Format and mount each dedicated disk
-* Add mount entries for each disk to `/etc/fstab`
-* Add iptable rules
-* Enable required kernel modules
-* Start the installation
-
-On the controller VM acting as the leader for installation, the following are performed:
-
-* Run the activation script after installation
-* Run the Mule license insertion script after registration
-
-== See Also
-
-* xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric]
