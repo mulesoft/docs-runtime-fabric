@@ -84,7 +84,7 @@ provisioning scripts to accommodate your organization's requirements.
 *** The subnet range used for Runtime Fabric in CIDR notation.
 *** If virtual machines are allowed public IP addresses.
 *** How to gain shell access to each VM.
-** Know if inbound traffic should be enabled for Anypoint Runtime Fabric. This will likely be based on the function of your organization's Mule applications. If so, you must:
+** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is likely based on the function of your organization's Mule applications. If so, you must:
 *** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
 *** Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
 *** Be able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
@@ -352,7 +352,7 @@ server pool consisting of each of the controller nodes is sufficient.
 * An internal load balancer that runs on at least 3 replicas to maintain availability.
 * Applications serving inbound requests must be scaled to a minimum of 2 replicas.
 
-== Development Configuration
+== Development Configuration Requirements
 
 Runtime Fabric requires a minimum of three nodes in a development environment as shown in the
 following diagram:
