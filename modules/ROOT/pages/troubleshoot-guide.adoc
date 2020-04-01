@@ -96,32 +96,6 @@ as well as individual components.
 
 To recover a node, follow the instructions provided in xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 
-== Troubleshoot DNS Resolution Issues
-If you experience a DNS resolution issue, it might be caused by an older version of gravity, as shown in the following example error message:
-
-```
-kubectl logs tokenpolicyapigw-4-2-2-78497485fb-nn2x7  -n a3ea3617-3c3f-47cf-965f-d7a152c31ffb -f
-Error from server (BadRequest): a container name must be specified for pod tokenpolicyapigw-4-2-2-78497485fb-nn2x7, choose one of: [app anypoint-monitoring] or one of the init containers: [init]
-[root@ip-10-0-110-31 ~]# kubectl logs tokenpolicyapigw-4-2-2-78497485fb-nn2x7  init -n a3ea3617-3c3f-47cf-965f-d7a152c31ffb -f
-time="2020-02-25T17:42:15Z" level=info msg="Reading annotations..."
-time="2020-02-25T17:42:15Z" level=info msg="Parsing resources annotation..."
-time="2020-02-25T17:42:15Z" level=info msg="Application resources:"
-time="2020-02-25T17:42:15Z" level=info msg="  1. /opt/mule/apps/tokenpolicyapigw-4-2-2.jar (https://configuration-resolver.qax.msap.io/api/v1/deployments/add0b4d9-54f8-11ea-8202-85e61abacb9f/assets/eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJncm91cElkIjoiMDhlMTBmNjQtMDc3My00NWExLWE0MTItY2M3MjMyMDMzOWQzIiwiaXNzIjoiTXVsZVNvZnQgLSBBTUMgLSBEZXBsb3llciIsImNsYXNzaWZpZXIiOiJtdWxlLWFwcGxpY2F0aW9uIiwiYXJ0aWZhY3RJZCI6ImFwaWd3cHJveHktYXBpLWdhdGV3YXktc2FtcGxlLXJlc3QtcHJveHkiLCJwYWNrYWdpbmciOiJqYXIiLCJleGNoYW5nZVR5cGUiOiJhcHAiLCJkZXBsb3ltZW50TmFtZSI6InRva2VucG9saWN5YXBpZ3ctNC0yLTIiLCJyZWZJZCI6InRva2VucG9saWN5YXBpZ3ctNC0yLTIiLCJzb3VyY2UiOiJleGNoYW5nZSIsInZlcnNpb24iOiIxLjAuMS0yLjEuMCJ9.FymfZOCU0QVI7UusVDQuzSh7TAbXFxFeK2N0Tm6rvlK_qZCykiG7j5fofVCxuAgLWFme1oQnxhpJFsrl7HR-R3d1huVI8zEUvlPa5qEPENNAPlV0_sE6UQuoKwK8rTEMkLQTjXxMg_ktkpk8neTRxyZ17d397Uz2O88oyI6G5v2IhjaVFQEbsoHMyHz5SnzkHecxhVZWoQwmAk6N4IYd6wHKPGYFG-2JvvnDBK98Ms7uPLAOlkIEu8hjQFDTYMO6D6k8UAIAcMdlHyYPZZSG6lO1LEOyLyCNr6-RLNJibwPnbrwUvGb2X8ulFaeCASTH1GL3FE-HB3SxJk7p8r0m0A)"
-time="2020-02-25T17:42:15Z" level=info msg="  2. /opt/mule/conf/tokenpolicyapigw-4-2-2.yml (https://configuration-resolver.qax.msap.io/api/v1/deployments/add0b4d9-54f8-11ea-8202-85e61abacb9f/configurations/eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJNdWxlU29mdCAtIEFNQyAtIERlcGxveWVyIiwiZGVwbG95bWVudE5hbWUiOiJ0b2tlbnBvbGljeWFwaWd3LTQtMi0yIiwic291cmNlIjoiZGVwbG95ZXIiLCJ0eXBlIjoiY29uZmlndXJhdGlvbiIsInZlcnNpb24iOiJhZGQwYjRkYi01NGY4LTExZWEtODIwMi00YjA4MWU3NDBmNDQifQ.K5QHijc0oT71-eU5l4wfSnlUXAo4UrhLdVpA10eOvZ7yqVHt46wMtfOPZB5RQw33PhtQMcoK-bYkyZD3xrPv2RverRm502WR2xwZpmq7-aVxA4oNy1qD7o4WCfsNYjGekGgeS-xutW4yb20L3xCu5Lf-PnEGoEcsKvi_Vz0vUfnUrt2VQkcW-Wg175DehJgzYVvHpQcaOzBQqrI2Civ2cCVKy7RqIDuM-27Kqrd5WTD8qthHAo7op0Z0lID2g6uUul5usVCFyiVwUQW1gOr74uqb2j8ExxOjRnf55giJ9WJNJ9JWg6JPmkS5VJcMK3AhKRSBofyDTIlwiWeoGga1pw)"
-time="2020-02-25T17:42:15Z" level=info msg="Fetching from cache..." res=/opt/mule/conf/tokenpolicyapigw-4-2-2.yml
-time="2020-02-25T17:42:15Z" level=info msg="Fetching from cache..." res=/opt/mule/apps/tokenpolicyapigw-4-2-2.jar
-time="2020-02-25T17:42:25Z" level=warning msg="/opt/mule/conf/tokenpolicyapigw-4-2-2.yml: dial tcp: i/o timeout, retrying in 1s"
-time="2020-02-25T17:42:25Z" level=warning msg="/opt/mule/apps/tokenpolicyapigw-4-2-2.jar: dial tcp: i/o timeout, retrying in 1s"
-time="2020-02-25T17:42:36Z" level=warning msg="/opt/mule/apps/tokenpolicyapigw-4-2-2.jar: dial tcp 10.100.167.56:80: i/o timeout, retrying in 1.664560053s"
-time="2020-02-25T17:42:36Z" level=warning msg="/opt/mule/conf/tokenpolicyapigw-4-2-2.yml: dial tcp 10.100.167.56:80: i/o timeout, retrying in 1.437714187s"
-time="2020-02-25T17:42:48Z" level=warning msg="/opt/mule/conf/tokenpolicyapigw-4-2-2.yml: dial tcp: i/o timeout, retrying in 2.273912491s"
-time="2020-02-25T17:42:48Z" level=warning msg="/opt/mule/apps/tokenpolicyapigw-4-2-2.jar: dial tcp: i/o timeout, retrying in 3.060469218s"
-time="2020-02-25T17:43:00Z" level=warning msg="/opt/mule/conf/tokenpolicyapigw-4-2-2.yml: dial tcp 10.100.167.56:80: i/o timeout, retrying in 1.459459134s"
-time="2020-02-25T17:43:01Z" level=warning msg="/opt/mule/apps/tokenpolicyapigw-4-2-2.jar: dial tcp 10.100.167.56:80: i/o timeout, retrying in 2.095634783s"
-```
-
-In this case, upgrading your installer package version to 1.1.1581474166-1f657f1 or later and redeploying your applications resolves the problem. Refer to xref:https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[Anypoint Runtime Fabric Installer Release Notes] and xref:upgrade-index.adoc[Upgrade Runtime Fabric] for additional information.
-
 == Troubleshoot Environment Variable Issues
 
 This step detects the variables which the installation process needs to carry out its
