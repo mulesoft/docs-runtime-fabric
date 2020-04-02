@@ -4,9 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a package of components that work together, but are upgraded using different mechanisms.
+Anypoint Runtime Fabric is a package of components that work together, but are upgraded using different mechanisms:
 
 * Appliance components
++
 There are two types of appliance components:
 
 ** Cluster-level components, which include Docker, Kubernetes, and the Ops Center. These components run on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
@@ -37,7 +38,7 @@ Run the following command:
 /opt/anypoint/runtimefabric/rtfctl version
 ```
 
-The output includes:
+Output includes:
 
 * The `rtfctl` component version in the `rtfctl` field
 * The installer package component version in the `appliance` field
@@ -54,7 +55,7 @@ kubernetes   1.13.12
 ```
 
 [NOTE]
-The Runtime Fabric component and cluster-level component (appliance) versions in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, an "Upgrade to vx.x" message is displayed.
+The Runtime Fabric component and cluster-level component (appliance) versions that are in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, an "Upgrade to vx.x" message is displayed.
 
 == Determine the Most Recent Component Versions Available
 The most recent component versions are displayed in the *Downloads* page, located in Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
@@ -264,7 +265,7 @@ sudo ./gravity upgrade --resume
 ----
 . If the upgrade again terminates with an error:
 .. Read the logs to identify which node requires repair.
-... Submit a ticket to MuleSoft support if additional assistance is required.
+.. Submit a ticket to MuleSoft support if additional assistance is required.
 . Open another terminal to the Runtime Fabric node identified in the error logs.
 . Repair the upgrade plan for the identified node in the terminal:
 +
