@@ -113,7 +113,7 @@ sudo chmod +x rtfctl
 This enables safe removal of a worker node from the cluster to apply upgrades without impacting application availability.
 *** Applications serving inbound requests must be scaled to a minimum of 2 replicas.
 +
-[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter application downtime if configured to use an HTTP proxy. You must apply the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `gravity status` on a node and referencing the cluster version.
+[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter application downtime if configured to use an HTTP proxy. You must apply the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `rtfctl version` on a node and referencing the appliance version.
 
 .. Update the Mule deployments running on Runtime Fabric to the latest patch version.
 ... Using your web browser, navigate to the *Applications* tab in Runtime Manager.
