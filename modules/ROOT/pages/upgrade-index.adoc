@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a package of components that work together, but are upgraded using different mechanisms:
+Anypoint Runtime Fabric is a package of components that work together but are upgraded using different mechanisms:
 
 * Appliance components
 +
@@ -157,7 +157,7 @@ sudo gravity plan
 +
 The upgrade can take more than an hour to complete.
 +
-The Runtime Fabric and Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade completes.
+The Runtime Fabric and Runtime Manager connection often disconnects multiple times during the upgrade procedure. Connectivity is restored after the upgrade finishes.
 +
 The upgrade procedure is designed to keep deployed applications running and available to serve requests. The upgrade is applied in a rolling method:
 +
@@ -167,16 +167,16 @@ The upgrade procedure is designed to keep deployed applications running and avai
 .... The upgrade is applied on the selected node.
 .... The selected node is added to the cluster after upgrading.
 
-.. Confirm the upgrade has completed successfully:
+.. Confirm that the upgrade has completed successfully:
 ... Run `sudo gravity status` and verify that the cluster status transitioned from *Updating* to *Active*.
-.. If the Runtime Fabric cluster version was 1.0.x prior to upgrading, and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings: 
+.. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings:
 +
 ----
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
-.. Perform the following step on *every node* to make sure system configurations are up-to-date:
+.. Perform the following step on *every node* to ensure that system configurations are current:
 
-... Open a terminal to your Runtime Fabric controller/worker node.
+... Open a terminal to a Runtime Fabric controller or worker node.
 ... If needed, download the latest `rtfctl` command-line utility:
 +
 ----
@@ -196,11 +196,11 @@ chmod +x rtfctl
 sudo ./rtfctl apply system-configuration 
 ----
 
-== Resume a Cluster-level Component (Appliance) Upgrade
+== Resume a Cluster-Level Component (Appliance) Upgrade
 
 If a cluster-level (installer package) components upgrade step fails, try to resume the upgrade. 
 
-Resumed upgrades are attached to your terminal session, so ensure you have a stable connection before attempting to resume an upgrade.
+Resumed upgrades are attached to your terminal session, so ensure that you have a stable connection before attempting to resume an upgrade.
 
 . On the terminal open to the controller node that was used to start the upgrade, navigate to the directory with the installer bundle files, as shown in the following example:
 +
@@ -214,15 +214,13 @@ cd /opt/anypoint/runtimefabric/installer
 sudo ./gravity upgrade --resume
 ----
 +
-. The upgrade procedure streams output to your terminal session. 
-
-If the previous error reoccurs, perform the troubleshooting steps described in the following section.
+. The upgrade procedure streams output to your terminal session. If the previous error reoccurs, perform the troubleshooting steps described in the following section.
  
-== Troubleshooting Component-level (Appliance) Upgrade Errors
+== Troubleshooting Component-Level (Appliance) Upgrade Errors
 
 A specific sequence of steps is performed during a cluster-level component (installer package) upgrade. If an error occurs, the upgrade pauses and displays an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
-Most errors encountered are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
+Most errors are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
 
 Perform the following steps to resolve common errors:
 
@@ -253,7 +251,9 @@ The following partial list provides upgrade phase examples:
   * telekube     
 ----
 +
-. Resume the upgrade using the `--debug` flag with the phase in which the error occurred. The following example resumes an upgrade by restarting the `masters/node-1/drain` phase: 
+. Resume the upgrade using the `--debug` flag with the phase in which the error occurred.
++
+The following example resumes an upgrade by restarting the `masters/node-1/drain` phase: 
 +
 ----
 sudo ./gravity upgrade --phase=/masters/node-1/drain --force --debug
