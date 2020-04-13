@@ -104,7 +104,7 @@ the installation is running.
 
 * For AWS, the variables are set in the terraform script, and outputted to a file located in
 `/opt/anypoint/runtimefabric/env`.
-* For Azure, the variaables are set when running the ARM template, and are retrieved as tags on
+* For Azure, the variables are set when running the ARM template, and are retrieved as tags on
 the Virtual Machine instances.
 * For manual installations, the user creates a file with the values located in
 `/opt/anypoint/runtimefabric/env`.
