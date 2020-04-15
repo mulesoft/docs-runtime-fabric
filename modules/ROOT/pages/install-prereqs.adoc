@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-port-reqs.adoc
 
-Review the following requirements with your operations and IT teams to ensure all prerequisites are met before installing Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
+Review the following requirements with your operations and IT teams to ensure all prerequisites are met before installing Anypoint Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
 
 If needed, contact your MuleSoft representative for assistance.
  
@@ -35,21 +35,21 @@ TOC:
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
 
 * Linux system commands.
-* Working in Linux with root access. Installation requires root access (permission to run the sudo command) on all servers in your environment.
+* Working in Linux with root access. Installation requires root access (permission to run the `sudo` command) on all servers in your environment.
 * If running on AWS, working with Terraform.
 * Remote connection mechanisms, such as SSL and SSH.
 
 == General Considerations
-Ensure you've planned for the following:
+Ensure you plan for:
 
 * Creating separate Runtime Fabrics to separate production and non-production applications.
-* Creating separate Runtime Fabrics based upon network scope of the environment, such as DMZ versus private network. 
-* The Runtime Fabric default pod and services CIDR block must not interfere with the regions network.
+* Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network. 
+* The Runtime Fabric default pod and services CIDR block not interfering with the regions network.
 
 == Infrastructure Requirements
 Perform the following actions:
 
-* Disable swap memory
+* Disable swap memory.
 * Ensure chrony (system clocks) status is in sync.
 * Provision the required hardware, or have enough quota with your infrastructure provider to create the required hardware. 
 +
@@ -61,7 +61,7 @@ This includes:
 ** Virtual networks
 ** Firewall rules / security groups
 ** Load balancers
-* If provisioning hardware with AWS or Azure, you must have the right permissions to create the above resources.
+* If provisioning hardware with AWS or Azure, you must have the right permissions to create the required resources.
 +
 [NOTE]
 Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
@@ -70,7 +70,7 @@ and mounts the disks needed during installation.
 The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
 the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
 when evaluating Runtime Fabric before integrating within your primary network. You should consult with your 
-network administrator to determine if the default behavior is compatible. You may need to modify the 
+network administrator to determine if the default behavior is compatible. You might need to modify the 
 provisioning scripts to accommodate your organization's requirements.
 * Gain an understanding of how to forward logs to your organization's logging provider.
 * Obtain your organization's SMTP provider information so that you can configure alerts.
@@ -80,18 +80,19 @@ provisioning scripts to accommodate your organization's requirements.
 ** Outbound connections are routed to a proxy.
 ** Outbound access is allowed using websockets (via port 443) to Anypoint Platform.
 ** Your organization's network and security policies, including:
-*** Internal network IP address range in CIDR notation.
-*** The subnet range used for Runtime Fabric in CIDR notation.
-*** If virtual machines are allowed public IP addresses.
-*** How to gain shell access to each VM.
-** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is likely based on the function of your organization's Mule applications. If so, you must:
+
+*** Internal network IP address range in CIDR notation
+*** The subnet range used for Runtime Fabric in CIDR notation
+*** If virtual machines are allowed, public IP addresses
+*** How to gain shell access to each VM
+** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. To enable inbound traffic, you must:
 *** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
 *** Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
 *** Be able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
 
 == Operating System Requirements
 
-Anypoint Runtime Fabric requires one of the following operating systems.
+Anypoint Runtime Fabric requires one of the following operating systems:
 
 * Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7
 * CentOS v7.4, v7.5, v7.6, v7.7
@@ -118,6 +119,7 @@ The following sections list the TCP and UDP network port requirements for Anypoi
 The following table lists the ports that must be accessible on all nodes. These ports are used for internal communication between nodes during Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
 
 [%header%autowidth.spread]
+.Ports Required for Internal Communication
 |===
 | Port | Protocol | Description
 | 4242 | TCP | Bandwidth checker
@@ -130,6 +132,7 @@ The following table lists the ports that must be accessible on all nodes. These 
 The following table lists all ports that must be open, along with the respective protocols used and the request origin and destination:
 
 [%header%autowidth.spread]
+.Network Ports Required for TCP and UDP
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
 | 123 | UDP | NTP | All nodes | Internet | Clock synchronization via Network Time Protocol
@@ -159,20 +162,21 @@ The following table lists all ports that must be open, along with the respective
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
-=== Port IPs and Hostnames to Whitelist
+=== Port IP Addresses and Hostnames to Whitelist
 
 In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components 
 and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download 
 dependencies during installation and upgrades.
 
 The following table lists the ports and hostnames to add to your whitelists to allow communication between 
-Anypoint Runtime Fabric and Anypoint Platform:
+Anypoint Runtime Fabric and Anypoint Platform.
 
-Because the following endpoints use mutual TLS authentication, to establish the connection, you must configure SSL passthrough to allow the following certificate:
+Because the following endpoints use mutual TLS authentication, you must configure SSL passthrough to allow the following certificate in order to establish the connection:
 
 * `transport-layer.prod.cloudhub.io`
 
 [%header%autowidth.spread]
+.Port IP Addresses and Hostnames to Whitelist
 |===
 | Port | Protocol | Hostnames
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io`
@@ -222,62 +226,63 @@ To deploy Mule applications and API proxies, you must have access to your organi
 
 During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
 
-Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
+Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM operates as one of the following roles:
 
-* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
-* Worker VMs are dedicated to run Mule applications.
+* Controller VM, which is dedicated to operate and run Runtime Fabric services. The internal load balancer runs within controller VMs.
+* Worker VM, which is dedicated to run Mule applications.
 
 One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
 
-During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
+During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer fails.
 
 The installation process combines the following steps:
 
-* For AWS and Azure, provision infrastructure per the system requirements.
-* Install Runtime Fabric across the VMs.
-* Activate Runtime Fabric with your Anypoint organization.
-* Install your organization's Mule Enterprise license.
+* For AWS and Azure, provisions infrastructure per the system requirements
+* Installs Runtime Fabric across the VMs
+* Activates Runtime Fabric with your Anypoint organization
+* Installs your organization's Mule Enterprise license
 
-To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
+To complete the previous steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
 
-* Format and mount each dedicated disk
-* Add mount entries for each disk to `/etc/fstab`
-* Add iptable rules
-* Enable required kernel modules
-* Start the installation
+* Format and mount each dedicated disk.
+* Add mount entries for each disk to `/etc/fstab`.
+* Add iptable rules.
+* Enable required kernel modules.
+* Start the installation.
 
-On the controller VM acting as the leader for installation, the following are performed:
+The controller VM that is the leader for installation performs the following actions:
 
-* Run the activation script after installation
-* Run the Mule license insertion script after registration
+* Runs the activation script after installation.
+* Runs the Mule license insertion script after registration.
 
 == Anypoint Platform Roles and Permissions
 To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
 
-* Ability to use Anypoint Runtime Manager to deploy and manage applications.
-* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users.
+* Ability to use Anypoint Runtime Manager to deploy and manage applications
+* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
 ** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-* You may also require the following permissions to enable inbound traffic to Runtime Fabric:
-** Grant Access to Secrets
+* You might also need the following permissions to enable inbound traffic to Runtime Fabric:
+
+** Grant access to secrets
 ** Manage Secret Groups
-** Read Secrets Metadata
-** Write Secrets
+** Read secrets metadata
+** Write secrets
 +
-These permissions are available from the *Secrets Manager* tab in Access Management .
+These permissions are available from the *Secrets Manager* tab in Anypoint Access Management.
 ** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
 
-A minimum of 6 nodes are required for a production configuration of Runtime Fabric as shown in
+A minimum of 6 nodes are required for a production configuration of Runtime Fabric, as shown in
 the following diagram.
 
 image::architecture-production.png[]
 
-The following sections describe the minimum system requirements of each controller and worker
+The following sections describe the minimum system requirements of controller and worker
 nodes in a production configuration.
 
 [NOTE]
-Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. see xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. See xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
 === Controller Nodes
 
@@ -288,7 +293,7 @@ An odd number of controller nodes is required for fault tolerance. Even numbers 
 
 The maximum number of supported controller nodes is 5.
 
-Each controller node must have the following:
+Each controller node must have the following resources:
 
 ** A minimum of 2 dedicated cores.
 ** A minimum of 8 GiB memory for each dedicated core.
@@ -322,7 +327,7 @@ The maximum number of worker nodes supported is 16.
 Provision at least one extra worker node to preserve uptime in the event a
 node becomes unavailable (fault-tolerance) or during maintenance operations that require restarts, such as OS patching.
 
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications. 
+This enables the safe removal of a worker node from the cluster to apply upgrades, without impacting the availability of applications. 
 
 [NOTE]
 ====
@@ -332,7 +337,7 @@ when determining the amount of CPU cores and worker nodes needed.
 For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
 ====
 
-Each worker node must have the following:
+Each worker node must have the following resources:
 
 ** A minimum of 2 dedicated cores. 
 ** A minimum of 15 GiB memory for each dedicated core.
@@ -376,7 +381,7 @@ controllers are not supported.
 
 The maximum number of supported controller nodes is 5.
 
-Each controller node must have the following:
+Each controller node must have the following resources:
 
 ** A minimum of 2 dedicated cores.
 ** A minimum of 8 GiB memory.
@@ -407,7 +412,7 @@ when determining the amount of CPU cores and worker nodes needed.
 For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
 ====
 
-Each worker node must have the following:
+Each worker node must have the following resources:
 
 ** A minimum of 2 dedicated cores.
 ** A minimum of 15 GiB memory.
