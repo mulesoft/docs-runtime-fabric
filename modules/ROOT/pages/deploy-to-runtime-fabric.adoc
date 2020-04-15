@@ -45,10 +45,10 @@ This tab displays the name and type of the deployment target you selected above.
 A minimum of two replicas is required for high availability.
 . To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
 
-** To enforce the deployment of replicas across different nodes, select *Enforce deploying replicas across nodes*. This option is only available for Runtime Fabric version 1.5.25 or later.
+. To enforce the deployment of replicas across different nodes, select *Enforce deploying replicas across nodes*. This option is only available for Runtime Fabric version 1.5.25 or later.
 +
 [WARNING]
-This can cause some replicas to be held in *Pending* status if there are not enough worker nodes on which to deploy distinct replicas.
+This can cause some replicas in the deployment to remain in *Pending* status if there are unsufficient worker nodes or resources available on the worker nodes needed to deploy each replica. The deployment status will transition to *Running* after all replicas are deployed on different worker nodes.
 
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
