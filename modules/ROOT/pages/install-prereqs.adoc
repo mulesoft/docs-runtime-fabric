@@ -10,27 +10,6 @@ If needed, contact your MuleSoft representative for assistance.
  
 See xref:architecture.adoc[Runtime Fabric Architecture] for a description of development and production configurations.
 
-= Internal notes
-
-TOC:
-
-* General Knowledge
-** What skills does the user need?
-* General Considerations
-** What thinking / planning should they do?
-* Infrastructure Requirements
-** VMs, disks, chrony, swap memory etc.
-* Operating System Requirements
-** RedHat / CentOS versions
-* Network Requrements
-** Table w/ TCP and UDP requirmenets
-** Other network requirements listed in the current page we have
-* Mule License Requirements
-** Access to the Mule
-* Installation Requirements
-** More of the procedure the installation script will take.
-
-
 == General Knowledge
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
 
