@@ -11,8 +11,7 @@ Before installing Runtime Fabric, ensure your infrastructure meets the minimum h
 and networking requirements.
 
 Your organization's operations, networking and security teams should review these requirements. See 
-xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and 
-xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
+xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before you Begin
@@ -121,6 +120,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 *Required Environment Variables*
 
 [%header,cols="3*a"]
+.Required Environment Variables
 |===
 |Variable | Description | Example
 | `activation_data` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
@@ -136,6 +136,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 
 [%header,cols="3*a"]
+.Optional Environment Variables
 |===
 |Variable | Description | Example
 | `service_uid` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
