@@ -47,5 +47,4 @@ Anypoint Runtime Fabric provisions resources differently. Each Mule application 
 == See Also
 
 * xref:architecture.adoc[Runtime Fabric Architecture]
-* xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric]
-* xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric]
+* xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
