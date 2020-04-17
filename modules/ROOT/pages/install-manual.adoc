@@ -7,7 +7,7 @@ This topic describes how to install and register Anypoint Runtime Fabric on VMs 
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
+Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before you Begin
