@@ -5,12 +5,13 @@ endif::[]
 
 By design, Runtime Fabric automatically applies and enables hardening measures for your Mule applications. By following containerization best practices, isolation at the Mule Runtime and application level is achieved by default.  
 
-The following hardening checklist provides additional information and best practices for Mule Runtime hardening with 
+The following hardening checklist provides additional information and best practices for Mule runtime hardening with 
 Runtime Fabric.
 
 == Hardening Checklist
 
 [%header%autowidth.spread]
+.Mule Runtime Hardening Procedure
 |===
 | Hardening Step | Action Required
 | Run Mule as a non-privileged User. | Runtime Fabric provides this functionality.
