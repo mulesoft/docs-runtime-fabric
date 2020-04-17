@@ -10,9 +10,7 @@ This topic describes how to install Anypoint Runtime Fabric on your AWS account.
 Before installing Runtime Fabric, ensure your infrastructure meets the minimum hardware, operating system, 
 and networking requirements.
 
-Your organization's operations, networking and security teams should review these requirements. See 
-xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and 
-xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
+Your organization's operations, networking and security teams should review these requirements. See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before you Begin
