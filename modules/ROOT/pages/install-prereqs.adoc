@@ -148,7 +148,7 @@ dependencies during installation and upgrades.
 The following table lists the ports and hostnames to add to your whitelists to allow communication between 
 Anypoint Runtime Fabric and Anypoint Platform.
 
-Because the following endpoints use mutual TLS authentication, you must configure SSL passthrough to allow the following certificate in order to establish the connection:
+Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
 
 * `transport-layer.prod.cloudhub.io`
 
