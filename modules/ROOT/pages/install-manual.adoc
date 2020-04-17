@@ -88,6 +88,7 @@ Inside the `rtf-install-scripts/` directory, you'll find a sub-directory named `
 Second, become familiar with the variables needed for installation. The value for the `RTF_ACTIVATION_DATA` variable can be found on the Runtime Fabric page on Runtime Manager.
 
 [%header,cols="3*a"]
+.Required Installation Variables
 |===
 |Parameter | Description | Example
 | `RTF_CONTROLLER_IPS` | IP addresses of the controller VMs, separated by whitespace. The first IP address will need to be the leader of the installation. | `"10.3.0.4 10.3.0.5 10.3.0.6"`
@@ -108,6 +109,7 @@ To base64 encode the Mule license key, see the instructions above under Base64 E
 The following variables can be defined based upon your organization's requirements.
 
 [%header,cols="3*a"]
+.Optional Installation Variables
 |===
 |Parameter | Description | Example
 | `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `+http://1.1.1.1:80+`
