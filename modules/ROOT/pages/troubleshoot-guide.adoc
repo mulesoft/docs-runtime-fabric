@@ -253,6 +253,5 @@ If this error is observed:
  * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from 
  the controller VM(s) running in your internal network to this hostname on the Internet.
  * A TCP proxy may be needed to establish a connection to the Internet. Check with your network
- team to verify and configure if needed. The 
- xref:install-port-reqs.adoc[Network and Ports Requirements] page should provide the 
- information required.
+ team to verify and configure if needed. The xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites] page should provide the 
+ required information.
