@@ -42,41 +42,6 @@ The minimum requirements are 3 controller and 3 worker nodes. 3 controllers enab
 
 Mule applications run on workers. Multiple replicas of applications can run across workers.
 
-== Scaling Considerations
-
-* Minimum required number of controller nodes 
-
-** Production environment: 3
-** Non-production environment: 1
-
-* The maximum number of supported controller nodes is 5.
-
-[NOTE]
-An odd number of controller nodes is required for fault tolerance.
-
-+
-Consider scaling the number of controller nodes in the following situations:
-
-*** Fault tolerance is needed to mitigate the impact of controller node hardware failure.
-*** Production traffic is being served with applications running on Runtime Fabric.
-+
-
-* CPU/Memory required for controller nodes
-
-** The default (and required minimum) is 2 cores with 8 GiB memory each. You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
-
-* Required number of worker nodes. The maximum number of worker nodes supported is 16.
-
-** Production environment: 3
-** Non-production environment: 2
-
-[NOTE]
-Plan to overprovision with one extra worker node for fault-tolerance and for applying upgrades to avoid downtime for applications.
-
-* CPU/memory required for worker nodes
-
-** The default (and required minimum) is 2 cores with 15 GiB memory each. You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead. Refer to xref:install-sys-reqs.adoc#hardware-requirements[Hardware Requirements] for additional information.
-
 == Network Architecture
 
 The following diagram shows the general network architecture of Runtime Fabric.
@@ -96,52 +61,3 @@ image::architecture-network2.png[]
 . The TCP load balancer forwards the request to an available internal load balancer on Runtime Fabric.
 . The internal load balancer decrypts the request and directs it to an available replica of the Mule application (app2) in the diagram above.
 . The application sends a response which is routed back to the requester.
-
-
-== Installer Life-Cycle
-
-It is important to allocate the infrastructure based on the documented system requirements to ensure reliable operation of Runtime Fabric. The installation process fails if the minimum requirements have not been met.
-
-The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by the minimum requirements. It also creates a private network with the required network ports configured. This is optimal when evaluating Runtime Fabric before integrating within your primary network. You should consult with your network administrator to determine if the default behavior is compatible. You may need to modify the provisioning scripts to accommodate your organization's requirements.
-
-The disks required to run Anypoint Runtime Fabric are used for the following:
-
-* Each controller VM requires a minimum of 60 GiB dedicated disk with at least 3000 IOPS to run the etcd distributed database.
-** This disk is referred to as the `etcd` device.
-* Each controller and worker VM requires a minimum of 100 GiB (for development) or 250 GiB (for production) dedicated disk with at least 1000 IOPS for Docker overlay and other internal services.
-** This disk is referred to as the `docker` device.
-
-[NOTE]
-See xref:install-sys-reqs.adoc[Verify System Requirements for Anypoint Runtime Fabric] before beginning the installation.
-
-During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
-
-Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM acts as one of two roles:
-
-* Controller VMs are dedicated to operate and run Runtime Fabric services. The internal load balancer also runs within these VMs.
-* Worker VMs are dedicated to run Mule applications.
-
-One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
-
-During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer will fail.
-
-The installation process combines the following steps:
-
-* For AWS and Azure, provision infrastructure per the system requirements.
-* Install Runtime Fabric across the VMs.
-* Activate Runtime Fabric with your Anypoint organization.
-* Install your organization's Mule Enterprise license.
-
-To complete these steps, specify environment variables for each VM at the beginning of installation. The leader requires additional variables to activate and add the Mule license. A script runs on each VM to perform the following actions:
-
-* Format and mount each dedicated disk
-* Add mount entries for each disk to `/etc/fstab`
-* Add iptable rules
-* Enable required kernel modules
-* Start the installation
-
-On the controller VM acting as the leader for installation, the following are performed:
-
-* Run the activation script after installation
-* Run the Mule license insertion script after registration
-
