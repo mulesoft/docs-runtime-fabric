@@ -12,8 +12,7 @@ Before installing Runtime Fabric ensure your infrastructure meets the minimum ha
 and networking requirements.
 
 Your organization's operations, networking and security teams should review these requirements. 
-See xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] and 
-xref:install-port-reqs.adoc[Network and Port Requirements for Anypoint Runtime Fabric].
+See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before you Begin
@@ -100,6 +99,7 @@ create a separate Resource group.
 +
 
 [%header,cols="3*a"]
+.Azure Settings
 |===
 |Variable | Description | Example
 | `Public Key` | contains the public key string. This enables you to SSH into each VM with your associated private key. | `ssh rsa ...`
