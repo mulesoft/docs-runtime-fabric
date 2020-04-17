@@ -27,7 +27,7 @@ Docs: man:firewalld(1)
 
 If `firewalld is not installed, this command returns an error message.
 
-== Enabling Forwarding
+== Enable Forwarding
 
 To enable forwarding on the docker0 device, run the following commands:
 
@@ -44,3 +44,19 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -
 
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 ----
+
+== Verify Forwarding
+
+To verify that forwarding rules are in place, run the following command:
+----
+firewall-cmd --permanent --direct --get-all-rules
+----
+The output should look like the following example:
+----
+ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment 'docker subnet'
+ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment 'docker subnet'
+ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment 'docker subnet'
+ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment 'docker subnet'
+----
+[IMPORTANT]
+These rules are node level. This means you must run and verify them on every node, both controller and worker nodes, for Runtime Fabric to work correctly when firewalld is active.
