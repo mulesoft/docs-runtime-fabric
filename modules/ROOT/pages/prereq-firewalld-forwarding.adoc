@@ -27,7 +27,7 @@ Docs: man:firewalld(1)
 
 If `firewalld is not installed, this command returns an error message.
 
-== Enabling Forwarding
+== Enable Forwarding
 
 To enable forwarding on the docker0 device, run the following commands:
 
@@ -45,7 +45,7 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 ----
 
-== Checking Forwarding
+== Verify Forwarding
 
 To verify that forwarding rules are in place, run the following command:
 ----
