@@ -20,8 +20,6 @@
  ** xref:app-versioning.adoc[Application Versioning]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
 * xref:upgrade-index.adoc[Upgrade Runtime Fabric]
- ** xref:upgrade-components.adoc[Upgrade Components]
- ** xref:upgrade-cluster.adoc[Upgrade Cluster]
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric]
  ** xref:using-opscenter.adoc[Monitor Anypoint Runtime Fabric]
