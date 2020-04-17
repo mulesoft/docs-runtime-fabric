@@ -99,6 +99,7 @@ create a separate Resource group.
 +
 
 [%header,cols="3*a"]
+.Azure Settings
 |===
 |Variable | Description | Example
 | `Public Key` | contains the public key string. This enables you to SSH into each VM with your associated private key. | `ssh rsa ...`
