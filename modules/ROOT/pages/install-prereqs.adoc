@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-port-reqs.adoc
 
-Review the following requirements with your operations and IT teams to ensure all prerequisites are met before installing Anypoint Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
+Review the following requirements with your operations and IT teams to ensure that all prerequisites are met before installing Anypoint Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
 
 If needed, contact your MuleSoft representative for assistance.
  
@@ -15,32 +15,30 @@ Knowledge in the following areas is required to perform a Runtime Fabric install
 
 * Linux system commands
 * Working in Linux with root access. Installation requires root access (permission to run the `sudo` command) on all servers in your environment
-* If running on AWS, working with Terraform
+* If running on Amazon Web Services (AWS), working with Terraform
 * Remote connection mechanisms, such as SSL and SSH
 
-== General Considerations
-Ensure you plan for:
+== General Requirements
+Ensure that you plan for:
 
-* Creating separate Runtime Fabrics to separate production and non-production applications
+* Creating separate Runtime Fabrics for production and non-production applications
 * Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network 
-* The Runtime Fabric default pod and services CIDR block not interfering with the regions network
+* Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
 
 == Infrastructure Requirements
 Perform the following actions:
 
 * Disable swap memory.
-* Ensure chrony (system clocks) status is in sync.
-* Provision the required hardware, or have enough quota with your infrastructure provider to create the required hardware. 
-+
-This includes:
+* Ensure that chrony (system clocks) status is in sync.
+* Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware: 
 
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
 ** Virtual machines
 ** Disks with provisioned IOPS
 ** Virtual networks
-** Firewall rules / security groups
+** Firewall rules and security groups
 ** Load balancers
-* If provisioning hardware with AWS or Azure, you must have the right permissions to create the required resources.
+* If provisioning hardware with AWS or Azure, you must have the correct permissions to create the required resources.
 +
 [NOTE]
 Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
@@ -51,16 +49,16 @@ the minimum requirements. It also creates a private network with the required ne
 when evaluating Runtime Fabric before integrating within your primary network. You should consult with your 
 network administrator to determine if the default behavior is compatible. You might need to modify the 
 provisioning scripts to accommodate your organization's requirements.
-* Gain an understanding of how to forward logs to your organization's logging provider.
+* Understand how to forward logs to your organization's logging provider.
 * Obtain your organization's SMTP provider information so that you can configure alerts.
 
-* Verify the following items for your network:
+* Verify the following network items:
 
 ** Outbound connections are routed to a proxy.
 ** Outbound access is allowed using websockets (via port 443) to Anypoint Platform.
 ** Your organization's network and security policies, including:
 
-*** Internal network IP address range in CIDR notation
+*** The internal network IP address range in CIDR notation
 *** The subnet range used for Runtime Fabric in CIDR notation
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
