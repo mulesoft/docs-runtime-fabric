@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: install-port-reqs.adoc
+:page-aliases: install-port-reqs.adoc, install-sys-reqs.adoc
 
 Review the following requirements with your operations and IT teams to ensure that all prerequisites are met before installing Anypoint Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
 
