@@ -17,10 +17,7 @@ Setting up Runtime Fabric occurs in the following steps:
 
 == Review the System and Network requirements
 
-Before using Anypoint Runtime Fabric, you must make decisions about the resource requirements for your environment. You must also understand how different ports must be configured within your environment.
-
-* xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric] provides information on supported configurations and the resources required.
-* xref:install-port-reqs.adoc[Network Port Requirements for Anypoint Runtime Fabric] describes which ports are required to install and run Runtime Fabric.
+Before using Anypoint Runtime Fabric, you must make decisions about the resource requirements for your environment. You must also understand how different ports must be configured within your environment. xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites] provides information on supported configurations, resources required, and which ports are required to install and run Runtime Fabric.
 
 == Create a Runtime Fabric in Runtime Manager
 
