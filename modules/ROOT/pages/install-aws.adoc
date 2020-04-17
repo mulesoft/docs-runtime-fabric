@@ -119,6 +119,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 *Required Environment Variables*
 
 [%header,cols="3*a"]
+.Required Environment Variables
 |===
 |Variable | Description | Example
 | `activation_data` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
@@ -134,6 +135,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 
 [%header,cols="3*a"]
+.Optional Environment Variables
 |===
 |Variable | Description | Example
 | `service_uid` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
