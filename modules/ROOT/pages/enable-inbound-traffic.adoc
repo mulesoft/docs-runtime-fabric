@@ -147,6 +147,7 @@ The following table describes additional configuration options you might need to
 case, *Source IP* refers to the client making the request.
 +
 [%header%autowidth.spread,cols="a,a"]
+.Advanced Configuration Options
 |===
 |Value |Description
 | *Max Connections*
