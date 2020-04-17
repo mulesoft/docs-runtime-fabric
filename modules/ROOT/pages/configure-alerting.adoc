@@ -36,6 +36,7 @@ spec:
 . Modify the contents of `alert-smtp.yaml` using the following values specific to your environment:
 +
 [%header,cols="2*a"]
+.Environment Variables
 |===
 |Key | Description
 |`<smtp host>` | The endpoint of the SMTP server.
@@ -65,6 +66,7 @@ Alerts with the designated alert sender email address are now configured to be s
 The following table lists some of default alerts provided by Anypoint Runtime Fabric:
 
 [%header,cols="2*a"]
+.Runtime Fabric Default Alerts
 |===
 |Alert | Description
 | High CPU usage | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
