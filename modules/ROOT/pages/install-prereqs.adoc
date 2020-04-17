@@ -210,7 +210,7 @@ Anypoint Runtime Fabric is configured to run as a cluster across multiple virtua
 
 One controller VM acts as a leader during the installation. This VM downloads the installer and makes it accessible to each other VM on port 32009. Other VMs copy the installer files from the leader, perform the installation, and join the leader to form a cluster.
 
-During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric xref:install-sys-reqs.adoc[as defined]. If these requirements are not met, the installer fails.
+During the installation, a set of pre-flight checks run to verify the minimum hardware, operating system, and network requirements for Runtime Fabric. If these requirements are not met, the installer fails.
 
 The installation process combines the following steps:
 
