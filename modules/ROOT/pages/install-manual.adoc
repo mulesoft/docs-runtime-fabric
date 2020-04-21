@@ -7,12 +7,12 @@ This topic describes how to install and register Anypoint Runtime Fabric on VMs 
 
 [WARNING]
 ====
-Ensure your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking and security teams should review these requirements. See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
+Ensure that your infrastructure meets the minimum hardware, operating system, and networking requirements. Your organization's operations, networking, and security teams should review these requirements. See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before you Begin
 
-Ensure the following criteria have been met before beginning the installation:
+Ensure that the following criteria have been met before beginning the installation:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * The necessary hardware has been provisioned as outlined in xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
