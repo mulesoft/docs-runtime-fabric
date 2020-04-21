@@ -14,7 +14,7 @@ Your organization's operations, networking and security teams should review thes
 xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
-== Before you Begin
+== Before You Begin
 
 Before installing Anypoint Runtime Fabric on AWS, ensure the following requirements have been met:
 
@@ -177,7 +177,7 @@ the number of worker or controller VMs.
 === Run Using Native Terraform
 
 . Navigate to the `../rtf-install-scripts/aws/` directory. You must run Terraform from this directory.
-. Initialize Terraform (this only has to be performed once):
+. Initialize Terraform (this is only performed once):
 +
 ----
 terraform init
@@ -203,7 +203,7 @@ If you experience an error related to AWS authorization, ensure you're using the
 verifying the variables and running the Terraform command.
 . Run the script.
 +
-The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, the Runtime Fabric update to Active status in Runtime Manager.
+The Terraform script provisions the infrastructure and runs the installation script on each VM. When the installation script completes, the Runtime Fabric is updated to *Active* status in Runtime Manager.
 +
 [NOTE]
 This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
@@ -231,7 +231,7 @@ docker run -v $(pwd):/src -w /src/aws \
   -state=tf-data/rtf.tfstate
 ----
 
-. Modify this using the data in the environment variables tables previously provided.
+. Modify this information using the data in the environment variables tables previously provided.
 . Run the Terraform script:
 +
 ----
@@ -247,11 +247,10 @@ docker run -it -v $(pwd):/src -w /src/aws \
   -state=tf-data/rtf.tfstate
 ----
 +
-* The Terraform script provisions the infrastructure and runs the installation script on each VM. When complete, 
-the Runtime Fabric is shown in *Active* status in Runtime Manager.
+* The Terraform script provisions the infrastructure and runs the installation script on each VM. When the installation is complete, the Runtime Fabric is shown in *Active* status in Runtime Manager.
 +
 [NOTE]
-This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+This step installs Runtime Fabric across all servers to form a cluster. It might take 15 to 25 minutes or longer to complete.
 
 == Monitoring Installation Progress
 
