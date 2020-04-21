@@ -50,8 +50,12 @@ node on which they are running. Each worker node runs a single log forwarding ag
 and transmits the log data to Anypoint Monitoring.
 
 [NOTE]
-The log forwarding agent can transmit up to 300 kilobytes of log data per second. You should not deploy more than 
+====
+
+* The log forwarding agent can transmit up to 300 kilobytes of log data per second. You should not deploy more than
 50 replicas per worker node.
+* You can toggle application log forwarding at the application level to Anypoint Monitoring from Runtime Fabric v1.5.25 version and later.
+====
 
 == Anypoint Visualizer
 
