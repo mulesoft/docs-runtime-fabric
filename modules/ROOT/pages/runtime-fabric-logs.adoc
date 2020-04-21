@@ -15,6 +15,7 @@ Runtime Fabric generates log files that provide information about the following:
 Runtime Fabric enables you to specify the level of severity of the message written to the log file.
 
 [%header,cols="3*a"]
+.Runtime Fabric Log Levels
 |===
 | Value
 | Description
@@ -116,6 +117,7 @@ spec:
 Using the following values specific to your environment:
 +
 [%header,cols="2*a"]
+.Log Forwarding Configuration Parameters
 |===
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.

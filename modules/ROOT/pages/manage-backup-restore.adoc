@@ -65,4 +65,4 @@ This process requires a few minutes.
 == See Also
 
 * xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
-* xref:install-sys-reqs.adoc[System Requirements for Anypoint Runtime Fabric]
+* xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
