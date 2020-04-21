@@ -15,7 +15,7 @@ Your organization's operations, networking and security teams should review thes
 See xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
-== Before you Begin
+== Before You Begin
 
 Before installing Anypoint Runtime Fabric on Azure, ensure the following requirements have been met:
 
