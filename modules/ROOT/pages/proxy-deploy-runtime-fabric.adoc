@@ -35,6 +35,13 @@ Under *Deployment Configuration* section configure the following:
 +
 image::runtime-fabric-2.png[]
 
+By default, the resources allocated to the proxy app are:
+
+* CPU: 0.2 vCores
+* Memory: 1.024 GB 
+
+You can update resource allocation settings on the application's *Settings* page in Runtime Manager.
+
 == Result
 
 API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployment status dialog appears similar to the following:
