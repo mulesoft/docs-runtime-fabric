@@ -31,7 +31,7 @@ The following example shows the environment parameters that are required for a w
 ** `RTF_NODE_ROLE=worker_node`
 ** `RTF_INSTALL_ROLE=joiner`
 ** `RTF_DOCKER_DEVICE_SIZE=250G`
-** `RTF_TOKEN="R6J4UuEkDTdPjYAO"`
+** `RTF_TOKEN="R6J4UR6J4UR6J4UO"`
 ** `RTF_INSTALLER_IP="10.0.42.86"`
 ** Remove RTF_ACTIVATION_DATA if it is present.
 +
@@ -40,7 +40,7 @@ The following example shows the environment parameters that are required for a d
 ** `RTF_NODE_ROLE=dedicated_ingress_node`
 ** `RTF_INSTALL_ROLE=joiner`
 ** `RTF_DOCKER_DEVICE_SIZE=50G`
-** `RTF_TOKEN="AYDNZ0e1cOFJtyvy"`
+** `RTF_TOKEN="R6J4UR6J4UR6J4Uy"`
 ** `RTF_INSTALLER_IP="10.1.255.93"`
 
 . Run the `init.sh` script on the new node as a privileged user. You may need to add executable permissions when running this script:
