@@ -24,18 +24,24 @@ This script is included in the files you downloaded when installing Runtime Fabr
 +
 Ensure that you copy the environment file from the correct node type (controller or worker).
 
-. Modify the following environment variables in the environment file you just copied:
+. Modify the environment file you just copied to contain only the parameters required for the correct node type.
 +
-* RTF_PRIVATE_IP
-* RTF_DOCKER_DEVICE
-* RTF_ETCD_DEVICE (controller nodes only)
-* Remove RTF_ACTIVATION_DATA if it is present
-* RTF_INSTALL_ROLE=joiner
-* RTF_INSTALLER_IP=<IP address of the lead controller node>, as shown in the following example:
+The following example shows the environment parameters that are required for a worker node. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE`, `RTF_TOKEN`, and `RTF_INSTALLER_IP`. 
 +
-`RTF_INSTALLER_IP=10.1.255.93`
-* RTF_TOKEN
-* RTF_NODE_ROLE=worker_node (worker nodes only)
+** `RTF_NODE_ROLE=worker_node`
+** `RTF_INSTALL_ROLE=joiner`
+** `RTF_DOCKER_DEVICE_SIZE=250G`
+** `RTF_TOKEN="R6J4UR6J4UR6J4UO"`
+** `RTF_INSTALLER_IP="10.0.42.86"`
+** Remove RTF_ACTIVATION_DATA if it is present.
++
+The following example shows the environment parameters that are required for a dedicated node. If you copied the environment file from a controller node, delete all lines in the file except those shown in the example. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE` and `RTF_TOKEN`. For `RTF_INSTALLER_IP`, specify the IP address of the lead controller node.
++
+** `RTF_NODE_ROLE=dedicated_ingress_node`
+** `RTF_INSTALL_ROLE=joiner`
+** `RTF_DOCKER_DEVICE_SIZE=50G`
+** `RTF_TOKEN="R6J4UR6J4UR6J4Uy"`
+** `RTF_INSTALLER_IP="10.1.255.93"`
 
 . Run the `init.sh` script on the new node as a privileged user. You may need to add executable permissions when running this script:
 +
@@ -50,6 +56,8 @@ This script causes the new node to join the Runtime Fabric cluster.
 ----
 sudo gravity status
 ----
++
+When a dedicated node is added to the cluster, the option to specify a dedicated node is provided when you enable inbound traffic. For dedicated nodes, you cannot specify the amount of CPU cores and memory.
 
 == Remove a Node from Runtime Fabric
 
