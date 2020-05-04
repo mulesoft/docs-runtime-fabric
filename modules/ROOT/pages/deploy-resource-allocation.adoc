@@ -7,7 +7,7 @@ Before deploying a Mule application to Anypoint Runtime Fabric, determine the co
 
 When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
-The performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. The processors run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
+The performance information provided in this topic is based on a Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. The cluster was configured with three m4.large controller nodes and three r4.large worker nodes. M4 instances feature a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2. The processors run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator used was hosted on a separate AWS instance in the same region.
 
 You can allocate the following resources when deploying an application:
 
@@ -94,7 +94,7 @@ Run performance and load testing on your Mule applications to determine the numb
 
 Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Because this load balancer is responsible for TLS termination, the number of resources required scales based on the number of incoming connections and the average payload size for each request.
 
-Performance test results are based on an Anypoint Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. The load generator used in the performance test was hosted on a separate AWS instance in the same region. The M4 instances featured a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2, which ran at a base clock rate of 2.4 GHz. Using Intel Turbo Boost increased the clock rate to go as high as 3.0 GHz.
+Performance test results are based on an Anypoint Runtime Fabric cluster with controller nodes using AWS EC2 M4 instances. The cluster was configured with three m4.large controller nodes and three r4.large worker nodes. The load generator used in the performance test was hosted on a separate AWS instance in the same region. The M4 instances featured a custom Intel Xeon E5-2676 v3 Haswell processor optimized specifically for EC2, which ran at a base clock rate of 2.4 GHz. Using Intel Turbo Boost increased the clock rate to go as high as 3.0 GHz.
 
 A load generator based on C++, which has better efficiency in SSL connections was used to yield the maximum throughput.
 
