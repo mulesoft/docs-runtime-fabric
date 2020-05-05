@@ -156,27 +156,26 @@ Because the following endpoints use mutual TLS authentication to establish the c
 .Port IP Addresses and Hostnames to Whitelist
 |===
 | Port | Protocol | Hostnames | Description
-.2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | 
+.2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric queue messaging broker to interact with the control plane.
 | EU control plane: `transport-layer.prod-eu.msap.io` | 
-.2+| 5044 .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | 
+.2+| 5044 .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Runtime Fabric Anypoint Monitoring.
 | EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | 
-| 443 | HTTPS | `transport-layer.prod.cloudhub.io` | 
-| 443 | HTTPS | `anypoint.mulesoft.com` | 
-| 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | 
-| 443 | HTTPS | `docker-images-prod.s3.amazonaws.com` | 
+| 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
+| 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | Kubernetes base charts repository.
+| 443 | HTTPS | `docker-images-prod.s3.amazonaws.com` | Kubernetes base charts repository.
 .2+| 443 .2+| HTTPS | US control plane: `worker-cloud-helm-prod.s3.amazonaws.com` | Runtime Fabric version repository. The  Runtime Fabric installation uses software from this repository during installation and upgrades.
 | EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com` `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `exchange2-asset-manager-kprod.s3.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `exchange2-asset-manager-kprod.s3.amazonaws.com` | Anypoint Exchange for application assets.
 | EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com` `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `ecr.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `494141260463.dkr.ecr.us-east-1.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `494141260463.dkr.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `494141260463.dkr.ecr.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `api.ecr.us-east-1.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `api.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `api.ecr.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 | EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com` `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | 
-.2+| 443 .2+| HTTPS | US control plane: `runtime-fabric.s3.amazonaws.com` | 
+.2+| 443 .2+| HTTPS | US control plane: `runtime-fabric.s3.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `runtime-fabric-eu.s3.amazonaws.com` | 
 |===
 
