@@ -193,7 +193,7 @@ chmod +x rtfctl
 ... Run the `apply system-configurations` command in `rtfctl`:
 +
 ----
-sudo ./rtfctl apply system-configuration 
+sudo ./rtfctl apply system-configuration --force
 ----
 
 == Resume a Cluster-Level Component (Appliance) Upgrade
