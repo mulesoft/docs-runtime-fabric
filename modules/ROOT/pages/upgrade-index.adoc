@@ -320,7 +320,7 @@ $ sudo gravity plan rollback --phase=/masters/node-1/drain
 ...
 ----
 +
-A group of steps can also be rolled back:
+To roll back a group of steps:
 +
 ----
 $ sudo gravity plan rollback --phase=/masters
