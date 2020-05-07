@@ -325,7 +325,7 @@ A group of steps can also be rolled back:
 ----
 $ sudo gravity plan rollback --phase=/masters
 ----
-. After all steps are rolled back, mark the upgrade operation as failed:
+. After all steps are rolled back, update the plan status to mark the upgrade as completely rolled-back:
 +
 ----
 $ sudo gravity plan complete
