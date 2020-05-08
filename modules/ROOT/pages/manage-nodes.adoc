@@ -35,6 +35,16 @@ The following example shows the environment parameters that are required for a w
 ** `RTF_INSTALLER_IP="10.0.42.86"`
 ** Remove RTF_ACTIVATION_DATA if it is present.
 +
+The following example shows the environment parameters that are required for a controller node. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE`, `RTF_TOKEN`, and `RTF_ETCD_DEVICE`. Use the IP address of the lead controller node for `RTF_INSTALLER_IP`.
++
+** `RTF_NODE_ROLE=controller_node`
+** `RTF_INSTALL_ROLE=joiner`
+** `RTF_DOCKER_DEVICE_SIZE=250G`
+** `RTF_TOKEN="R6J4UR6J4UR6J4UO"`
+** `RTF_ETCD_DEVICE=etcd_device`
+** `RTF_INSTALLER_IP="10.1.255.93"`
+** Remove RTF_ACTIVATION_DATA if it is present
++
 The following example shows the environment parameters that are required for a dedicated node. If you copied the environment file from a controller node, delete all lines in the file except those shown in the example. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE` and `RTF_TOKEN`. For `RTF_INSTALLER_IP`, specify the IP address of the lead controller node.
 +
 ** `RTF_NODE_ROLE=dedicated_ingress_node`
