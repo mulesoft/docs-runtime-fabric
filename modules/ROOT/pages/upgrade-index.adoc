@@ -70,7 +70,7 @@ The most recent component versions are displayed in the *Downloads* page, locate
 
 You can also review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 
-=== Apply the Upgrades
+== Apply the Upgrades
 Before upgrading your production environment, perform the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
 
 . Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
