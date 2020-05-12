@@ -4,32 +4,40 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a package of components that work together but are upgraded using different mechanisms:
+Anypoint Runtime Fabric components work together but are upgraded using different mechanisms:
 
-* Appliance components
+* Appliance Upgrades
 +
-There are two types of appliance components:
-
-** Cluster-level components, which include Docker, Kubernetes, and the Ops Center. These components run on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
+** Appliance upgrades impact platform layer components, which include Docker, Kubernetes, and the Ops Center. These platform layer components run on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
 +
-Cluster-level component upgrades are delivered as an updated installer package via the *Runtime Fabric downloads* page in Anypoint Runtime Manager.
-
-** Runtime Fabric components, which include the agent used to connect Runtime Fabric to Anypoint Platform.
+Appliance upgrades are applied using the `rtfctl` command line utility.
 +
-Runtime Fabric component upgrades are obtained using a downloads page link that is displayed in the *Upgrade Available* and *Appliance Version* fields, as applicable, in Runtime Manager.
+Appliance upgrades are applied as a rolling upgrade to each node, one at a time. When taking each node offline for the upgrade, one worker node's amount of resources are required to transfer workloads and prevent downtime to running applications.
 
-* The `rtfctl` command-line utility, which is used to manage Runtime Fabric and perform the upgrades to cluster-level and node configuration components.
+* Runtime Fabric Component Upgrades
+
+** Runtime Fabric component upgrades involve the internal components that facilitate communication to the Anypoint control plane, provide load balancing, and log forwarding.
++
+Runtime Fabric component upgrades are applied by selecting a link that is provided in Runtime Manager. 
++
+Runtime Fabric component upgrades do not require adding a node.
+
+* `rtfctl` Command-line Utility Upgrades
+
+** The `rtfctl` command-line utility, is used to manage Runtime Fabric and perform appliance and node conifguration upgrades.
 +
 Upgrades for the `rtfctl` utility are delivered as a new binary via the *Runtime Fabric downloads* page in Runtime Manager.
 
-* Node configuration, which includes scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
+* Node Configuration Upgrades
+
+** Node configuration upgrades involve scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
 +
 Node configuration upgrades are delivered as an updated install script version using the *Runtime Fabric downloads* page in Runtime Manager.
 +
 [NOTE]
 If you are upgrading the node configuration with updated install scripts, the latest version of the cluster-level components (installer package) is automatically downloaded and used.
 
-It is important to run with the most current versions of the cluster-level (installer package) and `rtfctl` components.
+It is important to run with the most current versions of the appliance (installer package) and `rtfctl` command-line utility.
 
 == Determine the Component Versions You Are Using
 
@@ -99,7 +107,7 @@ sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 ----
 sudo chmod +x rtfctl
 ----
-. If you are not using the latest version of the cluster-level components (installer package), upgrade to the latest version:
+. If you are not using the latest version of the appliance (installer package), upgrade to the latest version:
 
 .. Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
 .. Verify you have root privileges. Root privileges are required to perform an upgrade.
@@ -108,7 +116,7 @@ sudo chmod +x rtfctl
 *** A production configuration of Runtime Fabric, with a minimum of 3 controller VMs, is required.
 *** The internal load balancer must be running on at least 3 replicas to maintain availability.
 *** An external load balancer must be configured to load balance incoming requests to the controller VMs, with a health check configured for TCP port 443.
-*** The CPU and memory resources for at least one worker node must be available in the cluster.
+*** The CPU and memory resources for at least one additional worker node must be available in the cluster.
 +
 This enables safe removal of a worker node from the cluster to apply upgrades without impacting application availability.
 *** Applications serving inbound requests must be scaled to a minimum of 2 replicas.
