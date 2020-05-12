@@ -45,7 +45,7 @@ The following example shows the environment parameters that are required for a c
 ** `RTF_INSTALLER_IP="10.1.255.93"`
 ** Remove RTF_ACTIVATION_DATA if it is present
 +
-The following example shows the environment parameters that are required for a dedicated node. If you copied the environment file from a controller node, delete all lines in the file except those shown in the example. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE` and `RTF_TOKEN`. For `RTF_INSTALLER_IP`, specify the IP address of the lead controller node.
+The following example shows the environment parameters that are required for a load balancer node. If you copied the environment file from a controller node, delete all lines in the file except those shown in the example. Use the values in the file you copied for `RTF_DOCKER_DEVICE_SIZE` and `RTF_TOKEN`. For `RTF_INSTALLER_IP`, specify the IP address of the lead controller node.
 +
 ** `RTF_NODE_ROLE=dedicated_ingress_node`
 ** `RTF_INSTALL_ROLE=joiner`
