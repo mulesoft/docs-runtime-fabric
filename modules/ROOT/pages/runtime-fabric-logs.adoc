@@ -56,12 +56,8 @@ Runtime Fabric enables you to specify the level of severity of the message writt
 
 Log levels are specified per Mule application or API proxy during deployment.
 
-
-
-
 [WARNING]
 Log levels are specified when deploying a Mule application or an API proxy. After deployment you cannot change the log levels.
-
 
 == Viewing Logs
 
@@ -91,12 +87,253 @@ There are two levels of filters to help drill down on the logs to make visible:
 
 == Forward Logs to External Services
 
+Runtime Fabric supports log forwarding to:
+
+* Anypoint Monitoring
+* For Runtime Fabric v1.6 or later, third party logging solutions using Fluent Bit log forwarding output plugins:
+
+** Azure
+** CloudWatch
+** ELK
+** Graylog (GELF)
+** Splunk
+** Syslog
++
+Fluent Bit support is included as part of the Runtime Fabric agent installation package. You provide the Fluent Bit output plugin configuration information in the *Runtime Fabrics* page in Runtime Manager.
++
+Log data can be delivered to multiple destinations. However, only one Fluent Bit log forwarding output plugin is supported at any one time. Multiple log forwarding output configurations are not supported. For example, you can forward logs to Anypoint Monitoring and a third party logging solution, but not to two third party logging solutions.
+ 
+=== Before you Begin
+If you plan to configure a Fluent Bit log forwarding output plugin, install and configure the applicable third-party log forwarding service. Ensure that you have allocated the necessary resources for your log forwarding service. Refer to the documentation for your third party logging solution for details. 
+
+* Azure: https://docs.microsoft.com/en-us/azure/azure-monitor/overview
+*Splunk: https://docs.splunk.com/Documentation/Splunk/7.0.3/Data/UsetheHTTPEventCollector
+*Include links????
+
+=== Enable Third Party Log Forwarding
+
+. Navigate to Runtime Manager and select *Runtime Fabrics*.
+. Select the name of your Runtime Fabric to open the management page.
+. Select the *Log Forwarding* tab.
+. Select *Forward to Anypoint Monitoring (Requires Titanium)* if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
++
+You can send logs to both Anypoint Monitoring and a third party logging solution.
+. Select *Forward to other logging provider* to forward logs using a Fluent Bit log forwarding output plugin.
+.. In the *Connects to* drop-down list, select the applicable third party log forwarding solution.
+.. Enter the requested configuration information: (link to each section for each 3rd party).
+
+https://docs.fluentbit.io/manual/v/1.3/output - REMOVE this link when done????
+# Configuring output plugins: https://docs.google.com/document/d/1iNixJu0aAdfiiX_rbJYyB1ZxynU5SFupLeqnXtV4w_c/edit#
+*** Azure - link to ????? Add anchor links????
+*** CloudWatch
+*** ELK
+*** Graylog Extended Log Format (GELF)
+*** Splunk
+*** Syslog
+
+.. Select *Submit*.
+.. To verify successful log forwarding, manually check the logs using the log forwarding service.
+
+==== Configure Azure Log Analytics
+
+The Fluent Bit Azure output plugin allows you to ingest your records into Azure Log Analytics service.
+
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters
+|===
+| Key | Description | Required | Default value
+| Customer_ID | Customer ID or WorkspaceID string | Yes |
+| Shared_Key | The primary or the secondary Connected Sources client authentication key | Yes |
+| Log_Type | The name of the event type | No | `fluentbit`
+==|
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+    Name        azure
+    Match       *
+    Customer_ID id
+    Shared_Key  key
+```
+
+==== Configure Fluent Bit Output Plugin for CloudWatch Logs
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters
+|===
+| Key | Description | Required | Default value
+| `region`: The AWS region.
+| `log_group_name`: The name of the CloudWatch Log Group that you want log records sent to.
+| `log_stream_name`: The name of the CloudWatch Log Stream that you want log records sent to.
+| `log_stream_prefix`: Prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the `log_stream_name` option.  
+| `log_key`: By default, the whole log record will be sent to CloudWatch. If you specify a key name with this option, then only the value of that key will be sent to CloudWatch. For example, if you are using the Fluentd Docker log driver, you can specify `log_key log` and only the log message will be sent to CloudWatch.
+| `log_format`: An optional parameter that can be used to tell CloudWatch the format of the data. A value of `json/emf` enables CloudWatch to extract custom metrics embedded in a JSON payload. See the [Embedded Metric Format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html).
+| `role_arn`: ARN of an IAM role to assume (for cross account access).
+| `auto_create_group`: Automatically create the log group. Valid values are "true" or "false" (case insensitive). Defaults to false.
+| `endpoint`: Specify a custom endpoint for the CloudWatch Logs API.
+| `credentials_endpoint`: Specify a custom HTTP endpoint to pull credentials from. 
+==|
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+    Name cloudwatch
+    Match   *
+    region us-east-1
+    log_group_name fluent-bit-cloudwatch
+    log_stream_prefix from-fluent-bit-
+    auto_create_group true
+```
+==== Configure ELK
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters
+|===
+| Key | Description | Required | Default value
+| ????????
+==|
+Example Fluent Bit output plugin configuration:
+
+
+==== Configure GELF
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters. There are some mandatory and optional fields which are used by Graylog in GELF format. These fields are determined with Gelf\*_Key_ key in this plugin.???
+|===
+| Key | Description | Required | Default value
+| Match | Pattern to match which tags of logs to be outputted by this plugin | |
+| Host | IP address or hostname of the target Graylog server | | 127.0.0.1
+| Port | The port that your Graylog GELF input is listening on | | 12201
+| Mode | The protocol to use (tls, tcp or udp) | | udp
+| Gelf_Short_Message_Key | A short descriptive message (MUST be set in GELF) | | short_message
+| Gelf_Timestamp_Key | Your log timestamp (SHOULD be set in GELF) | | timestamp
+| Gelf_Host_Key | Key which its value is used as the name of the host, source or application that sent this message. (MUST be set in GELF) | | host
+| Gelf_Full_Message_Key | Key to use as the long message that can i.e. contain a backtrace. (Optional in GELF) | |full_message
+| Gelf_Level_Key | Key to be used as the log level. Its value must be in standard syslog levels (between 0 and 7). | (Optional in GELF) | level
+| Packet_Size | If transport protocol is udp, you can set the size of packets to be sent. | | 1420
+| Compress | If transport protocol is udp, you can set this if you want your UDP packets to be compressed. | | true
+==|
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+    Name                    gelf
+    Match                   kube.*
+    Host                    <your-graylog-server>
+    Port                    12201
+    Mode                    tcp
+    Gelf_Short_Message_Key  data
+```
+
+==== Configure Splunk
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters
+|===
+| Key | Description | Required | Default value
+| Host | IP address or hostname of the target Splunk service | | 127.0.0.1
+| Port | TCP port of the target Splunk service | | 8088
+| Splunk_Token | Specify the Authentication Token for the HTTP Event Collector interface | |
+| Splunk_Send_Raw | When enabled, the record keys and values are set in the top level of the map instead of under the event key. | | Off
+| HTTP_User | Optional username for Basic Authentication on HEC | |
+| HTTP_Passwd | Password for user defined in HTTP_User | |
+==|
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+    Name        splunk
+    Match       *
+    Host        127.0.0.1
+    Port        8088
+    TLS         On
+    TLS.Verify  Off
+    Message_Key my_key
+```
+
+==== Configure Syslog
+[%header%autowidth.spread,cols="a,a"]
+.Configuration Parameters
+|===
+| Key | Description | Required | Default value
+| Match | Pattern to match the tags of logs to be outputted by this plugin	| |
+| Host| IP address or hostname of the target syslog server | |	127.0.0.1
+| Port | The port that your syslog server is listening on | | 514
+| Mode | The protocol to use ( udp, tcp or tls)	| | udp
+| syslog_format | Syslog format: rfc3164 or rfc5424 | | rfc5424
+| syslog_maxsize | Max message size	| | 2048 for rfc5424 or 1024 for rfc3164
+| syslog_severity_key | Key to use for the syslog severity | | 6 (info)
+| syslog_facility_key | Key to use for the syslog facility | | 1 (user)
+| syslog_hostname_key | Key to use for the name of the host	| |
+| syslog_appname_key | Key to use for the application name | |	
+| syslog_procid_key | Key to use for the process identifier	| |	
+| syslog_msgid_key | Key to use for message ID	| |	
+| syslog_message_key	| Key to use for the syslog message	| |	
+| syslog_sd_key | Key to syslog structured data, which can be set multiple times. This must be a map.	| |
+==|
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+	Name   syslog
+	Match  *
+
+	Host   127.0.0.1
+	Port   514
+	Mode   tcp
+
+	Syslog_Format        rfc5424
+	Syslog_Severity_key  serverity
+	Syslog_Facility_key  factility
+	Syslog_Hostname_key  hostname
+	Syslog_Appname_key   app
+	Syslog_Procid_key    pid
+	Syslog_Message_key   log
+	Syslog_sd_key        info=]1
+	Syslog_sd_key        info2
+```
+
+== Exclude log forwarding for specific pods
+: (https://github.com/mulesoft/rtf-pkg-fluentbit#request-to-exclude-logs)
+
+By default, all pods (MuleApplication pods, Runtime Fabric pods and Infrastructure pods) fall under the fluentBit scope. 
+Request to exclude logs
+To exclude logs in certain pods from being forwarded to the external service, you can annotate it with fluentbit.io/exclude. Checkout the example below:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apache-logs
+  labels:
+    app: apache-logs
+  annotations:
+    fluentbit.io/exclude: "true"
+spec:
+  containers:
+  - name: apache
+  ...
+  ```
+OR, Use the following kubectl command to annotate it on the pods in a specific namespace:
+```
+kubectl annotate pod <pod-name> -n <namespace> fluentbit.io/exclude="true"
+```
+Note that the annotation value is boolean which can take a true or false and must be in quotation marks. 
+
+
+== Disable log forwarding to Anypoint Monitoring or Fluent Bit:
+Go to Runtime Manager and -> *Applications* and select an application.
+Select the *Logs* tab.
+Deselect "Forward logs to Anypoint Monitoring" and "Forward logs to <third party service>" as needed.
+Warning: Deselecting log forwarding options delete all the applicable configuration information from RTF
+
+
+
+
+
+
+== Forward Logs to External Services????? Other than Fluent Bit plugins??????
+
 Anypoint Runtime Fabric enables you to forward application and cluster logs to an external logging service. The log forwarder built in to Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP.
 
 Log data from Anypoint Runtime Fabric components and Mule applications can be forwarded to an external logging solution for viewing, retention and alerting in a centralized destination. An `rsyslog` client service is included in Runtime Fabric, and provides log forwarding transmission via TCP or UDP to an `rsyslog` server. Logging services such as Splunk or Logstash provide methods to receive log data from `rsyslog` clients.
 
 Anypoint Runtime Fabric provides dashboards and alerts on critical metrics when performance or availability are compromised. These can be viewed and adjusted using Ops Center. An SMTP server is required to receive alerts.
-
 
 === Procedure
 
