@@ -13,7 +13,7 @@ To associate an environment to a Runtime Fabric:
 . From the *Associated Environments* tab, select the environment you want to associate with this Runtime Fabric.
 . Click *Apply* to confirm the changes.
 
-== Production Environments
+== Unsupported Configurations
 
 If your Runtime Fabric is running with an unsupported configuration or does not meet the requirements for a production environment, one of the following messages is displayed:
 
@@ -21,6 +21,8 @@ If your Runtime Fabric is running with an unsupported configuration or does not 
 * `This Runtime Fabric is suitable for non-production workloads only. Learn more.`
 
 Refer to xref:runtime-fabric::install-prereqs[Anypoint Runtime Fabric Installation Prerequisites] for additional information.
+
+== Production Environments
 
 When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and familiarity with possible failure modes.
 
