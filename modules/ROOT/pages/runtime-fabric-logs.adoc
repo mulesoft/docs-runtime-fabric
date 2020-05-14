@@ -87,7 +87,7 @@ There are two levels of filters for drilling down in the logs:
 Runtime Fabric supports log forwarding to:
 
 * Anypoint Monitoring
-* The following third party logging services using Fluent Bit log forwarding output plugins:
+* Third party logging services using Fluent Bit log forwarding output plugins:
 
 ** Azure
 ** CloudWatch
@@ -95,11 +95,11 @@ Runtime Fabric supports log forwarding to:
 ** Graylog Extended Log Format (GELF)
 ** Splunk
 ** Syslog
-+
+
 [NOTE]
 Log data can be delivered to multiple destinations. However, only one Fluent Bit log forwarding output plugin is supported at any one time. Multiple log forwarding output configurations are not supported. For example, you can forward logs to Anypoint Monitoring and a third party logging solution, but not to two third party logging solutions.
 
-=== Enable Third Party Log Forwarding
+=== Enable Log Forwarding
 
 . Install and configure the applicable third-party logging service, and verify that you have allocated the required resources. Refer to the documentation for your third party logging solution for details. 
 . Navigate to Runtime Manager and select *Runtime Fabrics*.
@@ -108,7 +108,7 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 . Select *Forward to Anypoint Monitoring (Requires Titanium)* if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
 . Select *Forward to other logging provider* to forward logs using a Fluent Bit log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third party log forwarding solution.
-.. Enter the requested Fluent Bit configuration information: (link to each section for each 3rd party)?????.
+.. Enter the requested Fluent Bit configuration information:
 
 *** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>>
 *** <<Amazon CloudWatch Configuration Parameters, Amazon CloudWatch Configuration Parameters>>
@@ -118,13 +118,13 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 *** <<Syslog Configuration Parameters, Syslog Configuration Parameters>>
 
 .. Select *Submit*.
-.. To verify successful log forwarding, manually check the logs using your third party log forwarding service.
+.. To verify successful log forwarding, manually check the logs using the external log forwarding service.
 
 ==== Azure Log Analytics Configuration Parameters
 
 The Fluent Bit Azure output plugin allows you to ingest your records into Azure Log Analytics service.
 
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters
 |===
 | Key | Description | Required | Default value
@@ -143,7 +143,7 @@ Example Fluent Bit output plugin configuration:
 ```
 
 ==== Amazon CloudWatch Configuration Parameters
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters
 |===
 | Key | Description | Required | Default value
@@ -170,7 +170,7 @@ Example Fluent Bit output plugin configuration:
     auto_create_group true
 ```
 ==== ELK Configuration Parameters
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters
 |===
 | Key | Description | Required | Default value
@@ -211,7 +211,7 @@ Example Fluent Bit output plugin configuration:
 ```
 
 ==== GELF Configuration Parameters
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters. There are some mandatory and optional fields which are used by Graylog in GELF format. These fields are determined with Gelf\*_Key_ key in this plugin.???
 |===
 | Key | Description | Required | Default value
@@ -240,7 +240,7 @@ Example Fluent Bit output plugin configuration:
 ```
 
 ==== Splunk Configuration Parameters
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters
 |===
 | Key | Description | Required | Default value
@@ -265,7 +265,7 @@ Example Fluent Bit output plugin configuration:
 ```
 
 ==== Syslog Configuration Parameters
-[%header%autowidth.spread,cols="a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 .Configuration Parameters
 |===
 | Key | Description | Required | Default value
@@ -324,7 +324,7 @@ spec:
   containers:
   - name: apache
   ...
-  ```
+```
 OR, you can use the following kubectl command to annotate it on pods in a specific namespace:
 ```
 kubectl annotate pod <pod-name> -n <namespace> fluentbit.io/exclude="true"
@@ -340,7 +340,7 @@ Note that the annotation value is boolean, and the boolean value must be in quot
 +
 ** *Forward logs to Anypoint Monitoring* 
 ** *Forward logs to <third party service>*
-+
+
 [WARNING]
 Disabling log forwarding options deletes all the applicable configuration information from Runtime Fabric.
 
