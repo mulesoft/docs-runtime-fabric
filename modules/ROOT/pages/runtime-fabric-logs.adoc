@@ -91,7 +91,7 @@ Runtime Fabric supports log forwarding to:
 
 ** Azure
 ** CloudWatch
-** ELK
+** Elasticsearch
 ** Graylog Extended Log Format (GELF)
 ** Splunk
 ** Syslog
@@ -112,7 +112,7 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 
 *** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>>
 *** <<Amazon CloudWatch Configuration Parameters, Amazon CloudWatch Configuration Parameters>>
-*** <<ELK Configuration Parameters, ELK Configuration Parameters>>
+*** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
 *** <<Syslog Configuration Parameters, Syslog Configuration Parameters>>
@@ -125,7 +125,7 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 The Fluent Bit Azure output plugin allows you to ingest your records into Azure Log Analytics service.
 
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters
+.Azure Log Analytics Configuration Parameters
 |===
 | Key | Description | Required | Default value
 | Customer_ID | Specifies the customer ID or WorkspaceID string. | Yes |
@@ -144,19 +144,19 @@ Example Fluent Bit output plugin configuration:
 
 ==== Amazon CloudWatch Configuration Parameters
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters
+.Amazon CloudWatch Configuration Parameters
 |===
 | Key | Description | Required | Default value
-| `region`| The AWS region | |
-| `log_group_name` | Specifies the name of the CloudWatch Log Group to which you want log records sent | |
-| `log_stream_name`| Specifies the name of the CloudWatch Log Stream to which you want log records sent | |
-| `log_stream_prefix`| Specifies the prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the `log_stream_name` option | |  
-| `log_key`| By default, the whole log record is sent to CloudWatch. If you specify a key name with this option, then only the value of that key is sent to CloudWatch. For example, if you are using the Fluentd Docker log driver, you can specify `log_key log` and only the log message is sent to CloudWatch. | |
-| `log_format`| An optional parameter that specifies the format of the data for identification by CloudWatch. A value of `json/emf` enables CloudWatch to extract custom metrics embedded in a JSON payload. See the [Embedded Metric Format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html). | |
-| `role_arn`| Specifies the ARN of an IAM role to assume (for cross account access). | |
-| `auto_create_group`| Automatically creates the log group. Valid values are "true" or "false" (case insensitive). Defaults to `false`. | |
-| `endpoint`| Specifies a custom endpoint for the CloudWatch Logs API. | |
-| `credentials_endpoint`| Specifies a custom HTTP endpoint from which to pull credentials. | | 
+| region | Specifies the AWS region. | |
+| log_group_name | Specifies the name of the CloudWatch Log Group to which you want log records sent | |
+| log_stream_name | Specifies the name of the CloudWatch Log Stream to which you want log records sent | |
+| log_stream_prefix | Specifies the prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the `log_stream_name` option. | |
+| log_key | By default, the whole log record is sent to CloudWatch. If you specify a key name with this option, then only the value of that key is sent to CloudWatch. For example, if you are using the Fluentd Docker log driver, you can specify `log_key log` and only the log message is sent to CloudWatch. | |
+| log_format | An optional parameter that specifies the format of the data for identification by CloudWatch. A value of `json/emf` enables CloudWatch to extract custom metrics embedded in a JSON payload. See the [Embedded Metric Format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html). | |
+| role_arn | Specifies the ARN of an IAM role to assume (for cross account access). | |
+| auto_create_group | Automatically creates the log group. Valid values are "true" or "false" (case insensitive). Defaults to `false`. | |
+| endpoint | Specifies a custom endpoint for the CloudWatch Logs API. | |
+| credentials_endpoint | Specifies a custom HTTP endpoint from which to pull credentials. | |
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -169,9 +169,9 @@ Example Fluent Bit output plugin configuration:
     log_stream_prefix from-fluent-bit-
     auto_create_group true
 ```
-==== ELK Configuration Parameters
+==== Elasticsearch Configuration Parameters
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters
+.Elasticsearch Configuration Parameters
 |===
 | Key | Description | Required | Default value
 | Host | Specifies the IP address or hostname of the target Elasticsearch instance | | 127.0.0.1
@@ -212,7 +212,7 @@ Example Fluent Bit output plugin configuration:
 
 ==== GELF Configuration Parameters
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters. There are some mandatory and optional fields which are used by Graylog in GELF format. These fields are determined with Gelf\*_Key_ key in this plugin.???
+.GELF Configuration Parameters. There are some mandatory and optional fields which are used by Graylog in GELF format. These fields are determined with Gelf\*_Key_ key in this plugin.???
 |===
 | Key | Description | Required | Default value
 | Match | Specifies the pattern to match for tags of logs to be outputted by this plugin. | |
@@ -241,7 +241,7 @@ Example Fluent Bit output plugin configuration:
 
 ==== Splunk Configuration Parameters
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters
+.Splunk Configuration Parameters
 |===
 | Key | Description | Required | Default value
 | Host | Specifies the IP address or hostname of the target Splunk service. | | 127.0.0.1
@@ -266,7 +266,7 @@ Example Fluent Bit output plugin configuration:
 
 ==== Syslog Configuration Parameters
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Configuration Parameters
+.Syslog Configuration Parameters
 |===
 | Key | Description | Required | Default value
 | Match | Specifies the pattern to match for tags of logs to be outputted by this plugin. | |
