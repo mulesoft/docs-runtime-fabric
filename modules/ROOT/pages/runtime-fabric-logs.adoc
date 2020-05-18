@@ -102,11 +102,12 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 === Enable Log Forwarding
 
 . Install and configure the applicable third-party logging service, and verify that you have allocated the required resources. Refer to the documentation for your third party logging solution for details. 
-. Navigate to Runtime Manager and select *Runtime Fabrics*.
-. Select the name of your Runtime Fabric to open the management page.
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Runtime Fabrics* in the sidebar navigation.
+. Select the applicable Runtime Fabric based on the name used during installation.
 . Select the *Log Forwarding* tab.
-. Select *Forward to Anypoint Monitoring (Requires Titanium)* if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
-. Select *Forward to other logging provider* to forward logs using a Fluent Bit log forwarding output plugin.
+. Select the *Forward to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
+. Select the *Forward to other logging provider* checkbox to forward logs using a Fluent Bit log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third party log forwarding solution.
 .. Enter the requested Fluent Bit configuration information:
 
