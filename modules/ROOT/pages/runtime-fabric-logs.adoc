@@ -90,11 +90,9 @@ Runtime Fabric supports log forwarding to:
 * Third party logging solutions using Fluent Bit log forwarding output plugins:
 
 ** Azure
-** CloudWatch
 ** Elasticsearch
 ** Graylog Extended Log Format (GELF)
 ** Splunk
-** Syslog
 
 [NOTE]
 Log data can be delivered to multiple destinations. However, only one Fluent Bit log forwarding output plugin is supported at any one time. Multiple log forwarding output configurations are not supported. For example, you can forward logs to Anypoint Monitoring and a third party logging solution, but not to two third party logging solutions.
@@ -112,11 +110,9 @@ Log data can be delivered to multiple destinations. However, only one Fluent Bit
 .. Enter Fluent Bit configuration information for your third party logging solution:
 
 *** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>>
-*** <<Amazon CloudWatch Configuration Parameters, Amazon CloudWatch Configuration Parameters>>
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
-*** <<Syslog Configuration Parameters, Syslog Configuration Parameters>>
 
 .. Select *Submit*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
@@ -141,34 +137,6 @@ Example Fluent Bit output plugin configuration:
     Shared_Key  key
 ```
 
-==== Amazon CloudWatch Configuration Parameters
-
-[%header%autowidth.spread,cols="a,a,a,a"]
-.Amazon CloudWatch Configuration Parameters
-|===
-| Key | Description | Required | Default value
-| region | Specifies the AWS region. | |
-| log_group_name | Specifies the name of the CloudWatch Log Group to which you want log records sent | |
-| log_stream_name | Specifies the name of the CloudWatch Log Stream to which you want log records sent | |
-| log_stream_prefix | Specifies the prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the `log_stream_name` option. | |
-| log_key | By default, the whole log record is sent to CloudWatch. If you specify a key name with this option, then only the value of that key is sent to CloudWatch. For example, if you are using the Fluentd Docker log driver, you can specify `log_key log` and only the log message is sent to CloudWatch. | |
-| log_format | An optional parameter that specifies the format of the data for identification by CloudWatch. A value of `json/emf` enables CloudWatch to extract custom metrics embedded in a JSON payload. See the [Embedded Metric Format](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format_Specification.html). | |
-| role_arn | Specifies the ARN of an IAM role to assume (for cross account access). | |
-| auto_create_group | Automatically creates the log group. Valid values are "true" or "false" (case insensitive). Defaults to `false`. | |
-| endpoint | Specifies a custom endpoint for the CloudWatch Logs API. | |
-| credentials_endpoint | Specifies a custom HTTP endpoint from which to pull credentials. | |
-|===
-
-Example Fluent Bit output plugin configuration:
-```
-[OUTPUT]
-    Name cloudwatch
-    Match   *
-    region us-east-1
-    log_group_name fluent-bit-cloudwatch
-    log_stream_prefix from-fluent-bit-
-    auto_create_group true
-```
 ==== Elasticsearch Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
@@ -265,49 +233,6 @@ Example Fluent Bit output plugin configuration:
     TLS         On
     TLS.Verify  Off
     Message_Key my_key
-```
-
-==== Syslog Configuration Parameters
-
-[%header%autowidth.spread,cols="a,a,a,a"]
-.Syslog Configuration Parameters
-|===
-| Key | Description | Required | Default value
-| Match | Specifies the pattern to match for tags of logs to be outputted by this plugin. | |
-| Host| Specifies the IP address or hostname of the target syslog server. | |	127.0.0.1
-| Port | Specifies the port on which your syslog server is listening. | | 514
-| Mode | Specifies the protocol to use ( udp, tcp or tls). | | udp
-| syslog_format | Specifies the syslog format: `rfc3164` or `rfc5424`. | | rfc5424
-| syslog_maxsize | Specifies the maximum message size. | | 2048 for rfc5424 or 1024 for rfc3164
-| syslog_severity_key | Specifies the key to use for the syslog severity. | | 6 (info)
-| syslog_facility_key | Specifies the key to use for the syslog facility. | | 1 (user)
-| syslog_hostname_key | Specifies the key to use for the name of the host. | |
-| syslog_appname_key | Specifies the key to use for the application name. | |	
-| syslog_procid_key | Specifies the key to use for the process identifier. | |	
-| syslog_msgid_key | Specifies the key to use for message ID. | |	
-| syslog_message_key | Specifies the key to use for the syslog message.	| |	
-| syslog_sd_key | Specifies the key to syslog structured data, which can be set multiple times. This must be a map. | |
-|===
-
-Example Fluent Bit output plugin configuration:
-```
-[OUTPUT]
-	Name   syslog
-	Match  *
-
-	Host   127.0.0.1
-	Port   514
-	Mode   tcp
-
-	Syslog_Format        rfc5424
-	Syslog_Severity_key  serverity
-	Syslog_Facility_key  factility
-	Syslog_Hostname_key  hostname
-	Syslog_Appname_key   app
-	Syslog_Procid_key    pid
-	Syslog_Message_key   log
-	Syslog_sd_key        info=]1
-	Syslog_sd_key        info2
 ```
 
 == Disable Log Forwarding for Specific Pods
