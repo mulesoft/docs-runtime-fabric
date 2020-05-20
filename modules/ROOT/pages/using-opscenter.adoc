@@ -18,7 +18,7 @@ You can use the Ops Center to monitor dashboards, view logs, and download debugg
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.
 
 ----
-Administrator access:
+Ops Center access:
 URL:      https://<any-node-ip>:32009/web
 User:     admin@runtime-fabric
 Password: ***********************
