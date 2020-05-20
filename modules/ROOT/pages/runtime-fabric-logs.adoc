@@ -91,6 +91,7 @@ Runtime Fabric supports log forwarding to:
 * Anypoint Monitoring
 * Third-party logging solutions using Fluent Bit log forwarding output plugins:
 
+** Azure Log Analytics
 ** Elasticsearch
 ** Graylog Extended Log Format (GELF)
 ** Splunk
@@ -110,12 +111,33 @@ Only one external log forwarding configuration is supported at any one time. How
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
 .. Enter Fluent Bit configuration information for your third-party logging solution, as shown in the following sections:
 
+*** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>> 
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
 
 .. Select *Submit*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
+
+==== Azure Log Analytics Configuration Parameters
+
+[%header%autowidth.spread,cols="a,a,a,a"]
+.Azure Log Analytics Configuration Parameters
+|===
+| Key | Description | Required | Default Value
+| Customer_ID | Specifies the customer ID or workspace ID string. | Yes |
+| Shared_Key | Specifies the primary or secondary connected sources client authentication key. | Yes |
+| Log_Type | Specifies the event type name. | No | `fluentbit`
+|===
+
+Example Fluent Bit output plugin configuration:
+```
+[OUTPUT]
+    Name        azure
+    Match       *
+    Customer_ID id
+    Shared_Key  key
+```
 
 ==== Elasticsearch Configuration Parameters
 
