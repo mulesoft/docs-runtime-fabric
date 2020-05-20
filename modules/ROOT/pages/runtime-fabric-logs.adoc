@@ -167,6 +167,8 @@ Example Fluent Bit output plugin configuration:
 | Trace_Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | | Off
 | Current_Time_Index | Specifies using the current time for index generation instead of message record information. | | Off
 | Logstash_Prefix_Key | Prefixes keys with this string. | |
+| tls | Enables or disables TLS support. | | 
+| tls.verify | Forces certificate validation | |
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -197,6 +199,8 @@ Example Fluent Bit output plugin configuration:
 | Gelf_Level_Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | (This is optional in GELF.) | level
 | Packet_Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | | true
+| tls | Enables or disables TLS support. | | 
+| tls.verify | Forces certificate validation | |
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -222,6 +226,8 @@ Example Fluent Bit output plugin configuration:
 | Splunk_Send_Raw | When enabled, specifies the record keys and values to be set in the top level of the map instead of nested under the `event` key. | | Off
 | HTTP_User | Specifies an optional username for basic authentication on the HTTP Event Collector. | |
 | HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | |
+| tls | Enables or disables TLS support. | | 
+| tls.verify | Forces certificate validation | |
 |===
 
 Example Fluent Bit output plugin configuration:
