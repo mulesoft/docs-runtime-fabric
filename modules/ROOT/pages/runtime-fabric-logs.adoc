@@ -149,7 +149,6 @@ Example Fluent Bit output plugin configuration:
 | Port | Specifies the TCP port of the target Elasticsearch instance. | | 9200
 | Path | Elasticsearch accepts new data on HTTP query path `/_bulk`. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such a path on the Fluent Bit side. It adds a path prefix in the indexing HTTP POST URI. | | Empty string
 | Buffer_Size | Specifies the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where reading the full response is needed. Note that the size of the response grows depending on the number of records inserted. To specify an unlimited amount of memory, set this value to `False`. Otherwise, set the value according to the Unit Size specification. | | 4KB
-| Pipeline | Newer versions of Elasticsearch provide setup filters called pipelines. This option specifies which pipeline the database should use. However, to optimize performance, you should perform parsing and filtering on the Fluent Bit side and avoid pipelines. | | 
 | HTTP_User | Specifies an optional username credential for Elastic X-Pack access. | | 
 | HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | | 
 | Index | Specifies the index name. | | fluentbit
