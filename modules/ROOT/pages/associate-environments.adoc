@@ -22,7 +22,7 @@ Refer to xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequi
 
 == Production Environments
 
-When selecting a production environment, a dialog is displayed that verifies Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and familiarity with possible failure modes. 
+When selecting a production environment, a dialog is displayed that verifies Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and possible failure modes. 
 
 Proper configuration must be complete before operating and deploying production applications on Runtime Fabric.
 
