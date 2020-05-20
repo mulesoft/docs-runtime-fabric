@@ -236,31 +236,6 @@ Example Fluent Bit output plugin configuration:
     Message_Key my_key
 ```
 
-== Disable Log Forwarding for Specific Pods
-
-By default, Fluent Bit log forwarding is enabled on all pods (Mule application pods, Runtime Fabric pods, and infrastructure pods). 
-
-To disable log forwarding for specific pods, you can use annotations in `fluentbit.io/exclude`, as shown in the following example:
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: apache-logs
-  labels:
-    app: apache-logs
-  annotations:
-    fluentbit.io/exclude: "true"
-spec:
-  containers:
-  - name: apache
-  ...
-```
-Alternatively, you can run the following `kubectl` command on pods in a specific namespace:
-```
-kubectl annotate pod <pod-name> -n <namespace> fluentbit.io/exclude="true"
-```
-Note that the annotation value in the previous command is Boolean and must be in quotation marks. 
-
 == Disable Anypoint Monitoring or Fluent Bit Log Forwarding
 
 . Navigate to Runtime Manager and select *Applications*.
@@ -273,6 +248,8 @@ Note that the annotation value in the previous command is Boolean and must be in
 
 [WARNING]
 Disabling the third-party log forwarding option deletes all configuration information provided in the *Runtime Fabrics* page in Runtime Manager.
+
+Application level configuration is not currently supported. You cannot enable or disable application level log forwarding for an external log forwarding service. 
 
 == Forward Logs to Other External Services
 
