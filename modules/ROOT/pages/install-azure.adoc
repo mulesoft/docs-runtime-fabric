@@ -30,9 +30,9 @@ Modify the Azure Resource Manager template to reference an existing Virtual Netw
 == Installation
 
 [NOTE]
-The ARM templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You will need to review and customize these according to your needs. If you require assistance with this, please contact your Customer Success Manager for guidance or to engage a MuleSoft Professional Services Consultant.
+The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. If you require assistance, contact your MuleSoft representative.
 
-To begin installing Runtime Fabric, download the Azure Resource Manager template from Runtime Manager:
+Before installing Runtime Fabric, download the Azure Resource Manager template from Runtime Manager:
 
 . From Anypoint Platform, navigate to Runtime Manager.
 . Select *Runtime Fabrics*.
@@ -42,14 +42,14 @@ To begin installing Runtime Fabric, download the Azure Resource Manager template
 
 The `rtf-install-scripts\azure` directory contains the following installation files:
 
-* `ARM-template-dev.template`: a sample Azure Resource Manager template that describes the infrastructure for the 
-development configuration requirements.
-* `ARM-template-prod.template`: a sample Azure Resource Manager template that describes the infrastructure for the 
-production configuration requirements.
-* `generate-templates.sh`: a shell script used to insert the Mule Enterprise license digest and initialization 
-script in the ARM templates. This script outputs the JSON templates to use when deploying to Azure.
+* `ARM-template-dev.template`: A sample Azure Resource Manager template that describes the required infrastructure for  
+a development configuration.
+* `ARM-template-prod.template`: A sample Azure Resource Manager template that describes the required infrastructure for a 
+production configuration.
+* `generate-templates.sh`: A shell script that is used to insert the Mule Enterprise license digest and initialization 
+script in the Azure Resource Manager templates. This script outputs the JSON templates to use when deploying to Azure.
 
-Copy the supplied sample templates to create your own, based on your target topology and infrastructure requirements. 
+Copy the supplied sample templates and modify them based on your target topology and infrastructure requirements. 
 
 == Base64 Encode your Mule License Key
 
