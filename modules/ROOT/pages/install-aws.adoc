@@ -150,6 +150,9 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 | `service_cidr_block` | Support for a custom service CIDR block. | `10.100.0.0/16`
 |===
 
+[NOTE]
+The pod CIDR block must not overlap with IP addresses that pods or servers use to communicate. If services within the cluster or services that you installed on nodes need to communicate with an IP range that overlaps the pod or service CIDR block, a conflict can occur. If a CIDR block is in use but pods and services do not use those IP addresses to communicate, there is no conflict. If you deploy more than one cluster, each cluster can reuse the same IP range, because those addresses exist within the cluster nodes, and cluster-to-cluster communications is relayed on the external interfaces.
+
 == Configure Your Environment to Access AWS
 
 To run the Terraform script, AWS API access should be configured in your terminal. Define values for 
