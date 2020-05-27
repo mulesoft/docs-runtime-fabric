@@ -186,6 +186,7 @@ Anypoint Runtime Fabric:
 
 * A subnet with enough IP addresses allotable to add additional VMs to Anypoint Runtime Fabric
 +
+[IMPORTANT]
 The pod CIDR block must not overlap with IP addresses that pods or servers use to communicate. If services within the cluster or services that you installed on nodes need to communicate with an IP range that overlaps the pod or service CIDR block, a conflict can occur. If a CIDR block is in use but pods and services do not use those IP addresses to communicate, there is no conflict. If you deploy more than one cluster, each cluster can reuse the same IP range, because those addresses exist within the cluster nodes, and cluster-to-cluster communications is relayed on the external interfaces.
 * Shell/SSH access to each VM used to install Anypoint Runtime Fabric
 * Static private IPv4 addresses assigned to each VM, which persist between restarts
