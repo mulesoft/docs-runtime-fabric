@@ -159,7 +159,8 @@ A confirmation is displayed that indicates the upgrade is being performed in the
 ... Using your terminal on a controller node, run the following command: 
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan
+cd /opt/anypoint/runtimefabric/installer/
+sudo ./gravity plan
 ----
 +
 The upgrade can take more than an hour to complete.
@@ -218,7 +219,7 @@ cd /opt/anypoint/runtimefabric/installer
 . Run the following command to resume the upgrade: 
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
+sudo ./gravity upgrade --resume
 ----
 +
 . The upgrade procedure streams output to your terminal session. If the previous error reoccurs, perform the troubleshooting steps described in the following section.
@@ -234,7 +235,7 @@ Perform the following steps to resolve common errors:
 . Use the `gravity plan` command to identify the phase where the upgrade paused: 
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan
+sudo ./gravity plan
 ----
 +
 The following partial list provides examples of upgrade phases:
@@ -263,12 +264,12 @@ The following partial list provides examples of upgrade phases:
 The following example resumes an upgrade by restarting the `masters/node-1/drain` phase: 
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --phase=/masters/node-1/drain --force --debug
+sudo ./gravity upgrade --phase=/masters/node-1/drain --force --debug
 ----
 . Wait for the command to run. If the command does not terminate with an error, resume the upgrade by running the following command:
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
+sudo ./gravity upgrade --resume
 ----
 . If the upgrade again terminates with an error:
 .. Read the logs to identify which node requires repair.
@@ -277,13 +278,13 @@ sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
 . Repair the upgrade plan for the identified node in the terminal:
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan --repair
+sudo ./gravity plan --repair
 ----
 +
 . On the controller node running the upgrade, manually run the failed phase:
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan execute --phase=< insert phase > --force --debug
+sudo ./gravity plan execute --phase=< insert phase > --force --debug
 ----
 
 If an error is returned, wait a few minutes and repeat the previous steps.
@@ -295,7 +296,8 @@ If you cannot resolve issues with an upgrade, you can roll back the upgrade step
 . Use the `gravity plan` command to identify the phase in which the upgrade paused: 
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan
+cd /opt/anypoint/runtimefabric/installer
+sudo ./gravity plan
 ----
 +
 The following partial list provides upgrade phase examples:
@@ -321,19 +323,20 @@ The following partial list provides upgrade phase examples:
 . Roll back the steps that completed in reverse order, as shown in the following example:
 +
 ----
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan rollback --phase=/masters/node-1/taint
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan rollback --phase=/masters/node-1/system-upgrade
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan rollback --phase=/masters/node-1/drain
+$ sudo ./gravity plan rollback --phase=/masters/node-1/taint
+$ sudo ./gravity plan rollback --phase=/masters/node-1/system-upgrade
+$ sudo ./gravity plan rollback --phase=/masters/node-1/drain
 ...
 ----
 +
 To roll back a group of steps:
 +
 ----
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan rollback --phase=/masters
+cd /opt/anypoint/runtimefabric/installer
+$ sudo ./gravity plan rollback --phase=/masters
 ----
 . After all steps are rolled back, update the plan status to mark the upgrade as completely rolled-back:
 +
 ----
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan complete
+$ sudo ./gravity plan complete
 ----
