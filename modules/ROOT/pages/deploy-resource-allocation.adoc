@@ -90,6 +90,36 @@ The resources allocated to your Mule application determine the application's per
 [NOTE]
 Run performance and load testing on your Mule applications to determine the number of resources to allocate.
 
+== Edge vCPU Allocation
+
+Because Edge requirements are impacted by the number of threads, response time latency, and message sizes, the following recommendations are provided for Edge vCPU allocation:
+
+* .5 GB (Default): Fewer than 500 simultaneous active connections.
+* 1.5 GB (Large): One or both of the following scenarios:
+
+** 500 or more simultaneous active connections.
+** Security policies enabled.
+
+[NOTE]
+These are general guidelines, and individual environments might require adjustments.
+
+== Edge Memory Allocation
+
+The following Edge memory allocations are recommended:
+
+* .5 GB: No security policies enabled and fewer than 150 continuous active requests. (Request size = .9 MB)
+* 1.0 GB: Security policies enabled and fewer than 250 active requests. (Request size = .9 MB)
+* 2.0 GB: Security policies enabled and greater than 250 active requests. (Request size .9 MB)
+
+[NOTE]
+Requests with sizes greater than 1MB are streamed and do not use memory to buffer the entire request.
+
+
+
+
+
+
+
 == Internal Load Balancer
 
 Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Because this load balancer is responsible for TLS termination, the number of resources required scales based on the number of incoming connections and the average payload size for each request.
