@@ -42,7 +42,7 @@ When using CPU bursting, you must consider the following factors:
 +
 Regardless of what approach is chosen, make sure you run tests to validate performance.
 
-== Memory Allocation
+== Application Memory Allocation
 
 The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
 
@@ -90,9 +90,9 @@ The resources allocated to your Mule application determine the application's per
 [NOTE]
 Run performance and load testing on your Mule applications to determine the number of resources to allocate.
 
-== Edge Memory Allocation
+== Internal Load Balancer Memory Allocation
 
-Edge memory requirements are impacted by the number of threads, response time latency, and message sizes. The following Edge memory allocations are recommended:
+Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. The following internal load balancer memory allocations are recommended:
 
 * .5 GB (Default): Fewer than 500 simultaneous active connections.
 * 1.5 GB (Large): One or both of the following scenarios:
