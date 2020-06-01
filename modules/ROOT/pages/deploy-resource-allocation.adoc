@@ -92,13 +92,13 @@ Run performance and load testing on your Mule applications to determine the numb
 
 == Internal Load Balancer Memory Allocation
 
-Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. The following internal load balancer memory allocations are recommended:
+Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. Use the following guidelines when allocating memory:
 
-* .5 GB (Default): Fewer than 500 simultaneous active connections.
-* 1.5 GB (Large): One or both of the following scenarios:
+* .5 GB (Default): For fewer than 500 simultaneous active connections.
+* 1.5 GB (Large): For one or both of the following scenarios:
 
 ** 500 or more simultaneous active connections.
-** Security policies enabled.
+** Security policies are enabled.
 
 [NOTE]
 These are general guidelines, and individual environments might require adjustments.
