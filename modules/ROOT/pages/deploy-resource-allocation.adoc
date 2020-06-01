@@ -42,7 +42,7 @@ When using CPU bursting, you must consider the following factors:
 +
 Regardless of what approach is chosen, make sure you run tests to validate performance.
 
-== Application Memory Allocation
+== Memory Allocation
 
 The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
 
