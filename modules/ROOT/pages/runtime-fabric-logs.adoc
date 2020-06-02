@@ -167,7 +167,7 @@ Example Fluent Bit output plugin configuration:
 | Current_Time_Index | Specifies using the current time for index generation instead of message record information. | No | Off
 | Logstash_Prefix_Key | Prefixes keys with this string. | No |
 | tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file (required when `tls` is enabled) | No |
+| tls.ca_file | Specifies a CA certificate file | No |
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -199,7 +199,7 @@ Example Fluent Bit output plugin configuration:
 | Packet_Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
 | tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file (required when `tls` is enabled) | No |
+| tls.ca_file | Specifies a CA certificate file | No |
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -226,7 +226,7 @@ Example Fluent Bit output plugin configuration:
 | HTTP_User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
 | HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | No |
 | tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file (required when `tls` is enabled) | No |
+| tls.ca_file | Specifies a CA certificate file | No |
 |===
 
 Example Fluent Bit output plugin configuration:
