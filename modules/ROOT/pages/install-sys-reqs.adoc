@@ -31,7 +31,7 @@ The following sections describe the minimum system requirements of each controll
 
 The minimum number of controller VMs in a production environment is three. The maximum is five, and even numbers of controllers are not supported. These requirements reflect the minimum requirements to maintain high-availability and ensure system performance.
 
-Each contoller VM must have the following:
+Each controller VM must have the following:
 
 ** 2 cores each minimum.
 ** 8 GiB memory minimum.
@@ -78,7 +78,7 @@ The following sections describe the minimum system requirements of each controll
 
 Runtime Fabric requires at least one controller VM in a development environment. The maximum supported is five, and even numbers of controllers are not supported.
 
-Each contoller VM must have the following:
+Each controller VM must have the following:
 
 ** 2 cores each minimum
 ** 8 GiB memory minimum
