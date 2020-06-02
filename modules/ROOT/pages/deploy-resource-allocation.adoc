@@ -90,6 +90,19 @@ The resources allocated to your Mule application determine the application's per
 [NOTE]
 Run performance and load testing on your Mule applications to determine the number of resources to allocate.
 
+== Internal Load Balancer Memory Allocation
+
+Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. Use the following guidelines when allocating memory:
+
+* .5 GB (Default): For fewer than 500 simultaneous active connections.
+* 1.5 GB (Large): For one or both of the following scenarios:
+
+** 500 or more simultaneous active connections.
+** Security policies are enabled.
+
+[NOTE]
+These are general guidelines, and individual environments might require adjustments.
+
 == Internal Load Balancer
 
 Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Because this load balancer is responsible for TLS termination, the number of resources required scales based on the number of incoming connections and the average payload size for each request.
