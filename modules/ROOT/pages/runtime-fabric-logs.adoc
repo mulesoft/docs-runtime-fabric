@@ -241,7 +241,7 @@ When forwarding logs to external services through Fluent Bit, additional metadat
 
 When forwarding logs to external services through Fluent Bit, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
 
-[%header%autowidth.stretch]
+[%header,cols="3*a"]
 .Kubernetes metadata
 |===
 | Key | Description | Sample Value
