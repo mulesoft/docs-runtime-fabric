@@ -107,7 +107,7 @@ Only one external log forwarding configuration is supported at any one time. How
 . Select the applicable Runtime Fabric based on the name used during installation.
 . Select the *Log Forwarding* tab.
 . Select the *Forward to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
-. Select the *Forward to other logging provider* checkbox to forward logs using a Fluent Bit log forwarding output plugin.
+. Select the *Forward application logs to an external service* checkbox to forward logs using a Fluent Bit log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
 .. Enter Fluent Bit configuration information for your third-party logging solution, as shown in the following sections:
 
