@@ -125,9 +125,9 @@ Only one external log forwarding configuration is supported at any one time. How
 .Azure Log Analytics Configuration Parameters
 |===
 | Key | Description | Required | Default Value
-| Customer_ID | Specifies the customer ID or workspace ID string. | Yes |
-| Shared_Key | Specifies the primary or secondary connected sources client authentication key. | Yes |
-| Log_Type | Specifies the event type name. | No | `fluentbit`
+| Customer ID | Specifies the customer ID or workspace ID string. | Yes |
+| Shared Key | Specifies the primary or secondary connected sources client authentication key. | Yes |
+| Log Type | Specifies the event type name. | No | `fluentbit`
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -148,23 +148,23 @@ Example Fluent Bit output plugin configuration:
 | Port | Specifies the TCP port of the target Elasticsearch instance. | Yes | 9200
 | Index | Specifies the index name. | Yes | fluentbit
 | Path | Elasticsearch accepts new data on HTTP query path `/_bulk`. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such a path on the Fluent Bit side. It adds a path prefix in the indexing HTTP POST URI. | No | Empty string
-| Buffer_Size | Specifies the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where reading the full response is needed. Note that the size of the response grows depending on the number of records inserted. To specify an unlimited amount of memory, set this value to `False`. Otherwise, set the value according to the Unit Size specification. | No | 4KB
-| HTTP_User | Specifies an optional username credential for Elastic X-Pack access. | No | 
-| HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | No | 
+| Buffer Size | Specifies the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where reading the full response is needed. Note that the size of the response grows depending on the number of records inserted. To specify an unlimited amount of memory, set this value to `False`. Otherwise, set the value according to the Unit Size specification. | No | 4KB
+| HTTP User | Specifies an optional username credential for Elastic X-Pack access. | No | 
+| HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No | 
 | Type | Specifies the type name. | No | flb_type
-| Logstash_Format | Enables Logstash format compatibility. This option takes a Boolean value: `True`, `False`, `On`, or `Off`. | No |
-| Logstash_Prefix | When `Logstash_Format` is enabled, the `Index` name is composed of a prefix and the date. For example, if `Logstash_Prefix` is set to `mydata`, your index becomes `mydata-YYYY.MM.DD`. The last string that is appended belongs to the date when the data is generated. | No | logstash
-| Logstash_DateFormat | Specifies the time format (based on `strftime`) that is used to generate the second part of the `Index` name. | No | %Y.%m.%d
-| Time_Key | When `Logstash_Format` is enabled, each record is assigned a new timestamp field. The `Time_Key` property defines the name of that field. | No | @timestamp
-| Time_Key_Format | When `Logstash_Format` is enabled, this property defines the format of the timestamp. | No | %Y-%m-%dT%H:%M:%S
-| Include_Tag_Key | When enabled, the tag name is appended to the record. | No | Off
-| Tag_Key | When `Include_Tag_Key` is enabled, this property defines the key name for the tag. | No | _flb-key
-| Generate_ID | When enabled, generates the `_id` value for outgoing records. This prevents duplicate records when retrying ES. | No | Off
-| Replace_Dots | When enabled, replaces field name dots ('.') with an underscore ('_'), which is required by Elasticsearch 2.0 through 2.3. | No | Off
-| Trace_Output | When enabled, prints the Elasticsearch API calls to stdout (for diagnosis). | No | Off
-| Trace_Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | No | Off
-| Current_Time_Index | Specifies using the current time for index generation instead of message record information. | No | Off
-| Logstash_Prefix_Key | Prefixes keys with this string. | No |
+| Logstash Format | Enables Logstash format compatibility. This option takes a Boolean value: `True`, `False`, `On`, or `Off`. | No |
+| Logstash Prefix | When `Logstash Format` is enabled, the `Index` name is composed of a prefix and the date. For example, if `Logstash Prefix` is set to `mydata`, your index becomes `mydata-YYYY.MM.DD`. The last string that is appended belongs to the date when the data is generated. | No | logstash
+| Logstash DateFormat | Specifies the time format (based on `strftime`) that is used to generate the second part of the `Index` name. | No | %Y.%m.%d
+| Time Key | When `Logstash Format` is enabled, each record is assigned a new timestamp field. The `Time Key` property defines the name of that field. | No | @timestamp
+| Time Key Format | When `Logstash Format` is enabled, this property defines the format of the timestamp. | No | %Y-%m-%dT%H:%M:%S
+| Include Tag Key | When enabled, the tag name is appended to the record. | No | Off
+| Tag Key | When `Include Tag Key` is enabled, this property defines the key name for the tag. | No | _flb-key
+| Generate ID | When enabled, generates the `_id` value for outgoing records. This prevents duplicate records when retrying ES. | No | Off
+| Replace Dots | When enabled, replaces field name dots ('.') with an underscore ('_'), which is required by Elasticsearch 2.0 through 2.3. | No | Off
+| Trace Output | When enabled, prints the Elasticsearch API calls to stdout (for diagnosis). | No | Off
+| Trace Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | No | Off
+| Current Time Index | Specifies using the current time for index generation instead of message record information. | No | Off
+| Logstash Prefix Key | Prefixes keys with this string. | No |
 | Tls | Enables or disables TLS support. | No | Off
 |===
 
@@ -188,12 +188,12 @@ Example Fluent Bit output plugin configuration:
 | Host | Specifies the IP address or hostname of the target Graylog server. | Yes | 127.0.0.1
 | Port | Specifies the port on which your Graylog GELF input is listening. | Yes | 12201
 | Mode | Specifies the protocol to use (`tls`, `tcp`, or `udp`). | Yes | udp
-| Gelf_Short_Message_Key | Specifies a short descriptive message (This must be set in GELF). | Yes | log
-| Gelf_Timestamp_Key | Specifies your log timestamp (This should be set in GELF). | No | timestamp
-| Gelf_Host_Key | Specifies the key for the value that is used as the name of the host, source, or application that sent the message. (This must be set in GELF). | No | host
-| Gelf_Full_Message_Key | Specifies the key to use as the long message, which can contain a backtrace. (This is optional in GELF.) | No | full_message
-| Gelf_Level_Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | No | level
-| Packet_Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
+| Gelf Short_Message Key | Specifies a short descriptive message (This must be set in GELF). | Yes | log
+| Gelf Timestamp Key | Specifies your log timestamp (This should be set in GELF). | No | timestamp
+| Gelf Host Key | Specifies the key for the value that is used as the name of the host, source, or application that sent the message. (This must be set in GELF). | No | host
+| Gelf Full Message Key | Specifies the key to use as the long message, which can contain a backtrace. (This is optional in GELF.) | No | full_message
+| Gelf Level Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | No | level
+| Packet Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
 | Tls | Enables or disables TLS support. | No | Off
 |===
@@ -206,7 +206,7 @@ Example Fluent Bit output plugin configuration:
     Host                    <your-graylog-server>
     Port                    12201
     Mode                    tcp
-    Gelf_Short_Message_Key  data
+    Gelf_Short_Message_Key  log
 ```
 
 ==== Splunk Configuration Parameters
@@ -217,9 +217,9 @@ Example Fluent Bit output plugin configuration:
 | Key | Description | Required | Default Value
 | Host | Specifies the IP address or hostname of the target Splunk service. | Yes | 127.0.0.1
 | Port | Specifies the TCP port of the target Splunk service. | Yes | 8088
-| Splunk_Token | Specifies the Authentication Token for the HTTP Event Collector interface. | Yes |
-| HTTP_User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
-| HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | No |
+| Splunk Token | Specifies the Authentication Token for the HTTP Event Collector interface. | Yes |
+| HTTP User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
+| HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No |
 | Tls | Enables or disables TLS support. | No | Off
 |===
 
