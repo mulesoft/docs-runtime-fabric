@@ -305,7 +305,7 @@ If you experience issues with log forwarding:
 * Run the following commands inside the RTF cluster:
 
 ** `kubectl -nrtf get pods -lapp=external-log-forwarder` for a list of all external log forwarding pods. Verify that these pods are in `Running` state.
-** `kubectl -nrtf logs -l app=external-log-forwarder` to view the logs that are sent from the external log forwarding pods. 
+** `kubectl -nrtf logs -l app=external-log-forwarder` to view the logs of external log forwarding pods. 
 
 == See Also
 
