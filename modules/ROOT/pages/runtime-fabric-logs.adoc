@@ -134,7 +134,6 @@ Example Fluent Bit output plugin configuration:
 ```
 [OUTPUT]
     Name        azure
-    Match       *
     Customer_ID id
     Shared_Key  key
 ```
@@ -166,15 +165,13 @@ Example Fluent Bit output plugin configuration:
 | Trace_Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | No | Off
 | Current_Time_Index | Specifies using the current time for index generation instead of message record information. | No | Off
 | Logstash_Prefix_Key | Prefixes keys with this string. | No |
-| tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file | No |
+| Tls | Enables or disables TLS support. | No | Off
 |===
 
 Example Fluent Bit output plugin configuration:
 ```
 [OUTPUT]
     Name  es
-    Match *
     Host  192.168.2.3
     Port  9200
     Index my_index
@@ -198,8 +195,7 @@ Example Fluent Bit output plugin configuration:
 | Gelf_Level_Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | No | level
 | Packet_Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
-| tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file | No |
+| Tls | Enables or disables TLS support. | No | Off
 |===
 
 Example Fluent Bit output plugin configuration:
@@ -222,23 +218,19 @@ Example Fluent Bit output plugin configuration:
 | Host | Specifies the IP address or hostname of the target Splunk service. | Yes | 127.0.0.1
 | Port | Specifies the TCP port of the target Splunk service. | Yes | 8088
 | Splunk_Token | Specifies the Authentication Token for the HTTP Event Collector interface. | Yes |
-| Splunk_Send_Raw | When enabled, specifies the record keys and values to be set in the top level of the map instead of nested under the `event` key. | No | Off
 | HTTP_User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
 | HTTP_Passwd | Specifies a password for the user defined in `HTTP_User`. | No |
-| tls | Enables or disables TLS support. | No | Off
-| tls.ca_file | Specifies a CA certificate file | No |
+| Tls | Enables or disables TLS support. | No | Off
 |===
 
 Example Fluent Bit output plugin configuration:
 ```
 [OUTPUT]
-    Name        splunk
-    Match       *
-    Host        127.0.0.1
-    Port        8088
-    TLS         On
-    TLS.Verify  Off
-    Message_Key my_key
+    Name         splunk
+    Host         127.0.0.1
+    Port         8088
+    Splunk_Token xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
+    Tls          On
 ```
 
 == Disable Anypoint Monitoring or Fluent Bit Log Forwarding
