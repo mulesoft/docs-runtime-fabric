@@ -237,24 +237,28 @@ Example Fluent Bit output plugin configuration:
 
 When forwarding logs to external services through Fluent Bit, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
 
-[%header%autowidth.spread,cols="a,a,a"]
+=== Kubernetes Metadata
+
+When forwarding logs to external services through Fluent Bit, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
+
+[%header%autowidth.stretch]
 .Kubernetes metadata
 |===
 | Key | Description | Sample Value
-| container_name | The name of the container. | app
-| container_image | The full name of the container image. | 000.dkr.ecr.us-east-1.amazonaws.com/mulesoft/poseidon-runtime-4.3.0:v1.0.0
-| container_hash | The name of the container image plus the immutable identifier (SHA256 value).  | 000.dkr.ecr.us-east-1.amazonaws.com/mulesoft/poseidon-runtime-4.3.0@sha256:866daf14a55da1db21c562ddc09487bbb8ffae1dd4cc80b4dc5c64e0ac9c124b
-| docker_id | The id of the container inside docker. | a54a0bf80400b6cd44cae53b9705f5b6330ce4e8efb85c92b3f9c1709829c6fa
-| host | The IP of the node the Pod is running on. | 10.0.178.87
-| namespace_name | The Kubernetes namespace the Pod is in. | rtf
-| pod_id | The id of the Pod. | 118cff63-a5ac-11ea-8414-0e281fcb2861
-| pod_name | The name of the Pod. | testapp-5789f9774-6lxv7
-| labels_app | The app label identifying the name of the app this Pod is supporting. | testapp
-| labels_environment | The Anypoint environment id of the environment this application is deployed in. | 24166311-4e5e-4091-b417-42307747267e
-| labels_organization | The Anypoint organization id of the organization this application is deployed in. | 24166311-4e5e-4091-b417-42307747267e
-| labels_rtf_mulesoft_com_id | The id of the application deployment on Anypoint platform. | 194a32bf-bf7e-4c91-aa4e-44132e5aa76d
-| labels_rtf_mulesoft_com_version | The spec version id of the application deployment on Anypoint platform. | 194a32bf-bf7e-4c91-aa4e-44132e5aa76d
-| labels_type | The type of deployment the pod is running. | MuleApplication
+| container_name | Specifies the name of the container. | app
+| container_image | Specifies the full name of the container image. | 000.dkr.ecr.us-east-1.amazonaws.com/mulesoft/poseidon-runtime-4.3.0:v1.0.0
+| container_hash | Specifies the name of the container image and includes the immutable identifier (SHA256 value).  | 000.dkr.ecr.us-east-1.amazonaws.com/mulesoft/poseidon-runtime-4.3.0@sha256:866daf14a55da1db21c562ddc09487bbb8ffae1dd4cc80b4dc5c64e0ac9c124b
+| docker_id | Specifies the ID of the container in Docker. | a54a0bf80400b6cd44cae53b9705f5b6330ce4e8efb85c92b3f9c1709829c6fa
+| host | Specifies the IP of the node on which the pod is running. | 10.0.178.87
+| namespace_name | Specifies the Kubernetes namespace of the pod. | rtf
+| pod_id | Specifies the ID of the pod. | 118cff63-a5ac-11ea-8414-0e281fcb2861
+| pod_name | Specifies the name of the pod. | testapp-5789f9774-6lxv7
+| labels_app | Specifies the app label for the application the pod is supporting. | testapp
+| labels_environment | Specifies the Anypoint environment ID of the environment in which the application is deployed. | 24166311-4e5e-4091-b417-42307747267e
+| labels_organization | Specifies the Anypoint organization ID of the organization in which the application is deployed. | 24166311-4e5e-4091-b417-42307747267e
+| labels_rtf_mulesoft_com_id | Specifies the ID of the application deployment on Anypoint Platform. | 194a32bf-bf7e-4c91-aa4e-44132e5aa76d
+| labels_rtf_mulesoft_com_version | Specifies the spec version ID of the application deployment on Anypoint Platform. | 194a32bf-bf7e-4c91-aa4e-44132e5aa76d
+| labels_type | Specifies the type of deployment that the pod is running. | MuleApplication
 |===
 
 
