@@ -89,7 +89,7 @@ This is useful for specifying application names that are followed by a wildcard 
 Runtime Fabric supports log forwarding to:
 
 * Anypoint Monitoring
-* Third-party logging solutions using Fluent Bit log forwarding output plugins:
+* Third-party logging solutions using log forwarding output plugins:
 
 ** Azure Log Analytics
 ** Elasticsearch
@@ -107,9 +107,9 @@ Only one external log forwarding configuration is supported at any one time. How
 . Select the applicable Runtime Fabric based on the name used during installation.
 . Select the *Log Forwarding* tab.
 . Select the *Forward to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
-. Select the *Forward application logs to an external service* checkbox to forward logs using a Fluent Bit log forwarding output plugin.
+. Select the *Forward application logs to an external service* checkbox to forward logs using a log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
-.. Enter Fluent Bit configuration information for your third-party logging solution, as shown in the following sections:
+.. Enter configuration information for your third-party logging solution, as shown in the following sections:
 
 *** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>> 
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
@@ -130,7 +130,7 @@ Only one external log forwarding configuration is supported at any one time. How
 | Log Type | Specifies the event type name. | No | `fluentbit`
 |===
 
-Example Fluent Bit output plugin configuration:
+Example output plugin configuration:
 ```
 [OUTPUT]
     Name        azure
@@ -147,7 +147,7 @@ Example Fluent Bit output plugin configuration:
 | Host | Specifies the IP address or hostname of the target Elasticsearch instance. | Yes | 127.0.0.1
 | Port | Specifies the TCP port of the target Elasticsearch instance. | Yes | 9200
 | Index | Specifies the index name. | Yes | fluentbit
-| Path | Elasticsearch accepts new data on HTTP query path `/_bulk`. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such a path on the Fluent Bit side. It adds a path prefix in the indexing HTTP POST URI. | No | Empty string
+| Path | Elasticsearch accepts new data on HTTP query path `/_bulk`. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such a path on the output plugin side. It adds a path prefix in the indexing HTTP POST URI. | No | Empty string
 | Buffer Size | Specifies the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where reading the full response is needed. Note that the size of the response grows depending on the number of records inserted. To specify an unlimited amount of memory, set this value to `False`. Otherwise, set the value according to the Unit Size specification. | No | 4KB
 | HTTP User | Specifies an optional username credential for Elastic X-Pack access. | No | 
 | HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No | 
@@ -168,7 +168,7 @@ Example Fluent Bit output plugin configuration:
 | Tls | Enables or disables TLS support. | No | Off
 |===
 
-Example Fluent Bit output plugin configuration:
+Example output plugin configuration:
 ```
 [OUTPUT]
     Name  es
@@ -198,7 +198,7 @@ Example Fluent Bit output plugin configuration:
 | Tls | Enables or disables TLS support. | No | Off
 |===
 
-Example Fluent Bit output plugin configuration:
+Example output plugin configuration:
 ```
 [OUTPUT]
     Name                    gelf
@@ -223,7 +223,7 @@ Example Fluent Bit output plugin configuration:
 | Tls | Enables or disables TLS support. | No | Off
 |===
 
-Example Fluent Bit output plugin configuration:
+Example output plugin configuration:
 ```
 [OUTPUT]
     Name         splunk
@@ -235,14 +235,10 @@ Example Fluent Bit output plugin configuration:
 
 === Kubernetes Metadata
 
-When forwarding logs to external services through Fluent Bit, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
-
-=== Kubernetes Metadata
-
-When forwarding logs to external services through Fluent Bit, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
+When forwarding logs to external services, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
 
 [%header,cols="3*a"]
-.Kubernetes metadata
+.Kubernetes Metadata
 |===
 | Key | Description | Sample Value
 | container_name | Specifies the name of the container. | app
@@ -262,7 +258,7 @@ When forwarding logs to external services through Fluent Bit, additional metadat
 |===
 
 
-== Disable Anypoint Monitoring or Fluent Bit Log Forwarding
+== Disable Anypoint Monitoring or Output Plugin Log Forwarding
 
 . Navigate to Runtime Manager and select *Applications*.
 . Select the application for which you want to disable log forwarding.
@@ -279,7 +275,7 @@ Application level configuration is not currently supported. You cannot enable or
 
 == Forward Logs to Other External Services
 
-Anypoint Runtime Fabric also enables you to forward application and cluster logs to external logging solutions other than the third-party solutions supported using Fluent Bit log forwarding output plugins. The log forwarder (`rsyslog` client service) built into Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP for viewing, retention, and receiving alerts in a centralized destination. Logging solutions such as Logstash provide methods to receive log data from `rsyslog` clients.
+Anypoint Runtime Fabric also enables you to forward application and cluster logs to external logging solutions other than the third-party solutions supported using log forwarding output plugins. The log forwarder (`rsyslog` client service) built into Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP for viewing, retention, and receiving alerts in a centralized destination. Logging solutions such as Logstash provide methods to receive log data from `rsyslog` clients.
 
 Anypoint Runtime Fabric provides dashboards and alerts for critical metrics when performance or availability is compromised.  An SMTP server is required to receive alerts. To view and configure Anypoint Runtime Fabric dashboards and alerts using Ops Center:
 
