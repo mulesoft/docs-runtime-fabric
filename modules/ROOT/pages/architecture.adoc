@@ -52,7 +52,7 @@ This diagram shows the TCP load balancer used to load balance requests across th
 
 For internal load balancers:
 
-* *Shared Mode* is the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
+* *Shared Mode* is the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
 * *Dedicated Mode* is a setting that is available if one or more dedicated internal load balancer nodes are available in Runtime Fabric. All available resources in these nodes are used for running the internal load balancer, so the options to specify the amount of CPU cores and memory are not available.
 
 image::architecture-network2.png[]
