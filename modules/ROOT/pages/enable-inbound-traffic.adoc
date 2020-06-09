@@ -41,7 +41,7 @@ The inbound load balancer runs on each controller node configured in Runtime Fab
 
 .. Select a mode.
 
-*** *Shared Mode* is the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the amount of CPU and memory specified.
+*** *Shared Mode* is the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
 
 *** *Dedicated Mode* is enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory. If you are setting up a Runtime Fabric with dedicated internal load balancer nodes, include the IP addresses of the dedicated internal load balancer nodes only when configuring the external load balancer.
 +
