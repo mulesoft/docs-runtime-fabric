@@ -74,7 +74,7 @@ This script causes the new node to join the Runtime Fabric cluster.
 sudo gravity status
 ----
 +
-When a dedicated node is added to the cluster, the option to specify a dedicated node is provided when you enable inbound traffic. For dedicated nodes, you cannot specify the amount of CPU cores and memory.
+When a dedicated internal load balancer node is added to the cluster, the option to specify a dedicated node is provided when you enable inbound traffic. For dedicated nodes, you cannot specify the amount of CPU cores and memory.
 
 == Remove a Node from Runtime Fabric
 
