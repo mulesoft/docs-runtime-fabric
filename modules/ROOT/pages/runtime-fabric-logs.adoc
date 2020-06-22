@@ -257,6 +257,7 @@ When forwarding logs to external services, additional metadata might be availabl
 | labels_type | Specifies the type of deployment that the pod is running. | MuleApplication
 |===
 
+== Send a Test Message
 
 == Disable Anypoint Monitoring or Output Plugin Log Forwarding
 
