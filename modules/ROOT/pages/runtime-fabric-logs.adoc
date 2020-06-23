@@ -165,8 +165,8 @@ Example output plugin configuration:
 | Trace Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | No | Off
 | Current Time Index | Specifies using the current time for index generation instead of message record information. | No | Off
 | Logstash Prefix Key | Prefixes keys with this string. | No |
-| Tls | Enables or disables TLS support. | No | Off
-| Tls.ca_file |  Upload CA certificate file. This option is availaible only when Tls is enabled | No |
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
 |===
 
 Example output plugin configuration:
@@ -196,8 +196,8 @@ Example output plugin configuration:
 | Gelf Level Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | No | level
 | Packet Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
-| Tls | Enables or disables TLS support. | No | Off
-| Tls.ca_file |  Upload CA certificate file. This option is availaible only when Tls is enabled | No |
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
 |===
 
 Example output plugin configuration:
@@ -222,8 +222,8 @@ Example output plugin configuration:
 | Splunk Token | Specifies the Authentication Token for the HTTP Event Collector interface. | Yes |
 | HTTP User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
 | HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No |
-| Tls | Enables or disables TLS support. | No | Off
-| Tls.ca_file |  Upload CA certificate file. This option is availaible only when Tls is enabled | No |
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
 |===
 
 Example output plugin configuration:
