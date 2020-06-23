@@ -166,7 +166,7 @@ Example output plugin configuration:
 | Current Time Index | Specifies using the current time for index generation instead of message record information. | No | Off
 | Logstash Prefix Key | Prefixes keys with this string. | No |
 | TLS | Enables or disables TLS support. | No | Off
-| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -197,7 +197,7 @@ Example output plugin configuration:
 | Packet Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
 | TLS | Enables or disables TLS support. | No | Off
-| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -223,7 +223,7 @@ Example output plugin configuration:
 | HTTP User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
 | HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No |
 | TLS | Enables or disables TLS support. | No | Off
-| CA Path Certificate File |  Upload CA certificate file. This option is availaible only when TLS is enabled | No |
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -262,12 +262,18 @@ When forwarding logs to external services, additional metadata might be availabl
 
 == Send a Test Message
 
-You can send a test message to verify connectivity between Runtime Fabric and the third-party log forwarding solution.
+You can send a test message to verify connectivity between Runtime Fabric and the third-party log forwarding solution:
 
 . In Runtime Manager, select *Runtime Fabrics* in the sidebar navigation.
 . Select the applicable Runtime Fabric based on the name used during installation.
 . Select the *Log Forwarding* tab.
-. Select ?
+. Select *Forward application logs to an external service*.
+. Select a service and configure the fields as needed for your log forwarding solution.
+. Save the changes and apply the configuration to the Runtime Fabric cluster.
+. To test the configuration and reachability of the log forwarding solution:
+
+.. Trigger a test message for the selected service.
+.. Verify the text that is forwarded to log forwarding solution.
 
 == Disable Anypoint Monitoring or Output Plugin Log Forwarding
 
