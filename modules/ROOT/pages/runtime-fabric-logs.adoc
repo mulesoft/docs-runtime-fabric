@@ -259,7 +259,12 @@ When forwarding logs to external services, additional metadata might be availabl
 
 == Send a Test Message
 
-You can send a test message to verify connectivity between Runtime Fabric and the third-party log forwarding solution. 
+You can send a test message to verify connectivity between Runtime Fabric and the third-party log forwarding solution.
+
+. In Runtime Manager, select *Runtime Fabrics* in the sidebar navigation.
+. Select the applicable Runtime Fabric based on the name used during installation.
+. Select the *Log Forwarding* tab.
+. Select ?
 
 == Disable Anypoint Monitoring or Output Plugin Log Forwarding
 
