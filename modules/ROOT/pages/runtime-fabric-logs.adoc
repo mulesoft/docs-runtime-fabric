@@ -58,7 +58,7 @@ Log levels are specified per Mule application or API proxy during deployment.
 
 [IMPORTANT]
 
-* You can use Anypoint Runtime Manager to change the Runtime Fabric log level by configuring following property:
+* You can use Anypoint Runtime Manager to change the application log level by configuring the following property:
 ```
 logging.level.<PACKAGE>=LEVEL
 ``` 
