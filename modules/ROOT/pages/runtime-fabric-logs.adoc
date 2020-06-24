@@ -63,7 +63,7 @@ Log levels are specified per Mule application or API proxy during deployment.
 logging.level.<PACKAGE>=LEVEL
 ``` 
 For example, if you use Runtime Manager to add the 
-`logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is emitted from `HttpMessageLogger`.
+`logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is omitted from `HttpMessageLogger`.
 
 == View Logs from an Application
 
