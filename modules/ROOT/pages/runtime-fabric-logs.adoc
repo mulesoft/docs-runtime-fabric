@@ -56,14 +56,12 @@ Runtime Fabric enables you to specify the severity level of messages that are wr
 
 Log levels are specified per Mule application or API proxy during deployment.
 
-[IMPORTANT]
-
-* You can use Anypoint Runtime Manager to change the application log level by configuring the following property:
+You can use Anypoint Runtime Manager to change the application log level by configuring the following property:
 ```
 logging.level.<PACKAGE>=LEVEL
 ``` 
 For example, if you use Runtime Manager to add the 
-`logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is omitted from `HttpMessageLogger`.
+`logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is emitted from `HttpMessageLogger`.
 
 == View Logs from an Application
 
@@ -133,7 +131,7 @@ Only one external log forwarding configuration is supported at any one time. How
 | Key | Description | Required | Default Value
 | Customer ID | Specifies the customer ID or workspace ID string. | Yes |
 | Shared Key | Specifies the primary or secondary connected sources client authentication key. | Yes |
-| Log Type | Specifies the event type name. | No | `runtime-fabric`
+| Log Type | Specifies the event type name. | No | `runtime_fabric`
 |===
 
 Example output plugin configuration:
@@ -152,12 +150,12 @@ Example output plugin configuration:
 | Key | Description | Required | Default Value
 | Host | Specifies the IP address or hostname of the target Elasticsearch instance. | Yes | 127.0.0.1
 | Port | Specifies the TCP port of the target Elasticsearch instance. | Yes | 9200
-| Index | Specifies the index name. | Yes | runtime-fabric
+| Index | Specifies the index name. | Yes | runtime_fabric
 | Path | Elasticsearch accepts new data on HTTP query path `/_bulk`. But it is also possible to serve Elasticsearch behind a reverse proxy on a subpath. This option defines such a path on the output plugin side. It adds a path prefix in the indexing HTTP POST URI. | No | Empty string
 | Buffer Size | Specifies the buffer size used to read the response from the Elasticsearch HTTP service. This option is useful for debugging purposes where reading the full response is needed. Note that the size of the response grows depending on the number of records inserted. To specify an unlimited amount of memory, set this value to `False`. Otherwise, set the value according to the Unit Size specification. | No | 4KB
 | HTTP User | Specifies an optional username credential for Elastic X-Pack access. | No | 
 | HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No | 
-| Type | Specifies the type name. | No | runtime-fabric
+| Type | Specifies the type name. | No | runtime_fabric
 | Logstash Format | Enables Logstash format compatibility. This option takes a Boolean value: `True`, `False`, `On`, or `Off`. | No |
 | Logstash Prefix | When `Logstash Format` is enabled, the `Index` name is composed of a prefix and the date. For example, if `Logstash Prefix` is set to `mydata`, your index becomes `mydata-YYYY.MM.DD`. The last string that is appended belongs to the date when the data is generated. | No | logstash
 | Logstash DateFormat | Specifies the time format (based on `strftime`) that is used to generate the second part of the `Index` name. | No | %Y.%m.%d
@@ -171,7 +169,8 @@ Example output plugin configuration:
 | Trace Error | When enabled, prints the Elasticsearch API calls to stdout when Elasticsearch returns an error. | No | Off
 | Current Time Index | Specifies using the current time for index generation instead of message record information. | No | Off
 | Logstash Prefix Key | Prefixes keys with this string. | No |
-| Tls | Enables or disables TLS support. | No | Off
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -201,7 +200,8 @@ Example output plugin configuration:
 | Gelf Level Key | Specifies the key to be used as the log level. Its value must be a standard syslog level (between 0 and 7). | No | level
 | Packet Size | Specifies the size of packets to be sent if the transport protocol is set to `udp`. | No | 1420
 | Compress | Specifies compression of your UDP packets if the transport protocol is set to `udp`. | No | true
-| Tls | Enables or disables TLS support. | No | Off
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -226,7 +226,8 @@ Example output plugin configuration:
 | Splunk Token | Specifies the Authentication Token for the HTTP Event Collector interface. | Yes |
 | HTTP User | Specifies an optional username for basic authentication on the HTTP Event Collector. | No |
 | HTTP Passwd | Specifies a password for the user defined in `HTTP User`. | No |
-| Tls | Enables or disables TLS support. | No | Off
+| TLS | Enables or disables TLS support. | No | Off
+| CA Path Certificate File |  Specifies the CA certificate file to be uploaded. This option is available only when TLS is enabled. | No |
 |===
 
 Example output plugin configuration:
@@ -263,6 +264,20 @@ When forwarding logs to external services, additional metadata might be availabl
 | labels_type | Specifies the type of deployment that the pod is running. | MuleApplication
 |===
 
+== Send a Test Message
+
+You can send a test message to verify connectivity between Runtime Fabric and the third-party log forwarding solution:
+
+. In Runtime Manager, select *Runtime Fabrics* in the sidebar navigation.
+. Select the applicable Runtime Fabric based on the name used during installation.
+. Select the *Log Forwarding* tab.
+. Select *Forward application logs to an external service*.
+. Select a service and configure the fields as needed for your log forwarding solution.
+. Save the changes and apply the configuration to the Runtime Fabric cluster.
+. To test the configuration and reachability of the log forwarding solution:
+
+.. Trigger a test message for the selected service.
+.. Verify the text that is forwarded to log forwarding solution.
 
 == Disable Anypoint Monitoring or Output Plugin Log Forwarding
 
