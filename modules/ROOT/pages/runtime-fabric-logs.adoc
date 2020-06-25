@@ -101,7 +101,9 @@ Runtime Fabric supports log forwarding to:
 ** Splunk
 
 [NOTE]
-Only one external log forwarding configuration is supported at any one time. However, you can enable Anypoint log forwarding and an external log forwarding service at the same time.
+
+* Only one external log forwarding configuration is supported at any one time. However, you can enable Anypoint log forwarding and an external log forwarding service at the same time.
+* External log forwarding does not currently support proxies that are configured for a Runtime Fabric cluster. You must explicitly configure firewall rules to allow the outbound IP address and port of the external log forwarding service.
 
 === Enable Log Forwarding
 
