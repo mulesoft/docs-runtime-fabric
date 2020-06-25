@@ -355,9 +355,6 @@ If you experience issues with log forwarding:
 ** `kubectl -nrtf get pods -lapp=external-log-forwarder` for a list of all external log forwarding pods. Verify that these pods are in `Running` state.
 ** `kubectl -nrtf logs -l app=external-log-forwarder` to view the logs of external log forwarding pods. 
 
-== Log forwarding Limitations 
-**  Current External log forwarding configuration setup on RTF does not support Proxy. If the external log server is behind the proxy, the solution cant forward the logs to server.  
-
 == See Also
 
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
