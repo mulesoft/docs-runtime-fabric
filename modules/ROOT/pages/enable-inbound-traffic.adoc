@@ -226,6 +226,17 @@ HTTP messages not containing this header field will be rejected. Two common HTTP
 *Default value*: Blank and unchecked.
 
 |=== 
++
+If you are using WebSockets:
++
+* Provide the correct request headers to upgrade the HTTP connection to WebSockets.
+* xref:mule-runtime::mule-server-notifications[Configure Mule runtime engine with a WebSockets Listener].
+* Increase the following timeout values:
++
+** `Connection Idle Time-out`
+** `Read Request Time-out`
+** `Read Response Time-out`
+** `Write Response Time-out`
 
 . (Optional) Configure Internal Load Balancer Logs
 +
