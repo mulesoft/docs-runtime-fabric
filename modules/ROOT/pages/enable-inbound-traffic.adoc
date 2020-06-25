@@ -231,12 +231,12 @@ If you are using WebSockets:
 +
 * Provide the correct request headers to upgrade the HTTP connection to WebSockets.
 * xref:mule-runtime::mule-server-notifications[Configure Mule runtime engine with a WebSockets Listener].
-* Increase the following timeout values:
+* Increase the following timeout values. Suggested default values are provided to help you get started with WebSockets. Actual values depend on your application:
 +
-** `Connection Idle Time-out`
-** `Read Request Time-out`
-** `Read Response Time-out`
-** `Write Response Time-out`
+** `Connection Idle Time-out`: ???
+** `Read Request Time-out`: ???
+** `Read Response Time-out`: ???
+** `Write Response Time-out`: ???
 
 . (Optional) Configure Internal Load Balancer Logs
 +
