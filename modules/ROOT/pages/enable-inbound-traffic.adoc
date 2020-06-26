@@ -67,6 +67,9 @@ Note that Runtime Fabric can use up to the maximum number shown if the cores are
 +
 All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a `301` response to redirect to HTTPS on port 443.
 +
+[NOTE]
+You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
++
 You can configure the private key and public certificate for a TLS-enabled server in one of the following ways:
 
 ** Option 1: *Upload PEM*
