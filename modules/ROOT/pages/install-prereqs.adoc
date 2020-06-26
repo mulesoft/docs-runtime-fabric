@@ -74,6 +74,9 @@ Anypoint Runtime Fabric requires one of the following operating systems:
 * Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7, v7.8
 * CentOS v7.4, v7.5, v7.6, v7.7, v7.8
 
+[IMPORTANT]
+Currently, there is a known Control Groups (cgroups) memory leaking issue, which can lead to pod creation failure or node malfunction. Ensure that you are using Linux kernel version 3.10.0-1075 or later, and refer to https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[RTF - How to Resolve the Cgroup Memory Leaking Issue in Runtime Fabric] for additional information.
+
 Use the same operating system for each node. If you attempt to install Runtime Fabric on 
 a different operating system version or distribution, the Runtime Fabric installer fails.
 
