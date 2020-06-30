@@ -233,10 +233,10 @@ If you are using WebSockets:
 * xref:mule-runtime::mule-server-notifications[Configure Mule runtime engine with a WebSockets Listener].
 * Increase the following timeout values. Suggested default values are provided to help you get started with WebSockets. Actual values depend on your application:
 +
-** `Connection Idle Time-out`: ???
-** `Read Request Time-out`: ???
-** `Read Response Time-out`: ???
-** `Write Response Time-out`: ???
+** `Connection Idle Time-out`: Increase to 900 seconds (15 minutes) to ensure consistency with the WebSockets Mule Application default value.
+** `Read Request Time-out`
+** `Read Response Time-out`
+** `Write Response Time-out`
 
 . (Optional) Configure Internal Load Balancer Logs
 +
