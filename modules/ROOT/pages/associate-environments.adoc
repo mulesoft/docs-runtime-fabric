@@ -15,10 +15,16 @@ To associate an environment to a Runtime Fabric:
 
 == Production Environments
 
-When selecting a production environment, a dialog appears to verify Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and familiarity with possible failure modes.
+When selecting a production environment, a dialog is displayed that verifies Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and possible failure modes.
 
-[IMPORTANT]
-Verify that all these steps are complete before operating and deploying production applications on Runtime Fabric.
+If your Runtime Fabric is running with an unsupported configuration or does not meet the requirements for a production environment, one of the following messages is displayed:
+
+* `This Runtime Fabric is not supported for any workloads. Learn more.`
+* `This Runtime Fabric is suitable for non-production workloads only. Learn more.`
+
+Refer to xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites] for additional information.
+
+Proper configuration must be complete before operating and deploying production applications on Runtime Fabric.
 
 == Share across Business Groups
 
