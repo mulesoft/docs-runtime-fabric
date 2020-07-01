@@ -150,8 +150,12 @@ Anypoint Runtime Fabric and Anypoint Platform.
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
 
-* `transport-layer.prod.cloudhub.io`
-* `configuration-resolver.prod.cloudhub.io`
+* US control plane
+** `transport-layer.prod.cloudhub.io`
+** `configuration-resolver.prod.cloudhub.io`
+* EU control plane
+** `transport-layer.prod-eu.msap.io`
+** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
 .Port IP Addresses and Hostnames to Whitelist
@@ -181,22 +185,6 @@ Because the following endpoints use mutual TLS authentication to establish the c
 .2+| 443 .2+| HTTPS | US control plane: `configuration-resolver.prod.cloudhub.io` | Anypoint Configuration Resolver.
 | EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
-
-=== Mutual Authentication with Anypoint Platform
-
-On Runtime Fabric instances running version 1.4.x and later, you can use the Runtime Manager *Settings* page to enable mutual 
-authentication for the cluster. Enabling mutual authentication provides better security for communications between the Runtime Fabric cluster and Anypoint Platform and is highly recommended.
-
-Before you enable mutual authentication, verify that the following endpoint and port is whitelisted and reachable from the cluster:
-
-* `configuration-resolver.prod.cloudhub.io:443`
-
-You can use the latest xref:install-rtfctl.adoc[rtfctl] to help validate all required endpoints are reachable:
-
-----
-cd /opt/anypoint/runtimefabric
-./rtfctl test outbound-network
-----
 
 
 === Required Network Settings

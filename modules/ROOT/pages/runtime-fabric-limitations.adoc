@@ -40,3 +40,24 @@ The following table lists the approximate number of requests (averaging 10 KB) t
 The internal load balancer runs on the controller VMs of Runtime Fabric. Configure the VM size based on the amount and 
 type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
 Refer to xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+
+== Mutual Authentication with Anypoint Platform
+
+On Runtime Fabric instances running version 1.3.60 and later, you can use the Runtime Fabric *Settings* page in Runtime Manager to enable mutual 
+authentication for the cluster. Mutual authentication improves the security of communication between Runtime Fabric and Anypoint Platform, and is highly recommended.
+
+Before you enable mutual authentication, verify the following endpoint and port is reachable from your Runtime Fabric:
+
+* US control plane
+** `configuration-resolver.prod.cloudhub.io`
+* EU control plane
+** `configuration-resolver.prod-eu.msap.io`
+
+You can use the latest xref:install-rtfctl.adoc[rtfctl] to help validate all required endpoints are reachable:
+
+----
+cd /opt/anypoint/runtimefabric
+./rtfctl update
+./rtfctl test outbound-network
+----
+
