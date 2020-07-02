@@ -92,7 +92,7 @@ Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----
 
-Refer to <CLI tools manual> for additional information or run the `rtfctl heapdump -h` command.
+For additional information, run the `rtfctl heapdump -h` command.
 
 == See Also
 
