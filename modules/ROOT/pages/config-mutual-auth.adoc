@@ -12,7 +12,7 @@ Before enabling mutual authentication, verify the following endpoint and port is
 * EU control plane:
 ** `configuration-resolver.prod-eu.msap.io`
 
-You can use the latest version of the xref:install-rtfctl.adoc[rtfctl] utility to validate all required endpoints are reachable from each Runtime Fabric node:
+You can use the latest version of the xref:install-rtfctl.adoc[rtfctl] utility to validate all required endpoints are reachable from each Runtime Fabric controller node:
 
 ----
 cd /opt/anypoint/runtimefabric
