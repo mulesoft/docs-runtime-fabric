@@ -26,7 +26,7 @@
  ** xref:using-opscenter.adoc[Monitor Anypoint Runtime Fabric]
  ** xref:manage-backup-restore.adoc[Backup and Restore Runtime Fabric]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
- ** xref:install-rtfctl.adoc[Install rtfctl]
+ ** xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool]
  ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
