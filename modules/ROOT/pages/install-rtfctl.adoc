@@ -1,9 +1,9 @@
-= Install rtfctl
+= Install the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Install the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
+Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
 
 * Get the status of a Runtime Fabric.
 * Perform a heap dump or a thread dump of a running application.
@@ -74,7 +74,7 @@ sudo chmod +x rtfctl
 
 * For more information about a specific command, run `rtfctl <command> -h`.
 
-* To install a Mule license:
+=== Install a Mule license:
 
 .. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 .. Run the following command:
@@ -83,6 +83,16 @@ sudo chmod +x rtfctl
 $ sudo ./rtfctl apply mule-license '<license-key-information>'
 Updating rtf namespace... OK
 ----
+
+=== Take a Heap Dump
+
+----
+[ec2-user@ip-172-31-0-13 runtimefabric]$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
+Dumping heap for hello-world-f76484d8-l44qv...
+Heap dump written to /tmp/dump.hprof
+----
+
+For additional information, run the `rtfctl heapdump -h` command.
 
 == See Also
 
