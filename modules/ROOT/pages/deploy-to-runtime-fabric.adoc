@@ -14,7 +14,7 @@ Before deploying an application to Anypoint Runtime Fabric, you must perform the
 * Determine the resource allocation requirements for your application. See xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Your Anypoint user may require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
 
-== Deploy an Application
+== Manually Deploy an Application
 
 To deploy an application, perform the following steps:
 
@@ -73,6 +73,10 @@ If the *Deploy Application* button is disabled, ensure that you have uploaded a 
 _Result_: Runtime Manager displays a status message confirming the application deployment. After the deployment starts, you'll be directed to the applications list page where you can view the deployment status.
 
 For newly deployed applications, the status initially displays as *Starting*. The status updates to *Started* if the application is successful. Monitor the application status to ensure that it starts successfully.
+
+== Configure Continuous Deployment
+
+To set up a workflow for on-premises application deployment on Runtime Fabric, refer to xref:runtime-manager::continuous-deployment#workflow-for-on-premises-runtime-fabric.adoc[Workflow for On-Premises Runtime Fabric].
 
 == Verification
 
