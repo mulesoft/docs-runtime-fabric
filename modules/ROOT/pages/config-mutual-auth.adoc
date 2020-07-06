@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Starting with version 1.3.60, you can use the Runtime Fabric *Settings* page in Runtime Manager to enable mutual authentication on the connectivity between the Runtime Fabric and Anypoint control plane. Mutual authentication improves the security of communication between Runtime Fabric and Anypoint Platform and is highly recommended. Runtime Fabrics created after July 6, 2020 will have this setting enabled by default.
+Starting with version 1.3.60, you can use the Runtime Fabric *Settings* page in Runtime Manager to enable mutual authentication on the connectivity between the Runtime Fabric and Anypoint control plane. Mutual authentication improves the security of communication between Runtime Fabric and Anypoint Platform and is highly recommended. Runtime Fabrics created after July 8, 2020 will have this setting enabled by default.
 
 Before enabling mutual authentication, verify the following endpoint and port is reachable from all of the Runtime Fabric controller and worker nodes:
 
