@@ -243,13 +243,13 @@ Example output plugin configuration:
     Tls          On
 ```
 
-==== Forward Logs Configuration Parameters
+==== Configure Log Forwarding
 
-You can configure the Forward Logs section to enable or disable the forwarding of logs from,
+The following configuration options are available:
 
-. Mule Applications: Forward logs from Mule applications.
-. Internal load balancer and component logs : Forward logs from Rtf namespace compenents and Ingress load balancer.
-. Runtime Fabric appliance : Forward logs from Monitoring and Kube-System namespaces.
+* Mule Applications: Forward logs from Mule applications.
+* Internal load balancer and component logs: Forward logs from Runtime Fabric namespace compenents and internal load balancers.
+* Runtime Fabric appliance: Forward logs from Anypint Monitoring and Kube-system namespaces.
 
 [NOTE]
 ====
