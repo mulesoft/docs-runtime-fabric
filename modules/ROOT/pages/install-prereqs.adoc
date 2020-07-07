@@ -153,7 +153,12 @@ Anypoint Runtime Fabric and Anypoint Platform.
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
 
-* `transport-layer.prod.cloudhub.io`
+* US control plane
+** `transport-layer.prod.cloudhub.io`
+** `configuration-resolver.prod.cloudhub.io`
+* EU control plane
+** `transport-layer.prod-eu.msap.io`
+** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
 .Port IP Addresses and Hostnames to Whitelist
@@ -173,14 +178,17 @@ Because the following endpoints use mutual TLS authentication to establish the c
 .2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
 .2+| 443 .2+| HTTPS | US control plane: `494141260463.dkr.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
-| EU control plane: `494141260463.dkr.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
+| EU control plane: `655988475869.dkr.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
 .2+| 443 .2+| HTTPS | US control plane: `api.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `api.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
 .2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 | EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com` `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 .2+| 443 .2+| HTTPS | US control plane: `runtime-fabric.s3.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
+.2+| 443 .2+| HTTPS | US control plane: `configuration-resolver.prod.cloudhub.io` | Anypoint Configuration Resolver.
+| EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
+
 
 === Required Network Settings
 
