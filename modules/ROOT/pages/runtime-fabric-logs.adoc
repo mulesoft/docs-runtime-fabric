@@ -243,6 +243,20 @@ Example output plugin configuration:
     Tls          On
 ```
 
+==== Forward Logs Configuration Parameters
+
+You can configure the Forward Logs section to enable or disable the forwarding of logs from,
+
+. Mule Applications: Forward logs from Mule applications.
+. Internal load balancer and component logs : Forward logs from Rtf namespace compenents and Ingress load balancer.
+. Runtime Fabric appliance : Forward logs from Monitoring and Kube-System namespaces.
+
+[NOTE]
+====
+* By default all options on Forward logs configuration are checked.
+* Configuring Forward logs from Mule applications is not currently supported, so this option is checked and disabled. You can still enable or disable per application log forwarding from Applications page.
+====
+
 === Kubernetes Metadata
 
 When forwarding logs to external services, additional metadata might be available in some providers. When performing searches, the user can leverage these metadata labels to help narrow down search results and focus on the logs only from containers that matters.
@@ -282,7 +296,7 @@ You can send a test message to verify connectivity between Runtime Fabric and th
 .. Trigger a test message for the selected service.
 .. Verify the text that is forwarded to log forwarding solution.
 
-== Disable Anypoint Monitoring or Output Plugin Log Forwarding
+== Disable Anypoint Monitoring or External Log Forwarding per Application
 
 . Navigate to Runtime Manager and select *Applications*.
 . Select the application for which you want to disable log forwarding.
@@ -291,11 +305,6 @@ You can send a test message to verify connectivity between Runtime Fabric and th
 +
 ** *Forward logs to Anypoint Monitoring* 
 ** *Forward logs to <third-party service>*
-
-[WARNING]
-Disabling the third-party log forwarding option deletes all configuration information provided in the *Runtime Fabrics* page in Runtime Manager.
-
-Application level configuration is not currently supported. You cannot enable or disable application level log forwarding for an external log forwarding service. 
 
 == Forward Logs to Other External Services
 
