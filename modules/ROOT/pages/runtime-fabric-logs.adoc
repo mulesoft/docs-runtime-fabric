@@ -248,13 +248,13 @@ Example output plugin configuration:
 The following configuration options are available:
 
 * Mule Applications: Forward logs from Mule applications.
-* Internal load balancer and component logs: Forward logs from Runtime Fabric namespace compenents and internal load balancers.
-* Runtime Fabric appliance: Forward logs from Anypint Monitoring and Kube-system namespaces.
+* Internal load balancer and components: Forward logs from Runtime Fabric compenents and Internal load balancers.
+* Runtime Fabric appliance: Forward logs from Monitoring and Appliance services.
 
 [NOTE]
 ====
-* By default all options on Forward logs configuration are checked.
-* Configuring Forward logs from Mule applications is not currently supported, so this option is checked and disabled. You can still enable or disable per application log forwarding from Applications page.
+* All options are enabled by default.
+* Disabling log forwarding for Mule applications is not supported. Log forwarding can be disabled per application during deployment.
 ====
 
 === Kubernetes Metadata
@@ -305,6 +305,7 @@ You can send a test message to verify connectivity between Runtime Fabric and th
 +
 ** *Forward logs to Anypoint Monitoring* 
 ** *Forward logs to <third-party service>*
+. Select 
 
 == Forward Logs to Other External Services
 
