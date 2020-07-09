@@ -248,8 +248,8 @@ Example output plugin configuration:
 The following configuration options are available:
 
 * Mule Applications: Forward logs from Mule applications.
-* Internal load balancer and components: Forward logs from Runtime Fabric compenents and Internal load balancer.
-* Runtime Fabric appliance: Forward logs from Monitoring and Appliance services.
+* Internal load balancer and components: Forward logs from Runtime Fabric compenents and the internal load balancer.
+* Runtime Fabric appliance: Forward logs from monitoring and appliance services.
 
 [NOTE]
 ====
@@ -305,7 +305,7 @@ You can send a test message to verify connectivity between Runtime Fabric and th
 +
 ** *Forward logs to Anypoint Monitoring* 
 ** *Forward logs to <third-party service>*
-. Select the *Deploy* to re-deploy the application.
+. Select *Deploy* to re-deploy the application.
 
 == Forward Logs to Other External Services
 
