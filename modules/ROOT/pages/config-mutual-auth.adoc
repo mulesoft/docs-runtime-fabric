@@ -13,7 +13,7 @@ Before enabling mutual authentication, verify the following endpoint and port ar
 ** `configuration-resolver.prod-eu.msap.io:443`
 
 [IMPORTANT]
-Failure to meet the connectivity requirements above before enabling Mutual Authentication will result in errors while creating/managing application deployments in the Runtime Fabric.
+Failure to meet the previously described connectivity requirements before enabling mutual authentication results in errors with creating/managing application deployments in Runtime Fabric.
 
 You can use the latest version of the xref:install-rtfctl.adoc[rtfctl] utility to validate that all required endpoints are reachable from each Runtime Fabric controller node:
 
