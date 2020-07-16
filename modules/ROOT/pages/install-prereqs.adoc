@@ -142,13 +142,13 @@ The following table lists all ports that must be open, along with the respective
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
-=== Port IP Addresses and Hostnames to Whitelist
+=== Port IP Addresses and Hostnames to Allowlist
 
-In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components 
+In your network configuration, you must allowlist the hostnames and ports of Anypoint Platform components 
 and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download 
 dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your whitelists to allow communication between 
+The following table lists the ports and hostnames to add to your allowlists to allow communication between 
 Anypoint Runtime Fabric and Anypoint Platform.
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
@@ -161,7 +161,7 @@ Because the following endpoints use mutual TLS authentication to establish the c
 ** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
-.Port IP Addresses and Hostnames to Whitelist
+.Port IP Addresses and Hostnames to Allowlist
 |===
 | Port | Protocol | Hostnames | Description
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
