@@ -137,7 +137,7 @@ To generate key material for testing purposes and create a TLS context in the se
 
 . (Optional) Select Security Policies
 +
-A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists. 
+A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Allowlist*, or *Denial of Service (DoS)* dropdown lists. 
 +
 [NOTE]
 To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account. If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
