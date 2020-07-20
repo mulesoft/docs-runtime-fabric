@@ -17,8 +17,26 @@ You can allocate the following resources when deploying an application:
 The amount of vCPU guaranteed to the application and reserved for its use.
 ** `vCPU Limit`
 +
-The maximum amount of vCPU the application can use (the level to which it can burst). This is shared CPU on the worker node. 
+The maximum amount of vCPU the application can use (the level to which it can burst). This is shared CPU on the worker node.
+
 * Memory
+
+== CPU and Licensed Cores
+
+The physical CPU core capacity often differs from the MuleSoft license core amount. 
+
+* The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes.
+* The MuleSoft license core amount is the entitlement needed for mule application deployment. 
+
+For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores. You cannot purchase fractional MuleSoft license core amounts.
+
+You are only required to purchase a license for the compute power you utilize. The underlying Runtime Fabric cluster does not need to be licensed. To measure utilization, use the dashboard in Ops Center. 
+
+=== MuleSoft License Compliance
+
+You will remain compliant with your MuleSoft license as long as Mule does not use more CPU cores than provided by your MuleSoft license at any given time.
+
+To ensure that you remain compliant with your MuleSoft license, use the dasboard in Ops Center to determine your vCPU usage across all Mule applications.
 
 == vCPU Allocation
 
