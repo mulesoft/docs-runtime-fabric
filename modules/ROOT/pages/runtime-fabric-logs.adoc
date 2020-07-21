@@ -305,7 +305,7 @@ You can send a test message to verify connectivity between Runtime Fabric and th
 +
 ** *Forward logs to Anypoint Monitoring* 
 ** *Forward logs to <third-party service>*
-. Select *Deploy* to re-deploy the application.
+. Select *Deploy* to redeploy the application.
 
 == Forward Logs to Other External Services
 
