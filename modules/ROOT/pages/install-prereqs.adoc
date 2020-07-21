@@ -286,7 +286,7 @@ The maximum number of supported controller nodes is 5.
 Each controller node must have the following resources:
 
 ** A minimum of 2 dedicated cores.
-** A minimum of 8 GiB memory for each dedicated core.
+** A minimum of 8 GiB memory.
 +
 You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
 ** A minimum of 80 GiB dedicated disk for the operating system.
@@ -330,7 +330,7 @@ For example, your Runtime Fabric could have three worker nodes and two CPU cores
 Each worker node must have the following resources:
 
 ** A minimum of 2 dedicated cores. 
-** A minimum of 15 GiB memory for each dedicated core.
+** A minimum of 15 GiB memory.
 +
 You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
 ** A minimum of 80 GiB dedicated disk for the operating system.
