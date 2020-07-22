@@ -25,16 +25,16 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 
 The physical CPU core capacity often differs from the MuleSoft license core amount. 
 
-* The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes. It's the vCPU shown in the Anypoint Runtime Fabric console
-* The MuleSoft license core amount is the entitlement needed for mule application deployment. The license is written into the license file. 
+* The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes, which is displayed as vCPU utilization in the Runtime Fabric console.
+* The MuleSoft license core amount is the entitlement needed for mule application deployment and is documented in your license file. 
 
 You cannot purchase fractional MuleSoft license core amounts. For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores. 
 
-You are only required to purchase a license for the compute power you utilize. The underlying Runtime Fabric cluster does not need to be licensed. The actual application utilized core must equal or below the license core you bought. To measure utilization, use the dashboard in Ops Center. 
+You are only required to purchase a license for the compute power you utilize. The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal or the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center. 
 
 === MuleSoft License Compliance
 
-Customers are responsible for ensuring they remain compliant with their Mule licensing. You will remain compliant with your MuleSoft license as long as Mule does not use more CPU cores than provided by your MuleSoft license at any given time. ≈
+Customers are responsible for ensuring they remain compliant with their MuleSoft licensing. To remain compliant, ensure that you do not exceed the amount of CPU cores provided by your MuleSoft license at any given time.
 
 To ensure that you remain compliant with your MuleSoft license, use the dasboard in Ops Center to determine your vCPU usage across all Mule applications.
 
