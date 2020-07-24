@@ -25,6 +25,35 @@ Installing Runtime Fabric within an existing Kubernetes-based PaaS is not suppor
 
 If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
 
+== Shared Responsibility for On-Premises Runtime Fabric
+
+The successful operation of on-premises Runtime Fabric instances is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Without the required infrastructure and proper maintenance, Runtime Fabric will not operate successfully.
+
+* MuleSoft responsibility - MuleSoft manages the health of the Runtime Fabric appliance and components.
+* Customer responsibility - You are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric.
++
+** Infrastructure includes:
++
+*** VM resources (CPU, Memory)
++
+*** Disk performance and capacity
++
+*** Operating systems and kernel patching
++
+*** Network ports
++
+*** Syncing system time across all VMs
++
+** For infrastructure provisioning and management, you will need the assistance of your organization’s:
++
+*** DevOps team to provision and manage the infrastructure
++
+*** Network team to whitelist ports and configure proxy settings
++
+*** Security team to review for compliance and obtain security certificates
+
+Refer to xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites] for additional information.
+
 == Connecting Runtime Fabric to Anypoint Management Center
 
 Anypoint Runtime Fabric supports the following:
