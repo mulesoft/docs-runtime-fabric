@@ -26,7 +26,7 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 The physical CPU core capacity often differs from the MuleSoft license core amount. 
 
 * The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes, which is displayed as vCPU utilization in the Runtime Fabric console.
-* The MuleSoft license core amount is the entitlement needed for mule application deployment and is documented in your license file. 
+* The MuleSoft license core amount is the entitlement needed for mule application deployment. 
 
 You cannot purchase fractional MuleSoft license core amounts. For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores. 
 
