@@ -33,8 +33,9 @@ The following image illustrates MuleSoft and customer responsibilities for on-pr
 
 image::sharedresponsibility.png[Runtime Fabric Shared Responsiblities]
 
-* MuleSoft responsibility - MuleSoft manages the health of the Runtime Fabric appliance and components, Mule runtime engine, and applications that are deployed to Runtime Fabric.
-* Customer responsibility - Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric.
+* MuleSoft responsibility - MuleSoft manages the RTF control plane and is responsible for the delivered components, Runtime Fabric appliance and Runtime Fabric agent, Mule runtime engine and other dependencies for Mule appications.
+
+* Customer responsibility - Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric and the Runtime Fabric clusters.  
 +
 ** Infrastructure includes:
 +
