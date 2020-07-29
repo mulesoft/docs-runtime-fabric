@@ -33,9 +33,13 @@ The following image illustrates MuleSoft and customer responsibilities for on-pr
 
 image::sharedresponsibility.png[Runtime Fabric Shared Responsiblities]
 
-* MuleSoft responsibility - MuleSoft manages the RTF control plane and is responsible for the delivered components, Runtime Fabric appliance, Runtime Fabric agent, Mule runtime engine, and other dependencies for Mule appications.
+* MuleSoft responsibility:
++
+MuleSoft manages the Runtime Fabric control plane and is responsible for the delivered components, Runtime Fabric appliance, Runtime Fabric agent, Mule runtime engine, and other dependencies for Mule appications.
 
-* Customer responsibility - Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric and Runtime Fabric clusters.  
+* Customer responsibility:
++
+Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric and Runtime Fabric clusters.  
 +
 ** Infrastructure includes:
 +
@@ -47,15 +51,15 @@ image::sharedresponsibility.png[Runtime Fabric Shared Responsiblities]
 +
 *** Network ports
 +
-*** Syncing system time across all VMs
+*** Synchronization of system time across all VMs
 +
-** For infrastructure provisioning and management, you will need the assistance of your organization’s:
+** For infrastructure provisioning and management, you will need the assistance of the following teams in your organization:
 +
 *** DevOps team to provision and manage the infrastructure
 +
-*** Network team to whitelist ports and configure proxy settings
+*** Network team to specify allowed ports and configure proxy settings
 +
-*** Security team to review for compliance and obtain security certificates
+*** Security team to verify compliance and obtain security certificates
 
 Refer to xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites] for additional information.
 
