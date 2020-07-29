@@ -11,7 +11,7 @@ This topic describes how to install Anypoint Runtime Fabric on your Azure accoun
 Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric]. If your infrastructure does not meet the minimum hardware, operating system, 
 and networking requirements, Runtime Fabric will not operate successfully.
 
-Your organization's operations, networking and security teams must be involved. See 
+Your organization's operations, networking, and security teams must be involved. See 
 xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
