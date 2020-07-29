@@ -4,11 +4,31 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-port-reqs.adoc, install-sys-reqs.adoc
 
-Review the following requirements with your operations and IT teams to ensure that all prerequisites are met before installing Anypoint Runtime Fabric. The Runtime Fabric installation process fails if the minimum requirements are not met.
+== Before You Begin
+
+[IMPORTANT]
+Most Anypoint Runtime Fabric issues result from improper infrastructure provisioning or configuration. 
+
+Before you install Runtime Fabric :
+
+* Refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric].
++
+If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
+
+* Enlist the assistance of your organization’s:
+** DevOps team to provision and manage the infrastructure
+** Network team to whitelist ports and configure proxy settings
+** Security team to review for compliance and obtain security certificates
++
+Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
+
+* Review the following requirements and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
++
+The Runtime Fabric installation process fails if the minimum requirements are not met.
+
+See xref:architecture.adoc[Runtime Fabric Architecture] for a description of development and production configurations.
 
 If needed, contact your MuleSoft representative for assistance.
- 
-See xref:architecture.adoc[Runtime Fabric Architecture] for a description of development and production configurations.
 
 == General Knowledge
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
