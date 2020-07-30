@@ -24,7 +24,7 @@ Business Groups::
 The maximum number of Runtime Fabrics you can create in a business group is 50.
 
 Object Store Persistence::
-https://docs.mulesoft.com/mule-runtime/4.3/creating-and-managing-a-cluster-manually#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters.
+xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters.
 
 Internal Load Balancer::
 The following table lists the approximate number of requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
