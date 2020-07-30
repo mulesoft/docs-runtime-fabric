@@ -35,7 +35,7 @@ sudo ./rtfctl get secure-properties -n <environment_id>
 
 == Access Secure Properties
 
-You can access secure properties using `${my.property.name}`.
+You can access secure properties from inside your Mule application using `${my.property.name}`.
 
 == See Also
 
