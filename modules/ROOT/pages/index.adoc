@@ -27,19 +27,19 @@ If you are already using a PaaS solution, MuleSoft recommends deploying Runtime 
 
 == Shared Responsibility for On-Premises Runtime Fabric
 
-The successful operation of on-premises Runtime Fabric instances is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Without the required infrastructure and proper maintenance, Runtime Fabric will not operate successfully.
+The successful operation of on-premises Runtime Fabric instances is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
-image::sharedresponsibility.png[Runtime Fabric Shared Responsiblities]
+image::runtimefabricresponsibility.png[Runtime Fabric Shared Responsiblities]
 
 * MuleSoft responsibility:
 +
-MuleSoft manages the Runtime Fabric control plane and is responsible for the delivered components, Runtime Fabric appliance, Runtime Fabric agent, Mule runtime engine, and other dependencies for Mule appications.
+MuleSoft manages the Runtime Fabric appliance and is responsible for the delivered components, Runtime Fabric appliance, Runtime Fabric agent, Mule runtime engine, and other dependencies for Mule appications.
 
 * Customer responsibility:
 +
-Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric and Runtime Fabric clusters.  
+Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric.  
 +
 ** Infrastructure includes:
 +
