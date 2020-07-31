@@ -31,7 +31,7 @@ The successful operation of on-premises Runtime Fabric instances is a shared res
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
-image::sharedresponsibility.png[Runtime Fabric Shared Responsiblities]
+image::sharedresponsibility2.png[Runtime Fabric Shared Responsiblities]
 
 * MuleSoft responsibility:
 +
