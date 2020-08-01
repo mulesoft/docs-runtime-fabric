@@ -30,7 +30,9 @@ Modify the Azure Resource Manager template to reference an existing Virtual Netw
 == Installation
 
 [NOTE]
-The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. If you require assistance, contact your MuleSoft representative.
+The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
+
+If you require assistance, contact your MuleSoft representative.
 
 Before installing Runtime Fabric, download the Azure Resource Manager template from Runtime Manager:
 
