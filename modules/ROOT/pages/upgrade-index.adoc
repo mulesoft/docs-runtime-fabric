@@ -268,18 +268,12 @@ sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --phase=/masters/node
 . Wait for the command to run. If the command does not terminate with an error, resume the upgrade by running the following command:
 +
 ----
-sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
+sudo /opt/anypoint/runtimefabric/installer/gravity plan resume
 ----
 . If the upgrade again terminates with an error:
 .. Read the logs to identify which node requires repair.
 .. Submit a ticket to MuleSoft Support if you require additional assistance.
 . Open another terminal to the Runtime Fabric node identified in the error logs.
-. Repair the upgrade plan for the identified node in the terminal:
-+
-----
-sudo gravity plan --repair
-----
-+
 . On the controller node running the upgrade, manually run the failed phase:
 +
 ----
@@ -287,6 +281,8 @@ sudo /opt/anypoint/runtimefabric/installer/gravity plan execute --phase=< insert
 ----
 
 If an error is returned, wait a few minutes and repeat the previous steps.
+
+Refer to https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
 
 == Roll Back an Appliance Upgrade
 
