@@ -137,7 +137,9 @@ To generate key material for testing purposes and create a TLS context in the se
 
 . (Optional) Select Security Policies
 +
-A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists. 
+A security policy must be defined in Anypoint Security to be displayed as an option in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists.
++
+To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Applications->Ingress* page when you deploy an application.
 +
 [NOTE]
 To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account. If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
