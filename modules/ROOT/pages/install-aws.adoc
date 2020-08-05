@@ -70,7 +70,9 @@ base64 -w0 license.lic
 
 == Install Terraform
 
-MuleSoft provides a Terraform script that you run to provision the required AWS resources. You can run the 
+MuleSoft provides a Terraform script that you run to provision the required AWS resources. You can modify the provisioning script as needed for your installation: for example, you can enable disk encryption or encryption of EBS volumes. Runtime Fabric is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
+
+You can run the 
 Terraform script in one of the following ways:
 
 * Download and manually install https://terraform.io/[Terraform] on your machine. Verify that the version of 
