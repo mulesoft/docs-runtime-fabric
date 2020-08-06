@@ -248,7 +248,7 @@ Example output plugin configuration:
 The following configuration options are available:
 
 * Mule Applications: Forward logs from Mule applications.
-* Internal load balancer and components: Forward logs from Runtime Fabric compenents and the internal load balancer.
+* Internal load balancer and components: Forward logs from Runtime Fabric components and the internal load balancer.
 * Runtime Fabric appliance: Forward logs from monitoring and appliance services.
 
 [NOTE]
