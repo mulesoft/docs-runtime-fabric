@@ -10,7 +10,7 @@ Anypoint Runtime Fabric is a software appliance that combines packages that work
 +
 Appliance upgrades affect platform-layer components, which include Docker, Kubernetes, and the Ops Center. These platform-layer components are installed on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
 +
-Appliance upgrades are applied using the `rtfctl` command-line utility.
+Appliance upgrades are applied using the `rtfctl appliance upgrade` command-line utility.
 +
 Appliance upgrades are applied as a rolling upgrade to each node, one at a time. To minimize impact to running applications, a minimium of three controller nodes is required to ensure the cluster remains available. In addition, there should be at least one worker node's worth of unused resources available to allow for applications to be redeployed as each worker node is taken offline to be upgraded.
 
