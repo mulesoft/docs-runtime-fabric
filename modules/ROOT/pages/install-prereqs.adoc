@@ -271,6 +271,7 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 * Ability to use Anypoint Runtime Manager to deploy and manage applications
 * Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
 ** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
+** Administrators need the *Manage Runtime Fabrics* permission at the organization level.
 * You might also need the following permissions to enable inbound traffic to Runtime Fabric:
 
 ** Grant access to secrets
