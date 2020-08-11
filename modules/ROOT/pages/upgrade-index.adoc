@@ -286,49 +286,13 @@ Refer to https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-U
 
 == Roll Back an Appliance Upgrade
 
-If you cannot resolve issues with an upgrade, you can roll back the upgrade steps that executed.
+If you cannot resolve issues with an upgrade, you can roll back the upgrade:
 
-. Use the `gravity plan` command to identify the phase in which the upgrade paused: 
-+
-----
-sudo /opt/anypoint/runtimefabric/installer/gravity plan
-----
-+
-The following partial list provides upgrade phase examples:
-+
-----
-* init 
-* checks
-* bootstrap
-  * node-1
-* masters
-  * node-1   
-    * drain
-    * system-upgrade
-    * taint
-    ...
-* runtime
-  * rbac-app
-  * site
-  * kubernetes
-* app
-  * telekube     
-----
-. Roll back the steps that completed in reverse order, as shown in the following example:
-+
-----
-$ sudo gravity plan rollback --phase=/masters/node-1/taint
-$ sudo gravity plan rollback --phase=/masters/node-1/system-upgrade
-$ sudo gravity plan rollback --phase=/masters/node-1/drain
-...
-----
-+
-To roll back a group of steps:
-+
-----
-$ sudo /opt/anypoint/runtimefabric/installer/gravity plan rollback --phase=/masters
-----
-. After all steps are rolled back, update the plan status to mark the upgrade as completely rolled-back:
+```
+rtfctl appliance rollback
+```
+
+. After the upgrade is rolled back, update the plan status to mark the upgrade as completely rolled-back:
 +
 ----
 $ sudo gravity plan complete
