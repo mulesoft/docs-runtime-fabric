@@ -255,7 +255,7 @@ Example output plugin configuration:
 | Log Group Name | Specifies the name of the CloudWatch log group to which you want log records sent | Yes | runtime_fabric_cloudwatch
 | Log Stream Name | Specifies the name of the CloudWatch log stream to which you want log records sent | Yes |
 | Log Stream Prefix | Specifies the prefix for the log stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the `Log Stream Name` option. | No |
-| Role Arn | ARN of an IAM role to assume (for cross account access). | No |
+| Role Arn | Specifies the ARN of an IAM role to assume (for cross account access). | No |
 | Auto Create Group | Automatically creates the log group. Valid values are "On" or "Off" (case sensitive). | No | Off
 |===
 Note: You must specify either  `Log Stream Name` or `Log Stream Prefix`, but not both.
