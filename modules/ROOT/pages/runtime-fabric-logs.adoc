@@ -243,6 +243,35 @@ Example output plugin configuration:
     Tls          On
 ```
 
+==== CloudWatch Configuration Parameters
+
+[%header%autowidth.spread,cols="a,a,a,a"]
+.CloudWatch Configuration Parameters
+|===
+| Key | Description | Required | Default Value
+| Region | The AWS region. | Yes |
+| Aws Access Key Id | Access Key Id of the IAM user. | Yes |
+| Aws Secret Access Key | Aws Secret Access Key of ther IAM user. | Yes |
+| Log Group Name | The name of the CloudWatch Log Group that you want log records sent to. | Yes | runtime_fabric_cloudwatch
+| Log Stream Name | The name of the CloudWatch Log Stream that you want log records sent to. | Yes |
+| Log Stream Prefix | Prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the Log Stream Name option. | No |
+| Auto Create Group | Automatically create the Log Group. | No | Off
+|===
+
+Note: Either of `Log Stream Name` or `Log Stream Prefix` is required, but not both.
+
+Example output plugin configuration:
+```
+[OUTPUT]
+    Name                   cloudwatch_logs
+    region                 us-east-1
+    aws_access_key_id      <YOUR_AWS_ACCESS_KEY_ID>
+    aws_secret_access_key  <YOUR_AWS_SECRET_ACCESS_KEY>
+    log_group_name         runtime_fabric_cloudwatch
+    log_stream_prefix      my_stream
+    auto_create_group      On
+```
+
 ==== Configure Log Forwarding
 
 The following configuration options are available:
