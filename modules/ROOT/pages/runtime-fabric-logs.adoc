@@ -255,18 +255,19 @@ Example output plugin configuration:
 | Log Group Name | The name of the CloudWatch Log Group that you want log records sent to. | Yes | runtime_fabric_cloudwatch
 | Log Stream Name | The name of the CloudWatch Log Stream that you want log records sent to. | Yes |
 | Log Stream Prefix | Prefix for the Log Stream name. The tag is appended to the prefix to construct the full log stream name. Not compatible with the Log Stream Name option. | No |
-| Auto Create Group | Automatically create the Log Group. | No | Off
+| Role Arn | ARN of an IAM role to assume (for cross account access). | No |
+| Auto Create Group | Automatically creates the log group. Valid values are "On" or "Off" (case sensitive). | No | Off
 |===
 
-Note: Either of `Log Stream Name` or `Log Stream Prefix` is required, but not both.
+Note: You must specify either `Log Stream Name` or `Log Stream Prefix`, but not both.
 
 Example output plugin configuration:
 ```
 [OUTPUT]
     Name                   cloudwatch_logs
     region                 us-east-1
-    aws_access_key_id      <YOUR_AWS_ACCESS_KEY_ID>
-    aws_secret_access_key  <YOUR_AWS_SECRET_ACCESS_KEY>
+    aws_access_key_id      <your_aws_access_key_id>
+    aws_secret_access_key  <your_aws_secret_access_key>
     log_group_name         runtime_fabric_cloudwatch
     log_stream_prefix      my_stream
     auto_create_group      On
