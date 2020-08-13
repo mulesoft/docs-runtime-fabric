@@ -259,7 +259,7 @@ Example output plugin configuration:
 | Auto Create Group | Automatically creates the log group. Valid values are "On" or "Off" (case sensitive). | No | Off
 |===
 Note: You must specify either  `Log Stream Name` or `Log Stream Prefix`, but not both.
-Example Fluent Bit output plugin configuration:
+Example output plugin configuration:
 ```
 [OUTPUT]
     Name                   cloudwatch_logs
