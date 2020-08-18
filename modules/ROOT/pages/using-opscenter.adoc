@@ -68,8 +68,9 @@ From Ops Center, you can view metrics from a deployed application.
 . Select the application name on the Application dropdown.
 
 The dashboad should populate the metrics for your application. By default, Ops Center displays a set of
-graphs showing the CPU, JVM Heap Memory, Total Memory, Network, and Filesystem usage.
+graphs that show CPU, JVM heap memory, total memory, network, and file system usage.
 
+As of Runtime Fabric version 1.7, JVM Heap Memory is also displayed in Anypoint Monitoring.
 
 === Dashboards
 
