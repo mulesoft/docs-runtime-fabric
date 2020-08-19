@@ -24,7 +24,7 @@ If you do not have access to *Access Management*, ask your organization admin (s
 [NOTE]
 It can take up to five minutes for any permissions you add to propagate.
 
-== Step 2: Configure Inbound Traffic Using Runtime Manager
+== Step 2: Configure Inbound Traffic Using Anypoint Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
@@ -89,8 +89,9 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
 ... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
-... Optionally, specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. When you provide an entry in this field, the path is sent along with the certificate during the TLS handshake.
-... Select *Deploy*. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
+... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. When you provide an entry in this field, the path is downloaded from the CA when the certificate is signed.
+... Review the certificate details to verify domains, expiration, and the other configuration settings. By default, the first domain listed is the domain that is used when deploying applications.
+... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
 
@@ -290,6 +291,8 @@ After you enable inbound traffic, you must configure Runtime Fabric to route inc
 
 You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
 
+Provision the external load balancer using round robin or other algorithm of your choice. The external load balancer routes traffic to the Runtime Fabric controller or dedicated nodes with the IPs identified during Runtime Fabric installation.
+
 === External Load Balancer Requirements
 When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs.
 
@@ -307,7 +310,13 @@ To configure an external load balancer:
 . Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
 == Step 5: Deploy Applications
-When you are ready to deploy an application, follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
+When you are ready to deploy an application:
+
+. Follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
+. Verify the application URL.
++
+The application's URL contains the routing path for the application. If the default domain is not the desired domain to be served by the application, navigate to the application's *Ingress* tab in Runtime Manager and select the desired domain from the *Domain* drop-down list.
+
 
 The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
