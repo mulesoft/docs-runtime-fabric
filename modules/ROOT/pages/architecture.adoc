@@ -38,6 +38,12 @@ Only controllers run the internal load balancer and agents used to connect to An
 
 Agents can run on any controller. Agent communication is always outbound.
 
+When you enable an internal load balancer, you can specify either of the following modes:
+
+* *Shared Mode*: the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
+
+* *Dedicated Mode*: enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
+
 The minimum requirements are 3 controller and 3 worker nodes. 3 controllers enable a fault-tolerance of losing 1 controller. To improve fault-tolerance to lose 2 controllers, a total of 5 controllers should be configured.
 
 Mule applications run on workers. Multiple replicas of applications can run across workers.
