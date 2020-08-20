@@ -83,6 +83,25 @@ provisioning scripts to accommodate your organization's requirements.
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
 ** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. To enable inbound traffic, you must:
+
+
+??????? What in here is wrong???????Only need permissions for PEM and TKS - 
+== Step 1: Assign Required Roles and Permissions
+Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+
+. From Anypoint Platform, select *Access Management*.
++
+If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
+. Select *Users*.
+. Locate the row containing your username and then select the blue link in the *Username* column.
+. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
++
+[NOTE]
+It can take up to five minutes for any permissions you add to propagate.
+
+
+
+
 *** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
 
 .... Create a Certificate Signing Request (CSR) for a Certificate Authority (CA). To streamline this step, larger organizations have a portal/internal service that provides certificate signing from a CA or might repurpose existing certificates. If neither of the previous options are available, follow the steps required by your CA to obtain your certificate, which usually includes the following tasks:
