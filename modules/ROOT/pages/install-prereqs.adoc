@@ -87,37 +87,9 @@ provisioning scripts to accommodate your organization's requirements.
 
 Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. 
 
-*** If you plan to configure a TLS context using PEM or JKS certificates, you must have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+*** If you plan to configure a TLS context using PEM or JKS certificates, you must have the necessary permissions for the Runtime Fabric environment you want to use for applications: Refer to xref:docs-anypoint-security/configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric] for details about the permissions needed.
 
-.... From Anypoint Platform, select *Access Management*.
-+
-If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
-.... Select *Users*.
-.... Locate the row containing your username and then select the blue link in the *Username* column.
-.... In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
-+
-[NOTE]
-It can take up to five minutes for any permissions you add to propagate.
-
-*** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
-
-.... Create a Certificate Signing Request (CSR) for a Certificate Authority (CA). To streamline this step, larger organizations have a portal/internal service that provides certificate signing from a CA or might repurpose existing certificates. If neither of the previous options are available, follow the steps required by your CA to obtain your certificate, which usually includes the following tasks:
-
-..... Submit a CSR to CA signing order. All domains/subdomains for serving traffic must be included in the Subject Alternative Name (SAN).
-..... Prove domain ownership (DV certificates) or complete the necessary background checks for the certificate level. Refer to https://www.entrustdatacard.com/knowledgebase/ssl/what-are-the-ssl-tls-certificate-assurance-levels[Defining the assurance levels for SSL/TLS certificates] for additional information.
-..... Download the certificate and CA path (signing path) from your CA.
-.... Review domains associated with the  (SAN) in your certificate. Many clients, including most browsers, return only a lock icon, which indicates a verified TLS connection, if the URL matches a domain in the SAN field of the certificate. 
-.... Be prepared to add or update the DNS routing record to send traffic to the external load balancer IP address that fronts the Runtime Fabric instance. This is the final step needed to cut in or cut over traffic.
-
-
-*** Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric:
-
-.... Gather all IP addresses of controller or dedicated nodes that can be reached by the external TCP load balancer. These are required for Runtime Fabric installation and load balancer configuration. For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that cn be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
-.... Know the domain or domains to be used for routing traffic to your applications.
-.... Understand that you need to configure an external load balancer to proxy the TCP protocol after ?????. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
-
-
-*** Be able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
+*** Perform the prerequisite TLS context configuration tasks described in xref:docs-anypoint-security/configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric].
 
 == Operating System Requirements
 
