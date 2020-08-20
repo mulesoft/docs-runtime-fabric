@@ -34,10 +34,25 @@ It can take up to five minutes for any permissions you add to propagate.
 [NOTE]
 If you disable the Inbound Traffic tab, changes can take several minutes to complete.
 
-. In the *Basic Configuration* section, verify that *Secure Port* is set to `443` and that *Non Secure Port* is set to `80`.  The nonsecure port redirects to the secure port.
+. In the *Basic Configuration* section, select one of the following Protocol options:
+
+* *Accept HTTPS requests…*
++
+Then select one of the following options:
+
+** *and redirect HTTP to HTTPS*
+** *and also accept HTTP requests*
+** *and drop HTTP requests*
+
+* *Accept HTTP requests only*
++
+Use the *Add Domain* button to specify domains. All specified domains are displayed in the *Domains* section.
++
+If you select this option, all certs are deleted.
+
 . In the *Resource Allocation* section:
 +
-The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for detailed information.
 
 .. Select a mode.
 
@@ -63,14 +78,22 @@ DNS resolution prior to making the change.
 +
 Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to See the xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
 .. Specify the minimum memory to allocate for each controller node for the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available. 
-. Configure a TLS context.
+. Configure a TLS context for HTTPS.
 +
-All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a `301` response to redirect to HTTPS on port 443.
+If you selected *Accept HTTPS requests* in the *Basic Configuration* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
++
+The Protocol option that you selected determines how HTTP and HTTPS requests are handled:
++
+**	*and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
+
+**	*and also accept HTTP requests*: HTTP requests sent to Runtime Fabric are directed to port 80.
+
+**	*and drop HTTP requests*: HTTP requests sent to Runtime Fabric are ignored.
 +
 [NOTE]
 You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 +
-You can configure the private key and public certificate for a TLS-enabled server in one of the following ways:
+For HTTPS, you can add up to 10 certificates. You can configure a private key and public certificate for a TLS-enabled server in one of the following ways:
 
 ** Option 1: *Upload PEM*
 +
@@ -135,6 +158,17 @@ This option imports a TLS context from the secrets manager, and supports advance
 To import a TLS context from the secrets manager, you need additional secrets manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information.
 +
 To generate key material for testing purposes and create a TLS context in the secrets manager, follow the instructions provided in Generate a TLS Certificate for Testing later in this topic.
+
+** View TLS Certificates
+
+... Select the *Advanced options* tab.
+... Select the *…* button.
+... Select *View details* to view certificate information.
+
+** Replace or Update a TLS certificate:??????????????
+... Go to … box
+... Select *Delete*
+... Select *Add* to add a new certificate.
 
 . (Optional) Select Security Policies
 +
@@ -317,8 +351,9 @@ When you are ready to deploy an application:
 +
 The application's URL contains the routing path for the application. If the default domain is not the desired domain to be served by the application, navigate to the application's *Ingress* tab in Runtime Manager and select the desired domain from the *Domain* drop-down list.
 
-
 The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
+
+Use the Ingress tab to update the configuration for application requests.
 
 == Upgrade Changes
 For Runtime Fabric versions 1.5.0 or later, the internal load balancer is upgraded during the Runtime Fabric component upgrade process. 
