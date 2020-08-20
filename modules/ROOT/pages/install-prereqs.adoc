@@ -295,7 +295,7 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 ** Read secrets metadata
 ** Write secrets
 +
-If you are using Anypoint Access Management, these permissions are available from the *Secrets Manager* tab.
+These permissions are available from the *Secrets Manager* tab in Anypoint Access Management.
 ** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
