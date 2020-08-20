@@ -32,6 +32,13 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
 The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
++
+To select a domain for the application:
+
+.. Select the *Ingress* tab. 
+.. In the *Public endpoint* section, select a domain from the *Application url* list.
++
+By default, If you do not select a domain, the first domain listed in the Application url list is used for the application.
 
 . Select the *Deployment Target* tab.
 +
