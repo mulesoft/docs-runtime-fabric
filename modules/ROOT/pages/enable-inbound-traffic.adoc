@@ -11,20 +11,7 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic.
 
-== Step 1: Assign Required Roles and Permissions
-Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
-
-. From Anypoint Platform, select *Access Management*.
-+
-If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
-. Select *Users*.
-. Locate the row containing your username and then select the blue link in the *Username* column.
-. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
-+
-[NOTE]
-It can take up to five minutes for any permissions you add to propagate.
-
-== Step 2: Configure Inbound Traffic Using Anypoint Runtime Manager
+== Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
@@ -303,7 +290,7 @@ The deployment can take up to a minute to complete.
 +
 If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
 
-== Step 3: Verify that Inbound Traffic is Enabled
+== Step 2: Verify that Inbound Traffic is Enabled
 To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
 
 . Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
@@ -320,7 +307,7 @@ In the following example, `{application-path-from-runtime-manager}` is set to `h
 curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
 ```
 
-== Step 4: Configure an External Load Balancer
+== Step 3: Configure an External Load Balancer
 After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application for clients to send requests to deployed applications. 
 
 You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
@@ -343,7 +330,7 @@ To configure an external load balancer:
 . Review the information described in *Advanced Options* when adding an external load balancer.
 . Configure DNS before using the CN obtained from the TLS certificate. DNS is required to send requests to applications or API gateways deployed to Runtime Fabric. Add an "A record" to your DNS provider to map the CN to the IP address of the external load balancer or controller VMs.
 
-== Step 5: Deploy Applications
+== Step 4: Deploy Applications
 When you are ready to deploy an application:
 
 . Follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
