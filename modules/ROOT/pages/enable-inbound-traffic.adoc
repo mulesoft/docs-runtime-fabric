@@ -69,6 +69,9 @@ Note that Runtime Fabric can use up to the maximum number shown if the cores are
 +
 If you selected *Accept HTTPS requests* in the *Basic Configuration* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
 +
+[NOTE]
+If you are creating PEM or JKS certificates, You need to have the roles and permissions specified in <link to prereqs???????>
++
 The Protocol option that you selected determines how HTTP and HTTPS requests are handled:
 +
 **	*and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
@@ -136,7 +139,7 @@ This field is enabled after you specify an alias.
 +
 The JKS file information is saved in the global secrets group for your organization.
 
-** Option 3: *Import from Secrets Manager* (for advanced users)
+** Option 3: *Import from Secrets Manager* (for advanced users) - THIS SECTION TO BE MOVED TO ANYPOINT SECURITY DOCS!!!
 +
 This option is automatically selected for Runtime Fabrics for which inbound traffic was enabled before the PEM and JKS upload options became available. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for instructions.
 +
