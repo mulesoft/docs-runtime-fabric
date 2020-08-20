@@ -15,14 +15,14 @@ Before you install Runtime Fabric :
 +
 If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
 
-* Enlist the assistance of your organization’s:
+* You will need the assistance of your organization’s:
 ** DevOps team to provision and manage the infrastructure
 ** Network team to whitelist ports and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
 Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
 
-* Review the following requirements and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
+* Review the requirements in this topic and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
 +
 The Runtime Fabric installation process fails if the minimum requirements are not met.
 
@@ -82,25 +82,22 @@ provisioning scripts to accommodate your organization's requirements.
 *** The subnet range used for Runtime Fabric in CIDR notation
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
-** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. To enable inbound traffic, you must:
 
+== Inbound Traffic Enablement Requirements
 
-??????? What in here is wrong???????Only need permissions for PEM and TKS - 
-== Step 1: Assign Required Roles and Permissions
-Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. 
 
-. From Anypoint Platform, select *Access Management*.
+*** If you plan to configure a TLS context using PEM or JKS certificates, you must have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+
+.... From Anypoint Platform, select *Access Management*.
 +
 If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
-. Select *Users*.
-. Locate the row containing your username and then select the blue link in the *Username* column.
-. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
+.... Select *Users*.
+.... Locate the row containing your username and then select the blue link in the *Username* column.
+.... In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
 +
 [NOTE]
 It can take up to five minutes for any permissions you add to propagate.
-
-
-
 
 *** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
 
