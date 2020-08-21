@@ -9,7 +9,9 @@ Runtime Fabric can be shared across multiple environments. After installation, c
 
 Applications deployed to a production environment must be deployed to an instance of Runtime Fabric that is separate from nonproduction applications.
 
-By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic.
+By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
+
+Make sure you have completed the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric.
 
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
@@ -69,9 +71,6 @@ Note that Runtime Fabric can use up to the maximum number shown if the cores are
 +
 If you selected *Accept HTTPS requests* in the *Basic Configuration* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
 +
-[NOTE]
-If you are creating PEM or JKS certificates, You need to have the roles and permissions specified in <link to prereqs???????>
-+
 The Protocol option that you selected determines how HTTP and HTTPS requests are handled:
 +
 **	*and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
@@ -83,7 +82,7 @@ The Protocol option that you selected determines how HTTP and HTTPS requests are
 [NOTE]
 You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 +
-For HTTPS, you can add up to 10 certificates. You can configure a private key and public certificate for a TLS-enabled server in one of the following ways:
+For HTTPS requests, you can add up to 10 certificates. You can configure a private key and public certificate for a TLS-enabled server in one of the following ways:
 
 ** Option 1: *Upload PEM*
 +
@@ -102,7 +101,7 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
 ... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
-... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. When you provide an entry in this field, the path is downloaded from the CA when the certificate is signed.
+... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
 ... Review the certificate details to verify domains, expiration, and the other configuration settings. By default, the first domain listed is the domain that is used when deploying applications.
 ... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
 +
@@ -304,7 +303,7 @@ After you enable inbound traffic, you must configure Runtime Fabric to route inc
 
 You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
 
-Provision the external load balancer using round robin or other algorithm of your choice. The external load balancer routes traffic to the Runtime Fabric controller or dedicated nodes with the IPs identified during Runtime Fabric installation.
+Provision the external TCP load balancer to route traffic to the Runtime Fabric controller or dedicated nodes with the IPs identified during Runtime Fabric installation.
 
 === External Load Balancer Requirements
 When running multiple controller VMs, you must have an external load balancer outside Runtime Fabric to front each of the controller VMs.
