@@ -87,9 +87,9 @@ provisioning scripts to accommodate your organization's requirements.
 
 Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. 
 
-*** If you plan to configure a TLS context using PEM or JKS certificates, you must have the necessary permissions for the Runtime Fabric environment you want to use for applications: Refer to xref:anypoint-security/configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric] for details about the permissions needed.
+*** If you plan to configure a TLS context using PEM or JKS certificates, you must have the necessary permissions for the Runtime Fabric environment you want to use for applications: Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric] for details about the permissions needed.
 
-*** Perform the prerequisite TLS context configuration tasks described in xref:anypoint-security/configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric].
+*** Perform the prerequisite TLS context configuration tasks described in xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Anypoint Runtime Fabric].
 
 == Operating System Requirements
 
