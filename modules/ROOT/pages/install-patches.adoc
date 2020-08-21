@@ -68,7 +68,7 @@ my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.8
 ... The application is scheduled on another node and is then deleted.
 ... Node status is updated to `SchedulingDisabled`. 
 +
-[NOTE]
+[IMPORTANT]
 Unless you are running at least 2 replicas of your application, service is disrupted during the drain process.
 +
 ```
