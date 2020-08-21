@@ -276,14 +276,6 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 * Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
 ** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
 ** Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
-* You might also need the following permissions to enable inbound traffic to Runtime Fabric:
-
-** Grant access to secrets
-** Manage Secret Groups
-** Read secrets metadata
-** Write secrets
-+
-These permissions are available from the *Secrets Manager* tab in Anypoint Access Management.
 ** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
