@@ -52,7 +52,7 @@ When using CPU bursting, you must consider the following factors:
 * Minimum vCPU limit: 0.07 vCPU.
 +
 [NOTE]
-Resource intensive applications might require additional CPU capacity. If an application deployment fails using the minimum vCPU limit, increase the vCPU limit and redeploy the application.
+Resource-intensive applications might require additional CPU capacity. If an application deployment fails using the minimum vCPU limit, increase the vCPU limit and redeploy the application.
 * The CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
 * The maximum recommended utilization per CPU core is 20 - 25 simple applications and API gateways. More complex applications with higher usage may need more capacity.
 * Runtime Fabric runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
