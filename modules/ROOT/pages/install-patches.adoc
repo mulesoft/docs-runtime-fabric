@@ -72,7 +72,7 @@ If you have multiple environments, please iterate in each environment.
 ... Node status is updated to `SchedulingDisabled`. 
 +
 [IMPORTANT]
-Unless you are running at least 2 replicas and enabling "Enforce deploying replicas across node" of your application, service is disrupted during the drain process.
+Unless you are running at least 2 replicas and enabling `Enforce deploying replicas across node` of your application, service is disrupted during the drain process.
 +
 ```
 $ sudo kubectl drain <node name> --ignore-daemonsets --delete-local-data
