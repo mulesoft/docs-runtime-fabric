@@ -61,6 +61,9 @@ In the command output, verify that `Running` is displayed in the `READY` column,
 NAME                                         READY   STATUS    RESTARTS   AGE     IP             NODE          NOMINATED NODE   READINESS GATES
 my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.88.29   172.31.0.9   <none>           <none>
 ```
++
+If you have multiple environments, please iterate in each environment. 
++
 . Perform the remaining steps on all worker nodes that require updates:
 
 .. Drain the node. The following actions are performed when a node is drained:
@@ -69,7 +72,7 @@ my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.8
 ... Node status is updated to `SchedulingDisabled`. 
 +
 [IMPORTANT]
-Unless you are running at least 2 replicas of your application, service is disrupted during the drain process.
+Unless you are running at least 2 replicas and enabling "Enforce deploying replicas across node" of your application, service is disrupted during the drain process.
 +
 ```
 $ sudo kubectl drain <node name> --ignore-daemonsets --delete-local-data
