@@ -128,9 +128,9 @@ This field is enabled after you specify an alias.
 +
 The JKS file information is saved in the global secrets group for your organization.
 
-** Option 3: *Import from Secrets Manager* (for advanced users) - THIS SECTION TO BE MOVED TO ANYPOINT SECURITY DOCS!!!
+** Option 3: *Import from Secrets Manager* (for advanced users)
 +
-This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
+REFER TO OTHER TOPIC???This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
 +
 To import a TLS context from the secrets manager, you need additional secrets manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information. To generate key material for testing purposes and create a TLS context in the secrets manager, follow the instructions provided.
 
