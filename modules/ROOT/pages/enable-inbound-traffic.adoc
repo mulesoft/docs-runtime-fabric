@@ -128,11 +128,11 @@ This field is enabled after you specify an alias.
 +
 The JKS file information is saved in the global secrets group for your organization.
 
-** Option 3: *Import from Secrets Manager* (for advanced users)
+** Option 3: *Import from Secrets Manager* (For Advanced Users)
 +
-REFER TO OTHER TOPIC???This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
-+
-To import a TLS context from the secrets manager, you need additional secrets manager permissions. Refer to xref:anypoint-security::configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] for additional information. To generate key material for testing purposes and create a TLS context in the secrets manager, follow the instructions provided.
+To address more advanced use cases, refer to the instructions in xref::configure-adv-tls-context.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] to use a Secrets Manager TLS context.
+
+This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions. 
 
 . (Optional) Select Security Policies
 +
@@ -287,7 +287,7 @@ curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:1
 == Step 3: Configure an External Load Balancer
 After you enable inbound traffic, you must configure Runtime Fabric to route incoming traffic to each enabled application for clients to send requests to deployed applications. 
 
-You must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
+For HTTPS requests, you must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
 
 Provision the external TCP load balancer to route traffic to the Runtime Fabric controller or dedicated nodes with the IPs identified during Runtime Fabric installation.
 
@@ -313,19 +313,16 @@ When you are ready to deploy an application:
 . Follow the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 . Verify the application URL.
 +
-The application's URL contains the routing path for the application. If the default domain is not the desired domain to be served by the application, navigate to the application's *Ingress* tab in Runtime Manager and select the desired domain from the *Domain* drop-down list.
+The *Ingress* tab allows you to update the configuration for application requests. When you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
 
-The *Ingress* tab allows you to specify whether inbound traffic should be allowed for the application. After you enable inbound traffic, the default behavior is changed to allow for new application deployments. If there are applications deployed to Runtime Fabric before you enable inbound traffic, they do not receive inbound requests until this setting is enabled.
-
-Use the Ingress tab to update the configuration for application requests.
-
+The application's URL contains the routing path for the application. If the default domain is not the desired domain to be served by the application, select the desired domain from the *Domain* drop-down list.
 
 == View TLS Certificates
 
 To view TLS certificate information:
 
-... Select the *Inbound Traffic* tab in Runtime Manager.
-... Select the *Advanced options* tab.
+... Select the *Inbound Traffic* tab for a Runtime Fabric instance.
+... Scroll to the *Domains* section.
 ... Select the *…* button.
 ... Select *View details*.
 
