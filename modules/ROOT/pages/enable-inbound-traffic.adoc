@@ -23,21 +23,22 @@ Make sure you have completed the prerequisite network-related tasks in xref:inst
 [NOTE]
 If you disable the *Inbound Traffic* tab, changes can take several minutes to complete.
 
-. In the *Basic Configuration* section, select one of the following Protocol options:
+. In the *Basic Configuration* section, select one of the following Protocol options. The Protocol option that you select determines how HTTP and HTTPS requests are handled:
 
 * *Accept HTTPS requests…*
 +
-Then select one of the following options:
+Select one of the following options:
 
-** *and redirect HTTP to HTTPS*
-** *and also accept HTTP requests*
-** *and drop HTTP requests*
+** *and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
+** *and also accept HTTP requests*: HTTP requests sent to Runtime Fabric are directed to port 80.
+** *and drop HTTP requests*: HTTP requests sent to Runtime Fabric are ignored.
 
 * *Accept HTTP requests only*
 +
 Use the *Add Domain* button to specify domains. All specified domains are displayed in the *Domains* section.
 +
-If you select this option, all certs are deleted.
+[NOTE]
+You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
 . In the *Resource Allocation* section:
 +
@@ -70,17 +71,6 @@ Note that Runtime Fabric can use up to the maximum number shown if the cores are
 . Configure a TLS context for HTTPS.
 +
 If you selected *Accept HTTPS requests* in the *Basic Configuration* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
-+
-The Protocol option that you selected determines how HTTP and HTTPS requests are handled:
-+
-**	*and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
-
-**	*and also accept HTTP requests*: HTTP requests sent to Runtime Fabric are directed to port 80.
-
-**	*and drop HTTP requests*: HTTP requests sent to Runtime Fabric are ignored.
-+
-[NOTE]
-You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 +
 For HTTPS requests, you can add up to 10 certificates. You can configure a private key and public certificate for a TLS-enabled server in one of the following ways:
 
