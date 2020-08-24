@@ -130,11 +130,9 @@ The JKS file information is saved in the global secrets group for your organizat
 
 ** Option 3: *Import from Secrets Manager* (For Advanced Users)
 +
-To address more advanced use cases, refer to the instructions in xref::configure-adv-tls-context.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] to use a Secrets Manager TLS context.
-+
 This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 +
-To generate a certificate for testing, refer to Generate a TLS Certificate for Testing.
+Refer to the instructions in xref::configure-adv-tls-context.adoc[Configure a TLS Context for Runtime Fabric Load Balancer] to use a Secrets Manager TLS context.
 
 . (Optional) Select Security Policies
 +
