@@ -30,7 +30,7 @@ See xref:architecture.adoc[Runtime Fabric Architecture] for a description of dev
 
 If needed, contact your MuleSoft representative for assistance.
 
-== General Knowledge
+== General Requirements
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
 
 * Linux system commands
@@ -38,7 +38,6 @@ Knowledge in the following areas is required to perform a Runtime Fabric install
 * If running on Amazon Web Services (AWS), working with Terraform
 * Remote connection mechanisms, such as SSL and SSH
 
-== General Requirements
 Ensure that you plan for:
 
 * Creating separate Runtime Fabrics for production and non-production applications
@@ -91,6 +90,8 @@ provisioning scripts to accommodate your organization's requirements.
 *** The subnet range used for Runtime Fabric in CIDR notation
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
+
+* Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications.
 
 == Operating System Requirements
 
