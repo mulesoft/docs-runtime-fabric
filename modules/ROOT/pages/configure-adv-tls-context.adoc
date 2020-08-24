@@ -80,13 +80,8 @@ Optionally select the expiration date for the certificate.
 [[import_tls_rtf]]
 == Import a TLS Context to Runtime Fabric
 
-. In *Runtime Manager > Runtime Fabrics > Inbound Traffic*, select one of the following options: +
-* *Upload PEM* +
-For information about this option, see xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric].
-* *Upload JKS* +
-For information about this option, see xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric].
-* *Import from Secrets Manager*. +
-This option is automatically selected for instances of Runtime Fabric for which inbound traffic was enabled before the PEM and JKS upload options became available. +
+. In *Runtime Manager > Runtime Fabrics > Inbound Traffic*, select *Import from Secrets Manager*.
++
 This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 . Select the environment the secrets group that contains the TLS context is associated with.
 . Select the secrets group where the TLS context is configured.
