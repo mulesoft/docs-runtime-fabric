@@ -1,4 +1,4 @@
-= Configure a TLS Context for Anypoint Runtime Fabric
+= Import a TLS Context from Secrets Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
