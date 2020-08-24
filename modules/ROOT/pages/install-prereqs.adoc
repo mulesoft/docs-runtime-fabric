@@ -45,6 +45,15 @@ Ensure that you plan for:
 * Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network 
 * Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
 
+== Anypoint Platform Roles and Permissions
+To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
+
+* Ability to use Anypoint Runtime Manager to deploy and manage applications
+* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
+** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
+** Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
+** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
+
 == Infrastructure Requirements
 Perform the following actions:
 
@@ -268,15 +277,6 @@ The controller VM that is the leader for installation performs the following act
 
 * Runs the activation script after installation.
 * Runs the Mule license insertion script after registration.
-
-== Anypoint Platform Roles and Permissions
-To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
-
-* Ability to use Anypoint Runtime Manager to deploy and manage applications
-* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
-** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-** Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
-** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
 
