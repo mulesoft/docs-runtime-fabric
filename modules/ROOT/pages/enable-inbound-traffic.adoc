@@ -92,7 +92,7 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
 ... If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
 ... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
-... Review the certificate details to verify domains, expiration, and the other configuration settings. By default, the first domain listed is the domain that is used when deploying applications.
+... Review the certificate details to verify domains, expiration, and the other configuration settings.
 ... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
