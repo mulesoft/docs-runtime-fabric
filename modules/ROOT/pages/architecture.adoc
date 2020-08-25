@@ -56,6 +56,8 @@ When you enable an internal load balancer, you can specify either of the followi
 
 * *Dedicated Mode*: enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
 
+Higher inbound traffic loads require dedicated nodes. To determine if dedicated nodes are needed for your environment, refer to the performance information in xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer]. 
+
 image::architecture-network2.png[]
 
 . The incoming HTTP request is forwarded to the external TCP load balancer.
