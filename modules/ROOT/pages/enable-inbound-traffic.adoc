@@ -11,7 +11,17 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
 
-Make sure you have completed the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric.
+== TLS Context Configuration Prerequisites
+
+* Make sure you have completed the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric.
+
+* Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric:
+
+.. Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric installation. For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that cn be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
+.. Know the domain or domains to be used for routing traffic to your applications.
+.. Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
+
+* Be able to configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addess(es) served by the external load balancer.
 
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
