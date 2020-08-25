@@ -37,8 +37,6 @@ To select a domain for the application:
 
 .. Select the *Ingress* tab. 
 .. In the *Public endpoint* section, select a domain from the *Domain* list.
-+
-By default, If you do not select a domain, the first domain listed in the Application url list is used for the application.
 
 . Select the *Deployment Target* tab.
 +
