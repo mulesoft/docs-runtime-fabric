@@ -62,7 +62,9 @@ The inbound load balancer runs on each controller node configured in Runtime Fab
 +
 Dedicated nodes are used in environments with high traffic demands. Refer to xref: and xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer]
 +
-The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. Refer to xref:deploy-resource-allocation#internal-load-balancer.adoc for additional information????.
+The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
++
+Refer to xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer] and xref:architecture.adoc#network-architecture[Network Architecture] for additional information.
 +
 [WARNING]
 ====
