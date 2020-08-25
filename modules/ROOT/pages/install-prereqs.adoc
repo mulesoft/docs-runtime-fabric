@@ -93,7 +93,7 @@ provisioning scripts to accommodate your organization's requirements.
 
 * Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications.
 +
-If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:architecture.adoc#production-configuration[Production Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
+If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:architecture.adoc#network-architecture[Network Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
 == Operating System Requirements
 
