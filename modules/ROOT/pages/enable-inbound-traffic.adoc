@@ -45,7 +45,7 @@ Select one of the following options:
 
 * *Accept HTTP requests only*
 +
-Use the *Add Domain* button to specify domains. All specified domains are displayed in the *Domains* section.
+Use the *Add Domain* button to specify domains.
 +
 [NOTE]
 You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
