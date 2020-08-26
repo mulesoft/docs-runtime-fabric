@@ -22,7 +22,7 @@ To update worker nodes:
 . Verify that the status for all nodes is `READY`:
 +
 ```
-$ sudo kubectl get nodes
+$ kubectl get nodes
 
 NAME          STATUS   ROLES    AGE   VERSION
 172.31.0.9    Ready    node     1d   v1.x.x
