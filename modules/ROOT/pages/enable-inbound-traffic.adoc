@@ -13,54 +13,64 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 == TLS Context Configuration Prerequisites
 
-* Make sure you have completed the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric.
+* Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric.
 
 * Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric:
 
-.. Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric installation. For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that cn be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
-.. Know the domain or domains to be used for routing traffic to your applications.
-.. Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
+** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric installation. 
++
+For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. 
++
+For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that cn be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
+** Know the domain or domains to use for routing traffic to your applications.
+** Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 
-* Be able to configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addess(es) served by the external load balancer.
+* Be able to configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
 
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
 . In the *Associated Environments* tab, ensure that your Runtime Fabric is associated with the environments in which applications are to be deployed.
-. Select *Inbound Traffic* and toggle *Enable inbound traffic* to on.
+. Select *Inbound Traffic* and activate the *Enable inbound traffic* toggle.
 +
 [NOTE]
 If you disable the *Inbound Traffic* tab, changes can take several minutes to complete.
 
-. In the *Basic Configuration* section, select one of the following Protocol options. The Protocol option that you select determines how HTTP and HTTPS requests are handled:
+. In the *Basic Configuration* section, select one of the following Protocol options:
 
 * *Accept HTTPS requests…*
 +
 Select one of the following options:
 
-** *and redirect HTTP to HTTPS*: After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
-** *and also accept HTTP requests*: HTTP requests sent to Runtime Fabric are directed to port 80.
-** *and drop HTTP requests*: HTTP requests sent to Runtime Fabric are ignored.
+** *and redirect HTTP to HTTPS*
++
+After inbound traffic is enabled, HTTP requests sent to Runtime Fabric receive a 301 response to redirect to HTTPS on port 443.
+** *and also accept HTTP requests*
++
+HTTP requests sent to Runtime Fabric are directed to port 80.
+** *and drop HTTP requests*
++
+HTTP requests sent to Runtime Fabric are ignored.
 
 * *Accept HTTP requests only*
 +
-Use the *Add Domain* button to specify domains. Domains are used for routing requests to applications.
+Use the *Add Domain* button to specify domains to specify domains to use for routing requests to applications.
 +
 [NOTE]
-You can only change the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
+You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
 . In the *Resource Allocation* section:
 +
-The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for detailed information.
+The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
 
-.. Select a mode.
+.. Select a mode:
 
 *** *Shared Mode*
 
 *** *Dedicated Mode* 
 +
-Dedicated nodes are used in environments with high traffic demands. Refer to xref: and xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer]
+Dedicated nodes are used in environments with high traffic demands. Refer to xref: and xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer] for additional information.
 +
 The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
 +
@@ -104,7 +114,7 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 **** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
-... (Optional) If the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
+... Optionally, if the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
 ... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
 ... Use the *Details* button to view certificate details, including domains, expiration, and the other configuration settings.
 ... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
