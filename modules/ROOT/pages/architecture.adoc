@@ -50,11 +50,15 @@ image::architecture-network.png[]
 
 This diagram shows the TCP load balancer used to load balance requests across the internal load balancers running on the controllers. It also shows the internal load balancer that distributes requests to each replica of Mule applications running on the workers.
 
-When you enable an internal load balancer, you can specify either of the following modes:
+When you enable an internal load balancer, specify either of the following modes:
 
-* *Shared Mode*: the default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
+* *Shared Mode*
++
+The default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
 
-* *Dedicated Mode*: enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
+* *Dedicated Mode*
++
+Enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
 
 Higher inbound traffic loads require dedicated nodes. To determine if dedicated nodes are needed for your environment, refer to the performance information in xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer]. 
 
