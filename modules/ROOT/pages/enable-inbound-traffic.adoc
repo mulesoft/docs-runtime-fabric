@@ -354,7 +354,7 @@ To view TLS certificate information for an existing deployment:
 
 To update or delete TLS certificate information:
 
- Select the *Inbound Traffic* tab in Runtime Manager.
+. Select the *Inbound Traffic* tab in Runtime Manager.
 . Scroll to the *Domains* section.
 . Select the *…* button.
 . Select *Delete*.
