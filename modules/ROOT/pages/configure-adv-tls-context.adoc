@@ -5,7 +5,7 @@ endif::[]
 
 If your environment has specific security requirements or requires advanced configuration, you can import a TLS context from the secrets manager.
 
-== Before You Begin
+== Prerequisites
 
 You must have the following permissions to enable inbound traffic to Runtime Fabric:
 
@@ -14,13 +14,15 @@ You must have the following permissions to enable inbound traffic to Runtime Fab
 * Read secrets metadata
 * Write secrets
 
-These permissions are available from the Secrets Manager tab in Anypoint Access Management.
+If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission.
+
+These permissions are set using the *Secrets Manager* tab in Anypoint Access Management:
 
 . From Anypoint Platform, select *Access Management*.
 +
-If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
+ If you have access, execute the following steps to add the permission:
 . Select *Users*.
-. Locate the row containing your username and then select the blue link in the *Username* column.
+. Locate the row containing your username and then select the link in the *Username* column.
 . In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment:
 
 .. Select *Environment* and then select your environment from the list.
@@ -36,9 +38,9 @@ Before you can import the TLS context from the secrets manager, you must add a T
 
 Adding a TLS context to your secrets group involves supplying a name, target, security information, version, keystore, and, optionally, truststore. 
 
-. In the *Secret Groups* list view, select the secrets group to which you want to add a TLS context. 
+. In the *Secret Groups* list, select the secrets group to which you want to add a TLS context. 
 . Select *TLS Context* in the menu on the left, and click *Add TLS Context*. 
-. In the Create TLS Context screen, add the required information:
+. In the *Create TLS Context* window, add the required information:
 +
 * *Name* +
 Enter a name for your TLS context. 
@@ -65,25 +67,25 @@ Optionally select the expiration date for the certificate.
 . In *Runtime Manager > Runtime Fabrics > Inbound Traffic > Add certificates*, select *Import from Secrets Manager*.
 +
 This option imports a TLS context from the secrets manager, and supports advanced configuration such client authentication (mutual authentication), selecting ciphers, and selecting TLS versions.
-. Select the environment the secrets group that contains the TLS context is associated with.
+. Select the environment with which the secrets group that contains the TLS context is associated.
 . Select the secrets group where the TLS context is configured.
 . Select the TLS context to use for Runtime Fabric. +
-You can click *View Details* to see details of the TLS context you are importing. 
+. Optionally can click *View Details* to see details of the TLS context you are importing. 
 
 [[tls_support_rtf]]
 == TLS Support on Anypoint Runtime Fabric
 
+The TLS 1.3 protocol is enabled by default for those clients that support it.
+
 OpenSSL 1.1.1 and TLS 1.3 provide the following security enhancements and performance improvements over TLS 1.2:
 
-* 2x or greater TLS 1.2 connection performance throughput boost over an earlier Runtime Fabric internal load balancer running on OpenSSL 1.0.2
-* Reduction of one round trip in a full handshake for TLS 1.3 vs. TLS 1.2
+* Double or more than double TLS 1.2 connection performance throughput boost over an earlier Runtime Fabric internal load balancer running on OpenSSL 1.0.2
+* Reduction of one round trip in a full handshake
 * Added TLS 1.2 and TLS 1.3 ChaCha20-Poly1305 ciphers for better mobile and IoT device support
-* TLS 1.3 protection against downgrade attacks
+* Protection against downgrade attacks
 * Continued support for both RSA and ECDSA keys
 * Removal of obsolete and insecure features from TLS 1.2 and TLS 1.1. +
 See xref:release-notes::anypoint-security/anypoint-security-rtf-edge.adoc[Anypoint Security Edge Release Notes] for a list of supported and deprecated ciphers.
-
-The TLS 1.3 protocol is enabled by default for those clients that support it.
 
 == See Also
 
