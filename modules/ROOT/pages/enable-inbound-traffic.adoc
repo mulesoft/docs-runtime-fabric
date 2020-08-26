@@ -116,7 +116,7 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 ... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
 ... Optionally, if the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
 ... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
-... Use the *Details* button to view certificate details, including domains, expiration, and the other configuration settings.
+... Select *Details* to view certificate details, including domains, expiration, and the other configuration settings.
 ... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
@@ -145,7 +145,7 @@ The certificate must be set with a passphrase and a CN that specifies the domain
 [NOTE]
 This field is enabled after you specify an alias.
 
-... Use the *Details* button to view the information you entered for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before selecting other options or deploying.
+... Select *Details* to view the information you entered for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before selecting other options or deploying.
 ... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
 **** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
 **** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
@@ -291,7 +291,7 @@ The deployment can take up to a minute to complete.
 +
 If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
 
-== Step 2: Verify that Inbound Traffic is Enabled
+== Step 2: Verify That Inbound Traffic Is Enabled
 To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
 
 . Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
@@ -345,23 +345,20 @@ The application's URL contains the routing path for the application. If the defa
 
 To view TLS certificate information for an existing deployment:
 
-... Select the *Inbound Traffic* tab for a Runtime Fabric instance.
-... Scroll to the *Domains* section.
-... Select the *…* button.
-... Select *View details*.
+. Select the *Inbound Traffic* tab for a Runtime Fabric instance.
+. Scroll to the *Domains* section.
+. Select the *…* button.
+. Select *View details*.
 
 == Update or Delete TLS Certificates
 
 To update or delete TLS certificate information:
 
-... Select the *Inbound Traffic* tab in Runtime Manager.
-... Scroll to the *Domains* section.
-... Select the *…* button.
-... Select *Delete*.
-... To add updated certificate information:
-
-....Select *Add certificate*.
-.... Follow the instructions provided in Step 1 to configure a new certificate.
+ Select the *Inbound Traffic* tab in Runtime Manager.
+. Scroll to the *Domains* section.
+. Select the *…* button.
+. Select *Delete*.
+. To add updated certificate information, select *Add certificate* and follow the instructions provided in Step 1 to configure a new certificate.
 
 == Upgrade Changes
 For Runtime Fabric versions 1.5.0 or later, the internal load balancer is upgraded during the Runtime Fabric component upgrade process. 
