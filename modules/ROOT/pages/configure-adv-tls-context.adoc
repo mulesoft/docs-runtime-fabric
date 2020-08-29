@@ -14,8 +14,6 @@ You must have the following permissions to enable inbound traffic to Runtime Fab
 * Read secrets metadata
 * Write secrets
 
-If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission.
-
 These permissions are set using the *Secrets Manager* tab in Anypoint Access Management:
 
 . From Anypoint Platform, select *Access Management*.
