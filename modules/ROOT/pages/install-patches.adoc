@@ -31,15 +31,8 @@ NAME          STATUS   ROLES    AGE   VERSION
 . Retrieve the application namespace (environment ID): 
 +
 ```
-$ sudo kubectl get ns
-```
-+
-In the command output, the application namespace is represented by a long string of characters. In the following example, the application namespace
-is `fff5df7b-c49d-48c9-967d-0071412722x4`.
-+
-More than one application namespace value is displayed if the RTF cluster is associated with more than 1 environment.
-+
-```
+$ kubectl get ns
+
 NAME                                   STATUS   AGE
 default                                Active   1d
 fff5df7b-c49d-48c9-967d-0071412722x4   Active   1d
@@ -49,10 +42,16 @@ kube-system                            Active   1d
 monitoring                             Active   1d
 rtf                                    Active   1d
 ```
++
+In the command output, the application namespace is represented by a long string of characters. In the previous example, the application namespace
+is `fff5df7b-c49d-48c9-967d-0071412722x4`.
++
+More than one application namespace value is displayed if the RTF cluster is associated with more than 1 environment.
+
 . Verify that the pods and nodes are still running in your namespace:
 +
 ```
-$ sudo kubectl -n <namespace> get pod -owide
+$ kubectl -n <namespace> get pod -owide
 ```
 +
 In the command output, verify that `Running` is displayed in the `READY` column, as shown in the following example:
@@ -75,13 +74,13 @@ If you have multiple environments, repeat the remaining steps in each environmen
 Unless you are running at least 2 replicas of your application and specified *Enforce deploying replicas across node* when you deployed it, service is disrupted during the drain process.
 +
 ```
-$ sudo kubectl drain <node name> --ignore-daemonsets --delete-local-data
+$ kubectl drain <node name> --ignore-daemonsets --delete-local-data
 ```
 
 .. Verify that the node's status is `Ready,SchedulingDisabled`:
 +
 ```
-$ sudo kubectl get node
+$ kubectl get node
 
 NAME          STATUS                     ROLES    AGE   VERSION
 172.31.0.9   Ready,SchedulingDisabled   node     1d   v1.x.x
@@ -90,7 +89,7 @@ NAME          STATUS                     ROLES    AGE   VERSION
 .. Verify that no pods are running on the node:
 +
 ```
-$ sudo kubectl get pod -n <namespace>  -owide
+$ kubectl get pod -n <namespace>  -owide
 ```
 +
 The `NODE` column <check the NODE column. There should be no application pods running on the drained node>
@@ -100,11 +99,11 @@ The `NODE` column <check the NODE column. There should be no application pods ru
 .. After the reboot is complete, re-enable scheduling on the node:
 +
 ```
-$ sudo kubectl uncordon 172.31.0.9
+$ kubectl uncordon 172.31.0.9
 
 node/172.31.0.9 uncordoned
 
-$ sudo kubectl get node
+$ kubectl get node
 
 NAME          STATUS   ROLES    AGE   VERSION
 172.31.0.9   Ready    node     1d   v1.x.x
