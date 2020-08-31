@@ -7,11 +7,12 @@ Use the following procedure when performing scheduled maintenance for Anypoint R
 
 == Controller Node Maintenance
 
-The controller nodes are the entry points into your Runtime Fabric cluster, but do not run any application workloads.
+The controller nodes are the entry points into your Runtime Fabric cluster but do not run application workloads.
 
 To update controller nodes:
 
-. On your upstream TCP load balancer, remove the controller nodes from your load balancing pool, one at a time, during patching and rebooting tasks. 
+. On your upstream TCP load balancer, remove the controller nodes one at a time from your load balancing pool.
+. Perform the required patching and reboot the node.
 . When updates are complete on each controller node, add the node back to the cluster before removing the next one.
 
 == Worker Node Maintenance
@@ -46,7 +47,7 @@ rtf                                    Active   1d
 In the command output, the application namespace is represented by a long string of characters. In the previous example, the application namespace
 is `fff5df7b-c49d-48c9-967d-0071412722x4`.
 +
-More than one application namespace value is displayed if the RTF cluster is associated with more than 1 environment.
+More than one application namespace value is displayed if the RTF cluster is associated with more than one environment.
 
 . Verify that the pods and nodes are still running in your namespace:
 +
@@ -63,7 +64,7 @@ my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.8
 +
 If you have multiple environments, repeat the remaining steps in each environment. 
 +
-. Perform the remaining steps on all worker nodes that require updates:
+. Perform the following steps on all worker nodes that require updates:
 
 .. Drain the node. The following actions are performed when a node is drained:
 
