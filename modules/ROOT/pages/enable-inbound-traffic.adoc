@@ -37,7 +37,40 @@ For larger traffic loads, use dedicated nodes. The controller and dedicated node
 [NOTE]
 If you disable the *Inbound Traffic* tab, changes can take several minutes to complete.
 
-. In the *Basic Configuration* section, select one of the following Protocol options:
+. In the *Resource Allocation* section:
++
+The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
+
+.. Select a mode:
+
+*** *Shared Mode*
+
+*** *Dedicated Mode* 
++
+Dedicated nodes are used in environments with high traffic demands. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] for additional information.
++
+The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
++
+Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:architecture.adoc#network-architecture[Network Architecture] for additional information.
++
+[WARNING]
+====
+When switching between shared and dedicated modes:
+
+* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or 
+DNS resolution prior to making the change.
+
+* If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until the switch is completed to properly route inbound requests.
+
+* If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*. 
+====
+
+.. Specify the minimum number of cores to allocate for each controller node for the internal load balancer. 
++
+Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer-memory-allocation[Internal Load Balancer Memory Allocation] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
+.. Specify the minimum memory to allocate for each controller node for the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available.
+
+. In the *Protocol* section, select one of the following protocol options:
 
 * *Accept HTTPS requests…*
 +
@@ -55,46 +88,16 @@ HTTP requests sent to Runtime Fabric are ignored.
 
 * *Accept HTTP requests only*
 +
-Use the *Add Domain* button to specify domains to specify domains to use for routing requests to applications.
+Use the *Add Domain* button to specify domains for routing requests to applications.
 +
 [NOTE]
 You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
-. In the *Resource Allocation* section:
-+
-The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
-
-.. Select a mode:
-
-*** *Shared Mode*
-
-*** *Dedicated Mode* 
-+
-Dedicated nodes are used in environments with high traffic demands. Refer to xref: and xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer] for additional information.
-+
-The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
-+
-Refer to xref:deploy-resource-allocation#internal-load-balancer.adoc[Internal Load Balancer] and xref:architecture.adoc#network-architecture[Network Architecture] for additional information.
-+
-[WARNING]
-====
-When switching between shared and dedicated modes:
-
-* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or 
-DNS resolution prior to making the change.
-
-* If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until the switch is completed to properly route inbound requests.
-
-* If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*. 
-====
-
-.. Specify the minimum number of cores to allocate for each controller node for the internal load balancer. 
-+
-Note that Runtime Fabric can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to See the xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
-.. Specify the minimum memory to allocate for each controller node for the internal load balancer. Note that Runtime Fabric can use up to the maximum amount shown if it is available. 
 . Configure a TLS context for HTTPS.
 +
-If you selected *Accept HTTPS requests* in the *Basic Configuration* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
+If you selected *Accept HTTPS requests* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
++
+.. Select *Add certificate*.
 +
 You can configure a private key and public certificate for a TLS-enabled server in one of the following ways:
 
@@ -106,18 +109,21 @@ With this option, you cannot change the default values for TLS versions, ciphers
 +
 This is the default option when no TLS context exists for Runtime Fabric.
 
-... For *Certificate File*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
+... For *Public certificate*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
++
+Select *Details* to view certificate details, including domains, expiration, and the other configuration settings.
 
 **** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 **** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 
-... Specify a value for *Key File*. This is the PEM formatted file that contains the private key for the certificate.
-... Optionally, if the *Key Passcode* field is displayed after uploading a PEM key file, enter the word or phrase that protects the private key.
-... Specify a value for *CA Path Certificate File (Optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
-... Select *Details* to view certificate details, including domains, expiration, and the other configuration settings.
-... Select *Deploy* after specifying any needed security policies or advanced options. The *Key Passcode* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
+... Specify a value for *Private key*. This is the PEM formatted file that contains the private key for the certificate.
++
+Optionally, leave the *Key password* field empty if your key is unencrypted (not recommended).
+
+... Specify a value for *CA path certificate (optional)*. The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
+... Select *Add certificate* after specifying any needed security policies or advanced options. The *Key password* field is blanked out for security reasons. You can still review public certificate details. If you upload a new key file, this field is again enabled.
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
 
@@ -126,27 +132,30 @@ The public certificate, private key, and key passcode are saved in the secrets m
 Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys.
 
 ... Specify a value for *Keystore File*. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
-... Specify a value for *Keystore Passcode*, the word or phrase that protects the keystore.
+... Specify a value for *Keystore Password*, the word or phrase that protects the keystore.
 ... Specify a value for *Alias*. The alias is used to select a specific key pair.
-+
-[NOTE]
-This field is enabled after you specify a keystore file and keystore passcode.
 
-... In the *Choose Alias From Keystore* window, select an alias. The following information is displayed:
+... In the *Select alias from keystore* window, specify an alias. The alias is used to select a specific key pair.
++
+The following information is displayed:
 **** The URL format to be used for your apps, based on the certificate’s CN.
 +
 The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric. The domain is used for routing requests to an application. Other values can be selected via the *Applications->Ingress* page.
++
+[NOTE]
+The *Select alias from keystore* window is enabled after you specify a keystore file and keystore passcode.
++
+Select *Details* to view the information you entered for *Keystore File*, *Keystore Password*, and *Alias* before selecting other options or deploying.
 
 ***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 ***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
 **** The expiration date of the secret.
-... Specify a value for *Key Passcode*, the word or phrase that protects the private key.
+... Specify a value for *Key Password*, the word or phrase that protects the private key.
 +
 [NOTE]
-This field is enabled after you specify an alias.
+The *Details* field is enabled after you specify an alias.
 
-... Select *Details* to view the information you entered for *Keystore File*, *Keystore Passcode*, *Alias*, and *Key Passcode* before selecting other options or deploying.
-... Select *Deploy*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
+... Select *Add certificate*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
 **** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
 **** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
 +
@@ -157,6 +166,8 @@ The JKS file information is saved in the global secrets group for your organizat
 This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
+
+.. After you finish adding certificates, select *Save and deploy*.
 
 . (Optional) Select Security Policies
 +
