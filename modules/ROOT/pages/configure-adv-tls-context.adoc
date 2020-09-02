@@ -57,7 +57,7 @@ A truststore is required if you are going to enable client authentication.
 Optionally select the expiration date for the certificate.
 . Optionally xref:anypoint-security::enable-client-authentication.adoc[enable client authentication]. 
 . Optionally xref:anypoint-security::cipher-suites.adoc[select ciphers]. 
-. Click *Save*.
+. Click *Add certificate*.
 
 [[import_tls_rtf]]
 == Import a TLS Context to Runtime Fabric
