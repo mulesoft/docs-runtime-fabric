@@ -21,10 +21,10 @@ These permissions are set using the *Secrets Manager* tab in Anypoint Access Man
 If you have access, execute the following steps to add the permission:
 . Select *Users*.
 . Locate the row containing your username and then select the link in the *Username* column.
-. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment:
+. In the *Secrets Manager* tab:
 
-.. Select *Environment* and then select your environment from the list.
-.. In the *Permissions* section, select *Select access*.
+.. Select *Environment* and then select your environment from the drop-down list.
+.. Select *Permission(s)* and then select *Select Access*.
 .. Select *Select all*.
 +
 [NOTE]
