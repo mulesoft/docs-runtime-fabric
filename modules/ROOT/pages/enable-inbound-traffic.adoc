@@ -167,7 +167,7 @@ This option imports a TLS context from the secrets manager, and supports advance
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
 
-.. After you finish adding certificates, select *Save and deploy*.
+.. After you add your certificates, select *Save and Deploy*.
 
 . (Optional) Select Security Policies
 +
