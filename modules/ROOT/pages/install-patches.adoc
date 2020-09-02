@@ -3,17 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use the following procedure when performing scheduled maintenance for Anypoint Runtime Fabric nodes, such as applying OS patches and security updates. 
+Use the following procedures to perform scheduled maintenance, such as applying OS patches and security updates, on Anypoint Runtime Fabric nodes. 
 
 == Controller Node Maintenance
 
-The controller nodes are the entry points into your Runtime Fabric cluster but do not run application workloads.
+Controller nodes are entry points to your Runtime Fabric cluster; they do not run application workloads.
 
-To update controller nodes:
+Update all controller nodes, one at a time:
 
-. On your upstream TCP load balancer, remove the controller nodes one at a time from your load balancing pool.
+. On your upstream TCP load balancer, remove a controller node from your load balancing pool.
 . Perform the required patching and reboot the node.
-. When updates are complete on each controller node, add the node back to the cluster before removing the next one.
+. When updates are complete on the controller node, add the node back to the cluster and continue with the next one.
 
 == Worker Node Maintenance
 
@@ -55,28 +55,31 @@ More than one application namespace value is displayed if the RTF cluster is ass
 $ kubectl -n <namespace> get pod -owide
 ```
 +
-In the command output, verify that `Running` is displayed in the `READY` column, as shown in the following example:
+The command output displays `Running` in the `READY` column:
 +
 ```
 NAME                                         READY   STATUS    RESTARTS   AGE     IP             NODE          NOMINATED NODE   READINESS GATES
 my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.88.29   172.31.0.9   <none>           <none>
 ```
 +
-If you have multiple environments, repeat the remaining steps in each environment. 
+If you have multiple environments, you must perform the remaining steps in each environment. 
 +
-. Perform the following steps on all worker nodes that require updates:
+. For each worker node that require updates:
 
-.. Drain the node. The following actions are performed when a node is drained:
-
-... The application is scheduled on another node and is then deleted.
-... Node status is updated to `SchedulingDisabled`. 
-+
-[IMPORTANT]
-Unless you are running at least 2 replicas of your application and specified *Enforce deploying replicas across node* when you deployed it, service is disrupted during the drain process.
+.. Drain the node.
 +
 ```
 $ kubectl drain <node name> --ignore-daemonsets --delete-local-data
 ```
++
+The following actions are performed when a node is drained:
+
+*** The application is scheduled on another node and is then deleted.
+*** Node status is updated to `SchedulingDisabled`. 
++
+[IMPORTANT]
+Unless you are running at least two replicas of your application and specified *Enforce deploying replicas across node* when you deployed it, service is disrupted during the drain process.
+
 
 .. Verify that the node's status is `Ready,SchedulingDisabled`:
 +
@@ -87,17 +90,17 @@ NAME          STATUS                     ROLES    AGE   VERSION
 172.31.0.9   Ready,SchedulingDisabled   node     1d   v1.x.x
 ```
 
-.. Verify that no pods are running on the node:
+.. Verify that no application pods are running on the drained node:
 +
 ```
 $ kubectl get pod -n <namespace>  -owide
 ```
 +
-The `NODE` column <check the NODE column. There should be no application pods running on the drained node>
+The command output displayed in the `NODE` column should indicate that no application pods are running on the drained node.
 
 .. Proceed with OS patching and reboot the node.
 
-.. After the reboot is complete, re-enable scheduling on the node:
+.. After the reboot is complete, reenable scheduling on the node:
 +
 ```
 $ kubectl uncordon 172.31.0.9
