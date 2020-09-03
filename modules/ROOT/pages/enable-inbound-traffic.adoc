@@ -39,7 +39,7 @@ If you disable the *Inbound Traffic* tab, changes can take several minutes to co
 
 . In the *Resource Allocation* section:
 +
-The inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
+By default, the inbound load balancer runs on each controller node configured in Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
 
 .. Select a mode:
 
