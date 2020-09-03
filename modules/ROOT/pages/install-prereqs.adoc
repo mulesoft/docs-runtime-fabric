@@ -15,14 +15,14 @@ Before you install Runtime Fabric :
 +
 If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
 
-* Enlist the assistance of your organization’s:
+* You will need the assistance of your organization’s:
 ** DevOps team to provision and manage the infrastructure
 ** Network team to whitelist ports and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
 Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
 
-* Review the following requirements and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
+* Review the requirements in this topic and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
 +
 The Runtime Fabric installation process fails if the minimum requirements are not met.
 
@@ -30,7 +30,7 @@ See xref:architecture.adoc[Runtime Fabric Architecture] for a description of dev
 
 If needed, contact your MuleSoft representative for assistance.
 
-== General Knowledge
+== General Installation Requirements
 Knowledge in the following areas is required to perform a Runtime Fabric installation:
 
 * Linux system commands
@@ -38,12 +38,20 @@ Knowledge in the following areas is required to perform a Runtime Fabric install
 * If running on Amazon Web Services (AWS), working with Terraform
 * Remote connection mechanisms, such as SSL and SSH
 
-== General Requirements
 Ensure that you plan for:
 
 * Creating separate Runtime Fabrics for production and non-production applications
 * Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network 
 * Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
+
+== Anypoint Platform Roles and Permissions
+To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
+
+* To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager.
+* To manage permissions for Anypoint Platform users, you must have the ability to use Anypoint Access Management.
+* To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
+* Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
+* To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Infrastructure Requirements
 Perform the following actions:
@@ -82,10 +90,10 @@ provisioning scripts to accommodate your organization's requirements.
 *** The subnet range used for Runtime Fabric in CIDR notation
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
-** Determine if inbound traffic should be enabled for Anypoint Runtime Fabric. This is based on the function of your organization's Mule applications. To enable inbound traffic, you must:
-*** Have a TLS certificate with the desired Common Name set to route traffic to Runtime Fabric.
-*** Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric.
-*** Be able to configure DNS settings to associate the Common Name on the TLS certificate to the IP address of the external load balancer.
+
+* Based on the function of your organization's Mule applications, determine if inbound traffic should be enabled for Anypoint Runtime Fabric.
++
+If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:architecture.adoc#network-architecture[Network Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
 == Operating System Requirements
 
@@ -264,23 +272,6 @@ The controller VM that is the leader for installation performs the following act
 
 * Runs the activation script after installation.
 * Runs the Mule license insertion script after registration.
-
-== Anypoint Platform Roles and Permissions
-To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
-
-* Ability to use Anypoint Runtime Manager to deploy and manage applications
-* Ability to use Anypoint Access Management to manage permissions for Anypoint Platform users
-** To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-** Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
-* You might also need the following permissions to enable inbound traffic to Runtime Fabric:
-
-** Grant access to secrets
-** Manage Secret Groups
-** Read secrets metadata
-** Write secrets
-+
-These permissions are available from the *Secrets Manager* tab in Anypoint Access Management.
-** To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Production Configuration Requirements
 
