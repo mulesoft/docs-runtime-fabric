@@ -27,6 +27,8 @@ For larger traffic loads, use dedicated nodes. The controller and dedicated node
 
 * Be able to configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
 
+* You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
+
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
@@ -88,10 +90,10 @@ HTTP requests sent to Runtime Fabric are ignored.
 
 * *Accept HTTP requests only*
 +
-Use the *Add Domain* button to specify domains for routing requests to applications.
+Because certificates are not used in this case, use the “Add Domain” button to manually enter domains for routing requests to applications and skip the next step for configuring a TLS context.
 +
 [NOTE]
-You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
+*Accept HTTP requests only* is not recommended as a secure option for external connections. Use this less secure option for network connections for which an external load balancer has previously terminated a secure TLS connection and is forwarding traffic via HTTP to Runtime Fabric.
 
 . Configure a TLS context for HTTPS.
 +
@@ -166,8 +168,6 @@ The JKS file information is saved in the global secrets group for your organizat
 This option imports a TLS context from the secrets manager, and supports advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
-
-.. After you add your certificates, select *Save and Deploy*.
 
 . (Optional) Select Security Policies
 +
@@ -296,7 +296,7 @@ By default, the activity across all IPs addresses behind your endpoint is logged
 .. Select the log level to apply to this IP filter.
 .. Select *OK*.
 
-. Select *Deploy* to deploy the internal load balancer.
+. Select *Save and Deploy* to deploy the internal load balancer.
 +
 The deployment can take up to a minute to complete. 
 +
