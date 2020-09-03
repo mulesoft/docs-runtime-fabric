@@ -50,7 +50,7 @@ image::architecture-network.png[]
 
 This diagram shows the TCP load balancer used to load balance requests across the internal load balancers running on the controllers. It also shows the internal load balancer that distributes requests to each replica of Mule applications running on the workers.
 
-When you enable an internal load balancer, specify either of the following modes:
+When you enable an internal load balancer, the following modes are supported:
 
 * *Shared Mode*
 +
