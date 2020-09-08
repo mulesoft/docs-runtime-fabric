@@ -58,7 +58,7 @@ Perform the following actions:
 
 * Disable swap memory.
 * Ensure that chrony (system clocks) status is in sync.
-* Ensure there is no Antiviral or Deep Packet Inspection (DPI) software on the host.
+* Ensure there is no antivirus or deep packet inspection (DPI) software on the host.
 * Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware: 
 
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
