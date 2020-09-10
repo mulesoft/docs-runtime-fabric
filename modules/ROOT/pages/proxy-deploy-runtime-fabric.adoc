@@ -56,7 +56,7 @@ To enable the proxy to support HTTPs requests:
 
 . Download the API gateway and deploy from API Manager using the instructions in xref:api-manager::download-proxy-task.adoc[Downloading an API Proxy].
 . Open the gateway in Anypoint Studio and insert a keystore (SSL cert) using the instructions in xref:mule-runtime::tls-configuration#use-anypoint-studio-to-configure-tls[Use Anypoint Studio to Configure TLS].
-. Export and deploy the gateway using Runtime Manager according to the instructions in xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
+. Export and deploy the gateway using Runtime Manager according to the instructions in xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 . Enable last-mile security on the application using the instructions in https://help.mulesoft.com/s/article/How-to-enable-last-mile-security-in-Runtime-Fabric-RTF[How to enable last-mile security in Runtime Fabric (RTF)].
 
 // end::content[]
