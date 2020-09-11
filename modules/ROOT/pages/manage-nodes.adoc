@@ -6,6 +6,10 @@ Runtime Fabric enables you to add and remove nodes from a Runtime Fabric. Scenar
 * Delete or add nodes to ensure the health and stability of a Runtime Fabric.
 * Delete a node, perform an OS patch, then re-add the node to a Runtime Fabric.
 
+[NOTE]
+Adding a node from the Ops Center UI is not supported. Use the following procedure to add a new node to Runtime Fabric.
+
+
 == Add a Node to Runtime Fabric
 
 Before adding a node, provision the infrastructure for the new node. To be able to join the cluster, the new node must be on the same network as your Runtime Fabric installation.
