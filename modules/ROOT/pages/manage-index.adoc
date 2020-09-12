@@ -3,7 +3,7 @@
 After installing and configuring Runtime Fabric and deploying Mule applications and API proxies, there are additional tasks you might need to perform.
 
 * Use Anypoint Monitoring and Visualizer to monitor applications deployed to Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric].
-* Monitor the performance and health of your Runtime Fabric installation. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric].
+* Monitor the performance and health of your Runtime Fabric installation. See xref:using-opscenter.adoc[Use Ops Center on Anypoint Runtime Fabric].
 * Install patches and perform other scheduled maintenance on Runtime Fabric. See xref:install-patches.adoc[Perform Scheduled Maintenance].
 * Back up Runtime Fabric. See xref:manage-backup-restore.aodc[Back up and Restore Runtime Fabric].
 * Add or remove nodes from a cluster to maintain cluster health or to perform upgrade. See xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
