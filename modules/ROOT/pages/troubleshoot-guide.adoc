@@ -45,6 +45,51 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
  
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-prereqs#port-ip-addresses-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
+== Verify Chrony is Synchronized 
+
+After you install chrony:
+
+. Verify that chrony is enabled by running the following command:
++
+`systemctl enable chronyd`
+. Verify that the  Network Time Protocol (NTP) is disabled and is not running:
++
+```
+systemctl stop ntpd
+systemctl disable ntpd
+```
+
+. Contact your network team to verify that the time servers in `/etc/chrony.conf` are reachable.
+
+. Verify the `Leap status` of chronyc tracking:
++
+```
+chronyc tracking
+```
++
+Ensure that the `Leap status` of chronyc tracking indicates `Normal`, as shown in the following example output:
++
+```
+Reference ID : A29FC87B (time.cloudflare.com)
+Stratum : 4
+Ref time (UTC) : Mon Jul 20 15:42:57 2020
+System time : 0.000000003 seconds slow of NTP time
+Last offset : +0.000344024 seconds
+RMS offset : 0.000172783 seconds
+Frequency : 2.265 ppm slow
+Residual freq : +0.149 ppm
+Skew : 0.124 ppm
+Root delay : 0.003362593 seconds
+Root dispersion : 0.000759320 seconds
+Update interval : 1031.1 seconds
+Leap status : Normal
+```
+
+. Verify that chrony sources are synchronized:
++
+`chronyc sourcestats -v`
+
+
 == Troubleshoot Cluster Issues
 
 When filing a support case, the support team might ask you to run one or both of the following commands to generate debugging information:
