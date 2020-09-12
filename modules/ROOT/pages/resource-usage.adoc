@@ -3,14 +3,32 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use Runtime Manager or the built-in Ops Center to monitor the health of your Anypoint Runtime Fabric clusters.
+You can use Anypoint Runtime Manager to monitor the health and resource usage of your Anypoint Runtime Fabric clusters.
 
-== Runtime Manager
+== Health Details
 For Runtime Fabric version 1.5 or later:
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
 . Select *Health Details*.
++
+The *Health Details* section includes a *Suitable for Production Workloads* section that indicates whether your Runtime Fabric cluster configuration meets production environment requirements, as shown in the following example:
++
+```
+Suitable for Production Workloads
+Controller : 0 nodes (required for high availability)
+Worker : 3 nodes
+Load balancer : 0 nodes
+```
 
+== Resource Usage 
 
+To view the resource and vCPU usage:
+
+. Navigate to Runtime Manager and select *Runtime Fabric*.
+. Click in the area between a Runtime Fabric name and its status to display resource and status information for that Runtime Fabric.
++
+Information that is displayed includes version, number of controller, worker, and ingress (internal load balancer) nodes, and  aggregated vCPU core usage.
+
+== See Also
 You can view additional performance and Runtime Fabric cluster health information using the Ops Center. Refer to xref:using-opscenter[Use Ops Center to Monitor Runtime Fabric].
