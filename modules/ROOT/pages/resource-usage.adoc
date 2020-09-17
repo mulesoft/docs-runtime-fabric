@@ -1,13 +1,9 @@
-= View Runtime Fabric Status and Resources
+= View Runtime Fabric Status
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use Anypoint Runtime Manager to view the resource usage and health of your Anypoint Runtime Fabric clusters.
-
-== View Resource Usage 
-
-To view the resource usage and vCPU availability:
+You can use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters. 
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Click in the area between a Runtime Fabric cluster name and its status to display resource and status information for that Runtime Fabric cluster.
