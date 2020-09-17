@@ -3,26 +3,28 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can use Anypoint Runtime Manager to monitor the resource usage and health of your Anypoint Runtime Fabric clusters.
+You can use Anypoint Runtime Manager to view the resource usage and health of your Anypoint Runtime Fabric clusters.
 
-== Resource Usage 
+== View Resource Usage 
 
 To view the resource usage and vCPU availability:
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
-. Click in the area between a Runtime Fabric name and its status to display resource and status information for that Runtime Fabric.
+. Click in the area between a Runtime Fabric cluster name and its status to display resource and status information for that Runtime Fabric cluster.
 . Click the *Manage* button to open the management page.
 +
-Information that is displayed includes version, number of controller, worker, and ingress (internal load balancer) nodes, and the vCPU available for use.
+Information that is displayed includes version; number of controller, worker, and ingress (internal load balancer) nodes; and the total amount of vCPU that is available for the Runtime Fabric cluster to use.
 
 == Health Details
 For Runtime Fabric version 1.5 or later:
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
-. Select the name of your Runtime Fabric to open the management page.
+. Select the name of your Runtime Fabric cluster to open the management page.
 . Select *Health Details*.
 +
-The *Health Details* section includes a *Suitable for Production Workloads* section that indicates whether your Runtime Fabric cluster configuration meets production environment requirements, as shown in the following example:
+The *Health Details* section indicates whether your Runtime Fabric cluster configuration meets the requirements for a production environment, a development environment, or neither. If your configuration fails to meet the minimum requirements of both production and development environments, `Not supported` is displayed. 
++
+For example, if your Runtime Fabric cluster configuration meets production environment requirements, the following information is displayed:
 +
 ```
 Suitable for Production Workloads
