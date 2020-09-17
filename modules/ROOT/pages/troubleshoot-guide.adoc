@@ -62,7 +62,7 @@ Error: chrony sync check failed 3 times, giving up.
 ** Oh no! Your installation has stopped due to an error. **
 ***********************************************************
 1. Visit the troubleshooting guide for help:
-https://docs.mulesoft.com/runtime-fabric/latest/troubleshoot-guide#install-required-packages
+xref:runtime-fabric::troubleshoot-guide.adoc#troubleshoot-install-package-issues[Troubleshoot Install Package Issues].
 
 2. Resume installation by running /opt/anypoint/runtimefabric/init.sh
 
