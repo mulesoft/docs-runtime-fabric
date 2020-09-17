@@ -33,7 +33,7 @@
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
  ** xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform]
  ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
- ** xref:manage-backup-restore.adoc[Backup and Restore Runtime Fabric]
+ ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
  ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric Manually]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
  
