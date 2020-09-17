@@ -1,15 +1,9 @@
-= View Runtime Fabric Status
+= View Runtime Fabric Health Details
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 You can use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters. 
-
-. Navigate to Runtime Manager and select *Runtime Fabric*.
-. Click in the area between a Runtime Fabric cluster name and its status to display resource and status information for that Runtime Fabric cluster.
-. Click the *Manage* button to open the management page.
-+
-Information that is displayed includes version; number of controller, worker, and ingress (internal load balancer) nodes; and the total amount of vCPU that is available for the Runtime Fabric cluster to use.
 
 == Health Details
 For Runtime Fabric version 1.5 or later:
