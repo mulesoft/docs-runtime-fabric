@@ -70,6 +70,8 @@ The minimum values for the amount of memory allocated to each replica of a Mule 
 * 0.7 GiB memory for Mule 4
 * 0.5 GiB memory for Mule 3
 
+When Anypoint Monitoring is enabled, 50MB memory is reserved for running the Anypoint Monitoring sidecar containers, which can burst up to 70MB for each application deployed when processing metrics data.
+
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
 Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload.
