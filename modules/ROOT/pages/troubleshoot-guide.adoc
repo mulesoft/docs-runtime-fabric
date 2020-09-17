@@ -46,10 +46,7 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-prereqs#port-ip-addresses-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
 
-
-
-
-Troubleshoot Chrony Synchronization Check Failure
+== Troubleshoot Chrony Synchronization Check Failure
 
 Runtime Fabric requires chrony for its time synchronization daemon. If chrony is not found by the `init.sh` installation script, Runtime Fabric installation fails with the following error:
 ```
