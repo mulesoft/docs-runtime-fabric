@@ -23,15 +23,6 @@ For Runtime Fabric version 1.5 or later:
 . Select *Health Details*.
 +
 The *Health Details* section indicates whether your Runtime Fabric cluster configuration meets the requirements for a production environment, a development environment, or neither. If your configuration fails to meet the minimum requirements of both production and development environments, `Not supported` is displayed. 
-+
-For example, if your Runtime Fabric cluster configuration meets production environment requirements, the following information is displayed:
-+
-```
-Suitable for Production Workloads
-Controller : 0 nodes (required for high availability)
-Worker : 3 nodes
-Load balancer : 0 nodes
-```
 
 == See Also
 You can view additional performance and Runtime Fabric cluster health information using the Ops Center. Refer to xref:using-opscenter[Use Ops Center to Monitor Runtime Fabric].
