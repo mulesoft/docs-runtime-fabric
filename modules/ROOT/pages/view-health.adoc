@@ -5,7 +5,6 @@ endif::[]
 
 You can use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters. 
 
-== Health Details
 For Runtime Fabric version 1.5 or later:
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
