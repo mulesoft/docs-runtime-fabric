@@ -99,11 +99,13 @@ Runtime Fabric supports log forwarding to:
 ** Elasticsearch
 ** Graylog Extended Log Format (GELF)
 ** Splunk
+** CloudWatch
 
 [NOTE]
 ====
 * Only one external log forwarding configuration is supported at any one time. However, you can enable Anypoint log forwarding and an external log forwarding service at the same time.
 * External log forwarding does not currently support proxies that are configured for a Runtime Fabric cluster. You must explicitly configure firewall rules to allow the outbound IP address and port of the external log forwarding service.
+* Customized log filtering is not currently supported.
 ====
 
 === Enable Log Forwarding
@@ -122,6 +124,7 @@ Runtime Fabric supports log forwarding to:
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
+*** <<CloudWatch Configuration Parameters, CloudWatch Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
