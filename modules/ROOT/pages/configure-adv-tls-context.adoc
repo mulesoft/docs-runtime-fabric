@@ -1,0 +1,81 @@
+= Import a TLS Context from Secrets Manager (Advanced)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+If your environment has specific security requirements or requires advanced configuration, such as selecting particular ciphers or TLS suites or certificate pinning, you can import a TLS context from the secrets manager.
+
+== Prerequisites
+
+You must have the following permissions to import a TLS context from the secrets manager:
+
+* Grant access to secrets
+* Manage Secret Groups
+* Read secrets metadata
+* Write secrets
+
+These permissions are set using the *Secrets Manager* tab in Anypoint Access Management:
+
+. From Anypoint Platform, select *Access Management*.
++
+If you have access, execute the following steps to add the permission:
+. Select *Users*.
+. Locate the row containing your username and then select the link in the *Username* column.
+. In the *Secrets Manager* tab:
+
+.. Select *Environment* and then select your environment from the drop-down list.
+.. Select *Permission(s)* and then select *Select Access*.
+.. Select *Select all*.
++
+[NOTE]
+It can take up to five minutes for any permissions you add to propagate.
+
+== Add a TLS Context to a Secrets Group
+
+Before you can import the TLS context from the secrets manager, you must add a TLS context.
+
+Adding a TLS context to your secrets group involves supplying a name, target, security information, version, keystore, and, optionally, truststore. 
+
+. In the *Secret Groups* list, select the secrets group to which you want to add a TLS context. 
+. Select *TLS Context* in the menu on the left, and click *Add TLS Context*. 
+. In the *Create TLS Context* window, add the required information:
++
+* *Name* +
+Enter a name for your TLS context. 
+* *Target* +
+Select *Anypoint Security* to validate the SSL handshake for Runtime Fabric. 
+* *TLS Version* +
+By default, TLS 1.2 and TLS 1.3 are selected. +
+For information about the advantages of TLS 1.3, see xref:anypoint-security::cipher-suites.adoc#tls-support-on-anypoint-runtime-fabric[TLS Support on Anypoint Runtime Fabric].
+* *Keystore* +
+From the drop-down list, select the keystore to store the TLS context. +
+For information about adding a keystore to the secrets manager, see xref:anypoint-security::asm-secret-group-creation-task#add_keystore.adoc[Create a Secrets Group]. +
+You can select keystores that are either PEM or non-PEM types. 
+* Optionally select a truststore to which to add the TLS context if you are using a truststore to store certificates trusted by the client. +
+A truststore is required if you are going to enable client authentication.
+* *Expiration Date* +
+Optionally select the expiration date for the certificate.
+. Optionally xref:anypoint-security::enable-client-authentication.adoc[enable client authentication]. 
+. Optionally xref:anypoint-security::cipher-suites.adoc[select ciphers]. 
+. Click *Add certificate*.
+
+[[import_tls_rtf]]
+== Import a TLS Context to Runtime Fabric
+
+. In *Runtime Manager > Runtime Fabrics > Inbound Traffic > Add certificates*, select *Import from Secrets Manager*.
++
+This option imports a TLS context from the secrets manager, and supports advanced configuration such client authentication (mutual authentication), selecting ciphers, and selecting TLS versions.
+. Select the environment with which the secrets group that contains the TLS context is associated.
+. Select the secrets group where the TLS context is configured.
+. Select the TLS context to use for Runtime Fabric. +
+. Optionally can click *View Details* to see details of the TLS context you are importing. 
+
+[[tls_support_rtf]]
+
+
+== See Also
+
+* xref:anypoint-security::enable-client-authentication.adoc[Enable Client Authentication]
+* xref:anypoint-security::cipher-suites.adoc[Cipher Suites]
+* xref:anypoint-security::asm-secret-type-support-reference.adoc[Supported Secret Types]
+* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
