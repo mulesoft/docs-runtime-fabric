@@ -45,6 +45,72 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
  
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-prereqs#port-ip-addresses-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
 
+
+== Troubleshoot Chrony Synchronization Check Failure
+
+Runtime Fabric requires chrony for its time synchronization daemon. If chrony is not found by the `init.sh` installation script, Runtime Fabric installation fails with the following error:
+```
+============================================================================================
+1 / 10: Install required packages
+================================================
+chrony-3.4-1.el7.x86_64
+Checking chrony sync status...Retrying in 30 seconds...
+Retrying in 30 seconds...
+Error: chrony sync check failed 3 times, giving up.
+
+***********************************************************
+** Oh no! Your installation has stopped due to an error. **
+***********************************************************
+1. Visit the troubleshooting guide for help:
+xref:runtime-fabric::troubleshoot-guide.adoc#troubleshoot-install-package-issues[Troubleshoot Install Package Issues].
+
+2. Resume installation by running /opt/anypoint/runtimefabric/init.sh
+
+Additional information: Error code: 1; Step: install_required_packages; Line: -;
+```
+
+Perform the following steps to fix this issue:
+
+. Verify that chrony is enabled:
++
+`systemctl enable chronyd`
+. Verify that Network Time Protocol (NTP) is disabled and is not running:
++
+`systemctl stop ntpd; systemctl disable ntpd`
+. Contact your network team to verify that the time servers in `/etc/chrony.conf` are reachable.
+. Verify that chrony is synced with sources:
++
+```
+chronyc sourcestats -v
+
+Number of sources = 4
+Name/IP Address            NP  NR  Span  Frequency  Freq Skew  Offset  Std Dev
+==============================================================================
+ns3.turbodns.co.uk         16  12   58m     -0.006      0.014   +370us    14us
+test.diarizer.com          16   9  327m     -0.184      0.144  -1618us   799us
+ntp1.vmar.se                6   3   21m     +0.117      0.074   +228us    10us
+time.cloudflare.com         6   5   86m     +0.014      0.214  +2040ns    94us
+```
+. Verify that the `Leap status` value of `chronyc` tracking is `Normal`:
++
+```
+chronyc tracking
+Reference ID : A29FC87B (time.cloudflare.com)
+Stratum : 4
+Ref time (UTC) : Mon Jul 20 15:42:57 2020
+System time : 0.000000003 seconds slow of NTP time
+Last offset : +0.000344024 seconds
+RMS offset : 0.000172783 seconds
+Frequency : 2.265 ppm slow
+Residual freq : +0.149 ppm
+Skew : 0.124 ppm
+Root delay : 0.003362593 seconds
+Root dispersion : 0.000759320 seconds
+Update interval : 1031.1 seconds
+Leap status : Normal
+```
+. Retry the installation by running `init.sh`.
+
 == Troubleshoot Cluster Issues
 
 When filing a support case, the support team might ask you to run one or both of the following commands to generate debugging information:
