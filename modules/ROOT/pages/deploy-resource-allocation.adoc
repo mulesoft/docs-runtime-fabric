@@ -171,3 +171,4 @@ ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a
 == See Also
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to a Runtime Fabric]
+* xref:view-health.adoc[View Runtime Fabric Health Details]
