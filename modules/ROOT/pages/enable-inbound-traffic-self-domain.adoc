@@ -1,1 +1,1 @@
-= Enable Inbound Traffic within a Domain
+= Enable Inbound Traffic with a Domain
