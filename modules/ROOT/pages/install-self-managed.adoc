@@ -1,2 +1,2 @@
-= Install Runtime Fabric on Self-managed Kubernetest
+= Install Runtime Fabric on Self-managed Kubernetes
 
