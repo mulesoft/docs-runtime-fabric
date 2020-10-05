@@ -1,6 +1,6 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
-You can install Anypoint Runtime Fabric into a Kubernetes service that you manage on Amazon Web Services of Microsoft Azure. 
+You can install Anypoint Runtime Fabric into a Kubernetes service that you manage on Amazon Web Services or Microsoft Azure. 
 
 == Before you Begin
 
