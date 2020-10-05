@@ -1,2 +1,64 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
+You can install Anypoint Runtime Fabric into a Kubernetes service that you manage on Amazon Web Services of Microsoft Azure. 
+
+== Before you Begin
+
+Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, ensure the following:
+
+* You have installed and configured your Kubernetes cluster
+* The cluster meets the minimum requirements.
+* You have downloaded the `rtfctl` script.
+
+== Create a Runtime Fabric using Runtime Manager
+
+To install Runtime Fabric on a self-managed Kubernetes cluster, first create a Runtime Fabric using Runtime Manager. This is required to obtain the necessary 
+
+. From Anypoint Platform, select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Enter the name of the new Runtime Fabric, then select one of the following options:
++
+* Amazon Elastic Kubernetes Service
+* Azure Kubernetes Service
+
+. Click *Next*.
+. Review the *Support responsibility* disclaimer, then if you agree click *Continue*.
++
+Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install runtime fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
+
+
+== Install Runtime Fabric on a Self-Managed Kubernetes Service
+
+After creating a Runtime Fabric and getting the activation data, you can install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
+
+[NOTE]
+====
+Run `rtfctl --help` to see a list of options for this command.
+====
+
+. *SL: Do we need to tell users how to get to the command line on AWS/Azure? Also, do they need to run the command from a specific directory?*
+. From the command line, run `rtfctl --validate`.
++
+The `--validate` option verifies that the Kubernetes service is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs and problems is encounters.
+
+. Run the `rtfctl --install` command using the following syntax:
++
+----
+rtfctl --install <activation_data>
+----
++
+Where <activation_data> is the activation data obtained after creating the Runtime Fabric using Runtime Manager.
++
+During installation, the `rtfctl` command displays any errors.
+
+. If the installation completed succesfully, update the Mule license:
++
+----
+rtfctl --update mule-license
+----
+
+== Validating Runtime Fabric on a Self-Managed Kubernetes Service
+
+*SL Note: How would the user validate that RTF is running? Deploy an app and hit the URL?*
+
