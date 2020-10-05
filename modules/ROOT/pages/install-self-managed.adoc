@@ -6,9 +6,17 @@ You can install Anypoint Runtime Fabric into a Kubernetes service that you manag
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, ensure the following:
 
-* You have installed and configured your Kubernetes cluster
-* The cluster meets the minimum requirements.
-* You have downloaded the `rtfctl` script.
+* You have installed and configured your Kubernetes cluster as follows:
++
+- Running Kubernetes version 1.14.x to 1.18.x
+- Contains an Ingress controller to connect external applications to the internal Runtime Fabric services.
+* You have downloaded and installed the `rtfctl` script.
++
+`rtfctl` is supported on Windows, Darwin, and Linux. To download this script use the following command:
++
+----
+curl -L https://qax.anypoint.mulesoft.comruntimefabric/api/download/rtfctl/latest -o rtfctl
+----
 
 == Create a Runtime Fabric using Runtime Manager
 
@@ -30,17 +38,16 @@ Runtime Manager creates the Runtime Fabric and displays the Activation State pag
 
 == Install Runtime Fabric on a Self-Managed Kubernetes Service
 
-After creating a Runtime Fabric and getting the activation data, you can install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
+After creating a Runtime Fabric and getting the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
 
 [NOTE]
 ====
 Run `rtfctl --help` to see a list of options for this command.
 ====
 
-. *SL: Do we need to tell users how to get to the command line on AWS/Azure? Also, do they need to run the command from a specific directory?*
 . From the command line, run `rtfctl --validate`.
 +
-The `--validate` option verifies that the Kubernetes service is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs and problems is encounters.
+The `--validate` option verifies that the Kubernetes service is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any problems is encounters.
 
 . Run the `rtfctl --install` command using the following syntax:
 +
