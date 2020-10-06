@@ -1,6 +1,6 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
-You can install Anypoint Runtime Fabric into a Kubernetes service that you manage on Amazon Web Services of Microsoft Azure. 
+You can install Anypoint Runtime Fabric into a Kubernetes cluster that you manage on Amazon Web Services of Microsoft Azure. 
 
 == Before you Begin
 
@@ -36,7 +36,7 @@ To install Runtime Fabric on a self-managed Kubernetes cluster, first create a R
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install runtime fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
 
 
-== Install Runtime Fabric on a Self-Managed Kubernetes Service
+== Install Runtime Fabric on a Self-Managed Kubernetes Cluster
 
 After creating a Runtime Fabric and getting the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
 
@@ -47,7 +47,7 @@ Run `rtfctl --help` to see a list of options for this command.
 
 . From the command line, run `rtfctl --validate`.
 +
-The `--validate` option verifies that the Kubernetes service is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any problems is encounters.
+The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any problems is encounters.
 
 . Run the `rtfctl --install` command using the following syntax:
 +
@@ -65,7 +65,7 @@ During installation, the `rtfctl` command displays any errors.
 rtfctl --update mule-license
 ----
 
-== Validating Runtime Fabric on a Self-Managed Kubernetes Service
+== Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
 *SL Note: How would the user validate that RTF is running? Deploy an app and hit the URL?*
 
