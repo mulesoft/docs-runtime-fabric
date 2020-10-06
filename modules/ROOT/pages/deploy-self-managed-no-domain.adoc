@@ -1,2 +1,0 @@
-= Deploy a Mule Application to Self-managed Kubernetes
-

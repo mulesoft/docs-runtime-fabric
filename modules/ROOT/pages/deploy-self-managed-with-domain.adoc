@@ -1,1 +1,0 @@
-= Deploy a Mule Application to Self-managed Kubernetes with a Domain Configured
