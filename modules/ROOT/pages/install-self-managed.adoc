@@ -10,27 +10,6 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, 
 +
 - Running Kubernetes version 1.14.x to 1.18.x.
 - Running an ingress controller to send external requests to applications.
-* You have downloaded and installed the `rtfctl` command-line utility.
-+
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
-+
-*Windows:*
-+
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl
-----
-+
-*MacOS (Darwin):*
-+
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
-----
-+
-*Linux:*
-+
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
-----
 
 == Create a Runtime Fabric using Runtime Manager
 
@@ -56,30 +35,71 @@ After creating a Runtime Fabric and getting the activation data, install Runtime
 
 [NOTE]
 ====
-Run `rtfctl help` to see a list of options for this command.
+If your Kubernetes configuration is not located in the `~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
+
+----
+export KUBECONFIG=<path-to-kubeconfig>
+----
 ====
 
-. From the command line, run `rtfctl validate <activation_data>`.
-+
-The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any incompatibilities with Kubernetes cluster.
 
-. Run the `rtfctl install` command using the following syntax:
+. Download the `rtfctl` command:
++
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl
+----
++
+*MacOS (Darwin):*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
+
+. Change file permissions for the `rtfctl` command:
++
+----
+sudo chmod +x rtfctl
+----
+
+. Validate that you Kubernetes cluster is read for installation:
++
+----
+rtfctl validate <activation_data>
+----
++
+The `validate` option verifies that:
++
+* The Kubernetes cluster is running
+* All required components exist
+* All required services are available. 
++
+The `rtfctl` command outputs any incompatibilities with Kubernetes cluster.
+
+. Install Runtime Fabric: 
 +
 ----
 rtfctl install <activation_data>
 ----
 +
-Where <activation_data> is the activation data obtained after creating the Runtime Fabric using Runtime Manager.
-+
-During installation, the `rtfctl` utility displays any errors encountered.
+`<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
 
-. The `rtfctl` utility will display the After the installation has completed succesfully, update the Mule license:
+. After the installation has completed succesfully, update the Mule license:
 +
 ----
 rtfctl apply mule-license '<mule-license-key>'
 ----
 
-When the `rtfctl` command finishes, it outputs that the Runtime Fabric is ready.
+When the `rtfctl` command finishes, it outputs confirmation that the Runtime Fabric is ready.
 
 == Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
