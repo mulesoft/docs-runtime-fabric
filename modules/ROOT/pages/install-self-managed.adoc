@@ -56,7 +56,7 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/
 *MacOS (Darwin):*
 +
 ----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
 ----
 +
 *Linux:*
@@ -93,13 +93,45 @@ rtfctl install <activation_data>
 +
 `<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
 
-. After the installation has completed succesfully, update the Mule license:
+
+== Update the Mule License Key
+
+After the installation has completed succesfully, update the Mule license key.
+
+. Base64 encode the new Mule `.lic` license file provided by MuleSoft:
++
+* On MacOS, run the following command:
 +
 ----
-rtfctl apply mule-license '<mule-license-key>'
+base64 -b0 license.lic
+----
++
+* On Unix, run the following command:
++
+----
+base64 -w0 license.lic
+----
++
+* On Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer is required.
++
+.. Transfer to your Unix environment if necessary.
+.. Run the following command to Base64 encode the license key:
++
+----
+base64 -w0 license.lic
 ----
 
-When the `rtfctl` command finishes, it outputs confirmation that the Runtime Fabric is ready.
+. Update the Mule license key:
++
+----
+rtfctl apply mule-license BASE64_ENCODED_LICENSE
+----
+
+. To verify the Mule license key has applied correctly, run:
++
+----
+rtfctl get mule-license
+---- 
 
 == Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
