@@ -9,7 +9,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, 
 * You have installed and configured your Kubernetes cluster as follows:
 +
 - Running Kubernetes version 1.14.x to 1.18.x.
-- Running an ingress controller to send external requests to deployments.
+- Running an ingress controller to send external requests to applications.
 * You have downloaded and installed the `rtfctl` command-line utility.
 +
 `rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
@@ -56,17 +56,17 @@ After creating a Runtime Fabric and getting the activation data, install Runtime
 
 [NOTE]
 ====
-Run `rtfctl --help` to see a list of options for this command.
+Run `rtfctl help` to see a list of options for this command.
 ====
 
-. From the command line, run `rtfctl --validate`.
+. From the command line, run `rtfctl --validate <activation_data>`.
 +
 The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any incompatibilities with Kubernetes cluster.
 
-. Run the `rtfctl --install` command using the following syntax:
+. Run the `rtfctl install` command using the following syntax:
 +
 ----
-rtfctl --install <activation_data>
+rtfctl install <activation_data>
 ----
 +
 Where <activation_data> is the activation data obtained after creating the Runtime Fabric using Runtime Manager.
@@ -76,10 +76,12 @@ During installation, the `rtfctl` command displays any errors.
 . After the installation has completed succesfully, update the Mule license:
 +
 ----
-rtfctl --update mule-license
+rtfctl apply mule-license '<mule-license-key>'
 ----
+
+When the `rtfctl` command finishes, it outputs that the Runtime Fabric is ready.
 
 == Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
-*SL Note: How would the user validate that RTF is running? Deploy an app and hit the URL?*
+Complete the configuration by associating at least one environment to the runtime fabric created above. You must also configure your ingress controller.
 
