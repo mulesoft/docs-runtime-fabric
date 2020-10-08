@@ -83,7 +83,7 @@ When the `rtfctl` command finishes, it outputs that the Runtime Fabric is ready.
 
 == Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
-After completing the installation, your Runtime Fabric should have been activated with your Anypoint organization. To validate this, got Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is Active.
+After completing the installation, your Runtime Fabric should have been activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is Active.
 
 Before deploying an application to Runtime Fabric:
 
