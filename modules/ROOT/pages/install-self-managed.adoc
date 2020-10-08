@@ -4,7 +4,7 @@ You can install Anypoint Runtime Fabric into a Kubernetes environment provided b
 
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, ensure the following:
+Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure the following:
 
 * You have installed and configured your Kubernetes environment as follows:
 +
