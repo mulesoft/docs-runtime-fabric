@@ -1,6 +1,6 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
-You can install Anypoint Runtime Fabric into a Kubernetes cluster that you manage on Amazon Web Services of Microsoft Azure. 
+You can install Anypoint Runtime Fabric into a Kubernetes cluster provided by AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS). 
 
 == Before you Begin
 
@@ -8,19 +8,33 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes service, 
 
 * You have installed and configured your Kubernetes cluster as follows:
 +
-- Running Kubernetes version 1.14.x to 1.18.x
-- Contains an Ingress controller to connect external applications to the internal Runtime Fabric services.
-* You have downloaded and installed the `rtfctl` script.
+- Running Kubernetes version 1.14.x to 1.18.x.
+- Running an ingress controller to send external requests to deployments.
+* You have downloaded and installed the `rtfctl` command-line utility.
 +
-`rtfctl` is supported on Windows, Darwin, and Linux. To download this script use the following command:
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
 +
 ----
-curl -L https://qax.anypoint.mulesoft.comruntimefabric/api/download/rtfctl/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl
+----
++
+*MacOS (Darwin):*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
 == Create a Runtime Fabric using Runtime Manager
 
-To install Runtime Fabric on a self-managed Kubernetes cluster, first create a Runtime Fabric using Runtime Manager. This is required to obtain the necessary 
+To install Runtime Fabric on a self-managed Kubernetes cluster, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
 
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
@@ -33,7 +47,7 @@ To install Runtime Fabric on a self-managed Kubernetes cluster, first create a R
 . Click *Next*.
 . Review the *Support responsibility* disclaimer, then if you agree click *Continue*.
 +
-Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install runtime fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
+Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
 
 
 == Install Runtime Fabric on a Self-Managed Kubernetes Cluster
@@ -47,7 +61,7 @@ Run `rtfctl --help` to see a list of options for this command.
 
 . From the command line, run `rtfctl --validate`.
 +
-The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any problems is encounters.
+The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any incompatibilities with Kubernetes cluster.
 
 . Run the `rtfctl --install` command using the following syntax:
 +
@@ -59,7 +73,7 @@ Where <activation_data> is the activation data obtained after creating the Runti
 +
 During installation, the `rtfctl` command displays any errors.
 
-. If the installation completed succesfully, update the Mule license:
+. After the installation has completed succesfully, update the Mule license:
 +
 ----
 rtfctl --update mule-license
