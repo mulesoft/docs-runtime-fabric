@@ -71,9 +71,9 @@ rtfctl install <activation_data>
 +
 Where <activation_data> is the activation data obtained after creating the Runtime Fabric using Runtime Manager.
 +
-During installation, the `rtfctl` command displays any errors.
+During installation, the `rtfctl` utility displays any errors encountered.
 
-. After the installation has completed succesfully, update the Mule license:
+. The `rtfctl` utility will display the After the installation has completed succesfully, update the Mule license:
 +
 ----
 rtfctl apply mule-license '<mule-license-key>'
@@ -83,5 +83,10 @@ When the `rtfctl` command finishes, it outputs that the Runtime Fabric is ready.
 
 == Validating Runtime Fabric on a Self-Managed Kubernetes Cluster
 
-Complete the configuration by associating at least one environment to the runtime fabric created above. You must also configure your ingress controller.
+After completing the installation, your Runtime Fabric should have been activated with your Anypoint organization. To validate this, got Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is Active.
+
+Before deploying an application to Runtime Fabric:
+
+. Associate the Runtime Fabric with at least one Anypoint environment.
+. Review and update the Inbound Traffic settings based upon your Kubernetes environment.
 
