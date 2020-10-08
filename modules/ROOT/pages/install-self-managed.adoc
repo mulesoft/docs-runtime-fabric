@@ -59,7 +59,7 @@ After creating a Runtime Fabric and getting the activation data, install Runtime
 Run `rtfctl help` to see a list of options for this command.
 ====
 
-. From the command line, run `rtfctl --validate <activation_data>`.
+. From the command line, run `rtfctl validate <activation_data>`.
 +
 The `--validate` option verifies that the Kubernetes cluster is running, that all required components exist, and that all required services are available. The `rtfctl` command outputs any incompatibilities with Kubernetes cluster.
 
