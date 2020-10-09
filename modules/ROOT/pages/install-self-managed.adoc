@@ -50,7 +50,7 @@ export KUBECONFIG=<path-to-kubeconfig>
 *Windows:*
 +
 ----
-curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl
+curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
 *MacOS (Darwin):*
