@@ -21,7 +21,7 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 +
 For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. 
 +
-For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that cn be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
+For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that can be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
 ** Know the domain or domains to use for routing traffic to your applications.
 ** Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 
