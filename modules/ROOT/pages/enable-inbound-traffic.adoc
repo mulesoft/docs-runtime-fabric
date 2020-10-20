@@ -97,7 +97,8 @@ Because certificates are not used in this case, use the “Add Domain” button 
 
 . Configure a TLS context for HTTPS.
 +
-If you selected *Accept HTTPS requests* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required.
+If you selected *Accept HTTPS requests* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to 10 certificates, but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#CPU_Requirements_for_Keys_and_Certificates[CPU Requirements for Keys and Certificates].
+
 +
 .. Select *Add certificate*.
 +

@@ -156,6 +156,21 @@ The following table summarizes the approximate requests (averaging 10 KB) that c
 [NOTE]
 The internal load balancer runs on the controller VMs of Runtime Fabric. Size the VMs based on the amount and type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
 
+[CPU_Cert_Req]
+== CPU Requirements for Keys and Certificates
+
+Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 or 8 JKS/JCEKS certificates. The number of recommended cores are:
+
+[%header,cols="3*a"]
+.Minimum CPU resources required to support certificates
+|===
+| Cores | PEM/P12 | JKS/JCEKS
+| 0.25  | 8 | 2
+| 0.5 | 10 | 4
+| 0.75 | 10 | 6
+| \<= 1 | 10 | 8	
+|===
+
 == Key Types
 
 RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance. 
