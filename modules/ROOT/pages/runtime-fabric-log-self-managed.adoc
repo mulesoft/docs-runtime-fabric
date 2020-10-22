@@ -1,0 +1,3 @@
+= Configure Log-forwarding on Self-Managed Kubernetes
+
+This topic is currently under development and will be available soon.
