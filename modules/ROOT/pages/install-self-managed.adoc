@@ -1,0 +1,144 @@
+= Install Runtime Fabric on Self-managed Kubernetes
+
+You can install Anypoint Runtime Fabric into a Kubernetes environment provided by AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS). 
+
+== Before you Begin
+
+Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure the following:
+
+* You have installed and configured your Kubernetes environment as follows:
++
+- Running Kubernetes version 1.14.x to 1.18.x.
+- Running an ingress controller to send external requests to applications.
+
+== Create a Runtime Fabric using Runtime Manager
+
+To install Runtime Fabric on a self-managed Kubernetes environment, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
+
+. From Anypoint Platform, select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Enter the name of the new Runtime Fabric, then select one of the following options:
++
+* Amazon Elastic Kubernetes Service
+* Azure Kubernetes Service
+
+. Click *Next*.
+. Review the *Support responsibility* disclaimer, then if you agree click *Continue*.
++
+Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
+
+
+== Install Runtime Fabric on a Self-Managed Kubernetes Environment
+
+After creating a Runtime Fabric and getting the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
+
+[NOTE]
+====
+If your Kubernetes configuration is not located in the `~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
+
+----
+export KUBECONFIG=<path-to-kubeconfig>
+----
+====
+
+
+. Download the `rtfctl` command:
++
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
++
+----
+curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
+----
++
+*MacOS (Darwin):*
++
+----
+curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
+
+. Change file permissions for the `rtfctl` command:
++
+----
+sudo chmod +x rtfctl
+----
+
+. Validate that you Kubernetes environment is read for installation:
++
+----
+rtfctl validate <activation_data>
+----
++
+The `validate` option verifies that:
++
+* The Kubernetes environment is running.
+* All required components exist.
+* All required services are available. 
++
+The `rtfctl` command outputs any incompatibilities with the Kubernetes environment.
+
+. Install Runtime Fabric: 
++
+----
+rtfctl install <activation_data>
+----
++
+`<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
+
+
+== Update the Mule License Key
+
+After the installation has completed succesfully, update the Mule license key.
+
+. Base64 encode the new Mule `.lic` license file provided by MuleSoft:
++
+* On MacOS, run the following command:
++
+----
+base64 -b0 license.lic
+----
++
+* On Unix, run the following command:
++
+----
+base64 -w0 license.lic
+----
++
+* On Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer is required.
++
+.. Transfer to your Unix environment if necessary.
+.. Run the following command to Base64 encode the license key:
++
+----
+base64 -w0 license.lic
+----
+
+. Update the Mule license key:
++
+----
+rtfctl apply mule-license BASE64_ENCODED_LICENSE
+----
+
+. To verify the Mule license key has applied correctly, run:
++
+----
+rtfctl get mule-license
+---- 
+
+== Validating Runtime Fabric on a Self-Managed Kubernetes Environment
+
+After completing the installation, your Runtime Fabric should have been activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is Active.
+
+Before deploying an application to Runtime Fabric:
+
+. Associate the Runtime Fabric with at least one Anypoint environment.
+. Review and update the Inbound Traffic settings based upon your Kubernetes environment.
+
