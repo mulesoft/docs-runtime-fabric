@@ -32,9 +32,9 @@ Each of these options has its own system requirements and installation procedure
 | | RTF Self-managed | RTF Appliance
 | Support for deploying Mules and API Gateways | Supported | Supported
 | Kubernetes and Docker | Not included. +
-You must provide your own Kubernetes and Docker services via EKS or AKS clusters. | Included
-| Support for installing on any Linux distribution | Supported | RHEL and CentOS only
-| Support for node auto-scaling | Supported using AWS or Azure settings | Not supported
+You must provide your instances of Kubernetes and Docker via EKS or AKS clusters. | Included
+| Support for installing on any Linux distribution | Supported | Support for RHEL and CentOS only
+| Support for node auto-scaling | Supported using AWS or Azure functionality | Not supported
 | Support for external log forwarding | You must provide an external log forwarding service | Included
 | Support for an internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
 | Support for Anypoint Security Edge | Not supported | Supported
