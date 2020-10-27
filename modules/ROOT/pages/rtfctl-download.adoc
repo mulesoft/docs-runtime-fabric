@@ -1,3 +1,0 @@
-= Download the rftctl Script
-
-This topic is currently under development and will be available soon.
