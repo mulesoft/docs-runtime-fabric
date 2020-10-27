@@ -1,0 +1,62 @@
+= Runtime Fabric Appliance
+
+
+== Runtime Fabric and Other PaaS Providers
+
+Anypoint Runtime Fabric contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
+
+[WARNING]
+Installing Runtime Fabric within an existing Kubernetes-based PaaS is not supported.
+
+If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
+
+== Shared Responsibility for On-Premises Runtime Fabric
+
+The successful operation of on-premises Runtime Fabric instances is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
+
+The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
+
+image::runtimefabricresponsibility.png[Runtime Fabric Shared Responsiblities]
+
+* MuleSoft responsibility:
++
+MuleSoft manages the Runtime Fabric appliance and is responsible for the delivered components, Runtime Fabric appliance, Runtime Fabric agent, Mule runtime engine, and other dependencies for Mule appications.
+
+* Customer responsibility:
++
+Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric.  
++
+** Infrastructure includes:
++
+*** VM resources (CPU, Memory)
++
+*** Disk performance and capacity
++
+*** Operating systems and kernel patching
++
+*** Network ports
++
+*** Synchronization of system time across all VMs
++
+** For infrastructure provisioning and management, you will need the assistance of the following teams in your organization:
++
+*** DevOps team to provision and manage the infrastructure
++
+*** Network team to specify allowed ports and configure proxy settings
++
+*** Security team to verify compliance and obtain security certificates
+
+Refer to xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites] for additional information.
+
+== Connecting Runtime Fabric to Anypoint Management Center
+
+Anypoint Runtime Fabric supports the following:
+
+* Deploying applications from Anypoint Runtime Manager.
+* Deploying policy updates of API gateways using API Manager.
+* Storing and retrieving assets with Anypoint Exchange.
+
+To enable integration with the Anypoint Management Center, Runtime Fabric requires outbound access to Anypoint Platform on port 443. This connection is secured using mutual TLS. A set of services running on the controller VMs initiates outbound connections to retrieve the metadata and assets required to deploy an application. These services then translate and communicate with other internal services to cache the assets locally and deploy the application.
+
+[NOTE]
+Check with your network administrator about enabling required outbound connections from your organization's network.
