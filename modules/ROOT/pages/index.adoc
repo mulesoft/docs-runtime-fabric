@@ -22,9 +22,9 @@ There are two management options for Anypoint Runtime Fabric:
 
 * *Runtime Fabric on VMs / bare metal*: a version of Runtime Fabric where MuleSoft provides the required software components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
 
-Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric Self-managed] and xref:index-appliance.adoc[Runtime Fabric Appliance] for more information.
+Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric Self-managed] and xref:index-appliance.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information.
 
-== Feature Support Matrix for the Self-managed and Appliance Versions of Runtime Fabric
+== Feature Support Matrix for the Self-managed and VM / Bare Metals Versions of Runtime Fabric
 
 [%header,cols="3*a"]
 .Supported features for the self-managed and appliance versions of Runtime Fabric
@@ -33,11 +33,11 @@ Each of these options has its own system requirements and installation procedure
 | Support for deploying Mules and API Gateways | Supported | Supported
 | Kubernetes and Docker | Not included. +
 You must provide your instances of Kubernetes and Docker via EKS or AKS clusters. | Included
-| Support for installing on any Linux distribution | Supported | Support for RHEL and CentOS only
-| Support for node auto-scaling | Supported using AWS or Azure functionality | Not supported
-| Support for external log forwarding | You must provide an external log forwarding service | Included
-| Support for an internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
-| Support for Anypoint Security Edge | Not supported | Supported
+| Installing on any Linux distribution | Supported | Support for RHEL and CentOS only
+| Node auto-scaling | Supported using AWS or Azure functionality | Not supported
+| External log forwarding | You must provide an external log forwarding service | Included
+| Internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
+| Anypoint Security Edge | Not supported | Supported
 | Ops Center | Not Included +
 You can enable monitoring and alerting in AWS or Azure | Included
 |===
