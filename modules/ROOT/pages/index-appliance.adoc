@@ -1,18 +1,19 @@
-= Runtime Fabric Appliance
+= Anypoint Runtime Fabric on VMs / Bare Metal
+
 
 
 == Runtime Fabric and Other PaaS Providers
 
-Anypoint Runtime Fabric contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
+Anypoint Runtime Fabric on VMs / bare metal contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
 
 [WARNING]
-Installing Runtime Fabric within an existing Kubernetes-based PaaS is not supported.
+Installing Anypoint Runtime Fabric on VMs / bare metal within an existing Kubernetes-based PaaS is not supported. In this situation, consider using the version of Runtime Fabric that supports self-managed Kubernetes.
 
 If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
 
-== Shared Responsibility for On-Premises Runtime Fabric
+== Shared Responsibility for Anypoint Runtime Fabric on VMs / Bare Metal
 
-The successful operation of on-premises Runtime Fabric instances is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
+The successful operation of Anypoint Runtime Fabric on VMs / bare metal is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
