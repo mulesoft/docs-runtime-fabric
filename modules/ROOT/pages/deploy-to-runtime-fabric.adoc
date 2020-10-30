@@ -10,11 +10,12 @@ Deploy a Mule application to Anypoint Runtime Fabric and test the inbound traffi
 Before deploying an application to Anypoint Runtime Fabric, you must perform the following:
 
 * Install and configure Anypoint Runtime Fabric. See xref:install-create-rtf-arm.adoc[Begin Runtime Fabric Installation] for more information.
-* Ensure that Runtime Fabric is associated with an environment.
+* Ensure that Runtime Fabric is associated with an environment. See xref:associate-environments.adoc[Associate Business Groups and Environments to Anypoint Runtime Fabric]
 * Determine the resource allocation requirements for your application. See xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Your Anypoint user may require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
+* To deploy an application to a specific domain (endpoint), ensure that you have setup domains (endpoints) in your environment. See xref:enable-inbound-traffic-self.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (Self-managed Kuberenetes)] or xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)]
 
-== Manually Deploy an Application
+== Deploy a Mule Application to Runtime Fabric
 
 To deploy an application, perform the following steps:
 
@@ -31,9 +32,12 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
-The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
+The *Deployment Target*, *Ingress*, and *Properties*, *JVM* and *Logs* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 +
-To select a domain for the application:
+To select a domain (endpoint) for the application:
++
+[NOTE]
+If you do not select a domain, the application is deployed to an empty domain.
 
 .. Select the *Ingress* tab. 
 .. In the *Public endpoint* section, select a domain from the *Domain* list.
