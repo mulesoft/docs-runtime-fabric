@@ -1,6 +1,11 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
-You can install Anypoint Runtime Fabric into a Kubernetes environment provided by AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS). 
+You can install Anypoint Runtime Fabric into a Kubernetes environment provided by AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS).
+
+[NOTE]
+====
+Runtime Fabric installation includes tasks that must be peformed by both IT administrators and MuleSoft organization administrators.
+====
 
 == Before you Begin
 
@@ -11,19 +16,24 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 - Running Kubernetes version 1.14.x to 1.18.x.
 - Running an ingress controller to send external requests to applications.
 
-== Network Configuration
+== Step 1: Configure your Network to Support RTF
 
-Before installint or using Runtime Fabric, ensure that the following ports and hostnames are configured correctly.
+[NOTE]
+====
+Network configuration must be performed by an IT administrator.
+====
+
+Before installing or using Runtime Fabric, ensure that the following ports and hostnames are configured correctly.
 
 === Port Configuration
 
-To install or run Runtime Fabric, ensure that you have configured the following ports on you Kubernetes installation:
+To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
 
 [%header,cols="6*a"]
 .Port Configuration for Self-managed Kubernetes
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
-| 443 | TCP | HTTPS | Internal | All nodes | Allow inbound requests to Mule runtime servers
+| 443 | TCP | HTTPS | Internet | All nodes | Allow inbound requests to Mule runtime servers
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
@@ -37,14 +47,14 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 | Port | Protocol | Hostnames | Description
 | 443 | AMQP over WebSockets | * US control plane: transport-layer.prod.cloudhub.io
 * EU control plane: transport-layer.prod-eu.msap.io | Runtime Fabric message broker for interaction with the control plane.
-| 5044 |TCP (Lumberjack) | * US control plane: dias-ingestor-nginx.prod.cloudhub.io 
+| 5044 |TCP (Lumberjack) | * US control plane: dias-ingestor-nginx.prod.cloudhub.io
 * EU control plane: dias-ingestor-nginx.prod-eu.msap.io | Anypoint Monitoring agent for Runtime Fabric.
 | 443 | HTTPS | anypoint.mulesoft.com | Anypoint Platform for pulling assets.
 | 443 | HTTPS | kubernetes-charts.storage.googleapis.com | Kubernetes base charts repository.
 | 443 | HTTPS | docker-images-prod.s3.amazonaws.com | Kubernetes base charts repository.
-| 443 | HTTPS | * US control plane: worker-cloud-helm-prod.s3.amazonaws.com 
+| 443 | HTTPS | * US control plane: worker-cloud-helm-prod.s3.amazonaws.com
 * EU control plane: worker-cloud-helm-prod-eu-rt.s3.amazonaws.com worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
-| 443 | HTTPS | * US control plane: exchange2-asset-manager-kprod.s3.amazonaws.com 
+| 443 | HTTPS | * US control plane: exchange2-asset-manager-kprod.s3.amazonaws.com
 * EU control plane: exchange2-asset-manager-kprod-eu.s3.amazonaws.com exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com |Anypoint Exchange for application assets.
 | 443 | HTTPS | * US control plane: rtf-runtime-registry.kprod.msap.io
 * EU control plane: rtf-runtime-registry.kprod-eu.msap.io | Runtime Fabric Docker repository.
@@ -52,29 +62,35 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 * EU control plane: prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com | Runtime Fabric Docker image delivery.
 | 443 | HTTPS | * US control plane: runtime-fabric.s3.amazonaws.com
 * EU control plane: runtime-fabric-eu.s3.amazonaws.com | Runtime Fabric Docker repository.
-| 443 | HTTPS | * US control plane: configuration-resolver.prod.cloudhub.io 
+| 443 | HTTPS | * US control plane: configuration-resolver.prod.cloudhub.io
 * EU control plane: configuration-resolver.prod-eu.msap.io | Anypoint Configuration Resolver.
 |===
 
 === Certificate Configuration
 
-To allow different endpoints to use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificates:
+To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
 [%header,cols="2*a"]
 .Cerfificate configuration for self-managed kubernetes
 |===
 | Control Plane | Certificates
-| US control plane | transport-layer.prod.cloudhub.io + 
+| US control plane | transport-layer.prod.cloudhub.io +
 configuration-resolver.prod.cloudhub.io
 | EU control plane | transport-layer.prod-eu.msap.io +
 configuration-resolver.prod-eu.msap.io
 |===
 
-== Download the rtfctl Command 
+== Step 2: Download the rtfctl Utility
 
-Runtime Fabric uses the `rtfctl` command for installation and management tasks.
+[NOTE]
+====
+The tasks in the section must be performed by an IT administrator.
+====
 
-. Download the `rtfctl` command:
+Runtime Fabric uses the `rtfctl` command-line utility for installation and management tasks.
+
+
+. Download the `rtfctl` command-line utility:
 +
 `rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
 +
@@ -96,13 +112,18 @@ curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-dar
 curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
-. Change file permissions for the `rtfctl` command:
+. Change file permissions for the `rtfctl` command-line utility:
 +
 ----
 sudo chmod +x rtfctl
 ----
 
-== Create a Runtime Fabric using Runtime Manager
+== Step 3: Create a Runtime Fabric using Runtime Manager
+
+[NOTE]
+====
+The procedures in this section should be performed by a MuleSoft organization administrator.
+====
 
 To install Runtime Fabric on a self-managed Kubernetes environment, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
 
@@ -117,21 +138,23 @@ To install Runtime Fabric on a self-managed Kubernetes environment, first create
 . Click *Next*.
 . Review the *Support responsibility* disclaimer, then if you agree click *Continue*.
 +
-Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section. 
+Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
 
 
-== Install Runtime Fabric
-
-After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command.
+== Step 4: Install Runtime Fabric
 
 [NOTE]
 ====
-If your Kubernetes configuration is not located in the `~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
+The procedures in the section must be performed by an IT administrator.
+====
 
+After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
+
+If your Kubernetes configuration is not located in the `\~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
 ----
 export KUBECONFIG=<path-to-kubeconfig>
 ----
-====
+
 
 . Validate that you Kubernetes environment is read for installation:
 +
@@ -143,11 +166,11 @@ The `validate` option verifies that:
 +
 * The Kubernetes environment is running.
 * All required components exist.
-* All required services are available. 
+* All required services are available.
 +
-The `rtfctl` command outputs any incompatibilities with the Kubernetes environment.
+The `rtfctl` command-line utility outputs any incompatibilities with the Kubernetes environment.
 
-. Install Runtime Fabric: 
+. Install Runtime Fabric:
 +
 ----
 rtfctl install <activation_data>
@@ -156,7 +179,12 @@ rtfctl install <activation_data>
 `<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
 
 
-== Update the Mule License Key
+== Step 5: Update the Mule License Key
+
+[NOTE]
+====
+The procedures in the section must be performed by an IT administrator.
+====
 
 After the installation has completed succesfully, update the Mule license key.
 
@@ -193,9 +221,14 @@ rtfctl apply mule-license BASE64_ENCODED_LICENSE
 +
 ----
 rtfctl get mule-license
----- 
+----
 
-== Validate Runtime Fabric
+== Step 6: Validate Runtime Fabric
+
+[NOTE]
+====
+The procedures in this section should be performed by a MuleSoft organization administrator.
+====
 
 After completing the installation, your Runtime Fabric should have been activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is Active.
 
