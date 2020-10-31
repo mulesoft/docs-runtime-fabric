@@ -4,7 +4,7 @@ You can install Anypoint Runtime Fabric into a Kubernetes environment provided b
 
 [NOTE]
 ====
-Runtime Fabric installation includes tasks that must be peformed by both IT administrators and MuleSoft organization administrators.
+Installing Runtime Fabric on Self-managed Kubernetes requires tasks that must be peformed by both IT administrators and MuleSoft organization administrators.
 ====
 
 == Before you Begin
