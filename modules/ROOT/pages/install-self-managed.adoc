@@ -237,3 +237,6 @@ Before deploying an application to Runtime Fabric:
 . Associate the Runtime Fabric with at least one Anypoint environment.
 . Review and update the Inbound Traffic settings based upon your Kubernetes environment.
 
+== See Also
+
+* xref:enable-inbound-traffic-self-domain.adoc[Enable Inbound Traffic with a Domain]
