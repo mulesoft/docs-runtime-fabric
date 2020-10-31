@@ -87,7 +87,7 @@ configuration-resolver.prod-eu.msap.io
 The tasks in the section must be performed by an IT administrator.
 ====
 
-Runtime Fabric uses the `rtfctl` command-line utility for installation and management tasks.
+Runtime Fabric uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
 
 
 . Download the `rtfctl` command-line utility:
