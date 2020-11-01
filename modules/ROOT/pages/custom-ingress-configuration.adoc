@@ -1,0 +1,52 @@
+= Defining a Custom Ingress Configuration
+
+[NOTE]
+====
+The tasks outline in this topic must be performed by an IT administrator
+====
+
+Runtime Fabric on Self-managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define annotations, rewrite rules, the ingressClassName, and more.
+
+The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
+
+If you do not apply a custom template file, Runtime Fabric uses a default configuration that works with the out-of-the-box Kubernetes Ingress configuration.
+
+== Procedure
+
+. Copy the following into a text file:
++
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-config
+  namespace: rtf
+data:
+  ingress.annotations: |
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: true
+    kubernetes.io/ingress.class: <name>
+  ingress.spec: |
+    ingressClassName: <name>
+    rules.http.paths.path: /${APP_PATH}
+----
+
+. Edit the text file as required.
++
+All changes should be made under the `data` section of this file. Do not modify any other sections of the template. The most common configuration options are.
++
+* `ingress.annotations`: Annotations defined in this section are added to the `annotations` section of every Ingress resource created of a Mule application. Each annotation must be defined on a new line. Annotations defined here are default annotations that you can override.
+
+* `ingress.spec`: Used to configure the resource `spec` paramaters
+** `ingressClassName` (optional): Specifies the class name used in the Ingress resource created for a Mule application. Note, this is supported only on Kubernetes version 1.18 and higher.
+** `rules.http.paths.path`: Specifies the `path` value used in the `http rules` section of the Ingress resource. 
++
+Generally, this value corresponds to the public URL of a Mule application shown in the application URL preview. To allow this value to be configured dynamically during deployment, use `/$(APP_PATH)` as a placeholder.
+
+. Run `rtfctl apply ingress-configmap <custom-template-file>`, using the file you just created as the value for `custom-template-file`.
+
+After running this command `rtfctl` validates the template file you provided, then performs the following:
+
+* Creates the ConfigMap file in the `rtf` namespace. Any errors are written to stdout.
+* Schedules a job to be run in the cluster. This job calls the `rtf-agent` endpoint which validates the `ingressResouce` using data you specified in the template file.
+* Waits until the job completes, then views the pod logs for the job status. `rtfctl` displays the status to stdout.
