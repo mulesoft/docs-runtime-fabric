@@ -73,9 +73,9 @@ See how to xref:deploy-resource-allocation.adoc[determine resource allocation] f
 +
 * *Enable inbound traffic to this application* to allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081. 
 +
-If you are using Runtime Fabric on VMs / bare metal, you must enable inbound traffic manually. 
+If you are using Runtime Fabric on Self-managed Kubernetes, this option is enabled by default. To send requests to a deployment using a different supported environment, add additional endpoints for this Runtime Fabric. See xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
 +
-If you are using Runtime Fabric on Self-managed Kubernetes, this option is enabled by default. However you disable it if necessary.
+If you are using Runtime Fabric on VMs / bare metal, you must enable inbound traffic manually. Additional endpoints are sourced from the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified by the SAN property, the available URLs are displayed in the *Application URL
 +
 [NOTE]
 To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Application url* section.
