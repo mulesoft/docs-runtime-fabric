@@ -7,7 +7,7 @@ The tasks outline in this topic must be performed by an IT administrator
 
 Runtime Fabric on Self-managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define annotations, rewrite rules, the ingressClassName, and more.
 
-The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
+The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply ingress-configmap` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
 
 If you do not apply a custom template file, Runtime Fabric uses a default configuration that works with the out-of-the-box Kubernetes Ingress configuration.
 
@@ -48,5 +48,5 @@ Generally, this value corresponds to the public URL of a Mule application shown 
 After running this command `rtfctl` validates the template file you provided, then performs the following:
 
 * Creates the ConfigMap file in the `rtf` namespace. Any errors are written to stdout.
-* Schedules a job to be run in the cluster. This job calls the `rtf-agent` endpoint which validates the `ingressResouce` using data you specified in the template file.
-* Waits until the job completes, then views the pod logs for the job status. `rtfctl` displays the status to stdout.
+* Schedules a job to validate the ingress resource generated from the config map in the template file.
+* Waits until the job completes to output the status and relevant logs. `rtfctl` displays the status to stdout.
