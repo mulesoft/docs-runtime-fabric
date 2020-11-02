@@ -136,7 +136,7 @@ To install Runtime Fabric on a self-managed Kubernetes environment, first create
 * Azure Kubernetes Service
 
 . Click *Next*.
-. Review the *Support responsibility* disclaimer, then if you agree click *Continue*.
+. Review the *Support responsibility* disclaimer, then if you agree click *Accept*.
 +
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
 
@@ -156,7 +156,7 @@ export KUBECONFIG=<path-to-kubeconfig>
 ----
 
 
-. Validate that you Kubernetes environment is read for installation:
+. Validate that your Kubernetes environment is read for installation:
 +
 ----
 rtfctl validate <activation_data>
