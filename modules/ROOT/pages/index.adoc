@@ -29,7 +29,7 @@ Each of these options has its own system requirements and installation procedure
 |===
 | RTF Version | IT Administrator | MuleSoft Organization Administrator
 | VMs / bare metal | Creates and configures the infrstructure that runs RTF. This persona is also responsible for installing RTF and maintaining the undrelying infrastructure during its operation. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
-| Self-managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on AKS or EKS. This persona is also responsible for installing RTF and managing Kubernetes and AKS/EKS. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+| Self-managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on AKS or EKS. This persona is also responsible for installing RTF and managing Kubernetes. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
 |===
 
 == Feature Support Matrix for the Self-managed and VM / Bare Metals Versions of Runtime Fabric
