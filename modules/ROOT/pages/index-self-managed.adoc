@@ -2,6 +2,10 @@
 
 Runtime Fabric on Self-managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on and existing Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) environment.
 
+== Architecture
+
+image::architecture-self-managed.png[]
+
 == Requirements
 
 The sections below describe the requirements for running Runtime Fabric on Self-managed Kubernetes.
@@ -56,7 +60,7 @@ Anypoint Monitoring is supported for Titanium customers.
 
 == See Also
 
- 
+
 
 
 
