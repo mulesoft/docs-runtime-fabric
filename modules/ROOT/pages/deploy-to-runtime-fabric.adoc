@@ -1,20 +1,22 @@
 = Deploy a Mule Application to Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
 
-Deploy a Mule application to Anypoint Runtime Fabric and test the inbound traffic for deployed applications.
+You can deploy a Mule application to a Mule runtime server on Anypoint Runtime Fabric. After deploying an application you can test the inbound traffic for deployed applications.
+
+Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric to enable application deployment. You must associate at least one environment with each Runtime Fabric to be able to deploy Mule applications or API gateways.
+
+Applications deployed to a production environment must be deployed to an instance of Runtime Fabric that is separate from nonproduction applications.
 
 == Before You Begin
 
 Before deploying an application to Anypoint Runtime Fabric, you must perform the following:
 
 * Install and configure Anypoint Runtime Fabric. See xref:install-create-rtf-arm.adoc[Begin Runtime Fabric Installation] for more information.
-* Ensure that Runtime Fabric is associated with an environment.
+* Ensure that Runtime Fabric is associated with an environment. See xref:associate-environments.adoc[Associate Business Groups and Environments to Anypoint Runtime Fabric]
 * Determine the resource allocation requirements for your application. See xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Your Anypoint user may require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
+* To deploy an application to a specific domain (endpoint), ensure that you have setup domains (endpoints) in your environment. See xref:enable-inbound-traffic-self.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (Self-managed Kuberenetes)] or xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)]
 
-== Manually Deploy an Application
+== Deploy a Mule Application to Runtime Fabric
 
 To deploy an application, perform the following steps:
 
@@ -31,9 +33,12 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
-The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
+The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. If you are using Runtime Fabric on VMs / bare metal the *Logs* tab is also displayed. Use these tabs to enter additional configuration information for your application.
 +
-To select a domain for the application:
+To select a domain (endpoint) for the application:
++
+[NOTE]
+If you do not select a domain, the application is deployed to an empty domain.
 
 .. Select the *Ingress* tab. 
 .. In the *Public endpoint* section, select a domain from the *Domain* list.
@@ -50,25 +55,34 @@ This tab displays the name and type of the deployment target you selected above.
 A minimum of two replicas is required for high availability.
 . To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
 
-. To enforce the deployment of replicas across different nodes, select *Enforce deploying replicas across nodes*. This option is only available for Runtime Fabric version 1.5.25 or later.
+. To enforce the deployment of replicas across different nodes, select *Enforce deploying replicas across nodes*.
 +
 [WARNING]
+====
 This can cause some replicas in the deployment to remain in *Pending* status if there are unsufficient worker nodes or resources available on the worker nodes needed to deploy each replica. The deployment status will transition to *Running* after all replicas are deployed on different worker nodes.
+====
 
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
 See how to xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
 
 . Specify network configuration for the application:
-
++
 .. Click the *Ingress* tab.
 .. Enable or disable the following options:
 +
-* *Enable inbound traffic to this application* to allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081.
+* *Enable inbound traffic to this application* to allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081. 
++
+If you are using Runtime Fabric on Self-managed Kubernetes, this option is enabled by default. To send requests to a deployment using a different supported environment, add additional endpoints for this Runtime Fabric. See xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
++
+If you are using Runtime Fabric on VMs / bare metal, you must enable inbound traffic manually. Additional endpoints are sourced from the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified by the SAN property, the available URLs are displayed in the *Application URL
 +
 [NOTE]
 To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Application url* section.
-* *Enable Last-Mile security* to forward HTTPS connections to be decrypted by this application. This requires an SSL certificate to be included in the Mule application, and also requires more CPU resources.
++
+* *Enable Last-Mile security* to forward HTTPS connections to be decrypted by this application. This requires an SSL certificate to be included in the Mule application, and also requires more CPU resources. This option is only applicable to Runtime Fabric on VMs / baremetal.
++
+* *Forward SSL session* This option is only applicable to Runtime Fabric on VMs / baremetal.
 
 . Configure application properties:
 .. Click the *Properties* tab.
