@@ -9,7 +9,7 @@ The first step to install Anypoint Runtime Fabric is to create a Runtime Fabric 
 
 Before installing Anypoint Runtime Fabric, review the following topics to ensure that you are ready to install Runtime Fabric:
 
-* xref:architecture.adoc[Runtime Fabric Architecture]
+* xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
 * xref:runtime-fabric-limitations.adoc[Limitations]
 

@@ -26,7 +26,7 @@ Working with these teams in your organization helps ensure a successful installa
 +
 The Runtime Fabric installation process fails if the minimum requirements are not met.
 
-See xref:architecture.adoc[Runtime Fabric Architecture] for a description of development and production configurations.
+See xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for a description of development and production configurations.
 
 If needed, contact your MuleSoft representative for assistance.
 
@@ -94,7 +94,7 @@ provisioning scripts to accommodate your organization's requirements.
 
 * Based on the function of your organization's Mule applications, determine if inbound traffic should be enabled for Anypoint Runtime Fabric.
 +
-If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:architecture.adoc#network-architecture[Network Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
+If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:index-vm-bare-metal.adoc#network-architecture[Network Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
 == Operating System Requirements
 

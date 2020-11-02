@@ -1,3 +1,35 @@
-= Enable Inbound Traffic with a Domain
+= Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)
 
-This topic is currently under development and will be available soon.
+To enable external application to connect to Runtime Fabric on self-managed Kubernetes you must provide an Ingress controler that is compatible with your Kubernetes environment. Runtime fabric uses the Kubernetes controller to handle routing and load balancing functionality. 
+
+Inbound traffic is enabled by default. This allows Mule applications or API gateways to listen on inbound connections. You can turn off inbound traffic per application when deploying or configuring an application. You can disable enbound traffic per application in Runtime Manager when deploying or configuring an application.
+
+Runtime Fabric allows you to configure domains that serve as endpoints for your deployed applications.
+
+== Configure Domains for 
+
+. Navigate to Runtime Manager and select *Runtime Fabric*.
+. Select the name of your Runtime Fabric to open the management page.
+. Select *Inbound Traffic*, then click *Add Endpoints.*
+. 
+
+
+. [NEED ADDITIONAL INFO]
+
+== Verify that Your Application Is Accesible 
+
+To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
+
+. Determine which endpoint exposes the application. The Application url field on the Manage application page in Runtime Manager contains this information.
+. Run the following cURL command for verification:
++
+----
+curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
+----
++
+In the following example, {application-path-from-runtime-manager} is set to https://newapp.example-rtf.dev, and 192.168.64.14 is the IP address of a controller machine in your cluster.
++
+----
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14
+----
+

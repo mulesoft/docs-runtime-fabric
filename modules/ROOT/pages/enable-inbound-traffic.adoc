@@ -50,7 +50,7 @@ Dedicated nodes are used in environments with high traffic demands. Refer to xre
 +
 The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
 +
-Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:architecture.adoc#network-architecture[Network Architecture] for additional information.
+Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
 +
 [WARNING]
 ====
