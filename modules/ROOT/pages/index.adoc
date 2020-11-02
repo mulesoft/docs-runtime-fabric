@@ -24,6 +24,14 @@ There are two management options for Anypoint Runtime Fabric:
 
 Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric Self-managed] and xref:index-appliance.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information.
 
+[%header,cols="3*a"]
+.Personas required to install and support Anypoint Runtime Fabric
+|===
+| RTF Version | IT Administrator | MuleSoft Organization Administrator
+| VMs / bare metal | Creates and configures the infrstructure that runs RTF. This persona is also responsible for installing RTF and maintaining the undrelying infrastructure during its operation. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+| Self-managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on AKS or EKS. This persona is also responsible for installing RTF and managing Kubernetes and AKS/EKS. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+|===
+
 == Feature Support Matrix for the Self-managed and VM / Bare Metals Versions of Runtime Fabric
 
 [%header,cols="3*a"]
