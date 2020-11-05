@@ -5,7 +5,7 @@
 The tasks outline in this topic must be performed by an IT administrator
 ====
 
-Runtime Fabric on Self-managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define annotations, rewrite rules, the ingressClassName, and more.
+Runtime Fabric on Self-managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName.
 
 The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply ingress-configmap` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
 
@@ -24,7 +24,6 @@ metadata:
 data:
   ingress.annotations: |
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: true
     kubernetes.io/ingress.class: <name>
   ingress.spec: |
     ingressClassName: <name>
@@ -35,7 +34,7 @@ data:
 +
 All changes should be made under the `data` section of this file. Do not modify any other sections of the template. The most common configuration options are.
 +
-* `ingress.annotations`: Annotations defined in this section are added to the `annotations` section of every Ingress resource created of a Mule application. Each annotation must be defined on a new line. Annotations defined here are default annotations that you can override.
+* `ingress.annotations`: Annotations defined in this section are added to the `annotations` section of every Ingress resource created of a Mule application. Each annotation must be defined on a new line. Annotations defined in the template are default Kubernetes annotations that you can override, if required.
 
 * `ingress.spec`: Used to configure the resource `spec` paramaters
 ** `ingressClassName` (optional): Specifies the class name used in the Ingress resource created for a Mule application. Note, this is supported only on Kubernetes version 1.18 and higher.
