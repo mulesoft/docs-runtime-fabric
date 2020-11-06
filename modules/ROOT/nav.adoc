@@ -6,7 +6,6 @@
  ** xref:enable-inbound-traffic-self.adoc[Configure Endpoints (RTF Self-managed Kuberenetes)]
 * xref:index-vm-bare-metal.adoc[RTF on VMs / bare metal]
  ** xref:runtime-fabric-limitations.adoc[Limitations]
- ** xref:architecture.adoc[Runtime Fabric Architecture]
  ** xref:install-prereqs.adoc[Installation Prerequisites]
  ** xref:install-create-rtf-arm.adoc[Begin Runtime Fabric Installation]
   *** xref:install-aws.adoc[Install Runtime Fabric on AWS]
