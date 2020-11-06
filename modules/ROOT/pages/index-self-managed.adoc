@@ -1,1 +1,59 @@
-== Runtime Fabric Self-managed
+= Runtime Fabric on Self-managed Kubernetes
+
+Runtime Fabric on Self-managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on and existing Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) environment.
+
+== Architecture
+
+image::architecture-self-managed.png[]
+
+== Requirements
+
+The sections below describe the requirements for running Runtime Fabric on Self-Managed Kubernetes.
+
+=== Network Configuration
+
+Runtime Fabric on Self-managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:index-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes].
+
+=== Kubernetes
+
+This version of Runtime Fabric requires a dedicated cluster that is provisioned and operational. You can verify if your environment is environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes].
+
+[IMPORTANT]
+====
+Only versions 1.14 through 1.18 of Kubernetes are supported.
+====
+
+=== Nodes and Resources
+
+In general, you should follow the best practices provided by the vendor of your Kubernetes vendor (EKS or AKS) to ensure availability and simplify the administration of your infrastructure.
+
+MuleSoft recommends installing Runtime Fabric on Self-managed Kubernetes in an environment with a minimum of two nodes each having the resources defined below.
+
+* Minimum of two CPU cores
+* At least 15 GiB of RAM
+* At least 250 GiB of available disk space
+
+You can adjust the number of nodes and amout of resources allocated according to the amount and type of workload you run on each Runtime Fabric.
+
+=== Supported Architectures
+
+Runtime Fabric on Self-managed Kubernetes requires worker nodes which use the x86/x64 architecture. ARM-base architectures are not supported.
+
+=== Operating Systems
+
+Runtime Fabric on Self-managed Kubernetes supports any Linux-based operating system supported by EKS or AKS.
+
+=== Ingress Controller
+
+Runtime Fabric on Self-managed Kubernetes supports any Ingress controller that is compatible with the Kubernetes environment on your vendor (EKS or AKS).
+
+=== External Log Forwarding
+
+Runtime Fabric on Self-managed Kubernetes does not directly support external log forwarding. However, you can use any external log forwarding agen that is compatible with your Kubernetes environment (EKS or ASK). Common log forwarding agents include:
+
+* Splunk Connect for Kubernetes
+* Fluentbit
+
+You are resposible for installing, configuring, and managing an external log forwarder.
+
+For Titanium customers Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.

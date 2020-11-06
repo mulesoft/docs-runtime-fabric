@@ -59,5 +59,6 @@ Anypoint Runtime Fabric provisions resources differently. Each Mule application 
 
 == See Also
 
-* xref:architecture.adoc[Runtime Fabric Architecture]
+* xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
+* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
