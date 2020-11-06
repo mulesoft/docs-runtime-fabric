@@ -3,7 +3,7 @@
 * xref:index-self-managed.adoc[RTF on Self-managed Kubernetes]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration]
- ** xref:enable-inbound-traffic-self.adoc[Enable Inbound Traffic with a Domain]
+ ** xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
  ** xref:runtime-fabric-log-self-managed.adoc[Configure Log-forwarding on Self-Managed Kubernetes]
 * xref:index-appliance.adoc[RTF on VMs / bare metal]
  ** xref:runtime-fabric-limitations.adoc[Limitations]
