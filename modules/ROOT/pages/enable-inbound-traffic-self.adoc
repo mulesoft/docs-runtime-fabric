@@ -1,35 +1,21 @@
 = Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)
 
-To enable external application to connect to Runtime Fabric on self-managed Kubernetes you must provide an Ingress controler that is compatible with your Kubernetes environment. Runtime fabric uses the Kubernetes controller to handle routing and load balancing functionality. 
+To enable external application to connect to Runtime Fabric on Self-Managed Kubernetes you must provide an ingress controller that is compatible with your Kubernetes environment. Runtime fabric uses the ingress controller to route and load balance requests to an application. 
 
-Inbound traffic is enabled by default. This allows Mule applications or API gateways to listen on inbound connections. You can turn off inbound traffic per application when deploying or configuring an application. You can disable enbound traffic per application in Runtime Manager when deploying or configuring an application.
+Inbound traffic is enabled by default. This allows Mule applications or API gateways to listen on inbound connections. You can turn off inbound traffic per application when deploying or configuring an application. You can disable inbound traffic per application in Runtime Manager when deploying or configuring an application.
 
 Runtime Fabric allows you to configure domains that serve as endpoints for your deployed applications.
 
-== Configure Domains for 
+== Configure Domains for Runtime Fabric on Self-Managed Kubernetes
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
 . Select the name of your Runtime Fabric to open the management page.
 . Select *Inbound Traffic*, then click *Add Endpoints.*
-. 
+. Add the endpoint provided by your IT administrator, including the `http://` or `https://` protocols. Separate multiple endpoints with commas.
+. Confirm your changes by clicking the *Add* button.
+. Click the "Save and deploy" button add the new endpoint.
 
 
-. [NEED ADDITIONAL INFO]
+== See Also
 
-== Verify that Your Application Is Accesible 
-
-To test inbound traffic for deployed applications, you can send a request using the controller IP address along with a host header set to the domain. The host header depends on the structure of the application URL.
-
-. Determine which endpoint exposes the application. The Application url field on the Manage application page in Runtime Manager contains this information.
-. Run the following cURL command for verification:
-+
-----
-curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
-----
-+
-In the following example, {application-path-from-runtime-manager} is set to https://newapp.example-rtf.dev, and 192.168.64.14 is the IP address of a controller machine in your cluster.
-+
-----
-curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14
-----
-
+* xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
