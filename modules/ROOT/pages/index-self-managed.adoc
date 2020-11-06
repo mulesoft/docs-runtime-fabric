@@ -8,7 +8,7 @@ image::architecture-self-managed.png[]
 
 == Requirements
 
-The sections below describe the requirements for running Runtime Fabric on Self-managed Kubernetes.
+The sections below describe the requirements for running Runtime Fabric on Self-Managed Kubernetes.
 
 === Network Configuration
 
@@ -56,11 +56,4 @@ Runtime Fabric on Self-managed Kubernetes does not directly support external log
 
 You are resposible for installing, configuring, and managing an external log forwarder.
 
-Anypoint Monitoring is supported for Titanium customers.
-
-== See Also
-
-
-
-
-
+For Titanium customers Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
