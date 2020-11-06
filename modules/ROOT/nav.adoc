@@ -2,7 +2,6 @@
 * xref:index.adoc[Anypoint Runtime Fabric Overview]
  ** xref:runtime-fabric-limitations.adoc[Limitations]
 * xref:index-self-managed.adoc[RTF on Self-managed Kubernetes]
- ** xref:architecture-self-managed.adoc[Self-managed Kubernetes Architecture]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration]
  ** xref:enable-inbound-traffic-self.adoc[Enable Inbound Traffic with a Domain]
