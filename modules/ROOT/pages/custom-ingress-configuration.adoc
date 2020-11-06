@@ -9,7 +9,7 @@ Runtime Fabric on Self-managed Kubernetes enables you to edit a template file th
 
 The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply ingress-configmap` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
 
-If you do not apply a custom template file, Runtime Fabric uses a default configuration that works with the out-of-the-box Kubernetes Ingress configuration.
+If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric attemts to create a default ingress resource definition. Depending on your ingress controller, this resource definition may not work. In this case, you must apply a custom ConfigMap using the template.
 
 == Procedure
 
