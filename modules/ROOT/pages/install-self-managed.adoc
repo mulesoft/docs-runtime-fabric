@@ -11,7 +11,7 @@ Installing Runtime Fabric on Self-managed Kubernetes requires tasks that must be
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure the following:
 
-* You have read and understand the architecture and requirements described in xref:install-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
+* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
 * You have installed and configured your Kubernetes environment as follows:
 +
 - Running Kubernetes version 1.14.x to 1.18.x.
