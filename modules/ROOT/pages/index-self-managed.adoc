@@ -4,7 +4,11 @@ Runtime Fabric on Self-managed Kubernetes enables you to deploy Mule application
 
 == Architecture
 
+Runtime Fabric on Self-managed Kubernetes and its related components run as a services on your EKS or AKS environment. The following diagram shows different layers of the architecture. 
+
 image::architecture-self-managed.png[]
+
+MuleSoft is responsible for providing and managing Runtime Fabric, the Mule Runtime server, and Mule Applications. You are responsible for creating, configuring and managing an EKS or AKS environment and a Kubernetes clusters.
 
 == Requirements
 
