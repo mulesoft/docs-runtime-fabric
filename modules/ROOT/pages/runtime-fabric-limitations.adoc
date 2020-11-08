@@ -1,33 +1,26 @@
-= Limitations
+= Limitations (Anypoint Runtime Fabric on VMs / Bare Metal)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following information is important when installing, configuring, 
-and managing Runtime Fabric.
+The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on VMs / Bare Metal.
 
-Controller Nodes::
-The maximum number of controller nodes supported is 5.
+[cols="3*a"]
+.Anypoint Runtime Fabric on VMs / Bare Metal resource allocation and performance 
+|===
+| Controller Nodes | The maximum number of controller nodes supported is 5.
+| Worker Nodes | The maximum number of worker nodes supported is 16.
+| Replicas Per Worker Node | The maximum number of replicas that can be deployed per worker node is 40.
 
-Worker Nodes::
-The maximum number of worker nodes supported is 16.
-
-Replicas Per Worker Node::
-The maximum number of replicas that can be deployed per worker node is 40.
-+
 Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
+| Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50. 
+| Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
+| Object Store Persistence | xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters.
+| Internal Load Balancer | The following table lists the approximate number of requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
 
-Associated Environments per Runtime Fabric::
-The maximum number of environments per Runtime Fabric is 50. 
+== Resource Allocation and Performance
 
-Business Groups::
-The maximum number of Runtime Fabrics you can create in a business group is 50.
-
-Object Store Persistence::
-xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters.
-
-Internal Load Balancer::
-The following table lists the approximate number of requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric].
+The following table outlines the resource allocations and requests per second for Anypoint Runtime Fabric on VMs / Bare Metal. 
 
 [%header,cols="3*a"]
 .Runtime Fabric Resource Allocation and Performance
