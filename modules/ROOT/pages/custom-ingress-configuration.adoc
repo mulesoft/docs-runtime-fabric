@@ -54,3 +54,9 @@ After running this command `rtfctl` validates the template file you provided, th
 * Creates the ConfigMap file in the `rtf` namespace. Any errors are written to stdout.
 * Schedules a job to validate the ingress resource generated from the config map in the template file.
 * Waits until the job completes to output the status and relevant logs. `rtfctl` displays the status to stdout.
+
+== See Also
+
+* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
+* xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
+* xref:enable-inbound-traffic-self-domain.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]

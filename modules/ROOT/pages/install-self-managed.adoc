@@ -1,11 +1,12 @@
 = Install Runtime Fabric on Self-managed Kubernetes
 
-You can install Anypoint Runtime Fabric into a Kubernetes environment provided by AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS).
-
-[NOTE]
+[IMPORTANT]
 ====
 Installing Runtime Fabric on Self-managed Kubernetes requires tasks that must be peformed by both IT administrators and MuleSoft organization administrators.
 ====
+
+Anypoint Runtime Fabric supports installing and running Runtime Fabric in a Kubernetes environment on AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) that you manage.
+
 
 == Before you Begin
 
@@ -240,4 +241,5 @@ Before deploying an application to Runtime Fabric:
 
 == See Also
 
-* xref:enable-inbound-traffic-self-domain.adoc[Enable Inbound Traffic with a Domain]
+* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
+* xref:enable-inbound-traffic-self-domain.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
