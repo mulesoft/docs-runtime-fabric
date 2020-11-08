@@ -1,19 +1,16 @@
-= Begin Runtime Fabric Installation
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Install Runtime Fabric on VMs / Bare Metal
 
-The first step to install Anypoint Runtime Fabric is to create a Runtime Fabric using Runtime Manager.
+To install Runtime Fabric on VMs / Bare Metal, first create a runtime fabric using Runtime Manager.
 
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric, review the following topics to ensure that you are ready to install Runtime Fabric:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal, review the following topics to ensure that you are prepared to install:
 
 * xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
 * xref:runtime-fabric-limitations.adoc[Limitations]
 
-[NOTE]
+[IMPORTANT]
 If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
 
 == Create a Runtime Fabric using Runtime Manager
@@ -24,16 +21,16 @@ If you do not see the *Runtime Fabrics* tab in Runtime Manager as described belo
 . Specify the name of your Runtime Fabric.
 . Click *Create*.
 
-[NOTE]
-After creating the Runtime Fabric, Runtime Manage displays the corresponding activation data. Record this data to be used later when installing the infrastucture.
+[IMPORTANT]
+After creating the runtime fabric, Runtime Manage displays the corresponding activation data. Record this data to use later when installing running the Runtime Fabric installer.
 
 image::runtime-fabric-arm.png[]
 
-Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after the Runtime Fabric is installed and connected to Runtime Manager.
+Runtime Manager initially indicates that the runtime fabric is in the activation state. This changes after Runtime Fabric on VMs / Bare Metal is installed and connected to Runtime Manager.
 
-== Install Runtime Fabric on Your Infrastructure
+== Install Runtime Fabric on VMs / Bare Metal
 
-After creating a Runtime Fabric in Runtime Manager, install Runtime Fabric on your infrastructure. Click the following link that corresponds to your infrastructure:
+After creating a runtime fabric in Runtime Manager, install Anypoint Runtime Fabric on your infrastructure. Click the following link that corresponds to your infrastructure:
 
 * xref:install-aws.adoc[Install Runtime Fabric on AWS]
 * xref:install-azure.adoc[Install Runtime Fabric on Azure]
