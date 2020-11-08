@@ -22,7 +22,7 @@ There are two management options for Anypoint Runtime Fabric:
 
 * *Runtime Fabric on VMs / Bare Metal*: a version of Runtime Fabric where MuleSoft provides required software infrastructure components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
 
-Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes] and xref:index-appliance.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information on each option.
+Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes] and xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information on each option.
 
 [%header,cols="3*a"]
 .Personas required to install and support Anypoint Runtime Fabric
