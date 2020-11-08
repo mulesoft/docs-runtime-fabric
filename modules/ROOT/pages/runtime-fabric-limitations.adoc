@@ -5,7 +5,7 @@ endif::[]
 
 The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on VMs / Bare Metal.
 
-[cols="3*a"]
+[cols="2*a"]
 .Anypoint Runtime Fabric on VMs / Bare Metal resource allocation and performance 
 |===
 | Controller Nodes | The maximum number of controller nodes supported is 5.
