@@ -1,6 +1,6 @@
 = Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)
 
-To enable external application to connect to Runtime Fabric on Self-Managed Kubernetes you must provide an ingress controller that is compatible with your Kubernetes environment. Runtime fabric uses the ingress controller to route and load balance requests to an application. 
+To enable external application to connect to Runtime Fabric on Self-Managed Kubernetes you must provide an ingress controller that is compatible with your Kubernetes environment. Runtime Fabric uses the ingress controller to route and load balance requests to an application.
 
 Inbound traffic is enabled by default. This allows Mule applications or API gateways to listen on inbound connections. You can turn off inbound traffic per application when deploying or configuring an application. You can disable inbound traffic per application in Runtime Manager when deploying or configuring an application.
 
