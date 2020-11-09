@@ -1,7 +1,4 @@
 = Anypoint Runtime Fabric Overview
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
 
 Anypoint Runtime Fabric is a container service that allows you to run Mule applications, composite APIs and API gateways across any environment with centralized management via Anypoint Platform.
 
