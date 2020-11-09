@@ -1,21 +1,19 @@
-= Anypoint Runtime Fabric Installation Prerequisites
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
-:page-aliases: install-port-reqs.adoc, install-sys-reqs.adoc
+= Anypoint Runtime Fabric on VMs / Bare Metal Installation Prerequisites
+
+Before installing Runtime Fabric on VMs / Bare Metal review the information in this topic to ensure your environment is ready for installation.
 
 == Before You Begin
 
 [IMPORTANT]
-Most Anypoint Runtime Fabric issues result from improper infrastructure provisioning or configuration. 
+Most installation issues on Runtime Fabric on VMs / Bare Metal result from improper infrastructure provisioning or configuration. 
 
 Before you install Runtime Fabric :
 
-* Refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric].
+* Refer to xref:index-vm-bare-metal.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric].
 +
 If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
 
-* You will need the assistance of your organization’s:
+*  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
 ** Network team to whitelist ports and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
@@ -31,7 +29,8 @@ See xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] f
 If needed, contact your MuleSoft representative for assistance.
 
 == General Installation Requirements
-Knowledge in the following areas is required to perform a Runtime Fabric installation:
+
+Knowledge in the following areas is required to install Runtime Fabric on VMs / Bare Metal:
 
 * Linux system commands
 * Working in Linux with root access. Installation requires root access (permission to run the `sudo` command) on all servers in your environment
@@ -45,6 +44,7 @@ Ensure that you plan for:
 * Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
 
 == Anypoint Platform Roles and Permissions
+
 To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
 
 * To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager.
@@ -54,6 +54,7 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 * To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
 
 == Infrastructure Requirements
+
 Perform the following actions:
 
 * Disable swap memory.
@@ -98,7 +99,7 @@ If you plan to enable inbound traffic, evaluate your network's traffic to determ
 
 == Operating System Requirements
 
-Anypoint Runtime Fabric requires one of the following operating systems:
+Runtime Fabric on VMs / Bare Metal requires one of the following operating systems:
 
 * Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7, v7.8, v8.0
 * CentOS v7.4, v7.5, v7.6, v7.7, v7.8, v8.0
@@ -111,17 +112,17 @@ a different operating system version or distribution, the Runtime Fabric install
 
 == Network and Port Requirements
 
-Anypoint Runtime Fabric requires specific network and port configuration for installation and operation.
+Runtime Fabric on VMs / Bare Metal requires specific network and port configuration for installation and operation.
 
 === Bandwidth Requirements
 
 A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet. 
 [NOTE]
-Cross-regional deployments of Anypoint Runtime Fabric are not supported. Network latency between each node can cause problems with cluster health.
+Runtime Fabric on VMs / Bare Metal does not support cross-regional deployments. Network latency between each node can cause problems with cluster health.
 
 === Required Port Settings
 
-The following sections list the TCP and UDP network port requirements for Anypoint Runtime Fabric.
+The following sections list the TCP and UDP network port requirements for Runtime Fabric on VMs / Bare Metal.
 
 ==== Ports Used During Installation
 
@@ -173,9 +174,7 @@ The following table lists all ports that must be open, along with the respective
 
 === Port IP Addresses and Hostnames to Whitelist
 
-In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components 
-and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download 
-dependencies during installation and upgrades.
+In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
 The following table lists the ports and hostnames to add to your whitelists to allow communication between 
 Anypoint Runtime Fabric and Anypoint Platform.
@@ -221,8 +220,7 @@ Because the following endpoints use mutual TLS authentication to establish the c
 
 === Required Network Settings
 
-In addition to the previous port requirements, the following network settings are required to operate 
-Anypoint Runtime Fabric:
+In addition to the previous port requirements, the following network settings are required to operate Anypoint Runtime Fabric:
 
 * A subnet with enough IP addresses allotable to add additional VMs to Anypoint Runtime Fabric
 +

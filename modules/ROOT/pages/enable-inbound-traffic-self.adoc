@@ -18,4 +18,5 @@ Runtime Fabric allows you to configure domains that serve as endpoints for your 
 
 == See Also
 
+* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
 * xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
