@@ -1,8 +1,8 @@
-= Install Runtime Fabric on Self-managed Kubernetes
+= Install Runtime Fabric on Self-Managed Kubernetes
 
 [IMPORTANT]
 ====
-Installing Runtime Fabric on Self-managed Kubernetes requires tasks that must be peformed by both IT administrators and MuleSoft organization administrators.
+Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
 Anypoint Runtime Fabric supports installing and running Runtime Fabric in a Kubernetes environment on AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) that you manage.
@@ -12,20 +12,20 @@ Anypoint Runtime Fabric supports installing and running Runtime Fabric in a Kube
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure the following:
 
-* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
+* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * You have installed and configured your Kubernetes environment as follows:
 +
-- Running Kubernetes version 1.14.x to 1.18.x.
+- Running Kubernetes version 1.16.x to 1.18.x.
 - Running an ingress controller to send external requests to applications.
 
-== Step 1: Configure your Network to Support Runtime Fabric on Self-managed Kubernetes
+== Step 1: Configure your Network to Support Runtime Fabric on Self-Managed Kubernetes
 
 [IMPORTANT]
 ====
 Network configuration must be performed by an IT administrator.
 ====
 
-Before installing or using Runtime Fabric on Self-managed Kubernetes, ensure that the following ports and hostnames are configured correctly.
+Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure that the following ports and hostnames are configured correctly.
 
 === Port Configuration
 
@@ -43,7 +43,7 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 
 === Hostname Configuration
 
-To function correctly, Runtime Fabric on Self-managed Kubernetes requires the following hostname configurations:
+To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
 
 [%header,cols="4*a"]
 .Host Configuration for Self-managed Kubernetes
@@ -84,14 +84,37 @@ configuration-resolver.prod.cloudhub.io
 configuration-resolver.prod-eu.msap.io
 |===
 
-== Step 2: Download the rtfctl Utility
+== Step 2: Create a Runtime Fabric using Runtime Manager
+
+[IMPORTANT]
+====
+The procedures in this section should be performed by a MuleSoft organization administrator.
+====
+
+To install Runtime Fabric on Self-Managed Kubernetes, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
+
+. From Anypoint Platform, select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Enter the name of the new Runtime Fabric, then select one of the following options:
++
+* Amazon Elastic Kubernetes Service
+* Azure Kubernetes Service
+
+. Click *Next*.
+. Review the *Support responsibility* disclaimer, then if you agree click *Accept*.
++
+Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
+
+
+== Step 3: Download the rtfctl Utility
 
 [IMPORTANT]
 ====
 The tasks in the section must be performed by an IT administrator.
 ====
 
-Runtime Fabric on Self-managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
+Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
 
 
 . Download the `rtfctl` command-line utility:
@@ -122,29 +145,6 @@ curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/lat
 sudo chmod +x rtfctl
 ----
 
-== Step 3: Create a Runtime Fabric using Runtime Manager
-
-[IMPORTANT]
-====
-The procedures in this section should be performed by a MuleSoft organization administrator.
-====
-
-To install Runtime Fabric on Self-managed Kubernetes, first create a runtime fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
-
-. From Anypoint Platform, select Runtime Manager.
-. Click *Runtime Fabrics*.
-. Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select one of the following options:
-+
-* Amazon Elastic Kubernetes Service
-* Azure Kubernetes Service
-
-. Click *Next*.
-. Review the *Support responsibility* disclaimer, then if you agree click *Accept*.
-+
-Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
-
-
 == Step 4: Install Runtime Fabric
 
 [IMPORTANT]
@@ -152,7 +152,7 @@ Runtime Manager creates the Runtime Fabric and displays the Activation State pag
 The procedures in the section must be performed by an IT administrator.
 ====
 
-After creating a runtime fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
+After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
 
 If your Kubernetes configuration is not located in the `\~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
 ----
@@ -227,22 +227,32 @@ rtfctl apply mule-license BASE64_ENCODED_LICENSE
 rtfctl get mule-license
 ----
 
-== Step 6: Validate Your Runtime Fabric
+== Step 6: Configure the Ingress Resource Template
 
 [IMPORTANT]
 ====
 The procedures in this section should be performed by a MuleSoft organization administrator.
 ====
 
-After completing the installation, your runtime fabric should be activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is `Active`.
+If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
 
-Before deploying an application to your runtime fabric:
+== Step 7: Validate Your Runtime Fabric
+
+[IMPORTANT]
+====
+The procedures in this section should be performed by an IT administrator.
+====
+
+After completing the installation, your Runtime Fabric should be activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is `Active`.
+
+Before deploying an application to your Runtime Fabric:
 
 . Associate the Runtime Fabric with at least one Anypoint environment.
 . Review and update the Inbound Traffic settings based upon your Kubernetes environment.
+. Deploy an application to verify that Runtime Fabric is installed and configured correctly.
 
 == See Also
 
-* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
-* xref:enable-inbound-traffic-self-domain.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
+* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* xref:enable-inbound-traffic-self-domain.adoc[Configure Domains and Inbound Traffic RTF Self-managed Kuberenetes]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
