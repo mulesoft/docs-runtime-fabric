@@ -40,7 +40,7 @@ To select a domain (endpoint) for the application:
 [NOTE]
 If you do not select a domain, the application is deployed to an empty domain.
 
-.. Select the *Ingress* tab. 
+.. Select the *Ingress* tab.
 .. In the *Public endpoint* section, select a domain from the *Domain* list.
 
 . Select the *Deployment Target* tab.
@@ -71,7 +71,7 @@ See how to xref:deploy-resource-allocation.adoc[determine resource allocation] f
 .. Click the *Ingress* tab.
 .. Enable or disable the following options:
 +
-* *Enable inbound traffic to this application* to allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081. 
+* *Enable inbound traffic to this application* to allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081.
 +
 If you are using Runtime Fabric on Self-managed Kubernetes, this option is enabled by default. To send requests to a deployment using a different supported environment, add additional endpoints for this Runtime Fabric. See xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
 +
@@ -115,7 +115,7 @@ curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443
 In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
 +
 ```
-curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14
 ```
 
 == Common Issues
