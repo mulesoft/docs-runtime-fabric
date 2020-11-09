@@ -54,8 +54,10 @@ sudo chmod +x rtfctl
 | status | Displays status of Runtime Fabric.
 | test | Tests Runtime Fabric environment.
 | threaddump | Displays the JVM thread dump for an application.
+| uninstall | Uninstall Runtime Fabric.
 | update | Updates `rtfctl`.
 | upgrade-cluster | Upgrades the Runtime Fabric cluster.
+| validate | Validate cluster for Runtime Fabric installation.
 | version | Displays version information.
 |=== 
 
