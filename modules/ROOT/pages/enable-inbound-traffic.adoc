@@ -1,9 +1,6 @@
-= Enable Inbound Traffic on Anypoint Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)
 
-Runtime Fabric provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
+Runtime Fabric on VMs / bare metal provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
 
 Runtime Fabric can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric to enable application deployment. You must associate at least one environment with each Runtime Fabric to be able to deploy Mule applications or API gateways.
 
@@ -53,7 +50,7 @@ Dedicated nodes are used in environments with high traffic demands. Refer to xre
 +
 The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
 +
-Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:architecture.adoc#network-architecture[Network Architecture] for additional information.
+Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
 +
 [WARNING]
 ====

@@ -82,7 +82,14 @@ When a dedicated internal load balancer node is added to the cluster, the option
 
 == Remove a Node from Runtime Fabric
 
-To remove a node from a Runtime Fabric cluster, run the following command:
+To remove a *controller* node from a Runtime Fabric cluster, run the following command:
+
+----
+sudo kubectl drain <node-name>
+sudo gravity leave
+----
+
+To remove a *worker* node from a Runtime Fabric cluster, run the following command:
 
 ----
 sudo gravity leave
@@ -99,6 +106,7 @@ gravity status
 If the node cannot be removed using `sudo gravity leave` you may need to run the command again using the `--force` option. You can also remove a node remotely by running the following command:
 
 ----
+sudo kubectl drain <node-name>
 sudo gravity remove <node-name>
 ----
 
