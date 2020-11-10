@@ -231,7 +231,7 @@ rtfctl get mule-license
 
 [IMPORTANT]
 ====
-The procedures in this section should be performed by a MuleSoft organization administrator.
+The procedures in this section should be performed by an IT administrator.
 ====
 
 If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
