@@ -70,6 +70,22 @@ See how to xref:deploy-resource-allocation.adoc[determine resource allocation] f
 To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Application url* section.
 * *Enable Last-Mile security* to forward HTTPS connections to be decrypted by this application. This requires an SSL certificate to be included in the Mule application, and also requires more CPU resources.
 
+* *Forward SSL session* enables SSL forwarding during a session.
++
+SSL forwarding is mostly used with client authentication. See xref:anypoint-security::enable-client-authentication.adoc[Enable Client Authentication]. SSL forwarding forwards client certificate details in HTTP request headers so they are available to the application. These fields can identify an authenticated client and allow an application to determine and use the identity.
++
+The following headers are available:
++
+[%header,cols="2*a"]
+|===
+| Header Name | Value
+| x-ssl-client-verify | SUCCESS/FAIL
+| x-ssl-issuer | the client certificate issuer.
+| x-ssl-client-serial | the client certificate serial number.
+| x-ssl-client-dn | the contents of the client certificate DN field.
+|===
+
+
 . Configure application properties:
 .. Click the *Properties* tab.
 .. Specify your application properties as key-value pairs.
