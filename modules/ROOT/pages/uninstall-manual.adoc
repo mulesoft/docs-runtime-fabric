@@ -1,4 +1,4 @@
-= Uninstall Runtime Fabric Manually
+= Uninstall Runtime Fabric on VMs / Bare Metal
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
