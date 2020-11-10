@@ -4,7 +4,7 @@
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration]
  ** xref:enable-inbound-traffic-self.adoc[Configure Endpoints (On Self-Managed Kuberenetes)]
- ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric on Self-Managed Kubernetes]
+ ** xref:uninstall-self.adoc[Uninstall Runtime Fabric on Self-Managed Kubernetes]
 * xref:index-vm-bare-metal.adoc[On VMs / Bare Metal]
  ** xref:runtime-fabric-limitations.adoc[Limitations]
  ** xref:install-prereqs.adoc[Installation Prerequisites]
