@@ -16,11 +16,7 @@ The sections below describe the requirements for running Runtime Fabric on Self-
 
 === Network Configuration
 
-<<<<<<< HEAD
 Runtime Fabric on Self-managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes].
-=======
-Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:index-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
->>>>>>> 9a63df0c6d8b580fe38ab36e3fb3f35b9726d9d7
 
 === Kubernetes
 
