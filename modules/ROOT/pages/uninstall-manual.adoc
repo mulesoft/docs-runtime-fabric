@@ -8,9 +8,12 @@ It's important to keep all nodes running and joined to the cluster for these ins
 Alternatively, you can perform the first step and delete all applications and the Runtime Fabric on Runtime Manager, and 
 skip the remaining steps by reimaging the VM disks.
 
-. Delete all applications running on the Runtime Fabric in Runtime Manager. Verify across all associated 
-environments that all applications have been removed.
-. Delete the Runtime Fabric from Runtime Manager.
+
+Using Runtime Manager delete all Mule applications running on Runtime Fabric.
++
+Verify across all associated environments that you have removed all applications.
+
+. Using Runtime Manager, delete the Runtime Fabric.
 . On each Worker VM, run the following command and confirm by typing “yes” when prompted:
 +
 ----
