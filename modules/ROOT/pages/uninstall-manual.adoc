@@ -9,7 +9,7 @@ Alternatively, you can perform the first step and delete all applications and th
 skip the remaining steps by reimaging the VM disks.
 
 
-Using Runtime Manager delete all Mule applications running on Runtime Fabric.
+.Using Runtime Manager delete all Mule applications running on Runtime Fabric.
 +
 Verify across all associated environments that you have removed all applications.
 
