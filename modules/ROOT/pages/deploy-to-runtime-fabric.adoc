@@ -79,10 +79,10 @@ The following headers are available:
 [%header,cols="2*a"]
 |===
 | Header Name | Value
-| x-ssl-client-verify | SUCCESS/FAIL
-| x-ssl-issuer | the client certificate issuer.
-| x-ssl-client-serial | the client certificate serial number.
-| x-ssl-client-dn | the contents of the client certificate DN field.
+| `x-ssl-client-verify` | SUCCESS/FAIL
+| `x-ssl-issuer` | The client certificate issuer.
+| `x-ssl-client-serial` | The client certificate serial number.
+| `x-ssl-client-dn` | The contents of the client certificate DN field.
 |===
 
 
