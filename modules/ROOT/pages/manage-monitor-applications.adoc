@@ -1,4 +1,4 @@
-= Monitoring Applications Deployed to Runtime Fabric
+= Monitor Applications Deployed to Runtime Fabric on VMs / Bare Metal
 
 Applications and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring to allow viewing metrics within Anypoint Platform.
 
