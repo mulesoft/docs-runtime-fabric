@@ -39,5 +39,5 @@
  ** xref:manage-proxy.adoc[Manage Proxies used by Runtime Fabric]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
  ** xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform]
- ** xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
+ ** xref:manage-nodes.adoc[Add or Remove a Node from Runtime Fabric on VMs / Bare Metal]
  ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
