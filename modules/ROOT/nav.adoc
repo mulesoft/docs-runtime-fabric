@@ -36,6 +36,7 @@
  ** xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool]
  ** xref:install-patches.adoc[Perform Scheduled Maintenance on Runtime Fabric on VMs / Bare Metal]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
+ ** xref:manage-proxy-self.adoc[Manage Proxies on Runtime Fabric on Self-Managed Kubernetes]
  ** xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric on VMs / Bare Metal]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
  ** xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform]
