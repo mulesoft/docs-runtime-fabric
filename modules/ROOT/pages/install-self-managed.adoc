@@ -124,19 +124,19 @@ Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility
 *Windows:*
 +
 ----
-curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
 *MacOS (Darwin):*
 +
 ----
-curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
 ----
 +
 *Linux:*
 +
 ----
-curl -L https://devx.anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
 . Change file permissions for the `rtfctl` command-line utility:
