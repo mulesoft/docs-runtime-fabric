@@ -1,7 +1,4 @@
-= Manage Proxies Used by Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Manage Proxies Used by Runtime Fabric on VMs / Bare Metal
 
 Anypoint Runtime Fabric clusters consistently communicate with the control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
 
