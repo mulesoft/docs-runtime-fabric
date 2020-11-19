@@ -1,6 +1,6 @@
-= Add or Remove a Node from a Runtime Fabric
+= Add or Remove a Node from Runtime Fabric on VMs / Bare Metal
 
-Runtime Fabric enables you to add and remove nodes from a Runtime Fabric. Scenarios where you may need to add or remove a node include:
+When using Runtime Fabric on VMs / Bare Metal, you can add and remove nodes from a Runtime Fabric. Scenarios where you may need to add or remove a node include:
 
 * Add a node to scale-up a Runtime Fabric.
 * Delete or add nodes to ensure the health and stability of a Runtime Fabric.
