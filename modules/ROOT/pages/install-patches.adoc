@@ -1,9 +1,6 @@
-= Perform Scheduled Maintenance
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Perform Scheduled Maintenance on Runtime Fabric on VMs / Bare Metal
 
-Use the following procedures to perform scheduled maintenance, such as applying OS patches and security updates, on Anypoint Runtime Fabric nodes. 
+When using Runtime Fabric on VMs / Bare Metal you can Use the following procedures to perform scheduled maintenance. This includes applying OS patches and security updates. 
 
 == Controller Node Maintenance
 
