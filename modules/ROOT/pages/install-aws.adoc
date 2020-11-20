@@ -3,12 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install Anypoint Runtime Fabric on your AWS account. Note that you can also use AWS EKS to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
+This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your AWS account. Note that you can also use AWS EKS to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
 [WARNING]
 ====
-Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric]. If your infrastructure does not meet the minimum hardware, operating system, 
-and networking requirements, Runtime Fabric will not operate successfully.
+Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal]. If your infrastructure does not meet the minimum hardware, operating system, 
+and networking requirements, Runtime Fabric on VMs / Bare Metal will not operate successfully.
 
 Your organization's operations, networking, and security teams must be involved. See 
 xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
@@ -16,7 +16,7 @@ xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 
 == Before You Begin
 
-Before installing Anypoint Runtime Fabric on AWS, ensure the following requirements have been met:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal on AWS, ensure the following requirements have been met:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * Your Anypoint Platform user account has the *Manage Runtime Fabrics* permission.
@@ -70,7 +70,7 @@ base64 -w0 license.lic
 
 == Install Terraform
 
-MuleSoft provides a Terraform script that you run to provision the required AWS resources. You can modify the provisioning script as needed for your installation: for example, you can enable disk encryption or encryption of EBS volumes. Runtime Fabric is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
+MuleSoft provides a Terraform script that you run to provision the required AWS resources. You can modify the provisioning script as needed for your installation: for example, you can enable disk encryption or encryption of EBS volumes. Runtime Fabric on VMs / Bare Metal is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric on VMs / Bare Metal Installation Prerequisites].
 
 You can run the 
 Terraform script in one of the following ways:
@@ -88,7 +88,7 @@ Terraform installed is `0.12.6` or later by running `terraform --version` on you
 . Click *Download files*.
 . When the download completes, unzip the `rtf-install-scripts.zip` file.
 
-=== Contents of the Runtime Fabric Installer
+=== Contents of the Runtime Fabric on VMs / Bare Metal Installer
 
 Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the following:
 
@@ -111,7 +111,7 @@ list the required and optional environment variables.
 Depending on your environment, you may need to modify environment variables specified within `fabric.tf` that are not 
 listed in the tables below. This is common if you need to use existing AWS resources such as an existing VPC.
 
-In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
+In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either shared or dedicated mode: 
 
 * *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
 * *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
@@ -162,7 +162,7 @@ To verify that these are set correctly, you should be able to run the `aws-cli` 
 
 == Run the Terraform Script
 
-After modifying `fabric.tf` to reflect your AWS environment, run the Terraform script to install Runtime Fabric.
+After modifying `fabric.tf` to reflect your AWS environment, run the Terraform script to install Runtime Fabric on VMs / Bare Metal.
 
 The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
 
@@ -208,7 +208,7 @@ verifying the variables and running the Terraform command.
 The Terraform script provisions the infrastructure and runs the installation script on each VM. When the installation script completes, the Runtime Fabric is updated to *Active* status in Runtime Manager.
 +
 [NOTE]
-This step installs Runtime Fabric across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
+This step installs Runtime Fabric on VMs / Bare Metal across all servers to form a cluster. It may take 15-25 minutes or longer to complete.
 
 === Run Terraform Within Docker
 
@@ -252,7 +252,7 @@ docker run -it -v $(pwd):/src -w /src/aws \
 * The Terraform script provisions the infrastructure and runs the installation script on each VM. When the installation is complete, the Runtime Fabric is shown in *Active* status in Runtime Manager.
 +
 [NOTE]
-This step installs Runtime Fabric across all servers to form a cluster. It might take 15 to 25 minutes or longer to complete.
+This step installs Runtime Fabric on VMs / Bare Metal across all servers to form a cluster. It might take 15 to 25 minutes or longer to complete.
 
 == Monitoring Installation Progress
 
