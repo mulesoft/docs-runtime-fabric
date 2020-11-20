@@ -1,7 +1,7 @@
 = Monitor Mule Core Usage With Runtime Fabric on Self-Managed Kubernetes
 
 Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to use your own infrastructure monitoring solution to view metrics, monitor and alert on conditions.
-YYour monitoring solution can also be used to count and generate alerts on Mule core usage.
+Your monitoring solution can also be used to count and generate alerts on Mule core usage.
 
 == Counting Mule Application Resources
 
