@@ -20,7 +20,7 @@ Deployments of applications and gateways not powered by Mule on Anypoint Runtime
 
 == Development and Production Configurations
 
-Anypoint Runtime Fabric supports development and production configurations. These supported configurations specify the minimum nodes and resources required.
+Anypoint Runtime Fabric on VMs / Bare Metal supports development and production configurations. These supported configurations specify the minimum nodes and resources required.
 
 === Development Configuration
 
@@ -42,7 +42,7 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 == Network Architecture
 
-The following diagram shows the general network architecture of Runtime Fabric.
+The following diagram shows the general network architecture of Runtime Fabric on VMs / Bare Metal.
 
 image::architecture-network.png[]
 
@@ -52,11 +52,11 @@ When you enable an internal load balancer, the following modes are supported:
 
 * *Shared Mode*
 +
-The default setting if no dedicated internal load balancer node is added in Runtime Fabric. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
+The default setting if no dedicated internal load balancer node is added in Runtime Fabric on VMs / Bare Metal. In this mode, the internal load balancer runs on all controller nodes with the specified amount of CPU and memory.
 
 * *Dedicated Mode*
 +
-Enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
+Enabled only if one or more dedicated internal load balancer nodes is available in Runtime Fabric on VMs / Bare Metal. Because dedicated internal load balancer nodes use all available resources for running the internal load balancer, you cannot specify the amount of CPU cores and memory.
 
 Higher inbound traffic loads require dedicated nodes. To determine if dedicated nodes are needed for your environment, refer to the performance information in xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
@@ -73,13 +73,13 @@ image::architecture-network2.png[]
 Anypoint Runtime Fabric on VMs / Bare Metal contains all of the components it requires. These components, including Docker and Kubernetes, are optimized to work efficiently with Mule runtimes and other MuleSoft services.
 
 [WARNING]
-Installing Anypoint Runtime Fabric on VMs / Bare Metal within an existing Kubernetes-based PaaS is not supported. In this situation, consider using the version of Runtime Fabric that supports self-managed Kubernetes.
+Installing Anypoint Runtime Fabric on VMs / Bare Metal within an existing Kubernetes-based PaaS is not supported. In this situation, consider using xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
-If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
+If you are already using a PaaS solution, MuleSoft recommends deploying Runtime Fabric on VMs / Bare Metal in parallel with your PaaS. This enables you to take advantage of the complete benefits of Anypoint Platform.
 
 == Shared Responsibility for Anypoint Runtime Fabric on VMs / Bare Metal
 
-The successful operation of Anypoint Runtime Fabric on VMs / bare Metal is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
+The successful operation of Anypoint Runtime Fabric on VMs / Bare Metal is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. Runtime Fabric operates successfully only if it is provided the required infrastructure and maintenance.
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
@@ -91,7 +91,7 @@ MuleSoft manages the Runtime Fabric appliance and is responsible for the deliver
 
 * Customer responsibility:
 +
-Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric.
+Customers are responsible for provisioning, configuring, and managing the infrastructure required for Runtime Fabric on VMs / Bare Metal.
 +
 ** Infrastructure includes:
 +
@@ -113,7 +113,7 @@ Customers are responsible for provisioning, configuring, and managing the infras
 +
 *** Security team to verify compliance and obtain security certificates
 
-Refer to xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites] for additional information.
+Refer to xref:install-prereqs.adoc[Runtime Fabric on VMs / Bare Metal Installation Prerequisites] for additional information.
 
 == Connecting Runtime Fabric to Anypoint Management Center
 
