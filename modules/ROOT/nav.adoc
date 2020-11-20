@@ -1,6 +1,7 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
 * xref:index.adoc[Anypoint Runtime Fabric Overview]
 * xref:index-self-managed.adoc[On Self-Managed Kubernetes]
+ **xref:limitations-self.adoc[Limitations for Runtime Fabric on Self-Managed Kubernetes]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration]
  ** xref:enable-inbound-traffic-self.adoc[Configure Endpoints (On Self-Managed Kuberenetes)]
