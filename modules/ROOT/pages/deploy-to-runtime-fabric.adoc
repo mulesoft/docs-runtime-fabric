@@ -33,7 +33,7 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 . Select the name of your Runtime Fabric from the *Deployment Target* drop-down list.
 +
-The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. If you are using Runtime Fabric on VMs / bare metal the *Logs* tab is also displayed. Use these tabs to enter additional configuration information for your application.
+The *Deployment Target*, *Ingress*, and *Properties*, and *JVM* tabs are displayed. If you are using Runtime Fabric on VMs / Bare Metal the *Logs* tab is also displayed. Use these tabs to enter additional configuration information for your application.
 +
 To select a domain (endpoint) for the application:
 +
@@ -75,7 +75,7 @@ See how to xref:deploy-resource-allocation.adoc[determine resource allocation] f
 +
 If you are using Runtime Fabric on Self-managed Kubernetes, this option is enabled by default. To send requests to a deployment using a different supported environment, add additional endpoints for this Runtime Fabric. See xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
 +
-If you are using Runtime Fabric on VMs / bare metal, you must enable inbound traffic manually. Additional endpoints are sourced from the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified by the SAN property, the available URLs are displayed in the *Application URL
+If you are using Runtime Fabric on VMs / Bare Metal, you must enable inbound traffic manually. Additional endpoints are sourced from the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified by the SAN property, the available URLs are displayed in the *Application URL
 +
 [NOTE]
 To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Application url* section.
