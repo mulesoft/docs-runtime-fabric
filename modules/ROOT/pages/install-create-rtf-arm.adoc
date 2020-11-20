@@ -19,10 +19,11 @@ If you do not see the *Runtime Fabrics* tab in Runtime Manager as described belo
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
 . Specify the name of your Runtime Fabric.
-. Click *Create*.
+. Select the "VMs or bare metal" option.
+. Click *Next*.
 
 [IMPORTANT]
-After creating the Runtime Fabric, Runtime Manage displays the corresponding activation data. Record this data to use later when installing running the Runtime Fabric installer.
+After creating the Runtime Fabric, Runtime Manager displays the corresponding activation data. Record this data to use later when installing running the Runtime Fabric on VMs / Bare Metal installer.
 
 image::runtime-fabric-arm.png[]
 
