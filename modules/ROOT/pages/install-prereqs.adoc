@@ -1,15 +1,15 @@
 = Anypoint Runtime Fabric on VMs / Bare Metal Installation Prerequisites
 
-Before installing Runtime Fabric on VMs / Bare Metal review the information in this topic to ensure your environment is ready for installation.
+Before installing Runtime Fabric on VMs / Bare Metal, review the information in this topic to ensure your environment is ready for installation.
 
 == Before You Begin
 
 [IMPORTANT]
 Most installation issues on Runtime Fabric on VMs / Bare Metal result from improper infrastructure provisioning or configuration. 
 
-Before you install Runtime Fabric :
+Before you install Runtime Fabric on VMs / Bare Metal:
 
-* Refer to xref:index-vm-bare-metal.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric].
+* Refer to xref:index-vm-bare-metal.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal].
 +
 If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
 
@@ -20,9 +20,9 @@ If your infrastructure does not meet the minimum hardware, operating system, and
 +
 Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
 
-* Review the requirements in this topic and ensure that all prerequisites are met before installing Anypoint Runtime Fabric.
+* Review the requirements in this topic and ensure that all prerequisites are met before installing Runtime Fabric on VMs / Bare Metal.
 +
-The Runtime Fabric installation process fails if the minimum requirements are not met.
+The installation process fails if the minimum requirements are not met.
 
 See xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for a description of development and production configurations.
 
@@ -71,12 +71,12 @@ Perform the following actions:
 * If provisioning hardware with AWS or Azure, you must have the correct permissions to create the required resources.
 +
 [NOTE]
-Dedicated disks are required to ensure optimum performance. The Runtime Fabric installer formats
+Dedicated disks are required to ensure optimum performance. The Runtime Fabric on VMs / Bare Metal installer formats
 and mounts the disks needed during installation.
 +
 The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
 the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
-when evaluating Runtime Fabric before integrating within your primary network. You should consult with your 
+when evaluating Runtime Fabric on VMs / Bare Metal before integrating within your primary network. You should consult with your 
 network administrator to determine if the default behavior is compatible. You might need to modify the 
 provisioning scripts to accommodate your organization's requirements.
 * Understand how to forward logs to your organization's logging provider.
@@ -93,7 +93,7 @@ provisioning scripts to accommodate your organization's requirements.
 *** If virtual machines are allowed, public IP addresses
 *** How to gain shell access to each VM
 
-* Based on the function of your organization's Mule applications, determine if inbound traffic should be enabled for Anypoint Runtime Fabric.
+* Based on the function of your organization's Mule applications, determine if inbound traffic should be enabled for Runtime Fabric on VMs / Bare Metal.
 +
 If you plan to enable inbound traffic, evaluate your network's traffic to determine whether you need to configure dedicated nodes for the inbound load balancer. For additional information, refer to xref:index-vm-bare-metal.adoc#network-architecture[Network Configuration] and xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
@@ -107,8 +107,8 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 [IMPORTANT]
 Currently, there is a known Control Groups (cgroups) memory leaking issue, which can lead to pod creation failure or node malfunction. Ensure that you are using Linux kernel version 3.10.0-1075 or later, and refer to https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[RTF - How to Resolve the Cgroup Memory Leaking Issue in Runtime Fabric] for additional information.
 
-Use the same operating system for each node. If you attempt to install Runtime Fabric on 
-a different operating system version or distribution, the Runtime Fabric installer fails.
+Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on 
+a different operating system version or distribution, the installer will fail.
 
 == Network and Port Requirements
 
@@ -116,7 +116,7 @@ Runtime Fabric on VMs / Bare Metal requires specific network and port configurat
 
 === Bandwidth Requirements
 
-A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet. 
+A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Runtime Fabric on VMs / Bare Metal, and minimum of 100 MBps for outbound connectivity to the Internet. 
 [NOTE]
 Runtime Fabric on VMs / Bare Metal does not support cross-regional deployments. Network latency between each node can cause problems with cluster health.
 
@@ -126,7 +126,7 @@ The following sections list the TCP and UDP network port requirements for Runtim
 
 ==== Ports Used During Installation
 
-The following table lists the ports that must be accessible on all nodes. These ports are used for internal communication between nodes during Anypoint Runtime Fabric installation. After completing the installation, you can safely disable these ports.
+The following table lists the ports that must be accessible on all nodes. These ports are used for internal communication between nodes during installation. After completing the installation, you can safely disable these ports.
 
 [%header%autowidth.spread]
 .Ports Required for Installation
@@ -220,17 +220,17 @@ Because the following endpoints use mutual TLS authentication to establish the c
 
 === Required Network Settings
 
-In addition to the previous port requirements, the following network settings are required to operate Anypoint Runtime Fabric:
+In addition to the previous port requirements, the following network settings are required to operate Runtime Fabric on VMs / Bare Metal:
 
-* A subnet with enough IP addresses allotable to add additional VMs to Anypoint Runtime Fabric
+* A subnet with enough IP addresses allotable to add additional VMs to Runtime Fabric on VMs / Bare Metal
 +
 [IMPORTANT]
 The pod CIDR block must not overlap with IP addresses that pods or servers use to communicate. If services within the cluster or services that you installed on nodes need to communicate with an IP range that overlaps the pod or service CIDR block, a conflict can occur. If a CIDR block is in use, but pods and services do not use those IP addresses to communicate, there is no conflict. If you deploy more than one cluster, each cluster can reuse the same IP range, because those addresses exist within the cluster nodes, and cluster-to-cluster communications is relayed on the external interfaces.
-* Shell/SSH access to each VM used to install Anypoint Runtime Fabric
+* Shell/SSH access to each VM used to install Runtime Fabric on VMs / Bare Metal
 * Static private IPv4 addresses assigned to each VM, which persist between restarts
 * Kernel IP forwarding to enable internal Kubernetes load balancing. IPv4 forwarding is enabled on each VM during installation.
 * Bridge-netfilter to enable the host Linux kernel to translate packets to and from hosted containers. This kernel module is enabled on each VM during installation.
-* Access to an SMTP server to manage e-mail alerts triggered by Anypoint Runtime Fabric
+* Access to an SMTP server to manage e-mail alerts triggered by Runtime Fabric on VMs / Bare Metal
 * An external load balancer to balance external requests to the internal load balancer running on each controller VM
 * Your environment's HTTP proxy configuration if outgoing requests to the Internet must route through a proxy
 * A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy
@@ -243,7 +243,7 @@ To deploy Mule applications and API proxies, you must have access to your organi
 
 During installation, the installation package is downloaded to a controller VM that serves as the leader of the installation.
 
-Anypoint Runtime Fabric is configured to run as a cluster across multiple virtual machines. Each VM operates as one of the following roles:
+Runtime Fabric on VMs / Bare Metal is configured to run as a cluster across multiple virtual machines. Each VM operates as one of the following roles:
 
 * Controller VM, which is dedicated to operate and run Runtime Fabric services. The internal load balancer runs within controller VMs.
 * Worker VM, which is dedicated to run Mule applications.
@@ -274,7 +274,7 @@ The controller VM that is the leader for installation performs the following act
 
 == Production Configuration Requirements
 
-A minimum of 6 nodes are required for a production configuration of Runtime Fabric, as shown in
+A minimum of 6 nodes are required for a production configuration of Runtime Fabric on VMs/ Bare Metal, as shown in
 the following diagram.
 
 image::architecture-production.png[]
@@ -283,7 +283,7 @@ The following sections describe the minimum system requirements of controller an
 nodes in a production configuration.
 
 [NOTE]
-Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. See xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+Runtime Fabric on VMs / Bare Metal does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. See xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
 === Controller Nodes
 
@@ -317,11 +317,11 @@ You must consider the amount of resources needed for the internal load balancer 
 Consider scaling the number of controller nodes in the following situations:
 
 * Fault tolerance is needed to mitigate the impact of controller node hardware failure. The minimum requirement of 3 controller nodes enables fault-tolerance of losing 1 controller. To improve fault-tolerance to lose 2 controllers, a total of 5 controllers should be configured.
-* Production traffic is being served with applications running on Runtime Fabric.
+* Production traffic is being served with applications running on Runtime Fabric on VMs / Bare Metal.
 
 === Worker Nodes
 
-Runtime Fabric requires at least three worker nodes to run Mule applications and API gateways.
+Runtime Fabric on VMs / Bare Metal requires at least three worker nodes to run Mule applications and API gateways.
 
 The maximum number of worker nodes supported is 16.
 
@@ -354,7 +354,7 @@ Having 250 GiB ensures there is enough space to run applications, cache docker i
 
 === Additional Resource Requirements for Production Environments
 
-When using Runtime Fabric in a production environment:
+When using Runtime Fabric on VMs / Bare Metal in a production environment:
 
 * An external load balancer must be configured to load balance external requests to the internal load balancer 
 running on each controller VM, with a health check configured for TCP port 443. A TCP load balancer with a 
@@ -364,13 +364,13 @@ server pool consisting of each of the controller nodes is sufficient.
 
 == Development Configuration Requirements
 
-Runtime Fabric requires a minimum of three nodes in a development environment as shown in the
+Runtime Fabric on VMs / Bare Metal requires a minimum of three nodes in a development environment as shown in the
 following diagram:
 
 image::architecture-development.png[]
 
 [NOTE]
-Runtime Fabric does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. see xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+Runtime Fabric on VMs / Bare Metal does not support running controller nodes using burstable VMs. When deploying an application on a worker node, you can allocate vCPU for bursting. see xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
 The following sections describe the minimum system requirements of each controller and worker
 nodes in a development configuration.
@@ -397,7 +397,7 @@ Megabytes per second (MBps) disk read/write performance.
 
 === Worker Nodes
 
-Runtime Fabric requires at least two worker nodes to run Mule applications and API gateways. 
+Runtime Fabric on VMs / Bare Metal requires at least two worker nodes to run Mule applications and API gateways. 
 The maximum number of workers nodes supported is 16.
 
 Provision at least one extra worker node to preserve uptime in the event a
