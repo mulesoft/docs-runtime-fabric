@@ -137,7 +137,9 @@ curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:1
 
 If your application remains in the *Starting* status for several minutes, this may be due to specifying a lower amount of resources. It's common for applications to take several minutes to start up when selecting 0.3 cores or lower.
 
-If the application encounters an error during startup, the deployment will stop and the status updates to *Failed*. An error message preview is displayed when clicking on the application and viewing the right sidebar. To view the entire message, click on the *Manage Application* button. Viewing the application logs in Ops Center or using your third party logging provider will provide more details.
+If the application encounters an error during startup, the deployment will stop and the status updates to *Failed*. An error message preview is displayed when clicking on the application and viewing the right sidebar. To view the entire message, click on the *Manage Application* button. 
+
+If you are using Runtime Fabric on VMs / Bare Metal, view the application logs in Ops Center or your third party logging provider to see additional details..
 
 An error message indicating `insufficient resources` is returned when Runtime Fabric doesn't have the CPU cores or memory available for the deployment. When selecting multiple replicas, it's important to know that the cores and memory specified applies to _each_ replica.
 
