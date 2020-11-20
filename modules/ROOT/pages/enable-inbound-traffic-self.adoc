@@ -1,8 +1,8 @@
-= Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)
+= Configure Domains and Inbound Traffic (On Self-Managed Kuberenetes)
 
-To enable external application to connect to Runtime Fabric on Self-Managed Kubernetes you must provide an ingress controller that is compatible with your Kubernetes environment. Runtime Fabric uses the ingress controller to route and load balance requests to an application.
+To enable external applications to connect to Runtime Fabric on Self-Managed Kubernetes, you must provide an ingress controller that is compatible with your Kubernetes environment. Runtime Fabric uses the ingress controller to route requests to deployed applications.
 
-Inbound traffic is enabled by default. This allows Mule applications or API gateways to listen on inbound connections. You can turn off inbound traffic per application when deploying or configuring an application. You can disable inbound traffic per application in Runtime Manager when deploying or configuring an application.
+Inbound traffic is enabled by default. This allows Mule applications and API gateways to receive inbound connections. You can disable inbound traffic per application in Runtime Manager when deploying or configuring an application.
 
 Runtime Fabric allows you to configure domains that serve as endpoints for your deployed applications.
 
@@ -13,10 +13,10 @@ Runtime Fabric allows you to configure domains that serve as endpoints for your 
 . Select *Inbound Traffic*, then click *Add Endpoints.*
 . Add the endpoint provided by your IT administrator, including the `http://` or `https://` protocols. Separate multiple endpoints with commas.
 . Confirm your changes by clicking the *Add* button.
-. Click the "Save and deploy" button add the new endpoint.
+. Click the *Save and deploy* button add the new endpoint.
 
 
 == See Also
 
-* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
-* xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
+* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
