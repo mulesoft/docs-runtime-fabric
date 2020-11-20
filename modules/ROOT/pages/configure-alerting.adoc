@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric enables you to send alerts through an existing SMTP server. Runtime Fabric provides alert functionality to send notifications when system health is compromised.
+Runtime Fabric on VMs / Bare Metal enables you to send alerts through an existing SMTP server. Runtime Fabric on VMs / Bare Metal provides alert functionality to send notifications when system health is compromised.
 
 == Install rtfctl 
 
@@ -66,7 +66,7 @@ Currently, only one alerts email recipient is supported.
 
 == Built-in Alerts
 
-The following table lists some of default alerts provided by Anypoint Runtime Fabric:
+The following table lists some of default alerts provided by Anypoint Runtime Fabric on VMs / Bare Metal:
 
 [%header,cols="2*a"]
 .Runtime Fabric Default Alerts
