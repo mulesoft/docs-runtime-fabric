@@ -1,13 +1,4 @@
 = Back up and Restore Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
-
-== Prerequisites
-
-Before performing a backup or restore operation, verify that Runtime Fabric was installed or upgraded 
-using  https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1581474166, role=external, window=_blank] or later, and that the rtfctl CLI tool is upgraded to version 0.2.95 or later.
-The versions can be verified by running `rtfctl version` on a Runtime Fabric node.
 
 To preserve applications in the event of system failure, ensure that Runtime Fabric is automatically backed up. 
 MuleSoft highly recommends configuring hourly backups. Store your backup archive on external storage outside 
@@ -17,6 +8,12 @@ the Runtime Fabric cluster.
 The state of Runtime Fabric is distributed across its controller nodes. Use the following procedures to back up and restore
 the required state necessary for all deployed applications, management services, and their configurations. 
 Individual node backup and restore operations are not supported.
+
+
+== Prerequisites for Runtime Fabric on VMs / Bare Metal
+
+Before performing a backup or restore operation, verify that Runtime Fabric on VMs / Bare Metal was installed or upgraded 
+using  https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1581474166, role=external, window=_blank] or later, and that the rtfctl CLI tool is upgraded to version 0.2.95 or later. The versions can be verified by running `rtfctl version` on a Runtime Fabric node.
 
 == Create a Backup
 
