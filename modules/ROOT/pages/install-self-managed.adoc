@@ -255,5 +255,5 @@ Before deploying an application to your Runtime Fabric:
 == See Also
 
 * xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
-* xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (on Self-managed Kuberenetes)]
+* xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (on Self-Managed Kuberenetes)]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
