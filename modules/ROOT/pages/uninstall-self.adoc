@@ -1,8 +1,8 @@
 = Uninstall Runtime Fabric on Self-Managed Kubernetes
 
-Perform the following procedures to uninstall Runtime Fabric on Self-Managed Kubernetes:
+Perform the following procedure to uninstall Runtime Fabric on Self-Managed Kubernetes:
 
-. Using Runtime Manager delete all Mule applications running on Runtime Fabric.
+. Using Runtime Manager, delete all Mule applications and API gateways deployed on Runtime Fabric.
 +
 Verify on all associated environments that you have removed all applications.
 
@@ -14,4 +14,4 @@ Verify on all associated environments that you have removed all applications.
 == See Also
 
 * xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
-* xref:install-self-managed.adoc[Install Runtime Fabric on Self-managed Kubernetes]
+* xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]

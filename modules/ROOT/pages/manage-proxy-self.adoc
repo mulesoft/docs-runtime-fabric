@@ -1,0 +1,69 @@
+= Manage Proxies on Runtime Fabric on Self-Managed Kubernetes
+
+[IMPORTANT]
+====
+The procedures in this topic should be performed by a MuleSoft organization administrator.
+====
+
+Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running and hosting applications:
+
+* System proxies: include proxies that enable connectivity among Kubernetes cluster services, including the Docker daemon and other internal components. When using Runtime Fabric on Self-Managed Kubernetes you are responsible for configuring and managing system proxies.
+* Application proxies: include proxies that enable connectivity to applications running on Runtime Fabric.
+
+
+== Apply Proxy Values to Runtime Fabric on Self-Managed Kubernetes
+
+Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
+
+. Run the following command, replacing the placeholder values with the following:
++
+----
+rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
+----
++
+* *<user>*: the username needed to authenticate to the HTTP proxy.
+* *<pass>*: the password needed to authenticate to the HTTP proxy. +
+[NOTE]
+The password must be URL encoded.
+* *<10.0.0.1>*: Specifies the IP address or hostname to access the HTTP proxy.
+* *<8080>*: Specifies the port on the host where the HTTP proxy is listening for requests.
+* *<1.1.1.1:8888,2.2.2.2:9999>*: Specifies the `RTF_NO_PROXY` hosts and ports, delimited by commas.
+* (Optional) `--confirm`: Skips manual acknowledgement of the change. If not specified, the `rtfctl apply proxy` command prompts you to confirm the change before continuing.
+. To verify the change was successful, run the following command to output the current value of the HTTP proxy:
++
+----
+rtfctl get http-proxy
+----
+
+The output should match the value expected.
+
+== Configure a Proxy for the API Manager Agent
+
+To configure a proxy for the API Manager Agent, add the following properties to the :
+----
+anypoint.platform.proxy_host=hostname
+anypoint.platform.proxy_port=port
+anypoint.platform.proxy_username=username
+anypoint.platform.proxy_password=password
+----
+
+== Configure a Proxy for an Application
+
+Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
+cluster. You must configure a proxy for each application. 
+
+You can set up a proxy on each connector (such as an HTTP requestor) or set up a proxy with application properties as shown in the following example. Setting up a proxy with application properties is less work if you have a large number of connectors in an application.
+----
+http.nonProxyHosts=localhost|*.svc.cluster.local|*.monitoring.svc.cluster.local
+http.proxyHost=172.19.0.23
+http.proxyPort=3128
+https.proxyHost=172.19.0.23
+https.proxyPort=3128
+
+java.net.useSystemProxies=false
+com.ning.http.client.AsyncHttpClientConfig.useProxySelector=false
+com.ning.http.client.AsyncHttpClientConfig.useProxyProperties=true
+
+== See Also
+
+* xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]

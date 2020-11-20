@@ -4,11 +4,11 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-This topic describes how to install Anypoint Runtime Fabric on your Azure account.
+This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use AKS to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
 [WARNING]
 ====
-Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric]. If your infrastructure does not meet the minimum hardware, operating system, 
+Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal]. If your infrastructure does not meet the minimum hardware, operating system, 
 and networking requirements, Runtime Fabric will not operate successfully.
 
 Your organization's operations, networking, and security teams must be involved. See 
@@ -17,7 +17,7 @@ xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 
 == Before You Begin
 
-Before installing Anypoint Runtime Fabric on Azure, ensure the following requirements have been met:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal on Azure, ensure the following requirements have been met:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * Your Anypoint user account has the *Manage Runtime Fabrics* permission.
@@ -30,11 +30,11 @@ Modify the Azure Resource Manager template to reference an existing Virtual Netw
 == Installation
 
 [NOTE]
-The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
+The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric on VMs / Bare Metal is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
 
 If you require assistance, contact your MuleSoft representative.
 
-Before installing Runtime Fabric, download the Azure Resource Manager template from Runtime Manager:
+Before installing Runtime Fabric on VMs / Bare Metal, download the Azure Resource Manager template from Runtime Manager:
 
 . From Anypoint Platform, navigate to Runtime Manager.
 . Select *Runtime Fabrics*.
@@ -124,7 +124,7 @@ create a separate Resource group.
 
 |===
 +
-In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
+In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either shared or dedicated mode: 
 +
 * *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
 * *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
@@ -133,7 +133,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 . Review and select the *Terms and Conditions* on the bottom of the page and then click *Purchase*.
 +
-Runtime Fabric is installed across all servers to form a cluster. This process takes time to complete. When 
+Runtime Fabric on VMs / Bare Metal is installed across all servers to form a cluster. This process takes time to complete. When 
 complete, the status of Runtime Fabric displayed in Runtime Manager changes to `Active` status.
 +
 [NOTE]

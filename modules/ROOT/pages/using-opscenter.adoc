@@ -1,11 +1,10 @@
-= Use Ops Center to Monitor Anypoint Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Use Ops Center to Monitor Runtime Fabric on VMs / Bare Metal
 
-You can use the built-in Ops Center to monitor the health of your Anypoint Runtime Fabric clusters.
+
+You can use the built-in Ops Center to monitor the health of your Runtime Fabric on VMs / Bare Metal clusters.
 
 == Access Ops Center
+
 You can use the Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
 
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.

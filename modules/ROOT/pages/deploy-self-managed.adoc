@@ -1,3 +1,0 @@
-= Deploying to a Self-managed Kubernetes Cluster
-
-This topic is currently under development and will be available soon.
