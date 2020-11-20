@@ -5,7 +5,7 @@
 Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
-Anypoint Runtime Fabric supports installing and running Runtime Fabric in a Kubernetes environment on AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) that you manage.
+Anypoint Runtime Fabric can be installed and operated on a AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) that you manage.
 
 
 == Before you Begin
@@ -15,6 +15,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 * You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * You have installed and configured your Kubernetes environment as follows:
 +
+- Running an EKS or AKS Kubernetes environment. Other Kubernetes environments are not supported.
 - Running Kubernetes version 1.16.x to 1.18.x.
 - Running an ingress controller to send external requests to applications.
 
@@ -32,7 +33,7 @@ Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure tha
 To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
 
 [%header,cols="6*a"]
-.Port Configuration for Self-managed Kubernetes
+.Port Configuration for Self-Managed Kubernetes
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
 | 443 | TCP | HTTPS | Internet | All nodes | Allow inbound requests to Mule runtime servers
@@ -46,7 +47,7 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
 
 [%header,cols="4*a"]
-.Host Configuration for Self-managed Kubernetes
+.Host Configuration for Self-Managed Kubernetes
 |===
 | Port | Protocol | Hostnames | Description
 | 443 | AMQP over WebSockets | * US control plane: transport-layer.prod.cloudhub.io
@@ -75,7 +76,7 @@ To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the fo
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
 [%header,cols="2*a"]
-.Cerfificate configuration for self-managed kubernetes
+.Cerfificate configuration for Self-Managed Kubernetes
 |===
 | Control Plane | Certificates
 | US control plane | transport-layer.prod.cloudhub.io +
@@ -183,14 +184,14 @@ rtfctl install <activation_data>
 `<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
 
 
-== Step 5: Update the Mule License Key
+== Step 5: Insert the Mule License Key
 
 [IMPORTANT]
 ====
 The procedures in the section must be performed by an IT administrator.
 ====
 
-After the installation has completed succesfully, update the Mule license key.
+After the installation has completed succesfully, insert the Mule license key.
 
 . Base64 encode the new Mule `.lic` license file provided by MuleSoft:
 +
@@ -215,7 +216,7 @@ base64 -w0 license.lic
 base64 -w0 license.lic
 ----
 
-. Update the Mule license key:
+. Insert the Mule license key:
 +
 ----
 rtfctl apply mule-license BASE64_ENCODED_LICENSE
@@ -253,6 +254,6 @@ Before deploying an application to your Runtime Fabric:
 
 == See Also
 
-* xref:index-self-managed.adoc[Runtime Fabric on Self-managed Kubernetes]
-* xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (RTF Self-managed Kuberenetes)]
+* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (on Self-managed Kuberenetes)]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
