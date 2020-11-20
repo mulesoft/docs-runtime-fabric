@@ -21,7 +21,7 @@
  ** xref:using-opscenter.adoc[Use Ops Center to Monitor Runtime Fabric on VMs / Bare Metal]
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
  ** xref:upgrade-index.adoc[Upgrade Runtime Fabric on VMs / Bare Metal]
- ** xref:uninstall-manual.adoc[Uninstall Upgrade Runtime Fabric on VMs / Bare Metal]
+ ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric on VMs / Bare Metal]
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
