@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 This topic describes common errors and steps to resolve them when installing Anypoint Runtime
-Fabric.
+Fabric on VMs / Bare Metal.
 
 == Obtain a Full Network Assessment
 Run the following command for an overall health assessment of the network:

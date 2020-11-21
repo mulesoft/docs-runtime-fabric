@@ -9,6 +9,7 @@ The following information is important when installing, configuring, and managin
 .Anypoint Runtime Fabric on Self-Managed Kubernetes resource allocation 
 |===
 | Nodes | The maximum number of nodes supported is 30.
+| Node Types | VM-based nodes are required. For example, Fargate is not supported.
 | Replicas Per Node | The maximum number of replicas that can be deployed per node is 40.
 
 Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
