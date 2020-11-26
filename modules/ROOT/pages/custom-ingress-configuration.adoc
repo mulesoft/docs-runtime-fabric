@@ -27,7 +27,7 @@ data:
     kubernetes.io/ingress.class: <name>
   ingress.spec: |
     ingressClassName: <name>
-    rules.http.paths.path: /${APP_PATH}
+    rules.http.paths.path: /$(APP_PATH)
 ----
 
 . Edit the text file as required.
