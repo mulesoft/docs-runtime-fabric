@@ -99,6 +99,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 ** Elasticsearch
 ** Graylog Extended Log Format (GELF)
 ** Splunk
+** CloudWatch
 
 [NOTE]
 ====
