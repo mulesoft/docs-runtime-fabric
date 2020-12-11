@@ -124,6 +124,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
 *** <<Cloud Watch, CloudWatch Configuration Parameters>>
+*** <<Syslog, Syslog Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
@@ -248,7 +249,7 @@ Example output plugin configuration:
 ==== CloudWatch Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Amazon CloudWatch Configuration Parameters
+.CloudWatch Configuration Parameters
 |===
 | Key | Description | Required | Default Value
 | Region | Specifies the AWS region | Yes |
@@ -273,6 +274,74 @@ Example output plugin configuration:
     log_stream_prefix      my_stream
     auto_create_group      On
 ```
+
+==== Syslog Configuration Parameters
+
+[%header%autowidth.spread,cols="a,a,a,a"]
+.Syslog Configuration Parameters
+|===
+| Key | Description | Required | Default Value
+| Host | Host name or IP address of the remote Syslog server | Yes | 127.0.0.1
+| Port | TCP or UDP port of the remote Syslog server | Yes | 514
+| Mode | The mode of the transport type | Yes | udp
+| Syslog formate | Syslog protocal format | No |
+| Syslog Maxsize | Integer value that sets the maximum number of bytes per message. | No | 1024 for rfc3164
+2048 for rfc5424
+| TLS |  | No | Off
+| CA Path Certificate File | |  | No |
+|===
+
+Example output plugin configuration:
+```
+[[
+  {
+    "name": "Host",
+    "displayName": "Host",
+    "description": "Host name or IP address of the remote Syslog server.",
+    "type": "textfield",
+    "required": true,
+    "minSupportedVersion": "1.8.11"
+  },
+  {
+    "name": "Port",
+    "displayName": "Port",
+    "description": "TCP or UDP port of the remote Syslog server.",
+    "type": "textfield",
+    "defaultValue": "514",
+    "required": true,
+    "minSupportedVersion": "1.8.11"
+  },
+  {
+    "name": "Mode",
+    "displayName": "Mode",
+    "description": "The desired mode of transport type.",
+    "type": "enum",
+    "defaultValue": "udp",
+    "options": ["udp", "tcp"],
+    "required": true,
+    "minSupportedVersion": "1.8.11"
+  },
+  {
+    "name": "Syslog_Format",
+    "displayName": "Syslog Format",
+    "description": "Syslog protocol format to use.",
+    "type": "enum",
+    "options": ["rfc5424", "rfc3164"],
+    "defaultValue": "rfc5424",
+    "required": false,
+    "minSupportedVersion": "1.8.11"
+  },
+  {
+    "name": "Syslog_Maxsize",
+    "displayName": "Syslog Maxsize",
+    "description": "This integer value sets the maximum number of bytes allowed per message. Defaults to 1024 for rfc3164 and 2048 for rfc5424.",
+    "type": "textfield",
+    "required": false,
+    "minSupportedVersion": "1.8.11"
+  }
+]
+```
+
 
 ==== Configure Log Forwarding
 
