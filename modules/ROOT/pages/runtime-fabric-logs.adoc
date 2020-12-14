@@ -281,67 +281,25 @@ Example output plugin configuration:
 .Syslog Configuration Parameters
 |===
 | Key | Description | Required | Default Value
-| Host | Host name or IP address of the remote Syslog server | Yes | 127.0.0.1
+| Host | Host name or IP address of the remote Syslog server | Yes |
 | Port | TCP or UDP port of the remote Syslog server | Yes | 514
 | Mode | The mode of the transport type | Yes | udp
-| Syslog format | Syslog protocol format | No |
+| Syslog format | Syslog protocol format | No | rfc5424
+| Syslog Format | Syslog protocal format | No | 
 | Syslog Maxsize | Integer value that sets the maximum number of bytes per message. | No | 1024 for rfc3164
 2048 for rfc5424
-| TLS |  | No | Off
-| CA Path Certificate File | |  | No |
 |===
 
 Example output plugin configuration:
 ```
-[[
-  {
-    "name": "Host",
-    "displayName": "Host",
-    "description": "Host name or IP address of the remote Syslog server.",
-    "type": "textfield",
-    "required": true,
-    "minSupportedVersion": "1.8.11"
-  },
-  {
-    "name": "Port",
-    "displayName": "Port",
-    "description": "TCP or UDP port of the remote Syslog server.",
-    "type": "textfield",
-    "defaultValue": "514",
-    "required": true,
-    "minSupportedVersion": "1.8.11"
-  },
-  {
-    "name": "Mode",
-    "displayName": "Mode",
-    "description": "The desired mode of transport type.",
-    "type": "enum",
-    "defaultValue": "udp",
-    "options": ["udp", "tcp"],
-    "required": true,
-    "minSupportedVersion": "1.8.11"
-  },
-  {
-    "name": "Syslog_Format",
-    "displayName": "Syslog Format",
-    "description": "Syslog protocol format to use.",
-    "type": "enum",
-    "options": ["rfc5424", "rfc3164"],
-    "defaultValue": "rfc5424",
-    "required": false,
-    "minSupportedVersion": "1.8.11"
-  },
-  {
-    "name": "Syslog_Maxsize",
-    "displayName": "Syslog Maxsize",
-    "description": "This integer value sets the maximum number of bytes allowed per message. Defaults to 1024 for rfc3164 and 2048 for rfc5424.",
-    "type": "textfield",
-    "required": false,
-    "minSupportedVersion": "1.8.11"
-  }
-]
+[OUTPUT]
+    Name           syslog
+    Host           127.0.0.1
+    Port           514
+    Mode           udp
+    Syslog_Format  rfc5424
+    Syslog_Maxsize 2048
 ```
-
 
 ==== Configure Log Forwarding
 
