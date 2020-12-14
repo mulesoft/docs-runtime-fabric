@@ -285,8 +285,7 @@ Example output plugin configuration:
 | Port | TCP or UDP port of the remote Syslog server | Yes | 514
 | Mode | The mode of the transport type | Yes | udp
 | Syslog format | Syslog protocol format | No | rfc5424
-| Syslog Format | Syslog protocal format | No | 
-| Syslog Maxsize | Integer value that sets the maximum number of bytes per message. | No | 1024 for rfc3164
+| Syslog Maxsize | Integer value that sets the maximum number of bytes per message. | No | 1024 for rfc3164, and 
 2048 for rfc5424
 |===
 
