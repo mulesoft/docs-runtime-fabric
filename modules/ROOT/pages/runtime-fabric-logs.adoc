@@ -124,6 +124,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
 *** <<Cloud Watch, CloudWatch Configuration Parameters>>
+*** <<Syslog, Syslog Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
@@ -248,7 +249,7 @@ Example output plugin configuration:
 ==== CloudWatch Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
-.Amazon CloudWatch Configuration Parameters
+.CloudWatch Configuration Parameters
 |===
 | Key | Description | Required | Default Value
 | Region | Specifies the AWS region | Yes |
@@ -272,6 +273,30 @@ Example output plugin configuration:
     log_group_name         runtime_fabric_cloudwatch
     log_stream_prefix      my_stream
     auto_create_group      On
+```
+
+==== Syslog Configuration Parameters
+
+[%header%autowidth.spread,cols="a,a,a,a"]
+.Syslog Configuration Parameters
+|===
+| Key | Description | Required | Default Value
+| Host | Host name or IP address of the remote Syslog server | Yes |
+| Port | TCP or UDP port of the remote Syslog server | Yes | 514
+| Mode | The mode of the transport type | Yes | udp
+| Syslog format | Syslog protocol format | No | rfc5424
+| Syslog Maxsize | Integer value that sets the maximum number of bytes per message | No | 1024 for rfc3164, 2048 for rfc5424
+|===
+
+Example output plugin configuration:
+```
+[OUTPUT]
+    Name           syslog
+    Host           127.0.0.1
+    Port           514
+    Mode           udp
+    Syslog_Format  rfc5424
+    Syslog_Maxsize 2048
 ```
 
 ==== Configure Log Forwarding
