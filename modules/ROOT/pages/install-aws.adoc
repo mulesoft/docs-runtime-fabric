@@ -141,7 +141,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 |Variable | Description | Example
 | `controllers` | The number of controller machines to provision. The default value is `3`. | `5`
 | `disable_selinux` | A boolean variable that enables/disables SELinux on the host operating system. The default is `false`. | `true`
-| `enable_public_ips` | A boolean varaible that indicates if public IP addresses should be specified. The default value is `false` | `true`
+| `enable_public_ips` | A boolean varaible that indicates if public IP addresses should be specified. The default value is `false`. | `true`
 | `existing_subnet_ids` | An list of existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
 | `existing_vpc_id` | The VPC ID of an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
 | `http_proxy` | The hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
