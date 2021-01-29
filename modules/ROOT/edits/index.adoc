@@ -1,0 +1,64 @@
+= Anypoint Runtime Fabric Overview
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Runtime Fabric is a container service that allows you to run Mule applications, composite APIs and API gateways across any environment with centralized management via Anypoint Platform.
+
+Some of the capabilities of Anypoint Runtime Fabric include:
+
+* Isolation between applications by running a separate Mule runtime server per application.
+* Ability to run multiple versions of Mule runtime server on the same set of resources.
+* Scaling applications across multiple replicas.
+* Automated application fail-over.
+* Application management with Anypoint Runtime Manager.
+
+[NOTE]
+Contact your Customer Success Manager for information on how enable Anypoint Runtime Fabric on your account.
+
+There are two management options for Anypoint Runtime Fabric:
+
+* *Runtime Fabric on Self-Managed Kubernetes*: a version of Runtime Fabric that you install on an existing Kubernetes environment that you operate and manage. This version supports Amazon Elastic Kubernetes Service (EKS) and Azure Kubernetes Service (AKS).
+
+* *Runtime Fabric on VMs / Bare Metal*: a version of Runtime Fabric where MuleSoft provides required software infrastructure components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
+
+Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes] and xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information on each option.
+
+[%header,cols="3*a"]
+.Personas required to install and support Anypoint Runtime Fabric
+|===
+| Runtime Fabric Option | IT Administrator | MuleSoft Organization Administrator
+| Self-Managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on AKS or EKS. This persona is also responsible for installing Runtime Fabric and managing Kubernetes. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+| VMs / Bare Metal | Creates and configures the infrstructure that runs Runtime Fabric. This persona is also responsible for installing Runtime Fabric and maintaining the undrelying infrastructure during its operation. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+|===
+
+== Feature Support Matrix for Runtime Fabric on Self-Managed Kubernetes and Runtime Fabric on VMs / Bare Metal
+
+[%header,cols="3*a"]
+.Supported features for Runtime Fabric on Self-Managed Kubernetes and Runtime Fabric on VMs / Bare Metal
+|===
+| | Runtime Fabric on Self-Managed Kubernetes | Runtime Fabric on VMs / Bare Metal
+| Support for deploying Mules and API Gateways | Supported | Supported
+| Kubernetes and Docker | Not included. +
+You must provide your instances of Kubernetes and Docker via EKS or AKS clusters. | Included
+| Installing on any Linux distribution | Supported | Support for RHEL and CentOS only
+| Node auto-scaling | Supported using AWS or Azure functionality | Not supported
+| External log forwarding | You must provide an external log forwarding service | Included
+| Internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
+| Anypoint Security Edge | Not supported | Supported
+| Ops Center | Not Included +
+You can enable monitoring and alerting in AWS or Azure | Included
+|===
+
+
+== Anypoint Runtime Fabric and Standalone Mule Runtimes (Hybrid Deployments)
+
+Hybrid deployments of Mule applications require you to install a version of the Mule runtime on a server and deploy one or more applications on the server. Each application shares the Mule runtime server and the resources allocated to it. Other resources such as certificates or database connections may also be shared using domains.
+
+Anypoint Runtime Fabric provisions resources differently. Each Mule application and API gateway runs within its own Mule runtime and in its own container. The resources available to the container are specified when deploying a Mule application or API proxy. This enables Mule applications to horizontally scale across nodes without relying on other dependencies. It also ensures that different applications do not compete with each other for resources on the same node.
+
+== See Also
+
+* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
+
