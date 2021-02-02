@@ -1,61 +1,67 @@
 = Back up and Restore Runtime Fabric
 
-To preserve applications in the event of system failure, ensure that Runtime Fabric is automatically backed up. 
-MuleSoft highly recommends configuring hourly backups. Store your backup archive on external storage outside 
+To preserve applications in the event of system failure, ensure that Runtime Fabric is automatically backed up. MuleSoft highly recommends configuring hourly backups. Store your backup archive on external storage outside 
 the Runtime Fabric cluster.
 
 [NOTE]
-The state of Runtime Fabric is distributed across its controller nodes. Use the following procedures to back up and restore
-the required state necessary for all deployed applications, management services, and their configurations. 
-Individual node backup and restore operations are not supported.
+The state of Runtime Fabric is distributed across its Kubernetes cluster. Use the following procedures to back up and restore the required state necessary for all deployed applications, management services, and their configurations. 
+Individual node backup and restore operations are not supported. 
 
+[WARNING]
+Any Runtime Fabric configuration changes for deployed applications and management services after back up will not be restored.  
 
-== Prerequisites for Runtime Fabric on VMs / Bare Metal
+== Prerequisites for Runtime Fabric
 
-Before performing a backup or restore operation, verify that Runtime Fabric on VMs / Bare Metal was installed or upgraded 
-using  https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1581474166, role=external, window=_blank] or later, and that the rtfctl CLI tool is upgraded to version 0.2.95 or later. The versions can be verified by running `rtfctl version` on a Runtime Fabric node.
+Before performing a backup or restore operation, 
+- Verify that Runtime Fabric is installed and running successfully.
+- Verify that rtfctl CLI tool is upgraded to version 0.3.95 or later. The versions can be verified by running `rtfctl version` on a Runtime Fabric node.
+- For VMs / Bare Metal, Verify that Runtime Fabric is upgraded using  https://docs.mulesoft.com/release-notes/runtime-fabric/runtime-fabric-installer-release-notes[installer version 1.1.1581474166, role=external, window=_blank] or later 
 
 == Create a Backup
 
 To create a backup:
 
-. Run the following command on any controller node in the cluster as a privileged user (with root access):
+. Run the following command:
 +
 ----
 ./rtfctl backup <path_to_backup_file>
 ----
 This command creates an archive of the current system state in `<path_to_backup_file>`, which can be any path in the file system that you have write access to, for instance `/opt/anypoint/runtimefabric/backup.tar.gz`. 
 
-. Move the archive file to secure storage (a different machine that is not part of the RTF cluster);
-for example:
-+
-----
-scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-path/to-restore.tar.gz
-----
+[NOTE]
+For Runtime Fabric running on VMs / Bare Metal, The rtfctl binary is present in directory `/opt/anypoint/runtimefabric/`. The above command should be run on any controller node in the cluster as a privileged user. To use the archive for restoring later, Copy the archive file to secure storage (a different machine that is not part of the RTF cluster);
+for example: scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-path/to-restore.tar.gz
+
+[NOTE]
+For Runtime Fabric running on Self-Managed Kubernetes, Make sure rtfctl binary is present in current directory and Kubernetes(kubectl) context is set to the intended backup cluster 
+
 
 == Restore a Cluster
 
-To restore a Runtime Fabric cluster from a backup, you can use the existing Runtime Fabric cluster or create a new Runtime Fabric 
-cluster with the same hardware (number of servers, disks, and so on) as the cluster being restored.
+To restore a Runtime Fabric cluster from a backup, you can use the existing Runtime Fabric cluster or create a new Kubernetes cluster with/without Runtime Fabric installed with the same hardware (number of servers, disks, and so on) as the cluster being restored.
+
+[NOTE]
+To create a new VMs / Bare Metal Kubernetes cluster without runtime fabric installed, Use Runtime Fabric installer script(s) without providing the fabric activation data.
 
 [WARNING]
-You can not restore Runtime Fabric on a newer version of the Runtime Fabric cluster. The new installation must use 
-the same version of Runtime Fabric installation bundle as the backup.
+You can not restore Runtime Fabric on a newer version of the Runtime Fabric cluster. The new installation must use the same version of Runtime Fabric installation bundle as the backup.
 
-. Log in to a controller node in your Runtime Fabric as a privileged user (with root access).
+. Copy and make sure that backup archive file is available for rtfctl.
 
-. Move the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. 
-You can transfer this file securely via the following command:
+[NOTE]
+For Runtime Fabric running on VMs / Bare Metal, Copy the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. For example You can transfer this file securely via the following command: scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
+
+[NOTE]
+For Runtime Fabric running on Self-Managed Kubernetes, Make sure rtfctl binary is present in current directory and Kubernetes(kubectl) context is set to the intended restore cluster
+
+. Restore the cluster from the backup archive with following command:
 +
 ----
-scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
+rtfctl restore <path_to_backup_file>
 ----
 
-. Restore the cluster from the backup archive:
-+
-----
-rtfctl restore /opt/anypoint/runtimefabric/to-restore.tar.gz
-----
+[WARNING]
+On the original backed up cluster, If we plan to restore into the newly created different cluster, we will need to scale down all the runtime fabric components by running the following commands: `kubectl scale --replicas=0 -n rtf deployment.apps/agent` ( Make sure your Kubernetes(kubectl) context is set to the backed up cluster).
 
 This process requires a few minutes.
 
