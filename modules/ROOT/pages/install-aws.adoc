@@ -122,7 +122,6 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 *Required Environment Variables*
 
 [%header,cols="3*a"]
-.Required Environment Variables
 |===
 |Variable | Description | Example
 | `activation_data` | The encoded Runtime Fabric activation data. You can access this data by viewing your Runtime Fabric in Runtime Manager. | `NzdlMzU1YTktMzAxMC00OGE0LWJlMGQtMDdxxxx`
@@ -138,18 +137,25 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 
 [%header,cols="3*a"]
-.Optional Environment Variables
 |===
 |Variable | Description | Example
+| `controllers` | The number of controller machines to provision. The default value is `3`. | `5`
+| `disable_selinux` | A boolean variable that enables/disables SELinux on the host operating system. The default is `false`. | `true`
+| `enable_public_ips` | A boolean varaible that indicates if public IP addresses should be specified. The default value is `false`. | `true`
+| `existing_subnet_ids` | A list of existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
+| `existing_vpc_id` | The VPC ID of an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
+| `http_proxy` | The hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
+| `installer_url` | The URL of the Runtime Fabric installer package. | 
+| `kubernetes_api_cidr_blocks` | A CIDR range that enables access to the kubernetes API. The default is an empty array: `[]`. | 
+| `monitoring_proxy` | The hostname and port, and optional username and password for a SOCKS5 proxy server to forward metrics and logs to Anypoint Monitoring. | `user:pass@1.1.1.2:800`
+| `mule_license` | The base64 content of your Mule license. | 
+| `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
+| `ops_center_cidr_blocks` | A CIDR range that allows access to the Ops Center UI. The default is an empty array: `[]`. | 
+| `pod_network_cidr_block` | Provides support for a custom pod CIDR block.  | `10.244.0.0/16`
+| `service_cidr_block` | Provides support for a custom service CIDR block. | `10.100.0.0/16`
 | `service_uid` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `service_gid` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
-| `http_proxy` | A hostname and port for a HTTP proxy server to forward outbound HTTP requests. | `1.1.1.1:80`
-| `monitoring_proxy` | A hostname and port, and optional username and password, for a SOCKS5 proxy server to forward metrics and logs to Anypoint Monitoring. | `user:pass@1.1.1.2:800`
-| `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
-| `existing_vpc_id` | specifies an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
-| `existing_subnet_ids` | specifies a existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
-| `pod_network_cidr_block` | Support for a custom pod CIDR block. | `10.244.0.0/16`
-| `service_cidr_block` | Support for a custom service CIDR block. | `10.100.0.0/16`
+| `workers` | The number of worker machines to provision. The default value is `3`. | `5`
 |===
 
 == Configure Your Environment to Access AWS
