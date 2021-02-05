@@ -5,7 +5,15 @@ To preserve applications in the event of system failure, confirm that Runtime Fa
 The state of Runtime Fabric is distributed across the Kubernetes cluster. Use the following procedures to back up and restore the required state necessary for all deployed applications, management services, and their configurations. Individual node backup and restore operations are not supported. 
 
 [WARNING]
-Configuration changes to deployed applications and management services made after a back up are not be restored.  
+====
+Configuration changes to deployed applications and management services made after a back up cannot not be restored.  
+====
+
+[NOTE]
+====
+For Runtime Fabric running on VMs / Bare Metal, the backup process also includes backing up of undeneath Kubernetes appliance related custom resources [logforwarder, smtp, alert and alerttarget].  
+====
+
 
 == Prerequisites for Runtime Fabric
 
@@ -38,22 +46,31 @@ For Runtime Fabric running on Self-Managed Kubernetes, confirm that the `rtfctl`
 
 == Restore a Cluster
 
-To restore cluster on Runtime Fabric on VMs / Bare Metal from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster. The new cluster does not require Runtime Fabric to be installed with the same configuration (number of servers, disks, and so on) as the cluster being restored. To create a new cluster without Runtime Fabric being installed, run the Runtime Fabric installer script(s) but do not provide the fabric activation data.
-
-[WARNING]
-You must install to the same version of Runtime Fabric that you used to create the backup archive. You can not restore from an older version to a newer version of Runtime Fabric running on the cluster.
-
-. Copy backup archive file and make sure that it is available to `rtfctl.
+To restore cluster on Runtime Fabric on VMs / Bare Metal from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
 
 [NOTE]
+====
+To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric being installed, run the Runtime Fabric installer script(s) but do not provide the fabric activation data.
+====
+
+[WARNING]
+====
+For restoring on existing Runtime Fabric cluster, You must restore on to the same version of Runtime Fabric that you used to create the backup archive. You can not restore from an older version to a newer version of Runtime Fabric running on the cluster.
+====
+
+. Copy backup archive file and make sure that it is available to `rtfctl`.
+
+[NOTE]
+====
 For Runtime Fabric on VMs / Bare Metal, copy the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. For example You can transfer this file securely via the following command: 
 
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
 ----
 
-[NOTE]
 For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
+
+====
 
 . Restore the cluster from the backup archive with following command:
 +
@@ -62,13 +79,15 @@ rtfctl restore <path_to_backup_file>
 ----
 
 [WARNING]
-On the original backed up cluster, to restore into the newly created different cluster, scale down all Runtime Fabric components by running the following commands:
-
+====
+On the original backed up cluster, to restore into the newly created different cluster, scale down all Runtime Fabric components by running the following command: 
 ----
+# Confirm that your Kubernetes(kubectl) context is set to the backed up cluster
 `kubectl scale --replicas=0 -n rtf deployment.apps/agent`
 ----
+====
 
-Confirm that your Kubernetes(kubectl) context is set to the backed up cluster. This process may require several minutes to complete.
+This process may require several minutes to complete.
 
 == See Also
 
