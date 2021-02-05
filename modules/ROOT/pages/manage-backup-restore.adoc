@@ -26,7 +26,7 @@ Before performing a backup or restore operation:
 == Create a Backup
 
 To create a backup run the following command:
-+
+
 ----
 ./rtfctl backup <path_to_backup_file>
 ----
@@ -46,7 +46,7 @@ For Runtime Fabric running on Self-Managed Kubernetes, confirm that the `rtfctl`
 
 == Restore a Cluster
 
-To restore cluster on Runtime Fabric on VMs / Bare Metal from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
+To restore cluster on Runtime Fabric from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
 
 [NOTE]
 ====
@@ -58,7 +58,7 @@ To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric be
 For restoring on existing Runtime Fabric cluster, You must restore on to the same version of Runtime Fabric that you used to create the backup archive. You can not restore from an older version to a newer version of Runtime Fabric running on the cluster.
 ====
 
-1. Copy backup archive file and make sure that it is available to `rtfctl`.
+. Copy backup archive file and make sure that it is available to `rtfctl`.
 
 [NOTE]
 ====
@@ -72,7 +72,7 @@ For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary 
 
 ====
 
-2. Restore the cluster from the backup archive with following command:
+. Restore the cluster from the backup archive with following command:
 +
 ----
 rtfctl restore <path_to_backup_file>
