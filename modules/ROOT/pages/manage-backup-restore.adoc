@@ -46,7 +46,7 @@ For Runtime Fabric running on Self-Managed Kubernetes, confirm that the `rtfctl`
 
 == Restore a Cluster
 
-To restore cluster on Runtime Fabric from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
+To restore Runtime Fabric cluster from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
 
 [NOTE]
 ====
