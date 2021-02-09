@@ -35,7 +35,7 @@ This command creates an archive of the current system state in `<path_to_backup_
 
 [NOTE]
 ====
-For Runtime Fabric running on VMs / Bare Metal, The `rtfctl` binary is present in directory `/opt/anypoint/runtimefabric/`. Confirm that you run the backup command on any controller node in the cluster as a privileged user. To use the archive for restoring later, Copy the archive file to secure storage that is on different machine and is not part of the RTF cluster. The following command, for example, uses `scp` to copy the archive to another drive: 
+For Runtime Fabric running on VMs / Bare Metal, the `rtfctl` binary is present in directory `/opt/anypoint/runtimefabric/`. Confirm that you run the backup command on any controller node in the cluster as a privileged user. To use the archive for restoring later, copy the archive file to secure storage that is on a different machine and is not part of the RTF cluster. The following command, for example, uses `scp` to copy the archive to another drive: 
 
 ----
 scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-path/to-restore.tar.gz
@@ -55,14 +55,14 @@ To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric be
 
 [WARNING]
 ====
-For restoring on existing Runtime Fabric cluster, You must restore on to the same version of Runtime Fabric that you used to create the backup archive. You can not restore from an older version to a newer version of Runtime Fabric running on the cluster.
+For restoring on existing Runtime Fabric cluster, you must restore on to the same version of Runtime Fabric that you used to create the backup archive. You cannot restore from an older version to a newer version of Runtime Fabric running on the cluster.
 ====
 
 . Copy backup archive file and make sure that it is available to `rtfctl`.
 
 [NOTE]
 ====
-For Runtime Fabric on VMs / Bare Metal, copy the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. For example You can transfer this file securely via the following command: 
+For Runtime Fabric on VMs / Bare Metal, copy the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. For example, you can transfer this file securely via the following command: 
 
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
