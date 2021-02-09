@@ -20,7 +20,7 @@ For Runtime Fabric running on VMs / Bare Metal, the backup process also includes
 Before performing a backup or restore operation:
 
 * Verify that Runtime Fabric is installed and running successfully.
-* Verify that `rtfctl` CLI tool is upgraded to version 0.3.95 or later. Verify the version by running `rtfctl version` on a Runtime Fabric node.
+* Verify that `rtfctl` CLI tool is upgraded to version 0.3.99 or later. Verify the version by running `rtfctl version` on a Runtime Fabric node.
 * If you are using Runtime Fabric on VMs / Bare Metal, verify that Runtime Fabric is upgraded to version 1.1.1581474166 or later. See xref:release-notes::runtime-fabric/runtime-fabric-installer-release-notes.adoc[Anypoint Runtime Fabric Installer Release Notes].
 
 == Create a Backup
