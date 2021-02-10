@@ -2,7 +2,7 @@
 
 To preserve applications in the event of system failure, confirm that Runtime Fabric is automatically backed up. When scheduling backups, follow best practices by configuring hourly backups. Store your backup archive on external storage outside the Runtime Fabric cluster.
 
-The state of Runtime Fabric is distributed across the Kubernetes cluster. Use the following procedures to back up and restore the required state necessary for all deployed applications, management services, and their configurations. Individual node backup and restore operations are not supported. 
+The state of Runtime Fabric is distributed across the Kubernetes cluster. Use the following procedures to back up and restore the required state necessary for all deployed applications, management services, and their configurations. Individual Kubernetes node VM snapshot backup/restore is currently not supported. 
 
 [WARNING]
 ====
