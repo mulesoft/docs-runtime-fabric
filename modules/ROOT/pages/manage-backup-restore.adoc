@@ -11,7 +11,7 @@ Configuration changes to deployed applications and management services made afte
 
 [NOTE]
 ====
-For Runtime Fabric running on VMs / Bare Metal, the backup process also includes backing up of underneath Kubernetes appliance related custom resources [logforwarder and smtp].  
+For Runtime Fabric on VMs / Bare Metal, the backup and restore process also includes backing up and restoring of underneath Kubernetes appliance related custom resources [logforwarder and smtp].  
 ====
 
 
