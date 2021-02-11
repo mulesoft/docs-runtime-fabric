@@ -57,19 +57,22 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtim
 +
 For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
 
-. Restore the cluster from the backup archive with following command:
+. Restore the cluster from the backup archive.
 +
-----
-rtfctl restore <path_to_backup_file>
-----
-
 Only for restoring on to newly created cluster, on the original backed up cluster, we need scale down all Runtime Fabric components by running the following command:
++
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
 Please confirm that your Kubernetes(kubectl) context is set to the backed up cluster before executing the above command.
-
-Runtime Fabric restoring process may require several minutes to complete.
++
+To restore the cluster from the backup archive with following command: 
++
+----
+rtfctl restore <path_to_backup_file>
+----
++
+This process may require several minutes to complete.
 
 == See Also
 
