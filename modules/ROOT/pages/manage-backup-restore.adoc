@@ -54,8 +54,6 @@ For Runtime Fabric on VMs / Bare Metal, copy the compressed backup archive file 
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
 ----
-+
-For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
 
 . Restore the cluster.
 +
@@ -69,8 +67,10 @@ Please confirm that your Kubernetes(kubectl) context is set to the backed up clu
 To restore the cluster from the backup archive, run the following command: 
 +
 ----
-rtfctl restore <path_to_backup_file>
+./rtfctl restore <path_to_backup_file>
 ----
++
+For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
 +
 This process may require several minutes to complete.
 
