@@ -59,7 +59,7 @@ For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary 
 
 . Restore the cluster.
 +
-Only if restoring on to newly created cluster, on the original backed up cluster, we need scale down all Runtime Fabric components by running the following command:
+Only if restoring on to newly created cluster, on the original backed up cluster, we need to scale down all Runtime Fabric components by running the following command:
 +
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
