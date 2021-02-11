@@ -63,13 +63,15 @@ For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary 
 rtfctl restore <path_to_backup_file>
 ----
 
-. On the original backed up cluster, to restore into the new cluster, scale down all Runtime Fabric components by running the following command:
+Only for restoring on to newly created cluster, on the original backed up cluster, we need scale down all Runtime Fabric components by running the following command:
 +
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
 +
-This command confirms that your Kubernetes(kubectl) context is set to the backed up cluster. This process may require several minutes to complete.
+Please confirm that your Kubernetes(kubectl) context is set to the backed up cluster before executing the above command.
+
+Runtime Fabric restoring process may require several minutes to complete.
 
 == See Also
 
