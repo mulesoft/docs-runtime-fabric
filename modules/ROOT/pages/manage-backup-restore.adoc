@@ -9,10 +9,8 @@ The state of Runtime Fabric is distributed across the Kubernetes cluster. Use th
 Configuration changes to deployed applications and management services made after a back up cannot not be restored.  
 ====
 
-[NOTE]
-====
-For Runtime Fabric on VMs / Bare Metal, the backup and restore process also includes backing up and restoring of underneath Kubernetes appliance related custom resources [logforwarder and smtp].  
-====
+
+For Runtime Fabric on VMs / Bare Metal, the backup and restore process also includes backing up and restoring of underneath Kubernetes appliance related custom resources [logforwarder and smtp].
 
 
 == Prerequisites for Runtime Fabric
@@ -33,8 +31,6 @@ To create a backup run the following command:
 
 This command creates an archive of the current system state in `<path_to_backup_file>`, which can be any path in the file system that you have write access to, for instance `/opt/anypoint/runtimefabric/backup.tar.gz`. 
 
-[NOTE]
-====
 For Runtime Fabric on VMs / Bare Metal, the `rtfctl` binary is present in directory `/opt/anypoint/runtimefabric/`. Confirm that you run the backup command on any controller node in the cluster as a privileged user. To use the archive for restoring later, copy the archive file to secure storage that is on a different machine and is not part of the Runtime Fabric cluster. The following command, for example, uses `scp` to copy the archive to another drive: 
 
 ----
@@ -42,35 +38,24 @@ scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-p
 ----
 
 For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and Kubernetes(kubectl) context is set to the intended backup cluster.
-====
 
 == Restore a Cluster
 
 To restore Runtime Fabric cluster from a backup, use an existing Runtime Fabric cluster or create a new Kubernetes cluster with the same configuration (number of servers, disks, and so on) as the backed up cluster.  
 
-[NOTE]
-====
 To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric being installed, run the Runtime Fabric installer script(s) but do not provide the fabric activation data.
-====
 
-[WARNING]
-====
 For restoring on existing Runtime Fabric cluster, you must restore on to the same version of Runtime Fabric that you used to create the backup archive. You cannot restore from an older version to a newer version of Runtime Fabric running on the cluster.
-====
 
 . Copy backup archive file and make sure that it is available to `rtfctl`.
-
-[NOTE]
-====
++
 For Runtime Fabric on VMs / Bare Metal, copy the compressed backup archive file to a folder in any of the controller nodes of the environment to be restored. For example, you can transfer this file securely via the following command: 
-
++
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
 ----
-
++
 For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
-
-====
 
 . Restore the cluster from the backup archive with following command:
 +
@@ -78,16 +63,13 @@ For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary 
 rtfctl restore <path_to_backup_file>
 ----
 
-[WARNING]
-====
-On the original backed up cluster, to restore into the newly created different cluster, scale down all Runtime Fabric components by running the following command: 
+. On the original backed up cluster, to restore into the new cluster, scale down all Runtime Fabric components by running the following command:
++
 ----
-# Confirm that your Kubernetes(kubectl) context is set to the backed up cluster
-`kubectl scale --replicas=0 -n rtf deployment.apps/agent`
+kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
-====
-
-This process may require several minutes to complete.
++
+This command confirms that your Kubernetes(kubectl) context is set to the backed up cluster. This process may require several minutes to complete.
 
 == See Also
 
