@@ -61,7 +61,7 @@ For restoring on existing Runtime Fabric cluster, you must restore on to the sam
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
 ----
 
-. If you are restoring to a newly created cluster that is located on the original backed up cluster, you must first scale down all Runtime Fabric components by running the following command:
+. If you are restoring to a newly created cluster, you must first scale down all Runtime Fabric components on the original, backed-up cluster by running the following command:
 +
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
