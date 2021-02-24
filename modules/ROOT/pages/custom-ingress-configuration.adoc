@@ -1,15 +1,17 @@
 = Define a Custom Ingress Configuration
 
-[NOTE]
-====
-The tasks outline in this topic must be performed by an IT administrator
-====
 
-Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName.
+
+Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName. 
 
 The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply ingress-configmap` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
 
-If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric will default to a standard ingress resource definition. Depending on your ingress controller, this resource definition may not work. In this case, you must apply a custom ConfigMap using the template.
+If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric will default to a standard ingress resource definition. 
+
+[NOTE]
+====
+Depending on your ingress controller or the ingress strategy, this solution based on a ConfigMap template *may not work*. In this case, you must apply specific ingress configuration related to your ingress controller to enable the ingress to the Mule applications.
+====
 
 == Procedure
 
