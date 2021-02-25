@@ -1,6 +1,9 @@
 = Define a Custom Ingress Configuration
 
-
+[NOTE]
+====
+The tasks outline in this topic must be performed by an IT administrator
+====
 
 Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName. 
 
