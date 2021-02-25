@@ -18,7 +18,7 @@ Contact your Customer Success Manager for information on how enable Anypoint Run
 
 There are two management options for Anypoint Runtime Fabric:
 
-* *Runtime Fabric on Self-Managed Kubernetes*: a version of Runtime Fabric that you install on an existing Kubernetes environment that you operate and manage. This version supports Amazon Elastic Kubernetes Service (EKS) and Azure Kubernetes Service (AKS).
+* *Runtime Fabric on Self-Managed Kubernetes*: a version of Runtime Fabric that you install on an existing Kubernetes environment that you operate and manage. This version supports Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), and Google Kubernetes Engines (GKE).
 
 * *Runtime Fabric on VMs / Bare Metal*: a version of Runtime Fabric where MuleSoft provides required software infrastructure components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
 
