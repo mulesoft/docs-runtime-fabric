@@ -45,15 +45,15 @@ Runtime Fabric on Self-Managed Kubernetes requires worker nodes which use the x8
 
 === Operating Systems
 
-Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported by EKS, AKS, or GKE.
+Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported on EKS, AKS, or GKE.
 
 === Ingress Controller
 
-Runtime Fabric on Self-Managed Kubernetes supports any Ingress controller that is compatible with the Kubernetes environment on your vendor (EKS, AKS, or GKE).
+Runtime Fabric on Self-Managed Kubernetes supports any Ingress controller that is compatible with the Kubernetes environment on your cloud infrastructure vendor.
 
 === External Log Forwarding
 
-Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. However, you can use any external log forwarding agent that is compatible with your Kubernetes environment (EKS, AKS, or GKE). As examples, common log forwarding agents include:
+Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. However, you can use any external log forwarding agent that is compatible with your Kubernetes environment running on EKS, AKS, or GKE. Common log forwarding agents include:
 
 * Splunk Connect for Kubernetes
 * Fluentbit
