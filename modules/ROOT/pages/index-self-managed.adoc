@@ -1,10 +1,10 @@
 = Runtime Fabric on Self-Managed Kubernetes
 
-Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on an existing Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) or Google Kubernetes Engines (GKE) environment.
+Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on an existing Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engines (GKE) environment.
 
 == Architecture
 
-Runtime Fabric on Self-Managed Kubernetes and its related components run as services on your EKS or AKS or GKE environment. The following diagram shows different layers of the architecture.
+Runtime Fabric on Self-Managed Kubernetes and its related components run as services on your EKS, AKS, or GKE environment. The following diagram shows different layers of the architecture.
 
 image::architecture-self-managed.png[]
 
