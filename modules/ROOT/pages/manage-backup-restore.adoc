@@ -10,7 +10,7 @@ Configuration changes to deployed applications and management services made afte
 ====
 
 
-For Runtime Fabric on VMs / Bare Metal, the backup and restore process includes backing up and restoring appliance-related custom resources such as logforwarder and smtp. It does not include backing up of metrics (influxdb) data from generated from the applications.
+For Runtime Fabric on VMs / Bare Metal, the backup and restore process includes backing up and restoring appliance-related custom resources such as logforwarder and smtp. It does not include backing up of metrics (influxdb) data generated from the applications.
 
 
 == Prerequisites for Backing Up Runtime Fabric
