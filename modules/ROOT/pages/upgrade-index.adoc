@@ -203,6 +203,18 @@ chmod +x rtfctl
 sudo ./rtfctl apply system-configuration --force
 ----
 
+.. Apply system configuration changes.
++
+----
+sudo ./rtfctl apply system-configuration --force
+----
++
+If you are using the EU control plane, use the following command:
++
+----
+sudo ./rtfctl apply system-configuration --force --control-plane eu
+----
+
 == Resume an Appliance Upgrade
 
 If the appliance (installer package) upgrade encounters a failure, try to resume the upgrade. 
