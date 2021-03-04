@@ -202,12 +202,6 @@ chmod +x rtfctl
 ----
 sudo ./rtfctl apply system-configuration --force
 ----
-
-.. Apply system configuration changes.
-+
-----
-sudo ./rtfctl apply system-configuration --force
-----
 +
 If you are using the EU control plane, use the following command:
 +
