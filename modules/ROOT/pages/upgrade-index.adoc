@@ -122,29 +122,31 @@ This enables safe removal of a worker node from the cluster to apply upgrades wi
 +
 [WARNING] Runtime Fabrics running on cluster version 1.0.x encounter application downtime if configured to use an HTTP proxy. You must apply the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `rtfctl version` on a node and referencing the appliance version.
 
-.. Update the Mule deployments running on Runtime Fabric to the latest patch version.
-... Using your web browser, navigate to the *Applications* tab in Runtime Manager.
-... Select an application and select *Manage Application*. 
-... The value in the *Runtime version* field indicates if an update is available. Select the updated version of Mule runtime engine.
-... Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
-... Repeat this for each application running on this Runtime Fabric.
-.. Verify Runtime Fabric is healthy:
-... Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
-... Open a terminal to a Runtime Fabric controller node.
-... Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
-... Keep your terminal open to use in later steps.
+. Update the Mule deployments running on Runtime Fabric to the latest patch version.
+.. Using your web browser, navigate to the *Applications* tab in Runtime Manager.
+.. Select an application and select *Manage Application*. 
+.. The value in the *Runtime version* field indicates if an update is available. Select the updated version of Mule runtime engine.
+.. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
+.. Repeat this for each application running on this Runtime Fabric.
 
-.. Get the latest version of the Runtime Fabric appliance package:
-... Using your web browser, navigate to Runtime Manager and select the *Runtime Fabrics* tab to view a list of Runtime Fabrics.
-... Select the *Downloads* link.
-... Select the *Copy Link* icon next to *Installer package* to copy the code snippet, as shown in the following example:
+. Verify Runtime Fabric is healthy:
+.. Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
+.. Open a terminal to a Runtime Fabric controller node.
+.. Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
+.. Keep your terminal open to use in later steps.
+
+. Get the latest version of the Runtime Fabric appliance package:
+.. Using your web browser, navigate to Runtime Manager and select the *Runtime Fabrics* tab to view a list of Runtime Fabrics.
+.. Select the *Downloads* link.
+.. Select the *Copy Link* icon next to *Installer package* to copy the code snippet, as shown in the following example:
 +
 ```
 rtfctl appliance upgrade --url https://<upgrade-package-information>
 ```
-... Paste the code snippet in a text editor for reference. 
-.. Start the upgrade procedure:
-... Using your terminal open on a controller node, run the following command, substituting the value of the <cluster-installer-url> parameter with the *Installer package* URL value: 
+.. Paste the code snippet in a text editor for reference. 
+
+. Start the upgrade procedure:
+.. Using your terminal open on a controller node, run the following command, substituting the value of the <cluster-installer-url> parameter with the *Installer package* URL value: 
 +
 ----
 sudo /opt/anypoint/runtimefabric/rtfctl appliance upgrade --url <cluster-installer-url>
@@ -174,30 +176,37 @@ The upgrade procedure is designed to keep deployed applications running and avai
 .... The upgrade is applied on the selected node.
 .... The selected node is added to the cluster after upgrading.
 
-.. Confirm that the upgrade has completed successfully:
-... Run `sudo gravity status` and verify that the cluster status transitioned from *Updating* to *Active*.
-.. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings:
+.. To confirm that the upgrade has completed successfully run the following command:
++
+----
+sudo gravity status
+----
++
+Then, verify that the cluster status transitioned from *Updating* to *Active*. 
+
+. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings:
 +
 ----
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
-.. Perform the following step on *every node* to ensure that system configurations are current:
 
-... Open a terminal to a Runtime Fabric controller or worker node.
-... If needed, download the latest `rtfctl` command-line utility:
+. Perform the following step on *every node* to ensure that system configurations are current:
+
+.. Open a terminal to a Runtime Fabric controller or worker node.
+.. If needed, download the latest `rtfctl` command-line utility:
 +
 ----
 cd /opt/anypoint/runtimefabric
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 +
-... Change file permissions for the `rtfctl` binary: 
+.. Change file permissions for the `rtfctl` binary: 
 +
 ----
 chmod +x rtfctl
 ----
 +
-... Run the `apply system-configurations` command in `rtfctl`:
+.. Run the `apply system-configurations` command in `rtfctl`:
 +
 ----
 sudo ./rtfctl apply system-configuration --force
