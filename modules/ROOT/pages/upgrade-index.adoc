@@ -295,9 +295,9 @@ sudo /opt/anypoint/runtimefabric/installer/gravity plan resume
 sudo /opt/anypoint/runtimefabric/installer/gravity plan execute --phase=< insert phase > --force --debug
 ----
 
-If an error is returned, wait a few minutes and repeat the previous steps.
+If this command returns an error, wait several minutes and repeat the previous steps.
 
-Refer to https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
+See https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
 
 == Roll Back an Appliance Upgrade
 
