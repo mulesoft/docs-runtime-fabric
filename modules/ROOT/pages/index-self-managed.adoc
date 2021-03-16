@@ -10,6 +10,42 @@ image::architecture-self-managed.png[]
 
 MuleSoft is responsible for providing support for Runtime Fabric services, the Mule Runtime server, and Mule applications. You are responsible for creating, configuring and managing the EKS, AKS, or GKE environment.
 
+== Shared Responsibility
+
+The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. 
+
+The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
+
+image::runtimefabricresponsibility-self-managed.png[Runtime Fabric on Self-Managed Kubernetes Shared Responsiblities]
+
+* MuleSoft responsibility:
++
+MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as Deployments, Pods, Replicasets, and Ingress resources.
+
+* Customer responsibility:
++
+Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
++
++
+** Ingress controller and external load balancing
++
+** Log forwarding
++
+** Monitoring
++
+** Network ports, NAT gateways, and proxies
++
+** Container runtime and networking
++
+* For the provisioning and management of the Kubernetes environment, you will need the assistance of the following teams in your organization:
++
+*** IT team to provision and manage the infrastructure
++
+*** Network team to specify allowed ports and configure proxy settings
++
+*** Security team to verify compliance and obtain security certificates
+
+
 == Requirements
 
 The sections below describe the requirements for running Runtime Fabric on Self-Managed Kubernetes.
