@@ -13,7 +13,7 @@ If you do not apply a custom ConfigMap file based on a template file, Runtime Fa
 
 == How Ingress Resources are Generated
 
-When deploying a Mule application to Runtime Fabric on Self-Managed Kubernetes, the Runtime Fabric agent generates a Service and Ingress resource for that application. These Kubernetes resources are created in a namespace that corresponds to the Anypoint Environment ID used to deploy the Mule application.
+When deploying a Mule application to Runtime Fabric on Self-Managed Kubernetes, the Runtime Fabric agent generates a Service and Ingress resource for that application. These Kubernetes resources are created in a namespace that corresponds to the Anypoint Environment ID used when deploying the Mule application.
 
 Each application deployment by default will have its own Service and Ingress resource generated. 
 
