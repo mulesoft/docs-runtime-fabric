@@ -40,14 +40,14 @@ Each of these options has its own system requirements and installation procedure
 | | Runtime Fabric on Self-Managed Kubernetes | Runtime Fabric on VMs / Bare Metal
 | Support for deploying Mules and API Gateways | Supported | Supported
 | Kubernetes and Docker | Not included. +
-You must provide your instances of Kubernetes and Docker via EKS or AKS clusters. | Included
+You must provide your instances of Kubernetes and Docker via EKS, AKS or GKE clusters. | Included
 | Installing on any Linux distribution | Supported | Support for RHEL and CentOS only
-| Node auto-scaling | Supported using AWS or Azure functionality | Not supported
+| Node auto-scaling | Supported using AWS, Azure or Google Cloud functionality | Not supported
 | External log forwarding | You must provide an external log forwarding service | Included
 | Internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
 | Anypoint Security Edge | Not supported | Supported
 | Ops Center | Not Included +
-You can enable monitoring and alerting in AWS or Azure | Included
+You can enable monitoring and alerting in AWS, Azure, or Google Cloud | Included
 |===
 
 
