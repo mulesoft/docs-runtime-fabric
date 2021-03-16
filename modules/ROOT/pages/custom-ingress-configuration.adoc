@@ -2,7 +2,7 @@
 
 [NOTE]
 ====
-The tasks outline in this topic must be performed by an IT administrator
+The tasks outline in this topic must be performed by an IT administrator.
 ====
 
 Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName.
@@ -11,9 +11,19 @@ The template file is a Kubernetes ConfigMap file. After customizing the template
 
 If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric will default to a standard ingress resource definition. Depending on your ingress controller, this resource definition may not work. In this case, you must apply a custom ConfigMap using the template.
 
+== How Ingress Resources are Generated
+
+When deploying a Mule application to Runtime Fabric on Self-Managed Kubernetes, the Runtime Fabric agent generates a Service and Ingress resource for that application. These Kubernetes resources are created in a namespace that corresponds to the Anypoint Environment ID used to deploy the Mule application.
+
+Each application deployment by default will have its own Service and Ingress resource generated. 
+
+Starting with Runtime Fabric v1.8.50, annotations and labels can be added to the generated Service resources. These changes will persist for the lifecycle of those resources.
+
+The generated Ingress resources can be modified by using the ingress template. If further customization is required, MuleSoft recommends disabling Ingress resource generation and managing the Ingress resources separately. To disable Ingress resource generation, uncheck the "Enable inbound requests" option under the Ingress tab when deploying a Mule application in Anypoint Runtime Manager.
+
 [IMPORTANT]
 ====
-For GKE customers, the included ingress controller will provision a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, MuleSoft recommends learning more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. Please read this link:TO_UPDATE[KB article] for more details.
+For GKE customers, the ingress controller included with GKE will provision a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, MuleSoft recommends learning more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. Please read this link:TO_UPDATE[KB article] for more details.
 ====
 
 == Procedure
