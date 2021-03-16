@@ -85,7 +85,7 @@ Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating sys
 
 === Ingress Controller
 
-Runtime Fabric on Self-Managed Kubernetes supports any ingress controller that is compatible with the Kubernetes environment on your cloud infrastructure vendor and supports a deployment model where a separate Ingress resource is created per application deployment. In general, most off the shelf ingress controllers support this model.
+Runtime Fabric on Self-Managed Kubernetes supports any ingress controller that is compatible with your Kubernetes environment and supports a deployment model where a separate Ingress resource is created per application deployment. In general, most off the shelf ingress controllers support this model.
 
 [IMPORTANT]
 ====
