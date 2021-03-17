@@ -20,13 +20,15 @@ image::runtimefabricresponsibility-self-managed.png[Runtime Fabric on Self-Manag
 
 * MuleSoft responsibility:
 +
-MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as Deployments, Pods, Replicasets, and Ingress resources.
+MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as Deployments, Pods, Replicasets, and default Ingress resources.
 
 * Customer responsibility:
 +
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
 +
 ** Ingress controller and external load balancing
++
+** xref:custom-ingress-configuration.adoc[Customizations to Ingress resources]
 +
 ** Log forwarding
 +
