@@ -4,12 +4,12 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
+This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
 [WARNING]
 ====
 Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal]. If your infrastructure does not meet the minimum hardware, operating system, 
-and networking requirements, Runtime Fabric will not operate successfully.
+and networking requirements, Runtime Fabric cannot operate successfully.
 
 Your organization's operations, networking, and security teams must be involved. See 
 xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].

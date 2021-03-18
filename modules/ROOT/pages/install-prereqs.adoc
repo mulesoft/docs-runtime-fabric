@@ -11,14 +11,14 @@ Before you install Runtime Fabric on VMs / Bare Metal:
 
 * Refer to xref:index-vm-bare-metal.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal].
 +
-If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
+If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric cannot operate successfully.
 
 *  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
 ** Network team to whitelist ports and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
-Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
+Working with these teams in your organization ensures a successful installation and avoids performance and density issues. 
 
 * Review the requirements in this topic and ensure that all prerequisites are met before installing Runtime Fabric on VMs / Bare Metal.
 +
@@ -39,9 +39,9 @@ Knowledge in the following areas is required to install Runtime Fabric on VMs / 
 
 Ensure that you plan for:
 
-* Creating separate Runtime Fabrics for production and non-production applications
-* Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network 
-* Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
+* Creating separate runtime rabrics for production and non-production applications
+* Creating separate runtime rabrics based upon environment network scope, such as DMZ versus private network 
+* Ensuring that the runtime fabric default pod and services CIDR block do not interfere with the regions network
 
 == Anypoint Platform Roles and Permissions
 
@@ -49,9 +49,9 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 
 * To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager.
 * To manage permissions for Anypoint Platform users, you must have the ability to use Anypoint Access Management.
-* To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-* Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
-* To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
+* To use Anypoint Runtime Fabric, you must have the Organization Administrators role or the Manage Runtime Fabrics permission on the corresponding environments.
+* Administrators need the Manage Runtime Fabrics permission at the organization level to be able to delete a Runtime Fabric.
+* To deploy applications, you must have the Exchange Contributors role enabled for your Anypoint Platform account.
 
 == Infrastructure Requirements
 
@@ -59,7 +59,7 @@ Perform the following actions:
 
 * Disable swap memory.
 * Ensure that chrony (system clocks) status is in sync.
-* For installation and normal operation, ensure that there is no third-party software, which includes, but is not limited to, antivirus or deep packet inspection (DPI), on the host.
+* For installation and normal operation, ensure that there is no third-party software on the host, which includes, but is not limited to, antivirus or deep packet inspection (DPI) software.
 * Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware: 
 
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
