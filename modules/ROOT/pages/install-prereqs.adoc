@@ -194,6 +194,8 @@ Because the following endpoints use mutual TLS authentication to establish the c
 | Port | Protocol | Hostnames | Description
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
 | EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
+.2+| 5044 (deprecated) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric. The use of this port is deprecated in Runtime Fabric version 1.8.48. If you are using a previous version you must add port 5044 to your allowlist.
+| EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric. Note, this
 .2+| 443 .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
 | EU control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
