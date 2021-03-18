@@ -40,7 +40,7 @@ Knowledge in the following areas is required to install Runtime Fabric on VMs / 
 Ensure that you plan for:
 
 * Creating separate runtime rabrics for production and non-production applications
-* Creating separate runtime rabrics based upon environment network scope, such as DMZ versus private network 
+* Creating separate runtime fabrics based upon environment network scope, such as DMZ versus private network 
 * Ensuring that the runtime fabric default pod and services CIDR block do not interfere with the regions network
 
 == Anypoint Platform Roles and Permissions
