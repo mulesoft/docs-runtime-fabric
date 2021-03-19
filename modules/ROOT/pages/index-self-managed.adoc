@@ -1,14 +1,51 @@
 = Runtime Fabric on Self-Managed Kubernetes
 
-Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on an existing Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) environment.
+Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on an existing Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) environment.
 
 == Architecture
 
-Runtime Fabric on Self-Managed Kubernetes and its related components run as services on your EKS or AKS environment. The following diagram shows different layers of the architecture.
+Runtime Fabric on Self-Managed Kubernetes and its related components run as services on your Amazon EKS, AKS, or GKE environment. The following diagram shows different layers of the architecture.
 
 image::architecture-self-managed.png[]
 
-MuleSoft is responsible for providing support for Runtime Fabric services, the Mule Runtime server, and Mule applications. You are responsible for creating, configuring and managing the EKS or AKS environment.
+MuleSoft is responsible for providing support for Runtime Fabric services, the Mule Runtime server, and Mule applications. You are responsible for creating, configuring and managing the Amazon EKS, AKS, or GKE environment.
+
+== Shared Responsibility
+
+The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. 
+
+The following image illustrates different MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
+
+image::runtimefabricresponsibility-self-managed.png[Runtime Fabric on Self-Managed Kubernetes Shared Responsiblities]
+
+* MuleSoft responsibility:
++
+MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, replicasets, and default ingress resources.
+
+* Customer responsibility:
++
+Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
++
+** Ingress controller and external load balancing
++
+** xref:custom-ingress-configuration.adoc[Customizations to Ingress resources]
++
+** Log forwarding
++
+** Monitoring
++
+** Network ports, NAT gateways, and proxies
++
+** Container runtime and networking
++
+** Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
++
+*** IT team to provision and manage the infrastructure
++
+*** Network team to specify allowed ports and configure proxy settings
++
+*** Security team to verify compliance and obtain security certificates
+
 
 == Requirements
 
@@ -20,7 +57,7 @@ Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to config
 
 === Kubernetes
 
-This version of Runtime Fabric requires a dedicated cluster that is provisioned and operational. You can verify if your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
+Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is provisioned and operational. Verify if your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
 
 [IMPORTANT]
 ====
@@ -29,15 +66,15 @@ Only versions 1.16 through 1.18 of Kubernetes are supported.
 
 === Nodes and Resources
 
-In general, you should follow the best practices provided by the vendor of your Kubernetes vendor (EKS or AKS) to ensure availability and simplify the administration of your infrastructure.
+In general, you should follow the best practices provided by your Kubernetes vendor to ensure availability and simplify the administration of your infrastructure.
 
-MuleSoft recommends installing Runtime Fabric on Self-Managed Kubernetes in an environment with a minimum of two nodes each having the resources defined below.
+Follow best practices by installing Runtime Fabric on Self-Managed Kubernetes in an environment with a minimum of two nodes each having the following resources:
 
 * Minimum of two CPU cores
 * At least 15 GiB of RAM
 * At least 250 GiB of available disk space
 
-You can adjust the number of nodes and amout of resources allocated according to the amount and type of workload you run on each Runtime Fabric.
+Adjust the number of nodes and amout of resources allocated according to the amount and type of workload you run on each Runtime Fabric.
 
 === Supported Architectures
 
@@ -45,22 +82,27 @@ Runtime Fabric on Self-Managed Kubernetes requires worker nodes which use the x8
 
 === Operating Systems
 
-Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported by EKS or AKS.
+Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported by Amazon EKS, AKS, or GKE.
 
 === Ingress Controller
 
-Runtime Fabric on Self-Managed Kubernetes supports any Ingress controller that is compatible with the Kubernetes environment on your vendor (EKS or AKS).
+Runtime Fabric on Self-Managed Kubernetes supports any ingress controller that is compatible with your Kubernetes environment and supports a deployment model where a separate ingress resource is created per application deployment. In general, most off-the-shelf ingress controllers support this model.
+
+[IMPORTANT]
+====
+For GKE customers, the ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. See link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+====
 
 === External Log Forwarding
 
-Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. However, you can use any external log forwarding agent that is compatible with your Kubernetes environment (EKS or AKS). As examples, common log forwarding agents include:
+Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. However, you can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
 
 * Splunk Connect for Kubernetes
 * Fluentbit
 
 You are resposible for installing, configuring, and managing an external log forwarder.
 
-For Titanium customers Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
+For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
 
 == See Also
 
