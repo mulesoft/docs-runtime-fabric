@@ -15,10 +15,15 @@ By default, Runtime Fabric is configured to send application metrics to Anypoint
 
 If you need an outbound proxy, configure Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
 
-To verify outbound network connectivity, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 5044 to:
+To verify outbound network connectivity, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 443 to:
 
 . US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
 . EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
+
+[NOTE]
+====
+If you are using a version of Anypoint Runtime Fabric older than 1.8.50, uses port 5044 instead of port 443
+====
 
 === Disable Anypoint Monitoring for an Application
 
