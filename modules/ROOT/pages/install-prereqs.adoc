@@ -194,7 +194,6 @@ Because the following endpoints use mutual TLS authentication to establish the c
 ** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
-.Port IP Addresses and Hostnames to add to the allow list
 |===
 | Port | Protocol | Hostnames | Description
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
