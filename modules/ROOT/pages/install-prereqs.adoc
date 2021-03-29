@@ -109,7 +109,7 @@ a different operating system version or distribution, the installer fails.
 
 [IMPORTANT]
 ====
-There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[RTF - How to Resolve the Cgroup Memory Leaking Issue in Runtime Fabric] for additional information.
+There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
 
 To avoid this issue, use RHEL or CentOS 8.x in your Runtime Fabric on VMs / Bare Metal installation.
 ====
