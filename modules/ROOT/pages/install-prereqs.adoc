@@ -153,7 +153,12 @@ The following table lists all ports that must be open, along with the respective
 | 443 | TCP | HTTPS | Internet | Controller nodes | Allow inbound requests to Mules
 | 443 | TCP | AMQP over WebSockets | Controller nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
-| 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified above. This is applicable to endpoints in both the US and EU clouds.
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
 | 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
@@ -193,19 +198,18 @@ Because the following endpoints use mutual TLS authentication to establish the c
 ** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
-.Port IP Addresses and Hostnames to Whitelist
 |===
 | Port | Protocol | Hostnames | Description
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
 | EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
+.2+| 443 (v1.8.50, or later) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
+| EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
 .2+| 5044 (deprecated) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
 
 *This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
-.2+| 443 (v1.8.50, or later) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
-| EU control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | Kubernetes base charts repository.
 | 443 | HTTPS | `docker-images-prod.s3.amazonaws.com` | Kubernetes base charts repository.
