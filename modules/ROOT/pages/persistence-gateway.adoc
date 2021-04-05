@@ -9,7 +9,7 @@ Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or late
 
 == Use Persistence Gateway in a Mule Application
 
-After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric[Deploy a Mule Application to Runtime Fabric] for more information.
+After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
 When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in the Persistence Gateway.
 
