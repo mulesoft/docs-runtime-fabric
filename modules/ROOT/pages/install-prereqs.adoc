@@ -11,14 +11,14 @@ Before you install Runtime Fabric on VMs / Bare Metal:
 
 * Refer to xref:index-vm-bare-metal.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal].
 +
-If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric will not operate successfully.
+If your infrastructure does not meet the minimum hardware, operating system, and networking requirements, Runtime Fabric cannot operate successfully.
 
 *  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
 ** Network team to whitelist ports and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
-Working with these teams in your organization helps ensure a successful installation and avoids performance and density issues. 
+Working with these teams in your organization ensures a successful installation and avoids performance and density issues. 
 
 * Review the requirements in this topic and ensure that all prerequisites are met before installing Runtime Fabric on VMs / Bare Metal.
 +
@@ -39,9 +39,9 @@ Knowledge in the following areas is required to install Runtime Fabric on VMs / 
 
 Ensure that you plan for:
 
-* Creating separate Runtime Fabrics for production and non-production applications
-* Creating separate Runtime Fabrics based upon environment network scope, such as DMZ versus private network 
-* Ensuring that the Runtime Fabric default pod and services CIDR block do not interfere with the regions network
+* Creating separate runtime fabrics for production and non-production applications
+* Creating separate runtime fabrics based upon environment network scope, such as DMZ versus private network 
+* Ensuring that the runtime fabric default pod and services CIDR block do not interfere with the regions network
 
 == Anypoint Platform Roles and Permissions
 
@@ -49,9 +49,9 @@ To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must 
 
 * To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager.
 * To manage permissions for Anypoint Platform users, you must have the ability to use Anypoint Access Management.
-* To use Anypoint Runtime Fabric, you must have the *Organization Administrators* role or the *Manage Runtime Fabrics* permission on the corresponding environments.
-* Administrators need the *Manage Runtime Fabrics* permission at the organization level to be able to delete a Runtime Fabric.
-* To deploy applications, you must have the *Exchange Contributors* role enabled for your Anypoint Platform account.
+* To use Anypoint Runtime Fabric, you must have the Organization Administrators role or the Manage Runtime Fabrics permission on the corresponding environments.
+* Administrators need the Manage Runtime Fabrics permission at the organization level to be able to delete a Runtime Fabric.
+* To deploy applications, you must have the Exchange Contributors role enabled for your Anypoint Platform account.
 
 == Infrastructure Requirements
 
@@ -59,7 +59,7 @@ Perform the following actions:
 
 * Disable swap memory.
 * Ensure that chrony (system clocks) status is in sync.
-* For installation and normal operation, ensure that there is no third-party software, which includes, but is not limited to, antivirus or deep packet inspection (DPI), on the host.
+* For installation and normal operation, ensure that there is no third-party software on the host, which includes, but is not limited to, antivirus or deep packet inspection (DPI) software.
 * Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware: 
 
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
@@ -104,11 +104,15 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 * Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2
 * CentOS v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2
 
-[IMPORTANT]
-Currently, there is a known Control Groups (cgroups) memory leaking issue, which can lead to pod creation failure or node malfunction. Ensure that you are using Linux kernel version 3.10.0-1075 or later, and refer to https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[RTF - How to Resolve the Cgroup Memory Leaking Issue in Runtime Fabric] for additional information.
-
 Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on 
-a different operating system version or distribution, the installer will fail.
+a different operating system version or distribution, the installer fails.
+
+[IMPORTANT]
+====
+There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
+
+To avoid this issue, use RHEL or CentOS 8.x in your Runtime Fabric on VMs / Bare Metal installation.
+====
 
 == Network and Port Requirements
 
@@ -149,7 +153,12 @@ The following table lists all ports that must be open, along with the respective
 | 443 | TCP | HTTPS | Internet | Controller nodes | Allow inbound requests to Mules
 | 443 | TCP | AMQP over WebSockets | Controller nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
-| 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified above. This is applicable to endpoints in both the US and EU clouds.
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
 | 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
@@ -189,12 +198,17 @@ Because the following endpoints use mutual TLS authentication to establish the c
 ** `configuration-resolver.prod-eu.msap.io`
 
 [%header%autowidth.spread]
-.Port IP Addresses and Hostnames to Whitelist
 |===
 | Port | Protocol | Hostnames | Description
 .2+| 443 .2+| AMQP over WebSockets | US control plane: `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
 | EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-.2+| 5044 .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
+.2+| 443 (v1.8.50, or later) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
+| EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
+.2+| 5044 (deprecated) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | Kubernetes base charts repository.
@@ -304,7 +318,7 @@ You must consider the amount of resources needed for the internal load balancer 
 *** A minimum of 20 GiB for `/tmp` directory.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
-** A minimium of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
+** A minimum of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
 
 *** This disk is referred to as the `etcd` device.
 ** A minimum of 250 GiB dedicated disk with 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of

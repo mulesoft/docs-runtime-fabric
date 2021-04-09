@@ -46,16 +46,19 @@ Guaranteed CPU allocation allows applications to perform consistently by ensurin
 
 When the value of `vCPU Limit` is set higher than the value of `Reserved vCPU`, the application can burst up to the either the vCPU limit value or the amount of unreserved vCPU on the worker node, whichever is less.
 
+When estimating the CPU and memory required for worker nodes, Anypoint Monitoring agent requires at least 0.05 vCPU cores and 50 Mi of memory for Anypoint Monitoring. This container is used to stream application metrics to the control plane and cannot be disabled. These core and memory allocations are not used for Mule licensing.
+
+== CPU Bursting
+
 When using CPU bursting, you must consider the following factors:
 
 * Minimum reserved vCPU: 0.02 vCPU.
 * Minimum vCPU limit: 0.07 vCPU.
-+
-[NOTE]
+
 Resource intensive applications might require additional CPU capacity. If an application deployment fails using the minimum vCPU limit, increase the vCPU limit and redeploy the application.
 * The CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
 * The maximum recommended utilization per CPU core is 20 - 25 simple applications and API gateways. More complex applications with higher usage may need more capacity.
-* Runtime Fabric on VMs / Bare Metal runs a small amount of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
+* Runtime Fabric on VMs / Bare Metal runs a small number of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
 * Applications compete for the unallocated CPU remaining on their worker node. As more applications are deployed on a worker node, less unallocated CPU is available to share with other applications and can result in poor performance. The following strategies can be considered for minimizing CPU contention with your applications:
 
 ** Deploy nightly batch applications with other applications that have peak load during the day.

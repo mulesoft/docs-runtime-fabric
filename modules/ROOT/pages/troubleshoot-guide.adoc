@@ -40,7 +40,7 @@ https://ecr.us-east-1.amazonaws.com ✔
 https://494141260463.dkr.ecr.us-east-1.amazonaws.com ✔
 https://prod-us-east-1-starport-layer-bucket.s3.amazonaws.com ✔
 https://runtime-fabric.s3.amazonaws.com ✔
-tcp://dias-ingestor-nginx.prod.cloudhub.io:5044 ✔
+tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 ```
  
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-prereqs#port-ip-addresses-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
