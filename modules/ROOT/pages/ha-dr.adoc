@@ -1,0 +1,139 @@
+= High Availability and Disaster Recovery for Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Most high availability (HA) and disaster recovery (DR) strategies combine maximizing availability 
+within and across data centers, failover capability, and regular backups. The exact approach taken depends on your 
+organization's objectives for data loss tolerances and system recovery. 
+
+The following sections describe HA/DR strategies supported by Runtime Fabric.
+
+== Regions and Availability Zones with Cloud Providers
+
+Cloud providers, such as AWS and Azure, have data centers grouped by geographical regions. Within each region, multiple data centers are classified as Availability Zones. Redundancy can be achieved by creating a private network and using virtual machines across multiple availability zones. Detailed descriptions of regions and availability zones are provided by https://aws.amazon.com/about-aws/global-infrastructure/regions_az/[AWS] and https://docs.microsoft.com/en-us/azure/availability-zones/az-overview[Azure]. 
+
+The number of availability zones is dependent on the region selected for deployment. For high availability, select a region with at least 3 availability zones.
+
+For Runtime Fabric specifications for development and production environments, refer to xref:architecture[Runtime Fabric Architecture].
+
+== High Availability
+
+=== Availability Across Nodes
+By default, Runtime Fabric automatically detects and redeploys applications to available resources in the event of a node failure. To best leverage this functionality, Runtime Fabric should have at least one worker node’s worth of unused capacity. With a production configuration of Runtime Fabric, controller nodes can also tolerate a single node failure without impacting availability. 
+
+=== Availability Across Availability Zones
+When using a cloud provider like AWS or Azure, high-speed, low latency private networks can span multiple availability zones within a region.
+
+When combined with the availability across nodes, Runtime Fabric can be configured to be highly available within a geographical region by distributing nodes across different availability zones.
+
+Runtime Fabric can be configured according to the type of environment:
+
+* Production environments require a minimum of three availability zones for improved availability.
+* DR environments require require a minimum of three availability zones. DR availability zones are in addition to production environment availability zones. Having a DR environment necessitates double the capacity of only having a production environment.
+* Non-production environments require a minimum of two availability zones for improved availability.
+
+For environments with two availability zones, deploy the controller and worker nodes into the two availability zones. You can deploy multiple controllers and workers into specific availability zones.
+
+[NOTE]
+An environment with two availability zones does not provide high availability, which requires three availability zones. In the case of two availability zones, you can create a DR environment in a third availability zone for high availability.
+
+Deploy applications and services with two replicas. Each replica should be scheduled to run in a separate node. Note that with Runtime Fabric, the scheduling of replicas across nodes is performed on a best effort basis, and can vary depending on worker node availability and capacity.
+
+Comments/Questions from Donald/Mark: (MARK)Re 3 AZs - Most AWS/Azure regions have 3 AZs, and the minimum number of 3 control zones and 3 worker zones could then be deployed into the 3 AZs. However if the region only has 2 AZs it would be possible to deploy the controller and worker nodes into 2 AZs with multiple controllers/workers into specific AZs. 
+(DONALD)If we want to say something about AWS/Azure outages we need to be more specific. What kind of AWS Azure outages. This is something where we need to be careful creating some sort of indirect SLA guarantee.
+Additional questions are in https://docs.google.com/document/d/11JOja4UIn92NiLieVNM7PthoOwcMuxhCo9IrTtqoNeI/edit#.
+ 
+For environments with three availability zones, which is the default for both AWS and Azure, the minimum number of 3 controller nodes and 3 worker nodes can be deployed into the 3 availability zones. Deploy applications and services with two or more replicas across <x> availability zones??? In this case, if a replica fails, is there is automatic failover????
+ 
+Using multiple replicas across availability zones provides high availability capabilities for the entire region.
+
+When using AWS or Azure, deploy Runtime Fabric on a VPC or VirtualNetwork with a minimum of 3 subnets, one for each required availability zone. You can distribute the deployment of worker nodes and controller nodes to each availability zone. This automatically protects the Runtime Fabric from a failure within an availability zone. 
+
+For AWS, Runtime Fabric provides a Terraform provisioning script that creates VPC and divides the addressable network space into multiple subnets within each AZ. A similar configuration can also be applied when using Azure with manual changes to the MuleSoft provided Azure Resource Manager provisioning scripts. 
+
+=== Availability Across Applications
+Runtime Fabric does not rely on the Anypoint Platform control plane. If the Anypoint Platform control plane becomes unavailable, applications already running in Runtime Fabric are not impacted - they continue to run with no downtime. Self-healing capabilities in Runtime Fabric can detect when a Mule runtime engine crashes and automatically restart it. You don’t have to configure tuning parameters or log sizes, or worry about log cleanup to avoid an out of disk condition during a control plane outage.
+
+=== Node Configuration 
+A minimum of 3 controller nodes is required when spinning up a Runtime Fabric cluster. For the basic high availability pattern, a minimum of 3 worker nodes is required. The DR environment must duplicate the production environment.
+
+For production environments, you must set up and install a minimum of 6 worker nodes and 6 controller nodes into 3 different Availability Zones. The DR environment setup must duplicate the production environment.
+
+To manage Runtime Fabric infrastructure at scale, treat nodes as cattle, not as pets. Do not configure nodes that are unique and hard to replicate. Using tools like Terraform make it easy to consistently and repeatedly install and configure Runtime Fabric to nodes in both production and DR environments.
+
+AWS and Azure installation templates dictate network setup and infrastructure, and by default, partition nodes in a single Availability Zone. If you are using a template, you must modify it for multiple Availability Zones. 
+
+You are responsible for failover requests??? From prod to DR.
+
+=== Fault Awareness
+
+==== Node Level Fault Awareness
+Runtime Fabric clusters provide fault awareness at the replica level and at the node level.
+At the node level, controllers are replicated to at least 3 nodes for a minimal production setup. To remain healthy, controllers must be in sync within a very small window of time. With 3 controller nodes, you can operate in the event of 1 controller failure. 
+
+In a production setting, assume a single node is always unavailable, either due to an unexpected failure or a need to apply patches. Patches require taking a node down and rebooting, necessitating a single node's worth of buffer in order to safely take a node out of rotation, apply upgrades, bring it back online, and do a rolling upgrade at the node level.
+
+If high availability is not a consideration, the cluster can be reduced to 1 node, but if that node becomes unavailable for any length of time, cluster state could be unrecoverable.
+
+==== Cluster Level Fault Awareness
+To achieve fault awareness at the cluster level, deploy additional clusters. For example, if your environment has two availability zones, spin up Runtime Fabric in both availability zones and deploy apps in both Runtime Fabric clusters as an active-active configuration.
+
+By default, when deploying multiple application replicas, Runtime Fabric deploys the replicas to different nodes across Availability Zones. In addition, Runtime Fabric automatically performs load balancing across the replicas and nodes. This provides application failover and also provides reliability in the event of Azure or AWS Availability Zone failure. For applications that are split up across multiple replicas, Runtime Fabric automatically splits the replicas across different nodes to provide fault tolerance and high availability in the event of application failure.
+
+=== Managing State
+
+==== Stateless Applications
+Within Runtime Fabric, apart from the configuration, there is nothing that needs to be managed and replicated between nodes because each deployment is self-contained. When you deploy an app to Runtime Fabric using Runtime Manager, through any method Runtime Fabric provides, including Maven, the UI, and APIs, everything needed to run the app is contained in the deployment manifest sent to Runtime Fabric. With a programmatic deployment, you can replicate a deployment across two different clusters by simply changing the cluster ID and triggering one app deployment that invokes two API calls. This deploys two instances of the app with the same configuration. The only difference is where each app is deployed. 
+
+To configure an automated deployment for stateless applications, you must use tooling, such as Terraform or an Azure equivalent of that, to construct/reconstruct identical infrastructure setups. At the application level, use DevOps tools to configure the appropriate DevOps/automation pipeline controls.
+
+==== Stateful Applications
+Runtime Fabric creates load balanced applications that are aware of each other across installations. You can also use your own in-memory cache solution to configure this. For state-aware applications, state must be replicated apart from configuration information. For state information that is shared with applications, applications must be able to connect to an external source that handles the state replication across data centers - nothing in Runtime Fabric takes care of that. One possible solution is using a redis connector to connect to something that is already set up for replication to handle that. 
+
+==== Stateful Data
+Runtime Fabric does not provide stateful data management. You are responsible for managing the state of the configuration and setup across production and DR nodes. This includes log management for all logs, log shipping, backup mechanisms to make sure production and DR nodes remain in sync, and managing other items that are hard to keep in sync across regions without a stateful database or keystore. 
+
+For successful state management, the configuration of Runtime Fabric nodes and applications must be in sync when provisioned, and the DR node must be in sync at all times. Anything that requires state requires a mechanism to reconcile that state.
+
+If any regions have state, or you are designing high availability applications, you must use reliability patterns. Make sure the stateful mechanism that you build can replicate data between production and DR instances down to the design of integrations. Contact your MuleSoft account representative for examples of region state management.
+
+== Disaster Recovery 
+Runtime Fabric allows separate clusters to be deployed in an active-active configuration or active-passive configuration for production and DR environments. In the active-active case, the DR node mirrors the production node, which doubles the overall required capacity.
+
+If your environment has two availability zones, spin up a production Runtime Fabric and a DR Runtime Fabric in both availability zones and deploy applications in both clusters as an active-active configuration.
+
+If your environment has three availability zones, ???
+
+In addition, you must ensure the following requirements are met:
+
+* A load balancer is configured to handle failover requests from production to DR.
+* The production environment configuration is properly replicated for DR.
+
+[NOTE]
+The Runtime Fabric load balancer only sends requests to a live instance. You are required to manage the sending of requests to the DR node in order to keep the production and DR environments in sync.????? Is this correct???
+
+=== Licensing Core Count with Active-Passive Standby
+
+If you are maintaining a Hot-Standby for your DR site in an active-passive model, make sure that you do not completely consume your vCore count on servers you do not plan to use except when patching or in other unplanned emergency. You must maintain compliance with your MuleSoft licensing contract.
+
+To ensure licensing compliance, you can create an identical stand-by secondary RTF cluster in your DR site with no Mules deployed on it, and fail-over in the event of a disaster via one of the following methods:
+
+* Restore from an earlier backup taken on the active RTF. For information on how to back up and restore Runtime Fabric, refer to xref:runtime-fabric::manage-backup-restore[Backup and Restore Runtime Fabric].
++
+** You must have regular backups executed and transferred to the DR site. 
+** The secondary RTF assumes the role of the primary RTF, so the primary RTF must be disconnected from Anypoint control plane prior to applying the backup on the secondary RTF.
+** Both RTFs would need to have the same configuration (same size nodes, same size disks, same # of cores, etc).
+* Use the https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/amc-application-manager/version/2.0/pages/home/[Application Manager API] to automate the setting of each application's deployment target from the primary RTF to the secondary RTF.
++
+** You are updating the desired state in the Anypoint control plane to move applications from one target (the primary RTF) to the secondary target (the passive RTF).
+** The configuration of the environments, business groups, and internal load balancer should be identical between both RTFs.
+
+In either case:
+
+* You are responsible for cutting over traffic from the primary RTF to the secondary RTF.
+* The secondary RTF can be spun up without impact to Mule licensing as long as there are no Mule applications running on it.
+* During fail-over, the primary RTF must be disconnected from serving traffic in order to stay compliant -- under normal licensing terms. 
+
+== Backup and Recovery
+Runtime Fabaric provides backup and recovery methods. Runtime Fabric on CloudHub supports zero-downtime backups and restores. However, these methods are time consuming with the potential of data loss, depending on the frequency of backups. Refer to https://docs.mulesoft.com/runtime-fabric/1.3/manage-backup-restore[Backup and Restore Runtime Fabric] for additional information.
