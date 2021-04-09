@@ -29,7 +29,7 @@ Each of these options has its own system requirements and installation procedure
 |===
 | Runtime Fabric Option | IT Administrator | MuleSoft Organization Administrator
 | Self-Managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on Amazon EKS, AKS, or GKE. This persona is also responsible for installing Runtime Fabric and managing Kubernetes. | Creates Runtime Fabric instances, deploys applications, and performs other tasks within Anypoint Platform
-| VMs / Bare Metal | Creates and configures the infrastructure that runs Runtime Fabric. This persona is also responsible for installing Runtime Fabric and maintaining the underlying infrastructure during its operation. | Creates Runtime Fabrics, deploys applications, and performs other tasks within Anypoint Platform
+| VMs/Bare Metal | Creates and configures the infrastructure that runs Runtime Fabric. This persona is also responsible for installing Runtime Fabric and maintaining the underlying infrastructure during its operation. | Creates Runtime Fabric instances, deploys applications, and performs other tasks within Anypoint Platform
 |===
 
 == Feature Support Matrix for Runtime Fabric on Self-Managed Kubernetes and Runtime Fabric on VMs / Bare Metal
