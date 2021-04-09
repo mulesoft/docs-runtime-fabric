@@ -53,6 +53,7 @@ This tab displays the name and type of the deployment target you selected above.
 +
 [NOTE]
 A minimum of two replicas is required for high availability.
+
 . To enable Mule clustering across each replica of the application, enable *Run in Runtime Clustering Mode*.
 
 . To enforce the deployment of replicas across different nodes, select *Enforce deploying replicas across nodes*.
@@ -61,6 +62,10 @@ A minimum of two replicas is required for high availability.
 ====
 This can cause some replicas in the deployment to remain in *Pending* status if there are unsufficient worker nodes or resources available on the worker nodes needed to deploy each replica. The deployment status will transition to *Running* after all replicas are deployed on different worker nodes.
 ====
+
+. To store data and states across applications, select *Use Persistent Object Storage*.
++
+This option is only available on Mule runtime engine, version 4.2.1 or later. See xref:persistence-gateway.adoc[Persistence Gateway] for more information.
 
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
@@ -137,7 +142,7 @@ curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:1
 
 If your application remains in the *Starting* status for several minutes, this may be due to specifying a lower amount of resources. It's common for applications to take several minutes to start up when selecting 0.3 cores or lower.
 
-If the application encounters an error during startup, the deployment will stop and the status updates to *Failed*. An error message preview is displayed when clicking on the application and viewing the right sidebar. To view the entire message, click on the *Manage Application* button. 
+If the application encounters an error during startup, the deployment will stop and the status updates to *Failed*. An error message preview is displayed when clicking on the application and viewing the right sidebar. To view the entire message, click on the *Manage Application* button.
 
 If you are using Runtime Fabric on VMs / Bare Metal, view the application logs in Ops Center or your third party logging provider to see additional details..
 
