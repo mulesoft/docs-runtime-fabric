@@ -14,7 +14,7 @@ Some of the capabilities of Anypoint Runtime Fabric include:
 * Application management with Anypoint Runtime Manager.
 
 [NOTE]
-Contact your customer success manager for information on how enable Anypoint Runtime Fabric on your account.
+Contact your customer success manager for information on how to enable Anypoint Runtime Fabric on your account.
 
 There are two management options for Anypoint Runtime Fabric:
 
