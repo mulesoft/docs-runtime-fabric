@@ -17,13 +17,14 @@ When an application using persistent object storage is deleted, Runtime Fabric d
 
 The following table lists the limits on the data stored by the Persistence Gateway:
 
-[cols="2*a"]
+[%header,cols="3*a"]
 |===
-| Maximum TTL. This is the amount of time data is stored in the Persistence Gateway  | 30 days
-| Maximum key length | 256 characters
-| Maximum value length | 10 MB
-| Maximum partitions per application | 10
-| Maximum keys per partition | 1000
+| Limit | Description | Default Value
+| Maximum TTL. | The amount of time data is stored in the Persistence Gateway  | 30 days
+| Maximum key length | | 256 characters
+| Maximum value length | | 10 MB
+| Maximum partitions per application | | 10
+| Maximum keys per partition | | 1000
 |===
 
 
@@ -140,3 +141,7 @@ Below are descriptions of the fields of the template you modify:
 | `resources: requests: memory` | | 100Mi
 | `secretRef: name:` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file.| `persistence-gateway-creds`
 |===
+
+== See Also
+
+* xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
