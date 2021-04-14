@@ -134,7 +134,7 @@ Below are descriptions of the fields of the template you modify:
 
 [NOTE]
 ====
-The default values of CPU and Memory resources should fit the general use case. But users can override these values to better fit their use case.
+The default CPU/Memory request and limit values are based on our internal testing with small number of deployed apps. Users can override these values as per their use case.
 ====
 
 == See Also
