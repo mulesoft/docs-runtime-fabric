@@ -105,24 +105,24 @@ Use the example template below to create a Kubernetes custom resource. This cust
 apiVersion: rtf.mulesoft.com/v1
 kind: PersistenceGateway
 metadata:
-    name: persistent-gateway-config
-    namespace: rtf
+  name: default
+  namespace: rtf
 spec:
-    objectStore:
+  objectStore:
     backendDriver: postgresql
-        maxBackendConnectionPool: 10
-        maxKeysPerStore: 5000
-        maxStores: 4
-        replicas: 1
-        resources:
-            limits:
-                cpu: 1m
-                memory: 200Mi
-            requests:
-                cpu: 0.5m
-                memory: 100Mi
-        secretRef:
-            name: persistence-gateway-creds
+    maxKeysPerStore: 5000
+    maxBackendConnectionPool: 10
+    maxStores: 4
+    replicas: 1
+    secretRef:
+      name: "persistence-gateway-creds"
+    resources:
+      limits:
+        cpu: 250m
+        memory: 250Mi
+      requests:
+        cpu: 200m
+        memory: 75Mi
 ----
 
 Below are descriptions of the fields of the template you modify:
