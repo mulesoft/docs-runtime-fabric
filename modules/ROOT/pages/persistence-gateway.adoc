@@ -1,6 +1,6 @@
 = Persistence Gateway
 
-To store state across applications, Anypoint Runtime Fabric provides the Persistence Gateway. Persistene Gateway enables applications deployed to a Mule runtime engine (Mule) to store and share data across batch processes, Mule components and applications.
+To store state across applications, Anypoint Runtime Fabric provides the Persistence Gateway. Persistence Gateway enables applications deployed to a Mule runtime engine (Mule) to store and share data across replicas and re-starts of a Mule application.
 
 [NOTE]
 ====
@@ -9,7 +9,7 @@ Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or late
 
 == Use Persistence Gateway in a Mule Application
 
-After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See [xref to deployment topic].
+After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
 == Configure Persistence Gateway
 
@@ -17,25 +17,50 @@ To enable Persistence Gateway, you must create a Kubernetes custom resource that
 
 === Prerequisties
 
-Before enabling Persistence Gateway, ensure that you have the following:
+Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by the Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. 
 
-* A data source to contain the data stored by Persistence Gateway. This data source must be compatible with PostgresSQL 9 and above.
-* A Kubernetes secret containing the network information and credentials to connect to the data store.
+=== Create a Kubernetes Secret and Kubernetes Custom Resource
 
-=== Create a Custom Resource and Secret
+. Create a Kubernetes secret:
+.. Copy the Kubernetes secret template from <<k8-secret-template>> to a file called `kubernetes-secret.yaml`.
+.. Create a base64-encoded connection string. 
++
+The standard URI for this string is `postgres://username:pass@host:port/databasename`. However, the requirements for your database may be different.
+.. Copy the encoded string to the `persistence-gateway-creds:` field of `kubernetes-secret.yaml`. 
+.. Run `kubectl apply -f kubernetes-secret.yaml`.
 
-. Create a custom resource for your data store
-.. Copy the custom resource template below to a file called `custom-resource.yaml`.
-.. Modify the fields of the template as required for your environment.
+. Create a custom resource for your data store:
+.. Copy the custom resource template from <<k8-custom-resource-template>> to a file called `custom-resource.yaml`.
+.. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
+.. Modify other fields of the custome resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
 
-. Create a Kubernetes secret
-.. Copy the Kubernetes secret template below to a file called `kubernetes-secret.yaml`.
-.. Modify the fields of the template to include connectivity information and credentials for your installation.
-.. Run `kubectl apply -f kubernetes-secret.yaml`
+[[k8-secret-template]]
+=== Kubernetes Secret Template
 
+Use the example template below to create a Kubernetes secret. The Kubernetes cluster uses this secret to connect to your data store.
 
+----
+apiVersion: v1
+data:
+ persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==  
+kind: Secret
+metadata:
+  name: persistence-gateway-creds
+  namespace: rtf
+type: Opaque
+----
 
+Below are descriptions of the fields of the template you should modify:
+
+[%header,cols="2*a"]
+|===
+| Field | Description
+| `persistence-gateway-creds` | 
+| `type` | 
+|===
+
+[[k8-custom-resource-template]]
 === Kubernetes Custom Resource Template
 
 Use the example template below to create a Kubernetes custom resource. This custom resource enables the Kubernetes cluster to connect to your data store.
@@ -80,27 +105,4 @@ Below are descriptions of the fields of the template you should modify:
 | `resources/requests/memory` |
 |===
 
-=== Kubernetes Secret Template
-
-Use the example template below to create a Kubernetes secret. The Kubernetes cluster uses this secret to connect to your data store.
-
-----
-apiVersion: v1
-data:
- persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==  
-kind: Secret
-metadata:
-  name: persistence-gateway-creds
-  namespace: rtf
-type: Opaque
-----
-
-Below are descriptions of the fields of the template you should modify:
-
-[%header,cols="2*a"]
-|===
-| Field | Description
-| `persistence-gateway-creds` | 
-| `type` | 
-|===
 
