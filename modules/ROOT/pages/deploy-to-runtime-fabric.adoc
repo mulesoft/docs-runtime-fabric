@@ -65,7 +65,7 @@ This can cause some replicas in the deployment to remain in *Pending* status if 
 
 . To enable data persistence across Mule application replicas and restarts, select *Use Persistent Object Storage*.
 +
-This option is only available on Mule runtime engine, version 4.2.1 or later. If this option is unavailable, contact your Anypoint Runtime Fabric administrator. See xref:persistence-gateway.adoc[Persistence Gateway] for more information.
+This option is only available on Mule runtime engine, version 4.2.1 or later. If this option is unavailable, contact your IT administrator. See xref:persistence-gateway.adoc[Persistence Gateway] for more information.
 
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
