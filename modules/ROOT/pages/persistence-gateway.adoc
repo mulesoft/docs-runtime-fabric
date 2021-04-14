@@ -52,6 +52,12 @@ The standard URI for this string is `postgres://username:pass@host:port/database
 . Check the log of the Persistence Gateway pod to ensure it can communicate with the database:
 +
 ----
+kubectl get pods -n rtf
+----
++
+Look for pods with the name prefix `persistence-gateway`
++
+----
 kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -nrtf
 ----
 +
@@ -72,12 +78,12 @@ Use the example template below to create a Kubernetes secret. The Kubernetes clu
 
 ----
 apiVersion: v1
-data:
-    persistence-gateway-creds: cG9zdGdyZXM6Ly90ZXN0VXNlcjp0ZXN0UGFzc0B0ZXN0SG9zdDp0ZXN0UG9ydC9kYXRhYmFzZW5hbWU=
-kind: Secret
 metadata:
     name: persistence-gateway-creds
     namespace: rtf
+data:
+    persistence-gateway-creds: cG9zdGdyZXM6Ly90ZXN0VXNlcjp0ZXN0UGFzc0B0ZXN0SG9zdDp0ZXN0UG9ydC9kYXRhYmFzZW5hbWU=
+kind: Secret
 type: Opaque
 ----
 
@@ -86,8 +92,9 @@ Below are descriptions of the fields of the template you should modify:
 [%header,cols="2*a"]
 |===
 | Field | Description
-| `metadata: persistence-gateway-creds` | The internal identifier for this secret. This name must match the value of the `secretRef:name` field of your Kubernetes resource.
-| `metadata: namespace` | 
+| `metadata.name` | The internal identifier for this secret. This name must match the value of the `secretRef.name` field of your Kubernetes Custom Resource.
+| `metadata.namespace` | Kubernetes namespace under which the secret is created, the supported value is `rtf`.
+| `data.persistence-gateway-creds` | Base64 encoded backend connection string.
 | `type` | Specifies the type of Kubernetes key. Only `Opaque` is supported.
 |===
 
@@ -108,7 +115,7 @@ spec:
     backendDriver: postgresql
     replicas: 2
     secretRef:
-      name: "persistence-gateway-creds"
+      name: persistence-gateway-creds
     resources:
       limits:
         cpu: 250m
@@ -123,13 +130,16 @@ Below are descriptions of the fields of the template you modify:
 [%header,cols="3*a"]
 |===
 | Field | Description | Default Value
-| `backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | `postgresql`
-| `replicas` | Specifies the number of replicas for Persistence Gateway deployment. | 2
-| `resources.limits.cpu` | Specifies the cpu resource limits for the Persistence Gateway pods in | 250m
-| `resources.limits.memory` | Specifies the memory resource limits for the Persistence Gateway pods | 150Mi
-| `resources.requests.cpu` | Specifies the cpu resource requests for the Persistence Gateway pods | 200m
-| `resources.requests.memory` | Specifies the memory resource requests for the Persistence Gateway pods | 75Mi
-| `secretRef.name` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file.| `persistence-gateway-creds`
+| `kind` | Specifies the kind of Custom Resource. Supported value is `PersistenceGateway`. | PersistenceGateway
+| `metadata.name` | The internal identifier for this Custom Resource. The value for this filed should be `default`. | default
+| `metadata.namespace` | The namespace where the secret is applied, the supported value is `rtf`. | rtf
+| `spec.objectStore.backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | postgresql
+| `spec.objectStore.replicas` | Specifies the number of replicas for Persistence Gateway deployment. | 2
+| `spec.objectStore.resources.limits.cpu` | Specifies the cpu resource limits for the Persistence Gateway pods. | 250m
+| `spec.objectStore.resources.limits.memory` | Specifies the memory resource limits for the Persistence Gateway pods. | 150Mi
+| `spec.objectStore.resources.requests.cpu` | Specifies the cpu resource requests for the Persistence Gateway pods. | 200m
+| `spec.objectStore.resources.requests.memory` | Specifies the memory resource requests for the Persistence Gateway pods. | 75Mi
+| `spec.objectStore.secretRef.name` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file. | persistence-gateway-creds
 |===
 
 [NOTE]
