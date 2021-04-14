@@ -11,9 +11,26 @@ Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or late
 
 After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
+When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in the Persistence Gateway.
+
+== Persistent Gateway Limits
+
+The following table lists the limits on the data stored by the Persistence Gateway:
+
+[cols="2*a"]
+|===
+| Maximum TTL. This is the amount of time data is stored in the Persistence Gateway  | 30 days
+| Maximum key length | 256 characters
+| Maximum value length | 10 MB
+| Maximum partitions per application | 10
+| Maximum keys per partition | 1000
+|===
+
+
+[Configure-Persistence-Gateway]
 == Configure Persistence Gateway
 
-To enable Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your data store.
+To enable Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
 
 === Prerequisties
 
@@ -43,7 +60,7 @@ Use the example template below to create a Kubernetes secret. The Kubernetes clu
 ----
 apiVersion: v1
 data:
- persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==  
+ persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==
 kind: Secret
 metadata:
   name: persistence-gateway-creds
@@ -56,9 +73,11 @@ Below are descriptions of the fields of the template you should modify:
 [%header,cols="2*a"]
 |===
 | Field | Description
-| `persistence-gateway-creds` | 
-| `type` | 
+| `metadata: persistence-gateway-creds` | The internal identifier for this secret. This name must match the value of the `secretRef:name` field of your Kubernetes resource.
+| `metadata: namespace` | 
+| `type` | Specifies the type of Kubernetes key. Only `Opaque` is supported.
 |===
+
 
 [[k8-custom-resource-template]]
 === Kubernetes Custom Resource Template
@@ -70,7 +89,7 @@ apiVersion: rtf.mulesoft.com/v1
 kind: PersistenceGateway
 metadata:
 	name: persistent-gateway-config
-	namespace: rtf 
+	namespace: rtf
 spec:
 	objectStore:
     	backendDriver: postgresql
@@ -89,20 +108,19 @@ spec:
 			name: persistence-gateway-creds
 ----
 
-Below are descriptions of the fields of the template you should modify:
+Below are descriptions of the fields of the template you modify:
 
-[%header,cols="2*a"]
+[%header,cols="3*a"]
 |===
-| Field | Description
-| `backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported.
-| `maxBackendConnectionPool` |
-| `maxKeysPerStore` | 
-| `maxStores` | 
-| `replicas` | 
-| `resources/limits/cpu` | 
-| `resources/limits/memory` | 
-| `resources/requests/cpu` | 
-| `resources/requests/memory` |
+| Field | Description | Default Value
+| `backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | `postgresql`
+| `maxBackendConnectionPool` | | 10
+| `maxKeysPerStore` | | 5000
+| `maxStores` | | 5000
+| `replicas` | | 5000
+| `resources: limits: cpu` | | 1m
+| `resources: limits: memory` | | 200Mi
+| `resources: requests: cpu` |  | 0.5m
+| `resources: requests: memory` | | 100Mi
+| `secretRef: name:` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file.| `persistence-gateway-creds`
 |===
-
-
