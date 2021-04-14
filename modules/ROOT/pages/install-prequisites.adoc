@@ -50,6 +50,7 @@ After installing Runtime Fabric, perform additional configuration procedures as 
 * xref:runtime-fabric-logs.adoc[Set up Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Set up Alerting on Anypoint Runtime Fabric]
 * xref:using-opscenter.adoc[Access Ops Center on Anypoint Runtime Fabric]
+* xref:persistence-gateway.adoc#Configure-Persistence-Gateway[Configure Persistence Gateway]
 
 == Deploy an Application
 
