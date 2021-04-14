@@ -77,11 +77,11 @@ Use the example template below to create a Kubernetes secret. The Kubernetes clu
 ----
 apiVersion: v1
 data:
- persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==
+    persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==
 kind: Secret
 metadata:
-  name: persistence-gateway-creds
-  namespace: rtf
+    name: persistence-gateway-creds
+    namespace: rtf
 type: Opaque
 ----
 
@@ -105,24 +105,24 @@ Use the example template below to create a Kubernetes custom resource. This cust
 apiVersion: rtf.mulesoft.com/v1
 kind: PersistenceGateway
 metadata:
-	name: persistent-gateway-config
-	namespace: rtf
+    name: persistent-gateway-config
+    namespace: rtf
 spec:
-	objectStore:
-    	backendDriver: postgresql
-    	maxBackendConnectionPool: 10
-		maxKeysPerStore: 5000
-    	maxStores: 4
-    	replicas: 1
-		resources:
-			limits:
-				cpu: 1m
-        		memory: 200Mi
-			requests:
-				cpu: 0.5m
-				memory: 100Mi
-		secretRef:
-			name: persistence-gateway-creds
+    objectStore:
+    backendDriver: postgresql
+        maxBackendConnectionPool: 10
+        maxKeysPerStore: 5000
+        maxStores: 4
+        replicas: 1
+        resources:
+            limits:
+                cpu: 1m
+                memory: 200Mi
+            requests:
+                cpu: 0.5m
+                memory: 100Mi
+        secretRef:
+            name: persistence-gateway-creds
 ----
 
 Below are descriptions of the fields of the template you modify:
