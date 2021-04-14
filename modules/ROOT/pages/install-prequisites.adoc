@@ -13,6 +13,7 @@ Setting up Runtime Fabric occurs in the following steps:
 . xref:configure-alerting.adoc[Configure Alerting]
 . xref:associate-environments.adoc[Associate Runtime Fabric to an Environment]
 . xref:enable-inbound-traffic.adoc[Enable Inbound Traffic]
+. xref:persistence-gateway.adoc#Configure-Persistence-Gateway[Configure Persistence Gateway]
 
 
 == Review the System and Network requirements
