@@ -52,6 +52,22 @@ The standard URI for this string is `postgres://username:pass@host:port/database
 .. Modify other fields of the custome resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
 
+. Check the log of the Persistence Gateway pod to ensure it can communicate with the database:
++
+----
+kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -nrtf
+----
++
+The output of this command should be similar to the following:
++
+----
+2021/04/09 16:35:31 Connecting to PostgreSQL backend...
+2021/04/09 16:35:32 Starting watcher for /var/run/secrets/rtf-object-store/persistence-gateway-creds
+2021/04/09 16:35:32 Watching for changes on /var/run/secrets/rtf-object-store/persistence-gateway-creds
+2021/04/09 16:35:35 Succesfully connected to the PostgreSQL backend.
+192.168.2.101 - - [09/Apr/2021:16:35:55 +0000] "GET /api/v1/status/ready HTTP/1.1" 200 2 "" "kube-probe/1.18+"
+----
+
 [[k8-secret-template]]
 === Kubernetes Secret Template
 
