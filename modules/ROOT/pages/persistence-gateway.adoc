@@ -17,14 +17,10 @@ When an application using persistent object storage is deleted, Runtime Fabric d
 
 The following table lists the limits on the data stored by the Persistence Gateway:
 
-[%header,cols="3*a"]
+[%header,cols="2*a"]
 |===
-| Limit | Description | Default Value
-| Maximum TTL. | The amount of time data is stored in the Persistence Gateway  | 30 days
-| Maximum key length | | 256 characters
-| Maximum value length | | 10 MB
-| Maximum partitions per application | | 10
-| Maximum keys per partition | | 1000
+| Limit | Description
+| Maximum TTL. | The amount of time data is stored in the Persistence Gateway, which is set to 30days
 |===
 
 
@@ -77,7 +73,7 @@ Use the example template below to create a Kubernetes secret. The Kubernetes clu
 ----
 apiVersion: v1
 data:
-    persistence-gateway-creds: cG9zdGdyZXNxbDovL3Bvc3RncmVzOlRlc3RpbmdQb3N0Z3Jlc0BhdXRvbWF0aW9uLXRlc3RpbmctcnYuY2ZqcHFoeTZlYWhzLnVzLWVhc3QtMS5yZHMuYW1hem9uYXdzLmNvbTo1NDMyL1JURg==
+    persistence-gateway-creds: cG9zdGdyZXM6Ly90ZXN0VXNlcjp0ZXN0UGFzc0B0ZXN0SG9zdDp0ZXN0UG9ydC9kYXRhYmFzZW5hbWU=
 kind: Secret
 metadata:
     name: persistence-gateway-creds
@@ -110,10 +106,7 @@ metadata:
 spec:
   objectStore:
     backendDriver: postgresql
-    maxKeysPerStore: 5000
-    maxBackendConnectionPool: 10
-    maxStores: 4
-    replicas: 1
+    replicas: 2
     secretRef:
       name: "persistence-gateway-creds"
     resources:
@@ -131,16 +124,18 @@ Below are descriptions of the fields of the template you modify:
 |===
 | Field | Description | Default Value
 | `backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | `postgresql`
-| `maxBackendConnectionPool` | | 10
-| `maxKeysPerStore` | | 5000
-| `maxStores` | | 5000
-| `replicas` | | 5000
-| `resources: limits: cpu` | | 250m
-| `resources: limits: memory` | | 150Mi
-| `resources: requests: cpu` |  | 200m
-| `resources: requests: memory` | | 75Mi
-| `secretRef: name:` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file.| `persistence-gateway-creds`
+| `replicas` | Specifies the number of replicas for Persistence Gateway deployment. | 2
+| `resources.limits.cpu` | Specifies the cpu resource limits for the Persistence Gateway pods in | 250m
+| `resources.limits.memory` | Specifies the memory resource limits for the Persistence Gateway pods | 150Mi
+| `resources.requests.cpu` | Specifies the cpu resource requests for the Persistence Gateway pods | 200m
+| `resources.requests.memory` | Specifies the memory resource requests for the Persistence Gateway pods | 75Mi
+| `secretRef.name` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file.| `persistence-gateway-creds`
 |===
+
+[NOTE]
+====
+The default values of CPU and Memory resources should fit the general use case. But users can override these values to better fit their use case.
+====
 
 == See Also
 
