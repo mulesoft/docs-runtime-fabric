@@ -9,7 +9,7 @@ Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or late
 
 == Use Persistence Gateway in a Mule Application
 
-After Persistence Gateway is enabled, it is available when deploying to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
+After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
 When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in the Persistence Gateway.
 
@@ -27,7 +27,7 @@ The following table lists the limits on the data stored by the Persistence Gatew
 [Configure-Persistence-Gateway]
 == Configure Persistence Gateway
 
-To enable Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
+To configure Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
 
 === Prerequisties
 
@@ -87,15 +87,15 @@ kind: Secret
 type: Opaque
 ----
 
-Below are descriptions of the fields of the template you should modify:
+Modify the following fields based on your environment:
 
 [%header,cols="2*a"]
 |===
 | Field | Description
 | `metadata.name` | The internal identifier for this secret. This name must match the value of the `secretRef.name` field of your Kubernetes Custom Resource.
-| `metadata.namespace` | Kubernetes namespace under which the secret is created, the supported value is `rtf`.
-| `data.persistence-gateway-creds` | Base64 encoded backend connection string.
-| `type` | Specifies the type of Kubernetes key. Only `Opaque` is supported.
+| `metadata.namespace` | The Kubernetes namespace where the secret is created. The value of this field must be `rtf`.
+| `data.persistence-gateway-creds` | A base64-encoded backend connection string.
+| `type` | The type of Kubernetes key. Only `Opaque` is supported.
 |===
 
 
@@ -126,27 +126,27 @@ spec:
         memory: 75Mi
 ----
 
-Below are descriptions of the fields of the template you modify:
+Modify the following fields based on your environment:
 
 [%header,cols="3*a"]
 |===
 | Field | Description | Default Value
-| `kind` | Specifies the kind of Custom Resource. Supported value is `PersistenceGateway`. | PersistenceGateway
-| `metadata.name` | The internal identifier for this Custom Resource. The value for this filed should be `default`. | default
-| `metadata.namespace` | The namespace where the secret is applied, the supported value is `rtf`. | rtf
-| `spec.objectStore.backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | postgresql
-| `spec.objectStore.maxBackendConnectionPool` | Specifies the maximum number of open connections to the backend at any given time. | 20
-| `spec.objectStore.replicas` | Specifies the number of replicas for Persistence Gateway deployment. | 2
-| `spec.objectStore.resources.limits.cpu` | Specifies the cpu resource limits for the Persistence Gateway pods. | 250m
-| `spec.objectStore.resources.limits.memory` | Specifies the memory resource limits for the Persistence Gateway pods. | 150Mi
-| `spec.objectStore.resources.requests.cpu` | Specifies the cpu resource requests for the Persistence Gateway pods. | 200m
-| `spec.objectStore.resources.requests.memory` | Specifies the memory resource requests for the Persistence Gateway pods. | 75Mi
-| `spec.objectStore.secretRef.name` | Specifies the name of the persistence gateway credentials defined in the Kubernetes secret file. | persistence-gateway-creds
+| `kind` | The type of custom resource. The only supported value is `PersistenceGateway`. | PersistenceGateway
+| `metadata.name` | The internal identifier for this custom resource. The value for this field should be `default`. | default
+| `metadata.namespace` | The namespace where the secret is applied. The supported value is `rtf`. | rtf
+| `spec.objectStore.backendDriver` | The driver used by the data store. Only `postgresql` is supported. | postgresql
+| `spec.objectStore.maxBackendConnectionPool` | The maximum number of simultaneous open connections to the data store. | 20
+| `spec.objectStore.replicas` | The number of replicas of the Persistence Gateway. | 2
+| `spec.objectStore.resources.limits.cpu` | The CPU resource limits for the Persistence Gateway pods. | 250m
+| `spec.objectStore.resources.limits.memory` | The memory resource limits for the Persistence Gateway pods. | 150Mi
+| `spec.objectStore.resources.requests.cpu` | The CPU resource requests for the Persistence Gateway pods. | 200m
+| `spec.objectStore.resources.requests.memory` | The memory resource requests for the Persistence Gateway pods. | 75Mi
+| `spec.objectStore.secretRef.name` | The name of the Persistence Gateway credentials defined in the Kubernetes secret file. | persistence-gateway-creds
 |===
 
 [NOTE]
 ====
-The default CPU/Memory request and limit values are based on our internal testing with small number of deployed apps. Users can override these values as per their use case.
+The default CPU, memory, and limit values are based on a small number of deployed Mule application. Modify these values based on the requirements of your environment.
 ====
 
 == See Also
