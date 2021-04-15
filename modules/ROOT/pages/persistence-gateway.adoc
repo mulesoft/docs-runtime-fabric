@@ -113,6 +113,7 @@ metadata:
 spec:
   objectStore:
     backendDriver: postgresql
+    maxBackendConnectionPool: 20
     replicas: 2
     secretRef:
       name: persistence-gateway-creds
@@ -134,6 +135,7 @@ Below are descriptions of the fields of the template you modify:
 | `metadata.name` | The internal identifier for this Custom Resource. The value for this filed should be `default`. | default
 | `metadata.namespace` | The namespace where the secret is applied, the supported value is `rtf`. | rtf
 | `spec.objectStore.backendDriver` | Specifies the driver used by the data store. Only `postgresql` is supported. | postgresql
+| `spec.objectStore.maxBackendConnectionPool` | Specifies the maximum number of open connections to the backend at any given time. | 20
 | `spec.objectStore.replicas` | Specifies the number of replicas for Persistence Gateway deployment. | 2
 | `spec.objectStore.resources.limits.cpu` | Specifies the cpu resource limits for the Persistence Gateway pods. | 250m
 | `spec.objectStore.resources.limits.memory` | Specifies the memory resource limits for the Persistence Gateway pods. | 150Mi
