@@ -1,6 +1,6 @@
 = Persistence Gateway
 
-To store state across applications, Anypoint Runtime Fabric provides the Persistence Gateway. Persistence Gateway enables Mule applications deployed to a Mule runtime engine (Mule) to store and share data across replicas and application restarts.
+To store state across applications, Anypoint Runtime Fabric provides the Persistence Gateway. Persistence Gateway enables Mule applications deployed to a Mule runtime engine (Mule) to store and share data across Mule application replicas and application restarts.
 
 [NOTE]
 ====
@@ -9,7 +9,9 @@ Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or late
 
 == Use Persistence Gateway in a Mule Application
 
-After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
+After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. When configured, users can select *Use Persistent Object Storage* when deploying an application using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
+
+Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
 When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in the Persistence Gateway.
 
@@ -42,6 +44,7 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 The standard URI for this string is `postgres://username:pass@host:port/databasename`. However, the requirements for your database may be different.
 .. Copy the encoded string to the `persistence-gateway-creds:` field of `kubernetes-secret.yaml`. 
 .. Run `kubectl apply -f kubernetes-secret.yaml`.
+.. Verify that the pod containing the persistence gateway service can connect to the database and port.
 
 . Create a custom resource for your data store:
 .. Copy the custom resource template from <<k8-custom-resource-template>> to a file called `custom-resource.yaml`.
