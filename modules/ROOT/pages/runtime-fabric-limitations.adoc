@@ -15,7 +15,7 @@ The following information is important when installing, configuring, and managin
 Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
 | Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50. 
 | Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
-| Object Store Persistence | xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters. 
+| Object Store Persistence | To handle data persistence across Mule application replicas and restarts Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway]. Anypoint Runtime Fabric does not support using Object Store for data persistence. 
 |===
 
 == Internal Load Balancer Resource Allocation and Performance
