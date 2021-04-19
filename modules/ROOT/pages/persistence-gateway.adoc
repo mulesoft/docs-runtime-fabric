@@ -17,7 +17,7 @@ When an application using persistent object storage is deleted, Runtime Fabric d
 
 == Persistent Gateway Limits
 
-The following table lists the limits on the data stored by the Persistence Gateway:
+The following table lists the limits on the data stored by Persistence Gateway:
 
 [%header,cols="2*a"]
 |===
