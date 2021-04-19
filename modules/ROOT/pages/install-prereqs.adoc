@@ -141,6 +141,10 @@ The following table lists the ports that must be accessible on all nodes. These 
 | 61022-61024 | TCP | Installer agent ports
 |===
 
+==== Port Used by the Persistence Gateway
+
+The Persistent Gateway requires a Postgres-compliant database to store persistent data across Mule application replicas. Ensure that your Kubernetes cluster has access to this database and port. See xref:persistence-gateway.adoc[Persistence Gateway].
+
 ==== Network TCP and UDP Ports
 
 The following table lists all ports that must be open, along with the respective protocols used and the request origin and destination:

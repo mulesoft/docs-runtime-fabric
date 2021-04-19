@@ -23,6 +23,7 @@
  ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
  ** xref:upgrade-index.adoc[Upgrade Runtime Fabric on VMs / Bare Metal]
  ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric on VMs / Bare Metal]
+* xref:persistence-gateway.adoc[Persistence Gateway]
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]

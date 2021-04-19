@@ -13,6 +13,7 @@ Setting up Runtime Fabric occurs in the following steps:
 . xref:configure-alerting.adoc[Configure Alerting]
 . xref:associate-environments.adoc[Associate Runtime Fabric to an Environment]
 . xref:enable-inbound-traffic.adoc[Enable Inbound Traffic]
+. xref:persistence-gateway.adoc#Configure-Persistence-Gateway[Configure Persistence Gateway]
 
 
 == Review the System and Network requirements
@@ -49,6 +50,7 @@ After installing Runtime Fabric, perform additional configuration procedures as 
 * xref:runtime-fabric-logs.adoc[Set up Log Forwarding on Anypoint Runtime Fabric]
 * xref:configure-alerting.adoc[Set up Alerting on Anypoint Runtime Fabric]
 * xref:using-opscenter.adoc[Access Ops Center on Anypoint Runtime Fabric]
+* xref:persistence-gateway.adoc#Configure-Persistence-Gateway[Configure Persistence Gateway]
 
 == Deploy an Application
 
