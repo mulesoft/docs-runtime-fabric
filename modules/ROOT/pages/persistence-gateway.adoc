@@ -4,7 +4,7 @@ To store state across applications, Anypoint Runtime Fabric provides Persistence
 
 [NOTE]
 ====
-Persistence Gateway is supported on Anypoint Runtime Fabric, version 1.9 or later and Mule runtime engine, version 4.2.1 or later.
+Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mule runtime engine 4.2.1 or later.
 ====
 
 == Use Persistence Gateway in a Mule Application
