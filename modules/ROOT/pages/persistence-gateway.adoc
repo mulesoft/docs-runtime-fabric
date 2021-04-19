@@ -13,7 +13,7 @@ After Persistence Gateway is configured in Anypoint Runtime Fabric, it is availa
 
 Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
-When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in the Persistence Gateway.
+When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in Persistence Gateway.
 
 == Persistent Gateway Limits
 
