@@ -11,7 +11,7 @@ Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mul
 
 After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. When configured, users can select *Use Persistent Object Storage* when deploying an application using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
-Mule applications use the Object Store REST API to connect to the Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
+Mule applications use the Object Store REST API to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
 When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in Persistence Gateway.
 
@@ -52,7 +52,7 @@ The standard URI for this string is `postgres://username:pass@host:port/database
 .. Modify other fields of the custome resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
 
-. Check the log of the Persistence Gateway pod to ensure it can communicate with the database:
+. Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
 +
 ----
 kubectl get pods -n rtf
@@ -139,7 +139,7 @@ Modify the following fields based on your environment:
 | `metadata.namespace` | The namespace where the secret is applied. The supported value is `rtf`. | rtf
 | `spec.objectStore.backendDriver` | The driver used by the data store. Only `postgresql` is supported. | postgresql
 | `spec.objectStore.maxBackendConnectionPool` | The maximum number of simultaneous open connections to the data store. | 20
-| `spec.objectStore.replicas` | The number of replicas of the Persistence Gateway. | 2
+| `spec.objectStore.replicas` | The number of replicas of Persistence Gateway. | 2
 | `spec.objectStore.resources.limits.cpu` | The CPU resource limits for the Persistence Gateway pods. | 250m
 | `spec.objectStore.resources.limits.memory` | The memory resource limits for the Persistence Gateway pods. | 150Mi
 | `spec.objectStore.resources.requests.cpu` | The CPU resource requests for the Persistence Gateway pods. | 200m
