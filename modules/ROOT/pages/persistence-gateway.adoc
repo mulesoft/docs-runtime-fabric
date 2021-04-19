@@ -22,7 +22,7 @@ The following table lists the limits on the data stored by the Persistence Gatew
 [%header,cols="2*a"]
 |===
 | Limit | Description
-| Maximum TTL. | The amount of time data is stored in the Persistence Gateway, value is set to 30 days.
+| Maximum TTL. | The amount of time data is stored in Persistence Gateway, value is set to 30 days.
 |===
 
 
