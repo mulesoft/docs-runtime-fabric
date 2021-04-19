@@ -1,6 +1,6 @@
 = Persistence Gateway
 
-To store state across applications, Anypoint Runtime Fabric provides the Persistence Gateway. Persistence Gateway enables Mule applications deployed to a Mule runtime engine (Mule) to store and share data across Mule application replicas and application restarts.
+To store state across applications, Anypoint Runtime Fabric provides Persistence Gateway. Persistence Gateway enables Mule applications deployed to a Mule runtime engine (Mule) to store and share data across Mule application replicas and application restarts.
 
 [NOTE]
 ====
