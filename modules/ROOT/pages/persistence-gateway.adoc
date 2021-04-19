@@ -33,7 +33,7 @@ To configure Persistence Gateway, you must create a Kubernetes custom resource t
 
 === Prerequisties
 
-Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by the Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. 
+Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. 
 
 === Create a Kubernetes Secret and Kubernetes Custom Resource
 
