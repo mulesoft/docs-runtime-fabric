@@ -31,7 +31,7 @@ The following table lists the limits on the data stored by Persistence Gateway:
 
 To configure Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
 
-=== Prerequisties
+=== Prerequisites
 
 Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. 
 
@@ -149,7 +149,7 @@ Modify the following fields based on your environment:
 
 [NOTE]
 ====
-The default CPU, memory, and limit values are based on a small number of deployed Mule application. Modify these values based on the requirements of your environment.
+The default CPU, memory, and limit values are based on a small number of deployed Mule applications. Modify these values based on the requirements of your environment.
 ====
 
 == See Also
