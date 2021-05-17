@@ -13,7 +13,10 @@ After Persistence Gateway is configured in Anypoint Runtime Fabric, it is availa
 
 Mule applications use the Object Store REST API to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
-When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in Persistence Gateway.
+[NOTE]
+====
+After deleting an application, persistent data may not be deleted immediately. Runtime Fabric cleans persistence data every 60 minutes.
+====
 
 == Persistent Gateway Limits
 
@@ -33,7 +36,14 @@ To configure Persistence Gateway, you must create a Kubernetes custom resource t
 
 === Prerequisties
 
-Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. 
+Before enabling persistence gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with PostgresSQL 9 and above. The database user that the persistence gateway service uses to connect to the database must have write and update permissions.
+
+During configuration, the persistence gateway service creates the required database schema. Afterwards, when an application deployed to Anypoint Runtime Fabric is configured to use persistent object storage, the persistence gateway service writes the necessary rows to the dataabase.
+
+[NOTE]
+====
+Only plain text connections to the database are supported.
+====
 
 === Create a Kubernetes Secret and Kubernetes Custom Resource
 
@@ -44,6 +54,9 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 The standard URI for this string is `postgres://username:pass@host:port/databasename`. However, the requirements for your database may be different.
 .. Copy the encoded string to the `persistence-gateway-creds:` field of `kubernetes-secret.yaml`. 
 .. Run `kubectl apply -f kubernetes-secret.yaml`.
++
+If you are using Runtime Fabric on VMs / Bare Metal, this command must be performed on a controller node.
+
 .. Verify that the pod containing the persistence gateway service can connect to the database and port.
 
 . Create a custom resource for your data store:
@@ -51,6 +64,8 @@ The standard URI for this string is `postgres://username:pass@host:port/database
 .. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
 .. Modify other fields of the custome resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
++
+If you are using Runtime Fabric on VMs / Bare Metal, this command must be performed on a controller node.
 
 . Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
 +
