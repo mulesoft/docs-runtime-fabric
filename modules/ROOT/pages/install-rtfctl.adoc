@@ -20,7 +20,7 @@ Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtf
 The tasks in the section must be performed by an IT administrator.
 ====
 
-Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
+Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks.
 
 
 . Download the `rtfctl` command-line utility:
