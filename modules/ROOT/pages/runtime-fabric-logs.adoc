@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric generates log files for the following entities:
+Runtime Fabric generates log files for the following:
 
 * Deployed Mule applications
 * Deployed API proxies
@@ -308,12 +308,12 @@ Example output plugin configuration:
 .Datadog Configuration Parameters
 |===
 | Api Key | Description | Required | Default Value
-| Host | Host name of the remote Datadog server | Yes | http-intake.logs.datadoghq.com
+| Host | Host name of the remote Datadog server | Yes | `http-intake.logs.datadoghq.com`
 | Api Key | Datadog API key | Yes |
-| Compress | Compresses the payload in GZIP format, Datadog supports and recommends setting this to gzip. | No | gzip
-| Datadog Service | The human readable name for the service generating the logs. For example, runtime_fabric | No |
-| Datadog Source | A human readable name for the underlying technology of the service. For example, postgres or nginx | No |
-| Datadog Tags | Tags that gets assigned to the logs in Datadog | No |
+| Compress | Compresses the payload in GZIP format. Datadog supports and recommends setting this to `gzip`. | No | `gzip`
+| Datadog Service | The name of the service generating the logs. For example, `runtime_fabric` | No |
+| Datadog Source | The type of service. For example, `postgres` or `nginx` | No |
+| Datadog Tags | The tags assigned to the logs in Datadog | No |
 | TLS | Enables or disables TLS support. | No | Off
 |===
 
