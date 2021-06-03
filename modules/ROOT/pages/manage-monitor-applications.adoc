@@ -64,9 +64,6 @@ You can use the graph to explore your application network, identify problems, an
 
 [WARNING]
 ====
-
-* By default, Anypoint Visualizer is disabled when deploying an application to Mule runtime 4.x. 
-See xref:visualizer::setup.adoc#enable-header-injection[Enable Header Injection] for more information.
-* Due to the impact on performance, enabling Anypoint Visualizer for application deployments with less than 0.2 vCPU is 
+Due to the impact on performance, enabling Anypoint Visualizer for application deployments with less than 0.2 vCPU is 
 not supported.
 ====
