@@ -110,8 +110,7 @@ For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports loggi
 
 [TIP]
 --
-The following tutorials, written by the MuleSoft developer relations team, explain how to provision clusters on EKS, AKS, or GKE
-for installing Runtime Fabric on Self-Managed Kubernetes. These tutorials for provisioning clusters are intended as examples only and are not officially supported by MuleSoft.
+The following tutorials, written by the MuleSoft developer relations team, explain how to provision clusters on EKS, AKS, or GKE for installing Runtime Fabric on Self-Managed Kubernetes, with NGINX as an ingress controller. These tutorials for provisioning clusters are intended as examples only and are not officially supported by MuleSoft.
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service[Getting Started with Runtime Fabric on EKS^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service[Getting Started with Runtime Fabric on AKS^]
