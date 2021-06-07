@@ -142,8 +142,9 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 | `block_aws_metadata_svc` | A boolean variable that blocks the AWS metadata service on the host operating system. The default value is `false`. | `true`
 | `controllers` | The number of controller machines to provision. The default value is `3`. | `5`
 | `disable_selinux` | A boolean variable that disables/enables SELinux on the host operating system. The default value is `true` to disable SELinux.
-+
-If the host operating system is RHEL 8 do not set to `false` or installation will fail. | `true`
+{sp} +
+{sp} +
+If the host operating system is RHEL 8, do not set to `false` or installation will fail. | `true`
 | `enable_public_ips` | A boolean varaible that indicates if public IP addresses should be specified. The default value is `false`. | `true`
 | `existing_subnet_ids` | A list of existing subnet IDs within AWS. Required when installing on an existing network. The installer uses these subnets instead of creating a new one. |
 | `existing_vpc_id` | The VPC ID of an existing AWS Virtual Private Cloud (VPC). Required when installing on an existing VPC. The installer uses this VPC instead of creating a new one. |
