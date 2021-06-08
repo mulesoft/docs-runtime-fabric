@@ -14,17 +14,19 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 * Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal:
 
-** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric on VMs / Bare Metal installation. 
+** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric on VMs / Bare Metal installation.
 +
-For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination. 
+For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination.
 +
-For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that can be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
+For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that can be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric.
 ** Know the domain or domains to use for routing traffic to your applications.
 ** Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 
 * Be able to configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
 
 * You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
+
+* Runtime Fabric supports only one-way TLS (client to server) verification.
 
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
@@ -44,11 +46,11 @@ By default, the inbound load balancer runs on each controller node configured in
 
 *** *Shared Mode*
 
-*** *Dedicated Mode* 
+*** *Dedicated Mode*
 +
 Dedicated nodes are used in environments with high traffic demands. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] for additional information.
 +
-The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. 
+The number of replicas for inbound traffic is set to the number of controller nodes for *Shared Mode* or the number of dedicated internal load balancer nodes for *Dedicated Mode*. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution.
 +
 Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
 +
@@ -56,15 +58,15 @@ Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Lo
 ====
 When switching between shared and dedicated modes:
 
-* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or 
+* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or
 DNS resolution prior to making the change.
 
 * If you change from *Shared Mode* to *Dedicated Mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until the switch is completed to properly route inbound requests.
 
-* If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*. 
+* If you change from *Dedicated Mode* to *Shared Mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between *Dedicated Mode*, in which all node resources can be consumed, and *Shared Mode*.
 ====
 
-.. Specify the minimum number of cores to allocate for each controller node for the internal load balancer. 
+.. Specify the minimum number of cores to allocate for each controller node for the internal load balancer.
 +
 Note that Runtime Fabric on VMs / Bare Metal can use up to the maximum number shown if the cores are available. Transport Layer Security (TLS) termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer-memory-allocation[Internal Load Balancer Memory Allocation] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
 .. Specify the minimum memory to allocate for each controller node for the internal load balancer. Note that Runtime Fabric on VMs / Bare Metal can use up to the maximum amount shown if it is available.
@@ -103,7 +105,7 @@ You can configure a private key and public certificate for a TLS-enabled server 
 
 ** Option 1: *Upload PEM*
 +
-Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. 
+Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension.
 +
 With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options.
 +
@@ -180,7 +182,7 @@ Refer to xref:anypoint-security::index-policies.adoc[Anypoint Security Policies 
 
 . (Optional) Select Advanced Options
 +
-The following table describes additional configuration options you might need to set for your environment. In this 
+The following table describes additional configuration options you might need to set for your environment. In this
 case, *Source IP* refers to the client making the request.
 +
 [%header%autowidth.spread,cols="a,a"]
@@ -236,7 +238,7 @@ If a client exceeds this number, the exceeding requests are not read until the r
 
 *Default value*: 10 requests per client
 
-| *Source IP header name* and *enable proxy protocol* 
+| *Source IP header name* and *enable proxy protocol*
 | Configure the following values based on the applicable scenario:
 
 . Runtime Fabric on VMs / Bare Metal is not deployed behind a load balancer. +
@@ -250,7 +252,7 @@ These values should not be configured.
 *Source IP header name*: Blank +
 *Enable proxy protocol*: Checked
 . Runtime Fabric on VMs / Bare Metal is behind a non-AWS load balancer. +
- If Runtime Fabric on VMs / Bare Metal is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header. 
+ If Runtime Fabric on VMs / Bare Metal is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header.
 +
 HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
 +
@@ -262,7 +264,7 @@ HTTP messages not containing this header field will be rejected. Two common HTTP
 
 *Default value*: Blank and unchecked.
 
-|=== 
+|===
 +
 If you are using WebSockets:
 +
@@ -296,7 +298,7 @@ By default, the activity across all IPs addresses behind your endpoint is logged
 
 . Select *Save and Deploy* to deploy the internal load balancer.
 +
-The deployment can take up to a minute to complete. 
+The deployment can take up to a minute to complete.
 +
 If there are validation errors, an error message is returned. If the validation is successful, a message in green text is displayed at the bottom-right of the page indicating that the deployment request is accepted. You can view the deployment status at the beginning of the page.
 
@@ -314,13 +316,13 @@ curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443
 In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
 +
 ```
-curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14 
+curl -Lvk https://newapp.example-rtf.dev/ --resolve newapp.example-rtf.dev:443:192.168.64.14
 ```
 
 == Step 3: Configure an External Load Balancer
-After you enable inbound traffic, you must configure Runtime Fabric on VMs / Bare Metal to route incoming traffic to each enabled application for clients to send requests to deployed applications. 
+After you enable inbound traffic, you must configure Runtime Fabric on VMs / Bare Metal to route incoming traffic to each enabled application for clients to send requests to deployed applications.
 
-For HTTPS requests, you must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric on VMs / Bare Metal. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443. 
+For HTTPS requests, you must configure an external load balancer to load balance HTTPS traffic between each controller VM on Runtime Fabric on VMs / Bare Metal. Controller VMs are virtual machines dedicated to run the components that power Anypoint Runtime Fabric. Each controller VM runs a replica of the internal load balancer and is configured to listen on port 443.
 
 Provision the external TCP load balancer to route traffic to the Runtime Fabric on VMs / Bare Metal controller or dedicated nodes with the IPs identified during installation.
 
@@ -370,7 +372,7 @@ To update or delete TLS certificate information:
 . To add updated certificate information, select *Add certificate* and follow the instructions provided in Step 1 to configure a new certificate.
 
 == Upgrade Changes
-For Runtime Fabric versions 1.5.0 or later, the internal load balancer is upgraded during the Runtime Fabric component upgrade process. 
+For Runtime Fabric versions 1.5.0 or later, the internal load balancer is upgraded during the Runtime Fabric component upgrade process.
 
 == Generate a TLS Certificate for Testing
 For testing purposes, you can use the following steps to generate a certificate-key pair:
@@ -387,11 +389,11 @@ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365
 If you use a wildcard, for example, `*.example.com` in your common name, your application URLs use the following format: `{app-name}.example.com`. Otherwise, your application URLs use the format `example.com/{app-name}`.
 
 == TLS Certificate Expiration
-Certificates (both self-signed and CA-signed) always have an expiration date. By default, certificates expire one year after they are created. 
+Certificates (both self-signed and CA-signed) always have an expiration date. By default, certificates expire one year after they are created.
 
 The following warnings are displayed for certificates that will expire within 30 days to remind you to upload a new certificate-key pair before a certificate expires:
 
-* On the *Runtime Fabrics* page, if a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column. 
+* On the *Runtime Fabrics* page, if a TLS certificate will expire within the next 30 days,`TLS Expiring` is displayed in the *Inbound traffic* column.
 * On the *Runtime Fabrics* page, when a TLS certificate has expired, a warning is displayed in the *Inbound traffic* column for that Runtime Fabric instance.
 * On the *Inbound Traffic* tab, if a TLS certificate will expire within the next 30 days, a warning is displayed. When a TLS certificate has expired, the expiration date information includes a red warning in the *Certificate File* field.
 
