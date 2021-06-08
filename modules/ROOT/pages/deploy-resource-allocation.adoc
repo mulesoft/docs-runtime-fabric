@@ -87,7 +87,7 @@ The available heap memory is approximately half of the total memory allocated to
 
 == Application Startup Times
 
-The startup time for a Mule application is correlated to the total number of vCPU cores the application has access to. The following lists approximate startup times for a single proxy Mule application performing simple processing on a payload:
+The startup time for a Mule application is correlated to the total number of vCPU cores the application has access to. The following lists approximate startup times for a simple Mule proxy application performing processing on a payload:
 
 [%header,cols="2*a"]
 |===
