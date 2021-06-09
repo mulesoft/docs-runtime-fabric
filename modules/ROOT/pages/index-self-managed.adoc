@@ -12,7 +12,7 @@ MuleSoft is responsible for providing support for Runtime Fabric services, the M
 
 == Shared Responsibility
 
-The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft. 
+The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft.
 
 The following image illustrates different MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
@@ -107,3 +107,12 @@ For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports loggi
 == See Also
 
 * xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
+
+[TIP]
+--
+The following tutorials, written by the MuleSoft developer relations team, explain how to provision clusters on EKS, AKS, or GKE for installing Runtime Fabric on Self-Managed Kubernetes, with NGINX as an ingress controller. These tutorials for provisioning clusters are intended as examples only and are not officially supported by MuleSoft.
+
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service[Getting Started with Runtime Fabric on EKS^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service[Getting Started with Runtime Fabric on AKS^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine[Getting Started with Runtime Fabric on GKE^]
+--
