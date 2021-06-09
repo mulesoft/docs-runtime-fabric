@@ -308,7 +308,7 @@ Example output plugin configuration:
 .Datadog Configuration Parameters
 |===
 | Key | Description | Required | Default Value
-| Host | The host name of the remote Datadog server. | Yes | `http-intake.logs.datadoghq.com`
+| Host | The host name of the remote Datadog server. | Yes |
 | Api Key | The Datadog API key. | Yes |
 | Compress | Compresses the payload in GZIP format. Datadog recommends setting this to `gzip`. | No | `gzip`
 | Datadog Service | The name of the service generating the logs. For example, `runtime_fabric` | No |
