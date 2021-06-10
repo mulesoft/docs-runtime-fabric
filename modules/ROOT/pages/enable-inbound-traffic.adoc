@@ -26,8 +26,6 @@ For larger traffic loads, use dedicated nodes. The controller and dedicated node
 
 * You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
-* Runtime Fabric supports only one-way TLS (client to server) verification.
-
 == Step 1: Configure Inbound Traffic Using Anypoint Runtime Manager
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
