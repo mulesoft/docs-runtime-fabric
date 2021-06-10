@@ -314,7 +314,7 @@ Example output plugin configuration:
 | Datadog Service | The name of the service generating the logs. For example, `runtime_fabric` | No |
 | Datadog Source | The type of service. For example, `postgres` or `nginx` | No |
 | Datadog Tags | The tags assigned to the logs in Datadog. | No |
-| TLS | End-to-end secure communications protocol support. | No | Off
+| TLS | End-to-end secure communications protocol support.  DataDog does not support CA certificate files.| No | Off
 |===
 
 Example output plugin configuration:
