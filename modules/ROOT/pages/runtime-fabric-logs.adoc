@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric generates log files for the following entities:
+Runtime Fabric generates log files for the following:
 
 * Deployed Mule applications
 * Deployed API proxies
@@ -100,6 +100,8 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 ** Graylog Extended Log Format (GELF)
 ** Splunk
 ** CloudWatch
+** Syslog
+** Datadog
 
 === Limitations for External Log Forwarding
 
@@ -125,6 +127,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
 *** <<Cloud Watch, CloudWatch Configuration Parameters>>
 *** <<Syslog, Syslog Configuration Parameters>>
+*** <<Datadog, Datadog Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
@@ -297,6 +300,34 @@ Example output plugin configuration:
     Mode           udp
     Syslog_Format  rfc5424
     Syslog_Maxsize 2048
+```
+
+==== Datadog Configuration Parameters
+
+[%header%autowidth.spread,cols="a,a,a,a"]
+.Datadog Configuration Parameters
+|===
+| Key | Description | Required | Default Value
+| Host | The host name of the remote Datadog server. | Yes |
+| Api Key | The Datadog API key. | Yes |
+| Compress | Compresses the payload in GZIP format. Datadog recommends setting this to `gzip`. | No | `gzip`
+| Datadog Service | The name of the service generating the logs. For example, `runtime_fabric` | No |
+| Datadog Source | The type of service. For example, `postgres` or `nginx` | No |
+| Datadog Tags | The tags assigned to the logs in Datadog. | No |
+| TLS | End-to-end secure communications protocol support. DataDog does not support CA certificate files.| No | Off
+|===
+
+Example output plugin configuration:
+```
+[OUTPUT]
+    Name        datadog
+    Host        http-intake.logs.datadoghq.com
+    apikey      <your-datadog-api-key>
+    TLS         on
+    compress    gzip
+    dd_service  <your-app-service>
+    dd_source   <your-app-source>
+    dd_tags     team:logs,foo:bar
 ```
 
 ==== Configure Log Forwarding
