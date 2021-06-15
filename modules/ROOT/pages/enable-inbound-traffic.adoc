@@ -14,7 +14,7 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 * Be able to create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal:
 
-** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. These IP addresses may not be known until you complete the Runtime Fabric on VMs / Bare Metal installation.
+** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. You might not know these IP addresses until you complete the Runtime Fabric on VMs / Bare Metal installation.
 +
 For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination.
 +
