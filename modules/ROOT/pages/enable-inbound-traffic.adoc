@@ -250,7 +250,7 @@ These values should not be configured.
 *Source IP header name*: Blank +
 *Enable proxy protocol*: Checked
 . Runtime Fabric on VMs / Bare Metal is behind a non-AWS load balancer. +
- If Runtime Fabric on VMs / Bare Metal is deployed behind another type of load balancer, such as F5 or nginx, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header.
+ If Runtime Fabric on VMs / Bare Metal is deployed behind another type of load balancer, such as F5 or NGINX, the source IP address can be provided in an HTTP Header field. In this case, enter the HTTP header name that contains the source IP header.
 +
 HTTP messages not containing this header field will be rejected. Two common HTTP header names that are used for source IP addresses are:
 +
