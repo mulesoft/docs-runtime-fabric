@@ -16,7 +16,7 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 ** Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. You might not know these IP addresses until you complete the Runtime Fabric on VMs / Bare Metal installation.
 +
-For smaller traffic loads, controller nodes can be shared for cluster administration and inbound traffic TLS termination.
+For smaller traffic loads, you can share controller nodes for cluster administration and inbound traffic TLS termination.
 +
 For larger traffic loads, use dedicated nodes. The controller and dedicated nodes must have IP addresses that can be reached (are routable and allowed at applicable firewalls) by the external load balancer. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric.
 ** Know the domain or domains to use for routing traffic to your applications.
