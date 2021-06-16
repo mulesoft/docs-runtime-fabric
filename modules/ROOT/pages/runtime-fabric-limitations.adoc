@@ -5,16 +5,25 @@ endif::[]
 
 The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on VMs / Bare Metal.
 
+
+== Node, Environment, and Group Limitations
+
+The following table lists important limitations for configuring Runtime Fabric:
+
+[%header%autowidth.spread]
+=======
 [cols="2*a"]
-.Anypoint Runtime Fabric on VMs / Bare Metal resource allocation and performance
 |===
+| Component   | Limitation
 | Controller Nodes | The maximum number of controller nodes supported is 5.
 | Worker Nodes | The maximum number of worker nodes supported is 16.
 | Replicas Per Worker Node | The maximum number of replicas that can be deployed per worker node is 40.
-
+{sp} +
+{sp} +
 Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
 | Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
 | Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
+| Object Store Persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 | Object Store Persistence | To handle data persistence across Mule application replicas and restarts Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 |===
 
@@ -35,6 +44,15 @@ The internal load balancer runs on the controller nodes of Runtime Fabric on VMs
 type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
 Refer to xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
 
+== Operating System Limitations
+
+The following table lists known limitations for host operating systems in Runtime Fabric:
+[%header%autowidth.spread]
+|===
+| Operating System | Limitation
+| RHEL 8 | If the host operating system is RHEL 8, do not set the optional environment variable `disable_selinux` to `false` in the `fabric.tf` script, or installation will fail.
+|===
+
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
 == How Antivirus and DPI Software Impacts Runtime Fabric Functionality
 
@@ -45,3 +63,4 @@ A small number of third-party software that requires root access to the host, wh
 In the event that abnormal behavior is observed with the Runtime Fabric appliance, you may be asked to disable any running third-party software (including anti-virus or DPI software) to determine if it is the cause of the behavior. If disabling such software restores proper Runtime Fabric appliance functionality, this would demonstrate an implicit incompatibility between that software package and the Runtime Fabric appliance, and we would consider the support case resolved.
 
 If you are strictly required to run traditional security tools that interfere with certain components of the Runtime Fabric appliance, vendors and security experts that support Kubernetes are recommended to support you in meeting this requirement. Alternatively, you are encouraged to consider using Runtime Fabric on Self-Managed Kubernetes. Cloud platform vendors often add cloud-centric controls that are consistent with well-known security benchmarks, such as the https://www.cisecurity.org/benchmark/kubernetes/[Center for Internet Security (CIS) Kubernetes Benchmark^].
+
