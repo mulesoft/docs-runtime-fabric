@@ -53,7 +53,7 @@ To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, you:
 . Upgrade Runtime Fabric Components
 . Upgrade the `rtfctl` command-line utility
 
-Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
+Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric. When your nonproduction upgrade succeeds, perform these steps in your production environment.
 
 Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 
