@@ -13,14 +13,7 @@ When component upgrades are available, you apply the upgrades within Runtime Man
 
 Runtime Fabric component upgrades do not require adding a node.
 
-== About rtfctl Command-Line Utility Upgrades
-Use the `rtfctl` command-line utility  to manage Runtime Fabric and perform upgrades.
-
-You upgrade the `rtfctl` utility from the command line.
-
-It is important to use the most current version of the `rtfctl` command-line utility.
-
-== Determine the Component Versions You Are Using
+=== Determine the Component Versions You Are Using
 
 From your local workstation (configured with a kubeconfig file) or a support bastion, run the following command:
 ```
@@ -43,7 +36,14 @@ kubernetes   1.19.6-eks-49a6c0
 ```
 
 [NOTE]
-The Runtime Fabric component version that is in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, an "Upgrade to vx.x" message is displayed.
+The Runtime Fabric component version that is in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, Runtime Manager displays an *Upgrade to vx.x* message.
+
+== About rtfctl Command-Line Utility Upgrades
+Use the `rtfctl` command-line utility  to manage Runtime Fabric and perform upgrades.
+
+You upgrade the `rtfctl` utility from the command line.
+
+It is important to use the most current version of the `rtfctl` command-line utility.
 
 == Apply the Upgrades
 
