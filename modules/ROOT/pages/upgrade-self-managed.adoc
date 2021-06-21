@@ -39,11 +39,12 @@ kubernetes   1.19.6-eks-49a6c0
 The Runtime Fabric component version that is in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, Runtime Manager displays an *Upgrade to vx.x* message.
 
 == About rtfctl Command-Line Utility Upgrades
+
 Use the `rtfctl` command-line utility  to manage Runtime Fabric and perform upgrades.
 
 You upgrade the `rtfctl` utility from the command line.
 
-It is important to use the most current version of the `rtfctl` command-line utility.
+Always use the most current version of the `rtfctl` command-line utility to ensure you have the latest functionality.
 
 == Apply the Upgrades
 
