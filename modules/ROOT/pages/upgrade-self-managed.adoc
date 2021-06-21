@@ -15,7 +15,7 @@ Runtime Fabric component upgrades do not require adding a node.
 
 === Determine the Component Versions You Are Using
 
-From your local workstation (configured with a kubeconfig file) or a support bastion, run the following command:
+From a local workstation that has a Kubeconfig file and can access Kubernetes, or from a support bastion, run the following command:
 ```
 .rtfctl version
 ```
