@@ -9,12 +9,12 @@ Upgrading Runtime Fabric components means upgrading services that:
 - Provide load balancing
 - Log and forward metrics
 
-Runtime Fabric component upgrades are applied within Runtime Manager via a button that's visible when an upgrade is made available.
+When component upgrades are available, you apply the upgrades within Runtime Manager via a button that's visible when an upgrade is available.
 
 Runtime Fabric component upgrades do not require adding a node.
 
 == About rtfctl Command-Line Utility Upgrades
-The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
+Use the `rtfctl` command-line utility  to manage Runtime Fabric and perform upgrades.
 
 You upgrade the `rtfctl` utility from the command line.
 
@@ -27,7 +27,7 @@ From your local workstation (configured with a kubeconfig file) or a support bas
 .rtfctl version
 ```
 
-Output includes:
+The output looks something like this:
 
 * The `rtfctl` command-line utility version in the `rtfctl` field
 * The Runtime Fabric component version in the `agent` field
@@ -52,7 +52,7 @@ To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, you:
 . Upgrade Runtime Fabric Components
 . Upgrade the `rtfctl` command-line utility
 
-Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
+Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.
 
 Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 
@@ -72,7 +72,7 @@ After the upgrade, it’s normal for Runtime Fabric to report as “degraded” 
 
 === Upgrade the `rtfctl` Command-Line Utility
 
-. From your terminal run the following command: 
+. From your terminal, run the following command: 
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
