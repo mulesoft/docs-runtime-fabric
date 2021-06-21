@@ -3,6 +3,7 @@
 * xref:index-self-managed.adoc[On Self-Managed Kubernetes]
  ** xref:limitations-self.adoc[Limitations (On Self-Managed Kubernetes)]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
+ ** xref:upgrade-self-managed.adoc[Upgrade Runtime Fabric for Self-Managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration]
  ** xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic On Self-Managed Kuberenetes]
  ** xref:mule-core-usage-self.adoc[Monitor Mule Core Usage (On Self-Managed Kuberenetes)]
