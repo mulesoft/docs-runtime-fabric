@@ -4,7 +4,10 @@ To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, upgrade Runtime 
 
 == About Component Upgrades
 
-Runtime Fabric component upgrades involve the internal services that run within the appliance used to facilitate communication to the Anypoint control plane, provide load balancing, and log and metrics forwarding.
+Upgrading Runtime Fabric components means upgrading appliance-internal services that:
+- Facilitate communication to the control plane
+- Provide load balancing
+- Log and forward metrics
 
 Runtime Fabric component upgrades are applied within Runtime Manager via a button that's visible when an upgrade is made available.
 
