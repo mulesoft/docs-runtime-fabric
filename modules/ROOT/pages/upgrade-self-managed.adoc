@@ -5,6 +5,7 @@ To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, upgrade Runtime 
 == About Component Upgrades
 
 Upgrading Runtime Fabric components means upgrading services that:
+
 - Facilitate communication to the control plane
 - Provide load balancing
 - Log and forward metrics
@@ -15,7 +16,7 @@ Runtime Fabric component upgrades do not require adding a node.
 
 === Determine the Component Versions You Are Using
 
-From a local workstation that has a Kubeconfig file and can access Kubernetes, or from a support bastion, run the following command:
+From a local workstation that has a `Kubeconfig` file and can access Kubernetes, or from a support bastion, run the following command:
 ```
 .rtfctl version
 ```
@@ -36,13 +37,13 @@ kubernetes   1.19.6-eks-49a6c0
 ```
 
 [NOTE]
-The Runtime Fabric component version that is in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, Runtime Manager displays an *Upgrade to vx.x* message.
+The Runtime Fabric component version that is in use is also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, Runtime Manager displays an *Upgrade to vx.x* message.
 
 == About rtfctl Command-Line Utility Upgrades
 
 Use the `rtfctl` command-line utility  to manage Runtime Fabric and perform upgrades.
 
-You upgrade the `rtfctl` utility from the command line.
+Upgrade the `rtfctl` utility from the command line.
 
 Always use the most current version of the `rtfctl` command-line utility to ensure you have the latest functionality.
 
@@ -83,7 +84,7 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 ----
 chmod +x rtfctl
 ----
-. Alternatively, to update `rtfctl` in place as a user who owns the `rtfctl` binary, run
+. Alternatively, to update `rtfctl` in place as a user who owns the `rtfctl` binary, run:
 +
 ----
 `rtfctl update`
