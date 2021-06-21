@@ -23,7 +23,6 @@ From a local workstation that has a `Kubeconfig` file and can access Kubernetes,
 
 The output looks something like this:
 
-For example:
 ```
 $ ./rtfctl version
 COMPONENT    VERSION
