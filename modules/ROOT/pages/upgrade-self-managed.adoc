@@ -10,7 +10,7 @@ Runtime Fabric component upgrades are applied within Runtime Manager via a butto
 
 Runtime Fabric component upgrades do not require adding a node.
 
-== About `rtfctl` Command-Line Utility Upgrades
+== About rtfctl Command-Line Utility Upgrades
 The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
 
 You upgrade the `rtfctl` utility from the command line.
@@ -84,4 +84,3 @@ chmod +x rtfctl
 ----
 `rtfctl update`
 ----
-
