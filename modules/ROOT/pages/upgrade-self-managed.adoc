@@ -23,9 +23,6 @@ From a local workstation that has a `Kubeconfig` file and can access Kubernetes,
 
 The output looks something like this:
 
-* The `rtfctl` command-line utility version in the `rtfctl` field
-* The Runtime Fabric component version in the `agent` field
-
 For example:
 ```
 $ ./rtfctl version
@@ -35,6 +32,8 @@ agent        1.9.6
 kubernetes   1.19.6-eks-49a6c0
 
 ```
+* The `rtfctl` field shows the `rtfctl` command-line utility version.
+* The `agent` field shows the the Runtime Fabric component version.
 
 [NOTE]
 The Runtime Fabric component version that is in use is also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, Runtime Manager displays an *Upgrade to vx.x* message.
