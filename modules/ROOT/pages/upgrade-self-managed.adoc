@@ -29,8 +29,8 @@ COMPONENT    VERSION
 rtfctl       0.3.122
 agent        1.9.6
 kubernetes   1.19.6-eks-49a6c0
-
 ```
+
 * The `rtfctl` field shows the `rtfctl` command-line utility version.
 * The `agent` field shows the the Runtime Fabric component version.
 
