@@ -72,12 +72,12 @@ If you are upgrading the node configuration with updated install scripts, the la
 
 To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, perform the following tasks:
 
-. Upgrade Runtime Fabric components
-. Upgrade the `rtfctl` command-line utility
-. Upgrade the Runtime Fabric appliance
-. Update the Mule deployments running on Runtime Fabric to the latest patch version
+. Upgrade Runtime Fabric components.
+. Upgrade the `rtfctl` command-line utility.
+. Upgrade the Runtime Fabric appliance.
+. Update the Mule deployments running on Runtime Fabric to the latest patch version.
 . Verify that Runtime Fabric is healthy.
-. Run the upgrade
+. Run the upgrade.
 . Upgrade node configurations
 
 === Prerequisites
