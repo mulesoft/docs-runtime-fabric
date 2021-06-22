@@ -7,6 +7,7 @@ endif::[]
 To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, upgrade the Runtime Fabric appliance, components, the `rtfctl` command-line utility, and node configurations.
 
 == About Appliance Upgrades
+
 Appliance upgrades affect platform-layer components, which include Docker, Kubernetes, and the Ops Center. These platform-layer components are installed on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
 
 Appliance upgrades are applied using the `rtfctl` command-line utility.
@@ -14,39 +15,25 @@ Appliance upgrades are applied using the `rtfctl` command-line utility.
 Appliance upgrades are applied to each node, one at a time. This _rolling upgrade_  process minimizes the impact to running applications by ensuring that the minimum three controller nodes are still active, ensuring cluster availability. This process also ensures that at least one worker node's worth of unused resources are available to allow for applications to be redeployed as each worker node is taken offline to be upgraded.
 
 == About Component Upgrades
-Runtime Fabric component upgrades involve the internal services that run within the appliance used to facilitate communication to the Anypoint control plane, provide load balancing, and log and metrics forwarding.
 
-Runtime Fabric component upgrades are applied within Runtime Manager via a button that's visible when an upgrade is made available.
+Upgrading Runtime Fabric components means upgrading services that:
+
+* Facilitate communication to the control plane
+* Provide load balancing
+* Log and forward metrics
+
+When component upgrades are available, you apply the upgrades within Runtime Manager via a button that’s visible when an upgrade is available. Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] for information about the latest component versions.
 
 Runtime Fabric component upgrades do not require adding a node.
 
-== About `rtfctl` Command-line Utility Upgrades
-The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
-
-You upgrade the `rtfctl` utility from the command line.
-
-It is important to use the most current version of the `rtfctl` command-line utility.
-
-== About Node Configuration Upgrades
-Node configuration upgrades involve scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
-
-Node configuration upgrades are delivered as an updated install script version using the *Runtime Fabric downloads* page in Runtime Manager.
-
-[NOTE]
-If you are upgrading the node configuration with updated install scripts, the latest version of the appliance is automatically downloaded and used.
-
-== Determine the Component Versions You Are Using
+=== Determine the Component Versions You Are Using
 
 On a Runtime Fabric controller node, run the following command:
 ```
 /opt/anypoint/runtimefabric/rtfctl version
 ```
 
-Output includes:
-
-* The `rtfctl` command-line utility version in the `rtfctl` field
-* The appliance component version in the `appliance` field
-* The Runtime Fabric component version in the `agent` field
+The output looks something like this:
 
 For example:
 ```
@@ -57,13 +44,29 @@ agent        1.9.3
 appliance    1.1.1619717580-73a133d   
 kubernetes   1.16
 ```
+* The `rtfctl` command-line utility version in the `rtfctl` field
+* The appliance component version in the `appliance` field
+* The Runtime Fabric component version in the `agent` field
 
 [NOTE]
 The Runtime Fabric component and appliance versions that are in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, an "Upgrade to vx.x" message is displayed.
 
-== Determine the Most Recent Component Versions Available
+== About `rtfctl` Command-line Utility Upgrades
 
-Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] for information about the latest component versions.
+The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
+
+You upgrade the `rtfctl` utility from the command line.
+
+It is important to use the most current version of the `rtfctl` command-line utility.
+
+== About Node Configuration Upgrades
+
+Node configuration upgrades involve scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
+
+Node configuration upgrades are delivered as an updated install script version using the *Runtime Fabric downloads* page in Runtime Manager.
+
+[NOTE]
+If you are upgrading the node configuration with updated install scripts, the latest version of the appliance is automatically downloaded and used.
 
 == Apply the Upgrades
 
