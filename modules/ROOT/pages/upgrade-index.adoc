@@ -156,7 +156,7 @@ rtfctl appliance upgrade --url https://<upgrade-package-information>
 . Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
 . Repeat this for each application running on this Runtime Fabric instance.
 
-=== Verify That Runtime Fabric Is Healthy
+=== Verify That Runtime Fabric is Healthy
 
 . Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
 . Open a terminal to a Runtime Fabric controller node.
