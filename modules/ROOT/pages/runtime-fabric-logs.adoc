@@ -94,7 +94,6 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 
 * Anypoint Monitoring
 * Third-party logging solutions using log forwarding output plugins:
-
 ** Azure Log Analytics
 ** Elasticsearch
 ** Graylog Extended Log Format (GELF)
@@ -102,6 +101,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 ** CloudWatch
 ** Syslog
 ** Datadog
+* External services, using the `rsyslog` client service
 
 === Limitations for External Log Forwarding
 
