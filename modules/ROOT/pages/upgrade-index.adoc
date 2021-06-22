@@ -124,7 +124,7 @@ sudo chmod +x rtfctl
 
 === Upgrade the Runtime Fabric Appliance
 
-Before upgrading the Runtime Fabric appliance, verify the following: 
+=== Prerequisites  
 
 * Verify that `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
 * Verify you have root privileges.
@@ -157,6 +157,7 @@ rtfctl appliance upgrade --url https://<upgrade-package-information>
 . Repeat this for each application running on this Runtime Fabric instance.
 
 === Verify That Runtime Fabric Is Healthy
+
 . Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
 . Open a terminal to a Runtime Fabric controller node.
 . Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
