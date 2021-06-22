@@ -82,7 +82,7 @@ To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, perform the following task
 
 === Prerequisites
 
-* Before upgrading your production environment, perform the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.  
+* BBefore upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric. When your nonproduction upgrade succeeds, perform these steps in your production environment.  
 * Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 * Provision additional worker nodes as needed to maintain availability of applications when applying appliance upgrades.
 +
