@@ -200,7 +200,7 @@ sudo gravity status
 ----
 
 . Verify that the cluster status transitioned from *Updating* to *Active*. 
-. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings:
+. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, apply the HTTP proxy settings with:
 +
 ----
 sudo ./rtfctl apply http-proxy --confirm existing
@@ -216,7 +216,8 @@ Perform the following step on *every node* to ensure that system configurations 
 ----
 sudo ./rtfctl apply system-configuration --force
 ----
-. If you are using the EU control plane, use the following command:
++
+Or if you are using the EU control plane, run:
 +
 ----
 sudo ./rtfctl apply system-configuration --force --control-plane eu
@@ -234,7 +235,7 @@ Resumed upgrades are attached to your terminal session, so ensure that you have 
 cd /opt/anypoint/runtimefabric/installer
 ----
 +
-. Run the following command to resume the upgrade: 
+. To resume the upgradem, run: 
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
@@ -248,7 +249,7 @@ A specific sequence of steps is performed during an appliance (installer package
 
 Most errors are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
 
-Perform the following steps to resolve common errors:
+To resolve common errors, perform the following steps:
 
 . Use the `gravity plan` command to identify the phase where the upgrade paused: 
 +
@@ -284,7 +285,7 @@ The following example resumes an upgrade by restarting the `masters/node-1/drain
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --phase=/masters/node-1/drain --force --debug
 ----
-. Wait for the command to run. If the command does not terminate with an error, resume the upgrade by running the following command:
+. Wait for the command to run. If the command does not terminate with an error, resume the upgrade with:
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity plan resume
@@ -312,7 +313,7 @@ If you cannot resolve issues with an upgrade, you can roll back the upgrade usin
 
 === Automatic Rollback With a Single Command
 
-Enter the following command:
+Run:
 ```
 rtfctl appliance rollback
 ```
