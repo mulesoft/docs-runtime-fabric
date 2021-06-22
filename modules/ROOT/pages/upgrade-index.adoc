@@ -127,7 +127,7 @@ sudo chmod +x rtfctl
 === Prerequisites  
 
 * Verify that `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
-* Verify you have root privileges.
+* Verify that you have root privileges.
 * Verify that your environment includes:
 ** An internal load balancer running on at least three replicas, to maintain availability. On newer versions of Runtime Fabric, the internal load balancer runs on all controller nodes by default.
 ** An external load balancer configured to load-balance incoming requests to the controller nodes, with a health check configured for TCP port 443.
