@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-To upgrade Anypoint Runtime on VMs/Bare Metal, you need to upgrade the Runtime Fabric appliance, components, the `rtfctl` command-line utility, and node configurations.
+To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, upgrade the Runtime Fabric appliance, components, the `rtfctl` command-line utility, and node configurations.
 
 == About Appliance Upgrades
 Appliance upgrades affect platform-layer components, which include Docker, Kubernetes, and the Ops Center. These platform-layer components are installed on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
