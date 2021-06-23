@@ -1,4 +1,4 @@
-= Runtime Fabric Runtime Patch Updates 
+= Mule Runtime Patch Updates for Runtime Fabric 
 
 The following provides important information about Mule runtime engine patch updates for Runtime Fabric.
 
