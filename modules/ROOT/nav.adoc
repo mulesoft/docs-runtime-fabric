@@ -31,6 +31,7 @@
  ** xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
  ** xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
  ** xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
+ ** xref:runtime-patch-updates.adoc[Runtime Fabric Runtime Patch Updates]
  ** xref:app-versioning.adoc[Application Versioning]
  ** xref:app-to-app-requests.adoc[Application-to-Application Requests]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy an API Proxy to Anypoint Runtime Fabric]
