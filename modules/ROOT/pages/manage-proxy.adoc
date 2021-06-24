@@ -33,7 +33,9 @@ The password must be URL encoded.
 * *<8080>*: The host port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: 
 +
-`sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy`
+-----
+sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
+-----
 +
 The output should match the value expected.
 
