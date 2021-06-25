@@ -36,24 +36,16 @@ Before updating apps in the production environment, update them in the sandbox e
 To update an app to the latest date patch:
 
 . In the Runtime Manager left menu, click *Applications*.
-. Click the *Update Available* tab.
-. Click in the *Status* column for the app to display the details pane on the right.
-. Click the *Manage Application* button to display the *Settings* page for the app.
+. Under *Deployment Target*, from the *Runtime version* menu, select the new version.
 +
-If the app requires an update, *Update available* appears in the *Runtime version* menu:
-+
-[add RTF screenshot]
-. Select the latest version from the *Runtime version* menu.
-+
+image::rtf-runtime-select-version.png[The new runtime version is selected]
 Although the version number of the update might be the same as the installed version, a later date identifies the update:
 +
-[add RTF screenshot]
+image::rtf-runtime-select-latest-version.png[The latest runtime version indicated by the date]
 . If you want to see details about the version, click the *Read release notes* link.
 . Click the *Apply Changes* button to update the app. 
 +
 Runtime Fabric updates the app with the version you selected and displays a message indicating success or failure.
-+
-If the app update was successful, the app no longer appears in the *Update Available* tab on the *Applications* page.
 . Re-deploy your application.
 +
 Mule deployments on Runtime Fabric are not automatically patched. You must re-deploy your applications to apply the latest date-patch updates.
