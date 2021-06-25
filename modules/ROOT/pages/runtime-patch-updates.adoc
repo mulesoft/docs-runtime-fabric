@@ -27,7 +27,7 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 . Beginning on the third full full week of the month, you must select the latest date patch version of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
 [NOTE]
-If needed, you can redeploy an application using an older runtime version. However, if you make any subsequent changes to that application, you must update its runtime version. 
+If needed, you can redeploy an application using an older runtime version. However, if you make any subsequent changes to that application, you must update its runtime version to the latest release. 
 
 == Update a Single App to the Latest Runtime Patch Release
 
