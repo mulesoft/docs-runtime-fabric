@@ -11,8 +11,6 @@ The following information is important when installing, configuring, and managin
 The following table lists important limitations for configuring Runtime Fabric:
 
 [%header%autowidth.spread]
-=======
-[cols="2*a"]
 |===
 | Component   | Limitation
 | Controller Nodes | The maximum number of controller nodes supported is 5.
