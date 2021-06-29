@@ -15,19 +15,19 @@ Here's an example version number, including the patch date:
 
 `4.3.0:20210101`
 
-The monthly patches update applications only to the latest date patch for the patch version.
+The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 They do not change the runtime version.
 
 == Runtime Fabric Runtime Patch Update Schedule 
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
 
-. On the first full week of the month, you have access to new versions of updated Mule runtimes.
-. During the next two weeks, you can redeploy your applications using the newer runtime versions to validate its behavior. This is known as a grace period.
-. Beginning on the third full full week of the month, you must select the latest date patch version of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
+. On the first full week of the month, you have access to new date-patches of updated Mule runtimes.
+. During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a grace period.
+. Beginning on the third full full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
 [NOTE]
-During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch version, and make any subsequent changes to that application, you may be required to update its date-patch version to a later release.
+During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you may be required to update its date-patch version to a later release.
 
 == Update a Single App to the Latest Runtime Patch Release
 
