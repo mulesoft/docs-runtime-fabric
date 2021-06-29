@@ -4,7 +4,7 @@ The following provides important information about Mule runtime engine patch upd
 
 == Monthly Date-Patch Updates 
 
-Once per month, MuleSoft releases a _date-patch update_,  which includes backward-compatible bug fixes to address any issues discovered in Mule runtime engine.
+Once per month, MuleSoft releases a _date-patch update_, which includes backward-compatible bug fixes to address any issues discovered in Mule runtime engine.
 The monthly date-patch update might include security patches if the scheduled date is within the security SLA.
 
 The format of the version number for these updates is:
@@ -51,5 +51,4 @@ Runtime Fabric updates the app with the version you selected and displays a mess
 Mule deployments on Runtime Fabric are not automatically patched. You must re-deploy your applications to apply the latest date-patch updates.
 
 == See Also
-* Link to Best Practices with Mule Patching[]
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
