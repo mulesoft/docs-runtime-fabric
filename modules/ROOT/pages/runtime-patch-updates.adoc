@@ -34,7 +34,7 @@ Before updating apps in the production environment, update them in the sandbox e
 
 To update an app to the latest date patch:
 
-. In the Runtime Manager left menu, click *Applications*.
+. In the Runtime Manager navigation menu, click *Applications*.
 . Under *Deployment Target*, from the *Runtime version* list, select the version tagged `new`:
 +
 image::rtf-runtime-select-version.png[The new runtime version is selected]
