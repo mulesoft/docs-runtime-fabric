@@ -16,7 +16,7 @@ Here's an example version number, including the patch date:
 `4.3.0:20210101`
 
 The monthly patches update applications only to the latest date patch for the patch version.
-They do not change the patch version number.
+They do not change the runtime version.
 
 == Runtime Fabric Runtime Patch Update Schedule 
 
