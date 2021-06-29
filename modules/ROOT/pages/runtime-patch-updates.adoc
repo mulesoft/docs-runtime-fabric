@@ -1,6 +1,6 @@
 = Mule Runtime Patch Updates for Runtime Fabric 
 
-The following provides important information about Mule runtime engine patch updates for Runtime Fabric.
+The following provides important information about Mule runtime engine patch updates for Anypoint Runtime Fabric.
 
 == Monthly Date-Patch Updates 
 
@@ -21,12 +21,12 @@ The monthly patches update applications only to the latest date-patch. They do n
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
 
-. On the first full week of the month, you have access to new date-patches of updated Mule runtimes.
-. During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a grace period.
+. On the first full week of the month, you have access to new date-patches of updated Mule runtime instances.
+. During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.
 . Beginning on the third full full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
 [NOTE]
-During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you may be required to update its date-patch version to a later release.
+During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you might be required to update its date-patch version to a later release.
 
 == Update a Single App to the Latest Runtime Patch Release
 
@@ -35,19 +35,19 @@ Before updating apps in the production environment, update them in the sandbox e
 To update an app to the latest date patch:
 
 . In the Runtime Manager left menu, click *Applications*.
-. Under *Deployment Target*, from the *Runtime version* list, select the version tagged `new`.
+. Under *Deployment Target*, from the *Runtime version* list, select the version tagged `new`:
 +
 image::rtf-runtime-select-version.png[The new runtime version is selected]
 Although the version number of the update might be the same as the installed version, a later date identifies the update:
 +
 image::rtf-runtime-select-latest-version.png[The latest runtime version indicated by the date]
 . If you want to see details about the version, click the *Read release notes* link.
-. Click the *Apply Changes* button to update the app. 
+. Click *Apply Changes* to update the app. 
 +
 Runtime Fabric updates the app with the version you selected and displays a message indicating success or failure.
-. Re-deploy your application.
+. Redeploy your application.
 +
-Mule deployments on Runtime Fabric are not automatically patched. You must re-deploy your applications to apply the latest date-patch updates.
+Mule deployments on Runtime Fabric are not automatically patched. You must redeploy your applications to apply the latest date-patch updates.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
