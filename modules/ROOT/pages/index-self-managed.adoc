@@ -61,7 +61,7 @@ Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is p
 
 [IMPORTANT]
 ====
-Only versions 1.16 through 1.18 of Kubernetes are supported.
+Runtime Fabric on Self-Managed Kubernetes supports Kubernetes versions 1.17 through 1.19.
 ====
 
 === Nodes and Resources
