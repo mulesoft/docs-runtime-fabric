@@ -41,8 +41,8 @@ For example:
 COMPONENT    VERSION                  
 rtfctl       0.3.122           
 agent        1.9.3                    
-appliance    1.1.1619717580-73a133d   
-kubernetes   1.16
+appliance    1.1.1719717580-73a133d   
+kubernetes   1.17
 ```
 * The `rtfctl` command-line utility version in the `rtfctl` field
 * The appliance component version in the `appliance` field
