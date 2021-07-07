@@ -1,6 +1,6 @@
 = Persistence Gateway
 
-To store state across applications, Anypoint Runtime Fabric provides Persistence Gateway. Persistence Gateway enables Mule applications deployed to a Mule runtime engine (Mule) to store and share data across Mule application replicas and application restarts.
+Anypoint Runtime Fabric provides Persistence Gateway, which enables Mule applications deployed to a Mule runtime engine to store and share data across application replicas and restarts.
 
 [NOTE]
 ====
@@ -11,7 +11,7 @@ Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mul
 
 After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. When configured, users can select *Use Persistent Object Storage* when deploying an application using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
-Mule applications use the Object Store REST API to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
+Mule applications use the Object Store v2 REST API via the Mule Object Store Connector to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
 When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in Persistence Gateway.
 
@@ -49,7 +49,7 @@ The standard URI for this string is `postgres://username:pass@host:port/database
 . Create a custom resource for your data store:
 .. Copy the custom resource template from <<k8-custom-resource-template>> to a file called `custom-resource.yaml`.
 .. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
-.. Modify other fields of the custome resource template as required for your environment.
+.. Modify other fields of the custom resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
 
 . Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
