@@ -68,10 +68,11 @@ JVM Heap Memory is also displayed in Anypoint Monitoring.
 
 The dashboards are divided into the following categories:
 
-* *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing
-you to filter by specific VM.
 * *Applications* shows metrics on all the replicas for an application deployment. Filters include the
 environment ID the application is deployed in, and the application deployment name.
+* *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing
+you to filter by specific VM.
+* *CPU Core Usage* shows CPU usage for Mule applications only.
 * *Ingress* shows metrics on all the replicas running the internal load balancer.
 * *Pods*  shows metrics on each individual service running within the Runtime Fabric cluster. Filters
 include the `namespace` and `podname`, allowing you to specify the specific service to monitor.
