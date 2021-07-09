@@ -44,7 +44,7 @@ To check core CPU usage:
 . From the dashboard dropdown list, select *CPU Core Usage*. 
 . From the time picker, select your date range. 
 +
-You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage, look for the highest number within the selected time frame. 
+You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage against licensing, look for the highest number within the selected time frame. 
 
 == vCPU Allocation
 
