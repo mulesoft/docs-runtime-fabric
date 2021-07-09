@@ -34,9 +34,17 @@ You are only required to purchase a license for the compute power you utilize. T
 
 === MuleSoft License Compliance
 
-Customers are responsible for ensuring they remain compliant with their MuleSoft licensing. To remain compliant, ensure that you do not exceed the amount of CPU cores provided by your MuleSoft license at any given time.
+You are responsible for ensuring you remain compliant with your MuleSoft licensing. To remain compliant, ensure that you do not exceed the amount of CPU cores provided by your MuleSoft license at any given time.
 
-To ensure that you remain compliant with your MuleSoft license when using Runtime Fabric on VMs / Bare Metal, use the dasboard in Ops Center to determine your vCPU usage across all Mule applications.
+When using Runtime Fabric on VMs/Bare Metal, use the Core CPU Usage dashboard in Ops Center. This dashboard shows core CPU usage for Mule applications only, so it can help you determine your core CPU usage across all your Mule applications.
+
+To check core CPU usage:
+
+. From the Ops Center navigation, click *Monitoring*.
+. From the dashboard dropdown list, select *CPU Core Usage*. 
+. From the time picker, select your date range. 
++
+You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage, look for the highest number within the selected time frame. 
 
 == vCPU Allocation
 
