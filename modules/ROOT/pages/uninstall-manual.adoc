@@ -32,7 +32,7 @@ sudo rm /etc/systemd/system/install-teleport-*.service /etc/systemd/system/insta
 ----
 . Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
 . Restart the VM.
-. Repeat steps 3 through 7 on each Controller VM.
+. Repeat steps 2 through 7 on each Controller VM.
 
 [NOTE]
 If the previous steps fail, a manual cleanup can be performed by running the following commands sequentially:
