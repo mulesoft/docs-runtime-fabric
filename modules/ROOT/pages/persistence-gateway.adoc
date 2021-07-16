@@ -41,7 +41,7 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 .. Copy the Kubernetes secret template from <<k8-secret-template>> to a file called `kubernetes-secret.yaml`.
 .. Create a base64-encoded connection string. 
 +
-The standard URI for this string is `postgres://username:password:port/databasename`. However, the requirements for your database may be different.
+The standard URI for this string is `postgres://username:password@host:port/databasename`. However, the requirements for your database may be different.
 +
 [NOTE]
 Do not use the "@" character in the username. 
