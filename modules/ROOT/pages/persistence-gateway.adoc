@@ -41,7 +41,11 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 .. Copy the Kubernetes secret template from <<k8-secret-template>> to a file called `kubernetes-secret.yaml`.
 .. Create a base64-encoded connection string. 
 +
-The standard URI for this string is `postgres://username:pass@host:port/databasename`. However, the requirements for your database may be different.
+The standard URI for this string is `postgres://username:password:port/databasename`. However, the requirements for your database may be different.
++
+[NOTE]
+Do not use the "@" character in the username. 
+
 .. Copy the encoded string to the `persistence-gateway-creds:` field of `kubernetes-secret.yaml`. 
 .. Run `kubectl apply -f kubernetes-secret.yaml`.
 .. Verify that the pod containing the persistence gateway service can connect to the database and port.
