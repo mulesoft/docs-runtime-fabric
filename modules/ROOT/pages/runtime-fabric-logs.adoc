@@ -66,8 +66,8 @@ To change the log level for an application, use Anypoint Runtime Manager to conf
 . In the *New Key* field, add the `logging.level.<PACKAGE>=LEVEL` property.
 . In the *New Value* field, add the desired log level. 
 +
-For example, if you add the
-`logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is emitted from `HttpMessageLogger`.
+For example, if you add the key
+`logging.level.org.mule.service.http.impl.service.HttpMessageLogger` and a value of `DEBUG`, `DEBUG` level log information is emitted from `HttpMessageLogger`.
 
 == View Logs from an Application
 
