@@ -63,7 +63,7 @@ To change the log level for an application, use Anypoint Runtime Manager to conf
 . In Runtime Manager, navigate to an application's *Settings* page.
 . Click the *Properties* tab. 
 . Select *Table View*. 
-. In the *New Key* field, add the `logging.level.<PACKAGE>=LEVEL` property.
+. In the *New Key* field, add the `logging.level.<PACKAGE>` property.
 . In the *New Value* field, add the desired log level. 
 +
 For example, if you add the key
