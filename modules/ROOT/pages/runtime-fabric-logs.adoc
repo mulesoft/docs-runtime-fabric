@@ -56,11 +56,16 @@ Runtime Fabric enables you to specify the severity level of messages that are wr
 
 Log levels are specified per Mule application or API proxy during deployment.
 
-You can use Anypoint Runtime Manager to change the application log level by configuring the following property:
-```
-logging.level.<PACKAGE>=LEVEL
-```
-For example, if you use Runtime Manager to add the
+== Change the Application Log Level
+
+To change the log level for an application, use Anypoint Runtime Manager to configure the `logging.level.<PACKAGE>=LEVEL` property.
+
+. In Runtime Manager, navigate to an application's *Settings* page.
+. Click the *Properties* tab. 
+. Select *Table View*. 
+. In the *New Key* field, add the `logging.level.<PACKAGE>=LEVEL` property.
++
+For example, if you add the
 `logging.level.org.mule.service.http.impl.service.HttpMessageLogger=DEBUG` property, `DEBUG` level log information is emitted from `HttpMessageLogger`.
 
 == View Logs from an Application
