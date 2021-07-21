@@ -60,7 +60,7 @@ A minimum of two replicas is required for high availability.
 +
 [WARNING]
 ====
-This can cause some replicas in the deployment to remain in *Pending* status if there are unsufficient worker nodes or resources available on the worker nodes needed to deploy each replica. The deployment status will transition to *Running* after all replicas are deployed on different worker nodes.
+If there is an insufficient number of worker nodes, or resources available on the worker nodes, needed to deploy each replica, some replicas in the deployment remain in *Pending* status. The deployment status will transition to *Running* after all replicas are deployed on different worker nodes.
 ====
 
 . To enable data persistence across Mule application replicas and restarts, select *Use Persistent Object Storage*.
