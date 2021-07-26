@@ -30,7 +30,7 @@ The physical CPU core capacity often differs from the MuleSoft license core amou
 
 You cannot purchase fractional MuleSoft license core amounts. For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores.
 
-You are only required to purchase a license for the compute power you utilize. The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal or the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center.
+The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal to the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center.
 
 === MuleSoft License Compliance
 
