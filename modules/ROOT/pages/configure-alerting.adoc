@@ -83,7 +83,7 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 | `ingress` |
 | `kubernetes_node` | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
 | `muleapps` |
-| `network_connectivity` |
+| `net_connectivity` |
 | `network_params` |
 | `uptime` | 
 
