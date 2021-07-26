@@ -29,6 +29,7 @@
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
+ ** xref:protect-app-properties.adoc[Protect Application Property Values]
  ** xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
  ** xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
  ** xref:runtime-patch-updates.adoc[Mule Runtime Patch Updates for Runtime Fabric]
