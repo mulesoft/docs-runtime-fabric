@@ -42,6 +42,10 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 ----
 kubectl create secret generic persistence-gateway-creds -n rtf --from-literal=persistence-gateway-creds='postgres://username:pass@host:port/databasename'
 ----
++
+[NOTE]
+Do not use the "@" character in the database username. 
+
 . Create a custom resource for your data store:
 .. Copy the custom resource template from <<k8-custom-resource-template>> to a file called `custom-resource.yaml`.
 .. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
