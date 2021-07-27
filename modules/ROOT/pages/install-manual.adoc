@@ -17,7 +17,7 @@ Ensure the following criteria have been met before beginning the installation:
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * The necessary hardware has been provisioned as outlined in the xref:install-sys-reqs.adoc[system requirements] page.
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
-* The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
+* The necessary ports are open and hostnames are added to allowlists as described on the xref:install-port-reqs.adoc[network requirements] page.
 
 === Operations Performed During Installation
 
@@ -68,7 +68,7 @@ Second, become familiar with the variables needed for installation. The value fo
 |===
 
 [NOTE]
-To help identify the block device paths to your disks, use the `lsblk` command on the VMs. 
+To help identify the block device paths to your disks, use the `lsblk` command on the VMs.
 To base64 encode the Mule license key, use the `base64 -w0 license.lic` command. (`base64 -b0 license.lic` in OSX)
 
 ==== Optional Variables
@@ -104,7 +104,7 @@ RTF_MULE_LICENSE='' \
 ----
 +
 . Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
-. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. 
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM.
 .. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
 .. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
 +
