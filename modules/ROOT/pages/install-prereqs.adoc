@@ -15,7 +15,7 @@ If your infrastructure does not meet the minimum hardware, operating system, and
 
 *  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
-** Network team to whitelist ports and configure proxy settings
+** Network team to add ports to allowlists and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
 Working with these teams in your organization ensures a successful installation and avoids performance and density issues.
@@ -186,11 +186,11 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
-=== Port IP Addresses and Hostnames to Whitelist
+=== Port IP Addresses and Hostnames to Add to the Allowlist
 
-In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
+In your network configuration, you must add the hostnames and ports of Anypoint Platform components and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your whitelists to allow communication between
+The following table lists the ports and hostnames to add to your allowlists to allow communication between
 Anypoint Runtime Fabric and Anypoint Platform.
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
