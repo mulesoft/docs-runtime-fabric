@@ -58,11 +58,11 @@ The following table lists the UDP ports that must be accessible to Runtime Fabri
 | 8472 | UDP | Internal | Overlay networking
 |===
 
-== Port IPs and Hostnames to Whitelist
+== Port IPs and Hostnames to Add to the Allowlist
 
-In your network configuration, you may need to whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
+In your network configuration, you may need to add the hostnames and ports of Anypoint Platform components and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
+The following table lists the ports and hostnames to add to your allowlists to allow communication between Runtime Fabric and Anypoint Platform:
 
 [%header%autowidth.spread]
 |===
