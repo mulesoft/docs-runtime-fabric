@@ -10,7 +10,7 @@ After deploying an application you can test the inbound traffic for deployed app
 
 The full deployment process includes these steps:
 
-. Set the application and deployment target
+. Select the application and deployment target
 . Configure the deployment target
 . Select an endpoint for the application (Runtime Fabric on Self-Managed Kubernetes only)
 . Specify the network configuration for the application (Runtime Fabric on VMs/Bare Metal only)
@@ -28,7 +28,7 @@ Before deploying an application to Anypoint Runtime Fabric, perform the followin
 * Check if you require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
 * To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric on Self-Managed Kubernetes] or xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)]
 
-=== Set The Application and Deployment Target
+=== Select the Application and Deployment Target
 
 . Sign into https://anypoint.mulesoft.com[Anypoint Platform].
 . Navigate to *Runtime Manager*, and select *Applications*.
@@ -57,7 +57,7 @@ If you do not select a domain, the application is deployed to an empty domain.
 . From the *Host* drop-down list, select a host for the application. 
 . In the *Path* field, add a URL path to the application’s endpoint.
 
-=== Specify The Network Configuration for the Application (for VMs/Bare Metal)
+=== Specify the Network Configuration for the Application (for VMs/Bare Metal)
 
 If you are using Runtime Fabric on VMs/Bare Metal, you must xref:enable-inbound-traffic.adoc[enable inbound traffic manually]. 
 
