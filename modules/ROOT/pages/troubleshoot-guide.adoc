@@ -43,7 +43,7 @@ https://runtime-fabric.s3.amazonaws.com ✔
 tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 ```
 
-If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-port-reqs#port-ips-and-hostnames-to-add-to-the-allowlist[Port IPs and Hostnames to Add to the Allowlist].
+If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-port-reqs#port-ip-addresses-and-hostnames-to-add-to-the-allowlist[Port IP Addresses and Hostnames to Add to the Allowlist].
 
 
 == Troubleshoot Chrony Synchronization Check Failure
