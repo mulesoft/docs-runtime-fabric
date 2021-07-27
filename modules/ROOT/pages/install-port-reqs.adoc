@@ -7,7 +7,7 @@ Anypoint Runtime Fabric requires specific network and port configuration for ins
 
 == Bandwidth Requirements
 
-A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet. 
+A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Anypoint Runtime Fabric, and minimum of 100 MBps for outbound connectivity to the Internet.
 [NOTE]
 Cross-regional deployments of Anypoint Runtime Fabric are not supported. Network latency between each node can cause problems with cluster health.
 
@@ -61,13 +61,13 @@ The following table lists all ports that must be open, along with the respective
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
-== Port IPs and Hostnames to Whitelist
+== Port IPs and Hostnames to Add to the Allowlist
 
-In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components 
-and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download 
+In your network configuration, you must add the hostnames and ports of Anypoint Platform components
+and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download
 dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your whitelists to allow communication between 
+The following table lists the ports and hostnames to add to your allowlists to allow communication between
 Anypoint Runtime Fabric and Anypoint Platform.
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
@@ -109,7 +109,7 @@ Because the following endpoints use mutual TLS authentication to establish the c
 
 == Required Network Settings
 
-In addition to the previous port requirements, the following network settings are required to operate 
+In addition to the previous port requirements, the following network settings are required to operate
 Anypoint Runtime Fabric:
 
 * A subnet with enough IP addresses allotable to add additional VMs to Anypoint Runtime Fabric.
