@@ -181,6 +181,7 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
+[[port-ip-addresses-and-hostnames-to-add-to-the-allowlist]]
 === Port IP Addresses and Hostnames to Add to the Allowlist
 
 In your network configuration, you must add the hostnames and ports of Anypoint Platform components and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
