@@ -15,7 +15,7 @@ If your infrastructure does not meet the minimum hardware, operating system, and
 
 *  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
-** Network team to add ports to allowlists ports and configure proxy settings
+** Network team to add ports to allowlists and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
 Working with these teams in your organization ensures a successful installation and avoids performance and density issues.
