@@ -53,9 +53,17 @@ Available domains and paths for an application come from the ingress resource te
 [NOTE]
 If you do not select a domain, the application is deployed to an empty domain.
 
-. Select the *Ingress* tab.
+. Select *Ingress*.
 . From the *Host* drop-down list, select a host for the application. 
-. In the *Path* field, add a URL path to the application’s endpoint.
+. If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
+. In the *Path* field, add a URL path to the application’s endpoint. 
++
+If your template uses regex to rewrite the host path, review xref:custom-ingress-configuration.adoc#using-regex-in-application-paths[Using Regex in Application Paths].
++
+[Add screenshot]
++
+. To preview the endpoint, click the generated preview link. 
+. To add additional endpoints, click *+ Add Endpoints*.
 
 === Specify the Network Configuration for the Application (for VMs/Bare Metal)
 
