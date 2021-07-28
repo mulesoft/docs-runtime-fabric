@@ -17,7 +17,7 @@ Ensure the following criteria have been met before beginning the installation:
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * The necessary hardware has been provisioned as outlined in the xref:install-sys-reqs.adoc[system requirements] page.
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
-* The necessary ports are open and hostnames are whitelisted as described on the xref:install-port-reqs.adoc[network requirements] page.
+* The necessary ports are open and hostnames are added to allowlists as described on the xref:install-port-reqs.adoc[network requirements] page.
 
 == Base64 Encode your Mule License Key
 
@@ -178,7 +178,7 @@ When the installation completes successfully, the file `/opt/anypoint/runtimefab
 
 If the `forground` parameter was passed when running the `init.sh` script, the install logs will output on the terminal. Otherwise to view the progress during the installation, you can tail the output log on each VM:
 
-. 
+.
 . Open another shell (or SSH session) to the VM.
 . Tail the output log, located at `/var/log/rtf-init.log`
 +
