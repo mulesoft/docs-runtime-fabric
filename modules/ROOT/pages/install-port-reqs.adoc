@@ -58,11 +58,11 @@ The following table lists the ports that must be accessible when installing Anyp
 | 4242 | TCP | Internal | Bandwidth checker
 |===
 
-== Port IPs and Hostnames to Whitelist
+== Port IPs and Hostnames to Add to the Allowlist
 
-In your network, you may need to whitelist the hostnames and ports of various parts of the Anypoint Platform to allow Anypoint Runtime Fabric to communicate with the MuleSoft-managed online Anypoint Platform APIs and services, and to download dependencies during installation or upgrades.
+In your network, you may need to add the hostnames and ports of various parts of the Anypoint Platform to allowlists to enable Anypoint Runtime Fabric to communicate with the MuleSoft-managed online Anypoint Platform APIs and services, and to download dependencies during installation or upgrades.
 
-These tables show you the ports and hostnames to add to your whitelists to allow communication between Runtime Fabric and Anypoint Platform:
+These tables show you the ports and hostnames to add to your allowlists to allow communication between Runtime Fabric and Anypoint Platform:
 
 [%header%autowidth.spread]
 |===
