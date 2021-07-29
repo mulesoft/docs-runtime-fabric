@@ -44,7 +44,7 @@
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:manage-proxy-self.adoc[Manage Proxies on Runtime Fabric on Self-Managed Kubernetes]
  ** xref:manage-proxy.adoc[Manage Proxies on Runtime Fabric on VMs / Bare Metal]
- ** xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
+ ** xref:manage-secure-properties.adoc[Manage Secure Properties with rtfctl]
  ** xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform]
  ** xref:manage-nodes.adoc[Add or Remove a Node from Runtime Fabric on VMs / Bare Metal]
  ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
