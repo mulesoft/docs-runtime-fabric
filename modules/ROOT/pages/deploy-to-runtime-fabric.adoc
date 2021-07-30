@@ -12,7 +12,8 @@ The full deployment process includes these steps:
 
 . Select the application and deployment target
 . Configure the deployment target
-. Select an endpoint for the application (Runtime Fabric on Self-Managed Kubernetes only)
+. Configure a Public Endpoint for the Application (for Self-Managed Kubernetes)
+ (Runtime Fabric on Self-Managed Kubernetes only)
 . Specify the network configuration for the application (Runtime Fabric on VMs/Bare Metal only)
 . Set up replication
 . Configure and Protect Application Properties
@@ -46,24 +47,26 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
-=== Select An Endpoint for the Application (for Self-Managed Kubernetes)
+=== Configure a Public Endpoint for the Application (for Self-Managed Kubernetes)
 
 Available domains and paths for an application come from the ingress resource template configured by your Runtime Fabric administrator. Refer to xref:custom-ingress-configuration.adoc[Use Custom Ingress Resource Templates in Runtime Fabric on Self-Managed Kubernetes] for more information. 
 
 [NOTE]
 If you do not select a domain, the application is deployed to an empty domain.
 
-. Select *Ingress*.
-. From the *Host* drop-down list, select a host for the application. 
-. If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
-. In the *Path* field, add a URL path to the application’s endpoint. 
-+
 If your template uses regex to rewrite the host path, review xref:custom-ingress-configuration.adoc#using-regex-in-application-paths[Using Regex in Application Paths].
+
+. Select *Ingress*.
+. From the *Host* drop-down list, select a host for the application.
+. If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
 +
-[Add screenshot]
+The *Subdomain* field is only available if the hostname uses a wildcard.
+. In the *Path* field, add a URL path to the application’s endpoint.
 +
-. To preview the endpoint, click the generated preview link. 
-. To add additional endpoints, click *+ Add Endpoints*.
+image::rtf-ingress-endpoint.png[A host and path are set for the application's endpoint]
+
+. To preview the endpoint, click the generated preview link.
+. To add additional endpoints, click *+ Add Endpoint*.
 
 === Specify the Network Configuration for the Application (for VMs/Bare Metal)
 
