@@ -37,6 +37,18 @@ sudo ./rtfctl get secure-properties -n <environment_id>
 
 You can access secure properties from inside your Mule application using `${my.property.name}`.
 
+== Remove Secure Properties
+
+. Log into a controller node where `rtfctl` is installed. 
+. Run the following command to remove a secure property from the Runtime Fabric in a specific namespace:
++
+----
+sudo ./rtfctl delete secure-property <my_key> -n <namespace>
+----
++
+* *<my_key>*: the key used in the Mule application to reference the secure property.
+**<namespace>*: the namespace in which the secure property applies.
+
 == See Also
 
 * xref:install-rtfctl.adoc[Install rtfctl]
