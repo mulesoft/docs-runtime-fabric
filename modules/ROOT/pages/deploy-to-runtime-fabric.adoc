@@ -16,7 +16,7 @@ The full deployment process includes these steps:
  (Runtime Fabric on Self-Managed Kubernetes only)
 . Specify the network configuration for the application (Runtime Fabric on VMs/Bare Metal only)
 . Set up replication
-. Configure and Protect Application Properties
+. Configure Application Properties
 . Deploy the application
 
 === Prerequisites
@@ -125,9 +125,9 @@ If there is an insufficient number of worker nodes or resources available on the
 +
 If needed, review xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
 
-=== Configure and Protect Application Properties
+=== Configure Application Properties
 
-Runtime Fabric supports protecting application property values so that the property name is visible in Anypoint Runtime Manager, but the value is not displayed or retrievable by any user.
+Use Runtime Manager to configure any application property values, such as specifying the environment or setting passwords and usernames. 
 
 Runtime Fabric resolves the property at runtime without exposing the sensitive information.
 
@@ -135,10 +135,7 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 . Click *Table view*.
 . In the *New Key* field, add a property to protect. 
 . In the *New Value* field, add a value.
-. Click *Protect* and then click *Protect value* to confirm.
 . Add additional properties as needed.
-
-For more information, refer to xref:protect-app-properties.adoc[Protect Application Property Values in Runtime Fabric].
 
 === Deploy the Application
 
