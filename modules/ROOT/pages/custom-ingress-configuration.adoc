@@ -61,7 +61,7 @@ This template is specific to Nginx as the ingress controller. The final configur
 --
   kind: Ingress
   metadata:
-    name: example-com
+    name: example-rtf-ingress
     namespace: rtf  #<1>                           
   spec:
     ingressClassName: rtf-nginx  #<2> 
