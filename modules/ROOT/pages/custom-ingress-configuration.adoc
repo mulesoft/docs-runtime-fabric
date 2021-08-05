@@ -172,7 +172,7 @@ To configure ingress, complete the following tasks:
 
 === Create an Ingress Resource Template and Apply It in the Cluster
 
-Use one of the xref:example-ingress-resource-template[example templates] to create an ingress resource. 
+Use one of the xref:example-ingress-resource-templates[example templates] to create an ingress resource. 
 
 . Copy the example template into a new file and modify it according to the notes. 
 . Include a `.yaml` extension in the file name. 
