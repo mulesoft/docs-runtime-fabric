@@ -59,23 +59,27 @@ This template is specific to Nginx as the ingress controller. The final configur
 
 [source,yaml]
 --
-kind: Ingress
-metadata:
-  name: example-com
-  namespace: rtf   #<1>                           
-spec:
-  ingressClassName: rtf-nginx   #<2> 
-  rules:
-  - hosts: app-name.example.com   #<3>
-    http:
-      paths:    #<4>
-      - pathType: Prefix
-        Path: “/”
-        backend:    #<5>
-          service:
-            name: service
-            port:
-              number: 80
+  kind: Ingress
+  metadata:
+    name: example-com
+    namespace: rtf  #<1>                           
+  spec:
+    ingressClassName: rtf-nginx  #<2> 
+    tls:  #<3>
+    - hosts:
+        - app-name.example.com
+      secretName: example-tls
+    rules:
+    - hosts: app-name.example.com  #<4>
+      http:
+        paths:  #<5>
+        - pathType: Prefix
+          path: “/”
+          backend:  #<6>
+            service:
+              name: service-name
+              port:
+                name: service-port
 --
 
 Note the following about this example:
@@ -86,11 +90,13 @@ Note the following about this example:
 +
 This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an `ingressClassName` value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
 
-<3> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application.
+<3> TLS is optional.
 
-<4> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
+<4> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application.
 
-<5>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+<5> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
+
+<6>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
 === networking.k8s.io/v1beta1
 
