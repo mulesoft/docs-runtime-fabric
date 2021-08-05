@@ -30,7 +30,7 @@ Using custom ingress resource templates in Runtime Fabric enables you to take ad
 
 The following diagram provides an overview of how to use ingress resource templates in Runtime Fabric:
 
-image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric]
+image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric,80%]
 
 . An IT administrator creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller’s documentation and adjust your annotations accordingly. 
 . The IT admin applies the template using `kubectl apply` commands.
@@ -218,7 +218,7 @@ Deploying a Mule application is a larger process, but the following provides an 
 The *Subdomain* field is only available if the hostname uses a wildcard.
 . In the *Path* field, add a URL path to the application’s endpoint:
 +
-image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint]
+image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint,80%]
 
 . To preview the endpoint, click the generated preview link. 
 +
@@ -229,9 +229,16 @@ If the path uses a regex, you might need to manually modify the endpoint URL in 
 
 == Existing Ingress Configurations Translated on Upgrade 
 
-When you upgrade to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. You don’t need to perform any manual steps unless you plan to create a new ingress resource after upgrading.
+When you upgrade to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review the table below to determine if any action is required after you upgrade.
 
-TBA: Build a table enumerating all scenarios for the pre-existing config → upgrade template creation.
+[%header%autowidth.spread]
+|===
+|Runtime Fabric Pre-upgrade |Runtime Fabric Upgraded |Action Required |TLS Support
+|No domains configured and no ingress-ConfigMap applied |Generated template will contain `*` for hosts and will include `/app-name` in the path |Edit the `host` field in the generated template to provide a valid host/domain for deploying applications in Runtime Manager|No TLS section added by default 
+|No domains configured, but a valid ingress-ConfigMap applied |Generated template will contain `*` for hosts and will contain the path and annotations from the previous ingress-ConfigMap |Edit the `host` field in the generated template to provide a valid host/domain for deploying applications in Runtime Manager | No TLS section added by default
+|Valid domains configured, but no ingress-ConfigMap applied |Generated templates will contain one host per domain per template and will include `/app-name` in the path for each template |No immediate action required, unless the domains use `https://`; in this case, configure a TLS secret in the template corresponding to the  HTTPS domain |For domains that have `https://`, the template corresponding to that domain will have a TLS section without a secret attribute
+|Valid domains configured and a valid ingress-ConfigMap applied |Generated templates will contain one host per domain per template and will include all the paths and annotations from the previous ingress-ConfigMap |No immediate action required, unless the domains use `https://`; in this case, configure a TLS secret in the template corresponding to the HTTPS domain |For domains that have `https://`, the template corresponding to that domain will have a TLS section without a secret attribute
+|===
 
 == Troubleshooting Ingress Issues
 
