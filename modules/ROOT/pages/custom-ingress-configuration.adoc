@@ -92,7 +92,8 @@ This is how Runtime Fabric recognizes the object as a template. A template that 
 
 <3> TLS is optional.
 
-<4> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application.
+<4> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+
 
 <5> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
 
