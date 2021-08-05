@@ -1,77 +1,370 @@
-= Define a Custom Ingress Configuration
-
-[NOTE]
-====
-The tasks outlined in this topic must be performed by an IT administrator.
-====
-
-Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the `ingressClassName`.
-
-The template file is a Kubernetes ConfigMap file. After customizing the template, use the `rtfctl apply ingress-configmap` command to apply the custom Ingress configuration to your Kubernetes cluster.
-
-If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric defaults to a standard ingress resource definition. Depending on your ingress controller, this resource definition may not work. In this case, you must apply a custom ConfigMap using the template.
-
-== How Ingress Resources are Generated
-
-When deploying a Mule application to Runtime Fabric on Self-Managed Kubernetes, the Runtime Fabric agent generates a service and ingress resource for that application. The Runtime Fabric agent creates these Kubernetes resources in a namespace that corresponds to the Anypoint Environment ID used when deploying the Mule application.
-
-By default, each application deployment has its own service and ingress resources. 
-
-In Runtime Fabric v1.8.50 and later, annotations and labels can be added to the generated Service resources. These changes persist for the lifecycle of those resources.
-
-The generated ingress resources can be modified by using the ingress template. If further customization is required, follow best practices for disabling Ingress resource generation and managing the Ingress resources separately. To disable ingress resource generation, uncheck the *Enable inbound requests* option under the *Ingress* tab when deploying a Mule application in Anypoint Runtime Manager.
+= Configure Ingress for Runtime Fabric on Self-Managed Kubernetes
 
 [IMPORTANT]
 ====
-On Google Kubernetes Engine (GKE), the ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or use another ingress controller if this behavior is undesirable. See link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+This content refers to configuring ingress on Runtime Fabric for versions 1.10 and later. Refer to the documentation for versions 1.8 or 1.9 for previous ingress configuration instructions.
+==== 
+
+Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, `ingressClassName`, and HTTP and HTTPs rules. 
+
+If you do not apply an ingress resource template for an application, you can’t add ingress endpoints when you deploy it.  
+
+[IMPORTANT]
+====
+The ingress controller included with Google Kubernetes Engine (GKE) provisions a separate HTTP load balancer per application by default. Refer to https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[Default Ingress Controller Behavior with Runtime Fabric on GKE^] for more information.
+
+AWS Application Load Balancers have similar behavior unless you use the group.name annotation. Refer to https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html[Application load balancing on Amazon EKS^] for details. 
 ====
 
-== Procedure
+== Benefits of Custom Ingress Resource Templates
 
-. Copy the following into a text file:
-+
-----
-apiVersion: v1
-kind: ConfigMap
+Using custom ingress resource templates in Runtime Fabric enables you to take advantage of native Kubernetes ingress configuration functionality, including support for: 
+
+* Multiple ingress configurations per application
+* Multiple ingress controllers within the same Runtime Fabric instance
+* TLS and HTTPs configuration
+* Custom URL naming
+* URL parameter placeholders
+
+== How Ingress Resources Templates Work in Runtime Fabric
+
+The following diagram provides an overview of how to use ingress resource templates in Runtime Fabric:
+
+image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric]
+
+. An IT administrator creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller’s documentation and adjust your annotations accordingly. 
+. The IT admin applies the template using `kubectl apply` commands.
+. From the applied template, Runtime Fabric creates placeholder URI domains and propagates the ingress configuration in Anypoint Runtime Manager as a template for all application deployments.
+. A Mule application developer uses Runtime Manager to configure an application for deployment by selecting an available host, an optional subdomain, and a path combination, as specified in the ingress template. 
+. Runtime Fabric receives the application deployment request and uses the ingress configurations from the template to create a corresponding ingress object in the cluster.
+
+== Example Ingress Resource Templates
+
+The following examples illustrate how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress resource template. 
+
+Use the API version appropriate to your Kubernetes version:
+
+* Kubernetes v1.19 or later: 
+** networking.k8s.io/v1 
+** networking.k8s.io/v1beta1 
+*Kubernetes v1.14 through v1.18: 
+** only networking.k8s.io/v1beta1  
+
+=== networking.k8s.io/v1
+
+[source,yaml]
+--
+apiVersion: networking.k8s.io/v1 
+kind: Ingress
 metadata:
-  name: ingress-config
-  namespace: rtf
-data:
-  ingress.annotations: |
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: <name>
-  ingress.spec: |
-    ingressClassName: <name>
-    rules.http.paths.path: /${APP_PATH}
+  name: example-rtf-ingress
+  namespace: rtf  #<1>
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1  #<2>
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    environment: environment-id
+    business-group: business-group-id
+spec:
+  ingressClassName: rtf-nginx  #<3>
+  tls:  #<4>
+  - hosts:
+      - app-name.example.com
+    secretName: demo-tls
+  rules:
+  - host: app-name.example.com
+    http:
+      paths:  #<5>
+      - pathType: ImplementationSpecific
+        path: /app-name/(.*)  #<6><7>
+        backend:   #<8>
+          service:
+            name: service
+            port:
+              number: 80
+--
+
+Note the following about this example:
+
+<1>  The template must use the `rtf` namespace.
+
+<2>  The rewrite annotation is specific to Nginx as the ingress controller. The final version of the template varies depending on the controller you use.
+
+<3>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`. 
++
+This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-`` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an ingressClassName value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
+
+<4> TLS is optional. 
+
+<5> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
+
+<6> To ensure that each endpoint name is unique, use the `app-name` placeholder in the host or path (if there is not a wildcard in the subdomain). 
+
+<7>  Use of regex varies depending on your ingress controller. If you use a regex in `path`, as shown in this example, Runtime Manager displays the entire path with regex. In this case, manually modify the URL preview URL in your browser to remove the regex. 
+
+<8>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+
+
+=== networking.k8s.io/v1beta1
+
+[source,yaml]
+--
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress-template
+  namespace: rtf #<1>
+  annotations:
+    kubernetes.io/ingress.class: rtf-nginx #<2>
+  rules:
+  - host: app-name.example.com
+    http:
+      Paths: #<3>
+      - path: /
+        pathType: 
+        Backend: #<4>
+          serviceName: service
+          servicePort: 80
+--
+
+Note the following about this example:
+
+<1>  The template must use the `rtf` namespace.
+
+<2>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`. 
++
+This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-`` prefix in `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an ingressClassName value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
+
+<3> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
+
+<4>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+
+=== Template Placeholders 
+
+Replace the following placeholders in the appropriate location. Placeholders must be lowercase.
+
+[%header%autowidth.spread]
+|===
+|Name of Placeholder |Location |Example Value 
+|`app-name`      |`path`, `host`, `annotation` a|
+
+[source,yaml]
+----
+http:
+ paths:
+ - pathType: ImplementationSpecific
+   path: /app-name/(.*)
 ----
 
-. Edit the text file as required.
-+
-All changes should be made under the `data` section of this file. Do not modify any other sections of the template. The configuration options you can customize are:
-+
-[%header%autowidth.spread,cols="a,a"]
+|`business-group-id` |`path`, `host`, `annotation` a|
+
+[source,yaml]
+----
+labels:
+  business: 
+  business-group-id
+----
+
+|`environment-id` |`path`, `host`, `annotation` a|
+
+[source,yaml]
+----
+labels:
+  environment: 
+  environment-id
+----
+     
 |===
-| Element | Description
-| `ingress.annotations` | Annotations defined in this section are added to the `annotations` section of every ingress resource created for a Mule application. Define each annotation on a new line. Annotations defined in the template are default Kubernetes annotations that you can override, if required.
-|`ingress.spec` | Used to configure the resource `spec` paramaters
-| `ingressClassName` (optional) | Specifies the class name used in the Ingress resource created for a Mule application.
 
-`ingressClassName` is supported only on Kubernetes version 1.18 and higher. Some ingress controllers require you to define `ingressClassName` using annotations. If you are using Kubernetes version 1.17 or lower, specify `<ingress-class-name>` using ingress.annotations. Use only one of these methods for defining `ingressClassName` based on the version of Kubernetes you are using. Do not use both methods in the same file.
-| `rules.http.paths.path` | Specifies the `path` value used in the `http rules` section of the Ingress resource.
+== Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
-Generally, this value corresponds to the public URL of a Mule application shown in the application URL preview. To allow this value to be configured dynamically during deployment, use `/$(APP_PATH)` as a placeholder.
-|===
+To configure ingress, complete the following tasks:
 
-. Run `rtfctl apply ingress-configmap <custom-template-file>`, using the file you just created as the value for `custom-template-file`.
+. Create an ingress resource template and apply it in the cluster.
+. Configure a public endpoint for a Mule application deployment.
 
-After running this command, `rtfctl` validates the template file you provided and performs the following:
+=== Create an Ingress Resource Template and Apply It in the Cluster
 
-* Creates the ConfigMap file in the `rtf` namespace. Any errors are written to stdout.
-* Schedules a job to validate the ingress resource generated from the ConfigMap in the template file.
-* Waits until the job completes to output the status and relevant logs. `rtfctl` displays the status to stdout.
+Use one of the xref:example-ingress-resource-template[example templates] to create an ingress resource. 
 
-== See Also
+. Copy the example template into a new file and modify it according to the notes. 
+. Include a `.yaml` extension in the file name. 
+. To apply an ingress template, log in to a Kubernetes workstation and run:
++
+`kubectl apply -f <TEMPLATE_FILENAME.yaml>`
 
-* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
-* xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
-* xref:enable-inbound-traffic-self.adoc[Configure Domains and Inbound Traffic (On Self-Managed Kuberenetes)]
+If there is an issue in the template, Kubernetes `api-server` returns an error and the command fails. 
+
+After you apply a template successfully, you can view it with:
+
+`kubectl describe ingress [Ingress Name] -n rtf`
+
+=== Configure a Public Endpoint for a Mule Application Deployment 
+
+You configure public endpoints for an application when you’re ready to deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
+
+You can also use this procedure to deploy a test application to validate your ingress resource template.
+ 
+[NOTE]
+====
+Deploying a Mule application is a larger process, but the following provides an overview of how to configure ingress for an application. Refer to Deploy a Mule Application to Runtime Fabric for complete deployment instructions.
+==== 
+
+. Navigate to Runtime Manager and follow the documentation to deploy an application to Runtime Fabric.
+. Select *Ingress*.
+. From the *Host* drop-down list, select a host for the application. 
+. If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
++
+The *Subdomain* field is only available if the hostname uses a wildcard.
+. In the *Path* field, add a URL path to the application’s endpoint:
++
+image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint]
+
+. To preview the endpoint, click the generated preview link. 
++
+If the path uses a regex, you might need to manually modify the endpoint URL in your browser.
+
+. To add additional endpoints, click *+ Add Endpoint*.
+. When ready, click *Deploy application*.  
+
+== Existing Ingress Configurations Translated on Upgrade 
+
+When you upgrade to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. You don’t need to perform any manual steps unless you plan to create a new ingress resource after upgrading.
+
+TBA: Build a table enumerating all scenarios for the pre-existing config → upgrade template creation.
+
+== Troubleshooting Ingress Issues
+
+If you encounter errors when attempting to use ingress for Runtime Fabric, troubleshoot them as follows.
+
+=== Mule App Deployed But Cannot Access Its Endpoint
+
+Scenario: You successfully deploy a Mule application in Runtime Manager, but you cannot access the application’s endpoint.
+
+To troubleshoot this issue: 
+
+. Verify that the application is listening on port 8081:
++
+`kubectl port-forward -n [NAMESPACE] svc/<APP_NAME> 8081:8081` 
+
+. Verify that the application is running and responding to HTTP requests:
++
+`curl -v http://127.0.0.1:8081/`
++
+This helps determine if the API access issue is on the Mule app itself.  
+
+. Validate that an ingress resource exists for that application service: 
++
+`kubectl get ingress -n [NAMESPACE]`
+
+. Validate that the service was created:
++
+`kubectl get svc -n [NAMESPACE]`
++
+If not, check the Runtime Fabric agent logs:
++
+`kubectl logs -n rtf [AGENT_POD_NAME] -f`
+
+If the service and ingress object look healthy, see additional troubleshooting tasks. 
+
+=== Ingress Resource Created in Cluster But Cannot Access Its Endpoint
+
+Scenario: Runtime Fabric successfully creates an ingress resource in the cluster but you cannot access the application’s endpoint due to a 404 error. 
+
+To troubleshoot this issue: 
+
+. Verify the ingress and service resources:
++
+----
+kubectl get ingress -n<APP-NAMESPACE>
+kubectl get svc -n<APP-NAMESPACE>
+----
++
+The results should be similar to:
++
+----
+# kubectl get ingress -n<<APP-NAMESPACE>                             
+NAME                           CLASS       HOSTS               ADDRESS       PORTS     AGE
+<INGRESS_RESOURCE>            <INGRESS>    <HOSTNAME>.com      <HOST IP>     80, 443   7m3s
+
+#kubectl get svc -n<<APP-NAMESPACE>                                
+NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+test-rc-1        ClusterIP   <CLUSTER IP>   <none>        8081/TCP,8082/TCP,5701/TCP   8m5s
+----
+
+. Check the ingress resource for your app to ensure that the HTTP path in the resource, annotations, and host are correctly rendered:
++
+`kubectl get ing -n<APP-NAMESPACE> -oyaml`
+
+The results should be similar to:
+
+[source,yaml]
+--
+# kubectl get ing -n<APP-NAMESPACE> -oyaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  creationTimestamp: "2021-07-29T21:22:14Z"
+  generation: 1
+  labels:
+    bg: <BUSINESS-GROUP-ID>
+    environment: <ENVIRONMENT-ID>
+    ingress.rtf.mulesoft.com/svcName: <APP_NAME>
+    ingress.rtf.mulesoft.com/svcVersion: <UUID>
+  managedFields:
+  - apiVersion: networking.k8s.io/v1
+…
+…
+spec:
+  ingressClassName: <INGRESS-CLASS>
+  rules:
+  - host: <SELECTED-HOST>
+    http:
+      paths:
+      - backend:
+          serviceName: <APP_NAME>
+          servicePort: 8081
+        path: /<PATH-FROM-TEMPLATE>
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - <SELECTED-HOST>
+    secretName: <TLS-SECRET-NAME>
+status:
+  loadBalancer:
+    ingress:
+    - ip: <IP-ADDRESS>
+--
+
+. Check the application pod logs to ensure that you’ve configured the correct listening port:
++
+`kubectl logs -f -n<APP-NAMESPACE> <APP-POD-NAME> -c app`
+
+The results should be similar to:
+
+----
+# kubectl logs -f -n<<APP-NAMESPACE> -c app
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app '<APP_NAME>'                                                     +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[2021-07-29 21:22:37.842] INFO  QueueXaResourceManager [ArtifactDeployer.start.01] [event: ]: Starting ResourceManager
+[2021-07-29 21:22:37.842] INFO  QueueXaResourceManager [ArtifactDeployer.start.01] [event: ]: Started ResourceManager
+[2021-07-29 21:22:37.846] INFO  AbstractLifecycleManager [ArtifactDeployer.start.01] [event: ]: Starting Bean: org.mule.runtime.module.extension.internal.runtime.config.ConfigurationProviderToolingAdapter-HTTP_Listener_config
+[2021-07-29 21:22:37.859] INFO  GrizzlyHttpServer [ArtifactDeployer.start.01] [event: ]: Listening for connections on 'http://0.0.0.0:8081'
+[2021-07-29 21:22:37.874] INFO  FlowConstructLifecycleManager [ArtifactDeployer.start.01] [event: ]: Starting flow: sample-json-backendFlow
+[2021-07-29 21:22:38.171] INFO  AbstractLifecycleManager [ArtifactDeployer.start.01] [event: ]: Starting Bean: listener
+[2021-07-29 21:22:38.178] INFO  LogUtil [ArtifactDeployer.start.01]:
+----
+
+In the logs, verify that the listener port matches the service port discovered in Step 1.
+
+If the port is correct, check the application logs to verify that the application is receiving requests from the ingress controller.
+
+=== Ingress Resource Not Recognized by AWS Application Load Balancer
+
+Scenario: When using an AWS ALB, you can’t access an application’s endpoint, even though you successfully deployed the application and endpoint. 
+
+If you’re using AWS Load Balancer Controller for ingress, you must specify the `kubernetes.io/ingress.class: alb` annotation in the template, _not_ `ingressClassName: alb`. AWS Load Balancer Controller requires the `ingress.class` annotation to discover and create L7 load balancers for deployed ingress resources for those annotations.
