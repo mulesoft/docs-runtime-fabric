@@ -68,7 +68,7 @@ spec:
   rules:
   - hosts: app-name.example.com   #<3>
     http:
-      paths:    # <4>
+      paths:    #<4>
       - pathType: Prefix
         Path: “/”
         backend:    #<5>
@@ -140,7 +140,7 @@ Replace the following placeholders in the appropriate location in the template. 
 http:
  paths:
  - pathType: ImplementationSpecific
-   path: /app-name/(.*)
+   path: /app-name/(/|$)(.*)
 ----
 
 |`business-group-id` |`path`, `host`, `annotation` a|
