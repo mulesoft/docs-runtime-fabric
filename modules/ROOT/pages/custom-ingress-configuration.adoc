@@ -62,16 +62,16 @@ This template is specific to Nginx as the ingress controller. The final configur
 kind: Ingress
 metadata:
   name: example-com
-  namespace: rtf <1>                           
+  namespace: rtf   #<1>                           
 spec:
-  ingressClassName: rtf-nginx <2> 
+  ingressClassName: rtf-nginx   #<2> 
   rules:
-  - hosts: app-name.example.com <3>
+  - hosts: app-name.example.com   #<3>
     http:
-      paths: <4>
+      paths:    # <4>
       - pathType: Prefix
         Path: “/”
-        backend: <5>
+        backend:    #<5>
           service:
             name: service
             port:
