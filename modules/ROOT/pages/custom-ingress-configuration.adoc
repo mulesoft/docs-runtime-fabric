@@ -54,7 +54,7 @@ Use the API version appropriate to your Kubernetes version:
 
 [NOTE]
 ====
-This template is specific to Nginx as the ingress controller. The final configuration of the template varies depending on the controller and ingress routing rules you use. Review the documentation for your ingress controller carefully.
+This template is specific to https://kubernetes.github.io/ingress-nginx/deploy/[Nginx^] as the ingress controller. The final configuration of the template varies depending on the controller and ingress routing rules you use. Review the documentation for your ingress controller carefully.
 ====
 
 [source,yaml]
