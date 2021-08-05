@@ -52,32 +52,26 @@ Use the API version appropriate to your Kubernetes version:
 
 === networking.k8s.io/v1
 
+[NOTE]
+====
+This template is specific to Nginx as the ingress controller. The final configuration of the template varies depending on the controller and ingress routing rules you use. Review the documentation for your ingress controller carefully.
+====
+
 [source,yaml]
 --
-apiVersion: networking.k8s.io/v1 
 kind: Ingress
 metadata:
-  name: example-rtf-ingress
-  namespace: rtf  #<1>
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1  #<2>
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  labels:
-    environment: environment-id
-    business-group: business-group-id
+  name: example-com
+  namespace: rtf <1>                           
 spec:
-  ingressClassName: rtf-nginx  #<3>
-  tls:  #<4>
-  - hosts:
-      - app-name.example.com
-    secretName: demo-tls
+  ingressClassName: rtf-nginx <2> 
   rules:
-  - host: app-name.example.com
+  - hosts: app-name.example.com <3>
     http:
-      paths:  #<5>
-      - pathType: ImplementationSpecific
-        path: /app-name/(.*)  #<6><7>
-        backend:   #<8>
+      paths: <4>
+      - pathType: Prefix
+        Path: “/”
+        backend: <5>
           service:
             name: service
             port:
@@ -85,25 +79,18 @@ spec:
 --
 
 Note the following about this example:
-
+  
 <1>  The template must use the `rtf` namespace.
 
-<2>  The rewrite annotation is specific to Nginx as the ingress controller. The final version of the template varies depending on the controller you use.
-
-<3>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`. 
+<2>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`.
 +
-This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-`` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an ingressClassName value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
+This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an `ingressClassName` value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
 
-<4> TLS is optional. 
+<3> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application.
 
-<5> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
+<4> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
 
-<6> To ensure that each endpoint name is unique, use the `app-name` placeholder in the host or path (if there is not a wildcard in the subdomain). 
-
-<7>  Use of regex varies depending on your ingress controller. If you use a regex in `path`, as shown in this example, Runtime Manager displays the entire path with regex. In this case, manually modify the URL preview URL in your browser to remove the regex. 
-
-<8>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
-
+<5>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
 === networking.k8s.io/v1beta1
 
@@ -141,7 +128,7 @@ This is how Runtime Fabric recognizes the object as a template. A template that 
 
 === Template Placeholders 
 
-Replace the following placeholders in the appropriate location. Placeholders must be lowercase.
+Replace the following placeholders in the appropriate location in the template. Placeholders must be lowercase.
 
 [%header%autowidth.spread]
 |===
