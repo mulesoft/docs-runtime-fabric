@@ -70,11 +70,11 @@ This template is specific to https://kubernetes.github.io/ingress-nginx/deploy/[
         - app-name.example.com
       secretName: example-tls
     rules:
-    - hosts: app-name.example.com  #<4>
+    - host: app-name.example.com  #<4>
       http:
         paths:  #<5>
         - pathType: Prefix
-          path: “/”
+          path: /
           backend:  #<6>
             service:
               name: service-name
