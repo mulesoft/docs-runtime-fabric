@@ -5,7 +5,7 @@
 This content refers to configuring ingress on Runtime Fabric for versions 1.10 and later. Refer to the documentation for versions 1.8 or 1.9 for previous ingress configuration instructions.
 ==== 
 
-Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, `ingressClassName`, and HTTP and HTTPs rules. 
+Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, `ingressClassName`, and HTTP and HTTPS rules. 
 
 If you do not apply an ingress resource template for an application, you can’t add ingress endpoints when you deploy it.  
 
@@ -22,7 +22,7 @@ Using custom ingress resource templates in Runtime Fabric enables you to take ad
 
 * Multiple ingress configurations per application
 * Multiple ingress controllers within the same Runtime Fabric instance
-* TLS and HTTPs configuration
+* TLS and HTTPS configuration
 * Custom URL naming
 * URL parameter placeholders
 
@@ -48,7 +48,7 @@ Use the API version appropriate to your Kubernetes version:
 ** networking.k8s.io/v1 
 ** networking.k8s.io/v1beta1
 +
-The `extensions/v1beta1` and `networking.k8s.io/v1beta1` API versions of Ingress are no longer served as of v1.22.
+As of v1.22, the `extensions/v1beta1` and `networking.k8s.io/v1beta1` API versions of Ingress are no longer available.
 * Kubernetes v1.14 through v1.18: 
 ** only networking.k8s.io/v1beta1  
 
@@ -92,7 +92,7 @@ Note the following about this example:
   
 <1>  The template must use the `rtf` namespace.
 
-<2>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`.
+<2>  ingressClassName must be prefixed with `rtf-`, for example, `rtf-nginx`.
 +
 This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an `ingressClassName` value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
 
@@ -104,6 +104,12 @@ This is how Runtime Fabric recognizes the object as a template. A template that 
 <5> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
 
 <6>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+
+////
+
+KB not published
+For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly. Refer to this Nginx Path-based Routing with Regex for an example using Nginx.
+////
 
 === networking.k8s.io/v1beta1
 
@@ -146,17 +152,16 @@ Replace the following placeholders in the appropriate location in the template. 
 [%header%autowidth.spread]
 |===
 |Name of Placeholder |Location |Example Value 
-|`app-name`      |`path`, `host`, `annotation` a|
-
+|`app-name`      |`path`, `host`, `annotation, labels` a|
 [source,yaml]
 ----
 http:
  paths:
  - pathType: ImplementationSpecific
-   path: /app-name/(/|$)(.*)
+   path: /app-name
 ----
 
-|`business-group-id` |`path`, `host`, `annotation` a|
+|`business-group-id` |`path`, `host`, `annotation, labels` a|
 
 [source,yaml]
 ----
@@ -165,7 +170,7 @@ labels:
   business-group-id
 ----
 
-|`environment-id` |`path`, `host`, `annotation` a|
+|`environment-id` |`path`, `host`, `annotation, labels` a|
 
 [source,yaml]
 ----
@@ -173,7 +178,6 @@ labels:
   environment: 
   environment-id
 ----
-     
 |===
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
@@ -189,7 +193,7 @@ Use one of the xref:example-ingress-resource-templates[example templates] to cre
 
 . Copy the example template into a new file and modify it according to the notes. 
 . Include a `.yaml` extension in the file name. 
-. To apply an ingress template, log in to a Kubernetes workstation and run:
+. To apply an ingress template, run:
 +
 `kubectl apply -f <TEMPLATE_FILENAME.yaml>`
 
@@ -207,7 +211,8 @@ You can also use this procedure to deploy a test application to validate your in
  
 [NOTE]
 ====
-Deploying a Mule application is a larger process, but the following provides an overview of how to configure ingress for an application. Refer to Deploy a Mule Application to Runtime Fabric for complete deployment instructions.
+The following provides an overview of how to configure ingress for an application. Refer to xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for complete deployment instructions.  If using the mule maven plugin to deploy applications to Runtime Fabric, the deployment settings parameter `publicUrl` in the block `http` can accept a comma-delimited string of multiple endpoints. 
+For more information, see xref:mule-runtime::deploy-to-rtf#deploymentsettings-parameters-reference[deploymentSettings Parameters Reference].
 ==== 
 
 . Navigate to Runtime Manager and follow the documentation to deploy an application to Runtime Fabric.
@@ -256,7 +261,7 @@ To troubleshoot this issue:
 
 . Verify that the application is running and responding to HTTP requests:
 +
-`curl -v http://127.0.0.1:8081/`
+`curl -v \http://127.0.0.1:8081/`
 +
 This helps determine if the API access issue is on the Mule app itself.  
 
