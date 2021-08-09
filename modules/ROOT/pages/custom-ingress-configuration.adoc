@@ -90,7 +90,7 @@ spec:
 
 Note the following about this example:
   
-<1>  The template must use the `rtf` namespace.
+<1>  The template must be placed in the `rtf` namespace.
 
 <2>  ingressClassName must be prefixed with `rtf-`, for example, `rtf-nginx`.
 +
@@ -117,25 +117,19 @@ For a path-based routing ingress template, consult your ingress controller docum
 --
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
-metadata:
-  name: example-ingress-template
-  namespace: rtf #<1>
-  annotations:
-    kubernetes.io/ingress.class: rtf-nginx #<2>
-  rules:
   - host: app-name.example.com
     http:
-      Paths: #<3>
+      paths: #<3>
       - path: /
         pathType: 
-        Backend: #<4>
+        backend: #<4>
           serviceName: service
           servicePort: 80
 --
 
 Note the following about this example:
 
-<1>  The template must use the `rtf` namespace.
+<1>  The template must be placed in the `rtf` namespace.
 
 <2>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`. 
 +
@@ -205,7 +199,7 @@ After you apply a template successfully, you can view it with:
 
 === Configure a Public Endpoint for a Mule Application Deployment 
 
-You configure public endpoints for an application when you’re ready to deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
+You configure public endpoints for an application when you deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
 
 You can also use this procedure to deploy a test application to validate your ingress resource template.
  
@@ -221,18 +215,17 @@ For more information, see xref:mule-runtime::deploy-to-rtf#deploymentsettings-pa
 . If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
 +
 The *Subdomain* field is only available if the hostname uses a wildcard.
-. In the *Path* field, add a URL path to the application’s endpoint:
+. In the *Path* field, add a URL path to the application’s endpoint.
++
+It can be any of the placeholder parameters, such as `app-name`:
 +
 image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint,80%]
 
-. To preview the endpoint, click the generated preview link. 
-+
-If the path uses a regex, you might need to manually modify the endpoint URL in your browser.
-
+. To preview the endpoint, click the generated preview link.
 . To add additional endpoints, click *+ Add Endpoint*.
 . When ready, click *Deploy application*.  
 
-== Existing Ingress Configurations Translated on Upgrade 
+== Existing Ingress Configurations Translated Post-Upgrade 
 
 When you upgrade to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review the table below to determine if any action is required after you upgrade.
 
@@ -306,49 +299,39 @@ test-rc-1        ClusterIP   <CLUSTER IP>   <none>        8081/TCP,8082/TCP,5701
 
 . Check the ingress resource for your app to ensure that the HTTP path in the resource, annotations, and host are correctly rendered:
 +
-`kubectl get ing -n<APP-NAMESPACE> -oyaml`
+`kubectl get ing -n<APP-NAMESPACE> <INGRESS-RESOURCE-NAME> -oyaml`
 
 The results should be similar to:
 
 [source,yaml]
 --
-# kubectl get ing -n<APP-NAMESPACE> -oyaml
+# kubectl get ing -n<APP-NAMESPACE> <INGRESS-RESOURCE-NAME> -oyaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  creationTimestamp: "2021-07-29T21:22:14Z"
-  generation: 1
   labels:
-    bg: <BUSINESS-GROUP-ID>
-    environment: <ENVIRONMENT-ID>
     ingress.rtf.mulesoft.com/svcName: <APP_NAME>
     ingress.rtf.mulesoft.com/svcVersion: <UUID>
-  managedFields:
-  - apiVersion: networking.k8s.io/v1
 …
 …
 spec:
   ingressClassName: <INGRESS-CLASS>
   rules:
-  - host: <SELECTED-HOST>
+  - host: myapp.example.com
     http:
       paths:
       - backend:
-          serviceName: <APP_NAME>
+          serviceName: myapp
           servicePort: 8081
-        path: /<PATH-FROM-TEMPLATE>
-        pathType: ImplementationSpecific
+        path: /
+        pathType: Prefix
   tls:
-  - hosts:
-    - <SELECTED-HOST>
-    secretName: <TLS-SECRET-NAME>
+  - hosts: myapp.example.com
+    secretName: example-tls
 status:
   loadBalancer:
     ingress:
-    - ip: <IP-ADDRESS>
+    - hostname: <hostname>
 --
 
 . Check the application pod logs to ensure that you’ve configured the correct listening port:
@@ -358,7 +341,7 @@ status:
 The results should be similar to:
 
 ----
-# kubectl logs -f -n<<APP-NAMESPACE> -c app
+# kubectl logs -f -n<<APP-NAMESPACE> <APP-POD> -c app
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 + Starting app '<APP_NAME>'                                                     +
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
