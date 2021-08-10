@@ -105,11 +105,8 @@ This is how Runtime Fabric recognizes the object as a template. A template that 
 
 <6>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
-////
-
-KB not published
-For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly. Refer to this Nginx Path-based Routing with Regex for an example using Nginx.
-////
+For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly.
+For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
 
 === networking.k8s.io/v1beta1
 
@@ -119,25 +116,19 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
   - host: app-name.example.com
     http:
-      paths: #<3>
+      paths: #<1>
       - path: /
         pathType: 
-        backend: #<4>
+        backend: #<2>
           serviceName: service
           servicePort: 80
 --
 
 Note the following about this example:
 
-<1>  The template must be placed in the `rtf` namespace.
+<1> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
 
-<2>  ingressClassName must be prefixed with `rtf-``, for example, `rtf-nginx`. 
-+
-This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-`` prefix in `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an ingressClassName value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
-
-<3> A template can include multiple hosts, but Runtime Manager displays the first path rule only.
-
-<4>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+<2>  These are placeholder values required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
 
 === Template Placeholders 
 
