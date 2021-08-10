@@ -211,12 +211,11 @@ For more information, see xref:mule-runtime::deploy-to-rtf#deploymentsettings-pa
 . If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
 +
 The *Subdomain* field is only available if the hostname uses a wildcard.
-. In the *Path* field, add a URL path to the application’s endpoint.
-+
-It can be any of the placeholder parameters, such as `app-name`:
+. In the *Path* field, add a URL path to the application’s endpoint:
 +
 image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint,80%]
-
++
+It can be any of the placeholder parameters, such as `app-name`.
 . To preview the endpoint, click the generated preview link.
 . To add additional endpoints, click *+ Add Endpoint*.
 . When ready, click *Deploy application*.  

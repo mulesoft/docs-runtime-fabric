@@ -1,4 +1,8 @@
 = Deploy Mule Applications to Runtime Fabric 
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
 
 You deploy Mule applications to Mule runtime servers on Anypoint Runtime Fabric. 
 
@@ -61,7 +65,7 @@ If your template uses regex to rewrite the host path, review xref:custom-ingress
 . If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
 +
 The *Subdomain* field is only available if the hostname uses a wildcard.
-. In the *Path* field, add a URL path to the application’s endpoint.
+. In the *Path* field, add a URL path to the application’s endpoint:
 +
 image::rtf-ingress-endpoint.png[A host and path are set for the application's endpoint]
 
@@ -82,7 +86,7 @@ To specify network configuration for the application:
 +
 * *Enable inbound traffic to this application*: Allow incoming HTTP requests to be processed by this application. Ensure your application is configured to accept connections on port 8081.
 +
-* *Enable Last-Mile security*: Forward HTTPS connections to be decrypted by this application. This requires an SSL certificate to be included in the Mule application, and also requires more CPU resources. 
+* *Enable Last-Mile security*: TLS termination and decryption for the forwarded HTTPS connections occurs in the application. This option requires that the Mule application include an SSL certificate and also requires more CPU resources. 
 +
 * *Forward SSL session*: Enables SSL forwarding during a session.
 +
