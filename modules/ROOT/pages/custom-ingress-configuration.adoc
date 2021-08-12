@@ -110,7 +110,7 @@ If you add the TLS section with a `secretName` attribute, you must ensure that y
 
 <4> The `app-name` placeholder parameter will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
-<5> A template can include multiple hosts, but Runtime Manager displays only the first path rule.
+<5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
 <6> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
