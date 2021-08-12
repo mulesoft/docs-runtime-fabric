@@ -108,7 +108,7 @@ Ingress controllers discover only those resources with a `spec.ingressClassName`
 +
 If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
 
-<4> The `app-name` placeholder parameter will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+<4> The `app-name` placeholder parameter will be replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
@@ -161,7 +161,7 @@ Ingress controllers discover only those resources with a `spec.ingressClassName`
 +
 If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
 
-<4> The `app-name` placeholder parameter will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+<4> The `app-name` placeholder parameter will be replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
