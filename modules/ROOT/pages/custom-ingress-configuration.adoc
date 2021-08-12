@@ -76,12 +76,12 @@ metadata:
     environment: environment-id
 spec:
   ingressClassName: rtf-nginx #<2> 
-  tls: #<4>
+  tls: #<3>
   - hosts:
       - app-name.example.com
     secretName: example-tls
   rules:
-  - host: app-name.example.com #<3>
+  - host: app-name.example.com #<4>
     http:
       paths: #<5>
       - pathType: Prefix
@@ -125,41 +125,50 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: example-rtf-ingress
-  namespace: rtf
+  namespace: rtf #<1>
   labels:
     business-group: business-group-id
     environment: environment-id
 spec:
-  ingressClassName: rtf-nginx
-  tls:
+  ingressClassName: rtf-nginx #<2>
+  tls: #<3>
   - hosts:
       - app-name.example.com
     secretName: example-tls
   rules:
-    - host: app-name.example.com
+    - host: app-name.example.com #<4>
       http:
-        paths:
+        paths: #<5>
         - path: /
           pathType:
-          backend:
+          backend: #<6>
             serviceName: service-name
             servicePort: 80
-kind: Ingress
-  - host: app-name.example.com
-    http:
-      paths: #<1>
-      - path: /
-        pathType: 
-        backend: #<2>
-          serviceName: service
-          servicePort: 80
 --
 
 Note the following about this example:
+  
+<1> The template must be placed in the `rtf` namespace.
 
-<1> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
+<2> ingressClassName must be prefixed with `rtf-`, for example, `rtf-nginx`.
++
+Runtime Fabric uses the `rtf-` prefix to recognize the object as a template.
+Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class` annotation
+are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
+Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example, `nginx` or `haproxy`.
 
-<2> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+<3> TLS is optional.
++
+If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
+
+<4> The `app-name` placeholder parameter will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+
+<5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
+
+<6> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+
+For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly.
+For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
 
 === Template Placeholders 
 
