@@ -102,6 +102,8 @@ Note the following about this example:
 This is how Runtime Fabric recognizes the object as a template. A template that uses the `rtf-` prefix in the `ingressClassName`, for example, `rtf-nginx`, is consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only resources with an `ingressClassName` value that uses the vendor-specific name, for example, `nginx` or `haproxy`.
 
 <3> TLS is optional.
++
+If the TLS section is added with a `secretName` its the responsibility of the user to make sure that the referred TLS secret is created in the RTF namespace.
 
 <4> `app-name` is a placeholder parameter that will be replaced with actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
