@@ -313,7 +313,7 @@ NAME                           CLASS       HOSTS               ADDRESS       POR
 
 #kubectl get svc -n<<APP-NAMESPACE>                                
 NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
-test-rc-1        ClusterIP   <CLUSTER IP>   <none>        8081/TCP,8082/TCP,5701/TCP   8m5s
+<SERVICE-NAME>       ClusterIP   <CLUSTER IP>   <none>        8081/TCP,8082/TCP,5701/TCP   8m5s
 ----
 
 . Check the ingress resource for your app to ensure that the HTTP path in the resource, annotations, and host are correctly rendered:
