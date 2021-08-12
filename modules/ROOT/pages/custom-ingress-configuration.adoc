@@ -157,7 +157,7 @@ kind: Ingress
 
 Note the following about this example:
 
-<1> A template can include multiple hosts, but Runtime Manager displays the only first path rule.
+<1> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
 <2> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
 
