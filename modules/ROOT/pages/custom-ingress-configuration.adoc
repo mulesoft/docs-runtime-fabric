@@ -121,6 +121,28 @@ For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-N
 --
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
+metadata:
+  name: example-rtf-ingress
+  namespace: rtf
+  labels:
+    business-group: business-group-id
+    environment: environment-id
+spec:
+  ingressClassName: rtf-nginx
+  tls:
+  - hosts:
+      - app-name.example.com
+    secretName: example-tls
+  rules:
+    - host: app-name.example.com
+      http:
+        paths:
+        - path: /
+          pathType:
+          backend:
+            serviceName: service-name
+            servicePort: 80
+kind: Ingress
   - host: app-name.example.com
     http:
       paths: #<1>
