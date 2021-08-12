@@ -46,7 +46,7 @@ To check core CPU usage:
 +
 You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage against licensing, look for the highest number within the selected time frame. 
 
-For further question related to License usage and compliance, we recommend to work with your account team and customer success manager.
+For further question related to license usage and compliance, we recommend to work with your account team and customer success manager.
 
 == vCPU Allocation
 
