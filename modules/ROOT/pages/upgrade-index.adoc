@@ -140,6 +140,7 @@ sudo chmod +x rtfctl
 +
 This enables safe removal of a worker node from the cluster to apply upgrades without impacting application availability.
 ** Applications serving inbound requests scaled to a minimum of two replicas.
+* If you've customized Runtime Fabric email alerts, the appliance upgrade overwrites the customizations. Refer to the "Appliance Upgrades" section of https://help.mulesoft.com/s/article/How-to-Modify-Runtime-Fabric-Email-Alert-Contents[How to Modify Runtime Fabric Email Alert Contents^] in the MuleSoft Knowledge Base for a workaround of this scenario.
 
 To upgrade the Runtime Fabric appliance:
 
