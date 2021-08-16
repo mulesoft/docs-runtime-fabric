@@ -172,7 +172,7 @@ For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-N
 
 === Template Placeholders 
 
-Replace the following placeholders in the appropriate location in the template. Placeholders must be lowercase.
+The following placeholders are optional. If you use a placeholder, replace it in the appropriate location in the template. Placeholders must be lowercase.
 
 [%header%autowidth.spread]
 |===
