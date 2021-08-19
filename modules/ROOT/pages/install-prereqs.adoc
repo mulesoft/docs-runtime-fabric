@@ -191,8 +191,12 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 
 In your network configuration, you must add the hostnames and ports of Anypoint Platform components and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your allowlists to allow communication between
-Anypoint Runtime Fabric and Anypoint Platform.
+The following table lists the ports and hostnames to add to your allowlists to allow communication between Anypoint Runtime Fabric and Anypoint Platform.
+
+[NOTE]
+--
+The following table does not include ports and hostnames from API Manager that you may also need to allow. Refer to xref::api-manager:runtime-urls-whitelist.adoc[the API Manager documentation] for a list of additional ports and hostnames. 
+--
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
 
