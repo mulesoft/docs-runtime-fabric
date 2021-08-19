@@ -195,7 +195,7 @@ The following table lists the ports and hostnames to add to your allowlists to a
 
 [NOTE]
 --
-The following table does not include ports and hostnames from API Manager that you may also need to allow. Refer to xref::api-manager:runtime-urls-whitelist.adoc[the API Manager documentation] for a list of additional ports and hostnames. 
+The following table does not include ports and hostnames from API Manager that you may also need to allow. Refer to xref::api-manager::runtime-urls-whitelist.adoc[the API Manager documentation] for a list of additional ports and hostnames. 
 --
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
