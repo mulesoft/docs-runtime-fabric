@@ -22,7 +22,6 @@ Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per n
 | Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
 | Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
 | Object Store Persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
-| Object Store Persistence | To handle data persistence across Mule application replicas and restarts Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 |===
 
 == Internal Load Balancer Resource Allocation and Performance
@@ -49,6 +48,7 @@ The following table lists known limitations for host operating systems in Runtim
 |===
 | Operating System | Limitation
 | RHEL 8 | If the host operating system is RHEL 8, do not set the optional environment variable `disable_selinux` to `false` in the `fabric.tf` script, or installation will fail.
+| RHEL 7 | If the host operating system is RHEL 7, and you have enabled SELinux, third-party software running on the host may change policy settings from SELinux.
 |===
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
@@ -61,4 +61,3 @@ A small number of third-party software that requires root access to the host, wh
 In the event that abnormal behavior is observed with the Runtime Fabric appliance, you may be asked to disable any running third-party software (including anti-virus or DPI software) to determine if it is the cause of the behavior. If disabling such software restores proper Runtime Fabric appliance functionality, this would demonstrate an implicit incompatibility between that software package and the Runtime Fabric appliance, and we would consider the support case resolved.
 
 If you are strictly required to run traditional security tools that interfere with certain components of the Runtime Fabric appliance, vendors and security experts that support Kubernetes are recommended to support you in meeting this requirement. Alternatively, you are encouraged to consider using Runtime Fabric on Self-Managed Kubernetes. Cloud platform vendors often add cloud-centric controls that are consistent with well-known security benchmarks, such as the https://www.cisecurity.org/benchmark/kubernetes/[Center for Internet Security (CIS) Kubernetes Benchmark^].
-

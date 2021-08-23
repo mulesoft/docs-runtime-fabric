@@ -38,13 +38,13 @@ Before enabling Persistence Gateway, ensure that you have created a database to 
 === Create a Kubernetes Secret and Kubernetes Custom Resource
 
 . Create a Kubernetes secret:
-.. Copy the Kubernetes secret template from <<k8-secret-template>> to a file called `kubernetes-secret.yaml`.
-.. Create a base64-encoded connection string. 
 +
-The standard URI for this string is `postgres://username:pass@host:port/databasename`. However, the requirements for your database may be different.
-.. Copy the encoded string to the `persistence-gateway-creds:` field of `kubernetes-secret.yaml`. 
-.. Run `kubectl apply -f kubernetes-secret.yaml`.
-.. Verify that the pod containing the persistence gateway service can connect to the database and port.
+----
+kubectl create secret generic persistence-gateway-creds -n rtf --from-literal=persistence-gateway-creds='postgres://username:pass@host:port/databasename'
+----
++
+[NOTE]
+Do not use the "@" character in the database username. 
 
 . Create a custom resource for your data store:
 .. Copy the custom resource template from <<k8-custom-resource-template>> to a file called `custom-resource.yaml`.
@@ -73,34 +73,6 @@ The output of this command should be similar to the following:
 2021/04/09 16:35:35 Succesfully connected to the PostgreSQL backend.
 192.168.2.101 - - [09/Apr/2021:16:35:55 +0000] "GET /api/v1/status/ready HTTP/1.1" 200 2 "" "kube-probe/1.18+"
 ----
-
-[[k8-secret-template]]
-=== Kubernetes Secret Template
-
-Use the example template below to create a Kubernetes secret. The Kubernetes cluster uses this secret to connect to your data store.
-
-----
-apiVersion: v1
-metadata:
-    name: persistence-gateway-creds
-    namespace: rtf
-data:
-    persistence-gateway-creds: cG9zdGdyZXM6Ly90ZXN0VXNlcjp0ZXN0UGFzc0B0ZXN0SG9zdDp0ZXN0UG9ydC9kYXRhYmFzZW5hbWU=
-kind: Secret
-type: Opaque
-----
-
-Modify the following fields based on your environment:
-
-[%header,cols="2*a"]
-|===
-| Field | Description
-| `metadata.name` | The internal identifier for this secret. This name must match the value of the `secretRef.name` field of your Kubernetes Custom Resource.
-| `metadata.namespace` | The Kubernetes namespace where the secret is created. The value of this field must be `rtf`.
-| `data.persistence-gateway-creds` | A base64-encoded backend connection string.
-| `type` | The type of Kubernetes key. Only `Opaque` is supported.
-|===
-
 
 [[k8-custom-resource-template]]
 === Kubernetes Custom Resource Template
