@@ -18,10 +18,13 @@ Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtf
 [IMPORTANT]
 ====
 The tasks in the section must be performed by an IT administrator.
+
+If you're using self-managed Kubernetes and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
+
+`az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
 
 Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks.
-
 
 . Download the `rtfctl` command-line utility:
 +
