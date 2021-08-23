@@ -83,8 +83,6 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 | `muleapps` | Triggers a critical error when > 90% used. 
 | `network_params` | Triggers a critical error if networking is disabled on a node. 
 | `uptime` | Sends a warning when the system is unaccessible for longer than 5 min.
-
-
 |===
 
 
