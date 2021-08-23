@@ -72,20 +72,18 @@ The following table lists some of default alerts provided by Anypoint Runtime Fa
 .Runtime Fabric Default Alerts
 |===
 |Alert | Description
-| `docker` |
+| `docker` | Sends an error when docker daemon is down.
 | `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
-| `etcd_latency_batch` | 
+| `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one minute period.
 | `filesystem` | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
-| `heap_threshold` |
 | `high-cpu` | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
 | `high_memory` | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
-| `influxdb_health_batch` |
-| `ingress` |
+| `influxdb_health_batch` | Triggers an error if InfluxDB is down or if there is no connection between Kapacitor and InfluxDB.
+| `ingress` | Triggers a critical error when > 80% used.
 | `kubernetes_node` | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
-| `muleapps` |
-| `net_connectivity` |
-| `network_params` |
-| `uptime` | 
+| `muleapps` | Triggers a critical error when > 90% used. 
+| `network_params` | Triggers a critical error if networking is disabled on a node. 
+| `uptime` | Sends a warning when the system is unaccessible for longer than 5 min.
 
 
 |===
