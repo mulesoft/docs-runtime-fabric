@@ -69,7 +69,6 @@ Currently, only one alerts email recipient is supported.
 The following table lists some of default alerts provided by Anypoint Runtime Fabric on VMs / Bare Metal:
 
 [%header,cols="2*a"]
-.Runtime Fabric Default Alerts
 |===
 |Alert | Description
 | `docker` | Sends an error when docker daemon is down.
