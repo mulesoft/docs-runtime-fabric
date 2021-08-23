@@ -22,7 +22,7 @@ Before adding a new node, ensure you have:
 * Listed the required disks as block devices for each VM. The disks should not be mounted or formatted.
 +
 Refer to xref:install-prereqs.adoc#production-configuration-requirements[Production Configuration Requirements] or xref:install-prereqs.adoc#development-configuration-requirements[Development Configuration Requirements] for full disk requirements.
-* The necessary ports are open and hostnames are added to allowlists as described in xref:install-prereqs.adoc::network-and-port-requirements[Network and Port Requirements].
+* The necessary ports are open and hostnames are added to allowlists as described in xref:install-prereqs.adoc#network-and-port-requirements[Network and Port Requirements].
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
 
 To add a new node: 
