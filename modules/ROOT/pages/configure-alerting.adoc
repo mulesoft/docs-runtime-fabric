@@ -69,16 +69,21 @@ Currently, only one alerts email recipient is supported.
 The following table lists some of default alerts provided by Anypoint Runtime Fabric on VMs / Bare Metal:
 
 [%header,cols="2*a"]
-.Runtime Fabric Default Alerts
 |===
 |Alert | Description
-| High CPU usage | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
-| High memory usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
-| High disk space usage | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
-| High node usage | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
-| etcd instance health | Sends an error when the etcd master is unaccessible for longer than 5 min.
+| `docker` | Sends an error when docker daemon is down.
+| `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
+| `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one minute period.
+| `filesystem` | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
+| `high-cpu` | Sends a warning when > 75% used. Triggers a critical error when > 90% used.
+| `high_memory` | Sends a warning when > 80% used. Triggers a critical error when > 90% used.
+| `influxdb_health_batch` | Triggers an error if InfluxDB is down or if there is no connection between Kapacitor and InfluxDB.
+| `ingress` | Triggers a critical error when > 80% used.
+| `kubernetes_node` | Sends a warning when > 90% used. Triggers a critical error when > 95% used.
+| `muleapps` | Triggers a critical error when > 90% used. 
+| `network_params` | Triggers a critical error if networking is disabled on a node. 
+| `uptime` | Sends a warning when the system is unaccessible for longer than 5 min.
 |===
-
 
 == See Also
 
