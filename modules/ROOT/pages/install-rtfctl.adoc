@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks.
+
 Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
 
 * Get the status of a Runtime Fabric.
@@ -23,8 +25,6 @@ If you're using self-managed Kubernetes on AKS and have the AKS-managed Azure AD
 
 `az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
-
-Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks.
 
 . Download the `rtfctl` command-line utility:
 +
