@@ -3,8 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks.
-
 Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
 
 * Get the status of a Runtime Fabric.
