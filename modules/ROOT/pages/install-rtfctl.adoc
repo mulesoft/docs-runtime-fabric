@@ -1,4 +1,4 @@
-= Install the Runtime Fabric Command Line Tool
+= Use the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
