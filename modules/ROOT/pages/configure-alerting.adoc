@@ -82,7 +82,7 @@ The following table lists default alerts provided by Anypoint Runtime Fabric on 
 | `kubernetes_node` | Sends a warning when more than 90% of CPU is used. Triggers a critical error when more than 95% is used.
 | `muleapps` | Triggers a critical error when more than 90% of CPU is used. 
 | `network_params` | Triggers a critical error if networking is disabled on a node. 
-| `uptime` | Sends a warning when the system is unaccessible for longer than 5 min.
+| `uptime` | Sends a warning when the system is inaccessible for longer than 5 min.
 |===
 
 == See Also
