@@ -71,7 +71,7 @@ The following table lists default alerts provided by Anypoint Runtime Fabric on 
 [%header,cols="2*a"]
 |===
 |Alert | Description
-| `docker` | Sends an error when docker daemon is down.
+| `docker` | Sends an error when the Docker daemon is down.
 | `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
 | `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one-minute period.
 | `filesystem` | Sends a warning when 80% of capacity is used. Triggers a critical error when more than 90% is used.
