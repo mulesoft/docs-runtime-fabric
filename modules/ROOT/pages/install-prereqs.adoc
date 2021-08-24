@@ -166,7 +166,8 @@ The following table lists all ports that must be open, along with the respective
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified above. This is applicable to endpoints in both the US and EU clouds.
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
-| 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
+| 3008, 3010, 3011, 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
+| 3009 | TCP | HTTPS |All nodes | Internal network | Anypoint Runtime Fabric internal Ops Center
 | 3022 - 3025 | TCP | SSH | All nodes | All nodes | Internal SSH control services
 | 3080 | TCP | HTTPS | All nodes | Controller nodes | Anypoint Runtime Fabric internal Ops Center
 | 5000 | TCP | HTTPS | All nodes | Controller nodes | Internal container registry
