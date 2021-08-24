@@ -38,7 +38,7 @@
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:view-health.adoc[View Runtime Fabric Health Details]
  ** xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric on VMs / Bare Metal]
- ** xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool]
+ ** xref:install-rtfctl.adoc[Use the Runtime Fabric Command Line Tool]
  ** xref:install-patches.adoc[Perform Scheduled Maintenance on Runtime Fabric on VMs / Bare Metal]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:manage-proxy-self.adoc[Manage Proxies on Runtime Fabric on Self-Managed Kubernetes]
