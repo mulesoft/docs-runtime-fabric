@@ -1,0 +1,111 @@
+= Perform Scheduled Maintenance on Runtime Fabric on VMs / Bare Metal
+
+When using Runtime Fabric on VMs / Bare Metal you can Use the following procedures to perform scheduled maintenance. This includes applying OS patches and security updates. 
+
+== Controller Node Maintenance
+
+Controller nodes are entry points to your Runtime Fabric cluster; they do not run application workloads.
+
+Update all controller nodes, one at a time:
+
+. On your upstream TCP load balancer, remove a controller node from your load balancing pool.
+. Perform the required patching and reboot the node.
+. When updates are complete on the controller node, add the node back to the cluster and continue with the next one.
+
+== Worker Node Maintenance
+
+To update worker nodes: 
+
+. On a controller node, run the `gravity shell` command.
+. Verify that the status for all nodes is `READY`:
++
+```
+$ kubectl get nodes
+
+NAME          STATUS   ROLES    AGE   VERSION
+172.31.0.9    Ready    node     1d   v1.x.x
+172.31.0.8    Ready    master   1d   v1.x.x
+```
+. Retrieve the application namespace (environment ID): 
++
+```
+$ kubectl get ns
+
+NAME                                   STATUS   AGE
+default                                Active   1d
+fff5df7b-c49d-48c9-967d-0071412722x4   Active   1d
+kube-node-lease                        Active   1d
+kube-public                            Active   1d
+kube-system                            Active   1d
+monitoring                             Active   1d
+rtf                                    Active   1d
+```
++
+In the command output, the application namespace is represented by a long string of characters. In the previous example, the application namespace
+is `fff5df7b-c49d-48c9-967d-0071412722x4`.
++
+More than one application namespace value is displayed if the RTF cluster is associated with more than one environment.
+
+. Verify that the pods and nodes are still running in your namespace:
++
+```
+$ kubectl -n <namespace> get pod -owide
+```
++
+The command output displays `Running` in the `READY` column:
++
+```
+NAME                                         READY   STATUS    RESTARTS   AGE     IP             NODE          NOMINATED NODE   READINESS GATES
+my-app-name-1-84f95cb7c9-glktk     2/2     Running   0          9m27s   10.244.88.29   172.31.0.9   <none>           <none>
+```
++
+If you have multiple environments, you must perform the remaining steps in each environment. 
++
+. For each worker node that require updates:
+
+.. Drain the node.
++
+```
+$ kubectl drain <node name> --ignore-daemonsets --delete-local-data
+```
++
+The following actions are performed when a node is drained:
+
+*** The application is scheduled on another node and is then deleted.
+*** Node status is updated to `SchedulingDisabled`. 
++
+[IMPORTANT]
+Unless you are running at least two replicas of your application and specified *Enforce deploying replicas across node* when you deployed it, service is disrupted during the drain process.
+
+
+.. Verify that the node's status is `Ready,SchedulingDisabled`:
++
+```
+$ kubectl get node
+
+NAME          STATUS                     ROLES    AGE   VERSION
+172.31.0.9   Ready,SchedulingDisabled   node     1d   v1.x.x
+```
+
+.. Verify that no application pods are running on the drained node:
++
+```
+$ kubectl get pod -n <namespace>  -owide
+```
++
+The command output displayed in the `NODE` column should indicate that no application pods are running on the drained node.
+
+.. Proceed with OS patching and reboot the node.
+
+.. After the reboot is complete, reenable scheduling on the node:
++
+```
+$ kubectl uncordon 172.31.0.9
+
+node/172.31.0.9 uncordoned
+
+$ kubectl get node
+
+NAME          STATUS   ROLES    AGE   VERSION
+172.31.0.9   Ready    node     1d   v1.x.x
+```

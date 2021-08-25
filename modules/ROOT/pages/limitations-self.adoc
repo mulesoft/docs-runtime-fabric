@@ -1,0 +1,19 @@
+= Limitations with Anypoint Runtime Fabric on Self-Managed Kubernetes
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on Self-Managed Kubernetes.
+
+[cols="2*a"]
+.Anypoint Runtime Fabric on Self-Managed Kubernetes resource allocation 
+|===
+| Nodes | The maximum number of nodes supported is 30.
+| Node Types | VM-based nodes are required. For example, Fargate is not supported.
+| Replicas Per Node | The maximum number of replicas that can be deployed per node is 40.
+
+Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
+| Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50. 
+| Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
+| Object Store Persistence | To manage data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
+|===

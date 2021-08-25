@@ -1,18 +1,10 @@
-= Monitor Anypoint Runtime Fabric
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+= Use Ops Center to Monitor Runtime Fabric on VMs / Bare Metal
 
-You can use Runtime Manager or the built-in Ops Center to monitor the health of your Anypoint Runtime Fabric clusters.
 
-== Runtime Manager
-For Runtime Fabric version 1.5 or later:
-
-. Navigate to Runtime Manager and select *Runtime Fabric*.
-. Select the name of your Runtime Fabric to open the management page.
-. Select *Health Details*.
+You can use the built-in Ops Center to monitor the health of your Runtime Fabric on VMs / Bare Metal clusters.
 
 == Access Ops Center
+
 You can use the Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
 
 During the installation process for Runtime Fabric, one of the last outputs to the logs includes the following information required to log into Ops Center.
@@ -68,17 +60,19 @@ From Ops Center, you can view metrics from a deployed application.
 . Select the application name on the Application dropdown.
 
 The dashboad should populate the metrics for your application. By default, Ops Center displays a set of
-graphs showing the CPU, JVM Heap Memory, Total Memory, Network, and Filesystem usage.
+graphs that show CPU, JVM heap memory, total memory, network, and file system usage.
 
+JVM Heap Memory is also displayed in Anypoint Monitoring.
 
 === Dashboards
 
 The dashboards are divided into the following categories:
 
-* *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing
-you to filter by specific VM.
 * *Applications* shows metrics on all the replicas for an application deployment. Filters include the
 environment ID the application is deployed in, and the application deployment name.
+* *Cluster* shows metrics on the overall Runtime Fabric cluster. Filters include the `nodename`, allowing
+you to filter by specific VM.
+* *CPU Core Usage* shows CPU usage for Mule applications only.
 * *Ingress* shows metrics on all the replicas running the internal load balancer.
 * *Pods*  shows metrics on each individual service running within the Runtime Fabric cluster. Filters
 include the `namespace` and `podname`, allowing you to specify the specific service to monitor.

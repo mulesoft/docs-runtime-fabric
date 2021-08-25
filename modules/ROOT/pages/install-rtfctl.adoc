@@ -1,4 +1,4 @@
-= Install the Runtime Fabric Command Line Tool
+= Use the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -15,18 +15,38 @@ Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtf
 
 == Install rtfctl 
 
-[NOTE]
-To perform this procedure, you must have root privileges to a controller node running Runtime Fabric.
+[IMPORTANT]
+====
+The tasks in the section must be performed by an IT administrator.
 
-. Download the latest version of the `rtfctl` command-line utility:
-.. On a controller node, use your terminal to run the following command: 
+If you're using self-managed Kubernetes on AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
+
+`az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
+====
+
+. Download the `rtfctl` command-line utility:
++
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
 +
 ----
-cd /opt/anypoint/runtimefabric
-sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
-.. Change file permissions for the `rtfctl` binary: 
+*MacOS (Darwin):*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
+
+. Change file permissions for the `rtfctl` command-line utility:
 +
 ----
 sudo chmod +x rtfctl
@@ -54,8 +74,10 @@ sudo chmod +x rtfctl
 | status | Displays status of Runtime Fabric.
 | test | Tests Runtime Fabric environment.
 | threaddump | Displays the JVM thread dump for an application.
+| uninstall | Uninstall Runtime Fabric.
 | update | Updates `rtfctl`.
 | upgrade-cluster | Upgrades the Runtime Fabric cluster.
+| validate | Validate cluster for Runtime Fabric installation.
 | version | Displays version information.
 |=== 
 
@@ -87,7 +109,7 @@ Updating rtf namespace... OK
 === Take a Heap Dump
 
 ----
-[ec2-user@ip-172-31-0-13 runtimefabric]$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
+$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----

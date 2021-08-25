@@ -4,37 +4,37 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
-This topic describes how to install Anypoint Runtime Fabric on your Azure account.
+This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
 [WARNING]
 ====
-Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for On-Premises Runtime Fabric]. If your infrastructure does not meet the minimum hardware, operating system, 
-and networking requirements, Runtime Fabric will not operate successfully.
+Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal]. If your infrastructure does not meet the minimum hardware, operating system,
+and networking requirements, Runtime Fabric cannot operate successfully.
 
-Your organization's operations, networking, and security teams must be involved. See 
+Your organization's operations, networking, and security teams must be involved. See
 xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 ====
 
 == Before You Begin
 
-Before installing Anypoint Runtime Fabric on Azure, ensure the following requirements have been met:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal on Azure, ensure the following requirements have been met:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * Your Anypoint user account has the *Manage Runtime Fabrics* permission.
 * Your Azure user has access to create VMs, Disks, Virtual Networks, and Network Security Groups.
 * Your Azure account has enough quota for the infrastructure being provisioned.
-* If your organization does not allow using public IPs for VMs, you may need to use an existing Virtual Network. 
+* If your organization does not allow using public IPs for VMs, you may need to use an existing Virtual Network.
 Modify the Azure Resource Manager template to reference an existing Virtual Network.
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
 
 == Installation
 
 [NOTE]
-The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
+The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric on VMs / Bare Metal is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
 
 If you require assistance, contact your MuleSoft representative.
 
-Before installing Runtime Fabric, download the Azure Resource Manager template from Runtime Manager:
+Before installing Runtime Fabric on VMs / Bare Metal, download the Azure Resource Manager template from Runtime Manager:
 
 . From Anypoint Platform, navigate to Runtime Manager.
 . Select *Runtime Fabrics*.
@@ -44,24 +44,24 @@ Before installing Runtime Fabric, download the Azure Resource Manager template f
 +
 The `rtf-install-scripts\azure` directory contains the following installation files:
 +
-* `ARM-template-dev.template`: A sample Azure Resource Manager template that describes the required infrastructure for  
+* `ARM-template-dev.template`: A sample Azure Resource Manager template that describes the required infrastructure for
 a development configuration.
-* `ARM-template-prod.template`: A sample Azure Resource Manager template that describes the required infrastructure for a 
+* `ARM-template-prod.template`: A sample Azure Resource Manager template that describes the required infrastructure for a
 production configuration.
-* `generate-templates.sh`: A shell script that is used to insert the Mule Enterprise license digest and initialization 
+* `generate-templates.sh`: A shell script that is used to insert the Mule Enterprise license digest and initialization
 script in the Azure Resource Manager templates. This script outputs the JSON templates to use when deploying to Azure.
 +
-Copy the supplied sample templates and modify them based on your target topology and infrastructure requirements. 
+Copy the supplied sample templates and modify them based on your target topology and infrastructure requirements.
 
 == Base64 Encode your Mule License Key
 
-Run the `generate-templates.sh` script to add the Mule Enterprise license key in the Azure Resource Manager templates. 
+Run the `generate-templates.sh` script to add the Mule Enterprise license key in the Azure Resource Manager templates.
 These templates are used to provision the infrastructure needed.
 
 [NOTE]
 On Windows, you must have a shell terminal emulator (such as cygwin) or access to a Unix-based computer.
 
-. Locate your organization's Mule Enterprise license key file (`license.lic`) and transfer the file to your 
+. Locate your organization's Mule Enterprise license key file (`license.lic`) and transfer the file to your
 Unix environment if necessary.
 . Open a terminal/shell and navigate to the `azure` sub-directory.
 . Copy the following to a text editor:
@@ -71,7 +71,7 @@ RTF_MULE_LICENSE='' \
 ./generate-templates.sh
 ----
 
-. Using the terminal, encode the Mule Enterprise license key to base64 and paste the contents as the 
+. Using the terminal, encode the Mule Enterprise license key to base64 and paste the contents as the
 value for `RTF_MULE_LICENSE` in your text editor.
 +
 ----
@@ -85,11 +85,11 @@ base64 -b0 license.lic # OSX / MacOS
 
 == Deploy using the ARM Template
 
-Run the generated ARM template to provision the infrastructure on your Azure account. The following procedures 
+Run the generated ARM template to provision the infrastructure on your Azure account. The following procedures
 describe how to run the template via the Azure Portal.
 
 [NOTE]
-You must have a private and public key as a PEM file to provision the VMs. This is required to enable secure 
+You must have a private and public key as a PEM file to provision the VMs. This is required to enable secure
 access to your VMs via SSH (Secure Shell).
 
 . Log into your https://portal.azure.com[Azure portal].
@@ -97,10 +97,10 @@ access to your VMs via SSH (Secure Shell).
 . From the *Search the marketplace* search bar, enter *Template deployment*.
 . Click *Create* on the bottom of the window.
 . Select *Build your own template in the editor*.
-. In the bar above the editor, click *Load file* and select the desired Azure Resource Manager template from 
+. In the bar above the editor, click *Load file* and select the desired Azure Resource Manager template from
 the `azure` directory. You must select a JSON file.
 . When the file contents appears in the editor, click *Save*.
-. Verify your Subscription selection, Resource group, and Region for your environment. In general, you should 
+. Verify your Subscription selection, Resource group, and Region for your environment. In general, you should
 create a separate Resource group.
 . Under *Settings*, enter the following:
 +
@@ -121,25 +121,28 @@ create a separate Resource group.
 | `Availability Set Fault Domains` | specifies the number of fault domains supported in the Azure region selected. | `3`
 | `Pod Network CIDR` | specifies a custom CIDR block to use for the pod network. | `10.244.0.0/16`
 | `Service CIDR` | specifies a custom CIDR block to use for the service network. | `10.100.0.0/16`
-
+| `disable_selinux` | A boolean variable that disables/enables SELinux on the host operating system. The default value is `true` to disable SELinux.
+{sp} +
+{sp} +
+If the host operating system is RHEL 8, do not set to `false` or installation will fail. | `true`
 |===
 +
-In Runtime Fabric, the inbound load balancer runs in either shared or dedicated mode: 
+In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either shared or dedicated mode:
 +
-* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting. 
+* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting.
 * *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
 +
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 
 . Review and select the *Terms and Conditions* on the bottom of the page and then click *Purchase*.
 +
-Runtime Fabric is installed across all servers to form a cluster. This process takes time to complete. When 
+Runtime Fabric on VMs / Bare Metal is installed across all servers to form a cluster. This process takes time to complete. When
 complete, the status of Runtime Fabric displayed in Runtime Manager changes to `Active` status.
 +
 [NOTE]
 ====
 
-* By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to 
+* By default, the ARM templates are configured to set a public IP address for each VM. Modify the template to
 remove `publicIPAddresses`, if necessary.
 * The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
 ====
@@ -150,7 +153,7 @@ To follow the Azure provisioning process, follow these steps:
 
 . On the left navigation bar in the Azure Portal, click on *Resource groups*.
 . Select the Resource group used to provision your Runtime Fabric infrastructure.
-. On the *Overview* pane under *Deployments*, click on the link below. This link should display something 
+. On the *Overview* pane under *Deployments*, click on the link below. This link should display something
 similar to `1 Deploying`.
 . Click the Deployment Name *Microsoft.Template*.
 
@@ -171,27 +174,27 @@ When the installation completes successfully, the `/opt/anypoint/runtimefabric/.
 
 == Common Errors
 
-Depending on the policies set and the quotas defined with your Azure account, you may encounter errors during 
-the provisioning process. The ARM template can be modified to accommodate the policies set by your organization. 
+Depending on the policies set and the quotas defined with your Azure account, you may encounter errors during
+the provisioning process. The ARM template can be modified to accommodate the policies set by your organization.
 Consult your network administrator as needed.
 
-* *Exceed max core quota:* file a ticket with Azure Support to increase quota for your deployment region. If you 
-believe you have enough quota, ensure the correct region is selected with the increased quota. Also, try modifying 
+* *Exceed max core quota:* file a ticket with Azure Support to increase quota for your deployment region. If you
+believe you have enough quota, ensure the correct region is selected with the increased quota. Also, try modifying
 the Resource Group name to ensure it is unique to your account.
-* *Network policy violation:* By default, the Network Security Groups defined in the Azure Resource Template are 
-associated at the subnet level and the NIC for each VM. Depending on your company's policy, you may need to adjust 
+* *Network policy violation:* By default, the Network Security Groups defined in the Azure Resource Template are
+associated at the subnet level and the NIC for each VM. Depending on your company's policy, you may need to adjust
 the template to remove an association.
 
 == Access Ops Center
 
 After installation is completed successfully, log in to Ops Center to view that status of your Runtime Fabric
-infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on 
+infrastructure. See xref:using-opscenter.adoc[Using Ops Center on Anypoint Runtime Fabric] for information on
 accessing Ops Center and determining the Ops Center username and password.
 
 [NOTE]
-By default, the Resource Manager script configures the Azure Network Security Group to not expose the Ops Center port 
-to the internet. To use a public IP to manage your cluster using the Ops Center, the controller nodes must be 
-provisioned with a public IP. Update your 
+By default, the Resource Manager script configures the Azure Network Security Group to not expose the Ops Center port
+to the internet. To use a public IP to manage your cluster using the Ops Center, the controller nodes must be
+provisioned with a public IP. Update your
 Network Security Group to allow 0.0.0.0 internet access for TCP connections on port 32009.
 
 == Post Installation Configuration
