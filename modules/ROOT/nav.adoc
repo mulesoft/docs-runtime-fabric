@@ -20,7 +20,7 @@
  ** xref:runtime-fabric-logs.adoc[View and Configure Logs in Runtime Fabric]
  ** xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
  ** xref:using-opscenter.adoc[Use Ops Center to Monitor Runtime Fabric on VMs / Bare Metal]
- ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric]
+ ** xref:troubleshoot-guide.adoc[Troubleshooting Runtime Fabric on VMs / Bare Metal ]
  ** xref:upgrade-index.adoc[Upgrade Runtime Fabric on VMs / Bare Metal]
  ** xref:uninstall-manual.adoc[Uninstall Runtime Fabric on VMs / Bare Metal]
 * xref:persistence-gateway.adoc[Persistence Gateway]

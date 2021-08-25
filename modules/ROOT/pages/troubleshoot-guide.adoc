@@ -45,6 +45,42 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-prereqs.adoc#port-ip-addresses-and-hostnames-to-add-to-the-allowlist[Port IP Addresses and Hostnames to Add to the Allowlist].
 
+== Troubleshoot Nodes in Promiscuous Mode
+
+For services that load-balance to themselves, you need to configure hairpin NAT using a dedicated configuration parameter for kubelet in the Image Manifest, for example:
+
+----
+systemOptions:
+  kubelet:
+    hairpinMode: "hairpin-veth" # also, "promiscuous-bridge" or "none"
+----
+    
+The `hairpinMode` attribute accepts the same values as kubelet. Refer to the https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/[kubelet command line reference^] for details.
+
+With `hairpin-veth`, the kubelet/network plugin handles the setup.
+
+With `promiscuous-bridge`, the behavior is similar to that of the kubenet network plugin:
+
+* The Docker bridge is placed into promiscuous mode
+* ebtables rules are set up to avoid duplicate packets as the bridge accepts traffic otherwise destined for other interfaces.
+
+In `promiscuous-bridge` mode, nodes require a kernel module called `ebtable_filter` to manage ebtable rules.
+
+To see if the module is loaded:
+
+----
+root$ lsmod | grep ebtable
+ebtable_filter         12827  0
+ebtables               35009  1 ebtable_filter
+----
+
+To load the module and make it persist across reboots:
+
+----
+root$ modprobe ebtable_filter
+root$ echo 'ebtable_filter' > /etc/modules-load.d/network.conf
+----
+
 == Troubleshoot Chrony Synchronization Check Failure
 
 Runtime Fabric requires chrony for its time synchronization daemon. If chrony is not found by the `init.sh` installation script, Runtime Fabric installation fails with the following error:
@@ -111,7 +147,6 @@ Update interval : 1031.1 seconds
 Leap status : Normal
 ```
 . Retry the installation by running `init.sh`.
-
 
 == Troubleshoot Cluster Issues
 
