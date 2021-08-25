@@ -14,6 +14,8 @@ Runtime Fabric generates log files for the following:
 
 Runtime Fabric enables you to specify the severity level of messages that are written to the log file.
 
+Runtime Fabric does not support custom logging categories. 
+
 [%header,cols="3*a"]
 .Runtime Fabric Log Levels
 |===
