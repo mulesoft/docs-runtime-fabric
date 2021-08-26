@@ -11,7 +11,7 @@ xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide fee
 
 === Enable Anypoint Monitoring
 
-By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
+By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Data is securely transmitted using mutual TLS encryption. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
 
 If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
 
@@ -44,7 +44,7 @@ multiple lines of log output are split across two files due to log rotation insi
 === Metrics
 
 Each Mule application and API gateway replica runs a metrics agent that collects and transmits metrics data to 
-Anypoint Monitoring. Each replica can cache up to 100 megabytes of metrics, after which the metrics data is rotated 
+Anypoint Monitoring via secure mutual TLS encryption. Each replica can cache up to 100 megabytes of metrics, after which the metrics data is rotated 
 to provide storage for more recent data. In the event that metrics cannot be sent to Anypoint Monitoring, this 
 typically provides at least 4 days worth of storage per replica. Note that use of custom metrics might consume more storage.
 
