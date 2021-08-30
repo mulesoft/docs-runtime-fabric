@@ -28,7 +28,7 @@ The following table lists default alerts provided by Anypoint Runtime Fabric on 
 
 == Configure Alerts
 
-You can send Runtime Fabric alerts from a designated alert sender email address through your SMTP server. You can configure only one alerts email recipient.
+You can send Runtime Fabric alerts from a designated alert sender email address through your SMTP server. You can configure only one email recipient for alerts.
 
 . Install `rtfctl`.
 +
@@ -87,7 +87,7 @@ If needed, you can modify the content of email alerts sent from Runtime Fabric. 
 
 [NOTE]
 --
-If you customize any Runtime Fabric email alerts, appliance upgrades overwrites the customizations. 
+If you customize any Runtime Fabric email alerts, appliance upgrades overwrite the customizations. 
 --
 
 . Navigate to Ops Center.
@@ -114,7 +114,7 @@ kubectl -n monitoring exec <pod name> -c alert-loader -- kapacitor -url http://l
 ----
 kubectl -n monitoring exec <POD NAME> -c alert-loader -- kapacitor -url http://localhost:9092 delete tasks <MODIFIED ALERT NAME>
 ----
-. Check that the alert is recreated and the status/executing values are enabled/true:
+. Verify that the alert is re-created, the Status value is `enabled`, and the Executing value is `true`:
 +
 ----
 kubectl -n monitoring exec <pod name> -c alert-loader -- kapacitor -url http://localhost:9092 list tasks
