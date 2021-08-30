@@ -5,12 +5,34 @@ endif::[]
 
 Runtime Fabric on VMs / Bare Metal enables you to send alerts through an existing SMTP server. Runtime Fabric on VMs / Bare Metal provides alert functionality to send notifications when system health is compromised.
 
-== Install rtfctl 
+== Built-in Alerts
 
+The following table lists default alerts provided by Anypoint Runtime Fabric on VMs / Bare Metal:
+
+[%header,cols="2*a"]
+|===
+|Alert | Description
+| `docker` | Sends an error when the Docker daemon is down.
+| `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
+| `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one-minute period.
+| `filesystem` | Sends a warning when 80% of capacity is used. Triggers a critical error when more than 90% is used.
+| `high-cpu` | Sends a warning when 75% of capacity used. Triggers a critical error when more than 90% is used.
+| `high_memory` | Sends a warning when 80% of memory is used. Triggers a critical error when more than 90% is used.
+| `influxdb_health_batch` | Triggers an error if InfluxDB is down or if there is no connection between Kapacitor and InfluxDB.
+| `ingress` | Triggers a critical error when more than 80% of capacity is used.
+| `kubernetes_node` | Sends a warning when more than 90% of CPU is used. Triggers a critical error when more than 95% is used.
+| `muleapps` | Triggers a critical error when more than 90% of CPU is used. 
+| `network_params` | Triggers a critical error if networking is disabled on a node. 
+| `uptime` | Sends a warning when the system is inaccessible for longer than 5 min.
+|===
+
+== Configure Alerts
+
+You can send Runtime Fabric alerts from a designated alert sender email address through your SMTP server. You can configure only one alerts email recipient.
+
+. Install `rtfctl`.
++
 The `rtfctl` utility is required to manage alert sender email on Runtime Fabric. Perform the steps in xref:install-rtfctl.adoc[Install rtfctl] before completing the following steps.
-
-== Procedure
-
 . Using a terminal, open a shell/SSH connection to a controller VM.
 . Create a file named `alert-smtp.yaml` that contains the following:
 +
@@ -59,31 +81,69 @@ $ sudo gravity resource create -f alert-smtp.yaml
 $ sudo ./rtfctl appliance apply alert-smtp-from "sender@example.com"
 ----
 
-Alerts with the designated alert sender email address are now configured to be sent through your SMTP server.
+== Modify Email Alert Contents
+
+If needed, you can modify the content of email alerts sent from Runtime Fabric. Alerts are written in TICKscript.
 
 [NOTE]
-Currently, only one alerts email recipient is supported.
+--
+If you customize any Runtime Fabric email alerts, appliance upgrades overwrites the customizations. 
+--
 
-== Built-in Alerts
-
-The following table lists default alerts provided by Anypoint Runtime Fabric on VMs / Bare Metal:
-
-[%header,cols="2*a"]
-|===
-|Alert | Description
-| `docker` | Sends an error when the Docker daemon is down.
-| `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
-| `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one-minute period.
-| `filesystem` | Sends a warning when 80% of capacity is used. Triggers a critical error when more than 90% is used.
-| `high-cpu` | Sends a warning when 75% of capacity used. Triggers a critical error when more than 90% is used.
-| `high_memory` | Sends a warning when 80% of memory is used. Triggers a critical error when more than 90% is used.
-| `influxdb_health_batch` | Triggers an error if InfluxDB is down or if there is no connection between Kapacitor and InfluxDB.
-| `ingress` | Triggers a critical error when more than 80% of capacity is used.
-| `kubernetes_node` | Sends a warning when more than 90% of CPU is used. Triggers a critical error when more than 95% is used.
-| `muleapps` | Triggers a critical error when more than 90% of CPU is used. 
-| `network_params` | Triggers a critical error if networking is disabled on a node. 
-| `uptime` | Sends a warning when the system is inaccessible for longer than 5 min.
-|===
+. Navigate to Ops Center.
+. From the Ops Center menu, click *Configuration*.
+. From the *Config maps* drop-down menu, select *kapacitor-alerts*.
+. From the *Namespace* drop-down menu, select *monitoring*.
+. Select the alert you want to modify, and make changes.
+. When complete, click *Apply*. [5]
+. Use SSH or Ops Center to log in to one of the controller nodes. 
+. Get the kapacitor pod name:
++
+----
+kubectl -n monitoring get pod -l component=kapacitor
+----
++
+The name will look like `kapacitor-xxxxxxxxxx-xxxx`.
+. Get a list of configured alerts:
++
+----
+kubectl -n monitoring exec <pod name> -c alert-loader -- kapacitor -url http://localhost:9092 list tasks
+----
+. Delete the alert you modified:
++
+----
+kubectl -n monitoring exec <POD NAME> -c alert-loader -- kapacitor -url http://localhost:9092 delete tasks <MODIFIED ALERT NAME>
+----
+. Check that the alert is recreated and the status/executing values are enabled/true:
++
+----
+kubectl -n monitoring exec <pod name> -c alert-loader -- kapacitor -url http://localhost:9092 list tasks
+----
++
+The result shows a list of alerts:
++
+----
+ID                    Type      Status    Executing Databases and Retention Policies
+<MODIFIED ALERT NAME>                stream    enabled   true      ["k8s"."default"]
+...
+----
+. Check the new alert contents:
++
+----
+kubectl -n monitoring exec kapacitor-85c9d79c9b-ttkdn -c alert-loader -- kapacitor -url http://localhost:9092 show <MODIFIED ALERT NAME>
+----
++
+The results looks like:
++
+----
+ID: <alert_name>
+Error:
+Template:
+Type: stream
+Status: enabled
+Executing: true
+...
+----
 
 == See Also
 
