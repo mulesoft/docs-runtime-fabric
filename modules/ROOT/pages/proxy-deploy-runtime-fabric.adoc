@@ -63,6 +63,6 @@ To enable the proxy to support HTTPs requests:
 . Export and deploy the gateway using Runtime Manager according to the instructions in xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 . Enable last-mile security on the application using the instructions in https://help.mulesoft.com/s/article/How-to-enable-last-mile-security-in-Runtime-Fabric-RTF[How to enable last-mile security in Runtime Fabric (RTF)].
 
-== See Also
+== Related Resources
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
