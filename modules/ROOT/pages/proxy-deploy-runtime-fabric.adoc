@@ -27,7 +27,7 @@ You can update resource allocation settings on the application's *Settings* page
 == Deploy an API Proxy
 
 . From Anypoint Platform, select *API Manager* > *Manage API* > *Manage API From Exchange*.
-. In *API Name*, search for the name of the asset as saved in Exchange.
+. In *API Name*, search for the name of the asset saved in Exchange.
 +
 The *Asset type*, *API version*, and *Asset version* fields for the API are auto-populated from Exchange.
 . For *Managing type*, select *Endpoint with proxy*.
