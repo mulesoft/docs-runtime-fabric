@@ -27,16 +27,14 @@ You can update resource allocation settings on the application's *Settings* page
 == Deploy an API Proxy
 
 . From Anypoint Platform, select *API Manager* > *Manage API* > *Manage API From Exchange*.
-. In *API Name*, search for the name of the asset as saved in Exchange.
+. In *API Name*, search for the name of the asset saved in Exchange.
 +
 The *Asset type*, *API version*, and *Asset version* fields for the API are auto-populated from Exchange.
 . For *Managing type*, select *Endpoint with proxy*.
 . For *Proxy deployment target*, select Runtime Fabric.
 . Select the Mule version.
 . For *Implementation URI*, specify the base URL path to access the proxy.
-. If using HTTPS, make a selection for *TLS context for outbound traffic*.
-. If using OAuth 2.0, select a client provider.
-. Optionally specify a *Path*, *Service Name*, *Service Port*, and *Service Namespace*.
+. Optionally, specify a *Path*.
 . Click *Advanced options* and optionally specify advanced parameters, such as *TLS context for outbound traffic* (for HTTPS), *Proxy version*, *Validations*, *Response timeout*, and *Port*.
 . Click *Save*.
 +
