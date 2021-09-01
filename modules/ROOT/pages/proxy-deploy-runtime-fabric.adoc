@@ -15,7 +15,7 @@ To deploy API proxies to a Mule runtime, you must have the following permissions
 
 You must ensure that you are using API Gateway version 3.8.7, 3.9.1, or 4.1.2.
 
-If you are deploying your API to a Mule 4 environment and want to enable the proxy to support HTTPS requests, first refer to xref::apimanager:building-https-proxy.adoc[build HTTPS API proxies].
+If you are deploying your API to a Mule 4 environment and want to enable the proxy to support HTTPS requests, first refer to xref:api-manager::building-https-proxy.adoc[build HTTPS API proxies].
 
 By default, the resources allocated to the proxy app are:
 
