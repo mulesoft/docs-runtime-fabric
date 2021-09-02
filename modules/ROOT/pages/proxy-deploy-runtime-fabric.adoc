@@ -64,4 +64,4 @@ To enable the proxy to support HTTPs requests:
 // end::content[]
 == Related Resources
 
-* xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
+* xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric]
