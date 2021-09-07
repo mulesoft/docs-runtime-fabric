@@ -95,7 +95,7 @@ If you customize any Runtime Fabric email alerts, appliance upgrades overwrite t
 . From the *Config maps* drop-down menu, select *kapacitor-alerts*.
 . From the *Namespace* drop-down menu, select *monitoring*.
 . Select the alert you want to modify, and make changes.
-. When complete, click *Apply*. [5]
+. When complete, click *Apply*. 
 . Use SSH or Ops Center to log in to one of the controller nodes. 
 . Get the kapacitor pod name:
 +
