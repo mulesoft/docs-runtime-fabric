@@ -45,7 +45,7 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 +
 [IMPORTANT]
 --
-* Do not change `--from-literal=persistence-gateway-cred`. You can replace `<SECRET NAME>` with any value you want to use for the secret.
+* Do not change `--from-literal=persistence-gateway-creds`. You can replace `<SECRET NAME>` with any value you want to use for the secret.
 * Do not use the "@" character in the database username. 
 --
 
