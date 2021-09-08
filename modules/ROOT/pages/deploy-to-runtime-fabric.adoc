@@ -135,7 +135,7 @@ If needed, review xref:deploy-resource-allocation.adoc[determine resource alloca
 The Mule runtime disables TLSv1 and TLSv1.1 by default. When you deploy an application to Runtime Fabric, you can enable TLSv1 or TLSv1.1 using JVM args.
 
 . Click the *JVM* tab. 
-. In the *Java Virtual Machine arguments*, enter one of the following arguments:
+. In the *Java Virtual Machine arguments* field, add one of the following arguments:
 * Enable TLSv1.0 and TLSv1.1: `-Drtf.allow.TLSv1.0+`
 * Enable TLSv1.1: `-Drtf.allow.TLSv1.1`
 
