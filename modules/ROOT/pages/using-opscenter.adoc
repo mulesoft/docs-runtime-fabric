@@ -98,6 +98,14 @@ take several minutes.
 +
 Ops Center downloads a file named `report.tar.gz`.
 
+== Monitor Kapacitor Pods from the CLI
+
+Ops Center does not support SSH for accessing Kapacitor pods. Instead, you can access monitoring for these pods using the Kubernetes CLI.
+
+To do so, run the following command from a node with Kubernetes access:
++
+`kubectl exec -it -n monitoring <POD_NAME> -c kapacitor – sh`
+
 == See Also
 
 * xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
