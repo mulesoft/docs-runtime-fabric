@@ -20,7 +20,8 @@ The full deployment process includes these steps:
  (Runtime Fabric on Self-Managed Kubernetes only)
 . Specify the network configuration for the application (Runtime Fabric on VMs/Bare Metal only)
 . Set up replication
-. Configure Application Properties
+. (Optional) Enable TLSv1 and TLSv1.1
+. Configure application properties
 . Deploy the application
 
 === Prerequisites
@@ -128,6 +129,15 @@ If there is an insufficient number of worker nodes or resources available on the
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
 If needed, review xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
+
+=== (Optional) Enable TLS v1 and TLS v1.1
+
+Starting with the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#august-3-2021[August 3, 2021 patch releases], Mule runtime disables TLS v1 and TLS v1.1 by default for all runtime versions. When you deploy an application to Runtime Fabric, you can enable TLS v1 or TLS v1.1 using JVM args.
+
+. Click the *JVM* tab. 
+. In the *Java Virtual Machine arguments* field, add one of the following arguments:
+* Enable TLSv1.0 and TLSv1.1: `-Drtf.allow.TLSv1.0+`
+* Enable TLSv1.1: `-Drtf.allow.TLSv1.1`
 
 === Configure Application Properties
 
