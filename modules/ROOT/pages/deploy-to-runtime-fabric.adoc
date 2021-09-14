@@ -59,8 +59,6 @@ Available domains and paths for an application come from the ingress resource te
 [NOTE]
 If you do not select a domain, the application is deployed to an empty domain.
 
-If your template uses regex to rewrite the host path, review xref:custom-ingress-configuration.adoc#using-regex-in-application-paths[Using Regex in Application Paths].
-
 . Select *Ingress*.
 . From the *Host* drop-down list, select a host for the application.
 . If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
