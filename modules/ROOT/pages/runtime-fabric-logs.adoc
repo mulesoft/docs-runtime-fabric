@@ -163,6 +163,11 @@ Example output plugin configuration:
 
 ==== Elasticsearch Configuration Parameters
 
+[IMPORTANT]
+--
+Runtime Fabric 1.10.26 and later uses Fluent Bit 1.83 for external log forwarding. If you forward logs to Elasticsearch, you must set the  configuration parameter `Generate_ID` to `On`. By default, Fluent Bit sets this parameter to `Off`.
+--
+
 [%header%autowidth.spread,cols="a,a,a,a"]
 .Elasticsearch Configuration Parameters
 |===
