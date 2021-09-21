@@ -69,7 +69,7 @@ In `promiscuous-bridge` mode, nodes require a kernel module called `ebtable_filt
 To see if the module is loaded:
 
 ----
-root$ lsmod | grep ebtable
+$ lsmod | grep ebtable
 ebtable_filter         12827  0
 ebtables               35009  1 ebtable_filter
 ----
