@@ -77,8 +77,8 @@ ebtables               35009  1 ebtable_filter
 To load the module and make it persist across reboots:
 
 ----
-root$ modprobe ebtable_filter
-root$ echo 'ebtable_filter' > /etc/modules-load.d/network.conf
+$ modprobe ebtable_filter
+$ echo 'ebtable_filter' > /etc/modules-load.d/network.conf
 ----
 
 == Troubleshoot Chrony Synchronization Check Failure
