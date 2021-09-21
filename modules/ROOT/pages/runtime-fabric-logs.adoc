@@ -413,7 +413,10 @@ You can send a test message to verify connectivity between Runtime Fabric on VMs
 
 Anypoint Runtime Fabric on VMs / Bare Metal also enables you to forward application and cluster logs to external logging solutions other than the third-party solutions supported using log forwarding output plugins. The log forwarder (`rsyslog` client service) built into Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP for viewing, retention, and receiving alerts in a centralized destination. Logging solutions such as Logstash provide methods to receive log data from `rsyslog` clients.
 
-Anypoint Runtime Fabric on VMs / Bare Metal provides dashboards and alerts for critical metrics when performance or availability is compromised.  An SMTP server is required to receive alerts. To view and configure Anypoint Runtime Fabric dashboards and alerts using Ops Center:
+[NOTE]
+--
+To enable multiline logging, your log entries must begin with an open bracket, `[`.
+--
 
 . Using a terminal, open a shell/SSH connection to a controller VM.
 . Create a file named `log-forwarder.yaml`.
@@ -432,7 +435,6 @@ spec:
 Use the following values as applicable to your environment:
 +
 [%header,cols="2*a"]
-.Log Forwarding Configuration Parameters
 |===
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.
