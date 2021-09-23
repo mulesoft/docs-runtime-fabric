@@ -3,45 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric enables you to deploy API proxies to a Mule runtime.
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=description]
 
-== Before you Begin
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=before-you-begin,leveloffset=+1]
 
-To deploy API proxies to a Mule runtime, you must have the following permissions on your account:
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=procedure,leveloffset=+1]
 
-* Manage APIs Configuration permission
-* Deploy API Proxies permission
-
-You must ensure that you are using API Gateway version 3.8.7, 3.9.1, or 4.1.2.
-
-== Procedure
-
-. From Anypoint Platform, select API Manager.
-. Click *Manage API*, then click *Manage API From Exchange*
-+
-image::runtime-fabric-1.png[]
-
-. Under *API Configurations*, enter the appropriate information.
-
-. Ensure that you select *Runtime Fabric* under *Proxy deployment target* .
-
-. Click *Save*
-+
-Under *Deployment Configuration* section configure the following:
-+
-* Select the *Runtime Fabric target*.
-* Select the *Runtime version*.
-** Enter the name of the proxy
-+
-image::runtime-fabric-2.png[]
-
-== Result
-
-API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployment status dialog appears similar to the following:
-
-image::runtime-fabric-3.png[]
-
-After deployment, you can manage the deployed API proxy from Runtime Manager.
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=result;https-proxy,leveloffset=+1]
 
 == See Also
 
