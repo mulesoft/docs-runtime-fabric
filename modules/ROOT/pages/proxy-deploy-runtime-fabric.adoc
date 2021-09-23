@@ -3,7 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-include::runtime-fabric:ROOT:partial$deploy-api-proxy-to-rtf.adoc[tag=content]
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=description]
+
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=before-you-begin,leveloffset=+1]
+
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=procedure,leveloffset=+1]
+
+include::runtime-fabric::partial$deploy-api-proxy-to-rtf.adoc[tags=result;https-proxy,leveloffset=+1]
 
 == Related Resources
 

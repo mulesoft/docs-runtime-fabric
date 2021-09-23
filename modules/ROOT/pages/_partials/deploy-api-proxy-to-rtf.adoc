@@ -1,7 +1,12 @@
-// tag::content[]
+// tag::description[]
 Runtime Fabric enables you to deploy API proxies to a Mule runtime.
 
-== Before you Begin
+// end::description[]
+
+
+// tag::before-you-begin[]
+
+= Before you Begin
 
 To deploy API proxies to a Mule runtime, you must have the following permissions on your account:
 
@@ -9,8 +14,11 @@ To deploy API proxies to a Mule runtime, you must have the following permissions
 * Deploy API Proxies permission
 
 You must ensure that you are using API Gateway version 3.8.7, 3.9.1, or 4.1.2.
+// end::before-you-begin[]
 
-== Procedure
+// tag::procedure[]
+
+= Procedure
 
 . From Anypoint Platform, select API Manager.
 . Click *Manage API*, then click *Manage API From Exchange*
@@ -37,21 +45,27 @@ By default, the resources allocated to the proxy app are:
 * Memory: 1.024 GB
 
 You can update resource allocation settings on the application's *Settings* page in Runtime Manager.
+// end::procedure[]
 
-== Result
+// tag::result[]
+
+= Result
 
 API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployment status dialog appears similar to the following:
 
 image:runtime-fabric::runtime-fabric-3.png[]
 
 After deployment, you can manage the deployed API proxy from Runtime Manager.
+// end::result[]
 
-== Enable an HTTPS Proxy
+// tag::https-proxy[]
+
+= Enable an HTTPS Proxy
+
 To enable the proxy to support HTTPs requests:
 
 . Download the API gateway and deploy from API Manager using the instructions in xref:api-manager::download-proxy-task.adoc[Downloading an API Proxy].
 . Open the gateway in Anypoint Studio and insert a keystore (SSL cert) using the instructions in xref:mule-runtime::tls-configuration#use-anypoint-studio-to-configure-tls[Use Anypoint Studio to Configure TLS].
 . Export and deploy the gateway using Runtime Manager according to the instructions in xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 . Enable last-mile security on the application using the instructions in https://help.mulesoft.com/s/article/How-to-enable-last-mile-security-in-Runtime-Fabric-RTF[How to enable last-mile security in Runtime Fabric (RTF)].
-
-// end::content[]
+// end::https-proxy[]
