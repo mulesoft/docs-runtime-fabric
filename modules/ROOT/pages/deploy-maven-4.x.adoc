@@ -17,7 +17,9 @@ See <<add-mmp, Add the Mule Maven Plugin to a Mule Project>> for instructions.
 Studio allows you to select only two project types when uploading an application to Exchange: `example` and `template`. To specify a different project type, publish your application using Maven.
 
 [[add-mmp]]
-include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=addMuleMavenPluginToAProject]
+== Add the Mule Maven Plugin to a Mule Project
+
+include::mule-runtime::partial$mmp-concept.adoc[tag=addMuleMavenPluginToAProject]
 
 include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfDeploymentConfig]
 
