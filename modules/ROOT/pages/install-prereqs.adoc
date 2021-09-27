@@ -130,7 +130,7 @@ A high bandwidth network is required, with a minimum of 1 GBps connectivity betw
 
 For an example of the traffic volume between Runtime Fabric and the Anypoint control plane, consider the following:
 
-* The image for Mule Runtime 4.3.0 is 740 MB
+* The image for Mule Runtime 4.3.0 is 740 MB.
 * An Runtime Fabric appliance upgrade requires 1.5 GB. The appliance upgrade process takes approximately 30 minutes for a production size cluster (3 controllers and 3 workers).
 
 === Required Port Settings
