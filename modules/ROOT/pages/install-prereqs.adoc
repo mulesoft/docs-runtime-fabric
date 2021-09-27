@@ -119,11 +119,19 @@ To avoid this issue, use RHEL or CentOS 8.x in your Runtime Fabric on VMs / Bare
 
 Runtime Fabric on VMs / Bare Metal requires specific network and port configuration for installation and operation.
 
+[NOTE]
+--
+Runtime Fabric on VMs / Bare Metal does not support cross-regional deployments. Network latency between each node can cause problems with cluster health.
+--
+
 === Bandwidth Requirements
 
 A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Runtime Fabric on VMs / Bare Metal, and minimum of 100 MBps for outbound connectivity to the Internet.
-[NOTE]
-Runtime Fabric on VMs / Bare Metal does not support cross-regional deployments. Network latency between each node can cause problems with cluster health.
+
+For an example of the traffic volume between Runtime Fabric and the Anypoint control plane, consider the following:
+
+* The image for Mule Runtime 4.3.0 is 740 MB.
+* An Runtime Fabric appliance upgrade requires 1.5 GB. The appliance upgrade process takes approximately 30 minutes for a production size cluster (3 controllers and 3 workers).
 
 === Required Port Settings
 
