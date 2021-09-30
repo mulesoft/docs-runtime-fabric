@@ -4,17 +4,7 @@ Runtime Fabric supports using Mule Maven Plugin 3.x to manage and deploy Mule ap
 
 To deploy Mule 3 applications using Mule Maven Plugin 2.x, see xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
 
-== Prerequisites
-
-* Ensure that the Mule Maven Plugin is added to your project
-+
-See <<add-mmp, Add the Mule Maven Plugin to a Mule Project>> for instructions.
-* The application is already published in Exchange +
-** To do this from Studio, see xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. +
-** To do this using Maven, see xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven].
-+
-[NOTE]
-Studio allows you to select only two project types when uploading an application to Exchange: `example` and `template`. To specify a different project type, publish your application using Maven.
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=prerequisitesRTF]
 
 [[add-mmp]]
 == Add the Mule Maven Plugin to a Mule Project
