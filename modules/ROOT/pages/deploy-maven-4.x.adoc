@@ -4,46 +4,25 @@ Runtime Fabric supports using Mule Maven Plugin 3.x to manage and deploy Mule ap
 
 To deploy Mule 3 applications using Mule Maven Plugin 2.x, see xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]
 
-== Prerequisites
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=prerequisitesRTF]
 
-* The application must be published in Exchange. +
-** To do this from Studio, see xref:studio::export-to-exchange-task.adoc[Publishing a Project to Exchange]. +
-** To do this using Maven, see xref:exchange::to-publish-assets-maven.adoc[Publish and Deploy Exchange Assets Using Maven].
-
-[NOTE]
-Studio allows you to select only two project types when uploading an application to Exchange: `example` and `template`. To specify a different project type, publish your application using Maven.
-
+[[add-mmp]]
 == Add the Mule Maven Plugin to a Mule Project
 
-To add the Mule Maven Plugin, you need to add its maven dependency to the project:
+include::mule-runtime::partial$mmp-concept.adoc[tag=addMuleMavenPluginToAProject]
 
-[source,xml,linenums]
-----
-<plugin>
-  <groupId>org.mule.tools.maven</groupId>
-  <artifactId>mule-maven-plugin</artifactId>
-  <version>3.3.2</version>
-  <extensions>true</extensions>
-</plugin>
-----
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfDeploymentConfig]
 
-[IMPORTANT]
-Enable extensions. If `<extensions>true</extensions>` is not present, the plugin does not work.
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfDeploymentCommands]
 
-From this repository:
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=authenticationMethods]
 
-[source,xml,linenums]
-----
-<pluginRepositories>
-    <pluginRepository>
-        <id>mule-public</id>
-        <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
-    </pluginRepository>
-</pluginRepositories>
-----
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfDeploymentReference]
 
-This enables the Mule Maven Plugin in your project.
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfDeploymentSettingsReference]
 
-== Deployment and Reference Information.
+include::mule-runtime::partial$mmp-deploy-to-rtf.adoc[tag=rtfEncryptCredentials]
 
-For deployment instructions using Mule Maven Plugin 3.x and complete reference information, see xref:mule-runtime::mmp-concept.adoc#deploying-to-rtf[Deploy a Mule Application to Runtime Fabric].
+== See Also
+
+* xref:mule-runtime::mmp-concept.adoc[Mule Maven Plugin]
