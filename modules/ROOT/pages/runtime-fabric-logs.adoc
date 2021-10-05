@@ -126,7 +126,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 . Select *Runtime Fabrics* in the sidebar navigation.
 . Select the applicable Runtime Fabric based on the name used during installation.
 . Select the *Log Forwarding* tab.
-. Select the *Forward to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
+. Select the *Forward application logs to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
 . Select the *Forward application logs to an external service* checkbox to forward logs using a log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
 .. Enter configuration information for your third-party logging solution, as shown in the following sections:
