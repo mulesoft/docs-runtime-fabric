@@ -118,6 +118,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 * External log forwarding does not currently join multiline log entries during log file rotation.
 * Runtime Fabric supports only one-way TLS (client to server) verification.
 * You cannot programmatically change the log-patterns for external log forwarders.
+* External log forwarding follows Syslog Protocol RFC5424, and therefore hostnames, application names, and process IDs are not automatically mapped to log entries. These fields are mapped when you xref:forward-logs-to-other-external-services[forward logs to other external services].
 
 === Enable Log Forwarding
 
