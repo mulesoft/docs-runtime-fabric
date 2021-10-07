@@ -211,7 +211,11 @@ To configure ingress, complete the following tasks:
 . Create an ingress resource template and apply it in the cluster.
 . Configure a public endpoint for a Mule application deployment.
 
-=== Create an Ingress Resource Template and Apply it in the Cluster
+== Before You Begin
+
+Before configuring ingress in Runtime Fabric, you must set up an ingress controller. See https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/[the Kubernetes documentation^] for a list of ingress controllers. 
+
+=== Create an Ingress Resource Template and Apply t in the Cluster
 
 Use one of the xref:example-ingress-resource-templates[example templates] to create an ingress resource. 
 
