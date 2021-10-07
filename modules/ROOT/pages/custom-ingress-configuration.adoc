@@ -37,7 +37,7 @@ The following diagram provides an overview of how to use ingress resource templa
 image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric,80%]
 
 . An IT administrator configures an ingress controller. 
-. The IT admin creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller’s documentation and adjust your annotations accordingly. 
+. The IT admin creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller documentation and adjust your annotations accordingly. 
 . The IT admin applies the template using `kubectl apply` commands.
 . From the applied template, Runtime Fabric creates placeholder URI domains and propagates the ingress configuration in Anypoint Runtime Manager as a template for all application deployments.
 . A Mule application developer uses Runtime Manager to configure an application for deployment by selecting an available host, an optional subdomain, and a path combination, as specified in the ingress template. 
@@ -214,7 +214,7 @@ To configure ingress, complete the following tasks:
 
 == Before You Begin
 
-Before configuring ingress in Runtime Fabric, you must set up an ingress controller. See https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/[the Kubernetes documentation^] for a list of ingress controllers. 
+Before configuring ingress in Runtime Fabric, you must set up an ingress controller. See the https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/[Kubernetes documentation^] for a list of ingress controllers. 
 
 === Create an Ingress Resource Template and Apply it in the Cluster
 
