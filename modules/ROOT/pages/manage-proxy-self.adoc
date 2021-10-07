@@ -15,6 +15,15 @@ Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running
 
 Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
 
+[NOTE]
+--
+In some cases, when applying a proxy for Self-Managed Kubernetes on Runtime Fabric, you may get a warning similar to:
+
+`Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric...`
+
+This is safe to ignore.
+--
+
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
