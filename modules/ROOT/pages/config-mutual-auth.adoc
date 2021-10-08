@@ -5,12 +5,12 @@ endif::[]
 
 [IMPORTANT]
 --
-Mutual authentication for connectivity between the Runtime Fabric and Anypoint control plane is enabled by default for all versions of Runtime Fabric released after 7/15/2020. The following instructions to enable mutual authentication are relevant only to those versions released before 7/15/2020.
+Mutual authentication for connectivity between the Runtime Fabric and Anypoint control plane is enabled by default for Runtime Fabric versions 1.6.45 and later. The following instructions to enable mutual authentication are relevant only to those versions earlier than 1.6.45.
 --
 
 Mutual authentication improves the security of communication between Runtime Fabric and Anypoint Platform and is highly recommended. 
 
-If you're on a version of Runtime Fabric released before 7/15/2020, you can enable mutual authentication using the Runtime Fabric API. Or, on Anypoint Runtime Fabric version 1.3.60 or later, you can use Runtime Manager to enable it.
+If you're on aRuntime Fabric version earlier than 1.6.45, you can enable mutual authentication using the Runtime Fabric API. Or, on Anypoint Runtime Fabric version 1.3.60 or later, you can use Runtime Manager to enable it.
 
 == Before You Begin 
 
