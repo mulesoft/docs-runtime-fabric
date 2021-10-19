@@ -10,7 +10,7 @@ Mutual authentication for connectivity between Runtime Fabric and Anypoint contr
 
 Mutual authentication improves the security of communication between Runtime Fabric and Anypoint Platform and is highly recommended. 
 
-If you're on a Runtime Fabric version earlier than 1.6.45, you can enable mutual authentication using the Runtime Fabric API. Or, on Anypoint Runtime Fabric version 1.3.60 or later, you can use Runtime Manager to enable it.
+For Runtime Fabric versions earlier than 1.6.45, enable mutual authentication using the Runtime Fabric API. For Runtime Fabric versions 1.3.60 and later, use Runtime Manager to enable it.
 
 == Before You Begin 
 
