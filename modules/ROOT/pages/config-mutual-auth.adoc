@@ -33,7 +33,7 @@ cd /opt/anypoint/runtimefabric
 
 == Enable Mutual Authentication from Runtime Manager
 
-. From Runtime Manager, select the appropriate environment and click Runtime Fabrics. 
+. From Runtime Manager, select the appropriate environment and click *Runtime Fabrics*. 
 . Select a Runtime Fabric. 
 . For *Enable mutual authentication with Anypoint Platform connectivity*, set the toggle to *On*.
 
