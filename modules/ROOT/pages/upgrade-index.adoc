@@ -68,22 +68,22 @@ Node configuration upgrades are delivered as an updated install script version u
 [NOTE]
 If you are upgrading the node configuration with updated install scripts, the latest version of the appliance is automatically downloaded and used.
 
-== Apply the Upgrades
+== How the Upgrade Process Works
 
 To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, perform the following tasks:
 
-. Upgrade Runtime Fabric components.
 . Upgrade the `rtfctl` command-line utility.
-. Upgrade the Runtime Fabric appliance.
-. Update the Mule deployments running on Runtime Fabric to the latest patch version.
 . Verify that Runtime Fabric is healthy.
-. Run the upgrade.
+. Upgrade Runtime Fabric components.
+. Upgrade the Runtime Fabric appliance.
+. Run the upgrade in the cluster.
 . Upgrade node configurations.
+. Update the Mule deployments running on Runtime Fabric to the latest patch version.
 
-=== Prerequisites
+=== Before You Perform the Upgrade Process
 
 * Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric. When your nonproduction upgrade succeeds, perform these steps in your production environment.  
-* Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
 * Provision additional worker nodes as needed to maintain availability of applications when applying appliance upgrades.
 +
 If the amount of available resources for application deployments is less than the resources of one worker node, add another worker node with the same amount of CPU, memory, and disk resources to Runtime Fabric.
@@ -91,24 +91,9 @@ If the amount of available resources for application deployments is less than th
 See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
 * Review https://help.mulesoft.com/s/article/What-items-to-Check-Before-an-RTF-Appliance-Upgrade[What Items to Check Before an RTF Appliance Upgrade^] from the MuleSoft Knowledge Base. 
 
-=== Upgrade Runtime Fabric Components
+== Upgrade the `rtfctl` Command-Line Utility
 
-To upgrade Runtime Fabric components: 
-
-. Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
-. Select *Upgrade to vx.x*. 
-+
-The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
-. Wait for the status to transition to *Active*. 
-+
-In most cases, the upgrade takes fewer than 10 minutes. When the status transitions to *Active* and the version of the Runtime Fabric reflects the new version, the component upgrade is complete.
-+
-If the Runtime Fabric and Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
-. Keep your browser session open to perform the remainder of the upgrade subtasks.
-
-=== Upgrade the `rtfctl` Command-Line Utility
-
-To upgrade the `rtfctl` command-line utility:
+The `rtfctl` command-line utility is used in several steps during the upgrade process.
 
 . If you are not using the latest version of the `rtfctl` command-line utility, download the latest version with the following command:
 +
@@ -127,9 +112,48 @@ sudo chmod +x rtfctl
 `rtfctl update`
 ----
 
-=== Upgrade the Runtime Fabric Appliance
+== Verify That Runtime Fabric is Healthy
 
-==== Prerequisites  
+Before running the upgrade, ensure the cluster is active and healthy.
+
+. Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
+. Open a terminal to a Runtime Fabric controller node.
+. Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
+. Keep your browser session open to perform the remainder of the upgrade subtasks.
+
+== Upgrade Runtime Fabric Components
+
+The first step in the Runtime Fabric process is upgrading the Runtime Fabric components.
+
+=== Before You Upgrade Runtime Fabric Components 
+//Remove these next three bullets in post-1.11 versions
+* Verify that you have allowlisted [endpoint] on port 443, used by the runtime-registry to retrieve Docker containers for app deployments.
+** After upgrading to Runtime Fabric 1.11, you must restart applications if you want them to update their deployment manifests for the runtime-registry endpoint. 
+* Verify that you have allowlisted the endpoints used for Mutual Transport Layer Security (mTLS) between the Anypoint Platform control plane and your Runtime Fabric. 
+
+. Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
+. Click *Upgrade to vx.x*. 
+//Remove these next two steps in post-1.11 versions
+. Click *Run Network Test* to perform the network check to ensure you’ve allowlisted the correct endpoints for the runtime registry and mTLS with the Anypoint Control plane.
++
+If you haven’t allowlisted the endpoints, you must do so before continuing.  
++
+The network test may take several minutes to complete.
+. When the network test completes, click *Apply Upgrade.*
++
+The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
+. Wait for the status to transition to *Active*. 
++
+In most cases, the upgrade takes fewer than 10 minutes. When the status transitions to *Active* and the version of the Runtime Fabric reflects the new version, the component upgrade is complete.
++
+If the Runtime Fabric and Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
+. Keep your browser session open to perform the remainder of the upgrade subtasks.
+
+== Upgrade the Runtime Fabric Appliance
+
+After you upgrade the Runtime Fabric components, you can upgrade the Runtime Fabric appliance.  
+
+=== Before You Upgrade the Runtime Fabric Appliance  
 
 * Verify that `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
 * Verify that you have root privileges.
@@ -154,26 +178,7 @@ rtfctl appliance upgrade --url https://<upgrade-package-information>
 ```
 . Paste the code snippet in a text editor for reference. 
 
-=== Update the Mule Deployments Running on Runtime Fabric to the Latest Patch Version
-
-After you upgrade the Runtime Fabric appliance and components, update your Mule applications deployed on Runtime Fabric to the latest date patch versions. 
-
-. Using your web browser, navigate to the *Applications* tab in Runtime Manager.
-. Select an application and select *Manage Application*. 
-. Ensure that the value in the *Runtime version* field indicates that an update is available and select it.
-. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
-. Repeat this for each application running on this Runtime Fabric instance.
-
-=== Verify That Runtime Fabric is Healthy
-
-Before running the upgrade, ensure the cluster is active and healthy.
-
-. Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
-. Open a terminal to a Runtime Fabric controller node.
-. Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
-. Keep your browser session open to perform the remainder of the upgrade subtasks.
-
-=== Run the Upgrade
+== Run the Upgrade in the Cluster
 
 The upgrade can take more than an hour to complete.
 
@@ -216,7 +221,7 @@ sudo gravity status
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
 
-=== Upgrade Node Configurations
+== Upgrade Node Configurations
 
 Perform the following steps on every node to ensure that system configurations are current:
 
@@ -232,6 +237,16 @@ Or if you are using the EU control plane, run:
 ----
 sudo ./rtfctl apply system-configuration --force --control-plane eu
 ----
+
+== Update the Mule Deployments Running on Runtime Fabric to the Latest Patch Version
+
+After you upgrade the Runtime Fabric appliance and components, update your Mule applications deployed on Runtime Fabric to the latest date patch versions. 
+
+. Using your web browser, navigate to the *Applications* tab in Runtime Manager.
+. Select an application and select *Manage Application*. 
+. Ensure that the value in the *Runtime version* field indicates that an update is available and select it.
+. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
+. Repeat this for each application running on this Runtime Fabric instance.
 
 == Resume an Appliance Upgrade
 
