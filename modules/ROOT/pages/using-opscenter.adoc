@@ -3,6 +3,13 @@
 
 You can use the built-in Ops Center to monitor the health of your Runtime Fabric on VMs / Bare Metal clusters.
 
+Ops Center supports the following capabilities included in the Anypoint Platform:
+
+* SSO integration
+* Application monitoring with Anypoint Monitoring
+* Detailed health reporting for Runtime Fabric
+* External log forwarding
+
 == Access Ops Center
 
 You can use the Ops Center to monitor dashboards, view logs, and download debugging information within Anypoint Runtime Fabric.
