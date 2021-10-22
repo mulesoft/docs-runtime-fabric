@@ -138,14 +138,17 @@ Use this option to upload a Java Keystore (JKS) file and use TLS default values.
 ... In the *Select alias from keystore* window, specify an alias. The alias is used to select a specific key pair.
 +
 The following information is displayed:
++
 **** The URL format to be used for your apps, based on the certificate’s CN.
 +
 The certificate must be set with a passphrase and a CN that specifies the domain for each application deployed to Runtime Fabric. The domain is used for routing requests to an application. Other values can be selected via the *Applications->Ingress* page.
 +
 [NOTE]
+--
 The *Select alias from keystore* window is enabled after you specify a keystore file and keystore passcode.
-+
-Select *Details* to view the information you entered for *Keystore File*, *Keystore Password*, and *Alias* before selecting other options or deploying.
+--
+
+. Select *Details* to view the information you entered for *Keystore File*, *Keystore Password*, and *Alias* before selecting other options or deploying.
 
 ***** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 ***** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
