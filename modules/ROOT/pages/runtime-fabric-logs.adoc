@@ -132,13 +132,13 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
 .. Enter configuration information for your third-party logging solution, as shown in the following sections:
 
-*** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>>
-*** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
-*** <<GELF Configuration Parameters, GELF Configuration Parameters>>
-*** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
-*** <<Cloud Watch, CloudWatch Configuration Parameters>>
-*** <<Syslog, Syslog Configuration Parameters>>
-*** <<Datadog, Datadog Configuration Parameters>>
+*** <<Azure Log Analytics Configuration Parameters>>
+*** <<Elasticsearch Configuration Parameterss>>
+*** <<GELF Configuration Parameters>>
+*** <<Splunk Configuration Parameters>>
+*** <<CloudWatch Configuration Parameters>>
+*** <<Syslog Configuration Parameters>>
+*** <<Datadog Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
