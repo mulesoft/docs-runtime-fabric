@@ -46,6 +46,8 @@ To check core CPU usage:
 +
 You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage against licensing, look for the highest number within the selected time frame. 
 
+For further question related to license usage and compliance, we recommend to work with your account team and customer success manager.
+
 == vCPU Allocation
 
 When the `Reserved vCPU` and `vCPU Limit` are equal, the CPU on the worker node is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on Runtime Fabric.
