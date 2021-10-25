@@ -142,7 +142,6 @@ In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
 
-
 Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 
 . Copy the command below in a text editor and fill in the values of each variable inside the single quotes. Add and define any additional variables if required. A common example is if an HTTP proxy is required for outbound  internet connectivity.
@@ -170,7 +169,7 @@ mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh
 +
 [NOTE]
 You must have root privileges to run the `init.sh` script.
-+
+
 ----
 sudo /opt/anypoint/runtimefabric/init.sh
 ----

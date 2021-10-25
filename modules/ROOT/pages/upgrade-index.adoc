@@ -127,8 +127,11 @@ The first step in the Runtime Fabric process is upgrading the Runtime Fabric com
 
 === Before You Upgrade Runtime Fabric Components 
 //Remove these next three bullets in post-1.11 versions
-* Verify that you have allowlisted [endpoint] on port 443, used by the runtime-registry to retrieve Docker containers for app deployments.
-** After upgrading to Runtime Fabric 1.11, you must restart applications if you want them to update their deployment manifests for the runtime-registry endpoint. 
+* Verify that you have allowlisted the following endpoints on port 443, used by the runtime-registry to retrieve Docker containers for app deployments.
+** US control plane: `rtf-runtime-registry.kprod.msap.io`
+** EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
++
+ After upgrading to Runtime Fabric, you must restart applications if you want them to update their deployment manifests for the runtime-registry endpoint. 
 * Verify that you have allowlisted the endpoints used for xref:config-mutual-auth.adoc[Mutual Transport Layer Security (mTLS) between the Anypoint Platform control plane and your Runtime Fabric]. 
 
 . Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
@@ -260,7 +263,7 @@ Resumed upgrades are attached to your terminal session, so ensure that you have 
 cd /opt/anypoint/runtimefabric/installer
 ----
 +
-. To resume the upgradem, run: 
+. To resume the upgrade, run: 
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume

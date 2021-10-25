@@ -238,8 +238,8 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 | EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com` `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | Anypoint Exchange for application assets.
 .2+| 443 .2+| HTTPS | US control plane: `ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
-.2+| 443 .2+| HTTPS | US control plane: `494141260463.dkr.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
-| EU control plane: `655988475869.dkr.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
+.2+| 443 .2+| HTTPS | US control plane: `rtf-runtime-registry.kprod.msap.io` | Runtime Fabric Docker repository.
+| EU control plane: `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
 .2+| 443 .2+| HTTPS | US control plane: `api.ecr.us-east-1.amazonaws.com` | Runtime Fabric Docker repository.
 | EU control plane: `api.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
 .2+| 443 .2+| HTTPS | US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
