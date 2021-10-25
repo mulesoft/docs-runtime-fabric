@@ -59,10 +59,12 @@ Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to config
 
 Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is provisioned and operational. Verify if your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
 
-[IMPORTANT]
-====
-Runtime Fabric on Self-Managed Kubernetes supports Kubernetes versions 1.17 through 1.19.
-====
+Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes versions:
+
+* 1.17 (1.8, 1.9, and 1.10.0)
+* 1.18
+* 1.19
+* 1.20 (1.10.26 and later)
 
 === Nodes and Resources
 
@@ -108,11 +110,3 @@ For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports loggi
 
 * xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
 
-[TIP]
---
-The following tutorials, written by the MuleSoft developer relations team, explain how to provision clusters on EKS, AKS, or GKE for installing Runtime Fabric on Self-Managed Kubernetes, with NGINX as an ingress controller. These tutorials for provisioning clusters are intended as examples only and are not officially supported by MuleSoft.
-
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service[Getting Started with Runtime Fabric on EKS^]
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service[Getting Started with Runtime Fabric on AKS^]
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine[Getting Started with Runtime Fabric on GKE^]
---

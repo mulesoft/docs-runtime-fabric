@@ -4,7 +4,7 @@ Anypoint Runtime Fabric enables you to deploy Mule applications and API Proxies 
 
 == Supported Mule Runtime Server Versions
 
-See xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Anypoint Runtime Fabric Runtimes Release Notes] for information on supported version of Mule runtime server.
+See xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Anypoint Runtime Fabric Runtimes Release Notes] for information on supported versions of Mule runtime server.
 
 == Prerequisites
 

@@ -14,6 +14,8 @@ Runtime Fabric generates log files for the following:
 
 Runtime Fabric enables you to specify the severity level of messages that are written to the log file.
 
+Runtime Fabric does not support custom logging categories. 
+
 [%header,cols="3*a"]
 .Runtime Fabric Log Levels
 |===
@@ -115,6 +117,8 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 * External log forwarding does not currently support proxies that are configured for a Runtime Fabric cluster. You must explicitly configure firewall rules to allow the outbound IP address and port of the external log forwarding service.
 * External log forwarding does not currently join multiline log entries during log file rotation.
 * Runtime Fabric supports only one-way TLS (client to server) verification.
+* You cannot programmatically change the log-patterns for external log forwarders. Additionally, Runtime Fabric does not support custom log appenders in `log4j2.xml`. 
+* External log forwarding follows Syslog Protocol RFC5424, and therefore hostnames, application names, and process IDs are not automatically mapped to log entries. These fields are mapped when you xref:forward-logs-to-other-external-services[forward logs to other external services].
 
 === Enable Log Forwarding
 
@@ -122,19 +126,19 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 . From Anypoint Platform, select *Runtime Manager*.
 . Select *Runtime Fabrics* in the sidebar navigation.
 . Select the applicable Runtime Fabric based on the name used during installation.
-. Select the *Log Forwarding* tab.
-. Select the *Forward to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
+. Select the *Logs* tab.
+. Select the *Forward application logs to Anypoint Monitoring (Requires Titanium)* checkbox if you have a Titanium subscription and you want to forward logs to Anypoint Monitoring.
 . Select the *Forward application logs to an external service* checkbox to forward logs using a log forwarding output plugin.
 .. In the *Connects to* drop-down list, select the applicable third-party log forwarding solution.
 .. Enter configuration information for your third-party logging solution, as shown in the following sections:
 
-*** <<Azure Log Analytics Configuration Parameters, Azure Log Analytics Configuration Parameters>>
-*** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
-*** <<GELF Configuration Parameters, GELF Configuration Parameters>>
-*** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
-*** <<Cloud Watch, CloudWatch Configuration Parameters>>
-*** <<Syslog, Syslog Configuration Parameters>>
-*** <<Datadog, Datadog Configuration Parameters>>
+*** <<Azure Log Analytics Configuration Parameters>>
+*** <<Elasticsearch Configuration Parameters>>
+*** <<GELF Configuration Parameters>>
+*** <<Splunk Configuration Parameters>>
+*** <<CloudWatch Configuration Parameters>>
+*** <<Syslog Configuration Parameters>>
+*** <<Datadog Configuration Parameters>>
 
 .. Select *Apply changes*.
 .. To verify successful log forwarding, manually check the logs using the external log forwarding service.
@@ -159,6 +163,11 @@ Example output plugin configuration:
 ```
 
 ==== Elasticsearch Configuration Parameters
+
+[IMPORTANT]
+--
+Runtime Fabric 1.10.26 and later uses Fluent Bit 1.8.3 for external log forwarding. If you forward logs to Elasticsearch, you must set the configuration parameter `Generate_ID` to `On`. By default, Fluent Bit sets this parameter to `Off`.
+--
 
 [%header%autowidth.spread,cols="a,a,a,a"]
 .Elasticsearch Configuration Parameters
@@ -405,7 +414,10 @@ You can send a test message to verify connectivity between Runtime Fabric on VMs
 
 Anypoint Runtime Fabric on VMs / Bare Metal also enables you to forward application and cluster logs to external logging solutions other than the third-party solutions supported using log forwarding output plugins. The log forwarder (`rsyslog` client service) built into Runtime Fabric enables you to send log data to an `rsyslog` server over TCP or UDP for viewing, retention, and receiving alerts in a centralized destination. Logging solutions such as Logstash provide methods to receive log data from `rsyslog` clients.
 
-Anypoint Runtime Fabric on VMs / Bare Metal provides dashboards and alerts for critical metrics when performance or availability is compromised.  An SMTP server is required to receive alerts. To view and configure Anypoint Runtime Fabric dashboards and alerts using Ops Center:
+[NOTE]
+--
+To enable multiline logging, your log entries must begin with an open bracket, `[`.
+--
 
 . Using a terminal, open a shell/SSH connection to a controller VM.
 . Create a file named `log-forwarder.yaml`.
@@ -424,7 +436,6 @@ spec:
 Use the following values as applicable to your environment:
 +
 [%header,cols="2*a"]
-.Log Forwarding Configuration Parameters
 |===
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.
