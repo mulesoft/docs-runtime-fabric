@@ -23,7 +23,7 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 
 . On the first full week of the month, you have access to new date-patches of updated Mule runtime instances.
 . During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.
-. Beginning on the third full full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
+. Beginning on the third full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
 [NOTE]
 During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you might be required to update its date-patch version to a later release.
