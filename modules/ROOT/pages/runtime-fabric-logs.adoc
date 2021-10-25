@@ -133,7 +133,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 .. Enter configuration information for your third-party logging solution, as shown in the following sections:
 
 *** <<Azure Log Analytics Configuration Parameters>>
-*** <<Elasticsearch Configuration Parameterss>>
+*** <<Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters>>
 *** <<CloudWatch Configuration Parameters>>
