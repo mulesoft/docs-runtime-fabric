@@ -15,6 +15,15 @@ Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running
 
 Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
 
+[NOTE]
+--
+If you run the `rtfctl apply http-proxy` command from a workstation that is outside the cluster, you may get a warning similar to:
+
+`Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric...`
+
+This error occurs if the proxy values on the workstation do not match the values in the Runtime Fabric cluster (including capitalization mismatches on the proxy variable name). You can ignore this error.
+--
+
 . Run the following command, replacing the placeholder values with the following:
 +
 ----

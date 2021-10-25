@@ -36,7 +36,8 @@ The following diagram provides an overview of how to use ingress resource templa
 
 image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric,80%]
 
-. An IT administrator creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller’s documentation and adjust your annotations accordingly. 
+. An IT administrator configures an ingress controller. 
+. The IT admin creates or modifies an ingress resource template using the necessary parameters. Various ingress controllers operate differently. Review your ingress controller documentation and adjust your annotations accordingly. 
 . The IT admin applies the template using `kubectl apply` commands.
 . From the applied template, Runtime Fabric creates placeholder URI domains and propagates the ingress configuration in Anypoint Runtime Manager as a template for all application deployments.
 . A Mule application developer uses Runtime Manager to configure an application for deployment by selecting an available host, an optional subdomain, and a path combination, as specified in the ingress template. 
@@ -210,6 +211,10 @@ To configure ingress, complete the following tasks:
 
 . Create an ingress resource template and apply it in the cluster.
 . Configure a public endpoint for a Mule application deployment.
+
+== Before You Begin
+
+Before configuring ingress in Runtime Fabric, you must set up an ingress controller. See the https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/[Kubernetes documentation^] for a list of ingress controllers. 
 
 === Create an Ingress Resource Template and Apply it in the Cluster
 
@@ -392,4 +397,4 @@ The results should be similar to:
 
 Scenario: When using an AWS ALB, you can’t access an application’s endpoint, even though you successfully deployed the application and endpoint. 
 
-If you’re using AWS Load Balancer Controller for ingress, you must specify the `kubernetes.io/ingress.class: alb` annotation in the template, _not_ `ingressClassName: alb`. AWS Load Balancer Controller requires the `ingress.class` annotation to discover and create L7 load balancers for deployed ingress resources for those annotations.
+If you’re using AWS Load Balancer Controller for ingress, you must specify the `kubernetes.io/ingress.class: rtf-alb` annotation in the template, _not_ `ingressClassName: rtf-alb`. AWS Load Balancer Controller requires the `ingress.class` annotation to discover and create L7 load balancers for deployed ingress resources for those annotations.
