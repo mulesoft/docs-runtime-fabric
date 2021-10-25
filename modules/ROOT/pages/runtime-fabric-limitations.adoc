@@ -5,17 +5,23 @@ endif::[]
 
 The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on VMs / Bare Metal.
 
-[cols="2*a"]
-.Anypoint Runtime Fabric on VMs / Bare Metal resource allocation and performance 
+
+== Node, Environment, and Group Limitations
+
+The following table lists important limitations for configuring Runtime Fabric:
+
+[%header%autowidth.spread]
 |===
+| Component   | Limitation
 | Controller Nodes | The maximum number of controller nodes supported is 5.
 | Worker Nodes | The maximum number of worker nodes supported is 16.
 | Replicas Per Worker Node | The maximum number of replicas that can be deployed per worker node is 40.
-
-Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
-| Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50. 
+{sp} +
+{sp} +
+To allow core sharing across replicas when needed for bursting, run no more than 20-25 *replicas per core*. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
+| Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
 | Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
-| Object Store Persistence | xref:mule-runtime::creating-and-managing-a-cluster-manually.adoc#object-store-persistence[Object Store Persistence] is not currently supported for Runtime Fabric clusters. 
+| Object Store Persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 |===
 
 == Internal Load Balancer Resource Allocation and Performance
@@ -23,7 +29,6 @@ Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per n
 The following table lists the approximate number of requests (averaging 10 KB) that can be served with a single replica of the internal load balancer based on the number of CPU cores. This information is based on the performance test results as described in xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric on VMs / Bare Metal].
 
 [%header,cols="3*a"]
-.Runtime Fabric on VMs / Bare Metal Resource Allocation and Performance
 |===
 | vCPU Cores | Max Requests per Second (Connection Reuse) | Max Requests per Second (No Connection Reuse)
 | `1.00` | 2000 | 175
@@ -32,6 +37,31 @@ The following table lists the approximate number of requests (averaging 10 KB) t
 | `0.25` | 100 | 10
 |===
 
-The internal load balancer runs on the controller nodes of Runtime Fabric on VMs / Bare Metal. Configure the VM size based on the amount and 
+The internal load balancer runs on the controller nodes of Runtime Fabric on VMs / Bare Metal. Configure the VM size based on the amount and
 type of inbound traffic. You can allocate only half of the available CPU cores on each VM to the internal load balancer.
 Refer to xref:deploy-resource-allocation#internal-load-balancer[Resource Allocation and Performance on Anypoint Runtime Fabric] for additional information.
+
+== Operating System Limitations
+
+The following table lists known limitations for host operating systems in Runtime Fabric:
+[%header%autowidth.spread]
+|===
+| Operating System | Limitation
+| RHEL 8 a| 
+* Do not set the optional environment variable `disable_selinux` to `false` in the `fabric.tf` script, or installation will fail.
+* Do not set SELinux to enforcing mode. 
+| RHEL 7 a| 
+* If you have enabled SELinux, third-party software running on the host may change policy settings from SELinux.
+* You can set SELinux to enforcing mode if you don't change default policies.
+|===
+
+[[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
+== How Antivirus and DPI Software Impacts Runtime Fabric Functionality
+
+The Anypoint Runtime Fabric appliance has specific hardware and OS requirements. MuleSoft Support provides Support SLA and Severity Levels based on our validation and certification of the requirements specified in the xref:install-prereqs.adoc[installation prerequisites].
+
+A small number of third-party software that requires root access to the host, which includes, but is not limited to, antivirus and DPI software, has been found to interfere with the behavior and requirements of the Runtime Fabric appliance. In many support cases where MuleSoft Support has detected antivirus software, they have seen issues such as port blocking, node-to-node communication blocking, Docker default bridge deletion, and filesystem access issues that interfere with Runtime Fabric appliance installation, upgrade, and normal operations.
+
+In the event that abnormal behavior is observed with the Runtime Fabric appliance, you may be asked to disable any running third-party software (including anti-virus or DPI software) to determine if it is the cause of the behavior. If disabling such software restores proper Runtime Fabric appliance functionality, this would demonstrate an implicit incompatibility between that software package and the Runtime Fabric appliance, and we would consider the support case resolved.
+
+If you are strictly required to run traditional security tools that interfere with certain components of the Runtime Fabric appliance, vendors and security experts that support Kubernetes are recommended to support you in meeting this requirement. Alternatively, you are encouraged to consider using Runtime Fabric on Self-Managed Kubernetes. Cloud platform vendors often add cloud-centric controls that are consistent with well-known security benchmarks, such as the https://www.cisecurity.org/benchmark/kubernetes/[Center for Internet Security (CIS) Kubernetes Benchmark^].
