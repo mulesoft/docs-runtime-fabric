@@ -2,18 +2,33 @@
 
 [NOTE]
 ====
-The tasks outline in this topic must be performed by an IT administrator
+The tasks outlined in this topic must be performed by an IT administrator.
 ====
 
 Runtime Fabric on Self-Managed Kubernetes enables you to edit a template file that specifies a custom Ingress configuration. Using this file you can define values for annotations, rewrite rules, and the ingressClassName. 
 
-The template file is a Kubernetes ConfigMap file. After customizing the template, you can use the `rtfctl apply ingress-configmap` command-line utility to apply the custom Ingress configuration to your Kubernetes cluster.
+The template file is a Kubernetes ConfigMap file. After customizing the template, use the `rtfctl apply ingress-configmap` command to apply the custom Ingress configuration to your Kubernetes cluster.
 
 If you do not apply a custom ConfigMap file based on a template file, Runtime Fabric will default to a standard ingress resource definition. 
 
 [NOTE]
 ====
 Depending on your ingress controller or ingress strategy, the ConfigMap template *may not work*. You must apply specific ingress configurations as specified by your ingress controller to enable ingress to Mule applications.
+====
+
+== How Ingress Resources are Generated
+
+When deploying a Mule application to Runtime Fabric on Self-Managed Kubernetes, the Runtime Fabric agent generates a service and ingress resource for that application. The Runtime Fabric agent creates these Kubernetes resources in a namespace that corresponds to the Anypoint Environment ID used when deploying the Mule application.
+
+By default, each application deployment has its own service and ingress resources. 
+
+In Runtime Fabric v1.8.50 and later, annotations and labels can be added to the generated Service resources. These changes persist for the lifecycle of those resources.
+
+The generated ingress resources can be modified by using the ingress template. If further customization is required, follow best practices for disabling Ingress resource generation and managing the Ingress resources separately. To disable ingress resource generation, uncheck the *Enable inbound requests* option under the *Ingress* tab when deploying a Mule application in Anypoint Runtime Manager.
+
+[IMPORTANT]
+====
+On Google Kubernetes Engine (GKE), the ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or use another ingress controller if this behavior is undesirable. See link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
 ====
 
 == Procedure
@@ -42,11 +57,11 @@ All changes should be made under the `data` section of this file. Do not modify 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | Element | Description
-| `ingress.annotations` | Annotations defined in this section are added to the `annotations` section of every Ingress resource created of a Mule application. Each annotation must be defined on a new line. Annotations defined in the template are default Kubernetes annotations that you can override, if required.
+| `ingress.annotations` | Annotations defined in this section are added to the `annotations` section of every ingress resource created for a Mule application. Define each annotation on a new line. Annotations defined in the template are default Kubernetes annotations that you can override, if required.
 |`ingress.spec` | Used to configure the resource `spec` paramaters
 | `ingressClassName` (optional) | Specifies the class name used in the Ingress resource created for a Mule application.
 
-Defining the `ingressClassName` is supported only on Kubernetes version 1.18 and higher. Some ingress controllers require you to define `ingressClassName` using annotations. If you are using Kubernetes version 1.17 or lower, specify `<ingress-class-name>` using ingress.annotations. Use only one of these methods for defining `ingressClassName` based on the version of Kubernetes you are using. Do not use both methods in the same file.
+`ingressClassName` is supported only on Kubernetes version 1.18 and higher. Some ingress controllers require you to define `ingressClassName` using annotations. If you are using Kubernetes version 1.17 or lower, specify `<ingress-class-name>` using ingress.annotations. Use only one of these methods for defining `ingressClassName` based on the version of Kubernetes you are using. Do not use both methods in the same file.
 | `rules.http.paths.path` | Specifies the `path` value used in the `http rules` section of the Ingress resource.
 
 Generally, this value corresponds to the public URL of a Mule application shown in the application URL preview. To allow this value to be configured dynamically during deployment, use `/$(APP_PATH)` as a placeholder.
