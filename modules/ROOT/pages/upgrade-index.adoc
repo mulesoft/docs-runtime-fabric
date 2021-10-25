@@ -1,206 +1,236 @@
-= Upgrade Runtime Fabric
+= Upgrade Runtime Fabric on VMs/Bare Metal
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
-Anypoint Runtime Fabric is a software appliance that combines packages that work together but are upgraded individually:
+To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, upgrade the Runtime Fabric appliance, components, the `rtfctl` command-line utility, and node configurations.
 
-* Appliance upgrades
-+
+== About Appliance Upgrades
+
 Appliance upgrades affect platform-layer components, which include Docker, Kubernetes, and the Ops Center. These platform-layer components are installed on virtual machines (VMs) or bare-metal servers that act as nodes on the cluster.
-+
-Appliance upgrades are applied using the `rtfctl` command-line utility.
-+
-Appliance upgrades are applied as a rolling upgrade to each node, one at a time. To minimize impact to running applications, a minimium of three controller nodes is required to ensure the cluster remains available. In addition, there should be at least one worker node's worth of unused resources available to allow for applications to be redeployed as each worker node is taken offline to be upgraded.
 
-* Component upgrades
-+
-Runtime Fabric component upgrades involve the internal services that run within the appliance used to facilitate communication to the Anypoint control plane, provide load balancing, and log and metrics forwarding.
-+
-Runtime Fabric component upgrades are applied within Runtime Manager via a button that's visible when an upgrade is made available.
-+
+Appliance upgrades are applied using the `rtfctl` command-line utility.
+
+Appliance upgrades are applied to each node, one at a time. This _rolling upgrade_  process minimizes the impact to running applications by ensuring that the minimum three controller nodes are still active, ensuring cluster availability. This process also ensures that at least one worker node's worth of unused resources are available to allow for applications to be redeployed as each worker node is taken offline to be upgraded.
+
+== About Component Upgrades
+
+Upgrading Runtime Fabric components means upgrading services that:
+
+* Facilitate communication to the control plane
+* Provide load balancing
+* Log and forward metrics
+
+When component upgrades are available, you apply the upgrades within Runtime Manager via a button that’s visible when an upgrade is available. Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] for information about the latest component versions.
+
 Runtime Fabric component upgrades do not require adding a node.
 
-* `rtfctl` command-line utility upgrades
-+
-The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
-+
-Upgrades for the `rtfctl` utility are delivered as a new binary via the *Runtime Fabric downloads* page in Runtime Manager.
+=== Determine the Component Versions You Are Using
 
-* Node configuration upgrades
-+
-Node configuration upgrades involve scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
-+
-Node configuration upgrades are delivered as an updated install script version using the *Runtime Fabric downloads* page in Runtime Manager.
-+
-[NOTE]
-If you are upgrading the node configuration with updated install scripts, the latest version of the appliance is automatically downloaded and used.
-
-It is important to use the most current versions of the appliance and `rtfctl` command-line utility.
-
-== Determine the Component Versions You Are Using
-
-Run the following command on a Runtime Fabric controller node:
+On a Runtime Fabric controller node, run the following command:
 ```
 /opt/anypoint/runtimefabric/rtfctl version
 ```
 
-Output includes:
-
-* The `rtfctl` command-line utility version in the `rtfctl` field
-* The appliance component version in the `appliance` field
-* The Runtime Fabric component version in the `agent` field
+The output looks something like this:
 
 For example:
 ```
 [root@ip-10-0-245-74 /]# /opt/anypoint/runtimefabric/rtfctl version
 COMPONENT    VERSION                  
-rtfctl       0.2.96+2868e14           
-agent        1.5.4                    
-appliance    1.1.1581641679-5884bce   
-kubernetes   1.13.12
+rtfctl       0.3.122           
+agent        1.9.3                    
+appliance    1.1.1719717580-73a133d   
+kubernetes   1.17
 ```
+* The `rtfctl` command-line utility version in the `rtfctl` field
+* The appliance component version in the `appliance` field
+* The Runtime Fabric component version in the `agent` field
 
 [NOTE]
 The Runtime Fabric component and appliance versions that are in use are also displayed in the *Runtime Fabrics* tab in Runtime Manager. If an upgrade is available, an "Upgrade to vx.x" message is displayed.
 
-== Determine the Most Recent Component Versions Available
-The most recent component versions are displayed in the *Downloads* page, located in Runtime Manager in the *Runtime Fabrics* tab. A link to each package’s release notes is provided to show the changes.
+== About `rtfctl` Command-line Utility Upgrades
 
-You can also review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+The `rtfctl` command-line utility is used to manage Runtime Fabric and perform appliance and node configuration upgrades.
+
+You upgrade the `rtfctl` utility from the command line.
+
+It is important to use the most current version of the `rtfctl` command-line utility.
+
+== About Node Configuration Upgrades
+
+Node configuration upgrades involve scripts for provisioning AWS and Azure infrastructure, preparing each node, bootstrapping a new Runtime Fabric, adjusting operating system limits, and performing jobs to clean up system resources.
+
+Node configuration upgrades are delivered as an updated install script version using the *Runtime Fabric downloads* page in Runtime Manager.
+
+[NOTE]
+If you are upgrading the node configuration with updated install scripts, the latest version of the appliance is automatically downloaded and used.
 
 == Apply the Upgrades
-Before upgrading your production environment, perform the following steps on a nonproduction Runtime Fabric to verify compatibility with your environment.
 
-. Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
-. Provision additional worker nodes as needed to maintain availability of applications when applying appliance upgrades.
+To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, perform the following tasks:
+
+. Upgrade Runtime Fabric components.
+. Upgrade the `rtfctl` command-line utility.
+. Upgrade the Runtime Fabric appliance.
+. Update the Mule deployments running on Runtime Fabric to the latest patch version.
+. Verify that Runtime Fabric is healthy.
+. Run the upgrade.
+. Upgrade node configurations.
+
+=== Prerequisites
+
+* Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric. When your nonproduction upgrade succeeds, perform these steps in your production environment.  
+* Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
+* Provision additional worker nodes as needed to maintain availability of applications when applying appliance upgrades.
 +
 If the amount of available resources for application deployments is less than the resources of one worker node, add another worker node with the same amount of CPU, memory, and disk resources to Runtime Fabric.
 +
 See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
-. To upgrade Runtime Fabric components:
+* Review https://help.mulesoft.com/s/article/What-items-to-Check-Before-an-RTF-Appliance-Upgrade[What Items to Check Before an RTF Appliance Upgrade^] from the MuleSoft Knowledge Base. 
 
-.. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric.  
-.. Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
-.. Select "Upgrade to vx.x". The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
-.. Wait for the status to transition to *Active*. 
+=== Upgrade Runtime Fabric Components
+
+To upgrade Runtime Fabric components: 
+
+. Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
+. Select *Upgrade to vx.x*. 
++
+The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
+. Wait for the status to transition to *Active*. 
 +
 In most cases, the upgrade takes fewer than 10 minutes. When the status transitions to *Active* and the version of the Runtime Fabric reflects the new version, the component upgrade is complete.
 +
 If the Runtime Fabric and Runtime Manager connection disconnects during the upgrade, connectivity is restored after the upgrade finishes.
-+
-Keep your browser session open to use in later steps.
-+
-[IMPORTANT]
-To upgrade to Runtime Fabric version 1.5 or later, you must be running version 1.4.54. If you are not running version 1.4.54, a button to upgrade to 1.4.54 is displayed. Upgrade to this version in order to enable upgrades to 1.5.
-. If you are not using the latest version of the `rtfctl` command-line utility, download the latest version:
-.. Using your terminal on a controller node, run the following command: 
+. Keep your browser session open to perform the remainder of the upgrade subtasks.
+
+=== Upgrade the `rtfctl` Command-Line Utility
+
+To upgrade the `rtfctl` command-line utility:
+
+. If you are not using the latest version of the `rtfctl` command-line utility, download the latest version with the following command:
 +
 ----
 cd /opt/anypoint/runtimefabric
 sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
-+
-.. Change file permissions for the `rtfctl` binary: 
+. Change file permissions for the `rtfctl` binary: 
 +
 ----
 sudo chmod +x rtfctl
 ----
-. If you are not using the latest version of the appliance, upgrade to the latest version:
+. If you are a user who owns the `rtfctl` binary, you can update `rtfctl` without needing to download a new version. To do so, run the following command:
++
+----
+`rtfctl update`
+----
 
-.. Make sure the `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
-.. Verify you have root privileges. Root privileges are required to perform an upgrade.
-.. Verify your environment meets the prerequisites:
+=== Upgrade the Runtime Fabric Appliance
 
-*** The internal load balancer must be running on at least three replicas to maintain availability. On newer versions of Runtime Fabric, the internal load balancer runs on all controller nodes by default.
-*** An external load balancer must be configured to load balance incoming requests to the controller nodes, with a health check configured for TCP port 443.
-*** The CPU and memory resources for at least one additional worker node must be available in the cluster.
+==== Prerequisites  
+
+* Verify that `/opt/anypoint/runtimefabric/installer` directory has a minimum of 4 GiB of disk space available.
+* Verify that you have root privileges.
+* Verify that your environment includes:
+** An internal load balancer running on at least three replicas, to maintain availability. On newer versions of Runtime Fabric, the internal load balancer runs on all controller nodes by default.
+** An external load balancer configured to load-balance incoming requests to the controller nodes, with a health check configured for TCP port 443.
+** CPU and memory resources for at least one additional worker node available in the cluster.
 +
 This enables safe removal of a worker node from the cluster to apply upgrades without impacting application availability.
-*** Applications serving inbound requests must be scaled to a minimum of two replicas.
-+
-[WARNING] Runtime Fabrics running on cluster version 1.0.x encounter application downtime if configured to use an HTTP proxy. You must apply the HTTP proxy configuration on each node after the upgrade. Locate the Runtime Fabric version by running `rtfctl version` on a node and referencing the appliance version.
+** Applications serving inbound requests scaled to a minimum of two replicas.
+* If you've customized Runtime Fabric email alerts, the appliance upgrade overwrites the customizations. Refer to xref:configure-alerting.adoc#modify-email-alert-contents[Modify Email Alert Contents] for instructions on recreating the modifications.
 
-.. Update the Mule deployments running on Runtime Fabric to the latest patch version.
-... Using your web browser, navigate to the *Applications* tab in Runtime Manager.
-... Select an application and select *Manage Application*. 
-... The value in the *Runtime version* field indicates if an update is available. Select the updated version of Mule runtime engine.
-... Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
-... Repeat this for each application running on this Runtime Fabric.
-.. Verify Runtime Fabric is healthy:
-... Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
-... Open a terminal to a Runtime Fabric controller node.
-... Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
-... Keep your terminal open to use in later steps.
+To upgrade the Runtime Fabric appliance:
 
-.. Get the latest version of the Runtime Fabric appliance package:
-... Using your web browser, navigate to Runtime Manager and select the *Runtime Fabrics* tab to view a list of Runtime Fabrics.
-... Select the *Downloads* link.
-... Select the *Copy Link* icon next to *Installer package* to copy the code snippet, as shown in the following example:
+. Using your web browser, navigate to Runtime Manager and select the *Runtime Fabrics* tab to view a list of Runtime Fabric instances.
+. Select the Runtime Fabric instance you want to upgrade.
+. Next to the appliance version, click *Upgrade Available*.
+. Select the *Copy Link* icon next to *Installer package* to copy the code snippet, as shown in the following example:
 +
 ```
 rtfctl appliance upgrade --url https://<upgrade-package-information>
 ```
-... Paste the code snippet in a text editor for reference. 
-.. Start the upgrade procedure:
-... Using your terminal open on a controller node, run the following command, substituting the value of the <cluster-installer-url> parameter with the *Installer package* URL value: 
+. Paste the code snippet in a text editor for reference. 
+
+=== Update the Mule Deployments Running on Runtime Fabric to the Latest Patch Version
+
+After you upgrade the Runtime Fabric appliance and components, update your Mule applications deployed on Runtime Fabric to the latest date patch versions. 
+
+. Using your web browser, navigate to the *Applications* tab in Runtime Manager.
+. Select an application and select *Manage Application*. 
+. Ensure that the value in the *Runtime version* field indicates that an update is available and select it.
+. Select *Deploy* to redeploy the application with the updated Mule runtime engine version.
+. Repeat this for each application running on this Runtime Fabric instance.
+
+=== Verify That Runtime Fabric is Healthy
+
+Before running the upgrade, ensure the cluster is active and healthy.
+
+. Using your web browser, navigate to the *Runtime Fabrics* tab in Runtime Manager and verify that Runtime Fabric reports an *Active* status.
+. Open a terminal to a Runtime Fabric controller node.
+. Run `/opt/anypoint/runtimefabric/rtfctl status` and confirm that the cluster status is healthy.
+. Keep your browser session open to perform the remainder of the upgrade subtasks.
+
+=== Run the Upgrade
+
+The upgrade can take more than an hour to complete.
+
+The connection between Runtime Fabric and Runtime Manager can disconnect multiple times during the upgrade procedure. Connectivity is restored after the upgrade finishes.
+
+The upgrade procedure is designed to keep deployed applications running and available to serve requests by applying changes to one node at a time. 
+
+. A node is selected by the procedure to apply the upgrade.
+. Applications running on the selected node are redeployed to another node.
+. The selected node is removed from the cluster.
+. The upgrade is applied on the selected node.
+. The selected node is added to the cluster after upgrading.
+
+To run the upgrade:
+
+. Using your terminal open on a controller node, switch to the root user. 
+. Paste the command you copied in Step 5, "Upgrade the Runtime Fabric appliance". 
 +
 ----
 sudo /opt/anypoint/runtimefabric/rtfctl appliance upgrade --url <cluster-installer-url>
 ----
 +
-This command also supports using the `--file` parameter to reference an installer package already downloaded on the node.
-+
 A confirmation is displayed that indicates the upgrade is being performed in the background.
-+
-.. Run `sudo gravity status` on a node and verify that the cluster status is “updating”.
-.. Monitor the upgrade procedure progress:
-... Using your terminal on a controller node, run the following command: 
+. Run `sudo gravity status` on a node and verify that the cluster status is “updating”.
+. To monitor the upgrade procedure progress, using your terminal on a controller node, run the following command:
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity plan
 ----
+. To confirm that the upgrade has completed successfully, run the following command:
 +
-The upgrade can take more than an hour to complete.
-+
-The connection between Runtime Fabric and Runtime Manager can disconnect multiple times during the upgrade procedure. Connectivity is restored after the upgrade finishes.
-+
-The upgrade procedure is designed to keep deployed applications running and available to serve requests. The upgrade is applied in a rolling method:
-+
-.... A node is selected by the procedure to apply the upgrade.
-.... Applications running on the selected node are redeployed to another node.
-.... The selected node is removed from the cluster.
-.... The upgrade is applied on the selected node.
-.... The selected node is added to the cluster after upgrading.
+----
+sudo gravity status
+----
 
-.. Confirm that the upgrade has completed successfully:
-... Run `sudo gravity status` and verify that the cluster status transitioned from *Updating* to *Active*.
-.. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, run the following command to apply the HTTP proxy settings:
+. Verify that the cluster status transitioned from *Updating* to *Active*. 
+. If the Runtime Fabric cluster version was 1.0.x prior to upgrading and an HTTP proxy is in use, apply the HTTP proxy settings with:
 +
 ----
 sudo ./rtfctl apply http-proxy --confirm existing
 ----
-.. Perform the following step on *every node* to ensure that system configurations are current:
 
-... Open a terminal to a Runtime Fabric controller or worker node.
-... If needed, download the latest `rtfctl` command-line utility:
-+
-----
-cd /opt/anypoint/runtimefabric
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
-----
-+
-... Change file permissions for the `rtfctl` binary: 
-+
-----
-chmod +x rtfctl
-----
-+
-... Run the `apply system-configurations` command in `rtfctl`:
+=== Upgrade Node Configurations
+
+Perform the following steps on every node to ensure that system configurations are current:
+
+. Open a terminal to a Runtime Fabric controller or worker node.
+. Run the `apply system-configurations` command in `rtfctl`:
 +
 ----
 sudo ./rtfctl apply system-configuration --force
+----
++
+Or if you are using the EU control plane, run:
++
+----
+sudo ./rtfctl apply system-configuration --force --control-plane eu
 ----
 
 == Resume an Appliance Upgrade
@@ -215,7 +245,7 @@ Resumed upgrades are attached to your terminal session, so ensure that you have 
 cd /opt/anypoint/runtimefabric/installer
 ----
 +
-. Run the following command to resume the upgrade: 
+. To resume the upgradem, run: 
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
@@ -229,7 +259,7 @@ A specific sequence of steps is performed during an appliance (installer package
 
 Most errors are due to insufficient disk performance on the `etcd` block device running on the controller nodes. 
 
-Perform the following steps to resolve common errors:
+To resolve common errors, perform the following steps:
 
 . Use the `gravity plan` command to identify the phase where the upgrade paused: 
 +
@@ -265,7 +295,7 @@ The following example resumes an upgrade by restarting the `masters/node-1/drain
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --phase=/masters/node-1/drain --force --debug
 ----
-. Wait for the command to run. If the command does not terminate with an error, resume the upgrade by running the following command:
+. Wait for the command to run. If the command does not terminate with an error, resume the upgrade with:
 +
 ----
 sudo /opt/anypoint/runtimefabric/installer/gravity plan resume
@@ -280,9 +310,9 @@ sudo /opt/anypoint/runtimefabric/installer/gravity plan resume
 sudo /opt/anypoint/runtimefabric/installer/gravity plan execute --phase=< insert phase > --force --debug
 ----
 
-If an error is returned, wait a few minutes and repeat the previous steps.
+If this command returns an error, wait several minutes and repeat the previous steps.
 
-Refer to https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
+See https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
 
 == Roll Back an Appliance Upgrade
 
@@ -293,7 +323,7 @@ If you cannot resolve issues with an upgrade, you can roll back the upgrade usin
 
 === Automatic Rollback With a Single Command
 
-Enter the following command:
+Run:
 ```
 rtfctl appliance rollback
 ```
