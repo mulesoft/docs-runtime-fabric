@@ -14,11 +14,11 @@ Some of the capabilities of Anypoint Runtime Fabric include:
 * Application management with Anypoint Runtime Manager.
 
 [NOTE]
-Contact your Customer Success Manager for information on how enable Anypoint Runtime Fabric on your account.
+Contact your customer success manager for information on how to enable Anypoint Runtime Fabric on your account.
 
 There are two management options for Anypoint Runtime Fabric:
 
-* *Runtime Fabric on Self-Managed Kubernetes*: a version of Runtime Fabric that you install on an existing Kubernetes environment that you operate and manage. This version supports Amazon Elastic Kubernetes Service (EKS) and Azure Kubernetes Service (AKS).
+* *Runtime Fabric on Self-Managed Kubernetes*: a version of Runtime Fabric that you install on an existing Kubernetes environment that you operate and manage. This version supports Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), and Google Kubernetes Engine (GKE).
 
 * *Runtime Fabric on VMs / Bare Metal*: a version of Runtime Fabric where MuleSoft provides required software infrastructure components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
 
@@ -28,8 +28,8 @@ Each of these options has its own system requirements and installation procedure
 .Personas required to install and support Anypoint Runtime Fabric
 |===
 | Runtime Fabric Option | IT Administrator | MuleSoft Organization Administrator
-| Self-Managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on AKS or EKS. This persona is also responsible for installing Runtime Fabric and managing Kubernetes. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
-| VMs / Bare Metal | Creates and configures the infrstructure that runs Runtime Fabric. This persona is also responsible for installing Runtime Fabric and maintaining the undrelying infrastructure during its operation. | Creates Runtime Fabrics, deploys projects, and performs other tasks within Anypoint Platform
+| Self-Managed Kubernetes | Requires an IT administrator to create and configure a Kubernetes cluster on Amazon EKS, AKS, or GKE. This persona is also responsible for installing Runtime Fabric and managing Kubernetes. | Creates Runtime Fabric instances, deploys applications, and performs other tasks within Anypoint Platform
+| VMs/Bare Metal | Creates and configures the infrastructure that runs Runtime Fabric. This persona is also responsible for installing Runtime Fabric and maintaining the underlying infrastructure during its operation. | Creates Runtime Fabric instances, deploys applications, and performs other tasks within Anypoint Platform
 |===
 
 == Feature Support Matrix for Runtime Fabric on Self-Managed Kubernetes and Runtime Fabric on VMs / Bare Metal
@@ -40,14 +40,14 @@ Each of these options has its own system requirements and installation procedure
 | | Runtime Fabric on Self-Managed Kubernetes | Runtime Fabric on VMs / Bare Metal
 | Support for deploying Mules and API Gateways | Supported | Supported
 | Kubernetes and Docker | Not included. +
-You must provide your instances of Kubernetes and Docker via EKS or AKS clusters. | Included
+Provide your instances of Kubernetes and Docker via Amazon EKS, AKS or GKE clusters. | Included
 | Installing on any Linux distribution | Supported | Support for RHEL and CentOS only
-| Node auto-scaling | Supported using AWS or Azure functionality | Not supported
+| Node auto-scaling | Supported using AWS, Azure or Google Cloud functionality | Not supported
 | External log forwarding | You must provide an external log forwarding service | Included
 | Internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
 | Anypoint Security Edge | Not supported | Supported
 | Ops Center | Not Included +
-You can enable monitoring and alerting in AWS or Azure | Included
+You can enable monitoring and alerting in AWS, Azure, or Google Cloud | Included
 |===
 
 
@@ -61,4 +61,3 @@ Anypoint Runtime Fabric provisions resources differently. Each Mule application 
 
 * xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
-

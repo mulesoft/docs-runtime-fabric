@@ -49,6 +49,7 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 +
 ----
 sudo chmod +x rtfctl
+----
 
 == Supported Commands
 
@@ -107,7 +108,7 @@ Updating rtf namespace... OK
 === Take a Heap Dump
 
 ----
-[ec2-user@ip-172-31-0-13 runtimefabric]$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
+$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----

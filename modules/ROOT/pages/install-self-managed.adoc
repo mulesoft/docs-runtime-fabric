@@ -5,7 +5,7 @@
 Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
-Anypoint Runtime Fabric can be installed and operated on a AWS Elastic Kubernetes Service (EKS) or Azure Kubernetes Service (AKS) that you manage.
+Anypoint Runtime Fabric can be installed and operated on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage.
 
 
 == Before you Begin
@@ -15,7 +15,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 * You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * You have installed and configured your Kubernetes environment as follows:
 +
-- Running an EKS or AKS Kubernetes environment. Other Kubernetes environments are not supported.
+- Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
 - Running Kubernetes version 1.16.x to 1.18.x.
 - Running an ingress controller to send external requests to applications.
 
@@ -32,14 +32,18 @@ Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure tha
 
 To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
 
-[%header,cols="6*a"]
-.Port Configuration for Self-Managed Kubernetes
+[%header%autowidth.spread]
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
 | 443 | TCP | HTTPS | Internet | All nodes | Allow inbound requests to Mule runtime servers
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
-| 5044 | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port your allow list. If you are using a newer version, use the port and hostname specified above.
 |===
 
 === Hostname Configuration
@@ -47,13 +51,19 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
 
 [%header,cols="4*a"]
-.Host Configuration for Self-Managed Kubernetes
 |===
 | Port | Protocol | Hostnames | Description
 | 443 | AMQP over WebSockets | * US control plane: transport-layer.prod.cloudhub.io
 * EU control plane: transport-layer.prod-eu.msap.io | Runtime Fabric message broker for interaction with the control plane.
-| 5044 |TCP (Lumberjack) | * US control plane: dias-ingestor-nginx.prod.cloudhub.io
+| 443 (v1.8.50, or later)| TCP (Lumberjack) | * US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
+
+| 5044 (deprecated) |TCP (Lumberjack) | * US control plane: dias-ingestor-nginx.prod.cloudhub.io
 * EU control plane: dias-ingestor-nginx.prod-eu.msap.io | Anypoint Monitoring agent for Runtime Fabric.
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | 443 | HTTPS | anypoint.mulesoft.com | Anypoint Platform for pulling assets.
 | 443 | HTTPS | kubernetes-charts.storage.googleapis.com | Kubernetes base charts repository.
 | 443 | HTTPS | docker-images-prod.s3.amazonaws.com | Kubernetes base charts repository.
@@ -76,7 +86,6 @@ To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the fo
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
 [%header,cols="2*a"]
-.Cerfificate configuration for Self-Managed Kubernetes
 |===
 | Control Plane | Certificates
 | US control plane | transport-layer.prod.cloudhub.io +
@@ -236,6 +245,11 @@ The procedures in this section should be performed by an IT administrator.
 ====
 
 If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
+
+[NOTE]
+====
+For GKE customers, the ingress controller included with GKE will provision a separate HTTP load balancer per application by default. Please read this link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+====
 
 == Step 7: Validate Your Runtime Fabric
 
