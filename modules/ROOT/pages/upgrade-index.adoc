@@ -268,7 +268,17 @@ sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
 +
 . The upgrade procedure streams output to your terminal session. If the previous error reoccurs, perform the troubleshooting steps described in the following section.
  
-== Troubleshooting Appliance Upgrade Errors
+== Troubleshooting Runtime Fabric Upgrade Errors
+
+=== Network
+
+Follow upgrade prerequisites
+
+=== Unable to Establish Mutual Authentication  
+
+== ???
+
+=== Troubleshooting Appliance Upgrade Errors
 
 A specific sequence of steps is performed during an appliance (installer package) upgrade. If an error occurs, the upgrade pauses and displays an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
