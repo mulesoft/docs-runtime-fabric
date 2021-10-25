@@ -136,8 +136,8 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
-*** <<Cloud Watch, CloudWatch Configuration Parameters>>
-*** <<Syslog, Syslog Configuration Parameters>>
+*** <<CloudWatch Configuration Parameters, CloudWatch Configuration Parameters>>
+*** <<Syslog Configuration Parameters, Syslog Configuration Parameters>>
 *** <<Datadog, Datadog Configuration Parameters>>
 
 .. Select *Apply changes*.
