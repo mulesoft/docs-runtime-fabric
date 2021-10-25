@@ -13,7 +13,7 @@ If you do not apply a custom ConfigMap file based on a template file, Runtime Fa
 
 [NOTE]
 ====
-Depending on your ingress controller or the ingress strategy, this solution based on a ConfigMap template *may not work*. In this case, you must apply specific ingress configuration related to your ingress controller to enable the ingress to the Mule applications.
+Depending on your ingress controller or ingress strategy, the ConfigMap template *may not work*. You must apply specific ingress configurations as specified by your ingress controller to enable ingress to Mule applications.
 ====
 
 == Procedure
