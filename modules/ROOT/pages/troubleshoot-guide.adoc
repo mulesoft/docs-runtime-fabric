@@ -16,11 +16,11 @@ Run the following command for an overall health assessment of the network:
 
 Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
 
-You can use `rtfctl` to verify that Runtime Fabric has the required outbound connectivity as well as troubleshoot connectivity issues. 
+You can use `rtfctl` to verify that Runtime Fabric has the required outbound connectivity as well as troubleshoot connectivity issues.
 
 === Verify Outbound Connectivity
 
-On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`. 
+On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`.
 Run the following command in all controller and worker nodes on the cluster to verify the required outbound connectivity:
 ```
 sudo ./rtfctl test outbound-network
@@ -42,8 +42,8 @@ https://prod-us-east-1-starport-layer-bucket.s3.amazonaws.com ✔
 https://runtime-fabric.s3.amazonaws.com ✔
 tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 ```
- 
-If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have completed the required whitelisting as described in xref:install-prereqs#port-ip-addresses-and-hostnames-to-whitelist[Port IPs and Hostnames to Whitelist].
+
+If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-prereqs.adoc#port-ip-addresses-and-hostnames-to-add-to-the-allowlist[Port IP Addresses and Hostnames to Add to the Allowlist].
 
 
 == Troubleshoot Chrony Synchronization Check Failure
@@ -148,7 +148,7 @@ restarts.
 
 == Troubleshoot Application Runtime Issues
 If any of the following Runtime Fabric alert messages are reported, you might need to recover
-one or more controller nodes. 
+one or more controller nodes.
 ----
 Management plane is unreachable
 
@@ -161,7 +161,7 @@ CRITICAL / Kubernetes node is not ready: <ip_address>
 CRITICAL / etcd: cluster is unhealthy
 ----
 Open a terminal and run the `gravity status` command to obtain the health status of the cluster
-as well as individual components. 
+as well as individual components.
 
 To recover a node, follow the instructions provided in xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 
@@ -264,7 +264,7 @@ sudo yum install -y chrony
 ** If not successful, work with your operations team for assistance. You may need to ask
 for elevated access to the instance.
 
-If manual installation of a package was successful, or if you still require assistance, 
+If manual installation of a package was successful, or if you still require assistance,
 file a support ticket.
 
 == Troubleshoot Ops Center Monitoring and Logs Issues
@@ -319,7 +319,7 @@ Containers:
 
 If this error is observed:
 
- * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from 
+ * Verify outbound TCP port 5672 is open to the Internet. Connections should be allowed from
  the controller VM(s) running in your internal network to this hostname on the Internet.
  * A TCP proxy may be needed to establish a connection to the Internet. Check with your network
  team to verify and configure if needed. Refer to xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].

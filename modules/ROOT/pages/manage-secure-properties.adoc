@@ -18,9 +18,9 @@ The `rtfctl` utility is required to manage secure properties on Runtime Fabric l
 sudo ./rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_id>
 ----
 +
-* *<my_key>*: the key for the secure property used in the Mule application to reference the value.
-* *<my_value>*: the value for the secure property to store.
-* *<environment_id>*: the Anypoint environment ID to scope this secure property to. Only applications deployed to this environment will have access to this secure property.
+* *<my_key>*: The key for the secure property used in the Mule application to reference the value.
+* *<my_value>*: The value for the secure property to store.
+* *<environment_id>*: The Anypoint environment ID to scope this secure property to. Only applications deployed to this environment will have access to this secure property.
 
 == View Secure Properties
 
@@ -31,11 +31,23 @@ sudo ./rtfctl apply secure-property --key <my_key> --value <my_value> -n <enviro
 sudo ./rtfctl get secure-properties -n <environment_id>
 ----
 +
-* *<environment_id>*: the Anypoint environment ID to list the secure properties under.
+* *<environment_id>*: The Anypoint environment ID to list the secure properties under.
 
 == Access Secure Properties
 
 You can access secure properties from inside your Mule application using `${my.property.name}`.
+
+== Remove Secure Properties
+
+. Log into a controller node where `rtfctl` is installed. 
+. Run the following command to remove a secure property from the Runtime Fabric in a specific namespace:
++
+----
+sudo ./rtfctl delete secure-property <my_key> -n <namespace>
+----
++
+* *<my_key>*: The key used in the Mule application to reference the secure property.
+* *<namespace>*: The namespace in which the secure property applies.
 
 == See Also
 
