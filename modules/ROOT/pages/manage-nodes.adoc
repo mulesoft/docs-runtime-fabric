@@ -98,7 +98,7 @@ When a dedicated internal load balancer node is added to the cluster, the option
 To remove a *controller* node from a Runtime Fabric cluster, run the following command:
 
 ----
-sudo kubectl drain <node-name>
+sudo kubectl drain <node-name> --ignore-daemonsets
 sudo gravity leave
 ----
 
