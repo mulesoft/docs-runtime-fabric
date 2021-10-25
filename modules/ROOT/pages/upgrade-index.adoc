@@ -140,6 +140,7 @@ sudo chmod +x rtfctl
 +
 This enables safe removal of a worker node from the cluster to apply upgrades without impacting application availability.
 ** Applications serving inbound requests scaled to a minimum of two replicas.
+* If you've customized Runtime Fabric email alerts, the appliance upgrade overwrites the customizations. Refer to xref:configure-alerting.adoc#modify-email-alert-contents[Modify Email Alert Contents] for instructions on recreating the modifications.
 
 To upgrade the Runtime Fabric appliance:
 

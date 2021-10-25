@@ -47,7 +47,7 @@ sudo ./rtfctl delete secure-property <my_key> -n <namespace>
 ----
 +
 * *<my_key>*: The key used in the Mule application to reference the secure property.
-**<namespace>*: The namespace in which the secure property applies.
+* *<namespace>*: The namespace in which the secure property applies.
 
 == See Also
 

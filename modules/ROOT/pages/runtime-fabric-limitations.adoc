@@ -18,11 +18,10 @@ The following table lists important limitations for configuring Runtime Fabric:
 | Replicas Per Worker Node | The maximum number of replicas that can be deployed per worker node is 40.
 {sp} +
 {sp} +
-Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
+To allow core sharing across replicas when needed for bursting, run no more than 20-25 *replicas per core*. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
 | Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
 | Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
 | Object Store Persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
-| Object Store Persistence | To handle data persistence across Mule application replicas and restarts Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 |===
 
 == Internal Load Balancer Resource Allocation and Performance
@@ -48,8 +47,12 @@ The following table lists known limitations for host operating systems in Runtim
 [%header%autowidth.spread]
 |===
 | Operating System | Limitation
-| RHEL 8 | If the host operating system is RHEL 8, do not set the optional environment variable `disable_selinux` to `false` in the `fabric.tf` script, or installation will fail.
-| RHEL 7 | If the host operating system is RHEL 7, and you have enabled SELinux, third-party software running on the host may change policy settings from SELinux.
+| RHEL 8 a| 
+* Do not set the optional environment variable `disable_selinux` to `false` in the `fabric.tf` script, or installation will fail.
+* Do not set SELinux to enforcing mode. 
+| RHEL 7 a| 
+* If you have enabled SELinux, third-party software running on the host may change policy settings from SELinux.
+* You can set SELinux to enforcing mode if you don't change default policies.
 |===
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
