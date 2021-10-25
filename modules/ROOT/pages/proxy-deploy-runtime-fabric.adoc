@@ -1,4 +1,4 @@
-= Deploy an API Proxy to Runtime Fabric
+= Deploy API Proxies to Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -15,26 +15,7 @@ To deploy API proxies to a Mule runtime, you must have the following permissions
 
 You must ensure that you are using API Gateway version 3.8.7, 3.9.1, or 4.1.2.
 
-== Procedure
-
-. From Anypoint Platform, select API Manager.
-. Click *Manage API*, then click *Manage API From Exchange*
-+
-image:runtime-fabric::runtime-fabric-1.png[]
-
-. Under *API Configurations*, enter the appropriate information.
-
-. Ensure that you select *Runtime Fabric* under *Proxy deployment target* .
-
-. Click *Save*
-+
-Under *Deployment Configuration* section configure the following:
-+
-* Select the *Runtime Fabric target*.
-* Select the *Runtime version*.
-** Enter the name of the proxy
-+
-image:runtime-fabric::runtime-fabric-2.png[]
+If you are deploying your API to a Mule 4 environment and want to enable the proxy to support HTTPS requests, first refer to xref:api-manager::building-https-proxy.adoc[build HTTPS API proxies].
 
 By default, the resources allocated to the proxy app are:
 
@@ -43,15 +24,37 @@ By default, the resources allocated to the proxy app are:
 
 You can update resource allocation settings on the application's *Settings* page in Runtime Manager.
 
-== Result
+== Deploy an API Proxy
 
-API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployment status dialog appears similar to the following:
+. From Anypoint Platform, select *API Manager* > *Manage API* > *Manage API From Exchange*.
+. In *API Name*, search for the name of the asset saved in Exchange.
++
+The *Asset type*, *API version*, and *Asset version* fields for the API are auto-populated from Exchange.
+. For *Managing type*, select *Endpoint with proxy*.
+. For *Proxy deployment target*, select Runtime Fabric.
+. Select the Mule version.
+. For *Implementation URI*, specify the base URL path to access the proxy.
+. Optionally, specify a *Path*.
+. Click *Advanced options* and optionally specify advanced parameters, such as *TLS context for outbound traffic* (for HTTPS), *Proxy version*, *Validations*, *Response timeout*, and *Port*.
+. Click *Save*.
++
+Your configuration information is saved and API Manager displays the *Deployment Configuration* section.
+. In the *Deployment Configuration* section, configure the following:
++
+* Select the *Runtime Fabric target*.
+* Select the *Runtime version*.
+* Enter the name of the proxy application.
 
-image:runtime-fabric::runtime-fabric-3.png[]
+API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployment status dialog appears that indicates:
+
+. *Deploying proxy*.
+. *Starting application*. 
+. *Deploy successful*. 
 
 After deployment, you can manage the deployed API proxy from Runtime Manager.
 
 == Enable an HTTPS Proxy
+
 To enable the proxy to support HTTPs requests:
 
 . Download the API gateway and deploy from API Manager using the instructions in xref:api-manager::download-proxy-task.adoc[Downloading an API Proxy].
@@ -60,6 +63,6 @@ To enable the proxy to support HTTPs requests:
 . Enable last-mile security on the application using the instructions in https://help.mulesoft.com/s/article/How-to-enable-last-mile-security-in-Runtime-Fabric-RTF[How to enable last-mile security in Runtime Fabric (RTF)].
 
 // end::content[]
-== See Also
+== Related Resources
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]

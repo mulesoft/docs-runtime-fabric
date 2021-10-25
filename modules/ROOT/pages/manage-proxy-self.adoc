@@ -15,6 +15,15 @@ Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running
 
 Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
 
+[NOTE]
+--
+If you run the `rtfctl apply http-proxy` command from a workstation that is outside the cluster, you may get a warning similar to:
+
+`Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric...`
+
+This error occurs if the proxy values on the workstation do not match the values in the Runtime Fabric cluster (including capitalization mismatches on the proxy variable name). You can ignore this error.
+--
+
 . Run the following command, replacing the placeholder values with the following:
 +
 ----
@@ -22,9 +31,11 @@ rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.
 ----
 +
 * *<user>*: the username needed to authenticate to the HTTP proxy.
-* *<pass>*: the password needed to authenticate to the HTTP proxy. +
+* *<pass>*: the password needed to authenticate to the HTTP proxy. 
++
 [NOTE]
 The password must be URL encoded.
+
 * *<10.0.0.1>*: Specifies the IP address or hostname to access the HTTP proxy.
 * *<8080>*: Specifies the port on the host where the HTTP proxy is listening for requests.
 * *<1.1.1.1:8888,2.2.2.2:9999>*: Specifies the `RTF_NO_PROXY` hosts and ports, delimited by commas.
@@ -34,8 +45,13 @@ The password must be URL encoded.
 ----
 rtfctl get http-proxy
 ----
-
++
 The output should match the value expected.
+. To remove the remove the proxy values, run:
++
+-----
+sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
+-----
 
 == Configure a Proxy for the API Manager Agent
 
