@@ -279,7 +279,10 @@ Follow upgrade prerequisites
 
 === Unable to Establish Mutual Authentication  
 
-== ???
+== Some of the common mis configurations/erros are:
+* "mTLS handshake error: check certs" : Usage of Bad certs during the connecting establishment might cause of this error
+* "ConnectionRefused:check port's open" : This error can occur if the required outbound ports are not opened/configured on the cluster.
+* "Connection timed out" : This error can occur if the required hosts are configured/whitelisted on the cluster.
 
 === Troubleshooting Appliance Upgrade Errors
 
