@@ -141,7 +141,7 @@ The first step in the Runtime Fabric process is upgrading the Runtime Fabric com
 +
 If you haven’t allowlisted the endpoints, you must do so before continuing.  
 +
-The network test may take several minutes to complete. If you encounter any errors, refer to 
+The network test may take several minutes to complete. If you encounter any errors, refer to xref:network-test-errors[Network Test Errors].
 . When the network test completes, click *Apply Upgrade.*
 +
 The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
