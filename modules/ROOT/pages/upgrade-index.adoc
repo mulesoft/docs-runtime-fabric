@@ -141,7 +141,7 @@ The first step in the Runtime Fabric process is upgrading the Runtime Fabric com
 +
 If you haven’t allowlisted the endpoints, you must do so before continuing.  
 +
-The network test may take several minutes to complete.
+The network test may take several minutes to complete. If you encounter any errors, refer to 
 . When the network test completes, click *Apply Upgrade.*
 +
 The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.
@@ -273,18 +273,24 @@ sudo /opt/anypoint/runtimefabric/installer/gravity upgrade --resume
  
 == Troubleshooting Runtime Fabric Upgrade Errors
 
-=== Network
+If you encounter upgrade errors when attempting to upgrade Runtime Fabric, troubleshoot them as follows.
 
-Follow upgrade prerequisites
+=== Network Test Errors 
 
-=== Unable to Establish Mutual Authentication  
+When upgrading Runtime Fabric components to v1.11 and later, you may encounter the following errors during the network test:
 
-== Some of the common mis configurations/erros are:
-* "mTLS handshake error: check certs" : Usage of Bad certs during the connecting establishment might cause of this error
-* "ConnectionRefused:check port's open" : This error can occur if the required outbound ports are not opened/configured on the cluster.
-* "Connection timed out" : This error can occur if the required hosts are configured/whitelisted on the cluster.
+* `mTLS handshake error: check certs`
++
+You may encounter this error if your certificates are out of date. Update your certificates and re-attempt the upgrade. 
+* `ConnectionRefused:check port's open`
++
+This error occurs if the required outbound ports are not available on the cluster. Review the Runtime Fabric component upgrade steps and ensure you've made the necessary ports available. 
+* `Connection timed out`
++
+This error occurs if the required endpoints are not allowlisted on the cluster. Review the Runtime Fabric component upgrade steps and ensure you've allowlisted the necessary endpoints. 
 
-=== Troubleshooting Appliance Upgrade Errors
+[[troubleshooting-appliance-upgrade-errors]]
+=== Appliance Upgrade Errors
 
 A specific sequence of steps is performed during an appliance (installer package) upgrade. If an error occurs, the upgrade pauses and displays an error. In most cases, the availability of running applications is not impacted when running multiple replicas of each application on a production Runtime Fabric configuration.
 
