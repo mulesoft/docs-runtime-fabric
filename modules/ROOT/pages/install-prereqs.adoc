@@ -5,7 +5,7 @@ Before installing Runtime Fabric on VMs / Bare Metal, review the information in 
 == Before You Begin
 
 [IMPORTANT]
-Most installation issues on Runtime Fabric on VMs / Bare Metal result from improper infrastructure provisioning or configuration. 
+Most installation issues on Runtime Fabric on VMs / Bare Metal result from improper infrastructure provisioning or configuration.
 
 Before you install Runtime Fabric on VMs / Bare Metal:
 
@@ -15,10 +15,10 @@ If your infrastructure does not meet the minimum hardware, operating system, and
 
 *  Runtime Fabric on VMs / Bare Metal requires tasks to be performed by the following members of your organization:
 ** DevOps team to provision and manage the infrastructure
-** Network team to whitelist ports and configure proxy settings
+** Network team to add ports to allowlists and configure proxy settings
 ** Security team to review for compliance and obtain security certificates
 +
-Working with these teams in your organization ensures a successful installation and avoids performance and density issues. 
+Working with these teams in your organization ensures a successful installation and avoids performance and density issues.
 
 * Review the requirements in this topic and ensure that all prerequisites are met before installing Runtime Fabric on VMs / Bare Metal.
 +
@@ -40,7 +40,7 @@ Knowledge in the following areas is required to install Runtime Fabric on VMs / 
 Ensure that you plan for:
 
 * Creating separate runtime fabrics for production and non-production applications
-* Creating separate runtime fabrics based upon environment network scope, such as DMZ versus private network 
+* Creating separate runtime fabrics based upon environment network scope, such as DMZ versus private network
 * Ensuring that the runtime fabric default pod and services CIDR block do not interfere with the regions network
 
 == Anypoint Platform Roles and Permissions
@@ -59,8 +59,8 @@ Perform the following actions:
 
 * Disable swap memory.
 * Ensure that chrony (system clocks) status is in sync.
-* For installation and normal operation, ensure that there is no third-party software on the host, which includes, but is not limited to, antivirus or deep packet inspection (DPI) software.
-* Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware: 
+* Use of certain third-party software packages, such as antivirus or deep packet inspection (DPI) software, may impact certain functionalities of the Runtime Fabric appliance. Refer to xref:runtime-fabric-limitations.adoc#how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality[How Antivirus and DPI Software Impacts Runtime Fabric Functionality] for more information.
+* Either provision the required hardware or have enough quota with your infrastructure provider to create the required hardware:
 
 ** x86 or x64 architecture. Only x86 and x64 architectures are supported.
 ** Virtual machines
@@ -74,10 +74,10 @@ Perform the following actions:
 Dedicated disks are required to ensure optimum performance. The Runtime Fabric on VMs / Bare Metal installer formats
 and mounts the disks needed during installation.
 +
-The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by 
-the minimum requirements. It also creates a private network with the required network ports configured. This is optimal 
-when evaluating Runtime Fabric on VMs / Bare Metal before integrating within your primary network. You should consult with your 
-network administrator to determine if the default behavior is compatible. You might need to modify the 
+The default behavior of the AWS and Azure provisioning scripts creates a set of virtual machines and disks defined by
+the minimum requirements. It also creates a private network with the required network ports configured. This is optimal
+when evaluating Runtime Fabric on VMs / Bare Metal before integrating within your primary network. You should consult with your
+network administrator to determine if the default behavior is compatible. You might need to modify the
 provisioning scripts to accommodate your organization's requirements.
 * Understand how to forward logs to your organization's logging provider.
 * Obtain your organization's SMTP provider information so that you can configure alerts.
@@ -101,10 +101,11 @@ If you plan to enable inbound traffic, evaluate your network's traffic to determ
 
 Runtime Fabric on VMs / Bare Metal requires one of the following operating systems:
 
-* Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2
-* CentOS v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2
+* Red Hat (RHEL) v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2, v8.3
+* CentOS v7.4, v7.5, v7.6, v7.7, v7.8, v7.9, v8.0, v8.1, v8.2, v8.3
+* Ubuntu v18.04 (using Runtime Fabric Appliance version 1.1.1625094374-7058b20 or later)
 
-Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on 
+Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on
 a different operating system version or distribution, the installer fails.
 
 [IMPORTANT]
@@ -120,7 +121,7 @@ Runtime Fabric on VMs / Bare Metal requires specific network and port configurat
 
 === Bandwidth Requirements
 
-A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Runtime Fabric on VMs / Bare Metal, and minimum of 100 MBps for outbound connectivity to the Internet. 
+A high bandwidth network is required, with a minimum of 1 GBps connectivity between each node operating Runtime Fabric on VMs / Bare Metal, and minimum of 100 MBps for outbound connectivity to the Internet.
 [NOTE]
 Runtime Fabric on VMs / Bare Metal does not support cross-regional deployments. Network latency between each node can cause problems with cluster health.
 
@@ -160,12 +161,13 @@ The following table lists all ports that must be open, along with the respective
 | 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
 | 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
 
-*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.*
 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified above. This is applicable to endpoints in both the US and EU clouds.
 | 53 | TCP | DNS | localhost | localhost | Internal cluster DNS
 | 2379, 2380, 4001, 7001 | TCP | HTTPS | All nodes | Controller nodes | etcd server communications
-| 3008 - 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
+| 3008, 3010, 3011, 3012 | TCP | HTTPS / gRPC | All nodes | All nodes | Anypoint Runtime Fabric internal services
+| 3009 | TCP | HTTPS | All nodes | Internal network | Anypoint Runtime Fabric internal Ops Center
 | 3022 - 3025 | TCP | SSH | All nodes | All nodes | Internal SSH control services
 | 3080 | TCP | HTTPS | All nodes | Controller nodes | Anypoint Runtime Fabric internal Ops Center
 | 5000 | TCP | HTTPS | All nodes | Controller nodes | Internal container registry
@@ -185,12 +187,17 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 | 30000-32767 | UDP | Application-specific | All nodes | All nodes | Internal services port range used to route requests to applications
 |===
 
-=== Port IP Addresses and Hostnames to Whitelist
+[[port-ip-addresses-and-hostnames-to-add-to-the-allowlist]]
+=== Port IP Addresses and Hostnames to Add to the Allowlist
 
-In your network configuration, you must whitelist the hostnames and ports of Anypoint Platform components and services to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
+In your network configuration, you must add the hostnames and ports of Anypoint Platform components and services to allowlists to enable Anypoint Runtime Fabric to communicate with them. This is also required to download dependencies during installation and upgrades.
 
-The following table lists the ports and hostnames to add to your whitelists to allow communication between 
-Anypoint Runtime Fabric and Anypoint Platform.
+The following table lists the ports and hostnames to add to your allowlists to allow communication between Anypoint Runtime Fabric and Anypoint Platform.
+
+[NOTE]
+--
+The following table does not include ports and hostnames from API Manager that you may also need to allow. Refer to xref:api-manager::runtime-urls-whitelist.adoc[the API Manager documentation] for a list of additional ports and hostnames. 
+--
 
 Because the following endpoints use mutual TLS authentication to establish the connection, you must configure SSL passthrough to allow the following certificate:
 
@@ -210,7 +217,7 @@ Because the following endpoints use mutual TLS authentication to establish the c
 | EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
 .2+| 5044 (deprecated) .2+| TCP (Lumberjack) | US control plane: `dias-ingestor-nginx.prod.cloudhub.io` | Anypoint Monitoring agent for Runtime Fabric.
 
-*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.*
 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
@@ -305,10 +312,10 @@ Runtime Fabric on VMs / Bare Metal does not support running controller nodes usi
 
 === Controller Nodes
 
-The minimum number of controller nodes required for a production environment is three. This requirement reflects 
+The minimum number of controller nodes required for a production environment is three. This requirement reflects
 the minimum requirements to maintain high-availability and ensure system performance.
 
-An odd number of controller nodes is required for fault tolerance. Even numbers of controller nodes are not supported. 
+An odd number of controller nodes is required for fault tolerance. Even numbers of controller nodes are not supported.
 
 The maximum number of supported controller nodes is 5.
 
@@ -346,11 +353,11 @@ The maximum number of worker nodes supported is 16.
 Provision at least one extra worker node to preserve uptime in the event a
 node becomes unavailable (fault-tolerance) or during maintenance operations that require restarts, such as OS patching.
 
-This enables the safe removal of a worker node from the cluster to apply upgrades, without impacting the availability of applications. 
+This enables the safe removal of a worker node from the cluster to apply upgrades, without impacting the availability of applications.
 
 [NOTE]
 ====
-Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important
 when determining the amount of CPU cores and worker nodes needed.
 
 For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
@@ -358,7 +365,7 @@ For example, your Runtime Fabric could have three worker nodes and two CPU cores
 
 Each worker node must have the following resources:
 
-** A minimum of 2 dedicated cores. 
+** A minimum of 2 dedicated cores.
 ** A minimum of 15 GiB memory.
 +
 You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
@@ -367,15 +374,15 @@ You must consider how many Mules and tokenizers you plan to run on Runtime Fabri
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimium of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
-+ 
++
 Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
 
 === Additional Resource Requirements for Production Environments
 
 When using Runtime Fabric on VMs / Bare Metal in a production environment:
 
-* An external load balancer must be configured to load balance external requests to the internal load balancer 
-running on each controller VM, with a health check configured for TCP port 443. A TCP load balancer with a 
+* An external load balancer must be configured to load balance external requests to the internal load balancer
+running on each controller VM, with a health check configured for TCP port 443. A TCP load balancer with a
 server pool consisting of each of the controller nodes is sufficient.
 * An internal load balancer that runs on at least 3 replicas to maintain availability.
 * Applications serving inbound requests must be scaled to a minimum of 2 replicas.
@@ -415,17 +422,17 @@ Megabytes per second (MBps) disk read/write performance.
 
 === Worker Nodes
 
-Runtime Fabric on VMs / Bare Metal requires at least two worker nodes to run Mule applications and API gateways. 
+Runtime Fabric on VMs / Bare Metal requires at least two worker nodes to run Mule applications and API gateways.
 The maximum number of workers nodes supported is 16.
 
 Provision at least one extra worker node to preserve uptime in the event a
 node becomes unavailable (fault-tolerance) or during maintenance operations that require restarts, such as OS patching.
 
-This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications. 
+This enables safe removal of a worker node from the cluster to apply upgrades, without impacting availability of applications.
 
 [NOTE]
 ====
-Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important 
+Runtime Fabric can reserve up to 0.5 cores per worker node for internal services. This is important
 when determining the amount of CPU cores and worker nodes needed.
 
 For example, your Runtime Fabric could have three worker nodes and two CPU cores for each worker node. If Runtime Fabric reserves 0.3 cores per worker node, a total of 0.9 cores, the number of available cores displayed in Runtime Manager is 5.1 vCPU instead of 6 vCPU.
