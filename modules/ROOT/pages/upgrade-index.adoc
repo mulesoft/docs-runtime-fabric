@@ -130,9 +130,12 @@ The first step in the Runtime Fabric process is upgrading the Runtime Fabric com
 * Verify that you have allowlisted the following endpoints on port 443, used by the runtime-registry to retrieve Docker containers for app deployments.
 ** US control plane: `rtf-runtime-registry.kprod.msap.io`
 ** EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
-+
- After upgrading to Runtime Fabric, you must restart applications if you want them to update their deployment manifests for the runtime-registry endpoint. 
 * Verify that you have allowlisted the endpoints used for xref:config-mutual-auth.adoc[Mutual Transport Layer Security (mTLS) between the Anypoint Platform control plane and your Runtime Fabric]. 
+
+[IMPORTANT]
+--
+After upgrading to Runtime Fabric, you must restart applications so they can update their deployment manifests for the runtime-registry endpoint. 
+--
 
 . Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
 . Click *Upgrade to vx.x*. 
