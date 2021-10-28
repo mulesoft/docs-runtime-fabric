@@ -294,7 +294,7 @@ This error occurs if the required endpoints are not allowlisted on the cluster. 
 
 * Network test takes longer than five minutes
 +
-The Docker image pull may be slow, due to a network issue or an issue with the localhost network. 
+You may encounter a timeout if retrieval of the necessary Docker image takes too long due to a network issue or an issue with the localhost network. 
 
 [[troubleshooting-appliance-upgrade-errors]]
 === Appliance Upgrade Errors
