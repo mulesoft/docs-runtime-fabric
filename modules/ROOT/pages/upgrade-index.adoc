@@ -292,6 +292,10 @@ This error occurs if the required outbound ports are not available on the cluste
 +
 This error occurs if the required endpoints are not allowlisted on the cluster. Review the Runtime Fabric component upgrade steps and ensure you've allowlisted the necessary endpoints. 
 
+* Network test takes longer than five minutes
++
+The Docker image pull may be slow, due to a network issue or an issue with the localhost network. 
+
 [[troubleshooting-appliance-upgrade-errors]]
 === Appliance Upgrade Errors
 
