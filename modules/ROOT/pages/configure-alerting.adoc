@@ -13,15 +13,15 @@ The following table lists default alerts provided by Anypoint Runtime Fabric on 
 |===
 |Alert | Description
 | `docker` | Sends an error when the Docker daemon is down.
-| `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min.
+| `etcd` | Sends an error when the etcd master is unaccessible for longer than 5 min or if the etcd cluster is down.
 | `etcd_latency_batch` | Sends a warning when follower-leader latency exceeds 500ms, and triggers an error if it exceeds 1 second over a one-minute period.
-| `filesystem` | Sends a warning when 80% of capacity is used. Triggers a critical error when more than 90% is used.
+| `filesystem` | Sends a warning when 80% of capacity is used. Triggers a critical error when more than 90% is used. Sends a warning when 90% of inode capacity is used. Triggers a critical error when more than 95% is used.
 | `high-cpu` | Sends a warning when 75% of capacity used. Triggers a critical error when more than 90% is used.
 | `high_memory` | Sends a warning when 80% of memory is used. Triggers a critical error when more than 90% is used.
 | `influxdb_health_batch` | Triggers an error if InfluxDB is down or if there is no connection between Kapacitor and InfluxDB.
-| `ingress` | Triggers a critical error when more than 80% of capacity is used.
-| `kubernetes_node` | Sends a warning when more than 90% of CPU is used. Triggers a critical error when more than 95% is used.
-| `muleapps` | Triggers a critical error when more than 90% of CPU is used. 
+| `ingress` | Triggers a critical error when more than 80% of a pod's CPU capacity is used. Triggers a critical error when more than 80% of a pod's memory capacity is used.
+| `kubernetes_node` | Sends a warning when a node has not been reported as ready for 5 minutes.
+| `muleapps` | Triggers a critical error when more than 90% of CPU is used. Triggers a critical error when more than 90% of a pod's memory is used.
 | `network_params` | Triggers a critical error if networking is disabled on a node. 
 | `uptime` | Sends a warning when the system is inaccessible for longer than 5 min.
 |===
