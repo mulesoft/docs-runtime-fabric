@@ -244,7 +244,7 @@ Because the following endpoints use mutual TLS authentication to establish the c
 * US control plane: `api.ecr.us-east-1.amazonaws.com` 
 * EU control plane: `api.ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
 | 443 | HTTPS a| 
-* US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` or `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+* US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com` or `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com`
 * EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com` or `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 | 443 | HTTPS a| 
 * US control plane: `runtime-fabric.s3.amazonaws.com` .
