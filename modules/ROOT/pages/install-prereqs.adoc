@@ -270,7 +270,7 @@ The pod CIDR block must not overlap with IP addresses that pods or servers use t
 
 == Mule License
 
-To deploy Mule applications and API proxies, you must have access to your organization's Mule license file.
+To deploy Mule applications and API proxies, you must have access to your organization's xref:mule-runtime::installing-an-enterprise-license.adoc[Mule license file].
 
 == Installation Requirements
 
