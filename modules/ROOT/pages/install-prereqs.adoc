@@ -341,7 +341,7 @@ You must consider the amount of resources needed for the internal load balancer 
 *** A minimum of 20 GiB for `/tmp` directory.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
-** A minimium of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
+** A minimum of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
 
 *** This disk is referred to as the `etcd` device.
 ** A minimum of 250 GiB dedicated disk with 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of
@@ -385,7 +385,7 @@ You must consider how many Mules and tokenizers you plan to run on Runtime Fabri
 *** A minimum of  20 GiB for `/tmp` directory.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
-** A minimium of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
+** A minimum of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
 +
 Having 250 GiB ensures there is enough space to run applications, cache docker images, provide temporary storage for running applications, and provide log storage.
 
