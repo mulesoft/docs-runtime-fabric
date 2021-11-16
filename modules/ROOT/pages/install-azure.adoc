@@ -6,30 +6,26 @@ endif::[]
 
 This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
-[WARNING]
-====
-Before installing Runtime Fabric, refer to xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal]. If your infrastructure does not meet the minimum hardware, operating system,
-and networking requirements, Runtime Fabric cannot operate successfully.
-
-Your organization's operations, networking, and security teams must be involved. See
-xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
-====
-
 == Before You Begin
 
-Before installing Anypoint Runtime Fabric on VMs / Bare Metal on Azure, ensure the following requirements have been met:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal on Azure, ensure you have met the following requirements:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
+* You have reviewed the xref:index.adoc#shared-responsibility-for-on-premises-runtime-fabric[Shared Responsibility for Runtime Fabric on VMs / Bare Metal documentation]. If your infrastructure does not meet the minimum hardware, operating system,
+and networking requirements, Runtime Fabric cannot operate successfully.
+* You have engaged your organization's operations, networking, and security teams. See
+xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 * Your Anypoint user account has the *Manage Runtime Fabrics* permission.
 * Your Azure user has access to create VMs, Disks, Virtual Networks, and Network Security Groups.
 * Your Azure account has enough quota for the infrastructure being provisioned.
 * If your organization does not allow using public IPs for VMs, you may need to use an existing Virtual Network.
 Modify the Azure Resource Manager template to reference an existing Virtual Network.
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
+* Note that Runtime Fabric only supports RHEL with Logical Volume Manager (LVM) on Azure Bare Metal. Non-LVM instances of RHEL on Azure Bare Metal are not supported.
+
 
 == Installation
 
-[NOTE]
 The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric on VMs / Bare Metal is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
 
 If you require assistance, contact your MuleSoft representative.
