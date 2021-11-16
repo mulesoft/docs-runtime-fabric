@@ -53,6 +53,7 @@ The following table lists known limitations for host operating systems in Runtim
 | RHEL 7 a| 
 * If you have enabled SELinux, third-party software running on the host may change policy settings from SELinux.
 * You can set SELinux to enforcing mode if you don't change default policies.
+| RHEL | Runtime Fabric only supports instances of RHEL with Logical Volume Manager (LVM) on Azure Bare Metal. Non-LVM instances of RHEL on Azure Bare Metal are not supported. 
 |===
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
