@@ -21,7 +21,7 @@ xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 * If your organization does not allow using public IPs for VMs, you may need to use an existing Virtual Network.
 Modify the Azure Resource Manager template to reference an existing Virtual Network.
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
-* Note that Runtime Fabric only supports RHEL with Logical Volume Manager (LVM) on Azure Bare Metal. Non-LVM instances of RHEL on Azure Bare Metal are not supported.
+* Note that Runtime Fabric only supports instances of RHEL with Logical Volume Manager (LVM) on Azure Bare Metal. Non-LVM instances of RHEL on Azure Bare Metal are not supported.
 
 
 == Installation
