@@ -3,10 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on Self-Managed Kubernetes.
+The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on Self-Managed Kubernetes. 
+
+== Node, Environment, and Group Limitations
+
+The following limits are based on internal performance testing and are lower than those provided by supported Kubernetes providers. If you need to scale beyond the following limits, ensure that you first run tests in lower environments to validate the performance of your clusters.
 
 [cols="2*a"]
-.Anypoint Runtime Fabric on Self-Managed Kubernetes resource allocation 
 |===
 | Nodes | The maximum number of nodes supported is 30.
 | Node Types | VM-based nodes are required. For example, Fargate is not supported.
