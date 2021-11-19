@@ -1,0 +1,22 @@
+== Creating Custom Namespaces for Application Deployments 
+
+// add RTF version
+
+Anypoint Runtime Fabric version enables you to create your own namespaces for application deployments. 
+
+When you deploy an application into an Anypoint Platform environment, Runtime Fabric creates a new default namespace using the identifier of the environment. However, if you can create or modify a custom namespace with the appropriate Kubernetes labels, Runtime Fabric deploys applications into that custom namespace instead of into the default namespace.   
+
+To create a custom namespace:
+
+. As a user with permissions to create a namespace, log in to a Kubernetes workstation.
+. Run the following commands:
++
+----
+kubectl create ns <YOUR_ENVIRONMENT_NAME>
+kubectl label ns <YOUR_ENVIRONMENT_NAME> rtf.mulesoft.com/role=workers rtf.mulesoft.com/envId=<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>
+----
++
+* Replace `<YOUR_ENVIRONMENT_NAME>` with the name of your custom namespace.
+* Replave `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` with the correct ID for your environment.
+
+After you run these commands, any application deployed into an Anypoint Platform environment identified by `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` is created inside the `<YOUR_ENVIRONMENT_NAME>` namespace.
