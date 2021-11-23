@@ -93,14 +93,16 @@ Runtime Fabric on Self-Managed Kubernetes supports any ingress controller that i
 For GKE customers, the ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. See link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
 ====
 
-=== External Log Forwarding
+=== Logs
 
-Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. However, you can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
+To retrieve logs for a Mule application deployed in a Docker container on Runtime Fabric on Self-Managed Kubernetes, send them to `stdout`. Refer to the Docker logging documentation for details.  
+
+==== External Log Forwarding
+
+Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. You are responsible for installing, configuring, and managing an external log forwarder. You can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
 
 * Splunk Connect for Kubernetes
 * Fluentbit
-
-You are resposible for installing, configuring, and managing an external log forwarder.
 
 For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
 
