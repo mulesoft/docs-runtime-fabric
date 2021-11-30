@@ -19,4 +19,3 @@ Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per n
 | ServiceType limitations | By default, services are deployed with the ClusterIP ServiceType. Depending on the architecture, these services may not be compatible with ingress controllers that require the NodePort ServiceType.
 |===
 
-include::partial$antivirus-statement.adoc[]
