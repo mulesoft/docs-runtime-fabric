@@ -95,8 +95,8 @@ For GKE customers, the ingress controller included with GKE provisions a separat
 
 === Logs
 
-To retrieve logs for a Mule application deployed in a Docker container on Runtime Fabric on Self-Managed Kubernetes, send them to `stdout`. Refer to the Docker logging documentation for details.  
-
+Applications deployed on Runtime Fabric on Self-Managed Kubernetes direct logs to `stdout`. The container runtime collects these logs and writes them to a file. The storage location of these files depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
+  
 ==== External Log Forwarding
 
 Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. You are responsible for installing, configuring, and managing an external log forwarder. You can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
