@@ -95,7 +95,7 @@ For GKE customers, the ingress controller included with GKE provisions a separat
 
 === Logs
 
-Applications deployed on Runtime Fabric on Self-Managed Kubernetes direct logs to `stdout`. The container runtime collects these logs and writes them to a file. The storage location of these files depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
+Applications deployed on Runtime Fabric on Self-Managed Kubernetes direct logs to `stdout`. The container runtime collects these logs and writes them to a file. The storage location of this file depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
   
 ==== External Log Forwarding
 
