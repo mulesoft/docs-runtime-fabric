@@ -3,15 +3,15 @@
 Applications and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring to allow viewing metrics within Anypoint Platform.
 
 [NOTE]
-Monitoring solutions other than Anypoint Monitoring are not supported.
+Runtime Fabric does not support monitoring solutions other than Anypoint Monitoring.
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network. For applications and API gateways deployed to Anypoint Runtime Fabric (Runtime Fabric), Anypoint Monitoring provides basic metrics to all customers. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components in your application network. Anypoint Monitoring runs in a sidecar in pod deployments and gathers basic metrics for applications and API gateways deployed to Runtime Fabric. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
 
 === Enable Anypoint Monitoring
 
-By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Data is securely transmitted using mutual TLS encryption. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
+By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Data is securely transmitted using mutual TLS encryption. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
 
 If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
 
