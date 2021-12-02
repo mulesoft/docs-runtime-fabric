@@ -108,6 +108,14 @@ Runtime Fabric on Self-Managed Kubernetes does not include external log forwardi
 
 For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
 
+=== Monitoring
+
+xref:monitoring::index.adoc[Anypoint Monitoring] provides basic metrics for applications and API gateways deployed to Runtime Fabric. 
+
+To collect metrics, Anypoint Monitoring sidecars run in all pods deployed to Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric] for details, including how to enable or disable monitoring. 
+
+Runtime Fabric does not support third-party monitoring solutions.
+
 == See Also
 
 * xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
