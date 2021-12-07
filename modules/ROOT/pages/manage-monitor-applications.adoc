@@ -7,7 +7,7 @@ Runtime Fabric does not support monitoring solutions other than Anypoint Monitor
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components in your application network. Anypoint Monitoring runs in a sidecar in pod deployments and gathers basic metrics for applications and API gateways deployed to Runtime Fabric. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components in your application network. Anypoint Monitoring runs as a sidecar in application deployments and gathers metrics for applications and API gateways deployed to Runtime Fabric. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
 
 === Enable Anypoint Monitoring
 
