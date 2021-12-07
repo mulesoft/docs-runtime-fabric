@@ -179,10 +179,11 @@ rtfctl apply http-proxy "" --no-proxy ""
 ----
 
 * Applies an ingress configMap for a specific pod 
-
++
 [NOTE]
+--
 For Runtime Fabric versions 1.8 and 1.9 only
-
+--
 +
 ----
 rtfctl apply ingress-configmap "/<pod>/<path-to-configMap.yaml>"`
