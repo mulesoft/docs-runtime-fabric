@@ -3,7 +3,7 @@
 Applications and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring to allow viewing metrics within Anypoint Platform.
 
 [NOTE]
-Runtime Fabric does not support monitoring solutions other than Anypoint Monitoring.
+Runtime Fabric does not provide support for integrating third-party monitoring solutions.
 
 == Anypoint Monitoring
 
