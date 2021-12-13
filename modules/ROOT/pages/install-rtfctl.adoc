@@ -246,7 +246,6 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |Command |Description
 |xref:install[`install`] | Installs Runtime Fabric
 |xref:reinstall[`reinstall`] | Re-installs Runtime Fabric components
-|xref:upgrade-cluster[`upgrade-cluster`] | Upgrades the Runtime Fabric cluster
 |xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
 |xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
@@ -289,21 +288,6 @@ Restores local Runtime Fabric state from a backup
 rtfctl restore /var/backups/<filename>.tar.gz
 ----
 
-=== `upgrade-cluster` 
-Upgrades the Runtime Fabric cluster
-
-* Upgrades the cluster using a pre-downloaded package
-+
-----
-rtfctl upgrade-cluster --file runtimefabric-<version>.tar.gz
-----
-
-* Upgrades the cluster by downloading a package
-+
-----
-rtfctl upgrade-cluster --url https://<host>/<path-to-installer-package>
-----
-
 === `validate`
 Validates the cluster for Runtime Fabric installation
 
@@ -331,6 +315,8 @@ Use the following commands to manage applications deployed to Runtime Fabric.
 |xref:memory[`memory`] | Displays the JVM memory usage in a pod
 |xref:package[`package`] | Creates a debugging information package for an application
 |xref:restart[`restart`] | Restarts an application
+|xref:heapdump[`heapdump`] | Triggers a JVM heap dump
+|xref:threaddump[`threaddump`] | Triggers a JVM thread dump
 |===
 
 === `delete`
@@ -405,23 +391,6 @@ Restarts an application
 rtfctl restart my-app
 ----
 
-
-== Commands for Troubleshooting Runtime Fabric
-
-Use the following commands to troubleshoot Runtime Fabric.
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:heapdump[`heapdump`] | Triggers a JVM heap dump
-|xref:threaddump[`threaddump`] | Triggers a JVM thread dump
-|xref:get[`get`] | Displays one or more resources
-|xref:ping[`ping`] | Tests network connectivity
-|xref:report[`report`] | Generates a diagnostics report
-|xref:status[`status`] | Displays the status of Runtime Fabric
-|xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
-|===
-
 === `heapdump`
 Triggers a JVM heap dump
 
@@ -451,6 +420,20 @@ rtfctl threaddump <app-name>
 ----
 rtfctl threaddump <app-name>p --pod <replica-name>
 ----
+
+== Commands for Troubleshooting Runtime Fabric
+
+Use the following commands to troubleshoot Runtime Fabric.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:get[`get`] | Displays one or more resources
+|xref:ping[`ping`] | Tests network connectivity
+|xref:report[`report`] | Generates a diagnostics report
+|xref:status[`status`] | Displays the status of Runtime Fabric
+|xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
+|===
 
 === `get`
 
