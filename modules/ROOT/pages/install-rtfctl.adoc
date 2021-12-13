@@ -315,8 +315,8 @@ Use the following commands to manage applications deployed to Runtime Fabric.
 |xref:memory[`memory`] | Displays the JVM memory usage in a pod
 |xref:package[`package`] | Creates a debugging information package for an application
 |xref:restart[`restart`] | Restarts an application
-|xref:heapdump[`heapdump`] | Triggers a JVM heap dump
-|xref:threaddump[`threaddump`] | Triggers a JVM thread dump
+|xref:heapdump[`heapdump`] | Captures a JVM heap dump
+|xref:threaddump[`threaddump`] | Captures a JVM thread dump
 |===
 
 === `delete`
@@ -555,7 +555,7 @@ $ sudo ./rtfctl apply mule-license '<BASE64-encoded-license>'
 Updating rtf namespace... OK
 ----
 
-=== Taking a Heap Dump
+=== Capturing a Heap Dump
 
 ----
 $ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
