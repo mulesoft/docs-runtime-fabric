@@ -65,7 +65,7 @@ These commands are for Runtime Fabric on VMs / Bare Metal only.
 
 === `appliance` 
 
-Performs operations to the Runtime Fabric appliance 
+Performs operations on the Runtime Fabric appliance 
 
 * Applies alert sender email
 +
@@ -137,19 +137,19 @@ Use the following commands to configure Runtime Fabric.
 
 Applies changes to a Runtime Fabric configuration.
 
-* Applies a HTTP proxy configuration
+* Applies an HTTP proxy configuration
 +
 ----
 rtfctl apply http-proxy http://<domain>:<port>
 ----
 
-* Applies a HTTP proxy configuration with hostnames bypassing the proxy
+* Applies an HTTP proxy configuration with hostnames bypassing the proxy
 +
 ----
 rtfctl apply http-proxy http://<domain>:<port> --no-proxy "DOMAIN.com,DOMAIN2.com"
 ----
 
-* Applies a HTTP proxy configuration with authentication
+* Applies an HTTP proxy configuration with authentication
 +
 ----
 rtfctl apply http-proxy http://username:password@<domain>.com:<port>
@@ -231,7 +231,7 @@ Waits for Runtime Fabric components to become ready
 rtfctl wait <value in seconds>
 ----
 
-* Specifies the Number of seconds to pass before timing out the wait (Default is 600 seconds)
+* Specifies the number of seconds to pass before timing out the wait (Default is 600 seconds)
 
 ----
 rtfctl wait --timeout <value in seconds>
@@ -245,7 +245,7 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 |Command |Description
 |xref:install[`install`] | Installs Runtime Fabric
-|xref:reinstall[`reinstall`] | Re-installs Runtime Fabric components
+|xref:reinstall[`reinstall`] | Reinstalls Runtime Fabric components
 |xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
 |xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
@@ -261,15 +261,15 @@ rtfctl install <activation data>
 
 === `reinstall`
 
-Re-installs Runtime Fabric components
+Reinstalls Runtime Fabric components
 
-* Re-installs Runtime Fabric components using the latest scripts
+* Reinstalls Runtime Fabric components using the latest scripts
 +
 ----
 rtfctl reinstall
 ----
 
-* Re-installs Runtime Fabric components without downloading the latest scripts
+* Reinstalls Runtime Fabric components without downloading the latest scripts
 +
 ----
 rtfctl reinstall --skip-download
@@ -282,14 +282,14 @@ rtfctl backup /var/backups/<backup-filename>.tar.gz
 ----
 
 === `restore`
-Restores local Runtime Fabric state from a backup 
+Restores the local Runtime Fabric state from a backup 
 
 ----
 rtfctl restore /var/backups/<filename>.tar.gz
 ----
 
 === `validate`
-Validates the cluster for Runtime Fabric installation
+Validates the cluster for a Runtime Fabric installation
 
 ----
 rtfctl validate <activation-data>
@@ -357,7 +357,7 @@ Displays the JVM memory usage in a pod
 rtfctl memory <app-name>
 ----
 
-* Gets the JVM memory, for a particular replica
+* Gets the JVM memory for a particular replica
 +
 ----
 rtfctl memory <app-name> --pod <app-name>-pod-1
@@ -366,13 +366,13 @@ rtfctl memory <app-name> --pod <app-name>-pod-1
 === `package` 
 Creates a debugging information package for an application
 
-* Creates a package for an application, using the first pod by default
+* Creates a package for an application using the first pod by default
 +
 ----
 rtfctl package <app-name>
 ----
 
-* Created a package for an application containing the apps, policies, and `.mule` directories
+* Creates a package for an application containing the apps, policies, and `.mule` directories
 +
 ----
 rtfctl package <app-name> --apps --policies --dotmule
@@ -409,7 +409,7 @@ rtfctl heapdump <app-name> /tmp/dump.hprof --pod <replica-name>
 === `threaddump`
 Triggers a JVM threaddump
 
-* Performs a JVM thread dump for an application, using the first replica by default
+* Performs a JVM thread dump for an application using the first replica by default
 +
 ----
 rtfctl threaddump <app-name>
@@ -545,7 +545,7 @@ rtfctl test outbound-network --all
 
 == Usage Examples 
 
-=== Installing a Mule license
+=== Install a Mule license
 
 . Follow the instructions to xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 . Run the following command:
@@ -555,7 +555,7 @@ $ sudo ./rtfctl apply mule-license '<BASE64-encoded-license>'
 Updating rtf namespace... OK
 ----
 
-=== Capturing a Heap Dump
+=== Capture a Heap Dump
 
 ----
 $ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
