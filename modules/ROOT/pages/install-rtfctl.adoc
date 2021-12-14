@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use the `rtfctl` utility to locally install and configure Runtime Fabric, manage applications, and troubleshoot Runtime Fabric clusters. For example, using `rtfctl`, you can:
+Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
 
-* Get the status of a Runtime Fabric
-* Perform a heap dump or a thread dump of a running application
-* Display memory usage of a running application
-* Manage proxy settings
-* Manage secure properties
-* Manage a Mule license
-* Manage the alert sender email address
+* Get the status of a Runtime Fabric.
+* Perform a heap dump or a thread dump of a running application.
+* Display memory usage of a running application.
+* Manage proxy settings.
+* Manage secure properties.
+* Manage a Mule license.
+* Manage the alert sender email address.
 
 == Install rtfctl 
 
@@ -51,7 +51,6 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 ----
 sudo chmod +x rtfctl
 ----
-
 
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
@@ -424,7 +423,6 @@ rtfctl threaddump <app-name>p --pod <replica-name>
 == Commands for Troubleshooting Runtime Fabric
 
 Use the following commands to troubleshoot Runtime Fabric.
-
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
@@ -534,24 +532,15 @@ rtfctl test outbound-network --<node-label> "<k>:<v>"
 rtfctl test outbound-network --all
 ----
 
-== Additional Flags
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Flag |Description
-| -h, --help | Displays `rtfctl` help information for a command.
-| -n, --namespace <string> | If present, displays the namespace scope.
-| --pod <string> | If present, displays the pod name.
-|===
-
-== Usage Examples 
+== Usage
 
 === Install a Mule license
 
-. Follow the instructions to xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
-. Run the following command:
+.. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
+.. Run the following command:
 +
 ----
-$ sudo ./rtfctl apply mule-license '<BASE64-encoded-license>'
+$ sudo ./rtfctl apply mule-license '<license-key-information>'
 Updating rtf namespace... OK
 ----
 
@@ -562,6 +551,8 @@ $ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----
+
+For additional information, run the `rtfctl heapdump -h` command.
 
 == See Also
 
