@@ -302,7 +302,7 @@ rtfctl validate <activation-data>
 rtfctl validate -f <path-to-settings-file>
 ----
 +
-To validate installation with a proxy, you must specify proxy settings in your `fabric.tf` file:
+To validate installation with a proxy, you must specify proxy settings in your `settings` file:
 
 ----
 MULE_LICENSE=<your-mule-license>
