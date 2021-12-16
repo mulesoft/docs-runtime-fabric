@@ -291,8 +291,24 @@ rtfctl restore /var/backups/<filename>.tar.gz
 === `validate`
 Validates the cluster for a Runtime Fabric installation
 
+* Performs a validation check
++
 ----
 rtfctl validate <activation-data>
+----
+
+* Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
++
+----
+rtfctl validate -f <path-to-settings-file>
+----
++
+To validate installation with a proxy, you must specify proxy settings in your `settings` file:
+
+----
+MULE_LICENSE=<your-mule-license>
+ACTIVATION_DATA=<activation-data>
+HTTP_PROXY=http://proxy-domain.com:<port>
 ----
 
 === `version` 
