@@ -299,7 +299,7 @@ rtfctl validate <activation-data>
 * Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
 +
 ----
-rtfctl validate -f <path-to-fabric.tf-file>
+rtfctl validate -f <path-to-settings-file>
 ----
 +
 To validate installation with a proxy, you must specify proxy settings in your `fabric.tf` file:
