@@ -34,7 +34,19 @@ The underlying Runtime Fabric cluster does not need to be licensed. The actual a
 
 === MuleSoft License Compliance
 
-You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure that you do not exceed the number of CPU cores provided by your MuleSoft license at any given time.
+You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure that you do not exceed the number of CPU cores provided by your MuleSoft license at any given time. There are two ways of accomplishing this:
+
+. Ensure that the total CPU limits allocated to each Mule application replica is less than or equal to the total license quantity.
+. Ensure that the total CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity. This ensures that Mule applications will never have more capacity available to them to burst beyond the license limit even if their cumulative CPU limits exceed the license quantity, as the CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
+
+When assessing license compliance, MuleSoft does not count the following CPU requirements, and these components do not require separate licensing:
+
+* CPU provisioned for the underlying Runtime Fabric cluster and overhead
+* CPU used by Anypoint Monitoring 
+* CPU allocated to the internal load balancer
+* CPU used to support keys and certificates
+
+=== Track CPU Usage in Ops Center
 
 When using Runtime Fabric on VMs/Bare Metal, use the Core CPU Usage dashboard in Ops Center. This dashboard shows core CPU usage for Mule applications only, so it can help you determine your core CPU usage across all your Mule applications.
 
