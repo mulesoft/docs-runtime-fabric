@@ -52,7 +52,7 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
-=== Configure a Public Endpoint for the Application (for Self-Managed Kubernetes)
+=== Configure a Public Endpoint for the Application for Self-Managed Kubernetes
 
 Use the following steps to configure a public endpoint for an application deployed to Runtime Fabric for Self-Managed Kubernetes.
 
@@ -73,7 +73,7 @@ image::rtf-ingress-endpoint.png[A host and path are set for the application's en
 . To preview the endpoint, click the generated preview link.
 . To add additional endpoints, click *+ Add Endpoint*.
 
-=== Configure a Public Endpoint and Network Configuration for the Application (for VMs/Bare Metal)
+=== Configure a Public Endpoint for the Application for VMs/Bare Metal
 
 Use the following steps to configure a public endpoint and network configuration for an application deployed to Runtime Fabric for VMs/Bare Metal.
 
