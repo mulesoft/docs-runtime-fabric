@@ -83,6 +83,7 @@ You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]
 To access a Runtime Fabric instance using more than one DNS, add additional DNS entries in the SAN certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Application url* section.
 
 . Select *Ingress*.
+. Enable the *Enable inbound traffic* checkbox.
 . From the *Domain* drop-down list, choose the appropriate domain.
 +
 . Enable or disable the following options:
