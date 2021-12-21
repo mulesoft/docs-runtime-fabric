@@ -86,7 +86,7 @@ To access a Runtime Fabric instance using more than one DNS, add additional DNS 
 . Enable the *Enable inbound traffic* checkbox.
 . From the *Domain* drop-down list, choose the appropriate domain.
 +
-. Enable or disable the following options:
+. Optionally, enable or disable the following options:
 +
 * *Last-Mile security*: TLS termination and decryption for the forwarded HTTPS connections occurs in the application. This option requires that the Mule application include an SSL certificate and also requires more CPU resources. 
 +
