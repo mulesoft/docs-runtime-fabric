@@ -77,7 +77,7 @@ image::rtf-ingress-endpoint.png[A host and path are set for the application's en
 
 Use the following steps to configure a public endpoint and network configuration for an application deployed to Runtime Fabric for VMs/Bare Metal.
 
-You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]. Ensure your application is configured to accept connections on port 8081.
+You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]. Ensure that your application is configured to accept connections on port 8081.
 
 [NOTE]
 To access a Runtime Fabric instance using more than one FQDN, add additional DNS entries in the `subjectAltName` certificate property. If a certificate has multiple DNS entries specified in the `subjectAltName` property, the available URLs are displayed in the *Public endpoint* section. Each deployed application can only be addressed using a single FQDN.
