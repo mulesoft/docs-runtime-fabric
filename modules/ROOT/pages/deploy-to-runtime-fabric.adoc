@@ -80,13 +80,13 @@ Use the following steps to configure a public endpoint and network configuration
 You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]. Ensure your application is configured to accept connections on port 8081.
 
 [NOTE]
-To access a Runtime Fabric instance using more than one FQDN, add additional DNS entries in the SubjectAltName (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Public endpoint* section. Each deployed application can only be addressed using a single FQDN.
+To access a Runtime Fabric instance using more than one FQDN, add additional DNS entries in the `subjectAltName` certificate property. If a certificate has multiple DNS entries specified in the `subjectAltName` property, the available URLs are displayed in the *Public endpoint* section. Each deployed application can only be addressed using a single FQDN.
 
 . Select *Ingress*.
-. Enable the *Enable inbound traffic* checkbox.
+. Select *Enable inbound traffic*.
 . From the *Domain* drop-down list, choose the appropriate domain.
 +
-. Optionally, enable or disable the following options:
+. Optionally, enable or disable the following:
 +
 * *Last-Mile security*: TLS termination and decryption for the forwarded HTTPS connections occurs in the application. This option requires that the Mule application include an SSL certificate and also requires more CPU resources. 
 +
