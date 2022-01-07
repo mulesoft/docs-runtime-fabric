@@ -20,3 +20,29 @@ kubectl label ns <YOUR_ENVIRONMENT_NAME> rtf.mulesoft.com/role=workers rtf.mules
 * Replave `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` with the correct ID for your environment.
 
 After you run these commands, any application deployed into an Anypoint Platform environment identified by `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` is created inside the `<YOUR_ENVIRONMENT_NAME>` namespace.
+
+== Troubleshooting Custom Namespaces
+
+If you encounter errors when attempting to use custom namespaces for Runtime Fabric, troubleshoot them as follows.
+
+== More Than One Custom Namespaces Uses the Same Environment_ID
+
+Scenario: You created more than one custom namespace using the same environment ID.
+
+For example:
+
+----
+$ kubectl get ns custom-namespace-1 -oyaml
+labels:
+    rtf.mulesoft.com/envId: b164ad54-7e15-4c8b-a7ab-18011a361d81
+    rtf.mulesoft.com/role: workers
+ 
+$ kubectl get ns custom-namespace-2 -oyaml
+labels:
+    rtf.mulesoft.com/envId: b164ad54-7e15-4c8b-a7ab-18011a361d81
+    rtf.mulesoft.com/role: workers
+----
+  
+In such cases, Runtime Fabric always picks the first custom namespace you created. 
+
+If you delete the first namespace (`custom-namespace-1`),Runtime Fabric picks the second namespace you created (`custom-namespace-2`).
