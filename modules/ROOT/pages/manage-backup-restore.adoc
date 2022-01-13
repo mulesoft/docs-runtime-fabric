@@ -40,7 +40,7 @@ The following command, for example, uses `scp` to copy the archive to another dr
 scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-path/to-restore.tar.gz
 ----
 
-* For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and `kubectl` is present in the user `$PATH`. Additionally, confirm that you've set the Kubernetes (kubectl) context to the intended backup cluster. 
+* For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and `kubectl` is present in the user `$PATH`. Additionally, confirm that you've set the Kubernetes (`kubectl`) context to the intended backup cluster. 
 
 == Restore a Cluster
 
