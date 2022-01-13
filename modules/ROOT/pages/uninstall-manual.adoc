@@ -3,16 +3,22 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-[NOTE]
-It's important to keep all nodes running and joined to the cluster for these instructions to be performed successfully. 
-Alternatively, you can perform the first step and delete all applications and the Runtime Fabric on Runtime Manager, and 
-skip the remaining steps by reimaging the VM disks.
+You can uninstall Runtime Fabric and completely delete your gravity cluster, or you can uninstall Runtime Fabric without deleting your gravity cluster. 
 
 
-.Using Runtime Manager delete all Mule applications running on Runtime Fabric.
+== Uninstall Runtime Fabric and Delete the Gravity Cluster
+
+Perform this task to uninstall Runtime Fabric and completely remove the gravity cluster from your VMs. 
+
+Alternatively, you can perform the first two steps (delete all applications and the Runtime Fabric in Runtime Manager), and 
+skip the remaining steps by re-imaging the VM disks.
+
+[IMPORTANT]
+To successfully complete this task, keep all nodes running and joined to the cluster. 
+
+. Using Runtime Manager delete all Mule applications running on Runtime Fabric.
 +
 Verify across all associated environments that you have removed all applications.
-
 . Using Runtime Manager, delete the Runtime Fabric.
 . On each Worker VM, run the following command and confirm by typing “yes” when prompted:
 +
@@ -33,10 +39,8 @@ sudo rm /etc/systemd/system/install-teleport-*.service /etc/systemd/system/insta
 . Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
 . Restart the VM.
 . Repeat steps 3 through 7 on each Controller VM.
-
-[NOTE]
-If the previous steps fail, a manual cleanup can be performed by running the following commands sequentially:
-
+. If the previous steps fail, perform a manual cleanup by running the following commands sequentially:
++
 ----
 sudo systemctl stop gravity__gravitational.io__planet-*.service
 sudo systemctl stop gravity__gravitational.io__teleport*.service
@@ -51,4 +55,12 @@ sudo umount /var/lib/gravity
 
 sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/assets393106389 /tmp/gravity-wizard167466702 
 ----
-Remove lines in the `/etc/fstab` file which are appended with the comment `# Added by RTF`. 
+
+=== Uninstall Runtime Fabric Without Deleting the Gravity Cluster
+
+You can uninstall Runtime Fabric but keep the Gravity cluster. This is useful in scenarios in which you want to reinstall Runtime Fabric in the same cluster. To do so, run the following commands on one of the controller nodes:
+
+----
+rtfctl uninstall --confirm
+rtfctl install <activation_data>
+----
