@@ -99,6 +99,11 @@ Inside the `rtf-install-scripts/` directory, you'll find a sub-directory named `
 
 == Generate the Variables for Installation and Run the Install Scripts
 
+[IMPORTANT]
+--
+You must run the install scripts from a Bash shell.
+--
+
 . Familiarize yourself with the xref:variables-to-define[variables needed for installation]. 
 . Use the `./generate-configs.sh` script to generate the environment variables for each VM.
 . Copy the command below in a text editor and fill in the values of each variable inside the single quotes. Add and define any xref:optional-variables[optional variables] if required. A common example is if you require an HTTP proxy for outbound internet connectivity.
