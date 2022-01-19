@@ -210,7 +210,7 @@ labels:
 To configure ingress, complete the following tasks:
 
 . Create an ingress resource template and apply it in the cluster.
-. Configure a public endpoint for a Mule application deployment.
+. Configure ingress for a Mule application.
 
 == Before You Begin
 
@@ -232,9 +232,9 @@ After you apply a template successfully, you can view it with:
 
 `kubectl describe ingress [Ingress Name] -n rtf`
 
-=== Configure a Public Endpoint for a Mule Application Deployment 
+=== Configure Ingress for a Mule Application  
 
-You configure public endpoints for an application when you deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
+You configure ingress for an application when you deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
 
 You can also use this procedure to deploy a test application to validate your ingress resource template.
  
