@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install and register Anypoint Runtime Fabric on VMs / Bare Metal on VMs hosted in your data center.
+This topic describes how to manually install Anypoint Runtime Fabric on VMs / Bare Metal on VMs hosted in your data center.
 
 [WARNING]
 ====
@@ -16,13 +16,28 @@ xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
 
 == Before you Begin
 
-Ensure that the following criteria have been met before beginning the installation:
+Ensure that you've met following criteria before beginning the installation:
 
 * You have xref:install-create-rtf-arm.adoc[created a Runtime Fabric in Runtime Manager].
 * The necessary hardware has been provisioned as outlined in xref:install-prereqs.adoc[Anypoint Runtime Fabric on VMs / Bare Metal Installation Prerequisites].
 * The required disks are listed as block devices for each VM. The disks should not be mounted or formatted.
 * The necessary ports are open and hostnames are added to allowlists as described in xref:install-prereqs.adoc[Anypoint Runtime Fabric on VMs / Bare Metal Installation Prerequisites].
 * You have disabled any antivirus agents, such as McAfee, running in your environment.
+* You have reviewed the requirements for load balanacing. In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either shared or dedicated mode:
+** *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting.
+** *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
++
+Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
+
+== Operations Performed During Installation
+
+The installation performs the following actions on each VM:
+
+* Formats the dedicated disks.
+* Mounts the dedicated disks to the appropriate path.
+* Sets iptable rules.
+* Enables the required kernel modules.
+* Enables and reloads system services.
 
 == Base64 Encode your Mule License Key
 
@@ -55,19 +70,14 @@ To encode your license file on Windows, a shell terminal emulator (such as cygwi
 base64 -w0 license.lic
 ----
 
-== Operations Performed During Installation
+== Download the Install Scripts 
 
-The installation performs the following actions on each VM:
+Download the scripts ZIP file on the controller VM that will act as the leader in the installation.
 
-* Formats the dedicated disks.
-* Mounts the dedicated disks to the appropriate path.
-* Sets iptable rules.
-* Enables the required kernel modules.
-* Enables and reloads system services.
-
-== Installation
-
-First, download the scripts ZIP file on the controller VM which will act as the leader in the installation.
+[NOTE]
+--
+To install a specific version of Runtime Fabric on VMs / Bare Metal, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
+--
 
 . Sign in to Anypoint Platform and navigate to Runtime Manager.
 . On the left navigation pane, select *Runtime Fabrics*.
@@ -81,15 +91,80 @@ First, download the scripts ZIP file on the controller VM which will act as the 
 ----
 mkdir -p ./rtf-install-scripts && unzip rtf-install-scripts.zip -d ./rtf-install-scripts
 ----
-
++
 Inside the `rtf-install-scripts/` directory, you'll find a sub-directory named `manual` containing the following:
-
++
 * `generate-configs.sh`: a script to help generate environment variables for each VM.
 * `README.md`: a markdown file containing instructions to aid with installation.
 
-=== Variables to Define
+== Generate the Variables for Installation and Run the Install Scripts
 
-Second, become familiar with the variables needed for installation. The value for the `RTF_ACTIVATION_DATA` variable can be found on the Runtime Fabric page on Runtime Manager.
+. Familiarize yourself with the xref:variables-to-define[variables needed for installation]. 
+. Use the `./generate-configs.sh` script to generate the environment variables for each VM.
+. Copy the command below in a text editor and fill in the values of each variable inside the single quotes. Add and define any xref:optional-variables[optional variables] if required. A common example is if you require an HTTP proxy for outbound internet connectivity.
++
+----
+RTF_CONTROLLER_IPS='' \
+RTF_WORKER_IPS='' \
+RTF_DOCKER_DEVICE='' \
+RTF_ETCD_DEVICE='' \
+RTF_ACTIVATION_DATA='' \
+RTF_MULE_LICENSE='' \
+./generate-configs.sh
+----
++
+. Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
+. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. You may need to scroll up to see the outputted instructions.
+.. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
+.. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
++
+----
+mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh /opt/anypoint/runtimefabric/init.sh && chmod +x /opt/anypoint/runtimefabric/init.sh
+----
+
+. Run the `init.sh` script in privileged mode on the controller VM.
++
+[NOTE]
+--
+You must have root privileges to run the `init.sh` script.
+--
++
+----
+sudo /opt/anypoint/runtimefabric/init.sh
+----
+
+. Wait until the installation has successfully completed the pre-flight checks. The output should continue past the *Execute preflight checks* message to indicate the checks have passed:
++
+----
+...
+Tue Aug 14 02:28:54 UTC Starting the installation
+Tue Aug 14 02:28:56 UTC Operation has been created
+Tue Aug 14 02:28:57 UTC Execute preflight checks
+Tue Aug 14 02:29:48 UTC Configure packages for all nodes
+Tue Aug 14 02:29:59 UTC Bootstrap all nodes
+...
+----
+
+. Execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed on each VM concurrently.
++
+----
+sudo /opt/anypoint/runtimefabric/init.sh
+----
++
+. If the installation process encounters an error, it exits with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
++
+[NOTE]
+====
+This step will install Runtime Fabric on VMs / Bare Metal across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
+
+When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
+
+The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
+====
+
+== Variables to Define
+
+Use the following required variables to install Rutime Fabric. 
 
 [%header,cols="3*a"]
 .Required Installation Variables
@@ -128,80 +203,6 @@ The following variables can be defined based upon your organization's requiremen
 {sp} +
 If the host operating system is RHEL 8, do not set to `false` or installation will fail. | `true`
 |===
-
-[NOTE]
-====
-To install a specific version of Runtime Fabric on VMs / Bare Metal, transfer the installation package to this path on the controller VM acting as the leader during installation: `/opt/anypoint/runtimefabric/installer.tar.gz`. This will skip downloading the latest package from Anypoint control plane.
-
-In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either shared or dedicated mode:
-
-* *Shared Mode* enables you to specify the number of CPU cores and amount of memory for the internal load balancer. In shared mode, the internal load balancer is distributed across the controller nodes. *Shared Mode* is the default setting.
-
-* *Dedicated Mode* specifies that all available resources are dedicated to the internal load balancer, so you cannot choose the number of CPU cores and memory amount. In dedicated mode, the internal load balancer is deployed on dedicated internal load balancer nodes.
-
-Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
-====
-
-Use the `./generate-configs.sh` script to generate the environment variables for each VM.
-
-. Copy the command below in a text editor and fill in the values of each variable inside the single quotes. Add and define any additional variables if required. A common example is if an HTTP proxy is required for outbound  internet connectivity.
-+
-----
-RTF_CONTROLLER_IPS='' \
-RTF_WORKER_IPS='' \
-RTF_DOCKER_DEVICE='' \
-RTF_ETCD_DEVICE='' \
-RTF_ACTIVATION_DATA='' \
-RTF_MULE_LICENSE='' \
-./generate-configs.sh
-----
-+
-. Open a shell/SSH on the controller VM and navigate to the `manual` sub-directory from the unzipped directory.
-. Copy the command from your text editor, paste it in the terminal, and run the command on the controller VM. The script should output a set of instructions and a script to run on each VM, categorized by the IP address of each VM. You may need to scroll up to see the outputted instructions.
-.. Execute the snippet on each VM based upon its IP address to apply the required environment variables.
-.. On each VM, copy the `./scripts/init.sh` file to `/opt/anypoint/runtimefabric`, and ensure the script is executable. The script below assumes the present working directory contains the unzipped directory `rtf-install-scripts`.
-+
-----
-mkdir -p /opt/anypoint/runtimefabric && cp ./rtf-install-scripts/scripts/init.sh /opt/anypoint/runtimefabric/init.sh && chmod +x /opt/anypoint/runtimefabric/init.sh
-----
-
-. Run the `init.sh` script in privileged mode on the controller VM.
-+
-[NOTE]
-You must have root privileges to run the `init.sh` script.
-
-----
-sudo /opt/anypoint/runtimefabric/init.sh
-----
-+
-. Wait until the installation has successfully completed the pre-flight checks. The output should continue past the *Execute preflight checks* message to indicate the checks have passed:
-+
-----
-...
-Tue Aug 14 02:28:54 UTC Starting the installation
-Tue Aug 14 02:28:56 UTC Operation has been created
-Tue Aug 14 02:28:57 UTC Execute preflight checks
-Tue Aug 14 02:29:48 UTC Configure packages for all nodes
-Tue Aug 14 02:29:59 UTC Bootstrap all nodes
-...
-----
-+
-. Execute the `init.sh` script in privileged mode on all the other VMs. This step can be performed on each VM concurrently.
-+
-----
-sudo /opt/anypoint/runtimefabric/init.sh
-----
-+
-. If the installation process encounters an error, it exits with a message to help indicate how to resolve the error. In most cases, errors can be resolved by updating one or more variables to a valid value, and re-running the `init.sh` script.
-+
-[NOTE]
-====
-This step will install Runtime Fabric on VMs / Bare Metal across all VMs to form a cluster. It may take 15-25 minutes or longer to complete.
-
-When the installation completes successfully, the file `/opt/anypoint/runtimefabric/.state/init-complete` is created.
-
-The internal load balancer is distributed across the controller nodes for shared mode and is deployed on the internal load balancer nodes for dedicated mode.
-====
 
 == Monitoring Installation Progress
 
