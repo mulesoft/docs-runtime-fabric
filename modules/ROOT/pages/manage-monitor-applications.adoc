@@ -49,7 +49,7 @@ Anypoint Monitoring via secure mutual TLS encryption. Each replica can cache up 
 [NOTE]
 Application monitoring metrics are not restored after:
 +
-* A back up and restore of Runtime Fabric
+* A backup and restore of Runtime Fabric
 * An upgrade of Runtime Fabric
 * OS patching of Runtime Fabric nodes
 
