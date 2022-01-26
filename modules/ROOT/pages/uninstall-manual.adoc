@@ -16,7 +16,7 @@ skip the remaining steps by re-imaging the VM disks.
 [IMPORTANT]
 To successfully complete this task, keep all nodes running and joined to the cluster. 
 
-. Using Runtime Manager delete all Mule applications running on Runtime Fabric.
+. Using Runtime Manager, delete all Mule applications running on Runtime Fabric.
 +
 Verify across all associated environments that you have removed all applications.
 . Using Runtime Manager, delete the Runtime Fabric.
@@ -56,7 +56,7 @@ sudo umount /var/lib/gravity
 sudo rm -rf /opt/anypoint/runtimefabric /root/.gravity /rtf-user/.gravity /var/lib/gravity /tmp/gravity /tmp/assets393106389 /tmp/gravity-wizard167466702 
 ----
 
-=== Uninstall Runtime Fabric Without Deleting the Gravity Cluster
+== Uninstall Runtime Fabric Without Deleting the Gravity Cluster
 
 You can uninstall Runtime Fabric but keep the Gravity cluster. This is useful in scenarios in which you want to reinstall Runtime Fabric in the same cluster. To do so, run the following commands on one of the controller nodes:
 
