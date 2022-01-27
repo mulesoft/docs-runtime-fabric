@@ -37,7 +37,7 @@ To create a backup run the following command:
 ./rtfctl backup <path_to_backup_file>
 ----
 
-This command creates a backup of the current system state in `<path_to_backup_file>`, which can be any path in the file system that you have write access to, for example: `/opt/anypoint/runtimefabric/backup.tar.gz`. 
+This command creates a backup of the current system state in `<path_to_backup_file>`, which can be any path in the file system that you have write access to, such as: `/opt/anypoint/runtimefabric/backup.tar.gz`. 
 
 * For Runtime Fabric on VMs / Bare Metal, the `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/`. Confirm that you run the backup command on a controller node in the cluster as a privileged user. To use the backup for restoring later, copy the backup file to secure storage on a different machine that is not part of Runtime Fabric. 
 +
