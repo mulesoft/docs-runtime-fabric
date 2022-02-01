@@ -72,8 +72,6 @@ metadata:
   name: example-rtf-ingress
   namespace: rtf #<1>                           
   labels:
-    business-group: business-group-id
-    environment: environment-id
 spec:
   ingressClassName: rtf-nginx #<2> 
   tls: #<3>
@@ -127,8 +125,6 @@ metadata:
   name: example-rtf-ingress
   namespace: rtf #<1>
   labels:
-    business-group: business-group-id
-    environment: environment-id
 spec:
   ingressClassName: rtf-nginx #<2>
   tls: #<3>
