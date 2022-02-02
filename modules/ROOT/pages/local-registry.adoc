@@ -1,10 +1,10 @@
 = Using A Local Registry with Runtime Fabric on Self-Managed Kubernetes
 
-If your security policies require that you pull your Docker images from a registry under your control, you can set up a local registry to pull and store the Docker images necessary for installing and managing Runtime Fabric.
+Runtime Fabric uses its own registry to store the necessary Docker images for installing and managing Runtime Fabric and for running applications in Kubernetes. If your security policies require that you pull your Docker images from a registry under your control, you can set up a local registry to pull and store these Docker images.
 
-== About Local Registry Support 
+== Limitations for Local Registry Support 
 
-Review the following important details about support for local registries: 
+Review the following limitations about support for local registries: 
 
 * Runtime Fabric supports local registries with Runtime Fabric on Self-Managed Kubernetes only.
 
@@ -12,7 +12,7 @@ Review the following important details about support for local registries:
 
 * You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or higher.
 
-* If you create a Runtime Fabric to use with a local registry, you cannot later reconfigure it to use the Runtime Fabric registry endpoint (`rtf-runtime-registry`). To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric using the standard installation procedure.
+* If you create a Runtime Fabric to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric using the standard installation procedure.
 
 * You're responsible for synchronization between your registry and the Runtime Fabric registry. MuleSoft doesn't provide additional software to synchronize images between the registries.
 
