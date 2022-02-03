@@ -23,7 +23,7 @@ After you run these commands, any application deployed into an Anypoint Platform
 
 If you encounter errors when attempting to create namespaces for Runtime Fabric, troubleshoot them as follows.
 
-=== More Than One Namespaces Uses the Same Environment_ID
+=== More Than One Namespaces Uses the Same Environment ID
 
 Scenario: You created more than one namespace using the same environment ID.
 
@@ -46,7 +46,7 @@ In such cases, Runtime Fabric always picks the first namespace you created.
 Additionally:
 
 * If you delete the first namespace (`custom-namespace-1`),Runtime Fabric picks the second namespace you created (`custom-namespace-2`).
-* If a namespace using the Environment_ID already exists, and you create a namespace, Runtime Fabric deploy apps in the default namespace instead of the namespace.
+* If a namespace using the environment ID already exists, and you create a namespace, Runtime Fabric deploy apps in the default namespace instead of the namespace.
 * If multiple namespaces use the same label, Runtime Fabric deploys applications to the first namespace listed by Kubernetes that uses the `Environment_ID` label.
 
 
