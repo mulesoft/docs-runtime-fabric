@@ -27,7 +27,7 @@
 * xref:associate-environments.adoc[Associate Business Groups and Environments on Anypoint Runtime Fabric]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
- ** xref:custom-namespace.adoc[Create a Custom Namespace]
+ ** xref:create-custom-namespace.adoc[Create a Custom Namespace]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
  ** xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
  ** xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3)]

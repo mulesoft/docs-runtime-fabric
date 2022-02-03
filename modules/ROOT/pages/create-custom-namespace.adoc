@@ -1,12 +1,10 @@
-== Creating Custom Namespaces for Application Deployments 
+== Creating Namespaces for Application Deployments 
 
-// add RTF version
+Anypoint Runtime Fabric version 1.12 or later enables you to create your own namespaces for application deployments. 
 
-Anypoint Runtime Fabric version enables you to create your own namespaces for application deployments. 
+When you deploy an application into an Anypoint Platform environment, Runtime Fabric creates a new default namespace using the identifier of the environment. However, if you can create or modify a namespace with the appropriate Kubernetes labels, Runtime Fabric deploys applications into that namespace instead of into the default namespace.   
 
-When you deploy an application into an Anypoint Platform environment, Runtime Fabric creates a new default namespace using the identifier of the environment. However, if you can create or modify a custom namespace with the appropriate Kubernetes labels, Runtime Fabric deploys applications into that custom namespace instead of into the default namespace.   
-
-To create a custom namespace:
+To create a namespace:
 
 . As a user with permissions to create a namespace, log in to a Kubernetes workstation.
 . Run the following commands:
@@ -16,18 +14,18 @@ kubectl create ns <YOUR_ENVIRONMENT_NAME>
 kubectl label ns <YOUR_ENVIRONMENT_NAME> rtf.mulesoft.com/role=workers rtf.mulesoft.com/envId=<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>
 ----
 +
-* Replace `<YOUR_ENVIRONMENT_NAME>` with the name of your custom namespace.
+* Replace `<YOUR_ENVIRONMENT_NAME>` with the name of your namespace.
 * Replave `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` with the correct ID for your environment.
 
 After you run these commands, any application deployed into an Anypoint Platform environment identified by `<YOUR_ANYPOINT_PLATFORM_ENVIRONMENT_ID>` is created inside the `<YOUR_ENVIRONMENT_NAME>` namespace.
 
 == Troubleshooting Custom Namespaces
 
-If you encounter errors when attempting to use custom namespaces for Runtime Fabric, troubleshoot them as follows.
+If you encounter errors when attempting to create namespaces for Runtime Fabric, troubleshoot them as follows.
 
-=== More Than One Custom Namespaces Uses the Same Environment_ID
+=== More Than One Namespaces Uses the Same Environment_ID
 
-Scenario: You created more than one custom namespace using the same environment ID.
+Scenario: You created more than one namespace using the same environment ID.
 
 For example:
 
@@ -43,12 +41,12 @@ labels:
     rtf.mulesoft.com/role: workers
 ----
   
-In such cases, Runtime Fabric always picks the first custom namespace you created. 
+In such cases, Runtime Fabric always picks the first namespace you created. 
 
 Additionally:
 
 * If you delete the first namespace (`custom-namespace-1`),Runtime Fabric picks the second namespace you created (`custom-namespace-2`).
-* If a namespace using the Environment_ID already exists, and you create a custom namespace, Runtime Fabric deploy apps in the default namespace instead of the custom namespace.
+* If a namespace using the Environment_ID already exists, and you create a namespace, Runtime Fabric deploy apps in the default namespace instead of the namespace.
 * If multiple namespaces use the same label, Runtime Fabric deploys applications to the first namespace listed by Kubernetes that uses the `Environment_ID` label.
 
 
