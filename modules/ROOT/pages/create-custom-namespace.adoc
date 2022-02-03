@@ -47,7 +47,6 @@ Additionally:
 
 * If you delete the first namespace (`custom-namespace-1`),Runtime Fabric picks the second namespace you created (`custom-namespace-2`).
 * If a namespace using the environment ID already exists, and you create a new namespace, Runtime Fabric deploy apps in the default namespace instead of the new namespace.
-* If multiple namespaces use the same `Environment_ID` label, Runtime Fabric deploys applications to the first namespace listed by Kubernetes that uses the label.
-
+*  If multiple namespaces use the same `Environment_ID` label, Runtime Fabric fails the deployment and creates an error message in Runtime Manager. 
 
 
