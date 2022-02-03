@@ -25,7 +25,7 @@ Review the following limitations about support for local registries:
 
 * If you need to authenticate access to your local registry, ensure the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf-` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
-* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes/runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. 
+* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. 
 
 == Configure a Local Registry for Use with Runtime Fabric 
 
