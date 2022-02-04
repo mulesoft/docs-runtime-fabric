@@ -26,6 +26,9 @@ When component upgrades are available, you apply the upgrades within Runtime Man
 
 Runtime Fabric component upgrades do not require adding a node.
 
+[NOTE]
+Application monitoring metrics are not restored after an upgrade. 
+
 === Determine the Component Versions You Are Using
 
 On a Runtime Fabric controller node, run the following command:
