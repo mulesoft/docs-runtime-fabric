@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
+Use the `rtfctl` utility to locally install and configure Runtime Fabric, manage applications, and troubleshoot Runtime Fabric clusters. For example, using `rtfctl`, you can:
 
-* Get the status of a Runtime Fabric.
-* Perform a heap dump or a thread dump of a running application.
-* Display memory usage of a running application.
-* Manage proxy settings.
-* Manage secure properties.
-* Manage a Mule license.
-* Manage the alert sender email address.
+* Get the status of a Runtime Fabric
+* Perform a heap dump or a thread dump of a running application
+* Display memory usage of a running application
+* Manage proxy settings
+* Manage secure properties
+* Manage a Mule license
+* Manage the alert sender email address
 
 == Install rtfctl 
 
@@ -52,69 +52,532 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 sudo chmod +x rtfctl
 ----
 
-== Supported Commands
-
-[%header%autowidth.spread,cols="a,a"]
-.Supported rtfctl commands
-|===
-|Command |Description
-| appliance | Specifies an appliance on which to perform operations.
-| apply | Applies changes to a Runtime Fabric configuration.
-| backup | Backs up the local Runtime Fabric state.
-| disk | Displays the disk space used by an application.
-| get | Displays one or more resources.
-| heapdump | Triggers a JVM heap dump.
-| help | Displays help for a command.
-| memory | Displays the JVM memory usage in a pod.
-| package | Creates a debugging information package for an application.
-| ping | Tests network connectivity.
-| report | Generates a diagnostics report.
-| restart | Restarts an application.
-| restore | Restores the local Runtime Fabric state from a backup.
-| status | Displays status of Runtime Fabric.
-| test | Tests Runtime Fabric environment.
-| threaddump | Displays the JVM thread dump for an application.
-| uninstall | Uninstall Runtime Fabric.
-| update | Updates `rtfctl`.
-| upgrade-cluster | Upgrades the Runtime Fabric cluster.
-| validate | Validate cluster for Runtime Fabric installation.
-| version | Displays version information.
-|=== 
-
-[%header%autowidth.spread,cols="a,a"]
-.rtfctl Flags
-|===
-|Flag |Description
-| -h, --help | Displays `rtfctl` help information.
-| -n, --namespace string | If present, displays the namespace scope.
-| --pod string | If present, displays the pod name.
-|===
-
-== Usage
 
 * To list all supported commands, run `rtfctl -h`. 
-
 * For more information about a specific command, run `rtfctl <command> -h`.
 
-=== Install a Mule license:
+== Commands for Managing the Runtime Fabric Appliance
 
-.. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
-.. Run the following command:
+Use the following commands to manage the Runtime Fabric Appliance.
+
+[NOTE]
+These commands are for Runtime Fabric on VMs / Bare Metal only.
+
+=== `appliance` 
+
+Performs operations on the Runtime Fabric appliance 
+
+* Applies alert sender email
 +
 ----
-$ sudo ./rtfctl apply mule-license '<license-key-information>'
+rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
+----
+
+* Renews an expired client certificate using a pre-downloaded package
++
+----
+rtfctl appliance renew-expired-client-certificate --file <cert-bundle-filename>
+----
+
+* Renews an expired client certificate by downloading the certificate bundle
++
+----
+rtfctl appliance renew-expired-client-certificate --auth '<YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://<host>/<path-to-installer-package>'\
+----
+
+* Generates an appliance diagnostics report
++
+----
+rtfctl appliance report --filename <filename>.tar.gz
+----
+
+* Performs rollback to the existing version after a failed appliance upgrade 
++
+----
+rtfctl appliance rollback
+----
+
+* Lists rollback steps without executing the rollback
++
+----
+rtfctl appliance rollback --dry-run
+----
+
+* Performs rollback to the existing version after a failed appliance upgrade without prompting for confirmation
++
+----
+rtfctl appliance rollback --confirm
+----
+
+* Upgrades the cluster using a pre-downloaded package
++
+----
+rtfctl appliance upgrade --file runtimefabric-<VERSION>.tar.gz
+----
+  
+* Upgrades the cluster by downloading a package
++
+----
+rtfctl appliance upgrade --url https://<host>/<path-to-installer-package>
+----
+
+== Commands for Configuring Runtime Fabric
+
+Use the following commands to configure Runtime Fabric.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:apply[`apply`] | Applies changes to a Runtime Fabric configuration
+|xref:update[`update`] | Updates rtfctl
+|xref:wait[`wait`] | Waits for Runtime Fabric components to become ready
+|===
+
+=== `apply` 
+
+Applies changes to a Runtime Fabric configuration.
+
+* Applies an HTTP proxy configuration
++
+----
+rtfctl apply http-proxy http://<domain>:<port>
+----
+
+* Applies an HTTP proxy configuration with hostnames bypassing the proxy
++
+----
+rtfctl apply http-proxy http://<domain>:<port> --no-proxy "DOMAIN.com,DOMAIN2.com"
+----
+
+* Applies an HTTP proxy configuration with authentication
++
+----
+rtfctl apply http-proxy http://username:password@<domain>.com:<port>
+----
+
+* Clears an HTTP proxy configuration
++
+----
+rtfctl apply http-proxy "" --no-proxy ""
+----
+
+* Applies an ingress configMap for a specific pod 
++
+[NOTE]
+--
+For Runtime Fabric on Self-Managed Kubernertes versions 1.8 and 1.9 only
+--
++
+----
+rtfctl apply ingress-configmap "/<pod>/<path-to-configMap.yaml>"`
+----
+
+* Applies a secure property
++
+----
+rtfctl apply secure-property --key <key> --value <value> -n <environment>
+----
+
+* Applies a system configuration on a host node
++
+----
+rtfctl apply system-configuration
+----
+
+* Applies a system configuration on a host node without downloading the latest scripts
++
+----
+rtfctl apply system-configuration --skip-download
+----
+
+* Applies a Mule license
++
+----
+rtfctl apply mule-license '<BASE64-encoded-license>'
+----
+* Applies a monitoring proxy
++
+----
+rtfctl apply monitoring-proxy "socks5://<username>:<password>@<monitoring-URL>:<PORT>"`
+----
+
+* Clears a monitoring proxy configuration
++
+----
+rtfctl apply monitoring-proxy ""
+----
+
+=== `update` 
+
+Updates `rtfctl`.
+
+* Updates from the US control plane
++
+----
+rtfctl update
+----
+
+* Updates `rtfctl` from the EU control plane
++
+----
+rtfctl update --host eu1.anypoint.mulesoft.com
+----
+
+=== `wait`
+Waits for Runtime Fabric components to become ready
+
+* Specifies the number of seconds to wait 
+----
+rtfctl wait <value in seconds>
+----
+
+* Specifies the number of seconds to pass before timing out the wait (Default is 600 seconds)
+
+----
+rtfctl wait --timeout <value in seconds>
+----
+
+== Commands for Installing and Upgrading Runtime Fabric
+
+Use the following commands when installing or upgrading Runtime Fabric, or when performing a back up or restore. 
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:install[`install`] | Installs Runtime Fabric
+|xref:reinstall[`reinstall`] | Reinstalls Runtime Fabric components
+|xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
+|xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
+|xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
+|xref:version[`version`] | Displays the Runtime Fabric version information
+|===
+
+=== `install`
+Installs Runtime Fabric
+
+----
+rtfctl install <activation data>
+----
+
+=== `reinstall`
+
+Reinstalls Runtime Fabric components
+
+* Reinstalls Runtime Fabric components using the latest scripts
++
+----
+rtfctl reinstall
+----
+
+* Reinstalls Runtime Fabric components without downloading the latest scripts
++
+----
+rtfctl reinstall --skip-download
+----
+
+=== `backup`
+Performs a back up of the local Runtime Fabric state.
+----
+rtfctl backup /var/backups/<backup-filename>.tar.gz
+----
+
+=== `restore`
+Restores the local Runtime Fabric state from a backup 
+
+----
+rtfctl restore /var/backups/<filename>.tar.gz
+----
+
+=== `validate`
+Validates the cluster for a Runtime Fabric installation
+
+* Performs a validation check
++
+----
+rtfctl validate <activation-data>
+----
+
+* Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
++
+----
+rtfctl validate -f <path-to-settings-file>
+----
++
+To validate installation with a proxy, you must specify proxy settings in your `settings` file:
+
+----
+MULE_LICENSE=<your-mule-license>
+ACTIVATION_DATA=<activation-data>
+HTTP_PROXY=http://proxy-domain.com:<port>
+----
+
+=== `version` 
+Displays the Runtime Fabric version information
+
+----
+rtfctl version
+----
+
+== Commands for Managing Applications on Runtime Fabric
+
+Use the following commands to manage applications deployed to Runtime Fabric.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:delete[`delete`] | Deletes a secure property
+|xref:describe[`describe`] | Displays details for an application
+|xref:disk[`disk`] | Displays disk usage for an application
+|xref:memory[`memory`] | Displays the JVM memory usage in a pod
+|xref:package[`package`] | Creates a debugging information package for an application
+|xref:restart[`restart`] | Restarts an application
+|xref:heapdump[`heapdump`] | Captures a JVM heap dump
+|xref:threaddump[`threaddump`] | Captures a JVM thread dump
+|===
+
+=== `delete`
+Deletes a secure property
+----
+rtfctl delete secure-property <sample-key> -n <sample-app-namespace>
+----
+
+=== `describe`
+Displays details for an application in a specific namespace 
+
+----
+rtfctl describe app <app-name> --namespace <namespace>
+----
+
+=== `disk`
+
+Displays disk usage for an application
+
+* Displays the disk usage for an application, using the first replica by default
++
+----
+rtfctl disk <app-name>
+----
+
+* Displays the disk usage for an application, using a specific replica
++
+----
+rtfctl disk <app-name> --details --pod <replica-name>
+----
+
+=== `memory`
+Displays the JVM memory usage in a pod
+
+* Gets the JVM memory for each replica
++
+----
+rtfctl memory <app-name>
+----
+
+* Gets the JVM memory for a particular replica
++
+----
+rtfctl memory <app-name> --pod <app-name>-pod-1
+----
+
+=== `package` 
+Creates a debugging information package for an application
+
+* Creates a package for an application using the first pod by default
++
+----
+rtfctl package <app-name>
+----
+
+* Creates a package for an application containing the apps, policies, and `.mule` directories
++
+----
+rtfctl package <app-name> --apps --policies --dotmule
+----
+
+* Creates a package for an application containing a heap dump
++
+----
+rtfctl package <app-name> --heap-dump
+----
+
+=== `restart`
+Restarts an application
+
+----
+rtfctl restart my-app
+----
+
+=== `heapdump`
+Triggers a JVM heap dump
+
+* Performs a JVM heap dump for an application, saving it as ``/tmp/dump.hprof`, using the first replica by default
++
+----
+rtfctl heapdump <app-name> /tmp/dump.hprof
+----
+
+* Performs a JVM heap dump for an application, saving it as `/tmp/dump.hprof`, using a specific replica
++
+----
+rtfctl heapdump <app-name> /tmp/dump.hprof --pod <replica-name>
+----
+
+=== `threaddump`
+Triggers a JVM threaddump
+
+* Performs a JVM thread dump for an application using the first replica by default
++
+----
+rtfctl threaddump <app-name>
+----
+
+* Performs a JVM thread dump for an application using a specific replica 
++
+----
+rtfctl threaddump <app-name>p --pod <replica-name>
+----
+
+== Commands for Troubleshooting Runtime Fabric
+
+Use the following commands to troubleshoot Runtime Fabric.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:get[`get`] | Displays one or more resources
+|xref:ping[`ping`] | Tests network connectivity
+|xref:report[`report`] | Generates a diagnostics report
+|xref:status[`status`] | Displays the status of Runtime Fabric
+|xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
+|===
+
+=== `get`
+
+Displays one or more resources
+
+* Prints a list of all applications in all environments
++
+----
+rtfctl get apps
+----
+
+* Prints a list of all applications in a specific environment 
++
+----
+rtfctl get apps --namespace <environment>
+----
+
+* Displays an HTTP proxy configurations
++
+----
+rtfctl get http-proxy
+----
+
+* Displays a monitoring proxy configuration
++
+----
+rtfctl get monitoring-proxy
+----
+
+* Displays secure properties
++
+----
+rtfctl get secure-properties
+----
+
+* Displays the Mule license
++
+----
+rtfctl get mule-license
+----
+
+=== `ping`
+Tests network connectivity
+
+* Pings example.com from inside an application, using the first replica by default
++
+----
+rtfctl ping <app-name> example.com
+----
+
+* Attempts to connect to example.com on port `12345` from inside an application, using the first replica by default
++
+----
+rtfctl ping <app-name> --port 12345
+----
+
+=== `report`
+Generates a diagnostics report at `rtf-report.tar.gz`
+
+----
+rtfctl report --filename <filename>.tar.gz
+----
+
+=== `status` 
+
+Displays the status of Runtime Fabric
+
+* Displays status output in JSON
++
+----
+rtfctl status --output json
+----
+	
+* Checks Kubernetes DNS health
++
+----
+rtfctl status dns-check --<node-label> "<k>:<v>"
+----
+
+=== `test` 
+Verifies outbound network connectivity to the Runtime Fabric control plane.
+
+* Schedules a check on any nodes
++
+----
+rtfctl test outbound-network
+----
+
+* Schedules a check the nodes satisfying the `node-label` parameter
++
+----
+rtfctl test outbound-network --<node-label> "<k>:<v>"
+----
+ 
+* Schedules a check on all nodes
++
+----
+rtfctl test outbound-network --all
+----
+
+== Additional Flags
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Flag |Description
+| -h, --help | Displays `rtfctl` help information for a command.
+| -n, --namespace <string> | If present, displays the namespace scope.
+| --pod <string> | If present, displays the pod name.
+|===
+
+== Usage Examples 
+
+=== Install a Mule license
+
+. Follow the instructions to xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
+. Run the following command:
++
+----
+$ sudo ./rtfctl apply mule-license '<BASE64-encoded-license>'
 Updating rtf namespace... OK
 ----
 
-=== Take a Heap Dump
+=== Capture a Heap Dump
 
 ----
 $ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----
-
-For additional information, run the `rtfctl heapdump -h` command.
 
 == See Also
 
