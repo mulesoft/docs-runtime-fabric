@@ -98,7 +98,6 @@ The `rtfctl uninstall` command deletes any pull secret you specify during instal
 
 When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret.
 
-* When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
 
 . Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key. 
 
