@@ -63,8 +63,8 @@ Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes vers
 
 * 1.18
 * 1.19
-* 1.20 (on Runtime Fabric verion 1.10.26 and later)
-* 1.21 (On Runtime Fabric version 1.11.3 and later)
+* 1.20.10 and later (on Runtime Fabric verion 1.10.26 and later)
+* 1.21.3 and later (On Runtime Fabric version 1.12.1 and later)
 
 === Nodes and Resources
 
