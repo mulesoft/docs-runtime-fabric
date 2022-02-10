@@ -45,7 +45,7 @@ Ensure that you plan for:
 
 == Anypoint Platform Roles and Permissions
 
-To succesfully use Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
+To successfully use Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
 
 * To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager. To deploy applications, you must also have the Exchange Contributors role enabled for your Anypoint Platform account.
 * To manage permissions for Anypoint Platform users, you must have the ability to use Anypoint Access Management.
