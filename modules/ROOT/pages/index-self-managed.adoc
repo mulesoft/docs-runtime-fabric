@@ -21,7 +21,7 @@ The agent also listens for incoming requests from the control plane. When the ag
 The following Runtime Fabric Components also run inside the Kubernetes cluster: 
 
 * Mule Cluster IP Service: Provides an API that Mule applications use to discover their peers inside the cluster
-* Resource cache: Provides in-cluster storage of application dependencies
+* Resource cache: Provides a cluster-local cache of application dependencies
 * Persistence Gateway: Provides a persistent ObjectStore interface to Mule applications
 
 === About Component Installations and Upgrades
