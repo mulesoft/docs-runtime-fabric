@@ -98,7 +98,7 @@ If you plan to enable inbound traffic, evaluate your network's traffic to determ
 
 == Operating System Requirements
 
-Use the same operating system for each Runtime Fabric node. Running different operating systems on different nodes is not supported. If you attempt to install Runtime Fabric on VMs / Bare Metal on a different operating system versions or distributions, the installer fails.
+Use the same operating system for each Runtime Fabric node. Running different operating systems on different nodes is not supported. If you attempt to install Runtime Fabric on VMs / Bare Metal on different operating system versions or distributions, the installer fails.
 
 Runtime Fabric on VMs / Bare Metal requires one of the following operating systems:
 
