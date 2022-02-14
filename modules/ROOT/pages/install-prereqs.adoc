@@ -98,6 +98,8 @@ If you plan to enable inbound traffic, evaluate your network's traffic to determ
 
 == Operating System Requirements
 
+Use the same operating system for each Runtime Fabric node. Running different operating systems on different nodes is not supported. If you attempt to install Runtime Fabric on VMs / Bare Metal on a different operating system versions or distributions, the installer fails.
+
 Runtime Fabric on VMs / Bare Metal requires one of the following operating systems:
 
 * Red Hat (RHEL) 
@@ -109,9 +111,6 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 ** v8.0 - v8.3
 ** v8.4 (using Runtime Fabric Appliance version 1.1.1636064094-8b70d2d and later)
 * Ubuntu v18.04 (using Runtime Fabric Appliance version 1.1.1625094374-7058b20 or later)
-
-Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on
-a different operating system version or distribution, the installer fails.
 
 [IMPORTANT]
 ====
