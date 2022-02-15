@@ -45,13 +45,12 @@ Ensure that you plan for:
 
 == Anypoint Platform Roles and Permissions
 
-To succesfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
+To successfully use Runtime Fabric, your Anypoint Platform account must have the following roles and permissions enabled:
 
-* To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager.
+* To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager. To deploy applications, you must also have the Exchange Contributors role enabled for your Anypoint Platform account.
 * To manage permissions for Anypoint Platform users, you must have the ability to use Anypoint Access Management.
-* To use Anypoint Runtime Fabric, you must have the Organization Administrators role or the Manage Runtime Fabrics permission on the corresponding environments.
-* Administrators need the Manage Runtime Fabrics permission at the organization level to be able to delete a Runtime Fabric.
-* To deploy applications, you must have the Exchange Contributors role enabled for your Anypoint Platform account.
+* To use Runtime Fabric, you must have the Organization Administrators role or the Manage Runtime Fabrics permission on the corresponding environments.
+* To delete Runtime Fabric instances, administrators need the Manage Runtime Fabrics permission at the organization level.
 
 == Infrastructure Requirements
 
@@ -99,6 +98,8 @@ If you plan to enable inbound traffic, evaluate your network's traffic to determ
 
 == Operating System Requirements
 
+Use the same operating system for each Runtime Fabric node. Running different operating systems on different nodes is not supported. If you attempt to install Runtime Fabric on VMs / Bare Metal on different operating system versions or distributions, the installer fails.
+
 Runtime Fabric on VMs / Bare Metal requires one of the following operating systems:
 
 * Red Hat (RHEL) 
@@ -110,9 +111,6 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 ** v8.0 - v8.3
 ** v8.4 (using Runtime Fabric Appliance version 1.1.1636064094-8b70d2d and later)
 * Ubuntu v18.04 (using Runtime Fabric Appliance version 1.1.1625094374-7058b20 or later)
-
-Use the same operating system for each node. If you attempt to install Runtime Fabric on VMs / Bare Metal on
-a different operating system version or distribution, the installer fails.
 
 [IMPORTANT]
 ====

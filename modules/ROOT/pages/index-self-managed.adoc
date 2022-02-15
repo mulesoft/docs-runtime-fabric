@@ -106,10 +106,9 @@ Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is p
 
 Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes versions:
 
-* 1.17 (1.8, 1.9, and 1.10.0)
-* 1.18
-* 1.19
-* 1.20 (1.10.26 and later)
+* 1.18.x
+* 1.19.x
+* 1.20.10 or later
 
 Runtime Fabric supports the following platforms:
 
@@ -148,7 +147,16 @@ To succesfully use Runtime Fabric, your Anypoint Platform account must have the 
 
 Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
 
-=== Ingress Controllers
+=== Anypoint Platform Roles and Permissions
+
+To succesfully use Runtime Fabric, your Anypoint Platform account must have the following permissions enabled:
+
+* To manage permissions for Anypoint Platform users, you must have the ability to use xref:access-management::index.adoc[Anypoint Access Management].
+* To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager. To deploy applications, you must also have the Exchange Contributors permission enabled for your Anypoint Platform account.
+* To use Runtime Fabric, you must have the Organization Administrators permission or the Manage Runtime Fabrics permission on the corresponding environments.
+* To delete Runtime Fabric instances, administrators need the Manage Runtime Fabrics permission at the organization level.
+
+=== Ingress Controller
 
 Runtime Fabric on Self-Managed Kubernetes supports any ingress controller that is compatible with your Kubernetes environment and supports a deployment model where a separate ingress resource is created per application deployment. In general, most off-the-shelf ingress controllers support this model.
 
