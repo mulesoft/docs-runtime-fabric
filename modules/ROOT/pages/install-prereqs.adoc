@@ -334,7 +334,7 @@ Each controller node must have the following resources:
 +
 You must consider the amount of resources needed for the internal load balancer when sizing controller nodes. For additional information, refer to xref:deploy-resource-allocation#internal-load-balancer[Internal Load Balancer] resource allocation.
 ** A minimum of 80 GiB dedicated disk for the operating system.
-*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 20 GiB for `/tmp` directory. The `/tmp` directory needs read, write, and executable permissions. 
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimum of 60 GiB dedicated disk with at least 3000 provisioned IOPS to run the etcd distributed database. This translates to a minimum of 12 Megabytes per second (MBps) disk read/write performance.
@@ -378,7 +378,7 @@ Each worker node must have the following resources:
 +
 You must consider how many Mules and tokenizers you plan to run on Runtime Fabric, and what they are licensed to deploy. Plan on approximately 0.5 cores per worker node for overhead.
 ** A minimum of 80 GiB dedicated disk for the operating system.
-*** A minimum of  20 GiB for `/tmp` directory.
+*** A minimum of  20 GiB for `/tmp` directory. The `/tmp` directory needs read, write, and executable permissions.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimum of 250 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
@@ -420,7 +420,7 @@ Each controller node must have the following resources:
 ** A minimum of 2 dedicated cores.
 ** A minimum of 8 GiB memory.
 ** A minimum of 80 GiB dedicated disk for the operating system.
-*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 20 GiB for `/tmp` directory. The `/tmp` directory needs read, write, and executable permissions.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimum of 60 GiB dedicated disk with 3000 provisioned IOPS for etcd. This translates to a minimum of 12
@@ -451,7 +451,7 @@ Each worker node must have the following resources:
 ** A minimum of 2 dedicated cores.
 ** A minimum of 15 GiB memory.
 ** A minimum of 80 GiB dedicated disk for the operating system.
-*** A minimum of 20 GiB for `/tmp` directory.
+*** A minimum of 20 GiB for `/tmp` directory. The `/tmp` directory needs read, write, and executable permissions.
 *** A minimum of 8 GiB for `/opt/anypoint/runtimefabric` directory.
 *** A minimum of 1 GiB for `/var/log/` directory.
 ** A minimum of 100 GiB dedicated disk with at least 1000 provisioned IOPS for Docker overlay and other internal services. This translates to a minimum of 4 MBps disk read/write performance.
