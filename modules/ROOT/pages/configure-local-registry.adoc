@@ -44,8 +44,6 @@ Ensure that you've performed the following tasks:
 * nginx: `mulesoft/base-image-nginx-1.21.1:v1.1.9`
 * monitoringSidecar: `mulesoft/dias-anypoint-monitoring-sidecar:v1.3.18`
 * clusterOps: `mulesoft/rtf-cluster-ops:v1.1.25`
-* securityFabricEdge: `mulesoft/securityfabric-edge:v1.1.346`
-* externalLogForwarder: `mulesoft/rtf-pkg-fluentbit:v1.2.53`
 * coreAction: `mulesoft/rtf-core-actions:v1.0.11`
 * persistenceGateway: `mulesoft/rtf-object-store:v1.0.44`
 * rtfDaemon: `mulesoft/rtf-daemon:v1.0.3`
@@ -83,13 +81,13 @@ This command sets `RTF_DOCKER_SERVER`, `RTF_DOCKER_USERNAME`, and `RTF_DOCKER_PA
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
 ----
-# rtfctl install ‘<activation_data>’ --image-registry localhost:5000 
+# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 
 ----
 +
 Alternatively, if you use authentication to access your registry, use the following command:
 
 ----
-# rtfctl install ‘<activation_data>’ --image-registry localhost:5000 --image-pull-secret <your-local-reg-secret>
+# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 --image-pull-secret <your-local-reg-secret>
 ----
 
 This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
