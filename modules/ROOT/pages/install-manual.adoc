@@ -85,7 +85,7 @@ To install a specific version of Runtime Fabric on VMs / Bare Metal, transfer th
 . Right-click the *Download files* button and select "Copy link location".
 . Download the file to the controller VM.
 .. Open a shell (SSH session) to the controller VM.
-.. Download the file: `curl {INSTALLER_URL} --output rtf-install-scripts.zip`
+.. Download the file: `curl -L {INSTALLER_URL} --output rtf-install-scripts.zip`
 . Once downloaded, unzip the `rtf-install-scripts.zip` file in a separate directory.
 +
 ----
