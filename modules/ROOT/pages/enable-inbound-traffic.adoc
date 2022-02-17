@@ -2,7 +2,7 @@
 
 Runtime Fabric on VMs / Bare Metal provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
 
-Runtime Fabric instances can be shared across multiple environments. After installation, configure one or more environments for each Runtime Fabric instance to enable application deployments. You must associate at least one environment with each Runtime Fabric instance to be able to deploy Mule applications or API gateways.
+You can share Runtime Fabric instances across multiple environments. After installation, configure one or more environments for each Runtime Fabric instance to enable application deployments. Associate at least one environment with each Runtime Fabric instance to deploy Mule applications or API gateways.
 
 Applications deployed to a production environment must be deployed to an instance of Runtime Fabric on VMs / Bare Metal that is separate from nonproduction applications.
 
@@ -12,26 +12,26 @@ By default, inbound traffic is disabled to prevent consuming unnecessary resourc
 
 To enable inbound traffic on Runtime Fabric on VMs / Bare Metal, complete the following tasks:
 
-. Configure Inbound Traffic Using Anypoint Runtime Manager.
+. Configure inbound traffic using Anypoint Runtime Manager.
 . Configure a Transport Layer Security (TLS) context for HTTPS.
-. (Optional) Select Security Policies.
-. (Optional) Select Advanced Options.
-. (Optional) Configure Internal Load Balancer Logs.
-. Verify That Inbound Traffic Is Enabled.
-. Configure an External Load Balancer.
-. Deploy Applications.
+. Optionally, select security policies.
+. Optionally, select advanced options.
+. Optionally, configure internal load balancer logs.
+. Verify that inbound traffic is enabled.
+. Configure an external load balancer.
+. Deploy applications.
 
 === Before You Begin
 
 * Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric on VMs / Bare Metal.
-* Create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal:
+* Create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal.
 * Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. You might not know these IP addresses until you complete the Runtime Fabric on VMs / Bare Metal installation.
 +
 For smaller traffic loads, you can share controller nodes for cluster administration and inbound traffic TLS termination.
 +
 For larger traffic loads, use dedicated nodes. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] for additional information.
 + 
-The number of replicas for inbound traffic is set to the number of controller nodes for shared mode or the number of dedicated internal load balancer nodes for dedicated mode. You must include all IP addresses of the controller nodes or the dedicated internal load balancer nodes in your external load balancer or DNS resolution. Otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
+Set the number of replicas for inbound traffic to match either the number of controller nodes (for shared mode) or the number of dedicated internal load balancer nodes (for dedicated mode). Include all of the IP addresses for these nodes in your external load balancer or DNS resolution; otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
 +
 By default, the inbound load balancer runs on each controller node configured in Runtime Fabric on VMs / Bare Metal. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
 * Know the domain or domains to use for routing traffic to your applications.
@@ -43,10 +43,10 @@ By default, the inbound load balancer runs on each controller node configured in
 To configure inbound traffic:
 
 . Navigate to Runtime Manager and select *Runtime Fabric*.
-. Select the name of your Runtime Fabric to open the management page.
-. In the *Associated Environments* tab, ensure that your Runtime Fabric is associated with the environments in which applications are to be deployed.
+. Select the name of your Runtime Fabric instance to open the management page.
+. In the *Associated Environments* tab, ensure that your Runtime Fabric instance is associated with the environments in which applications are to be deployed.
 . Select *Inbound Traffic* and then select *Enable inbound traffic*.
-. In the *Resource Allocation* section, select a *Shared Mode* or *Dedicated Mode*.
+. In the *Resource Allocation* section, select *Shared Mode* or *Dedicated Mode*.
 +
 [WARNING]
 ====
@@ -79,20 +79,20 @@ HTTP requests sent to Runtime Fabric on VMs / Bare Metal are ignored.
 
 * *Accept HTTP requests only*
 +
-Because certificates are not used in this case, click *Add Domain* and manually enter domains for routing requests to applications and skip the xref:configure-a-tls-context-for-hh[Configure a TLS context for HTTPS].
+Because certificates are not used in this case, click *Add Domain* and manually enter domains for routing requests to applications. Skip the xref:configure-a-tls-context-for-hh[Configure a TLS context for HTTPS] task.
 +
 [NOTE]
 *Accept HTTP requests only* is not a secure option for external connections. Use this option for network connections for which an external load balancer has previously terminated a secure TLS connection and is forwarding traffic via HTTP to Runtime Fabric on VMs / Bare Metal.
 
-=== Configure a TLS context for HTTPS
+=== Configure a TLS Context for HTTPS
 
 If you selected *Accept HTTPS requests* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to ten certificates but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#CPU_Cert_Req[CPU Requirements for Keys and Certificates] for more information.
 
-You can change only the TLS configuration and policies for Runtime Fabrics that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
+You can change only the TLS configuration and policies for Runtime Fabric instances that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
-TLS termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer-memory-allocation[Internal Load Balancer Memory Allocation] for more information on CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
+TLS termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer-memory-allocation[Internal Load Balancer Memory Allocation] for more information about CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
 
-. Still in Runtime Manager, select *Add certificate*.
+. In Runtime Manager, select *Add certificate*.
 . To configure a TLS context for HTTPs, choose the appropriate option between steps 3, 4, and 5. 
 . Option 1: *Upload PEM*
 +
@@ -102,7 +102,7 @@ With this option, you cannot change the default values for TLS versions, ciphers
 +
 This is the default option when no TLS context exists for Runtime Fabric on VMs / Bare Metal.
 
-.. For *Public certificate*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that are selectable for *Application url*, which is used for routing requests to an application. By default, the first domain listed is used. Other values can be selected via the *Applications->Ingress* page.
+.. For *Public certificate*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that can be used for the *Application url* value, with the first domain listed as the default. You can select other values via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
 +
@@ -133,9 +133,9 @@ specify a value for *Alias*. The alias is used to select a specific key pair.
 *** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
 +
 The JKS file information is saved in the global secrets group for your organization.
-. Option 3: *Import from Secrets Manager* (For Advanced Users)
+. Option 3: *Import from Secrets Manager* 
 +
-This option imports a TLS context from the secrets manager and supports advanced configurations such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
+This option is for advanced users only. It imports a TLS context from the secrets manager and supports advanced configurations such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
 
@@ -143,12 +143,12 @@ Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS C
 
 You must define security policies in Anypoint Security before they are displayed as options in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists.
 
-To access a Runtime Fabric on VMs / Bare Metal instance using more than one DNS, add additional DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Applications->Ingress* page when you deploy an application.
+To access a Runtime Fabric on VMs / Bare Metal instance using more than one DNS, add DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Applications->Ingress* page when you deploy an application.
 
 [NOTE]
 To define a security policy in Anypoint Security, you must have the Anypoint Security - Edge entitlement for your Anypoint Platform account. If you do not see *Security* listed in *Management Center*, contact your customer success manager to enable Anypoint Security for your account. Refer to xref:anypoint-security::index-policies.adoc[Anypoint Security Policies for Edge] for additional information.
 
-== (Optional) Select Advanced Options
+== Optionally Select Advanced Options
 
 The following table describes additional configuration options you might set for your environment. 
 
@@ -240,7 +240,7 @@ If you are using WebSockets:
 * xref:mule-runtime::mule-server-notifications.adoc[Configure Mule runtime engine with a WebSockets Listener].
 * Increase the `Connection Idle Time-out` value to 900 seconds (15 minutes) to ensure consistency with the WebSockets Mule application default value.
 
-== (Optional) Configure Internal Load Balancer Logs
+== Optionally Configure Internal Load Balancer Logs
 
 You can define the log levels for the internal load balancer. Runtime Fabric supports the following log levels, listed in descending order of verbosity:
 
@@ -254,7 +254,7 @@ You can define the log levels for the internal load balancer. Runtime Fabric sup
 
 The more verbose log levels, which include WARNING, INFO, VERBOSE, DEBUG, and TRACE, consume more CPU resources for each request. Consider this when adjusting the log level and allocating resources for the internal load balancer.
 
-By default, the activity across all IPs addresses behind your endpoint is logged. To help reduce CPU consumption when using more verbose log levels, add IP filters to only log-specific IP addresses. This also reduces the quantity of logs when debugging a connection for a specific or limited number of IP addresses.
+By default, the activity across all IP addresses behind your endpoint is logged. To help reduce CPU consumption when using more verbose log levels, add IP filters to only log specific IP addresses. This also reduces the number of logs when debugging a connection for a specific or limited number of IP addresses.
 
 . From the *Inbound Traffic* tab, select *Logs*.
 . Select *Add Filter*.
@@ -303,7 +303,7 @@ This configuration of the external load balancer provides:
 
 * High availability
 * Protection against failure
-* Automatic failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM.
+* Automatic failover if a replica of the internal load balancer restarts or is evicted and rescheduled on another controller VM
 
 To configure an external load balancer:
 
