@@ -1,4 +1,4 @@
-= Enable Inbound Traffic on Anypoint Runtime Fabric (On VMs / Bare Metal)
+= Enable Inbound Traffic on Anypoint Runtime Fabric On VMs / Bare Metal
 
 Runtime Fabric on VMs / Bare Metal provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
 
@@ -8,21 +8,20 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
 
-== Preparation for Enabling Inbound Traffic
+== Prepare to Enable Inbound Traffic
 
-* Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric on VMs / Bare Metal.
-* Create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal.
+Before enabling inbound traffic for Runtime Fabric on VMs / Bare Metal, be sure you've addressed the following: 
+
+* Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements], including confirguring an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal.
 * Gather all IP addresses of controller or dedicated nodes (depending on the configuration you choose during installation) that can be reached by the external TCP load balancer. You might not know these IP addresses until you complete the Runtime Fabric on VMs / Bare Metal installation.
+* Determine if you'll use shared or dedicated mode for your internal load balancer.By default, the inbound load balancer runs on each controller node configured in Runtime Fabric on VMs / Bare Metal. 
 +
 For smaller traffic loads, you can share controller nodes for cluster administration and inbound traffic TLS termination.
 +
 For larger traffic loads, use dedicated nodes. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] for additional information.
 + 
-Set the number of replicas for inbound traffic to match either the number of controller nodes (for shared mode) or the number of dedicated internal load balancer nodes (for dedicated mode). Include all of the IP addresses for these nodes in your external load balancer or DNS resolution; otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer] and xref:index-vm-bare-metal.adoc#network-architecture[Network Architecture] for additional information.
-+
-By default, the inbound load balancer runs on each controller node configured in Runtime Fabric on VMs / Bare Metal. Refer to xref:deploy-resource-allocation.adoc[Resource Allocation and Performance on Anypoint Runtime Fabric] for more information.
+Set the number of replicas for inbound traffic to match either the number of controller nodes (for shared mode) or the number of dedicated internal load balancer nodes (for dedicated mode). Include all of the IP addresses for these nodes in your external load balancer or DNS resolution; otherwise, traffic cannot be routed from the load balancer to Runtime Fabric. 
 * Know the domain or domains to use for routing traffic to your applications.
-* Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 * Configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
 
 == Enable Inbound Traffic
@@ -74,9 +73,9 @@ Because certificates are not used in this case, click *Add Domain* and manually 
 
 === Configure a TLS Context for HTTPS
 
-If you selected *Accept HTTPS requests...* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to ten certificates but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#CPU_Cert_Req[CPU Requirements for Keys and Certificates] for more information.
+If you selected *Accept HTTPS requests...* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to ten certificates but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#cpu_cert_req[CPU Requirements for Keys and Certificates] for more information.
 
-When you set up TLS following these steps, you can use:
+When you set up TLS, you have the option to use one of the following:
 
 * A public certificate, private key, and CA path 
 +
@@ -100,11 +99,9 @@ TLS termination is computationally expensive, so allocate enough CPU to increase
 . To configure a TLS context for HTTPs, choose the appropriate option: 
 * Option 1: *Upload PEM*
 
-.. For *Public certificate*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that can be used for the *Application url* value, with the first domain listed as the default. You can select other values via the *Applications->Ingress* page.
+.. For *Public certificate*, specify a public certificate for the inbound traffic server. The *Domains* field lists domains that can be used for the *Application url* value, with the first domain listed as the default. You can select other values via the *Applications->Ingress* page.
 +
 The certificate must be set with a passphrase and a common name (CN) that specifies the domain for each application deployed to Runtime Fabric.
-+
-Select *Details* to view certificate details, including domains, expiration, and the other configuration settings.
 +
 *** If the CN contains a wildcard, the endpoint for each deployed application takes the form `{app-name}.{common-name}`.
 *** If the CN does not contain a wildcard, the endpoint takes the form `{common-name}/{app-name}`.
@@ -332,7 +329,7 @@ To update or delete TLS certificate information:
 . Select *Delete*.
 . To add updated certificate information, select *Add certificate* and follow the instructions provided in Step 1 to configure a new certificate.
 
-== Switch Between Shared and Dedicated Modes
+== Switching Between Shared and Dedicated Modes
 
 If you need to switch between shared and dedicated modes, review the following:
 
