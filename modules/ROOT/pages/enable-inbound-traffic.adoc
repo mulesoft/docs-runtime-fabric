@@ -8,20 +8,7 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
 
-== Enable Inbound Traffic
-
-To enable inbound traffic on Runtime Fabric on VMs / Bare Metal, complete the following tasks:
-
-. Configure inbound traffic using Anypoint Runtime Manager.
-. Configure a Transport Layer Security (TLS) context for HTTPS.
-. Optionally, select security policies.
-. Optionally, select advanced options.
-. Optionally, configure internal load balancer logs.
-. Verify that inbound traffic is enabled.
-. Configure an external load balancer.
-. Deploy applications.
-
-=== Before You Begin
+== Review Concepts for Enabling Inbound Traffic
 
 * Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric on VMs / Bare Metal.
 * Create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal.
@@ -37,6 +24,24 @@ By default, the inbound load balancer runs on each controller node configured in
 * Know the domain or domains to use for routing traffic to your applications.
 * Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 * Configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
+* When switching between shared and dedicated modes:
+** All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or
+DNS resolution before making the change.
+** If you change from *shared mode to dedicated mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until you route inbound requests.
+** If you change from *dedicated mode to shared mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between dedicated mode, in which all node resources can be consumed, and shared mode.
+
+== Enable Inbound Traffic
+
+To enable inbound traffic on Runtime Fabric on VMs / Bare Metal, complete the following tasks:
+
+. Configure inbound traffic using Anypoint Runtime Manager.
+. Configure a Transport Layer Security (TLS) context for HTTPS.
+. Optionally, select security policies.
+. Optionally, select advanced options.
+. Optionally, configure internal load balancer logs.
+. Verify that inbound traffic is enabled.
+. Configure an external load balancer.
+. Deploy applications.
 
 === Configure Inbound Traffic Using Anypoint Runtime Manager
 
@@ -47,23 +52,11 @@ To configure inbound traffic:
 . In the *Associated Environments* tab, ensure that your Runtime Fabric instance is associated with the environments in which applications are to be deployed.
 . Select *Inbound Traffic* and then select *Enable inbound traffic*.
 . In the *Resource Allocation* section, select *Shared Mode* or *Dedicated Mode*.
-+
-[WARNING]
-====
-When switching between shared and dedicated modes:
-
-* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or
-DNS resolution before making the change.
-
-* If you change from *shared mode to dedicated mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until you route inbound requests.
-
-* If you change from *dedicated mode to shared mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between dedicated mode, in which all node resources can be consumed, and shared mode.
-====
 . Specify the minimum number of cores to allocate for each controller node for the internal load balancer.
 . Specify the minimum memory to allocate for each controller node for the internal load balancer. 
 . In the *Protocol* section, select one of the following protocol options:
 +
-* *Accept HTTPS requests…*
+* *Accept HTTPS requests...*
 +
 Select one of the following options:
 
@@ -86,21 +79,31 @@ Because certificates are not used in this case, click *Add Domain* and manually 
 
 === Configure a TLS Context for HTTPS
 
-If you selected *Accept HTTPS requests* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to ten certificates but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#CPU_Cert_Req[CPU Requirements for Keys and Certificates] for more information.
+If you selected *Accept HTTPS requests...* in the *Protocol* section, all inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. In this case, when enabling inbound traffic, you can provide up to ten certificates but at least one valid TLS certificate is required. See xref:deploy-resource-allocation.adoc#CPU_Cert_Req[CPU Requirements for Keys and Certificates] for more information.
+
+When you set up TLS following these steps, you can use:
+
+* A public certificate, private key, and CA path 
++
+Public certificates and private keys must be in Privacy-Enhanced Mail (PEM) format and use TLS default values. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension. The CA path contains the intermediary and root certificates that provide the path from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric on VMs / Bare Metal load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
++
+With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. This is the default option when no TLS context exists for Runtime Fabric on VMs / Bare Metal.
+
+* A Java Keystore (JKS) file 
++ 
+A JKS file is a repository for authorization or public key certificates and does not store secret keys. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options.
+
+* A TLS context imported from secrets manager
++
+This option is for advanced users only. It imports a TLS context from the secrets manager and supports advanced configurations such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
 
 You can change only the TLS configuration and policies for Runtime Fabric instances that you own. For inherited Runtime Fabric instances, the TLS configuration is read-only.
 
 TLS termination is computationally expensive, so allocate enough CPU to increase throughput and decrease latency. Refer to xref:deploy-resource-allocation.adoc#internal-load-balancer-memory-allocation[Internal Load Balancer Memory Allocation] for more information about CPU allocation and throughput, including how the TLS private key type and size affect these numbers.
 
 . In Runtime Manager, select *Add certificate*.
-. To configure a TLS context for HTTPs, choose the appropriate option between steps 3, 4, and 5. 
-. Option 1: *Upload PEM*
-+
-Use this option to upload a public certificate and private key in Privacy-Enhanced Mail (PEM) format and use TLS default values. A PEM file is a Base64-encoded ASCII file with a `.cer`, `.crt`, or `.pem` extension.
-+
-With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options.
-+
-This is the default option when no TLS context exists for Runtime Fabric on VMs / Bare Metal.
+. To configure a TLS context for HTTPs, choose the appropriate option: 
+* Option 1: *Upload PEM*
 
 .. For *Public certificate*, specify a public certificate for the inbound traffic server in PEM format. The *Domains* field lists domains that can be used for the *Application url* value, with the first domain listed as the default. You can select other values via the *Applications->Ingress* page.
 +
@@ -115,31 +118,25 @@ Select *Details* to view certificate details, including domains, expiration, and
 Optionally, leave the *Key password* field empty if your key is unencrypted (not recommended).
 .. Specify a value for *CA path certificate (optional)*.
 +
-The CA path contains the intermediary and root certificates that provide the path (chain of trust) from the certificate to the root. The file is downloadable from the CA that signed your certificate. When you provide an entry in this field, the Runtime Fabric on VMs / Bare Metal load balancer at every connection sends both the certificate and the path to the client. Many clients require the server to send the CA path so that the certificate can be validated.
+
 .. Optionally, set any necessary xref:optional-select-security-policies[security policies] or xref:optional-select-advanced-options[advanced options].
 .. Select *Add certificate*. The *Key password* field is blanked out for security reasons. 
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
-. Option 2: *Upload JKS*
+
+* Option 2: *Upload JKS*
 +
-Use this option to upload a Java Keystore (JKS) file and use TLS default values. With this option, you cannot change the default values for TLS versions, ciphers, and other TLS configuration options. A JKS file is a repository for authorization or public key certificates and does not store secret keys.
-+
-.. Specify a value for *Keystore File*. At a minimum, the keystore file contains the public certificate and private key, also known as a key pair.
+.. Specify a value for *Keystore File*. At a minimum, the keystore file contains the public certificate and private key.
 .. Specify a value for *Keystore Password*.
-.. In the *Select alias from keystore* window, which is enabled after you specify a keystore file and keystore passcode,
-specify a value for *Alias*. The alias is used to select a specific key pair.
+.. In the *Select alias from keystore* window, specify a value for *Alias*. The alias is used to select a specific key pair.
 .. Select *Add certificate*. The *Keystore Passcode* and *Key Passcode* fields are blanked out for security reasons.
-*** If you select a different *Alias* value, the *Key Passcode* field is again enabled.
-*** If you upload a new keystore file, the *Alias* and *Keystore Passcode* fields are again enabled and the *Alias* field contents are cleared.
 +
 The JKS file information is saved in the global secrets group for your organization.
-. Option 3: *Import from Secrets Manager* 
-+
-This option is for advanced users only. It imports a TLS context from the secrets manager and supports advanced configurations such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions.
+* Option 3: *Import from Secrets Manager* 
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
 
-== (Optional) Select Security Policies
+== Optionally Select Security Policies
 
 You must define security policies in Anypoint Security before they are displayed as options in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists.
 
