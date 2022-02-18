@@ -8,7 +8,7 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
 
-== Review Concepts for Enabling Inbound Traffic
+== Preparation for Enabling Inbound Traffic
 
 * Complete the prerequisite network-related tasks in xref:install-prereqs.adoc#infrastructure-requirements[Infrastructure Requirements] before enabling inbound traffic on Runtime Fabric on VMs / Bare Metal.
 * Create or configure an external TCP load balancer to manage traffic to applications running in Runtime Fabric on VMs / Bare Metal.
@@ -24,11 +24,6 @@ By default, the inbound load balancer runs on each controller node configured in
 * Know the domain or domains to use for routing traffic to your applications.
 * Understand that you need to configure an external load balancer to proxy the TCP protocol. The load balancer does not terminate TLS but does allow Runtime Fabric to do so.
 * Configure the DNS settings to associate domains that are signed in the TLS certificate to the IP address or addresses served by the external load balancer.
-* When switching between shared and dedicated modes:
-** All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or
-DNS resolution before making the change.
-** If you change from *shared mode to dedicated mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until you route inbound requests.
-** If you change from *dedicated mode to shared mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between dedicated mode, in which all node resources can be consumed, and shared mode.
 
 == Enable Inbound Traffic
 
@@ -336,6 +331,15 @@ To update or delete TLS certificate information:
 . Select *…*.
 . Select *Delete*.
 . To add updated certificate information, select *Add certificate* and follow the instructions provided in Step 1 to configure a new certificate.
+
+== Switch Between Shared and Dedicated Modes
+
+If you need to switch between shared and dedicated modes, review the following:
+
+* All inbound traffic is lost if the shared or dedicated IP addresses are not included in the load balancer or
+DNS resolution before making the change.
+* If you change from *shared mode to dedicated mode*, you must include the dedicated internal load balancer node IP addresses in place of the controller node IP addresses in your external load balancer. Temporarily include both controller and dedicated internal load balancer nodes until you route inbound requests.
+* If you change from *dedicated mode to shared mode*, configure the *CPU Cores* and *Memory* fields appropriately for your deployment. The amount of available resources can significantly change between dedicated mode, in which all node resources can be consumed, and shared mode.
 
 == Upgrade Changes
 
