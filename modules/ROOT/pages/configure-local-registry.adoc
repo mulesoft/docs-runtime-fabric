@@ -38,15 +38,7 @@ Ensure that you've performed the following tasks:
 . Set up, configure, and test a local Docker image registry.
 . Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
 +
-* appInit: `mulesoft/rtf-app-init:v1.0.35`
-* muleClusterIpService: `mulesoft/rtf-mule-clusterip-service:v1.2.36`
-* resourceFetcher: `mulesoft/rtf-resource-fetcher:v1.0.46`
-* nginx: `mulesoft/base-image-nginx-1.21.1:v1.1.9`
-* monitoringSidecar: `mulesoft/dias-anypoint-monitoring-sidecar:v1.3.18`
-* clusterOps: `mulesoft/rtf-cluster-ops:v1.1.25`
-* coreAction: `mulesoft/rtf-core-actions:v1.0.11`
-* persistenceGateway: `mulesoft/rtf-object-store:v1.0.44`
-* rtfDaemon: `mulesoft/rtf-daemon:v1.0.3`
+See the xref:release-notes:runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for a list of dependencies for your Runtime Fabric version. 
 +
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version.
