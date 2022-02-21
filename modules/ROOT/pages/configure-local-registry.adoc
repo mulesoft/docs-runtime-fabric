@@ -38,7 +38,7 @@ Ensure that you've performed the following tasks:
 . Set up, configure, and test a local Docker image registry.
 . Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
 +
-See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for a list of dependencies for your Runtime Fabric version. 
+See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
 +
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version.
