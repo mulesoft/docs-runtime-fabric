@@ -130,7 +130,7 @@ Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS C
 
 == Optionally Select Security Policies
 
-You must define security policies in Anypoint Security before they are displayed as options in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists.
+If you want to add security policies, you must first define them in Anypoint Security before they are displayed as options in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Whitelist*, or *Denial of Service (DoS)* dropdown lists.
 
 To access a Runtime Fabric on VMs / Bare Metal instance using more than one DNS, add DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Applications->Ingress* page when you deploy an application.
 
