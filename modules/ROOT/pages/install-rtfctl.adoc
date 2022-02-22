@@ -252,10 +252,17 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 
 === `install`
-Installs Runtime Fabric
+
+* Installs Runtime Fabric
 
 ----
 rtfctl install <activation data>
+----
+
+* Override the Docker image registry URL and secret 
++
+----
+rtfctl install <activation data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
 === `reinstall`
@@ -487,6 +494,12 @@ rtfctl get secure-properties
 +
 ----
 rtfctl get mule-license
+----
+
+* Displays registry credentials
++
+----
+rtfctl get registry-credentials <activation data>
 ----
 
 === `ping`
