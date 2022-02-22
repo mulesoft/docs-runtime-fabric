@@ -491,7 +491,7 @@ rtfctl get secure-properties
 rtfctl get mule-license
 ----
 
-* Displays registry credentials
+* Displays Runtime Fabric registry credentials
 +
 ----
 rtfctl get registry-credentials <activation data>
