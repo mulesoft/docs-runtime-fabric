@@ -45,5 +45,4 @@
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:manage-secure-properties.adoc[Manage Secure Properties with rtfctl]
  ** xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform]
- 
  ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
