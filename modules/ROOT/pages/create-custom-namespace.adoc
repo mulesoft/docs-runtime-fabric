@@ -39,11 +39,7 @@ labels:
     rtf.mulesoft.com/role: workers
 ----
   
-In such cases, Runtime Fabric always uses the first namespace you created. Additionally, note the following about namespace and environment ID conflicts:
+In such cases, Runtime Fabric fails the deployment and creates an error message in Runtime Manager.
 
-* If you delete the first namespace (`custom-namespace-1`), Runtime Fabric uses the second namespace you created (`custom-namespace-2`).
-* If a namespace using the environment ID already exists, and you create a new namespace with the same environment ID, Runtime Fabric deploys apps into the preexisting namespace instead of the new namespace.
-* If multiple namespaces use the same `Environment_ID` label, Runtime Fabric fails the deployment and creates an error message in Runtime Manager. 
-* Before you delete a namespace, ensure that you have not deployed any production applications into that namespace.
-
+Before you delete a namespace, ensure that you have not deployed any production applications into that namespace.
 
