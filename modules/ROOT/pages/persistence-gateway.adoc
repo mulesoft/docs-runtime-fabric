@@ -7,13 +7,16 @@ Anypoint Runtime Fabric provides Persistence Gateway, which enables Mule applica
 Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mule runtime engine 4.2.1 or later.
 ====
 
-== Use Persistence Gateway in a Mule Application
+== Using Persistence Gateway in a Mule Application
 
 After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. When configured, users can select *Use Persistent Object Storage* when deploying an application using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
 Mule applications use the Object Store v2 REST API via the Object Store Connector to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
 
-When an application using persistent object storage is deleted, Runtime Fabric deletes all information stored in Persistence Gateway.
+[NOTE]
+====
+After deleting an application, persistent data may not be deleted immediately. Runtime Fabric cleans persistence data every 60 minutes.
+====
 
 == Persistent Gateway Limits
 
@@ -31,11 +34,16 @@ The following table lists the limits on the data stored by Persistence Gateway:
 
 To configure Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
 
-=== Prerequisites
+=== Before You Begin
 
 Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^]. 
 
-=== Create a Kubernetes Secret and Kubernetes Custom Resource
+During configuration, Persistence Gateway creates the required database schema. Afterwards, when an application deployed to Runtime Fabric is configured to use persistent object storage, the Persistence Gateway writes the necessary rows to the database.
+
+[NOTE]
+====
+Only plain text connections to the database are supported.
+====
 
 . Create a Kubernetes secret:
 +
@@ -54,6 +62,8 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 .. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
 .. Modify other fields of the custom resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
++
+If you are using Runtime Fabric on VMs / Bare Metal, run this command from a controller node.
 
 . Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
 +
@@ -78,7 +88,7 @@ The output of this command should be similar to the following:
 ----
 
 [[k8-custom-resource-template]]
-=== Kubernetes Custom Resource Template
+== Kubernetes Custom Resource Template
 
 Use the example template below to create a Kubernetes custom resource. This custom resource enables the Kubernetes cluster to connect to your data store.
 
