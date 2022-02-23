@@ -4,6 +4,7 @@
  ** xref:limitations-self.adoc[Limitations]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
  ** xref:custom-ingress-configuration.adoc[Configure Ingress]
+ ** xref:configure-local-registry.adoc[Use a Local Registry]
  ** xref:mule-core-usage-self.adoc[Monitor Mule Core Usage]
  ** xref:manage-proxy-self.adoc[Manage Proxies]
  ** xref:upgrade-self-managed.adoc[Upgrade Runtime Fabric on Self-Managed Kubernetes]
