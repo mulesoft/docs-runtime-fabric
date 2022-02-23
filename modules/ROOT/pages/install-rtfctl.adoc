@@ -78,6 +78,18 @@ rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
 rtfctl appliance renew-expired-client-certificate --file <cert-bundle-filename>
 ----
 
+* Reinstalls Runtime Fabric components using the latest scripts
++
+----
+rtfctl appliance reinstall
+----
+
+* Reinstalls Runtime Fabric components without downloading the latest scripts
++
+----
+rtfctl appliance reinstall --skip-download
+----
+
 * Renews an expired client certificate by downloading the certificate bundle
 +
 ----
@@ -244,7 +256,6 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 |Command |Description
 |xref:install[`install`] | Installs Runtime Fabric
-|xref:reinstall[`reinstall`] | Reinstalls Runtime Fabric components
 |xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
 |xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
@@ -252,26 +263,17 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 
 === `install`
-Installs Runtime Fabric
+
+* Installs Runtime Fabric
 
 ----
 rtfctl install <activation data>
 ----
 
-=== `reinstall`
-
-Reinstalls Runtime Fabric components
-
-* Reinstalls Runtime Fabric components using the latest scripts
+* Override the Docker image registry URL and secret 
 +
 ----
-rtfctl reinstall
-----
-
-* Reinstalls Runtime Fabric components without downloading the latest scripts
-+
-----
-rtfctl reinstall --skip-download
+rtfctl install <activation data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
 === `backup`
@@ -487,6 +489,12 @@ rtfctl get secure-properties
 +
 ----
 rtfctl get mule-license
+----
+
+* Displays Runtime Fabric registry credentials
++
+----
+rtfctl get registry-credentials <activation data>
 ----
 
 === `ping`
