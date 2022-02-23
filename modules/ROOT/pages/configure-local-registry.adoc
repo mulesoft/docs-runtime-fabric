@@ -50,11 +50,11 @@ Dependency versions are specific to the Runtime Fabric version.
 === Configure Your Local Registry
 
 . Obtain `rtf-runtime-registry` credentials:
-
++
 ----
 # rtfctl get docker-registry-login <activation-data>
 ----
-
++
 This command sets `RTF_DOCKER_SERVER`, `RTF_DOCKER_USERNAME`, and `RTF_DOCKER_PASSWORD` in the current shell environment. 
 
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
@@ -85,12 +85,14 @@ For the EU control plane:
 ----
 +
 Alternatively, if you use authentication to access your registry, use the following command:
-
++
 ----
 # rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 --image-pull-secret <your-local-reg-secret>
 ----
-
++
 This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
+
+. If you use authentication to access your registry, after you complete the installation, you must recreate the pull secret in the RTF namespace and in any other namespaces where you will deploy applications. 
 
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
