@@ -31,6 +31,7 @@
 * xref:persistence-gateway.adoc[Use Persistence Gateway]
 * xref:associate-environments.adoc[Associate Business Groups and Environments]
 * xref:deploy-index.adoc[Deploy Applications and API Proxies]
+ ** xref:create-custom-namespace.adoc[Create Namespaces for Application Deployments]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications]
  ** xref:deploy-maven-4.x.adoc[Deploy Applications Using Maven (Mule 4)]
