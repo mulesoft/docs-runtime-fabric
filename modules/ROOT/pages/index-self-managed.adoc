@@ -14,37 +14,35 @@ MuleSoft is responsible for providing support for Runtime Fabric services, the M
 
 The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft.
 
-The following image illustrates different MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
+=== MuleSoft Responsibility
 
-image::runtimefabricresponsibility-self-managed.png[Runtime Fabric on Self-Managed Kubernetes Shared Responsiblities]
-
-* MuleSoft responsibility:
-+
 MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, replicasets, and default ingress resources.
 
-* Customer responsibility:
-+
+=== Customer Responsibility
+
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
 +
-** Ingress controller and external load balancing
+* Ingress controller and external load balancing
 +
-** xref:custom-ingress-configuration.adoc[Customizations to Ingress resources]
+* xref:custom-ingress-configuration.adoc[Customizing ingress resources]
 +
-** Log forwarding
+* xref:configure-local-registry.adoc[Configuring a local registry to use with Runtime Fabric]
 +
-** Monitoring
+* Log forwarding
 +
-** Network ports, NAT gateways, and proxies
+* Monitoring
 +
-** Container runtime and networking
+* Network ports, NAT gateways, and proxies
 +
-** Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
+* Container runtime and networking
 +
-*** IT team to provision and manage the infrastructure
+* Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
 +
-*** Network team to specify allowed ports and configure proxy settings
+** IT team to provision and manage the infrastructure
 +
-*** Security team to verify compliance and obtain security certificates
+** Network team to specify allowed ports and configure proxy settings
++
+** Security team to verify compliance and obtain security certificates
 
 
 == Requirements
@@ -61,10 +59,9 @@ Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is p
 
 Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes versions:
 
-* 1.17 (1.8, 1.9, and 1.10.0)
-* 1.18
-* 1.19
-* 1.20 (1.10.26 and later)
+* 1.19.x
+* 1.20.10 (on Runtime Fabric verion 1.10.26 or later)
+* 1.21.3 (on Runtime Fabric version 1.12.1 or later)
 
 === Nodes and Resources
 
