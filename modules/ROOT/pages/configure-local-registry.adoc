@@ -52,16 +52,16 @@ Dependency versions are specific to the Runtime Fabric version.
 . Obtain `rtf-runtime-registry` credentials:
 +
 ----
-# rtfctl get docker-registry-login <activation-data>
+# rtfctl get registry-credentials <activation-data>
 ----
 +
-This command sets `RTF_DOCKER_SERVER`, `RTF_DOCKER_USERNAME`, and `RTF_DOCKER_PASSWORD` in the current shell environment. 
+This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSWORD` in the current shell environment. 
 
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 ---- 
 # eval $(rtfctl get docker-registry-login)
-# docker login $RTF_DOCKER_SERVER --<username> $RTF_DOCKER_USERNAME --<password> $RTF_DOCKER_PASSWORD
+# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
 ----
 
 . To pull and synchronize images, run the following command, replacing the `<username>` and `<password>` values where appropriate:
@@ -69,13 +69,13 @@ This command sets `RTF_DOCKER_SERVER`, `RTF_DOCKER_USERNAME`, and `RTF_DOCKER_PA
 For the US control plane:
 +
 ---- 
-# docker login $RTF_DOCKER_SERVER --<username> $RTF_DOCKER_USERNAME --<password> $RTF_DOCKER_PASSWORD → docker pull rtf-runtime-registry.kprod-eu.msap.io /mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod-eu.msap.io /mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod-eu.msap.io /mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod-eu.msap.io /mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
 ----
 +
 For the EU control plane:
 +
 ---- 
-# docker login $RTF_DOCKER_SERVER --<username> $RTF_DOCKER_USERNAME --<password> $RTF_DOCKER_PASSWORD → docker pull rtf-runtime-registry.kprod.msap.io /mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod.msap.io /mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod.msap.io /mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod.msap.io /mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
 ----
 
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
