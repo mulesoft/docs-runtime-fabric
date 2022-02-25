@@ -69,25 +69,25 @@ This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSW
 For the US control plane:
 +
 ---- 
-# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>:5000/mulesoft/rtf-agent:v1.12.0 → docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
 ----
 +
 For the EU control plane:
 +
 ---- 
-# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>:5000/mulesoft/rtf-agent:v1.12.0 → docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
 ----
 
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
 ----
-# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>:5000 
 ----
 +
 Alternatively, if you use authentication to access your registry, use the following command:
 +
 ----
-# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 --image-pull-secret <your-local-reg-secret>
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>:5000 --image-pull-secret <your-local-reg-secret>
 ----
 +
 This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
