@@ -81,7 +81,7 @@ For the EU control plane:
 ---- 
 # docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
 # docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
 ----
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
