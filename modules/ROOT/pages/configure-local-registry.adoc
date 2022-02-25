@@ -65,7 +65,7 @@ This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSW
 You should see a "LOGIN SUCCEDDED" message
 ----
 
-. To pull and synchronize images, login into your own private container registry, run the following command, replacing the `<docker-server>` where appropriate:
+. To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
 +
 For the US control plane:
 +
@@ -83,7 +83,9 @@ For the EU control plane:
 # docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
 ----
 
-. Please repeat above steps for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in Release Note. Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
+. Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
+
+. Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
 ----
 # rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
@@ -98,13 +100,11 @@ Alternatively, if you use authentication to access your registry, use the follow
 This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
 
 . If you use authentication to access your registry, after you complete the installation, you must recreate the pull secret in the RTF namespace and in any other namespaces where you will deploy applications. 
+. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key.
 
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
-When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret.
-
-
-. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key. 
+When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
 
 
 
