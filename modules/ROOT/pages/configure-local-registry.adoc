@@ -60,8 +60,8 @@ This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSW
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 ---- 
-# eval $(rtfctl get docker-registry-login <activation-data>)
-# docker login $RTF_IMAGE_SERVER --username $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
+# eval $(rtfctl get registry-credentials <activation-data>)
+# docker login -u $RTF_IMAGE_REGISTRY_USER -p $RTF_IMAGE_REGISTRY_PASSWORD $RTF_IMAGE_REGISTRY_ENDPOINT
 ----
 
 . To pull and synchronize images, run the following command, replacing the `<username>` and `<password>` values where appropriate:
