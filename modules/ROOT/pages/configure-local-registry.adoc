@@ -25,7 +25,7 @@ Review the following limitations on support for local registries:
 
 * If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf-` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
-* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. 
+* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>
 
 == Configure a Local Registry for Use with Runtime Fabric 
 
@@ -35,7 +35,7 @@ To configure a local registry, you must gather and add the necessary credentials
 
 Ensure that you've performed the following tasks: 
 
-. Set up, configure, and test a local Docker image registry.
+. Set up, configure, and test your private Docker image registry.
 . Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
 +
 See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
@@ -47,7 +47,7 @@ Dependency versions are specific to the Runtime Fabric version.
 . xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Download and install the `rtfctl` command line utility] version 0.3.150 or higher.
 . xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Create a Runtime Fabric using Runtime Manager], and gather the activation data. 
 
-=== Configure Your Local Registry
+=== Configure Your Local Registry and Install Runtime Fabric
 
 . Obtain `rtf-runtime-registry` credentials:
 +
