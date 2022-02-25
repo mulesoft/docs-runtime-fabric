@@ -62,8 +62,9 @@ This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSW
 ---- 
 # eval $(rtfctl get docker-registry-login <activation-data>)
 # docker login $RTF_IMAGE_SERVER --username $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
-You should see a "LOGIN SUCCEDDED" message
 ----
++
+You should see a message that the login was successful.
 
 . To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
 +
