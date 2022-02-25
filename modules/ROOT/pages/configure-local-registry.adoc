@@ -60,46 +60,52 @@ This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSW
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 ---- 
-# eval $(rtfctl get registry-credentials <activation-data>)
-# docker login -u $RTF_IMAGE_REGISTRY_USER -p $RTF_IMAGE_REGISTRY_PASSWORD $RTF_IMAGE_REGISTRY_ENDPOINT
+# eval $(rtfctl get docker-registry-login <activation-data>)
+# docker login $RTF_IMAGE_SERVER --username $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
 ----
++
+You should see a message that the login was successful.
 
-. To pull and synchronize images, run the following command, replacing the `<username>` and `<password>` values where appropriate:
+. To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
 +
 For the US control plane:
 +
 ---- 
-# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
 For the EU control plane:
 +
 ---- 
-# docker login $RTF_IMAGE_SERVER --<username> $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD → docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 → docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 localhost:5000/mulesoft/rtf-agent:v1.12.0 → docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
+# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push localhost:5000/mulesoft/rtf-agent:v1.12.0
 ----
+
+. Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
 
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
 ----
-# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
 ----
 +
 Alternatively, if you use authentication to access your registry, use the following command:
 +
 ----
-# rtfctl install ‘<activation_data>’ --image-pull-registry localhost:5000 --image-pull-secret <your-local-reg-secret>
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server> --image-pull-secret <your-local-reg-secret>
 ----
 +
 This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
 
 . If you use authentication to access your registry, after you complete the installation, you must recreate the pull secret in the RTF namespace and in any other namespaces where you will deploy applications. 
+. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key.
 
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
-When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret.
-
-
-. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key. 
+When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
 
 
 
