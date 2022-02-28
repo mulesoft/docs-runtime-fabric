@@ -83,8 +83,14 @@ You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]
 To access a Runtime Fabric instance using more than one FQDN, add additional DNS entries in the `subjectAltName` certificate property. If a certificate has multiple DNS entries specified in the `subjectAltName` property, the available URLs are displayed in the *Public endpoint* section. Each deployed application can only be addressed using a single FQDN.
 
 . Select *Ingress*.
-. Select *Enable inbound traffic*.
-. From the *Domain* drop-down list, choose the appropriate domain.
++
+Ingress is automatically enabled for new application deployments.
+. If you want to keep ingress enabled, from the *Domain* drop-down list, choose the appropriate domain.
++
+Or, to enable inbound traffic for an existing application, choose the appropiate domain. 
+. To disable inbound traffic for a new application, leave the domain selection empty. 
++
+To disable inbound traffic for an existing application, clear the domain selection.
 +
 . Optionally, enable or disable the following:
 +
