@@ -4,7 +4,7 @@ Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule application
 
 == Core Components of Runtime Fabric on Self-Managed Kubernetes 
 
-Runtime Fabric is a set of components that run inside your Kubernetes cluster and a set of components that run in the Anypoint control plane.
+Runtime Fabric on Self-Managed Kubernetes and its underlying components run as various kubernetes deployment objects on Amazon EKS, AKS, or GKE environment. The management of this Runtime Fabric is exposed via Mulesoft hosted Anypoint platform.
 
 Running Runtime Fabric components on a self-managed Kubernetes clusters requires  the underlying nodes/instances to be Linux-based.
 
