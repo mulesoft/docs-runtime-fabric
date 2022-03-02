@@ -3,7 +3,7 @@
 * xref:index-self-managed.adoc[On Self-Managed Kubernetes]
  ** xref:limitations-self.adoc[Limitations]
  ** xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes]
- ** xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation for Runtime Fabric on Self-Managed Kubernetes]
+ ** xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
  ** xref:custom-ingress-configuration.adoc[Configure Ingress]
  ** xref:configure-local-registry.adoc[Use a Local Registry]
  ** xref:mule-core-usage-self.adoc[Monitor Mule Core Usage]
