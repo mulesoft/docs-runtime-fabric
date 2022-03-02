@@ -1,5 +1,5 @@
 // tag::description[]
-Before deploying a Mule application to Anypoint Runtime Fabric, determine the correct number of resources to allocate. Determining resource allocation is also important when configuring the internal load balancers on Anypoint Runtime Fabric s.
+Before deploying a Mule application to Anypoint Runtime Fabric, determine the correct number of resources to allocate. Determining resource allocation is also important when configuring the internal load balancers on Anypoint Runtime Fabrics.
 
 When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
@@ -18,6 +18,7 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 * Memory
 // end::description[]
 // tag::cpuLicensedCores[]
+
 == CPU and Licensed Cores
 
 The physical CPU core capacity often differs from the MuleSoft license core amount.
@@ -33,17 +34,20 @@ The underlying Runtime Fabric cluster does not need to be licensed. The actual a
 
 You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure that you do not exceed the number of CPU cores provided by your MuleSoft license at any given time.
 
-When using Runtime Fabric on VMs/Bare Metal, use the Core CPU Usage dashboard in Ops Center. This dashboard shows core CPU usage for Mule applications only, so it can help you determine your core CPU usage across all your Mule applications.
-
+* When using Runtime Fabric on VMs/Bare Metal, use the Core CPU Usage dashboard in Ops Center. This dashboard shows core CPU usage for Mule applications only, so it can help you determine your core CPU usage across all your Mule applications.
++
 To check core CPU usage:
-
++
 . From the Ops Center navigation, click *Monitoring*.
 . From the dashboard dropdown list, select *CPU Core Usage*. 
 . From the time picker, select your date range. 
 +
 You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage against licensing, look for the highest number within the selected time frame. 
+
+* When using Runtime Fabric on Self-Managed Kubernetes, track core CPU using monitoring solutions from your respective cloud provider.
 // end::cpuLicensedCores[]
 // tag::vcpuAllocation[]
+
 == vCPU Allocation
 
 When the `Reserved vCPU` and `vCPU Limit` are equal, the CPU on the worker node is allocated in a guaranteed model. The container always has the specified amount of CPU available. The vCPU is reserved for each replica of the application and is guaranteed regardless of what else is running on Runtime Fabric.
@@ -55,6 +59,7 @@ When the value of `vCPU Limit` is set higher than the value of `Reserved vCPU`, 
 When estimating the CPU and memory required for worker nodes, Anypoint Monitoring agent requires at least 0.05 vCPU cores and 50 Mi of memory for Anypoint Monitoring. This container is used to stream application metrics to the control plane and cannot be disabled. These core and memory allocations are not used for Mule licensing.
 // end::vcpuAllocation[]
 // tag::cpuBursting[]
+
 == CPU Bursting
 
 When using CPU bursting, you must consider the following factors:
@@ -74,6 +79,7 @@ Resource intensive applications might require additional CPU capacity. If an app
 Regardless of what approach is chosen, make sure you run tests to validate performance.
 // end::cpuBursting[]
 // tag::memoryAllocation[]
+
 == Memory Allocation
 
 The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
@@ -84,6 +90,7 @@ The minimum values for the amount of memory allocated to each replica of a Mule 
 When Anypoint Monitoring is enabled, 50MB memory is reserved for running the Anypoint Monitoring sidecar containers, which can burst up to 70MB for each application deployed when processing metrics data.
 // end::memoryAllocation[]
 // tag::calculatingMemory[]
+
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
 Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload.
@@ -95,6 +102,7 @@ The available heap memory is approximately half of the total memory allocated to
 * CloudHub describes minimum memory requirements in terms of the heap memory available to an application.
 // end::calculatingMemory[]
 // tag::startupTimes[]
+
 == Application Startup Times
 
 The startup time for a Mule application is correlated to the total number of vCPU cores the application has access to. The following lists approximate startup times for a simple Mule proxy application performing processing on a payload:
@@ -109,6 +117,7 @@ The startup time for a Mule application is correlated to the total number of vCP
 |===
 // end::startupTimes[]
 // tag::applicationPerformance[]
+
 == Application Performance
 
 The resources allocated to your Mule application determine the application's performance. The following table lists approximate values for throughput based on the total number of vCPU cores allocated for a single Mule application performing simple processing on a 10-KB payload:
@@ -127,6 +136,7 @@ Run performance and load testing on your Mule applications to determine the numb
 
 // end::applicationPerformance[]
 // tag::loadBalancerMemoryAllocation[]
+
 == Internal Load Balancer Memory Allocation
 
 Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. Use the following guidelines when allocating memory:
@@ -142,6 +152,7 @@ These are general guidelines, and individual environments might require adjustme
 
 // end::loadBalancerMemoryAllocation[]
 // tag::internalLoadBalancer[]
+
 == Internal Load Balancer
 
 Inbound traffic is processed using an internal load balancer managed by Anypoint Runtime Fabric. Because this load balancer is responsible for TLS termination, the number of resources required scales based on the number of incoming connections and the average payload size for each request.
@@ -173,6 +184,7 @@ The internal load balancer runs on the controller VMs of Runtime Fabric. Size th
 
 // end::internalLoadBalancer[]
 // tag::cpuKeysCertificates[]
+
 == CPU Requirements for Keys and Certificates
 
 Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 or 8 JKS/JCEKS certificates. The number of recommended cores are:
@@ -187,6 +199,7 @@ Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 
 |===
 // end::cpuKeysCertificates[]
 // tag::keyTypes[]
+
 == Key Types
 
 RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance.
