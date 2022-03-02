@@ -110,10 +110,6 @@ Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes vers
 * 1.19.x
 * 1.20.10 
 
-Runtime Fabric supports the following platforms:
-
-* Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), and Google Kubernetes Engine (GKE).
-
 === Supported Architectures
 
 Runtime Fabric on Self-Managed Kubernetes requires worker nodes which use the x86/x64 architecture. ARM-base architectures are not supported.
