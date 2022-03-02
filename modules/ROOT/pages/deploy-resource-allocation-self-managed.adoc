@@ -1,5 +1,4 @@
-= Resource Allocation and Performance on Anypoint Runtime Fabric on VMs/Bare Metal
-
+= Resource Allocation and Performance for Anypoint Runtime Fabric on Self-Managed Kubernetes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -12,8 +11,6 @@ include::partial$include-deploy-resource-allocation.adoc[tags=memoryAllocation]
 include::partial$include-deploy-resource-allocation.adoc[tags=calculatingMemory]
 include::partial$include-deploy-resource-allocation.adoc[tags=startupTimes]
 include::partial$include-deploy-resource-allocation.adoc[tags=applicationPerformance]
-include::partial$include-deploy-resource-allocation.adoc[tags=loadBalancerMemoryAllocation]
-include::partial$include-deploy-resource-allocation.adoc[tags=internalLoadBalancer]
 include::partial$include-deploy-resource-allocation.adoc[tags=cpuKeysCertificates]
 include::partial$include-deploy-resource-allocation.adoc[tags=keyTypes]
 
