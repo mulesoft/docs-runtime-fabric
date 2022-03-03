@@ -52,6 +52,12 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 sudo chmod +x rtfctl
 ----
 
+
+ON VMs / Bare Metal  the `rtfctl` tool must be run from a controller node. It will self detect the required configuration to manage the cluster. 
+
+On Self-Managed Kubernetes `rtfctl' consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files]. Defer to this method to configure which cluster you want to manage.
+
+
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
 
@@ -569,6 +575,26 @@ Heap dump written to /tmp/dump.hprof
 ----
 
 For additional information, run the `rtfctl heapdump -h` command.
+
+=== Working With Multiple Replicas
+
+For application management commands that accept a `--pod` flag you can obtain the list of replicas using the describe command:
+
+----
+$ sudo ./rtfctl describe apps hello-world --namespace bed42b62-XXXX
+Name:              hello-world
+Namespace:         bed42b62-XXXX
+Status:            PROGRESSING
+Runtime:           2
+ID:
+Version:
+Organization ID:   d30f74c0-XXXX
+Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
+
+  Name                             Status
+  ----                             ------
+  hello-world-77f5897949-z54gb   Pending
+----
 
 == See Also
 
