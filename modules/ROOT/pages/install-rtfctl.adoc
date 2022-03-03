@@ -54,7 +54,7 @@ sudo chmod +x rtfctl
 
 For Runtime Fabric on VMs / Bare Metal,  you must run `rtfctl` from a controller node. The tool detects the required configuration to manage the cluster. 
 
-For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Defer to this method to configure which cluster you want to manage.
+For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage.
 
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
