@@ -21,29 +21,18 @@ MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and o
 === Customer Responsibility
 
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
-+
-* Ingress controller and external load balancing
-+
-* xref:custom-ingress-configuration.adoc[Customizing ingress resources]
-+
-* xref:configure-local-registry.adoc[Configuring a local registry to use with Runtime Fabric]
-+
-* Log forwarding
-+
-* Monitoring
-+
-* Network ports, NAT gateways, and proxies
-+
-* Container runtime and networking
-+
-* Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
-+
-** IT team to provision and manage the infrastructure
-+
-** Network team to specify allowed ports and configure proxy settings
-+
-** Security team to verify compliance and obtain security certificates
 
+* Ingress controller and external load balancing
+* xref:custom-ingress-configuration.adoc[Customizing ingress resources]
+* xref:configure-local-registry.adoc[Configuring a local registry to use with Runtime Fabric]
+* Log forwarding
+* Monitoring
+* Network ports, NAT gateways, and proxies
+* Container runtime and networking
+* Provisioning and management of the Kubernetes environment, including assistance from the following teams in your organization:
+** IT team to provision and manage the infrastructure
+** Network team to specify allowed ports and configure proxy settings
+** Security team to verify compliance and obtain security certificates
 
 == Requirements
 
