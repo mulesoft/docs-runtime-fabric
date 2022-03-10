@@ -47,11 +47,13 @@ Each Mule application and API gateway replica runs a metrics agent that collects
 Anypoint Monitoring via secure mutual TLS encryption. Each replica can cache up to 100 megabytes of metrics, after which the metrics data is rotated to provide storage for more recent data. In the event that metrics cannot be sent to Anypoint Monitoring, this typically provides at least 4 days worth of storage per replica. Note that custom metrics might consume more storage.
 
 [NOTE]
+--
 Application monitoring metrics are not restored after:
-+
+
 * A backup and restore of Runtime Fabric
 * An upgrade of Runtime Fabric
 * OS patching of Runtime Fabric nodes
+--
 
 === Logs (Titanium)
 
