@@ -198,7 +198,7 @@ The following variables can be defined based upon your organization's requiremen
 |Parameter | Description | Example
 | `RTF_HTTP_PROXY` | The hostname and port of the HTTP proxy server that will forward outbound HTTP requests. | `+http://1.1.1.1:80+`
 | `RTF_MONITORING_PROXY` | The hostname, port, and optional username and password of the SOCKS5 proxy server that will forward metrics and logs to Anypoint Monitoring. | `socks5://user:pass@1.1.1.2:800`
-| `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. Runtime Fabric looks for upper-case values for the hosts, but if upper-case values are missing, Runtime Fabric will pick lower-case values. If both values are present, Runtime Fabric picks the upper-case values. | `1.1.1.1,no-proxy.com`
+| `RTF_NO_PROXY` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
 | `RTF_SERVICE_UID` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `RTF_SERVICE_GID` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
 | `POD_NETWORK_CIDR` | Support for a custom pod CIDR block. | `10.244.0.0/16`
