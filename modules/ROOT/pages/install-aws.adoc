@@ -153,7 +153,11 @@ If the host operating system is RHEL 8, do not set to `false` or installation wi
 | `kubernetes_api_cidr_blocks` | A CIDR range that enables access to the kubernetes API. The default is an empty array: `[]`. |
 | `monitoring_proxy` | The hostname and port, and optional username and password for a SOCKS5 proxy server to forward metrics and logs to Anypoint Monitoring. | `user:pass@1.1.1.2:800`
 | `mule_license` | The base64 content of your Mule license. |
+<<<<<<< HEAD
 | `no_proxy` | A comma-separated list of hosts which should bypass the proxy. | `1.1.1.1,no-proxy.com`
+=======
+| `no_proxy` | A comma-separated list of hosts which should bypass the proxy. Runtime Fabric looks for upper case values for the hosts, but if upper case values are missing, Runtime Fabric will pick lower case values. If both values are present, Runtime Fabric picks the upper case values. | `1.1.1.1,no-proxy.com`
+>>>>>>> parent of fc04d56 (clarify no_proxy behavior)
 | `ops_center_cidr_blocks` | A CIDR range that allows access to the Ops Center UI. The default is an empty array: `[]`. |
 | `pod_network_cidr_block` | Provides support for a custom pod CIDR block.  | `10.244.0.0/16`
 | `service_cidr_block` | Provides support for a custom service CIDR block. | `10.100.0.0/16`

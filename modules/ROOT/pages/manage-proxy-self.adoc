@@ -30,8 +30,6 @@ The password must be URL encoded.
 * *<10.0.0.1>*: Specifies the IP address or hostname to access the HTTP proxy.
 * *<8080>*: Specifies the port on the host where the HTTP proxy is listening for requests.
 * *<1.1.1.1:8888,2.2.2.2:9999>*: Specifies the `RTF_NO_PROXY` hosts and ports, delimited by commas.
-+
-Runtime Fabric looks for upper-case values for the hosts, but if upper-case values are missing, Runtime Fabric will pick lower-case values. If both values are present, Runtime Fabric picks the upper-case values.
 * (Optional) `--confirm`: Skips manual acknowledgement of the change. If not specified, the `rtfctl apply proxy` command prompts you to confirm the change before continuing.
 . To verify the change was successful, run the following command to output the current value of the HTTP proxy:
 +
