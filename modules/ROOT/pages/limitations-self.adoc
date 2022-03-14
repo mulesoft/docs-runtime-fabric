@@ -1,4 +1,4 @@
-= Limitations with Anypoint Runtime Fabric on Self-Managed Kubernetes
+= Limitations with Runtime Fabric on Self-Managed Kubernetes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

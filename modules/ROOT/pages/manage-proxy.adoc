@@ -1,4 +1,4 @@
-= Manage Proxies on Runtime Fabric on VMs / Bare Metal
+= Managing Proxies on Runtime Fabric on VMs / Bare Metal
 
 Anypoint Runtime Fabric clusters consistently communicate with the control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
 

@@ -1,4 +1,4 @@
-= Access One Application from Another in the Same Cluster
+= Sending Application-to-Application Request in the Same Cluster
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

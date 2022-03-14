@@ -29,7 +29,7 @@ The full deployment process includes these steps:
 Before deploying an application to Anypoint Runtime Fabric, perform the following:
 
 * Install and configure Anypoint Runtime Fabric. Refer to the installation instructions for xref:install-create-rtf-arm.adoc[Runtime Fabric on VMs / Bare Metal] or xref:install-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes] for more information.
-* Ensure that Runtime Fabric is associated with an environment. Refer to xref:associate-environments.adoc[Associate Business Groups and Environments to Anypoint Runtime Fabric]
+* Ensure that Runtime Fabric is associated with an environment. Refer to xref:associate-environments.adoc[Associating Business Groups and Environments to Anypoint Runtime Fabric]
 * Determine the resource allocation requirements for your application. Refer to xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Check if you require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
 * To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric on Self-Managed Kubernetes] or xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)]

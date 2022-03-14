@@ -1,4 +1,4 @@
-= Create Namespaces for Application Deployments 
+= Creating Namespaces for Application Deployments 
 
 Anypoint Runtime Fabric version 1.12 or later enables you to create your own namespaces for application deployments. 
 

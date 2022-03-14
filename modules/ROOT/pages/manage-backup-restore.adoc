@@ -1,4 +1,4 @@
-= Back Up and Restore Runtime Fabric
+= Backing Up and Restoring Runtime Fabric
 
 Use the following procedures to back up and restore Runtime Fabric services and the required state necessary for all deployed applications and their configurations.
 

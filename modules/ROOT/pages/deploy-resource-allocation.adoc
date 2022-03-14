@@ -1,4 +1,4 @@
-= Resource Allocation and Performance on Anypoint Runtime Fabric on VMs/Bare Metal
+= Resource Allocation and Performance on Runtime Fabric on VMs/Bare Metal
 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]

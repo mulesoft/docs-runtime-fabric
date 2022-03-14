@@ -1,4 +1,4 @@
-= Manage Runtime Fabric
+= Managing Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -39,7 +39,7 @@ See xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
 See xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric].
 ** Enable mutual authentication.
 +
-See xref:config-mutual-auth.adoc[Configure Mutual Authentication with Anypoint Platform].
+See xref:config-mutual-auth.adoc[Configuring Mutual Authentication with Anypoint Platform].
 ** Add or remove nodes from a cluster to maintain cluster health or to perform an upgrade.
 +
 See xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].

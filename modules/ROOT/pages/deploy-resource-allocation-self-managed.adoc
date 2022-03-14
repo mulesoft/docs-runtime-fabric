@@ -1,4 +1,4 @@
-= Resource Allocation and Performance for Anypoint Runtime Fabric on Self-Managed Kubernetes
+= Resource Allocation and Performance for Runtime Fabric on Self-Managed Kubernetes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

@@ -1,4 +1,4 @@
-= Configure Ingress for Runtime Fabric on Self-Managed Kubernetes
+= Configuring Ingress for Runtime Fabric on Self-Managed Kubernetes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

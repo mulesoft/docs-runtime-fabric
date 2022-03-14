@@ -1,4 +1,4 @@
-= View and Configure Logging in Runtime Fabric
+= Viewing and Configuring Logs in Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

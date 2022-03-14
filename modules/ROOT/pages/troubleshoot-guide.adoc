@@ -1,4 +1,4 @@
-= Troubleshooting Guide for Runtime Fabric
+= Troubleshooting Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
