@@ -59,6 +59,11 @@ For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig file
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
 
+=== Checking for Proxy Settings
+
+When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and will accept a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
+
+
 == Commands for Managing the Runtime Fabric Appliance
 
 Use the following commands to manage the Runtime Fabric Appliance.
