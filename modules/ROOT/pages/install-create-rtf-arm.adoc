@@ -1,4 +1,4 @@
-= Install Runtime Fabric on VMs / Bare Metal
+= Beginning Runtime Fabric Installation on VMs / Bare Metal
 
 To install Runtime Fabric on VMs / Bare Metal, first create a Runtime Fabric using Runtime Manager.
 

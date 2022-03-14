@@ -126,7 +126,7 @@ The public certificate, private key, and key passcode are saved in the secrets m
 The JKS file information is saved in the global secrets group for your organization.
 * Option 3: *Import from Secrets Manager* 
 +
-Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
+Refer to the instructions in xref::configure-adv-tls-context.adoc[Importing a TLS Context from Secrets Manager (Advanced)].
 
 == Optionally Select Security Policies
 

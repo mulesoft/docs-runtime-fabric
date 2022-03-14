@@ -1,4 +1,4 @@
-= Use Ops Center to Monitor Runtime Fabric on VMs / Bare Metal
+= Using Ops Center to Monitor Runtime Fabric on VMs / Bare Metal
 
 Use the built-in Ops Center to monitor some metrics from applications running in your Runtime Fabric on VMs / Bare Metal clusters.
 

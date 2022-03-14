@@ -1,4 +1,4 @@
-= Upgrade Runtime Fabric on VMs/Bare Metal
+= Upgrading Runtime Fabric on VMs/Bare Metal
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

@@ -1,4 +1,4 @@
-= Replace a Mule License Key
+= Replacing Mule License Keys
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

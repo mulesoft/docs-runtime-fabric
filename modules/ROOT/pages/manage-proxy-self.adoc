@@ -1,4 +1,4 @@
-= Manage Proxies on Runtime Fabric on Self-Managed Kubernetes
+= Managing Proxies on Runtime Fabric on Self-Managed Kubernetes
 
 Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running and hosting applications:
 

@@ -1,4 +1,4 @@
-= Install Runtime Fabric on AWS
+= Installing Runtime Fabric on AWS
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -80,7 +80,7 @@ Terraform installed is `0.12.6` or later by running `terraform --version` on you
 
 * Use Terraform within Docker.
 
-== Download the Terraform Script
+=== Download the Terraform Script
 
 . Sign in to Anypoint Platform and navigate to Runtime Manager.
 . On the left navigation pane, select *Runtime Fabrics*.
@@ -88,7 +88,7 @@ Terraform installed is `0.12.6` or later by running `terraform --version` on you
 . Click *Download files*.
 . When the download completes, unzip the `rtf-install-scripts.zip` file.
 
-=== Contents of the Runtime Fabric on VMs / Bare Metal Installer
+== Contents of the Runtime Fabric on VMs / Bare Metal Installer
 
 Inside the `rtf-install-scripts` folder, there is an `aws` folder containing the following:
 

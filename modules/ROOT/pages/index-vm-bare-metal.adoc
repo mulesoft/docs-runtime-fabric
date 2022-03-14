@@ -1,6 +1,4 @@
-= Anypoint Runtime Fabric on VMs / Bare Metal
-
-== Anypoint Runtime Fabric on VMs / Bare Metal Architecture
+= Runtime Fabric on VMs / Bare Metal
 
 Anypoint Runtime Fabric on VMs / Bare Metal Architecture is composed of a set of VMs that form a cluster. Each VM serves as either a controller node or a worker node.
 

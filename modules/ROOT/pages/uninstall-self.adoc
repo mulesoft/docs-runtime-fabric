@@ -1,4 +1,4 @@
-= Uninstall Runtime Fabric on Self-Managed Kubernetes
+= Uninstalling Runtime Fabric on Self-Managed Kubernetes
 
 Perform the following procedure to uninstall Runtime Fabric on Self-Managed Kubernetes:
 

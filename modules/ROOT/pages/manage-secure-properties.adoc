@@ -1,4 +1,4 @@
-= Manage Secure Properties with rtfctl
+= Managing Secure Properties with rtfctl
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

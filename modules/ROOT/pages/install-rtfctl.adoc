@@ -1,4 +1,4 @@
-= Use the Runtime Fabric Command Line Tool
+= Using the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

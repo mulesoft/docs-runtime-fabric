@@ -1,4 +1,4 @@
-= Install Runtime Fabric Manually
+= Installing Runtime Fabric Manually
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
