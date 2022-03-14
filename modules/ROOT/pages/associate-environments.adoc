@@ -1,4 +1,4 @@
-= Associating Business Groups and Environments to Anypoint Runtime Fabric
+= Associating Business Groups and Environments to Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
