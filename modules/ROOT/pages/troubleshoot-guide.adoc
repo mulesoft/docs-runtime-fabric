@@ -322,3 +322,16 @@ If this error is observed:
  the controller VM(s) running in your internal network to this hostname on the Internet.
  * A TCP proxy may be needed to establish a connection to the Internet. Check with your network
  team to verify and configure if needed. Refer to xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites].
+
+== Troubleshoot expired client certificate
+ 
+If your cluster already uses xref:config-mutual-auth.adoc[Mutual Authentication with Anypoint Platform] the client certificate will be periodcally renewed by a cron job called `certificate-renewal` on the `rtf` namespace. This job runs in advance of certificate expiration as it needs to be renewed before expiring. Unexpected circumstances may cause the certificate to eventually expire without renewal and this job will log the following error:
+----
+time="2020-03-11T12:42:05Z" level=warning msg="{\"timestamp\":\"2020-03-11T12:42:05.035+00:00\",\"status\":409,\"error\":\"Conflict\",\"message\":\"Certificate was already exipired, please renew cert!\",\"path\":\"/api/v1/organizations/4d70ccf6f0ce/agents/74f0df29/renew\"}"
+----
+ 
+To fix this situation you will need to use the `rtfctl appliance renew-expired-client-cert` command.
+For more information refer to:
+
+* xref:commands-for-managing-the-runtime-fabric-appliance.adoc[Commands for Managing the Runtime Fabric Appliance]
+* https://help.mulesoft.com/s/article/Rtfctl-Client-Certificate-Expiration-Warning[Rtfctl Client Certificate Expiration Warning]
