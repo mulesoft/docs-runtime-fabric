@@ -81,10 +81,17 @@ Performs operations on the Runtime Fabric appliance
 rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
 ----
 
+
+* Renews an expired client certificate by downloading the certificate bundle
++
+----
+rtfctl appliance renew-expired-client-cert --auth '<YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org-id>/fabrics/<fabric-id>/certificate-bundle'
+----
+
 * Renews an expired client certificate using a pre-downloaded package
 +
 ----
-rtfctl appliance renew-expired-client-certificate --file <cert-bundle-filename>
+rtfctl appliance renew-expired-client-cert --file <cert-bundle-filename>
 ----
 
 * Reinstalls Runtime Fabric components using the latest scripts
@@ -97,12 +104,6 @@ rtfctl appliance reinstall
 +
 ----
 rtfctl appliance reinstall --skip-download
-----
-
-* Renews an expired client certificate by downloading the certificate bundle
-+
-----
-rtfctl appliance renew-expired-client-certificate --auth '<YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://<host>/<path-to-installer-package>'\
 ----
 
 * Generates an appliance diagnostics report
