@@ -85,7 +85,7 @@ rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
 * Renews an expired client certificate by downloading the certificate bundle
 +
 ----
-rtfctl appliance renew-expired-client-cert --auth '<YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org-id>/fabrics/<fabric-id>/certificate-bundle'
+rtfctl appliance renew-expired-client-cert --auth 'Bearer <YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org-id>/fabrics/<fabric-id>/certificate-bundle'
 ----
 
 * Renews an expired client certificate using a pre-downloaded package
