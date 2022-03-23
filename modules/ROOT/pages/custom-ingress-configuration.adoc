@@ -193,7 +193,7 @@ labels:
   environment: 
   environment-id
 ----
-|`unique-id` | `host` a| 
+|`unique-id` | `path`, `host`, `annotation, labels` a| 
 
 [source,yaml]
 ----
