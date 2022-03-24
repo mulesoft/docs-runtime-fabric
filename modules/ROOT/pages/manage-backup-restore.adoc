@@ -62,7 +62,7 @@ Runtime Fabric provides two target options when restoring a cluster from a backu
 * Use an existing Runtime Fabric cluster.
 * Create a new Kubernetes cluster with the same configuration as the backed-up cluster. This includes the same number of servers, disks, etc.
 
-To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric being installed, run the Runtime Fabric installer script(s) without providing the fabric activation data.
+To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric being installed, run the Runtime Fabric installer script(s) without providing the Runtime Fabric activation data.
 
 [WARNING]
 ====
@@ -77,19 +77,14 @@ When restoring on an existing Runtime Fabric cluster, use the same version of th
 scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtimefabric/
 ----
 
-. To restore on a newly created cluster:
-.. Scale down all Runtime Fabric components on the original, backed-up cluster. 
-.. Confirm your Kubernetes (kubectl) context is set to the backed-up cluster. 
-.. Run the following command:
+
+. Confirm your Kubernetes (kubectl) context is set to the backed-up cluster, and scale down all Runtime Fabric components on the original, backed-up cluster:
 +
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
 
-. Restore the cluster.
-+
-To restore the cluster from the backup, run the following command: 
-+
+. Restore the cluster from the backup: 
 ----
 ./rtfctl restore <path_to_backup_file>
 ----
