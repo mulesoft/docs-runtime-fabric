@@ -2,7 +2,7 @@
 
 You can configure Runtime Fabric to run application containers in FIPS 140-2 compliance mode.
 
-These instructions assume that you are familiar with FIPS 140-2, the US government security standard that requires that compliant parties use only cryptographic algorithms and techniques that have been certified by NIST.
+These instructions assume that you are familiar with https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402.pdf[FIPS 140-2^], the US government security standard that requires that compliant parties use only cryptographic algorithms and techniques that have been certified by NIST.
 
 == Enable FIPS 140-2 Compliance Mode
 
