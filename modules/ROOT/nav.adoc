@@ -40,6 +40,7 @@
  ** xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates for Runtime Fabric]
  ** xref:app-versioning.adoc[Reviewing Application Versioning]
  ** xref:app-to-app-requests.adoc[Sending Application-to-Application Requests]
+ ** xref:enable-fips-140-2-compliance.adoc[Enabling FIPS 140-2 Compliance Mode]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploying API Proxies]
 * xref:manage-index.adoc[Managing Runtime Fabric]
  ** xref:view-health.adoc[Viewing Runtime Fabric Health Details]
