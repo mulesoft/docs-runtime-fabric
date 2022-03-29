@@ -29,6 +29,13 @@ Before performing a back up or restore operation:
 * Application monitoring metrics are not restored after performing the back up and restore process. 
 ====
 
+=== Considerations
+
+The  backup and restore is an operation local to the Runtime Fabric cluster, it does not involve the management plane.
+This implies that any change made and applied after a backup was taken will result in inconsistencies if restored.
+For example, if an application is deleted after the backup was taken when restored it will be recreated locally although it's marked as deleted in Runtime Manager. As a result the application will show as _applying_ since the management plane is expecting it to be deleted.
+These inconsistencies need to be resolved manually by reaplying locally the changes that took place after the backup was taken, these changes can't be reapplied from the management plane
+
 == Create a Backup
 
 To create a backup run the following command:
