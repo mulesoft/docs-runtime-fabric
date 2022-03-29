@@ -87,11 +87,10 @@ To access a Runtime Fabric instance using more than one FQDN, add additional DNS
 Ingress is automatically enabled for new application deployments.
 . If you want to keep ingress enabled, from the *Domain* drop-down list, choose the appropriate domain.
 +
-Or, to enable inbound traffic for an existing application, choose the appropiate domain. 
-. To disable inbound traffic for a new application, leave the domain selection empty. 
+Or, to enable inbound traffic for an existing application, choose the appropriate domain. 
+. To disable inbound traffic for a new application or an existing application, clear the domain selection.
 +
-To disable inbound traffic for an existing application, clear the domain selection.
-+
+To clear the selection, highlight the domain name and press Delete. 
 . Optionally, enable or disable the following:
 +
 * *Last-Mile security*: TLS termination and decryption for the forwarded HTTPS connections occurs in the application. This option requires that the Mule application include an SSL certificate and also requires more CPU resources. 
