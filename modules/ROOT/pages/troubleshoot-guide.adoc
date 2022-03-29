@@ -334,3 +334,19 @@ To renew the certificate, use the `rtfctl appliance renew-expired-client-cert` c
 
 * xref:install-rtfctl.adoc#commands-for-managing-the-runtime-fabric-appliance[Commands for Managing the Runtime Fabric Appliance]
 * https://help.mulesoft.com/s/article/Rtfctl-Client-Certificate-Expiration-Warning[Rtfctl Client Certificate Expiration Warning^]
+
+== Troubleshoot Inconsistencies After Backup Restoration
+
+After a restore procedure you may realize some inconsistencies in Runtime Manager.
+For example: 
+
+* an application that was already deleted is showing up again as running
+* a recently deployed application is listed with 0 replicas
+* a deployment actual replicas count does not match those specified in the web user interface
+
+In all these circumstances you should verify that the deployments appear in *Applying* status and the corresponding API call would reveal the  `status` and `desiredState` fields do not match. The root cause is explained in the backup and restore xref:manage-backup-restore.adoc#considerations[considerations] section.
+
+The only resolution to these conflicts is to apply the necesarry changes to the cluster to match the expected status.
+These changes cannot be resynched automatically nor overrode by new changes. The current status must match the expected values before any further changes can be applied from the control plane. If you need to review the changes that were recently applied you can leverage the xref:/access-management/audit-logging.adoc[audit log] feature.
+
+
