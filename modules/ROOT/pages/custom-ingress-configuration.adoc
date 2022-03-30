@@ -193,11 +193,11 @@ labels:
   environment: 
   environment-id
 ----
-|`unique-id` | `path`, `host`, `annotation, labels` a| 
+|`unique-id` | `path`, `annotation, labels` a| 
 
 [source,yaml]
 ----
-host: app-name-unique-id.com
+path: app-name-unique-id.com
 ----
 |===
 
@@ -205,7 +205,8 @@ Use the `unique-id` placeholder to create a unique application URL, for example,
 
 [NOTE]
 --
-The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and later.
+* The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and later.
+* If we use this `app-name-unique-id.com` in the path section the ingress template, the resultig ingress will look something like this `app-name-7jkbic.com`
 --
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
