@@ -17,7 +17,7 @@ Common scenarios for using the back up and restore process include:
 
 [WARNING]
 --
-Do not use the back up and restore process to create concurrent running instances of Runtime Fabric. In other words, do not back up Runtime Fabric A, use that back up to create a new Runtime Fabric B while Runtime Fabric A is till active, and attempt to run them concurrently. This creates application deployment issues.
+Do not use the back up and restore process to create concurrent running instances of Runtime Fabric. In other words, do not back up Runtime Fabric A, use that back up to create a new Runtime Fabric B while Runtime Fabric A is still active, and attempt to run them concurrently. This creates application deployment issues.
 --
 
 == Before You Begin
