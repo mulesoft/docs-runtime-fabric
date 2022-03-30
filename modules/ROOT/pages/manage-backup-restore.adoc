@@ -83,7 +83,7 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost:/opt/anypoint/runtim
 ----
 
 
-. Confirm your Kubernetes (kubectl) context is set to the backed-up cluster, and scale down all Runtime Fabric components on the original, backed-up cluster:
+. Confirm your Kubernetes (kubectl) context is set to the backed-up cluster, and scale down all Runtime Fabric components on the original backed-up cluster:
 +
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
