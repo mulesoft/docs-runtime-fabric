@@ -146,6 +146,7 @@ application. Application metrics are queued, and are again collected after the a
 restarts.
 
 == Troubleshoot Application Runtime Issues
+
 If any of the following Runtime Fabric alert messages are reported, you might need to recover
 one or more controller nodes.
 ----
@@ -334,3 +335,17 @@ To renew the certificate, use the `rtfctl appliance renew-expired-client-cert` c
 
 * xref:install-rtfctl.adoc#commands-for-managing-the-runtime-fabric-appliance[Commands for Managing the Runtime Fabric Appliance]
 * https://help.mulesoft.com/s/article/Rtfctl-Client-Certificate-Expiration-Warning[Rtfctl Client Certificate Expiration Warning^]
+
+== Troubleshoot Inconsistencies After Backing Up and Restoring Rutime Fabric
+
+After restoring a cluster from a backup, you may see some inconsistencies in Runtime Manager, for example: 
+
+* An application you deleted shows as running
+* A recently deployed application is listed with 0 replicas
+* A deployment's replica count does not match the number of replicas you specified in Runtime Manager
+
+In each of these circumstances, verify that the deployments status appears as *applying* and that a corresponding API call reveals that the `status` and `desiredState` fields do not match. See xref:manage-backup-restore.adoc#back-up-and-restore-process-does-not-affect-the-control-plane[The Back Up and Restore Process Does Not Affect the Control Plane] for an explanation of the root cause.
+
+To resolved these conflicts, you must manually apply the necessary changes to the cluster to match the expected status. You cannot automatically re-sync these changes nor override them with new changes. The current status of the cluster must match the expected values before you can apply any further changes from the control plane. If you need to review changes you applied after creating a backup, use xref:access-management::audit-logging.adoc[audit logs].
+
+

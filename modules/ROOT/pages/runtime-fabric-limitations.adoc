@@ -13,15 +13,16 @@ The following table lists important limitations for configuring Runtime Fabric:
 [%header%autowidth.spread]
 |===
 | Component   | Limitation
-| Controller Nodes | The maximum number of controller nodes supported is 5.
-| Worker Nodes | The maximum number of worker nodes supported is 16.
-| Replicas Per Worker Node | The maximum number of replicas that can be deployed per worker node is 40.
+| Controller nodes | The maximum number of controller nodes is 5.
+| Worker nodes | The maximum number of worker nodes is 16.
+| Replicas per application | The maximum number of replicas per application is 8.
+| Replicas per worker node | The maximum number of replicas that can be deployed per worker node is 40.
 {sp} +
 {sp} +
 To allow core sharing across replicas when needed for bursting, run no more than 20-25 *replicas per core*. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
-| Associated Environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
-| Business Groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
-| Object Store Persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
+| Associated environments per Runtime Fabric | The maximum number of environments per Runtime Fabric is 50.
+| Business groups | The maximum number of Runtime Fabrics you can create in a business group is 50.
+| Object store persistence | To handle data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses the Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
 |===
 
 == Internal Load Balancer Resource Allocation and Performance

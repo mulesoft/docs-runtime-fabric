@@ -19,6 +19,11 @@ Common scenarios for using the back up and restore process include:
 --
 Do not use the back up and restore process to create concurrent running instances of Runtime Fabric. In other words, do not back up Runtime Fabric A, use that back up to create a new Runtime Fabric B while Runtime Fabric A is still active, and attempt to run them concurrently. This creates application deployment issues.
 --
+== The Back Up and Restore Process Does Not Affect the Control Plane
+
+The Runtime Fabric back up and restore process affects only the Runtime Fabric cluster, and it does not involve the control plane. Any changes you make after you perform a backup will not be present if you restore the cluster from that backup. For example, if you perform a backup, delete an application, and then restore from that backup, the application you deleted will be recreated in the cluster, but it will be marked as deleted in Runtime Manager. As a result the application's status will show as *applying* in Runtime Manager.
+
+You need to manually resolve such inconsistencies by reapplying the changes you made after performing the backup, as these changes can't be reapplied from the control plane.
 
 == Before You Begin
 
