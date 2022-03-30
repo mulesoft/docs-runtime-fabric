@@ -11,7 +11,7 @@ For Runtime Fabric on VMs / Bare Metal, the back up and restore process includes
 Common scenarios for using the back up and restore process include: 
 
 * Performing a major infrastructure upgrade, such as migrating nodes in a Runtime Fabric cluster to a new version of an operating system.
-* Upgrading Runtime Fabric for VMs / Bare Metal. In some cases, you may want to back up your cluster, install a new cluster using the new Runtime Fabric version on the same cluster, and then restore your backup on the new cluster.
+* Upgrading Runtime Fabric for VMs / Bare Metal. In some cases, you may want to back up your cluster, install a new cluster using a new Runtime Fabric version on that same cluster, and then restore your backup on that cluster.
 * Migrating your Runtime Fabric cluster from on-premises to the cloud or migrating from one cloud provider to another.
 * Performing a failover to a standby cluster. 
 
