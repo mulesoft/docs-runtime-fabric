@@ -193,7 +193,20 @@ labels:
   environment: 
   environment-id
 ----
+|`unique-id` | `path`, `annotation, labels` a| 
+
+[source,yaml]
+----
+host: app-name-unique-id.com
+----
 |===
+
+Use the `unique-id` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `app-name-unique-id.com` in the `path` section of the ingress template, the resulting endpoint will be similar to `app-name-7jkbic.com`.
+
+[NOTE]
+--
+The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and later.
+--
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
