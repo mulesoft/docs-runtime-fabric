@@ -101,9 +101,9 @@ during the installation.
 * `worker_env.sh`: shell script of environment variables added to the worker VM(s).
 * `README.md`: markdown file containing installation instructions.
 
-=== Modify the fabric.tf Script
+== Modify the `fabric.tf` Script
 
-Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The tables below
+Before running Terraform, modify the `fabric.tf` script to reflect your specific environment. The following tables
 list the required and optional environment variables.
 
 [NOTE]
@@ -119,7 +119,7 @@ In Runtime Fabric on VMs / Bare Metal, the inbound load balancer runs in either 
 Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 ====
 
-*Required Environment Variables*
+=== Required Environment Variables
 
 [%header,cols="3*a"]
 |===
@@ -133,7 +133,7 @@ Refer to xref:manage-index.adoc[Manage Runtime Fabric] for detailed information.
 |===
 
 
-*Optional Environment Variables*
+=== Optional Environment Variables
 
 
 [%header,cols="3*a"]
@@ -160,6 +160,7 @@ If the host operating system is RHEL 8, do not set to `false` or installation wi
 | `service_uid` | An integer representing the user ID to run each Runtime Fabric service. Overrides the default behavior of creating a user named "planet". | `1000`
 | `service_gid` | An integer representing the group ID used when running each Runtime Fabric service. Overrides the default behavior of creating a group named "planet". | `900`
 | `workers` | The number of worker machines to provision. The default value is `3`. | `5`
+| `private_interface` | Allows private IP address to be discovered from the network interface. | `eth0`
 |===
 
 == Configure Your Environment to Access AWS
