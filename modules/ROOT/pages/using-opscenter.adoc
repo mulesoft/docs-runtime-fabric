@@ -66,7 +66,7 @@ The dashboards are divided into the following categories:
 * *Ingress* shows metrics on all the replicas running the internal load balancer.
 * *Pods*  shows metrics on each individual service running within the Runtime Fabric cluster. 
 ** Filters include the `namespace` and `podname`, allowing you to specify the specific service to monitor.
-** When selecting `namespace`, you'll see GUIDs which correspond to your Anypoint environment IDs under
+** When selecting `namespace`, you'll see GUIDs that correspond to your Anypoint environment IDs under
 which your applications are deployed.
 ** When selecting `podname`, you'll see values prefixed by the application name. These refer to replicas of
 each application deployment.
