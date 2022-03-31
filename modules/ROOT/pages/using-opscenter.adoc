@@ -59,7 +59,7 @@ to view the dashboards available for viewing.
 The dashboards are divided into the following categories:
 
 * *Applications* shows metrics on all the replicas for an application deployment. 
-** Filters include the environment ID the application is deployed in, and the application deployment name.
+** Filters include the environment ID the application is deployed in and the application deployment name.
 * *Cluster* shows metrics on the overall Runtime Fabric cluster and provides a machine-level overview of the Kubernetes cluster. The limit for a node is the sum of all limits for individual pods scheduled on it. Unbound pods, like ingress, are not included in the limit, as they are not limited. This dashboard will not show ingress-specific data but machine-level data only, including that all pods. 
 ** Filters include `nodename`, allowing you to filter by a specific VM.
 * *CPU Core Usage* shows CPU usage for Mule applications only.
