@@ -207,6 +207,7 @@ The following variables can be defined based upon your organization's requiremen
 {sp} +
 {sp} +
 If the host operating system is RHEL 8, do not set to `false` or installation will fail. | `true`
+| `RTF_PRIVATE_INTERFACE` | Allows private IP address to be discovered from the network interface. | `eth0`
 |===
 
 == Monitoring Installation Progress
