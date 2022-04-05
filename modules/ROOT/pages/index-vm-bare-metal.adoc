@@ -1,4 +1,5 @@
 = Anypoint Runtime Fabric on VMs / Bare Metal
+:page-aliases: architecture.adoc
 
 == Anypoint Runtime Fabric on VMs / Bare Metal Architecture
 
