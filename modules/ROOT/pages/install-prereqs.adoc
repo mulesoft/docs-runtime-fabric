@@ -111,7 +111,7 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 +
 [NOTE]
 --
-Runtime Fabric no longer supports CentOS 8, as it has reached https://www.centos.org/centos-linux-eol/[end-of-life^].
+CentOS 8 has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. Consider using alternative operating system.
 --
 * Ubuntu v18.04 (using Runtime Fabric Appliance version 1.1.1625094374-7058b20 or later)
 
