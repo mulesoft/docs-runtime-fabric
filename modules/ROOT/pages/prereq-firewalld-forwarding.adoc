@@ -1,4 +1,4 @@
-= Enable Forwarding When Using firewalld
+= Enabling Forwarding When Using firewalld
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

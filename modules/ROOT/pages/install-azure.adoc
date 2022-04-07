@@ -1,4 +1,4 @@
-= Install Runtime Fabric on Azure
+= Installing Runtime Fabric on Azure
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -24,7 +24,7 @@ Modify the Azure Resource Manager template to reference an existing Virtual Netw
 * Note that Runtime Fabric only supports instances of RHEL with Logical Volume Manager (LVM) on Azure Bare Metal. Non-LVM instances of RHEL on Azure Bare Metal are not supported.
 
 
-== Installation
+== Install Runtime Fabric
 
 The Azure Resource Manager templates provided as part of the installation package are for reference only and should not be used as-is for either non-production or production Runtime Fabric installations. You must review and customize these templates to meet your needs. Runtime Fabric on VMs / Bare Metal is supported as long as you meet or exceed the minimum requirements specified in xref:install-prereqs.adoc[Runtime Fabric Installation Prerequisites].
 

@@ -1,4 +1,4 @@
-= Import a TLS Context from Secrets Manager (Advanced)
+= Importing a TLS Context from Secrets Manager (Advanced)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

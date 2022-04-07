@@ -1,4 +1,4 @@
-= Configure Alerting on Runtime Fabric
+= Configuring Alerting on Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

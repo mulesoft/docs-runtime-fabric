@@ -1,10 +1,12 @@
-= Persistence Gateway
+= Using Persistence Gateway with Runtime Fabric
 
 Anypoint Runtime Fabric provides Persistence Gateway, which enables Mule applications deployed to a Mule runtime instance to store and share data across application replicas and restarts.
 
 [NOTE]
 ====
 Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mule runtime engine 4.2.1 or later.
+
+You can also use the Mule Maven plugin version 3.5.4 or later to enable persistent object stores for Runtime Fabric deployments. 
 ====
 
 == Using Persistence Gateway in a Mule Application
@@ -140,3 +142,4 @@ The default CPU, memory, and limit values are based on a small number of deploye
 == See Also
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
+* xref:mule-runtime::deploy-to-rtf.adoc[Deploy Applications to Runtime Fabric Using the Mule Maven Plugin]

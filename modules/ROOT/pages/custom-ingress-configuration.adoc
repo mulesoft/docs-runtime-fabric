@@ -1,4 +1,4 @@
-= Configure Ingress for Runtime Fabric on Self-Managed Kubernetes
+= Configuring Ingress for Runtime Fabric on Self-Managed Kubernetes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -83,8 +83,8 @@ spec:
     http:
       paths: #<5>
       - pathType: Prefix
-        path: /
-        backend: #<6>
+        path: / #<6>
+        backend: #<7>
           service:
             name: service-name
             port:
@@ -106,14 +106,15 @@ Ingress controllers discover only those resources with a `spec.ingressClassName`
 +
 If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
 
-<4> The `app-name` placeholder parameter will be replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+<4> The `app-name` placeholder parameter is replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
-<6> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+<6> The `path` parameter value is replaced by the value you add in the *Path* field when you xref:configure-ingress-for-a-mule-application[configure ingress for a Mule application]. Note that `path` is not a placeholder. 
 
-For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly.
-For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
+<7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+
+For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly. For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
 
 === networking.k8s.io/v1beta1
 
@@ -135,9 +136,9 @@ spec:
     - host: app-name.example.com #<4>
       http:
         paths: #<5>
-        - path: /
+        - path: / #<6>
           pathType:
-          backend: #<6>
+          backend: #<7>
             serviceName: service-name
             servicePort: 80
 --
@@ -157,11 +158,13 @@ Ingress controllers discover only those resources with a `spec.ingressClassName`
 +
 If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
 
-<4> The `app-name` placeholder parameter will be replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+<4> The `app-name` placeholder parameter is replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
-<6> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
+<6> The `path` parameter value is replaced by the value you add in the *Path* field when you xref:configure-ingress-for-a-mule-application[configure ingress for a Mule application]. Note that `path` is not a placeholder.
+
+<7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
 For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly.
 For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
@@ -173,15 +176,6 @@ The following placeholders are optional. If you use a placeholder, replace it in
 [%header%autowidth.spread]
 |===
 |Name of Placeholder |Location |Example Value 
-|`app-name`      |`path`, `host`, `annotation, labels` a|
-[source,yaml]
-----
-http:
- paths:
- - pathType: ImplementationSpecific
-   path: /app-name
-----
-
 |`business-group-id` |`path`, `host`, `annotation, labels` a|
 
 [source,yaml]
@@ -199,7 +193,20 @@ labels:
   environment: 
   environment-id
 ----
+|`unique-id` | `path`, `annotation, labels` a| 
+
+[source,yaml]
+----
+host: app-name-unique-id.com
+----
 |===
+
+Use the `unique-id` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `app-name-unique-id.com` in the `path` section of the ingress template, the resulting endpoint will be similar to `app-name-7jkbic.com`.
+
+[NOTE]
+--
+The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and later.
+--
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
@@ -251,8 +258,7 @@ The *Subdomain* field is only available if the hostname uses a wildcard.
 . In the *Path* field, add a URL path to the application’s endpoint:
 +
 image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint,80%]
-+
-It can be any of the placeholder parameters, such as `app-name`.
+
 . To preview the endpoint, click the generated preview link.
 . To add additional endpoints, click *+ Add Endpoint*.
 . When ready, click *Deploy application*.  

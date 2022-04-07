@@ -1,15 +1,18 @@
-= Manage Proxies on Runtime Fabric on Self-Managed Kubernetes
-
-[IMPORTANT]
-====
-The procedures in this topic should be performed by a MuleSoft organization administrator.
-====
+= Managing Proxies on Runtime Fabric on Self-Managed Kubernetes
 
 Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running and hosting applications:
 
 * System proxies: include proxies that enable connectivity among Kubernetes cluster services, including the Docker daemon and other internal components. When using Runtime Fabric on Self-Managed Kubernetes you are responsible for configuring and managing system proxies.
 * Application proxies: include proxies that enable connectivity to applications running on Runtime Fabric.
 
+== Install rtfctl 
+
+The `rtfctl` command line tool is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[Install rtfctl] before configuring proxy settings.
+
+[IMPORTANT]
+--
+You must install Runtime Fabric before running `rtfctl apply proxy` commands.
+--
 
 == Apply Proxy Values to Runtime Fabric on Self-Managed Kubernetes
 

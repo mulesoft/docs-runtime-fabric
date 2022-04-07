@@ -1,4 +1,4 @@
-= View Runtime Fabric Health Details
+= Viewing Runtime Fabric Health Details
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

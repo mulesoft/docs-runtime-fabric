@@ -1,4 +1,4 @@
-= Deploy API Proxies to Runtime Fabric
+= Deploying API Proxies to Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

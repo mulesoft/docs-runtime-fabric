@@ -126,7 +126,13 @@ The public certificate, private key, and key passcode are saved in the secrets m
 The JKS file information is saved in the global secrets group for your organization.
 * Option 3: *Import from Secrets Manager* 
 +
-Refer to the instructions in xref::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
+Refer to the instructions in xref::configure-adv-tls-context.adoc[Importing a TLS Context from Secrets Manager (Advanced)].
+
+== Optionally Select Security Policies
+
+If you want to add security policies, you must first define them in Anypoint Security before they are displayed as options in the *HTTP Limits*, *Web Application Firewall (WAF)*, *IP Allowlist*, or *Denial of Service (DoS)* dropdown lists.
+
+To access a Runtime Fabric on VMs / Bare Metal instance using more than one DNS, add DNS entries in the subject alternative names (SAN) certificate property. If a certificate has multiple DNS entries specified in the SAN property, the available URLs are displayed in the *Applications->Ingress* page when you deploy an application.
 
 == Optionally Select Security Policies
 

@@ -1,0 +1,110 @@
+= Using a Local Registry with Runtime Fabric on Self-Managed Kubernetes
+
+Runtime Fabric uses its own registry to store the necessary Docker images for installing and managing Runtime Fabric and for running applications in Kubernetes. If your security policies require that you pull your Docker images from a registry under your control, you can set up a local registry to pull and store these Docker images.
+
+== Limitations on Local Registry Support 
+
+Review the following limitations on support for local registries: 
+
+* Runtime Fabric supports local registries on Self-Managed Kubernetes only.
+* You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later.
+* You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
++
+If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
++
+You cannot add a local registry to any version of an existing Runtime Fabric instance, even if you upgrade that installation to 1.12.0 or later.
+* If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
+* You're responsible for synchronization between your registry and the Runtime Fabric registry. MuleSoft doesn't provide additional software to synchronize images between the registries. Push all the dependency images for your version to your local registry before you start the installation. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.  
+* If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
+
+----
+  labels:
+    rtf.mulesoft.com/synchronized: "true"
+----
+
+* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf-` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
+
+* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>
+
+== Configure a Local Registry for Use with Runtime Fabric 
+
+To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
+
+=== Before You Begin
+
+Ensure that you've performed the following tasks: 
+
+. Set up, configure, and test your private Docker image registry.
+. Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
++
+See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
++
+[NOTE]
+Dependency versions are specific to the Runtime Fabric version.
+ 
+
+. xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Download and install the `rtfctl` command line utility] version 0.3.150 or higher.
+. xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Create a Runtime Fabric using Runtime Manager], and gather the activation data. 
+
+=== Configure Your Local Registry and Install Runtime Fabric
+
+. Obtain `rtf-runtime-registry` credentials:
++
+----
+# rtfctl get registry-credentials <activation-data>
+----
++
+This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSWORD` in the current shell environment. 
+
+. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
++
+---- 
+# eval $(rtfctl get docker-registry-login <activation-data>)
+# docker login $RTF_IMAGE_SERVER --username $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
+----
++
+You should see a message that the login was successful.
+
+. To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
++
+For the US control plane:
++
+---- 
+# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the EU control plane:
++
+---- 
+# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
+----
+
+. Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
+
+. Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
++
+----
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
+----
++
+Alternatively, if you use authentication to access your registry, use the following command:
++
+----
+# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server> --image-pull-secret <your-local-reg-secret>
+----
++
+This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
+
+. If you use authentication to access your registry, after you complete the installation, you must recreate the pull secret in the RTF namespace and in any other namespaces where you will deploy applications. 
+. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key.
+
+The `rtfctl uninstall` command deletes any pull secret you specify during installation.
+
+When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
+
+
+

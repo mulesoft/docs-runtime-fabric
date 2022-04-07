@@ -1,9 +1,9 @@
-= Use the Runtime Fabric Command Line Tool
+= Using the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtfctl` utility supports the following actions:
+Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics. The `rtfctl` tool supports the following actions:
 
 * Get the status of a Runtime Fabric.
 * Perform a heap dump or a thread dump of a running application.
@@ -19,14 +19,14 @@ Install and use the `rtfctl` utility to locally manage Runtime Fabrics. The `rtf
 ====
 The tasks in the section must be performed by an IT administrator.
 
-If you're using self-managed Kubernetes on AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
+If you're using Runtime Fabric on Self-Managed Kubernetes for AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
 
 `az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
 
-. Download the `rtfctl` command-line utility:
+. Download the `rtfctl` command-line tool:
 +
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this tool using the URLs below:
 +
 *Windows:*
 +
@@ -46,14 +46,23 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/l
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
-. Change file permissions for the `rtfctl` command-line utility:
+. Change file permissions for the `rtfctl` command-line tool:
 +
 ----
 sudo chmod +x rtfctl
 ----
 
+For Runtime Fabric on VMs / Bare Metal,  you must run `rtfctl` from a controller node. The tool detects the required configuration to manage the cluster. 
+
+For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage.
+
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
+
+=== Checking for Proxy Settings
+
+When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and will accept a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
+
 
 == Commands for Managing the Runtime Fabric Appliance
 
@@ -72,16 +81,29 @@ Performs operations on the Runtime Fabric appliance
 rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
 ----
 
-* Renews an expired client certificate using a pre-downloaded package
-+
-----
-rtfctl appliance renew-expired-client-certificate --file <cert-bundle-filename>
-----
 
 * Renews an expired client certificate by downloading the certificate bundle
 +
 ----
-rtfctl appliance renew-expired-client-certificate --auth '<YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://<host>/<path-to-installer-package>'\
+rtfctl appliance renew-expired-client-cert --auth 'Bearer <YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org-id>/fabrics/<fabric-id>/certificate-bundle'
+----
+
+* Renews an expired client certificate using a pre-downloaded package
++
+----
+rtfctl appliance renew-expired-client-cert --file <cert-bundle-filename>
+----
+
+* Reinstalls Runtime Fabric components using the latest scripts
++
+----
+rtfctl appliance reinstall
+----
+
+* Reinstalls Runtime Fabric components without downloading the latest scripts
++
+----
+rtfctl appliance reinstall --skip-download
 ----
 
 * Generates an appliance diagnostics report
@@ -244,7 +266,6 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 |Command |Description
 |xref:install[`install`] | Installs Runtime Fabric
-|xref:reinstall[`reinstall`] | Reinstalls Runtime Fabric components
 |xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
 |xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
@@ -252,26 +273,17 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 |===
 
 === `install`
-Installs Runtime Fabric
+
+* Installs Runtime Fabric
 
 ----
 rtfctl install <activation data>
 ----
 
-=== `reinstall`
-
-Reinstalls Runtime Fabric components
-
-* Reinstalls Runtime Fabric components using the latest scripts
+* Override the Docker image registry URL and secret 
 +
 ----
-rtfctl reinstall
-----
-
-* Reinstalls Runtime Fabric components without downloading the latest scripts
-+
-----
-rtfctl reinstall --skip-download
+rtfctl install <activation data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
 === `backup`
@@ -489,6 +501,12 @@ rtfctl get secure-properties
 rtfctl get mule-license
 ----
 
+* Displays Runtime Fabric registry credentials
++
+----
+rtfctl get registry-credentials <activation data>
+----
+
 === `ping`
 Tests network connectivity
 
@@ -569,6 +587,26 @@ Heap dump written to /tmp/dump.hprof
 ----
 
 For additional information, run the `rtfctl heapdump -h` command.
+
+=== Working with Multiple Replicas
+
+For application management commands that accept a `--pod` flag, you can obtain the list of replicas using the `describe` command:
+
+----
+$ sudo ./rtfctl describe apps hello-world --namespace bed42b62-XXXX
+Name:              hello-world
+Namespace:         bed42b62-XXXX
+Status:            PROGRESSING
+Runtime:           2
+ID:
+Version:
+Organization ID:   d30f74c0-XXXX
+Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
+
+  Name                             Status
+  ----                             ------
+  hello-world-77f5897949-z54gb   Pending
+----
 
 == See Also
 
