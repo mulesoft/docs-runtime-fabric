@@ -1,49 +1,104 @@
-= Runtime Fabric on Self-Managed Kubernetes
+= Anypoint Runtime Fabric on Self-Managed Kubernetes
 
-Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Runtime Fabric runs as a service on an existing Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) environment.
+Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric on Self-Managed Kubernetes runs as a service in existing Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) environments.
 
-== Architecture
+== Core Components of Anypoint Runtime Fabric on Self-Managed Kubernetes 
 
-Runtime Fabric on Self-Managed Kubernetes and its related components run as services on your Amazon EKS, AKS, or GKE environment. The following diagram shows different layers of the architecture.
+Anypoint Runtime Fabric on Self-Managed Kubernetes and its underlying components run as Kubernetes deployment objects in EKS, AKS, or GKE environments. You manage the objects via Anypoint Platform.
 
-image::architecture-self-managed.png[]
+Linux-based operating systems are required for all nodes that run Runtime Fabric components on self-managed Kubernetes clusters.
 
-MuleSoft is responsible for providing support for Runtime Fabric services, the Mule Runtime server, and Mule applications. You are responsible for creating, configuring and managing the Amazon EKS, AKS, or GKE environment.
+=== The Runtime Fabric Agent
 
-== Shared Responsibility
+The Runtime Fabric agent is deployed as a pod in the cluster and communicates with the control plane via an mTLS outbound connection established at startup. 
 
-The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you must manage and which areas are managed by MuleSoft.
+The agent is event-driven. When an application state change generates a Kubernetes event, the agent sends metadata describing the current state of the application to the control plane. Kubernetes events include application pod starts, updates, or restarts.
 
-=== MuleSoft Responsibility
+The agent also listens for incoming requests from the control plane. When the agent receives a message from the control plane, the agent makes changes to the Kubernetes resources specified in the message. Such changes include creating a new application, updating an existing application, or deleting an application. 
 
-MuleSoft is responsible for the Runtime Fabric agent, Mule runtime engine, and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, replicasets, and default ingress resources.
+=== Additional Cluster Components
 
-=== Customer Responsibility
+The following Runtime Fabric components also run inside the Kubernetes cluster: 
 
-Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
+* Mule cluster IP service: Provides an API that Mule applications use to discover their peers inside the cluster
+* Resource cache: Provides a cluster-local cache of application dependencies
+* Persistence gateway: Provides a persistent ObjectStore interface to Mule applications
 
-* Ingress controller and external load balancing
-* xref:custom-ingress-configuration.adoc[Customizing ingress resources]
-* xref:configure-local-registry.adoc[Configuring a local registry to use with Runtime Fabric]
-* Log forwarding
-* Monitoring
-* Network ports, NAT gateways, and proxies
-* Container runtime and networking
-* Provisioning and management of the Kubernetes environment, including assistance from the following teams in your organization:
-** IT team to provision and manage the infrastructure
-** Network team to specify allowed ports and configure proxy settings
-** Security team to verify compliance and obtain security certificates
+=== About Component Installations and Upgrades
 
-== Requirements
+When you install Anypoint Runtime Fabric on Self-Managed Kubernetes on your Kubernetes cluster, the command-line utility (`rtfctl`) swaps an activation data token for a set of activation properties. Properties include credentials to access the Runtime Fabric Docker registry and credentials to establish an mTLS connection to Anypoint Platform. The utility then invokes Helm to perform the installation. 
 
-The sections below describe the requirements for running Runtime Fabric on Self-Managed Kubernetes.
+You trigger upgrades to the Anypoint Runtime Fabric on Self-Managed Kubernetes components in your cluster from the Anypoint Platform control plane, specifically from Runtime Manager. When you trigger an upgrade, an upgrade message is processed inside the target cluster, and `rtfctl` invokes Helm to upgrade the components' software versions. If you encounter a problem during an upgrade, you can use `rtfctl` to invoke a Helm rollback and restore the cluster to a stable state. A rollback creates a report in the control plane.
 
-=== Network Configuration
+== How Application Deployments Work in Anypoint Runtime Fabric on Self-Managed Kubernetes 
 
-Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
+When you deploy an application in Anypoint Runtime Fabric on Self-Managed Kubernetes, the following occurs:
 
-[[supported-kubernetes-versions]]
-=== Supported Kubernetes Versions
+. You use Runtime Manager to trigger the application deployment.
+. The Runtime Fabric agent in the target cluster receives a request to deploy the application.
+. Runtime Fabric assigns the application to an existing namespace or creates a new namespace if necessary.
+. Runtime Fabric generates the appropriate Kubernetes resources, including a deployment, ConfigMap, secrets, services, and ingress.
+. If the Kubernetes deployment resource includes an init container, it fetches dependencies from the Runtime Fabric resource cache.
+. If the resource cache doesn’t contain required dependencies, Runtime Fabric fetches them from the control plane and adds them to the resource cache.
+
+image::rtf-app-deployment.png[Application deployment workflow for Anypoint Runtime Fabric on Self-Managed Kubernetes]
+
+=== Assigning Namespaces in Anypoint Runtime Fabric on Self-Managed Kubernetes
+
+Each application is deployed into a Kubernetes namespace based on the application’s environment. 
+
+. Runtime Fabric searches for a namespace with the label `rtf.mulesoft.com/envId=<ANYPOINT_ENVIRONMENT_ID>`. 
+. If Runtime Fabric can't find that label, it searches for a namespace with the name `<ANYPOINT_ENVIRONMENT_ID>`. 
+. If Runtime Fabric can't find that namespace, it creates a new namespace called `<ANYPOINT_ENVIRONMENT_ID>`.
+
+image::rtf-namespace-flow.png[Application namespace assignment flowchart]
+
+=== Monitoring Application Deployments
+
+The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`. When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. See xref:logs[Logs] and xref:monitoring[Monitoring] for addtional information. 
+
+
+== Anypoint Runtime Fabric on Self-Managed Kubernetes as a Shared Responsibility
+
+The successful operation of Anypoint Runtime Fabric on Self-Managed Kubernetes is a shared responsibility. It is critical to understand which areas you provide and manage and which areas MuleSoft provides.
+
+The following image illustrates different MuleSoft and customer responsibilities for Anypoint Runtime Fabric on Self-Managed Kubernetes instances:
+
+image::rtf-shared-responsibility.png[Anypoint Runtime Fabric on Self-Managed Kubernetes Shared Responsibilities Diagram]
+
+* MuleSoft provides
++
+MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, Replicasets, and ingress resources.
+
+* Customer responsibility
++
+Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Anypoint Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
++
+** Ingress controller and external load balancing
++
+** xref:custom-ingress-configuration.adoc[Customizations to Ingress resources]
++
+** Log forwarding
++
+** Monitoring
++
+** Network ports, NAT gateways, and proxies
++
+** Container runtime and networking
++
+** Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
++
+*** IT team to provision and manage the infrastructure
++
+*** Network team to specify allowed ports and configure proxy settings
++
+*** Security team to verify compliance and obtain security certificates
+
+== Requirements for Runtime Fabric on Self-Managed Kubernetes
+
+The following descriptions provide you with the general requirements for running Anypoint Runtime Fabric on Self-Managed Kubernetes.
+
+=== Kubernetes Support
 
 Runtime Fabric on Self-Managed Kubernetes requires a dedicated cluster that is provisioned and operational. Verify if your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
 
@@ -51,8 +106,16 @@ Runtime Fabric on Self-Managed Kubernetes supports the following Kubernetes vers
 
 * 1.18.x
 * 1.19.x
-* 1.20.10 or later patch versions on 1.20.x
-* 1.21.3 or later patch versions on 1.21.x 
+* 1.20.10 or later patch versions on 1.20.x 
+* 1.21.3 or later patch versions on 1.21.x
+
+=== Supported Architectures
+
+Anypoint Runtime Fabric on Self-Managed Kubernetes requires worker nodes that use the x86/x64 architecture. ARM-based architectures are not supported.
+
+=== Operating Systems
+
+Anypoint Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported by Amazon EKS, AKS, or GKE.
 
 === Nodes and Resources
 
@@ -64,15 +127,20 @@ Follow best practices by installing Runtime Fabric on Self-Managed Kubernetes in
 * At least 15 GiB of RAM
 * At least 250 GiB of available disk space
 
-Adjust the number of nodes and amout of resources allocated according to the amount and type of workload you run on each Runtime Fabric.
+Adjust the number of nodes and amount of resources allocated according to the amount and type of workload you run on each Anypoint Runtime Fabric on Self-Managed Kubernetes instance.
 
-=== Supported Architectures
+=== Anypoint Platform Roles and Permissions
 
-Runtime Fabric on Self-Managed Kubernetes requires worker nodes which use the x86/x64 architecture. ARM-base architectures are not supported.
+To successfully use Anypoint Runtime Fabric on Self-Managed Kubernetes, your Anypoint Platform account must have the following permissions enabled:
 
-=== Operating Systems
+* To manage permissions for Anypoint Platform users, you must have the ability to use xref:access-management::index.adoc[Anypoint Access Management].
+* To deploy and manage applications, you must have the ability to use Anypoint Runtime Manager. To deploy applications, you must also have the Exchange Contributors permission enabled for your Anypoint Platform account.
+* To use Runtime Fabric, you must have the Organization Administrators permission or the Manage Runtime Fabrics permission for the corresponding environments.
+* To delete Runtime Fabric instances, administrators need the Manage Runtime Fabrics permission at the organization level.
 
-Runtime Fabric on Self-Managed Kubernetes supports any Linux-based operating system supported by Amazon EKS, AKS, or GKE.
+=== Network Configuration
+
+Anypoint Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
 
 === Anypoint Platform Roles and Permissions
 
@@ -98,12 +166,12 @@ Applications deployed on Runtime Fabric on Self-Managed Kubernetes direct logs t
   
 === External Log Forwarding
 
-Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. You are responsible for installing, configuring, and managing an external log forwarder. You can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
+Anypoint Runtime Fabric on Self-Managed Kubernetes does not include external log forwarding. You are responsible for installing, configuring, and managing an external log forwarder. You can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
 
 * Splunk Connect for Kubernetes
 * Fluentbit
 
-For Titanium customers, Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
+For Titanium customers, Anypoint Runtime Fabric on Self-Managed Kubernetes supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
 
 === Monitoring
 
