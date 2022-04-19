@@ -117,9 +117,7 @@ CentOS 8 has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. Con
 
 [IMPORTANT]
 ====
-There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
-
-To avoid this issue, use RHEL or CentOS 8.x in your Runtime Fabric on VMs / Bare Metal installation.
+* There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
 ====
 
 == Network and Port Requirements
@@ -261,7 +259,6 @@ Because the following endpoints use mutual TLS authentication to establish the c
 * EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
 
-
 === Required Network Settings
 
 In addition to the previous port requirements, the following network settings are required to operate Runtime Fabric on VMs / Bare Metal:
@@ -270,6 +267,7 @@ In addition to the previous port requirements, the following network settings ar
 +
 [IMPORTANT]
 The pod CIDR block must not overlap with IP addresses that pods or servers use to communicate. If services within the cluster or services that you installed on nodes need to communicate with an IP range that overlaps the pod or service CIDR block, a conflict can occur. If a CIDR block is in use, but pods and services do not use those IP addresses to communicate, there is no conflict. If you deploy more than one cluster, each cluster can reuse the same IP range, because those addresses exist within the cluster nodes, and cluster-to-cluster communications is relayed on the external interfaces.
+
 * Shell/SSH access to each VM used to install Runtime Fabric on VMs / Bare Metal
 * Static private IPv4 addresses assigned to each VM, which persist between restarts
 * Kernel IP forwarding to enable internal Kubernetes load balancing. IPv4 forwarding is enabled on each VM during installation.
@@ -278,6 +276,9 @@ The pod CIDR block must not overlap with IP addresses that pods or servers use t
 * An external load balancer to balance external requests to the internal load balancer running on each controller VM
 * Your environment's HTTP proxy configuration if outgoing requests to the Internet must route through a proxy
 * A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy
+
+[NOTE]
+If you're using VMWare and are unable to connect to your existing applications or deploy new applications refer to https://help.mulesoft.com/s/article/RTF-Networking-Issues-with-VMware[RTF Networking Issues with VMware^] in the MuleSoft Knowledge Base. 
 
 == Mule License
 
