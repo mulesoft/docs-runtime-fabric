@@ -117,7 +117,7 @@ CentOS 8 has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. Con
 
 [IMPORTANT]
 ====
-* There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
+There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
 ====
 
 == Network and Port Requirements
