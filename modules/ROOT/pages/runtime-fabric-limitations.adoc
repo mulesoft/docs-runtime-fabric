@@ -12,9 +12,8 @@ The following limits are based on internal performance testing and are lower tha
 
 [%header%autowidth.spread]
 |===
-| Nodes | The maximum number of nodes is 30.
-| Node types | VM-based nodes are required. For example, Fargate is not supported.
-| Replicas per application | The maximum number of replicas per application is 8.
+| Controller Nodes | The maximum number of controller nodes supported is 5.
+| Worker Nodes | The maximum number of worker nodes supported is 16.
 | Replicas per node | The maximum number of replicas that can be deployed per node is 40.
 
 To allow core sharing across replicas when needed for bursting, run no more than 20-25 *replicas per core*. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
