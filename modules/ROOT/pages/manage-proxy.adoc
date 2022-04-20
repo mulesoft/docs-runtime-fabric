@@ -16,7 +16,13 @@ You must install Runtime Fabric before running `rtfctl apply proxy` commands.
 --
 
 == Configure a Monitoring Proxy
+
 Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
+
+The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
+
+* US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
 
 [NOTE]
 This step is performed one time on one controller node.
