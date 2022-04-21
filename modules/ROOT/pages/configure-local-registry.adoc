@@ -54,13 +54,13 @@ Dependency versions are specific to the Runtime Fabric version.
 # rtfctl get registry-credentials <activation-data>
 ----
 +
-This command sets `RTF_IMAGE_SERVER`, `RTF_IMAGE_USERNAME`, and `RTF_IMAGE_PASSWORD` in the current shell environment. 
+This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
 
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 ---- 
 # eval $(rtfctl get docker-registry-login <activation-data>)
-# docker login $RTF_IMAGE_SERVER --username $RTF_IMAGE_USERNAME --<password> $RTF_IMAGE_PASSWORD
+# docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --<password> $RTF_IMAGE_REGISTRY_PASSWORD
 ----
 +
 You should see a message that the login was successful.
