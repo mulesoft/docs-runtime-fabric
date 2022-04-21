@@ -1,6 +1,6 @@
 = Managing Proxies on Runtime Fabric on VMs / Bare Metal
 
-Anypoint Runtime Fabric clusters consistently communicate with the control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
+Anypoint Runtime Fabric clusters consistently communicate with the Anypoint Platform control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
 
@@ -52,12 +52,17 @@ The output should match the value expected.
 
 == Configure an HTTP Proxy
 
+You can configure HTTP and HTTPS proxies to communicate with the control plane. 
+
+Note that Anypoint Monitoring xref:configure-a-monitoring-proxy[uses its own proxy settings], as do xref:configure-a-proxy-for-a-mule-application [Mule applications].
+
 Updating the HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
 * Apply the proxy values to the services running within Runtime Fabric.
 * If you are using Runtime Fabric installer 1.0.x, run the script on each node of your Runtime Fabric to update the cluster.
 
 === Apply Proxy Values to Runtime Fabric
+
 Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
 
 [NOTE]
@@ -94,7 +99,9 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----
 
 === Configure a Proxy for the API Manager Agent
-Add the following properties to the application:
+
+To configure a proxy for the API Manager Agent, add the following properties to the application:
+
 ----
 anypoint.platform.proxy_host=hostname
 anypoint.platform.proxy_port=port
@@ -102,7 +109,8 @@ anypoint.platform.proxy_username=username
 anypoint.platform.proxy_password=password
 ----
 
-=== Configure a Proxy for an Application
+=== Configure a Proxy for a Mule Application
+
 Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
 cluster. You must configure a proxy for each application. 
 
