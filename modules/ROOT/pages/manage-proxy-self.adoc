@@ -49,7 +49,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 
 == Configure a Proxy for the API Manager Agent
 
-To configure a proxy for the API Manager Agent, add the following properties to the :
+To configure a proxy for the API Manager Agent, add the following properties to the application:
 ----
 anypoint.platform.proxy_host=hostname
 anypoint.platform.proxy_port=port
