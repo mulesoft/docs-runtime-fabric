@@ -49,7 +49,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 
 == Configure a Proxy for the API Manager Agent
 
-To configure a proxy for the API Manager Agent, add the following properties to the :
+You can use a proxy to establish communication for Mule applications that you manage with API Manager. This proxy configuration must be set on each Mule application, even if you are using the same configuration for all applications. Note this setting is independent from the application-level proxy that applications use to communicate with other external endpoints, as explained in xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application].
 ----
 anypoint.platform.proxy_host=hostname
 anypoint.platform.proxy_port=port
@@ -57,7 +57,7 @@ anypoint.platform.proxy_username=username
 anypoint.platform.proxy_password=password
 ----
 
-== Configure a Proxy for an Application
+== Configure a Proxy for a Mule Application
 
 Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
 cluster. You must configure a proxy for each application. 
