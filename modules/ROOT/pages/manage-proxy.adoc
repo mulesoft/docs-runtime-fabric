@@ -58,7 +58,7 @@ The output should match the value expected.
 
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
-You can configure HTTP and HTTPS proxies for outbound components can communicate with the control plane. 
+You can configure HTTP and HTTPS proxies for outbound so that components can communicate with the control plane. 
 
 Note that Anypoint Monitoring xref:configure-a-monitoring-proxy[uses its own proxy settings], as do xref:configure-a-proxy-for-a-mule-application [Mule applications].
 
