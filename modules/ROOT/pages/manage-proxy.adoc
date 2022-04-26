@@ -1,8 +1,14 @@
 = Manage Proxies on Runtime Fabric on VMs / Bare Metal
 
-Anypoint Runtime Fabric clusters consistently communicate with the control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
+Anypoint Runtime Fabric clusters consistently communicate with the Anypoint Platform control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
+
+* xref:configure-an-anypoint-monitoring-proxy[Configure an Anypoint Monitoring Proxy]
+* xref:configure-an-http-proxy-for-services-in-runtime-fabric[Configure an HTTP Proxy for Services in Runtime Fabric]
+* xref:configure-a-proxy-for-the-api-manager-agent[Configure a Proxy for the API Manager Agent]
+* xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application]
+
 
 Proxies used by Runtime Fabric can be configured during or after installation using the `rtfctl` utility. Application proxies are configured during application deployment.
 
@@ -15,8 +21,14 @@ The `rtfctl` command line tool is required to manage proxy settings on Runtime F
 You must install Runtime Fabric before running `rtfctl apply proxy` commands.
 --
 
-== Configure a Monitoring Proxy
+== Configure an Anypoint Monitoring Proxy
+
 Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
+
+The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
+
+* US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
 
 [NOTE]
 This step is performed one time on one controller node.
@@ -44,18 +56,19 @@ sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
 +
 The output should match the value expected.
 
-== Configure an HTTP Proxy
+== Configure an HTTP Proxy for Services in Runtime Fabric
 
-Updating the HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
+You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane. 
+
+Note that Anypoint Monitoring xref:configure-a-monitoring-proxy[uses its own proxy settings], as do xref:configure-a-proxy-for-a-mule-application [Mule applications].
+
+Updating an HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
 * Apply the proxy values to the services running within Runtime Fabric.
 * If you are using Runtime Fabric installer 1.0.x, run the script on each node of your Runtime Fabric to update the cluster.
 
-=== Apply Proxy Values to Runtime Fabric
-Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
-
 [NOTE]
-This step is performed one time on one controller node.
+Perform these steps one time on one controller node.
 
 . Log in to a controller node where `rtfctl` has been installed. 
 . Run the following command, replacing the placeholder values with the following:
@@ -88,7 +101,11 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----
 
 === Configure a Proxy for the API Manager Agent
-Add the following properties to the application:
+
+You can use a proxy to establish communication for Mule applications that you manage with API Manager. This proxy configuration must be set on each Mule application, even if you are using the same configuration for all applications. Note this setting is independent from the application-level proxy that applications use to communicate with other external endpoints, as explained in xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application].
+
+To configure a proxy for the API Manager Agent, add the following properties to the application:
+
 ----
 anypoint.platform.proxy_host=hostname
 anypoint.platform.proxy_port=port
@@ -96,7 +113,8 @@ anypoint.platform.proxy_username=username
 anypoint.platform.proxy_password=password
 ----
 
-=== Configure a Proxy for an Application
+=== Configure a Proxy for a Mule Application
+
 Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
 cluster. You must configure a proxy for each application. 
 
