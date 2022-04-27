@@ -1,0 +1,52 @@
+= Installing Runtime Fabric on Self-Managed Kubernetes Using Helm
+
+[IMPORTANT]
+====
+Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
+====
+
+You can use Helm to install and Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
+
+== Before you Begin
+
+Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure:
+
+* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes]
+* You have installed and configured your Kubernetes environment as follows:
++
+** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
+** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
+** Running an ingress controller to send external requests to applications.
+
+
+
+
+
+
+
+include::partial$include-install-tasks.adoc[tags=licenseKey]
+include::partial$include-install-tasks.adoc[tags=ingressResource]
+include::partial$include-install-tasks.adoc[tags=validate]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== See Also
+
+* xref:custom-ingress-configuration.adoc[Configure Ingress for Runtime Fabric on Self-Managed Kubernetes]
+* xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]

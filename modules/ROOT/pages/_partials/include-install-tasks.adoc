@@ -1,0 +1,78 @@
+// tag::licenseKey[]
+== Insert the Mule License Key
+
+[IMPORTANT]
+====
+The procedures in the section must be performed by an IT administrator.
+====
+
+After the installation has completed succesfully, insert the Mule license key.
+
+. Base64 encode the new Mule `.lic` license file provided by MuleSoft:
++
+* On MacOS, run the following command:
++
+----
+base64 -b0 license.lic
+----
++
+* On Unix, run the following command:
++
+----
+base64 -w0 license.lic
+----
++
+* On Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based computer is required.
++
+.. Transfer to your Unix environment if necessary.
+.. Run the following command to Base64 encode the license key:
++
+----
+base64 -w0 license.lic
+----
+
+. Insert the Mule license key:
++
+----
+rtfctl apply mule-license BASE64_ENCODED_LICENSE
+----
+
+. To verify the Mule license key has applied correctly, run:
++
+----
+rtfctl get mule-license
+----
+// end::licenseKey[]
+
+// tag::ingressResource[]
+== Configure the Ingress Resource Template
+
+[IMPORTANT]
+====
+The procedures in this section should be performed by an IT administrator.
+====
+
+If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
+
+[NOTE]
+====
+For GKE customers, the ingress controller included with GKE will provision a separate HTTP load balancer per application by default. Please read this link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+====
+// end::ingressResource[]
+
+// tag::validate[]
+== Validate Your Runtime Fabric
+
+[IMPORTANT]
+====
+The procedures in this section should be performed by an IT administrator.
+====
+
+After completing the installation, your Runtime Fabric should be activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is `Active`.
+
+Before deploying an application to your Runtime Fabric:
+
+. Associate the Runtime Fabric with at least one Anypoint environment.
+. Review and update the Inbound Traffic settings based upon your Kubernetes environment.
+. Deploy an application to verify that Runtime Fabric is installed and configured correctly.
+// end::validate[]

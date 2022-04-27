@@ -1,0 +1,78 @@
+= Configuring Your Network to Support Runtime Fabric on Self-Managed Kubernetes
+
+[IMPORTANT]
+====
+Network configuration must be performed by an IT administrator.
+====
+
+Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure that the following ports and hostnames are configured correctly.
+
+=== Port Configuration
+
+To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
+
+[%header%autowidth.spread]
+|===
+| Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
+| 443 | TCP | HTTPS | Internet | All nodes | Allow inbound requests to Mule runtime servers
+| 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
+| 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
+| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port your allow list. If you are using a newer version, use the port and hostname specified above.
+|===
+
+=== Port Used by the Persistence Gateway
+
+The Persistent Gateway requires a Postgres-compliant database to store persistent data across Mule application replicas. Ensure that your Kubernetes cluster has access to this database and port. See xref:persistence-gateway.adoc[Persistence Gateway].
+
+=== Hostname Configuration
+
+To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 443 | AMQP over WebSockets | * US control plane: transport-layer.prod.cloudhub.io
+* EU control plane: transport-layer.prod-eu.msap.io | Runtime Fabric message broker for interaction with the control plane.
+| 443 (v1.8.50, or later)| TCP (Lumberjack) | * US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
+
+| 5044 (deprecated) |TCP (Lumberjack) | * US control plane: dias-ingestor-nginx.prod.cloudhub.io
+* EU control plane: dias-ingestor-nginx.prod-eu.msap.io | Anypoint Monitoring agent for Runtime Fabric.
+
+*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+
+If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
+| 443 | HTTPS | anypoint.mulesoft.com | Anypoint Platform for pulling assets.
+| 443 | HTTPS | kubernetes-charts.storage.googleapis.com | Kubernetes base charts repository.
+| 443 | HTTPS | docker-images-prod.s3.amazonaws.com | Kubernetes base charts repository.
+| 443 | HTTPS | * US control plane: worker-cloud-helm-prod.s3.amazonaws.com
+* EU control plane: worker-cloud-helm-prod-eu-rt.s3.amazonaws.com worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
+| 443 | HTTPS | * US control plane: exchange2-asset-manager-kprod.s3.amazonaws.com
+* EU control plane: exchange2-asset-manager-kprod-eu.s3.amazonaws.com exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com |Anypoint Exchange for application assets.
+| 443 | HTTPS | * US control plane: rtf-runtime-registry.kprod.msap.io
+* EU control plane: rtf-runtime-registry.kprod-eu.msap.io | Runtime Fabric Docker repository.
+| 443 | HTTPS | * US control plane: prod-us-east-1-starport-layer-bucket.s3.amazonaws.com prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com
+* EU control plane: prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com | Runtime Fabric Docker image delivery.
+| 443 | HTTPS | * US control plane: runtime-fabric.s3.amazonaws.com
+* EU control plane: runtime-fabric-eu.s3.amazonaws.com | Runtime Fabric Docker repository.
+| 443 | HTTPS | * US control plane: configuration-resolver.prod.cloudhub.io
+* EU control plane: configuration-resolver.prod-eu.msap.io | Anypoint Configuration Resolver.
+|===
+
+=== Certificate Configuration
+
+To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
+
+[%header,cols="2*a"]
+|===
+| Control Plane | Certificates
+| US control plane | transport-layer.prod.cloudhub.io +
+configuration-resolver.prod.cloudhub.io
+| EU control plane | transport-layer.prod-eu.msap.io +
+configuration-resolver.prod-eu.msap.io
+|===
