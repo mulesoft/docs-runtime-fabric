@@ -11,7 +11,7 @@ You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kuberne
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure:
 
-* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes]
 * You have installed and configured your Kubernetes environment as follows:
 +

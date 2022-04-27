@@ -11,13 +11,13 @@ You can install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service 
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure:
 
-* You have read and understand the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
+* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
 * You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes]
-* You have installed and configured your Kubernetes environment as follows:
+* You have installed and configured your Kubernetes environment with:
 +
-** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
-** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
-** Running an ingress controller to send external requests to applications.
+** An EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
+** A xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
+** An ingress controller to send external requests to applications.
 
 
 == Create a Runtime Fabric using Runtime Manager
