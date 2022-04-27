@@ -5,7 +5,7 @@
 Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
-You can use Helm to install and Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
 
 == Before you Begin
 
