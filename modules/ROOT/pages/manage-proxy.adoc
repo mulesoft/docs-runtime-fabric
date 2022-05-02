@@ -100,7 +100,22 @@ The output should match the value expected.
 sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----
 
-=== Configure a Proxy for the API Manager Agent
+=== HTTP_PROXY Environment Variable
+
+Usually after applying a proxy for RTF services you will see a warning like this:
+----
+Warning: Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric "YOUR_PROXY"
+----
+
+This warning is exactly that. A warning to let you know that the environment variable HTTP_PROXY is either unset or does not match the value being used for Runtime Fabric services. It does not mean that these settings should match, is a warning for you to be aware of the impact this may have.
+
+Many Linux tools leverage the HTTP_PROXY environment variable to provide for its proxy setting. Keep this in mind when deciding which value is appropriate. If your environment requires a proxy for Internet access you will likely set this environment variable for commands that require that access to succeed. 
+
+Keep in mind you may be affecting other tools that also use HTTP or HTTPS operations but without Internet access. For example the kubectl tool. Usually this behavior is controlled by using a NO_PROXY environment variable that configures the connections that should not be proxied.
+
+Refer to each propietary tool documentation for more information on which environment variables affect it.
+
+== Configure a Proxy for the API Manager Agent
 
 You can use a proxy to establish communication for Mule applications that you manage with API Manager. This proxy configuration must be set on each Mule application, even if you are using the same configuration for all applications. Note this setting is independent from the application-level proxy that applications use to communicate with other external endpoints, as explained in xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application].
 
@@ -113,7 +128,7 @@ anypoint.platform.proxy_username=username
 anypoint.platform.proxy_password=password
 ----
 
-=== Configure a Proxy for a Mule Application
+== Configure a Proxy for a Mule Application
 
 Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
 cluster. You must configure a proxy for each application. 
@@ -134,3 +149,4 @@ com.ning.http.client.AsyncHttpClientConfig.useProxyProperties=true
 == See Also
 
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
+* https://help.mulesoft.com/s/article/Warning-Proxy-configurations-in-the-environment-HTTP-PROXY-does-not-match-configurations-in-Runtime-Fabric[Warning: Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric]
