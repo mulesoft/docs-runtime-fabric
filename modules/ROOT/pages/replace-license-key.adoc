@@ -13,6 +13,12 @@ this node is named `rtf-controller-1` by default.
 
 The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps in xref:install-rtfctl.adoc[Install rtfctl] before continuing.
 
+For Runtime Fabric on VMs / Bare Metal, the `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/`.
+
+For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current directory and in the user `$PATH`.   
+
+Run `rtfctl` commands as a privileged user.
+
 == Procedure
 
 . Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
@@ -27,10 +33,10 @@ BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
 ----
 BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 ----
-** On Windows you can either 
-*** use a WSL or Cygwin shell which should include the base64 tool and use the above Unix command 
-*** use the base64.exe program included by windows git (e.g. C:\Program Files\Git\usr\bin) or 
-*** use the following Powershell command instead:
+** On Windows, choose one of the following: 
+*** Use a WSL or Cygwin shell that includes the base64, tool and use the above Unix command. 
+*** Use the `base64.exe` program included with Windows git (`C:\Program Files\Git\usr\bin`).
+*** Use the following Powershell command:
 +
 ----
 $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
@@ -41,13 +47,13 @@ Base64 value of your license key. For more information on the `rtfctl` command, 
 xref:runtime-fabric::install-rtfctl#list-supported-commands[rtfctl commands].
 +
 ----
-./rtfctl apply mule-license $BASE64_ENCODED_LICENSE
+rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 ----
 +
 . To verify the Mule license key has applied correctly, retrieve the contents using the `rtfctl` utility:
 +
 ----
-./rtfctl get mule-license
+rtfctl get mule-license
 ----
 
 
