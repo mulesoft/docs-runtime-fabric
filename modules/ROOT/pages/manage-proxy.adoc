@@ -102,7 +102,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 
 === About the HTTP_PROXY Environment Variable 
 
-After applying a proxy for services in Runtime Fabric, you see a warning similar to:
+After applying a proxy for services in Runtime Fabric, you could see a warning similar to:
 
 ----
 Warning: Proxy configurations in the environment "HTTP_PROXY: " does not match configurations in Runtime Fabric "YOUR_PROXY"
