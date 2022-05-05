@@ -116,6 +116,10 @@ This could affect other tools that also use HTTP or HTTPS operations but do not 
 
 Refer to the documentation for your Linux tools for more information on which environment variables affect its proxy behavior.
 
+=== About the NO_PROXY Environment Variable
+
+By default, `NO_PROXY` is set to `0.0.0.0/0` and `.local`. These settings ensure that the proxy does not route any IPV4 destination addresses.
+
 == Configure a Proxy for the API Manager Agent
 
 You can use a proxy to establish communication for Mule applications that you manage with API Manager. This proxy configuration must be set on each Mule application, even if you are using the same configuration for all applications. Note this setting is independent from the application-level proxy that applications use to communicate with other external endpoints, as explained in xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application].
@@ -149,4 +153,5 @@ com.ning.http.client.AsyncHttpClientConfig.useProxyProperties=true
 
 == See Also
 
+* xref:install-rtfctl.adoc[]
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
