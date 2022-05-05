@@ -601,5 +601,6 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
 
 == See Also
 
-* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
+* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric on VMs / Bare Metal]
+* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric on Self-Managed Kubernetes]
 * xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
