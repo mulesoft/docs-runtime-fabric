@@ -26,21 +26,21 @@ If you're using Runtime Fabric on Self-Managed Kubernetes for AKS and have the A
 
 . Download the `rtfctl` command-line tool:
 +
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this tool using the URLs below:
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Choose the appropriate method:
 +
-*Windows:*
+* Windows
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
-*MacOS (Darwin):*
+* MacOS (Darwin)
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
 ----
 +
-*Linux:*
+* Linux
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
@@ -52,10 +52,13 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 sudo chmod +x rtfctl
 ----
 
-For Runtime Fabric on VMs / Bare Metal,  you must run `rtfctl` from a controller node. The tool detects the required configuration to manage the cluster. 
+=== Running Commands
 
-For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage.
+For Runtime Fabric on VMs / Bare Metal, you must run `rtfctl` from a controller node. The `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/``. Confirm that the current working directory is also `/opt/anypoint/runtimefabric/`. The tool detects the required configuration to manage the cluster.
 
+For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+
+* Run `rtfctl` commands as a privileged user.
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
 
