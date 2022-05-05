@@ -133,21 +133,21 @@ Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility
 
 . Download the `rtfctl` command-line utility:
 +
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Choose the appropriate method:
 +
-*Windows:*
+* Windows
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
-*MacOS (Darwin):*
+* MacOS (Darwin)
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
 ----
 +
-*Linux:*
+* Linux
 +
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
