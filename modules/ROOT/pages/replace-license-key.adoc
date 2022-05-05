@@ -34,7 +34,7 @@ BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
 BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 ----
 ** On Windows, choose one of the following: 
-*** Use a WSL or Cygwin shell that includes the base64, tool and use the above Unix command. 
+*** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command. 
 *** Use the `base64.exe` program included with Windows git (`C:\Program Files\Git\usr\bin`).
 *** Use the following Powershell command:
 +
