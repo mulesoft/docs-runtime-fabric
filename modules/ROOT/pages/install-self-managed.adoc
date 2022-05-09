@@ -5,7 +5,7 @@
 Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
-You can install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
+You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
 
 == Before you Begin
 
@@ -39,6 +39,7 @@ To install Runtime Fabric on Self-Managed Kubernetes, first create a Runtime Fab
 * Google Kubernetes Engine
 
 . Click *Next*.
+. Click *rtfctl*.
 . Review the *Support responsibility* disclaimer, then if you agree click *Accept*.
 +
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
