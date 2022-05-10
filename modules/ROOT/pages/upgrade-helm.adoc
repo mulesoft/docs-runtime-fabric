@@ -1,0 +1,24 @@
+= Upgrade Runtime Fabric Using Helm
+
+You can use Helm to upgrade Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage.
+
+Helm upgrades are not available for existing installations that used the `rtfctl` command line tool.
+
+When you upgrade Runtime Fabric using Helm, Runtime Manager provides the Helm command you need to run the upgrade.
+
+IMPORTANT: The upgrade command supplied by Runtime Manager uses the same parameters and values you added to the Helm command when you installed Runtime Fabric. If you changed any values after install, such as proxy values, and want to keep those values after the upgrade, you need to add them to the upgrade command before you run the upgrade. 
+
+To upgrade Runtime Fabric Using Helm:
+
+In Runtime Manager, navigate to your Runtime Fabric by selecting it on the Runtime Fabrics tab.
+
+Click Upgrade…. 
+Copy the command provided by Runtime Manager.
+
+It should resemble:
+
+helm upgrade --install runtime-fabric rtf/rtf-agent-<version> --set global.image.rtfRegistry="rtf-runtime-registry.kqa.msap.io" --set global.image.secret="<pull_secret>" --set activationData=<activation_data> -n <namespace>
+
+ 
+Replace or add any values as needed.
+Run the upgrade command.
