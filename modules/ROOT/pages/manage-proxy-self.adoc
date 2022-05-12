@@ -9,14 +9,19 @@ Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running
 
 The `rtfctl` command line tool is required to manage proxy settings on Runtime Fabric. Follow the steps to xref:install-rtfctl.adoc[Install rtfctl] before configuring proxy settings.
 
-[IMPORTANT]
+[NOTE]
 --
-You must install Runtime Fabric before running `rtfctl apply proxy` commands.
+You can apply proxy settings during installation of Runtime Fabric on Self-Managed Kubernetes if you install using Helm. For more information, refer to the xref:install-helm.adoc[Installing Runtime Fabric on Self-Managed Kubernetes Using Helm documentation]. 
 --
 
 == Apply Proxy Values to Runtime Fabric on Self-Managed Kubernetes
 
 Configure a proxy at the runtime level for all the outbound components running in the runtime to use. 
+
+[IMPORTANT]
+--
+You must install Runtime Fabric before running `rtfctl apply proxy` commands.
+--
 
 . Run the following command, replacing the placeholder values with the following:
 +
