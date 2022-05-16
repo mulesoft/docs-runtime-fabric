@@ -74,7 +74,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl get http-proxy
 ----
 +
 The output should match the value expected.
-. To remove the remove the proxy values, run:
+. To remove the proxy values, run:
 +
 -----
 sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
