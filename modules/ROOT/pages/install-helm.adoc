@@ -5,14 +5,14 @@
 Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
 ====
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
 
 == Before you Begin
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure:
 
-* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
-* You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes]
+* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
+* You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes].
 * You have installed and configured your Kubernetes environment as follows:
 +
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
@@ -22,12 +22,12 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 
 [NOTE]
 --
-If you use Helm to manage your Runtime Fabric installation, you can still later use the `rtfctl` command line utility to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the upgrade documentation [add link!!!]. 
+If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the upgrade documentation [add link!!!]. 
 --
 
 == Create a Runtime Fabric Using Runtime Manager
 
-To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
+To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data that is needed during installation.
 
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
@@ -55,7 +55,7 @@ kubectl create ns <namespace>
 
 == Create A Docker Pull Secret 
 
-After you create the namespace, you create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
 
 The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
 
@@ -77,7 +77,7 @@ helm repo add <namespace> <Helm Repo> --username <your_username> --password <you
  
 == Install Runtime Fabric
 
-To install Runtime Fabric, you use the `values.yml` file supplied by Runtime Manager. 
+To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager. 
 
 . Download the `values.yml` file.
 . Add any optional parameters needed. 
@@ -108,7 +108,7 @@ global.containerLogPaths:
  
 === Required Parameters
 
-These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager.
+These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager:
 
 [%header%autowidth.spread]
 |===

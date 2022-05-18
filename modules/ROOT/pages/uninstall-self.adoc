@@ -4,7 +4,7 @@ Depending on your installation method, you can use the Runtime Fabric command li
 
 == Uninstall Runtime Fabric Using rtfctl
 
-Perform the following procedure to uninstall Runtime Fabric on Self-Managed Kubernetes using `rtfctl`:
+To uninstall Runtime Fabric on Self-Managed Kubernetes using `rtfctl`:
 
 . Using Runtime Manager, delete all Mule applications and API gateways deployed on Runtime Fabric.
 . Verify on all associated environments that you have removed all applications.
@@ -15,7 +15,7 @@ Perform the following procedure to uninstall Runtime Fabric on Self-Managed Kube
 
 == Uninstall Runtime Fabric Using Helm
 
-Perform the following procedure to uninstall Runtime Fabric on Self-Managed Kubernetes using Helm:
+To uninstall Runtime Fabric on Self-Managed Kubernetes using Helm:
 
 . Using Runtime Manager, delete all Mule applications and API gateways deployed on Runtime Fabric.
 . Verify on all associated environments that you have removed all applications.
