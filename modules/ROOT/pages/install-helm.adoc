@@ -9,7 +9,7 @@ You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kuberne
 
 == Install Runtime Fabric Using Helm
 
-When you use Helm to install Runtime Fabric, you’ll:
+When you use Helm to install Runtime Fabric, you:
 
 . Create a Runtime Fabric using Runtime Manager
 . Create a namespace for Runtime Fabric and
