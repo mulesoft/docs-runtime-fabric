@@ -159,22 +159,6 @@ include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 == See Also
 
 * xref:custom-ingress-configuration.adoc[Configure Ingress for Runtime Fabric on Self-Managed Kubernetes]
