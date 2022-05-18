@@ -37,35 +37,27 @@ not know these values, contact your AWS administrator.
 == Base64 Encode Your Mule License Key
 
 To install Runtime Fabric, your Mule license key must be Base64 encoded. Locate your organization’s Mule
-Enterprise license key file (license.lic) and perform the following according to your operating system.
+Enterprise license key file (`license.lic`) and perform the following according to your operating system.
 
-=== Linux
+. Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
 
-To encode your license file on Linux, run the following:
-
-----
-base64 -w0 license.lic
-----
-
-=== MacOS
-
-To encode your license file on MacOS, run the following from the terminal:
-
-----
-base64 -b0 license.lic
-----
-
-=== Windows
-
-To encode your license file on Windows, a shell terminal emulator (such as cygwin) or access to a Unix-based
-computer is required to follow these steps:
-
-. Find your organization's Mule Enterprise license key file (`license.lic`) and transfer to your Unix
-environment if necessary.
-. Run the following command to Base64 encode the license key:
+** On MacOS, run the following command in the terminal: 
 +
 ----
-base64 -w0 license.lic
+BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
+----
+** On Unix, run the following command:
++
+----
+BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
+----
+** On Windows, choose one of the following: 
+*** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command. 
+*** Use the `base64.exe` program included with Windows git (`C:\Program Files\Git\usr\bin`).
+*** Use the following Powershell command:
++
+----
+$BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
 ----
 
 == Install Terraform
