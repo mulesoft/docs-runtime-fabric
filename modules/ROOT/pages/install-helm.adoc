@@ -7,7 +7,7 @@ Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be
 
 You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
 
-== Install Runtime Fabric Using Helm
+== Steps to Install Runtime Fabric Using Helm
 
 When you use Helm to install Runtime Fabric, you:
 
