@@ -7,18 +7,30 @@ Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be
 
 You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
 
+== Install Runtime Fabric Using Helm
+
+When you use Helm to install Runtime Fabric, you’ll:
+
+. Create a Runtime Fabric using Runtime Manager
+. Create a namespace for Runtime Fabric and
+. Create a Docker pull secret for pulling the Runtime Fabric component images
+. Add the Runtime Fabric Helm repository
+. Download the `values.yml` file and install Runtime Fabric
+. Complete install steps
+
+
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure:
+Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure that you have:
 
-* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
-* You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric on Self-Managed Kubernetes].
-* You have installed and configured your Kubernetes environment as follows:
+* Reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
+* xref:install-self-managed-network-configuration.adoc[Configured your network to support Runtime Fabric on Self-Managed Kubernetes].
+* Installed and configured your Kubernetes environment as follows:
 +
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
-** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
+** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version].
 ** Running an ingress controller to send external requests to applications.
-* You have installed Helm 3 or later.
+* Installed Helm 3 or later.
 
 [NOTE]
 --
@@ -39,7 +51,7 @@ To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a R
 * Google Kubernetes Engine
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
-. Note that your activation data is captured in the code example provided by Runtime Manager. You will need this activation data to install Runtime Fabric.
+. Save the activation data captured in the code example provided by Runtime Manager. by Runtime Manager. You will need this activation data to install Runtime Fabric.
 
 Runtime Manager provides the following installation steps.
 
