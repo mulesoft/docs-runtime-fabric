@@ -18,11 +18,128 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
 ** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
 ** Running an ingress controller to send external requests to applications.
+* You have installed Helm 3 or later.
 
+[NOTE]
+--
+If you use Helm to manage your Runtime Fabric installation, you can still later use the `rtfctl` command line utility to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the upgrade documentation [add link!!!]. 
+--
 
+== Create a Runtime Fabric Using Runtime Manager
 
+To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
 
+. From Anypoint Platform, select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Enter the name of the new Runtime Fabric, then select one of the following options:
 
+* Amazon Elastic Kubernetes Service
+* Azure Kubernetes Service
+* Google Kubernetes Engine
+. Review the Support responsibility disclaimer, and if you agree, click *Accept*.
+. Click Helm.
+. Note that your activation data is captured in the code example provided by Runtime Manager. You will need this activation data to install Runtime Fabric.
+
+Runtime Manager provides the following installation steps.
+
+== Create A Namespace for Runtime Fabric 
+
+You must create a namespace named in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+
+To create the namespace, run: 
+
+----
+kubectl create ns <namespace> 
+----
+
+== Create A Docker Pull Secret 
+
+After you create the namespace, you create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+
+To create the pull secret, run:
+
+----
+kubectl create secret docker-registry <pull_secret> --namespace <namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
+
+== Add the Runtime Fabric Helm Repository
+
+You need to add the Runtime Fabric Helm repo to the namespace you created. The Runtime Fabric Helm repo contains the chart needed to install Runtime Fabric.
+
+To add the Helm repo, run:
+
+----
+helm repo add <namespace> <Helm Repo> --username <your_username> --password <your_password>
+----
+ 
+== Install Runtime Fabric
+
+To install Runtime Fabric, you use the `values.yml` file supplied by Runtime Manager. 
+
+. Download the `values.yml` file.
+. Add any optional parameters needed. 
+. Run the following command:
++
+----
+helm install -f values.yaml
+----
+
+== Values.yml Reference
+
+The following is an example `values.yml` file. 
+
+----
+activationData: <activation data>
+OGQ=
+http.proxy:
+http.no_proxy:
+monitoring.proxy:
+muleLicense: <mule license key>
+global.image.rtfRegistry: rtf-runtime-registry.kqa.msap.io
+global.image.pullSecretName: rtf-pull-secret
+global.containerLogPaths:
+ - /var/lib/docker/containers
+ - /var/log/containers
+ - /var/log/pods
+----
+ 
+=== Required Parameters
+
+These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager.
+
+[%header%autowidth.spread]
+|===
+|Key |Value |Example
+|`activationData` |Activation Data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
+|`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
+|pullSecretName |Registry Secret |`<pull_secret>`
+|muleLicense |Mule license for applications |`<mule_license_key>`
+|===
+
+=== Optional Parameters
+
+Set these optional parameters in `values.yml` as needed before installing Runtime Fabric.
+
+[%header%autowidth.spread]
+|===
+|Key |Value |Example
+a|      
+      
+* `http.proxy`
+* `http.no_proxy` |Proxy and no_proxy values a| 
+
+* `http://<user>:<pass>@<10.0.0.1>:<8080>` 
+* `<1.1.1.1:8888,2.2.2.2:9999>`
+|`monitoring.proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
+|`global.containerLogPaths` |The Filebeat read path a|
+
+* `/var/lib/docker/`
+* `/var/log/containers`
+* `/var/log/pods`
+|===
 
 
 include::partial$include-install-tasks.adoc[tags=licenseKey]
