@@ -99,7 +99,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 helm install -f values.yaml
 ----
 
-[[value-yml-reference]]
+[[values-yml-reference]]
 == Values.yml Reference
 
 The following is an example `values.yml` file. 
