@@ -27,7 +27,7 @@ You need to manually resolve such inconsistencies by reapplying the changes you 
 
 == Before You Begin
 
-Before performing a back up or restore operation:
+Before performing a back up:
 
 * Verify that Runtime Fabric is installed and running successfully.
 * Verify that `rtfctl` command-line tool is upgraded to version 0.3.102 or later. Verify the version by running `rtfctl version` on any Runtime Fabric node.
