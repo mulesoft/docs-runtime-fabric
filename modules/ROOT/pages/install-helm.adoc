@@ -57,12 +57,12 @@ Runtime Manager provides the following installation steps.
 
 == Create A Namespace for Runtime Fabric 
 
-You must create a namespace named in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
 
 To create the namespace, run: 
 
 ----
-kubectl create ns <namespace> 
+kubectl create ns rtf 
 ----
 
 == Create A Docker Pull Secret 
@@ -74,7 +74,7 @@ The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re us
 To create the pull secret, run:
 
 ----
-kubectl create secret docker-registry <pull_secret> --namespace <namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
 == Add the Runtime Fabric Helm Repository
