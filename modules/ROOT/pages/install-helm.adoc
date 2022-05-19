@@ -28,7 +28,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 * Installed and configured your Kubernetes environment as follows:
 +
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
-** Running a xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version].
+** Running a xref:index-self-managed.html#kubernetes-support[supported Kubernetes version].
 ** Running an ingress controller to send external requests to applications.
 * Installed Helm 3 or later.
 
@@ -99,6 +99,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 helm install -f values.yaml
 ----
 
+[[value-yml-reference]]
 == Values.yml Reference
 
 The following is an example `values.yml` file. 

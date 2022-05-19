@@ -140,7 +140,7 @@ To successfully use Anypoint Runtime Fabric on Self-Managed Kubernetes, your Any
 
 === Network Configuration
 
-Anypoint Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed.adoc[Install Runtime Fabric on Self-Managed Kubernetes].
+Anypoint Runtime Fabric on Self-Managed Kubernetes requires an IT administrator to configure network ports, hostnames, and certificates to function correctly. See xref:install-self-managed-network-configuration.adoc[Configuring Your Network to Support Runtime Fabric on Self-Managed Kubernetes].
 
 === Anypoint Platform Roles and Permissions
 
