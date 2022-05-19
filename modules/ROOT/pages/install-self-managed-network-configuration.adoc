@@ -7,7 +7,7 @@ Network configuration must be performed by an IT administrator.
 
 Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure that the following ports and hostnames are configured correctly.
 
-=== Port Configuration
+== Port Configuration
 
 To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
 
@@ -25,11 +25,11 @@ To install or run Runtime Fabric, ensure that you have configured the following 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port your allow list. If you are using a newer version, use the port and hostname specified above.
 |===
 
-=== Port Used by the Persistence Gateway
+== Port Used by the Persistence Gateway
 
 The Persistent Gateway requires a Postgres-compliant database to store persistent data across Mule application replicas. Ensure that your Kubernetes cluster has access to this database and port. See xref:persistence-gateway.adoc[Persistence Gateway].
 
-=== Hostname Configuration
+== Hostname Configuration
 
 To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
 
@@ -75,7 +75,7 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 * EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
 
-=== Certificate Configuration
+== Certificate Configuration
 
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
