@@ -15,7 +15,7 @@ To upgrade Runtime Fabric Using Helm:
 
 . In Runtime Manager, navigate to your Runtime Fabric by selecting it on the Runtime Fabrics tab.
 . Click *Upgrade…*. 
-. Download the `values.yml` file.
+. Follow the prompts to generate and download the `values.yml` file.
 . Add any optional parameters needed. 
 +
 Refer to the xref:install-helm.adoc#values-yml-reference[`values.yml` Reference] in the installation documentation for a list of optional and required parameters. 
