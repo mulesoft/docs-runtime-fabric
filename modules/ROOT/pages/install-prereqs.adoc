@@ -241,6 +241,9 @@ Because the following endpoints use mutual TLS authentication to establish the c
 | 443 | HTTPS a| 
 * US control plane: `exchange2-asset-manager-kprod.s3.amazonaws.com` 
 * EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com` `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | Anypoint Exchange for application assets.
+| 443 | HTTPS a|
+* US control plane: `exchange-files.anypoint.mulesoft.com` 
+* EU control plane: `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
 | 443 | HTTPS a| 
 * US control plane: `ecr.us-east-1.amazonaws.com` 
 * EU control plane: `ecr.eu-central-1.amazonaws.com` | Runtime Fabric Docker repository.
