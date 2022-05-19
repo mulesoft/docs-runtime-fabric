@@ -11,7 +11,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 * You have installed and configured your Kubernetes environment with:
 +
 ** An EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
-** A xref:index-self-managed.adoc#supported-kubernetes-versions[supported Kubernetes version]
+** A xref:index-self-managed.adoc#kubernetes-support[supported Kubernetes version]
 ** An ingress controller to send external requests to applications.
 
 [WARNING]
