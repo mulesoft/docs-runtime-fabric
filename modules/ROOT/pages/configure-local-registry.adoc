@@ -85,11 +85,11 @@ For the EU control plane:
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
 
-. If you use authentication to access your registry, create the required secret on the rtf namespace:
+. If you use authentication to access your registry, create the required secret in the rtf namespace:
 +
 ----
 # kubectl create namespace rtf
-# kubectl create secret docker-registry regcred --namespace=rtf --docker-server= --docker-username= --docker-email= --docker-password= #COMPLETE THE COMMAND WITH APROPRIATE CREDENTIALS
+# kubectl create secret docker-registry regcred --namespace=rtf --docker-server=<docker_server> --docker-username=<docker_username> --docker-email=<docker_email> --docker-password=<docker_password> 
 # kubectl label secret regcred rtf.mulesoft.com/synchronized=true -n rtf
 ----
 +
