@@ -34,7 +34,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 
 [NOTE]
 --
-If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:helm-upgrade.adoc[upgrade documentation]. 
+If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:upgrade-helm.adoc[upgrade documentation]. 
 --
 
 === Helm Support 
