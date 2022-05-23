@@ -72,9 +72,9 @@ Runtime Fabric provides two target options when restoring a cluster from a backu
 * Use an existing Runtime Fabric cluster [underlying infrastructure].
 * Create a new Kubernetes cluster with the same configuration as the backed-up cluster. This includes the same number of servers, disks, etc.
 
-To restore Runtime Fabric appliance cluster on VMs / Bare Metal, run the Runtime Fabric installer script(s) *without* providing the Runtime Fabric activation data which will prepare the environment for restore operation.
+To restore Runtime Fabric appliance cluster on VMs / Bare Metal, run the Runtime Fabric installer scripts *without* providing the Runtime Fabric activation data. After you run the install scripts, complete the restore process.
 
-To restore Runtime Fabric cluster on Self-Managed Kubernestes, create BYOK Kubernetes cluster *without* running the rtfctl install command. Once the cluster is created follow the steps to restore operation. 
+To restore a cluster on Runtime Fabric on Self-Managed Kubernetes, create a cluster *without* running the `rtfctl` install command. After you create the cluster, complete the restore process. 
 
 [WARNING]
 ====
