@@ -116,16 +116,18 @@ The following is an example `values.yml` file.
 ----
 activationData: <activation data>
 OGQ=
-proxy.http.proxy:
-proxy.http.no_proxy:
-proxy.monitoring.proxy:
+  proxy.http.proxy:
+  proxy.http.no_proxy:
+  proxy.monitoring.proxy:
 muleLicense: <mule license key>
-global.image.rtfRegistry: rtf-runtime-registry.kqa.msap.io
-global.image.pullSecretName: rtf-pull-secret
-global.containerLogPaths:
- - /var/lib/docker/containers
- - /var/log/containers
- - /var/log/pods
+global:
+  image:
+    rtfRegistry: rtf-runtime-registry.kqa.msap.io
+    pullSecretName: rtf-pull-secret
+  containerLogPaths:
+  - /var/lib/docker/containers
+  - /var/log/containers
+  - /var/log/pods
 ----
  
 === Required Parameters
@@ -137,8 +139,8 @@ These required values are created and added to `values.yml` when you create the 
 |Key |Value |Example
 |`activationData` |Activation Data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
 |`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
-|pullSecretName |Registry Secret |`<pull_secret>`
-|muleLicense |Mule license for applications |`<mule_license_key>`
+|`pullSecretName` |Registry Secret |`<pull_secret>`
+|`muleLicense` |Mule license for applications |`<mule_license_key>`
 |===
 
 === Optional Parameters
