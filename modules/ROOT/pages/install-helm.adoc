@@ -30,12 +30,16 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
 ** Running a xref:index-self-managed.adoc#kubernetes-support[supported Kubernetes version].
 ** Running an ingress controller to send external requests to applications.
-* Installed Helm 3 or later.
+* Installed Helm 3 or later and have privileged user permissions.
 
 [NOTE]
 --
-If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the upgrade documentation [add link!!!]. 
+If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:helm-upgrade.adoc[upgrade documentation]. 
 --
+
+=== Helm Support 
+
+Runtime Fabric supports installations, upgrades, and rollbacks using Helm for versions 1.13 and later. 
 
 == Create a Runtime Fabric Using Runtime Manager
 
@@ -86,6 +90,11 @@ To add the Helm repo, run:
 ----
 helm repo add <namespace> <Helm Repo> --username <your_username> --password <your_password>
 ----
+
+[NOTE]
+--
+If you already added the Helm repo, and you get a result that Runtime Fabric skipped adding the repo, run `helm repo update` before installing, or upgrading to, a new Runtime Fabric version. 
+--
  
 == Install Runtime Fabric
 
@@ -107,9 +116,9 @@ The following is an example `values.yml` file.
 ----
 activationData: <activation data>
 OGQ=
-http.proxy:
-http.no_proxy:
-monitoring.proxy:
+proxy.http.proxy:
+proxy.http.no_proxy:
+proxy.monitoring.proxy:
 muleLicense: <mule license key>
 global.image.rtfRegistry: rtf-runtime-registry.kqa.msap.io
 global.image.pullSecretName: rtf-pull-secret
@@ -141,12 +150,12 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 |Key |Value |Example
 a|      
       
-* `http.proxy`
-* `http.no_proxy` |Proxy and no_proxy values a| 
+* `proxy.http.proxy`
+* `proxy.http.no_proxy` |Proxy and no_proxy values a| 
 
 * `http://<user>:<pass>@<10.0.0.1>:<8080>` 
 * `<1.1.1.1:8888,2.2.2.2:9999>`
-|`monitoring.proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
+|`proxy.monitoring.proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
 |`global.containerLogPaths` |The Filebeat read path a|
 
 * `/var/lib/docker/`
