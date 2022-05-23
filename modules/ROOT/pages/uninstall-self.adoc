@@ -23,5 +23,11 @@ To uninstall Runtime Fabric on Self-Managed Kubernetes using Helm:
 . Run the following command:
 +
 ----
-Helm uninstall runtime-fabric -n <namespace>
----- 
+helm uninstall runtime-fabric -n rtf
+----
+
+If need to uninstall due to an error in the installation process, for example, if the install did not complete correctly, run the following command:
++
+----
+helm uninstall runtime-fabric -n rtf --no-hooks
+----
