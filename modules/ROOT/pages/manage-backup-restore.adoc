@@ -69,7 +69,7 @@ Restore must be performed to the same Runtime Fabric Cluster in Control Plane (S
 
 Runtime Fabric provides two target options when restoring a cluster from a backup:
 
-* Use an existing Runtime Fabric cluster [underlying infrastructure].
+* Use an existing Runtime Fabric cluster.
 * Create a new Kubernetes cluster with the same configuration as the backed-up cluster. This includes the same number of servers, disks, etc.
 
 To restore Runtime Fabric appliance cluster on VMs / Bare Metal, run the Runtime Fabric installer scripts *without* providing the Runtime Fabric activation data. After you run the install scripts, complete the restore process.
