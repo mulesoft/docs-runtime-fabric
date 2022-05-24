@@ -149,12 +149,12 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 |Key |Value |Example
 a|      
       
-* `proxy.http.proxy`
+* `proxy.http_proxy`
 * `proxy.http.no_proxy` |Proxy and no_proxy values a| 
 
 * `http://<user>:<pass>@<10.0.0.1>:<8080>` 
 * `<1.1.1.1:8888,2.2.2.2:9999>`
-|`proxy.monitoring.proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
+|`proxy.monitoring_proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
 |`global.containerLogPaths` |The Filebeat read path a|
 
 * `/var/lib/docker/`
