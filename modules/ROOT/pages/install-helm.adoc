@@ -85,7 +85,7 @@ You need to add the Runtime Fabric Helm repo to the namespace you created. The R
 To add the Helm repo, run:
 
 ----
-helm repo add <namespace> <Helm Repo> --username <your_username> --password <your_password>
+helm repo add <name> <helm_repo_url> --username <your_username> --password <your_password>
 ----
 
 [NOTE]
