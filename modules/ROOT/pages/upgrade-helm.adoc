@@ -28,5 +28,5 @@ helm update repo
 . To complete the upgrade, run the following command:
 +
 ----
-helm install -f values.yaml
+helm upgrade --install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.yaml -n rtf
 ----
