@@ -45,6 +45,7 @@ Provide your instances of Kubernetes and Docker via Amazon EKS, AKS or GKE clust
 | External log forwarding | You must provide an external log forwarding service | Included
 | Internal load balancer | You must provide an internal load balancer (Ingress Controller) | Included
 | Anypoint Security Edge | Not supported | Supported
+| Anypoint Security Tokenization | Not supported | Supported
 | Ops Center | Not Included +
 You can enable monitoring and alerting in AWS, Azure, or Google Cloud | Included
 |===

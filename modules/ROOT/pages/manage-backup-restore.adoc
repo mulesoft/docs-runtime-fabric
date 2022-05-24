@@ -23,11 +23,18 @@ Do not use the back up and restore process to create concurrent running instance
 
 The Runtime Fabric back up and restore process affects only the Runtime Fabric cluster, and it does not involve the control plane. Any changes you make after you perform a backup will not be present if you restore the cluster from that backup. For example, if you perform a backup, delete an application, and then restore from that backup, the application you deleted will be recreated in the cluster, but it will be marked as deleted in Runtime Manager. As a result the application's status will show as *applying* in Runtime Manager.
 
+Runtime Fabric does not restore the following control plane changes if you make them after you take a backup:
+
+* Created apps
+* Delete apps
+* Updated app configurations
+* Agent upgrades
+
 You need to manually resolve such inconsistencies by reapplying the changes you made after performing the backup, as these changes can't be reapplied from the control plane.
 
 == Before You Begin
 
-Before performing a back up or restore operation:
+Before performing a back up:
 
 * Verify that Runtime Fabric is installed and running successfully.
 * Verify that `rtfctl` command-line tool is upgraded to version 0.3.102 or later. Verify the version by running `rtfctl version` on any Runtime Fabric node.
