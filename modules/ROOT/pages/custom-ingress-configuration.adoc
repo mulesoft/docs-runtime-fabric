@@ -197,7 +197,7 @@ labels:
 
 [source,yaml]
 ----
-host: app-name-unique-id.com
+path: /app-name-unique-id.com
 ----
 |===
 
