@@ -69,12 +69,19 @@ scp your_username@remotehost:/opt/anypoint/runtimefabric/backup.tar.gz /backup-p
 
 == Restore a Cluster
 
+[WARNING]
+====
+You must perform the restore on the same Runtime Fabric cluster that is listed in Runtime Manager (the same cluster in the control plane).
+====
+
 Runtime Fabric provides two target options when restoring a cluster from a backup:
 
 * Use an existing Runtime Fabric cluster.
 * Create a new Kubernetes cluster with the same configuration as the backed-up cluster. This includes the same number of servers, disks, etc.
 
-To create a new Kubernetes cluster on VMs / Bare Metal without Runtime Fabric being installed, run the Runtime Fabric installer script(s) without providing the Runtime Fabric activation data.
+To restore Runtime Fabric appliance cluster on VMs / Bare Metal, run the Runtime Fabric installer scripts *without* providing the Runtime Fabric activation data. After you run the install scripts, complete the restore process.
+
+To restore a cluster on Runtime Fabric on Self-Managed Kubernetes, create a cluster *without* running the `rtfctl` install command. After you create the cluster, complete the restore process. 
 
 [WARNING]
 ====
