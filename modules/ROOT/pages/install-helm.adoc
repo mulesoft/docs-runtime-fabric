@@ -113,9 +113,9 @@ The following is an example `values.yml` file.
 ----
 activationData: <activation data>
   proxy:
-    http.proxy:
+    http_proxy:
     http.no_proxy:
-    monitoring.proxy:
+    monitoring_proxy:
 muleLicense: <mule license key>
 global:
   image:
