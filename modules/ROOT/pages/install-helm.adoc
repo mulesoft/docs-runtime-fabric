@@ -12,7 +12,7 @@ You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kuberne
 When you use Helm to install Runtime Fabric, you:
 
 . Create a Runtime Fabric using Runtime Manager
-. Create a namespace for Runtime Fabric and
+. Create the `rtf` namespace for Runtime Fabric 
 . Create a Docker pull secret for pulling the Runtime Fabric component images
 . Add the Runtime Fabric Helm repository
 . Download the `values.yml` file and install Runtime Fabric
@@ -55,9 +55,6 @@ To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a R
 * Google Kubernetes Engine
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
-. Save the activation data captured in the code example provided by Runtime Manager. by Runtime Manager. You will need this activation data to install Runtime Fabric.
-
-Runtime Manager provides the following installation steps.
 
 == Create A Namespace for Runtime Fabric 
 
@@ -115,14 +112,14 @@ The following is an example `values.yml` file.
 
 ----
 activationData: <activation data>
-OGQ=
-  proxy.http.proxy:
-  proxy.http.no_proxy:
-  proxy.monitoring.proxy:
+  proxy:
+    http.proxy:
+    http.no_proxy:
+    monitoring.proxy:
 muleLicense: <mule license key>
 global:
   image:
-    rtfRegistry: rtf-runtime-registry.kqa.msap.io
+    rtfRegistry: rtf-runtime-registry.kprod.msap.io
     pullSecretName: rtf-pull-secret
   containerLogPaths:
   - /var/lib/docker/containers
