@@ -1,4 +1,4 @@
-= Upgrading Runtime Fabric for Self-Managed Kubernetes
+= Upgrading Runtime Fabric for Self-Managed Kubernetes Using rtfctl
 
 To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, upgrade Runtime Fabric components and the `rtfctl` command-line utility.
 
