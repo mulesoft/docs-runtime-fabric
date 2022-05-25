@@ -5,17 +5,16 @@ endif::[]
 
 The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on Self-Managed Kubernetes.
 
-[cols="2*a"]
-.Anypoint Runtime Fabric on Self-Managed Kubernetes resource allocation 
+[%header%autowidth.spread]
 |===
-| Nodes | The maximum number of nodes is 30.
-| Node types | VM-based nodes are required. For example, Fargate is not supported.
-| Replicas per application | The maximum number of replicas per application is 8.
+| Limitation | Description | Enforced by Runtime Fabric
+| Node count | The maximum number of nodes is 400. | No
+| Node types | VM-based nodes are required. For example, Fargate is not supported. | Yes
+| Replicas per application | The maximum number of replicas per application is 8. | Yes
 | Replicas per node | The maximum number of replicas that can be deployed per node is 40.
 
-Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas.
-| Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environment with Org A and a dev environment with Org B, that is three environment associations. 
-| Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared by another sub org. For example, if you have master Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B.
-| Object store persistence | To manage data persistence across Mule application replicas and restarts, Anypoint Runtime Fabric uses Persistence Gateway. See xref:persistence-gateway.adoc[Persistence Gateway].
+Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per node, to allow core sharing across replicas when needed for bursting. This ensures the Runtime Fabric’s internal components that run on each worker node are not overloaded by too many replicas. | No
+| Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environment with Org A and a dev environment with Org B, that is three environment associations. | Yes
+| Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared by another sub org. For example, if you have master Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B. | Yes
 |===
 
