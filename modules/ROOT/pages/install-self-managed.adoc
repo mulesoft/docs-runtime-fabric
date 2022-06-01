@@ -13,6 +13,7 @@ Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environme
 ** An EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
 ** A xref:index-self-managed.adoc#kubernetes-support[supported Kubernetes version]
 ** An ingress controller to send external requests to applications.
+* You create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
 
 [WARNING]
 ====
@@ -20,11 +21,6 @@ If you want to use a local registry with Runtime Fabric, follow the installation
 ====
 
 == Create a Runtime Fabric using Runtime Manager
-
-[IMPORTANT]
-====
-The procedures in this section should be performed by a MuleSoft organization administrator.
-====
 
 To install Runtime Fabric on Self-Managed Kubernetes, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
 
@@ -43,19 +39,7 @@ To install Runtime Fabric on Self-Managed Kubernetes, first create a Runtime Fab
 +
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
 
-[TIP]
-====
-Not using the latest RTF Agent version in your cluster?
-You are strongly encouraged to always create your clusters using the latest agent version available.
-If for any reason this poses an impediment in your case plrease refer to the article https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades]
-====
-
 == Download the rtfctl Utility
-
-[IMPORTANT]
-====
-The tasks in the section must be performed by an IT administrator.
-====
 
 Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
 
@@ -89,11 +73,6 @@ sudo chmod +x rtfctl
 ----
 
 == Install Runtime Fabric
-
-[IMPORTANT]
-====
-The procedures in the section must be performed by an IT administrator.
-====
 
 After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
 
