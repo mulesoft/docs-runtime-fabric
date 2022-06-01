@@ -43,6 +43,12 @@ To install Runtime Fabric on Self-Managed Kubernetes, first create a Runtime Fab
 +
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
 
+[TIP]
+====
+Not using the latest RTF Agent version in your cluster?
+You are strongly encouraged to always create your clusters using the latest agent version available.
+If for any reason this poses an impediment in your case plrease refer to the article https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades]
+====
 
 == Download the rtfctl Utility
 
