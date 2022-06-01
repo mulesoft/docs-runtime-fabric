@@ -22,7 +22,7 @@ You cannot add a local registry to any version of an existing Runtime Fabric ins
     rtf.mulesoft.com/synchronized: "true"
 ----
 
-* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf-` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
+* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
 * You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>
 
@@ -60,7 +60,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 ---- 
 # eval $(rtfctl get docker-registry-login <activation-data>)
-# docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --<password> $RTF_IMAGE_REGISTRY_PASSWORD
+# docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
 ----
 +
 You should see a message that the login was successful.
@@ -84,6 +84,15 @@ For the EU control plane:
 ----
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
+
+. If you use authentication to access your registry, create the required secret in the rtf namespace:
++
+----
+# kubectl create namespace rtf
+# kubectl create secret docker-registry regcred --namespace=rtf --docker-server=<docker_server> --docker-username=<docker_username> --docker-email=<docker_email> --docker-password=<docker_password> 
+# kubectl label secret regcred rtf.mulesoft.com/synchronized=true -n rtf
+----
++
 
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
