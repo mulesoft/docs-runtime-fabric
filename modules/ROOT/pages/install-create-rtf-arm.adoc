@@ -29,6 +29,13 @@ image::runtime-fabric-arm.png[]
 
 Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after Runtime Fabric on VMs / Bare Metal is installed and connected to Runtime Manager.
 
+[TIP]
+====
+Not using the latest RTF Agent version in your cluster?
+You are strongly encouraged to always create your clusters using the latest agent version available.
+If for any reason this poses an impediment in your case plrease refer to the article https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades]
+====
+
 == Install Runtime Fabric on VMs / Bare Metal
 
 After creating a Runtime Fabric in Runtime Manager, install Anypoint Runtime Fabric on your infrastructure. Click the following link that corresponds to your infrastructure:
