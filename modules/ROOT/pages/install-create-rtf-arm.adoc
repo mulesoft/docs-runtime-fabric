@@ -4,14 +4,16 @@ To install Runtime Fabric on VMs / Bare Metal, first create a Runtime Fabric usi
 
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric on VMs / Bare Metal, review the following topics to ensure that you are prepared to install:
+Before installing Anypoint Runtime Fabric on VMs / Bare Metal, review the following topics:
 
 * xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
 * xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]
 * xref:runtime-fabric-limitations.adoc[Limitations]
 
-[IMPORTANT]
-If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
+Additionally, note the following:
+
+* If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
+* Create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
 
 == Create a Runtime Fabric using Runtime Manager
 
@@ -21,11 +23,7 @@ If you do not see the *Runtime Fabrics* tab in Runtime Manager as described belo
 . Specify the name of your Runtime Fabric.
 . Select the "VMs or bare metal" option.
 . Click *Next*.
-
-[IMPORTANT]
-After creating the Runtime Fabric, Runtime Manager displays the corresponding activation data. Record this data to use later when installing running the Runtime Fabric on VMs / Bare Metal installer.
-
-image::runtime-fabric-arm.png[]
+. After creating the Runtime Fabric, Runtime Manager displays the corresponding activation data. Record this data to use  when running the Runtime Fabric on VMs / Bare Metal installer.
 
 Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after Runtime Fabric on VMs / Bare Metal is installed and connected to Runtime Manager.
 
