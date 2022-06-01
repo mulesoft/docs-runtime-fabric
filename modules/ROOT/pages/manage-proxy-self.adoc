@@ -69,6 +69,7 @@ Applications deployed in Runtime Fabric do not inherit proxy settings from the R
 cluster. You must configure a proxy for each application. 
 
 You can set up a proxy on each connector (such as an HTTP requestor) or set up a proxy with application properties as shown in the following example. Setting up a proxy with application properties is less work if you have a large number of connectors in an application.
+
 ----
 http.nonProxyHosts=localhost|*.svc.cluster.local|*.monitoring.svc.cluster.local
 http.proxyHost=172.19.0.23
@@ -79,6 +80,7 @@ https.proxyPort=3128
 java.net.useSystemProxies=false
 com.ning.http.client.AsyncHttpClientConfig.useProxySelector=false
 com.ning.http.client.AsyncHttpClientConfig.useProxyProperties=true
+----
 
 == See Also
 
