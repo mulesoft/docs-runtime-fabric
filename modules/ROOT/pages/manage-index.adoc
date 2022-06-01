@@ -48,7 +48,7 @@ See xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric].
 This requires stopping and restarting each instance.
 ** Back up Runtime Fabric.
 +
-See xref:manage-backup-restore.aodc[Back up and Restore Runtime Fabric].
+See xref:manage-backup-restore.adoc[Back up and Restore Runtime Fabric].
 
 * Uninstall Runtime Fabric manually.
 +
