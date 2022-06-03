@@ -17,35 +17,18 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 
 * Memory
 // end::description[]
-// tag::cpuLicensedCores[]
+// tag::licenseCompliance[]
 
-== CPU and Licensed Cores
+== MuleSoft License Compliance
 
-The physical CPU core capacity often differs from the MuleSoft license core amount.
+You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure one of the following:
 
-* The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes, which is displayed as vCPU utilization in the Runtime Fabric console.
-* The MuleSoft license core amount is the entitlement needed for Mule application deployment.
+. The sum of CPU Limits allocated to each Mule application replica is less than or equal to the total license quantity.
+. The total CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
 
-You cannot purchase fractional MuleSoft license core amounts. For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores.
+For instructions on how to monitor your compliance and get alerts if you violate compliance, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[Cronjob Script to Monitor RTF Appliance CPU of Mule Apps from the MuleSoft Knowledge Base].
 
-The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal to the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center.
-
-=== MuleSoft License Compliance
-
-You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure that you do not exceed the number of CPU cores provided by your MuleSoft license at any given time.
-
-* When using Runtime Fabric on VMs/Bare Metal, use the Core CPU Usage dashboard in Ops Center. This dashboard shows core CPU usage for Mule applications only, so it can help you determine your core CPU usage across all your Mule applications.
-+
-To check core CPU usage:
-+
-. From the Ops Center navigation, click *Monitoring*.
-. From the dashboard dropdown list, select *CPU Core Usage*. 
-. From the time picker, select your date range. 
-+
-You might see multiple data points for a certain time frame depending on data granularity. To get an accurate assessment of core CPU usage against licensing, look for the highest number within the selected time frame. 
-
-* When using Runtime Fabric on Self-Managed Kubernetes, track core CPU using monitoring solutions from your respective cloud provider.
-// end::cpuLicensedCores[]
+// end::licenseCompliance[]
 // tag::vcpuAllocation[]
 
 == vCPU Allocation
