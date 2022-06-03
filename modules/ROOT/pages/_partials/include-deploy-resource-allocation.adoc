@@ -25,7 +25,7 @@ You are responsible for remaining compliant with your MuleSoft license. To remai
 
 Also ensure that the total reserved CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
 
-For instructions on how to monitor your compliance and get alerts if you violate compliance, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[this article from the MuleSoft Knowledge Base].
+For instructions on how to monitor your compliance and get alerts if you violate compliance, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[Cronjob Script to Monitor RTF Appliance CPU of Mule Apps from the MuleSoft Knowledge Base].
 
 // end::licenseCompliance[]
 // tag::vcpuAllocation[]
