@@ -21,9 +21,10 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 
 == MuleSoft License Compliance
 
-You are responsible for remaining compliant with your MuleSoft license. To remain compliant, ensure that the sum of CPU limits you allocate to each Mule application replica is less than or equal to the total license quantity.
+You are responsible for remaining compliant with your MuleSoft license. To remain compliant:
 
-Ensure that the total Reserved CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
+. Ensure that the sum of CPU limits you allocate to each Mule application replica is less than or equal to the total license quantity.
+. Ensure that the total Reserved CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
 
 For instructions on how to monitor your compliance and get alerts if you violate compliance, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[Cronjob Script to Monitor RTF Appliance CPU of Mule Apps from the MuleSoft Knowledge Base].
 
