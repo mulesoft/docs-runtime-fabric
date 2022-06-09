@@ -28,9 +28,9 @@ You are responsible for ensuring that you remain compliant with your MuleSoft li
 
 For instructions on how to track Reserved vCPU and vCPU Limit, refer to https://help.mulesoft.com/s/article/How-to-Get-Runtime-Fabric-RTF-CPU-Reserved-and-Limit-for-Self-Managed-Kubernetes-and-RTF-Appliance-Using-a-Mule-app[How to Get Runtime Fabric (RTF) CPU Reserved and Limit for Self Managed Kubernetes and RTF Appliance Using a Mule App] from the Mulesoft Knowledge Base.
 
-// tag::instructionsMonitor
+// tag::instructionsMonitor[]
 For instructions on how to monitor your usage and get alerts if your usage exceeds your license, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[Cronjob Script to Monitor RTF Appliance CPU of Mule Apps from the MuleSoft Knowledge Base].
-// end::instructionsMonitor
+// end::instructionsMonitor[]
 
 // end::licenseCompliance[]
 // tag::vcpuAllocation[]
