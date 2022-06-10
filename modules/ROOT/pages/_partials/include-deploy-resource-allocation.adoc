@@ -30,8 +30,6 @@ You cannot purchase fractional MuleSoft license core amounts. For example, if yo
 
 The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal to the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center.
 // end::cpuLicensedCores[]
-// tag::vcpuAllocation[]
-
 // tag::licenseCompliance[]
 
 == MuleSoft License Compliance
@@ -46,7 +44,7 @@ For instructions on how to monitor your usage and get alerts if your usage excee
 // end::instructionsMonitor[]
 
 // end::licenseCompliance[]
-
+// tag::vcpuAllocation[]
 
 == vCPU Allocation
 
