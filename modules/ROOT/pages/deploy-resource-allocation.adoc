@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 endif::[]
 
 include::partial$include-deploy-resource-allocation.adoc[tags=description]
-include::partial$include-deploy-resource-allocation.adoc[tags=licenseCompliance]
+include::partial$include-deploy-resource-allocation.adoc[tags=licenseCompliance;!noteVersions]
 include::partial$include-deploy-resource-allocation.adoc[tags=vcpuAllocation]
 include::partial$include-deploy-resource-allocation.adoc[tags=cpuBursting]
 include::partial$include-deploy-resource-allocation.adoc[tags=memoryAllocation]
