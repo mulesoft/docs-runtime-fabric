@@ -34,7 +34,7 @@ For instructions on how to monitor your usage and get alerts if your usage excee
 
 // tag::noteVersions[]
 
-NOTE: This licensing calculation applies to all previous versions of Runtime Fabric Self-Managed Kubernetes.
+NOTE: This licensing calculation applies to all previous versions of Runtime Fabric on Self-Managed Kubernetes.
 
 // end::noteVersions[]
 
