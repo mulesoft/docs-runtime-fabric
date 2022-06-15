@@ -1,9 +1,9 @@
-= Troubleshooting Runtime Fabric
+= Troubleshooting Runtime Fabric on VMs / Bare Metal
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes common errors and steps to resolve them when installing Anypoint Runtime
+This topic describes common errors and steps to resolve them when installing and managing Anypoint Runtime
 Fabric on VMs / Bare Metal.
 
 == Obtain a Full Network Assessment
@@ -267,10 +267,6 @@ for elevated access to the instance.
 If manual installation of a package was successful, or if you still require assistance,
 file a support ticket.
 
-== Troubleshoot Ops Center Monitoring and Logs Issues
-
-If Ops Center monitoring and logging fails to restart after restarting one or more nodes, ensure port forwarding rules are applied on all VMs so that traffic can communicate with the Kubernetes pods running on the VMs. Refer to xref:prereq-firewalld-forwarding.adoc[Enable Forwarding When Using firewalld] for additional information.
-
 == Format and Mount Disks
 
 This step performs the following tasks on the block devices or disks provided with the
@@ -348,4 +344,43 @@ In each of these circumstances, verify that the deployments status appears as *a
 
 To resolved these conflicts, you must manually apply the necessary changes to the cluster to match the expected status. You cannot automatically re-sync these changes nor override them with new changes. The current status of the cluster must match the expected values before you can apply any further changes from the control plane. If you need to review changes you applied after creating a backup, use xref:access-management::audit-logging.adoc[audit logs].
 
+== Troubleshoot Ops Center Monitoring and Logs Issues
+
+If Ops Center monitoring and logging fails to restart after restarting one or more nodes, ensure port forwarding rules are applied on all VMs so that traffic can communicate with the Kubernetes pods running on the VMs. Refer to xref:prereq-firewalld-forwarding.adoc[Enable Forwarding When Using firewalld] for additional information.
+
+== Troubleshoot Ops Center Metric Dashboard Missing Applications
+
+Scenario: Ops Center metric dashboards have the following symptoms:
+
+. Metric data shows frequent and unexpected spikes
+. Missing applications from drop-down menu
+. InfluxDB logs show a `max-series-per-database limit exceeded` error.
++
+[NOTE]
+--
+To get the influxdb_pod_name, run, `kubectl -n monitoring get pod -lcomponent=influxdb`
+--
+
+This scenario can occur when the number of entries hits the pre-configured 1 million limit.
+
+To resolve this issue, increase the series limit to 10 million or a larger number.
+
+. Edit the config map:
++
+----
+kubectl edit cm influxdb -n monitoring
+----
+. Modify the `max-series-per-database` value to 10 million:
++
+----
+max-series-per-database = 10000000
+----
+. Save the changes.
+. Restart the InfluxDB pod to apply the changes: 
++
+----
+kubectl -n monitoring delete pod <influxdb_pod_name>
+----
+
+To delete the database series and modify what is logged, follow the steps in https://help.mulesoft.com/s/article/RTF-Error-Reporting-Heap-Metrics-InfluxDBException-partial-write-max-series-per-database-limit-exceeded[RTF - Error Reporting Heap Metrics: InfluxDBException: partial write: max-series-per-database limit exceeded^].
 
