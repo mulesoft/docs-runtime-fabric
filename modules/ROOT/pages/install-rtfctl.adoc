@@ -112,7 +112,7 @@ rtfctl appliance reinstall --skip-download
 * Generates an appliance diagnostics report
 +
 ----
-rtfctl appliance report --filename <filename>.tar.gz
+rtfctl appliance report --file <filename>.tar.gz
 ----
 
 * Performs rollback to the existing version after a failed appliance upgrade 
@@ -529,7 +529,7 @@ rtfctl ping <app-name> --port 12345
 Generates a diagnostics report at `rtf-report.tar.gz`
 
 ----
-rtfctl report --filename <filename>.tar.gz
+rtfctl report --file <filename>.tar.gz
 ----
 
 === `status` 
