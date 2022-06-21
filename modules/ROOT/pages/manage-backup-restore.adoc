@@ -43,7 +43,6 @@ The following is backed up:
 * Data about application state
 * Data from Ops Center
 * Data from the control plane
-* The current Runtime Fabric version
 
 === Changes Made After Performing a Backup Are Not Restored
 
