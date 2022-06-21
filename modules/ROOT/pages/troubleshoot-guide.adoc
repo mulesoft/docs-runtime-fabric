@@ -382,5 +382,28 @@ max-series-per-database = 10000000
 kubectl -n monitoring delete pod <influxdb_pod_name>
 ----
 
-To delete the database series and modify what is logged, follow the steps in https://help.mulesoft.com/s/article/RTF-Error-Reporting-Heap-Metrics-InfluxDBException-partial-write-max-series-per-database-limit-exceeded[RTF - Error Reporting Heap Metrics: InfluxDBException: partial write: max-series-per-database limit exceeded^].
+To delete the database series and modify what is logged, follow the steps in https://help.mulesoft.com/s/article/RTF-Error-Reporting-Heap-Metrics-InfluxDBException-partial-write-max-series-per-database-limit-exceeded[RTF - Error Reporting Heap Metrics: InfluxDBException: partial write: max-series-per-database limit exceeded].
 
+== Troubleshoot Agent Version Mismatch 
+
+Sometimes after an agent upgrade the following error status is displayed on runtime manager: _Degraded : Runtime Fabric agent version mismatch detected from control plane_. The root cause is a discrepancy between the agent version stored on Anypoint Platform for that cluster and the one being actually reported on the agent status probe.
+
+Some common causes for this problem are:
+
+* Failed or rolled back agent upgrades
+* Restoration of pre-upgrade backups
+* Enhanced security being disabled
+
+=== Failed agent upgrades
+Under some situations an agent upgrade fails ad is rolled back but the desired version is still the one on Anypoint Platform.
+For these scenarios please apply the procedure described in the following article: https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected]
+
+=== Resotration of pre-upgrade backups
+As you can read on this documentation xref:manage-backup-restore.adoc#back-up-and-restore-process-does-not-affect-the-control-plane[The Back Up and Restore Process Does Not Affect the Control Plane]. If you restore a backup that was taken runing a previous agent version than the latest applied from the control plane you will have to repeat the upgrade procedure.
+
+=== Enhanced security being disabled
+Since agent version 1.11 enhaced security (mutual authentication) is a requirement. Upgrading from a version lower than 1.11 to this version or later will eventually get stuck with this error message. Enhanced security must be enabled and the upgrade retried.
+For more information please refer to:
+
+* Runtime Fabric 1.11 release notes
+* xref:config-mutual-auth.adoc[Configuring Mutual Authentication with Anypoint Platform]
