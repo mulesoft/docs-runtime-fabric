@@ -382,28 +382,26 @@ max-series-per-database = 10000000
 kubectl -n monitoring delete pod <influxdb_pod_name>
 ----
 
-To delete the database series and modify what is logged, follow the steps in https://help.mulesoft.com/s/article/RTF-Error-Reporting-Heap-Metrics-InfluxDBException-partial-write-max-series-per-database-limit-exceeded[RTF - Error Reporting Heap Metrics: InfluxDBException: partial write: max-series-per-database limit exceeded].
+To delete the database series and modify what is logged, follow the steps in https://help.mulesoft.com/s/article/RTF-Error-Reporting-Heap-Metrics-InfluxDBException-partial-write-max-series-per-database-limit-exceeded[RTF - Error Reporting Heap Metrics: InfluxDBException: partial write: max-series-per-database limit exceeded^].
 
 == Troubleshoot Agent Version Mismatch 
 
-Sometimes after an agent upgrade the following error status is displayed on runtime manager: _Degraded : Runtime Fabric agent version mismatch detected from control plane_. The root cause is a discrepancy between the agent version stored on Anypoint Platform for that cluster and the one being actually reported on the agent status probe.
+Scenario: After an agent upgrade, you encounter the following error status in Runtime Manager: `Degraded : Runtime Fabric agent version mismatch detected from control plane`. This error is caused by a discrepancy between the agent version stored on Anypoint Platform for that cluster and the version reported by the agent status probe.
 
-Some common causes for this problem are:
+Common causes of this issue include:
 
 * Failed or rolled back agent upgrades
 * Restoration of pre-upgrade backups
-* Enhanced security being disabled
+* Disabled mutual authentication 
 
-=== Failed agent upgrades
-Under some situations an agent upgrade fails ad is rolled back but the desired version is still the one on Anypoint Platform.
-For these scenarios please apply the procedure described in the following article: https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected]
+=== Failed Agent Upgrades
 
-=== Resotration of pre-upgrade backups
-As you can read on this documentation xref:manage-backup-restore.adoc#back-up-and-restore-process-does-not-affect-the-control-plane[The Back Up and Restore Process Does Not Affect the Control Plane]. If you restore a backup that was taken runing a previous agent version than the latest applied from the control plane you will have to repeat the upgrade procedure.
+In this situation, an agent upgrade fails, and you roll it back, but the desired (upgraded) version is the version listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
 
-=== Enhanced security being disabled
-Since agent version 1.11 enhaced security (mutual authentication) is a requirement. Upgrading from a version lower than 1.11 to this version or later will eventually get stuck with this error message. Enhanced security must be enabled and the upgrade retried.
-For more information please refer to:
+=== Resotration of Pre-Upgrade Backups
 
-* Runtime Fabric 1.11 release notes
-* xref:config-mutual-auth.adoc[Configuring Mutual Authentication with Anypoint Platform]
+If you restore a backup that was taken on a previous agent version than the latest version applied from the control plane for that cluster, you must repeat the upgrade procedure. For more information, refer to xref:manage-backup-restore.adoc#changes-made-after-performing-a-backup-are-not-restored[Changes Made After Performing a Backup Are Not Restored].
+
+=== Disabled mutual authentication
+
+Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
