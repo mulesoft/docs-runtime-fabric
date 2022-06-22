@@ -396,7 +396,7 @@ Common causes of this issue include:
 
 === Failed Agent Upgrades
 
-In this situation, an agent upgrade fails, and you roll it back, but the desired (upgraded) version is the version listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
+In this situation an agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
 
 === Resotration of Pre-Upgrade Backups
 
