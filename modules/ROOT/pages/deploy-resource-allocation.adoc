@@ -21,22 +21,19 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 
 * Memory
 
-== CPU and Licensed Cores
+== MuleSoft License Compliance
 
-The physical CPU core capacity often differs from the MuleSoft license core amount. 
+You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure one of the following:
 
-* The physical CPU core capacity is the CPU capacity provided by Runtime Fabric worker nodes, which is displayed as vCPU utilization in the Runtime Fabric console.
-* The MuleSoft license core amount is the entitlement needed for Mule application deployment. 
+. The sum of CPU Limits allocated to each Mule application replica is less than or equal to the total license quantity.
+. The total CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
 
-You cannot purchase fractional MuleSoft license core amounts. For example, if you plan to have 1.5 cores available, you must purchase a MuleSoft license for 2 cores. 
+NOTE: This licensing calculation applies to all previous versions of Runtime Fabric on VMs / Bare Metal.
 
-You are only required to purchase a license for the compute power you utilize. The underlying Runtime Fabric cluster does not need to be licensed. The actual application core utilization must be less than or equal or the MuleSoft license core amount you purchased. To measure utilization, use the dashboard in Ops Center. 
+For instructions on how to track Reserved vCPU and vCPU Limit, refer to https://help.mulesoft.com/s/article/How-to-Get-Runtime-Fabric-RTF-CPU-Reserved-and-Limit-for-Self-Managed-Kubernetes-and-RTF-Appliance[How to Get Runtime Fabric (RTF) CPU Reserved and Limit for Self Managed Kubernetes and RTF Appliance].
 
-=== MuleSoft License Compliance
+For instructions on how to monitor your usage and get alerts if your usage exceeds your license, refer to https://help.mulesoft.com/s/article/Cronjob-Script-to-Monitor-RTF-Appliance-CPU-of-Mule-Apps[Cronjob Script to Monitor RTF Appliance CPU of Mule Apps from the MuleSoft Knowledge Base].
 
-Customers are responsible for ensuring they remain compliant with their MuleSoft licensing. To remain compliant, ensure that you do not exceed the amount of CPU cores provided by your MuleSoft license at any given time.
-
-To ensure that you remain compliant with your MuleSoft license when using Runtime Fabric on VMs / Bare Metal, use the dasboard in Ops Center to determine your vCPU usage across all Mule applications.
 
 == vCPU Allocation
 
@@ -143,11 +140,11 @@ The following table summarizes the approximate requests (averaging 10 KB) that c
 .Internal Load Balancer Performance Based on CPU Core Availability
 |===
 | Key Type | CPU | TLS Without Connection Reuse | TLS with Connection Reuse
-| RSA 2K  | 0.25 | 94 msg/sec | 1100 msg/sec 
-| RSA 2K | 0.5 | 189 msg/sec | 2250 msg/sec 
-| RSA 2K | 1 | 380 msg/sec | 4000 msg/sec 
-| RSA 4K* | 0.25 | 14 msg/sec | 1048 msg/sec 
-| RSA 4K* | 0.5 | 30 msg/sec | 2087 msg/sec 
+| RSA 2K  | 0.25 | 94 msg/sec | 1100 msg/sec
+| RSA 2K | 0.5 | 189 msg/sec | 2250 msg/sec
+| RSA 2K | 1 | 380 msg/sec | 4000 msg/sec
+| RSA 4K* | 0.25 | 14 msg/sec | 1048 msg/sec
+| RSA 4K* | 0.5 | 30 msg/sec | 2087 msg/sec
 | RSA 4K* | 1 | 59 msg/sec | 3700 msg/sec
 | ECDSA P-256 | 0.25 | 234 msg/sec | 1150 msg/sec
 | ECDSA P-256 | 0.5 | 451 msg/sec | 2257 msg/sec
@@ -171,15 +168,15 @@ Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 
 | 0.25  | 8 | 2
 | 0.5 | 10 | 4
 | 0.75 | 10 | 6
-| \<= 1 | 10 | 8	
+| \<= 1 | 10 | 8
 |===
 
 == Key Types
 
-RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance. 
+RSA keys are the most common type of keys. RSA keys of 2K length offer the best compromise between security and performance.
 [NOTE]
 RSA keys larger than 2K protect against brute force cracking and are appropriate for certificates that have expirations of many years. However, whenever key length is doubled, for example, from 2k to 4k, performance is reduced by a factor greater than 6.
- 
+
 ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a 2K RSA key. Supported curves are:
 
 * secp521r1 (P-521)
