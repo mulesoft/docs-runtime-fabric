@@ -386,21 +386,21 @@ To delete the database series and modify what is logged, follow the steps in htt
 
 == Troubleshoot Agent Version Mismatch 
 
-Scenario: After an agent upgrade, you encounter the following error status in Runtime Manager: `Degraded : Runtime Fabric agent version mismatch detected from control plane`. This error is caused by a discrepancy between the agent version stored on Anypoint Platform for that cluster and the version reported by the agent status probe.
+Scenario: After a Runtime Fabric upgrade, you encounter the following error status in Runtime Manager: `Degraded : Runtime Fabric agent version mismatch detected from control plane`. This error is caused by a discrepancy between the Runtime Fabric agent version stored on Anypoint Platform for that cluster and the version reported by the agent status probe.
 
 Common causes of this issue include:
 
-* Failed or rolled back agent upgrades
+* Failed or rolled back Runtime Fabric agent upgrades
 * Restoration of pre-upgrade backups
 * Disabled mutual authentication 
 
 === Failed Agent Upgrades
 
-In this situation an agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
+In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
 
 === Resotration of Pre-Upgrade Backups
 
-If you restore a backup that was taken on a previous agent version than the latest version applied from the control plane for that cluster, you must repeat the upgrade procedure. For more information, refer to xref:manage-backup-restore.adoc#changes-made-after-performing-a-backup-are-not-restored[Changes Made After Performing a Backup Are Not Restored].
+If you restore a backup that was taken on a previous Runtime Fabric agent version than the latest version applied from the control plane for that cluster, you must repeat the upgrade procedure. For more information, refer to xref:manage-backup-restore.adoc#changes-made-after-performing-a-backup-are-not-restored[Changes Made After Performing a Backup Are Not Restored].
 
 === Disabled mutual authentication
 
