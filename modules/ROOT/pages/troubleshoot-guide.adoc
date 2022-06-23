@@ -398,7 +398,7 @@ Common causes of this issue include:
 
 In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
 
-=== Resotration of Pre-Upgrade Backups
+=== Restoration of Pre-Upgrade Backups
 
 If you restore a backup that was taken on a previous Runtime Fabric agent version than the latest version applied from the control plane for that cluster, you must repeat the upgrade procedure. For more information, refer to xref:manage-backup-restore.adoc#changes-made-after-performing-a-backup-are-not-restored[Changes Made After Performing a Backup Are Not Restored].
 
