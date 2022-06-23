@@ -30,6 +30,7 @@ The following is backed up:
 * Cluster-level secure properties 
 * All data in the Runtime Fabric and application namespace, such as data about deployments, services and service accounts, secrets, ingress resources, role bindings, cluster role configurations, and ConfigMap settings
 * The current `rtfctl` version
+* The current Runtime Fabric agent version
 * Application details including:
 ** Application configurations for pods, replicasets, application metadata, and templates
 ** Application properties configured in Runtime Manager
