@@ -402,6 +402,6 @@ In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, bu
 
 If you restore a backup that was taken on a previous Runtime Fabric agent version than the latest version applied from the control plane for that cluster, you must repeat the upgrade procedure. For more information, refer to xref:manage-backup-restore.adoc#changes-made-after-performing-a-backup-are-not-restored[Changes Made After Performing a Backup Are Not Restored].
 
-=== Disabled mutual authentication
+=== Disabled Mutual Authentication
 
 Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
