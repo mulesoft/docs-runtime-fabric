@@ -45,6 +45,33 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-prereqs.adoc#port-ip-addresses-and-hostnames-to-add-to-the-allowlist[Port IP Addresses and Hostnames to Add to the Allowlist].
 
+=== Troubleshoot a "x509: certificate signed by unknown authority" Error
+
+When running a network test to verify outbound connectivity, you might see an error that says, `x509: certificate signed by unknown authority`.
+
+This is caused when traffic is being intercepted by a firewall or proxy using its own root CA, which Runtime Fabric does not support.
+
+To verify the certificate issuer, run: 
+
+----
+curl -v https://rtf-runtime-registry.kprod.msap.io 
+----
+
+Ensure the result shows that Amazon is listed as the issuer. 
+
+----
+Server certificate:
+
+subject: CN=*.prod.cloudhub.io
+start date: Nov 12 00:00:00 2021 GMT
+expire date: Dec 10 23:59:59 2022 GMT
+subjectAltName: host "rtf-runtime-registry.kprod.msap.io" matched cert's "*.kprod.msap.io"
+issuer: C=US; O=Amazon; OU=Server CA 1B; CN=Amazon
+SSL certificate verify ok.
+----
+
+If any other issuer is listed, traffic is being intercepted. 
+
 == Troubleshoot Chrony Synchronization Check Failure
 
 Runtime Fabric requires chrony for its time synchronization daemon. If chrony is not found by the `init.sh` installation script, Runtime Fabric installation fails with the following error:
