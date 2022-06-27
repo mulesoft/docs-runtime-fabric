@@ -399,19 +399,19 @@ Creates a debugging information package for an application
 * Creates a package for an application using the first pod by default
 +
 ----
-rtfctl package <app-name>
+rtfctl package <app-name> <path-to-file>
 ----
 
 * Creates a package for an application containing the apps, policies, and `.mule` directories
 +
 ----
-rtfctl package <app-name> --apps --policies --dotmule
+rtfctl package <app-name> <path-to-file> --apps --policies --dotmule
 ----
 
 * Creates a package for an application containing a heap dump
 +
 ----
-rtfctl package <app-name> --heap-dump
+rtfctl package <app-name> <path-to-file> --heap-dump
 ----
 
 === `restart`
