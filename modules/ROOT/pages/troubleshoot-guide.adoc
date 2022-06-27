@@ -45,7 +45,7 @@ tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
 
 If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in xref:install-prereqs.adoc#port-ip-addresses-and-hostnames-to-add-to-the-allowlist[Port IP Addresses and Hostnames to Add to the Allowlist].
 
-=== Troubleshoot a "x509: certificate signed by unknown authority" Error
+=== Troubleshoot an Unknown Certificate Authority Error
 
 When running a network test to verify outbound connectivity, you might see an error that says, `x509: certificate signed by unknown authority`.
 
