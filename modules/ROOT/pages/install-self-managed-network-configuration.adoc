@@ -75,6 +75,38 @@ If you are using a previous version of Anypoint Runtime Fabric you must add this
 * EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
 
+== Verify Outbound Connectivity
+
+Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
+
+You can use `rtfctl` to verify that Runtime Fabric has the required outbound connectivity. On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`.
+
+To verify the required outbound connectivity, run the following command on all controller and worker nodes in the cluster:
+
+----
+sudo ./rtfctl test outbound-network
+----
+
+Sample output:
+
+----
+[root@rtf-controller-1 runtimefabric]# sudo ./rtfctl test outbound-network
+Using proxy configuration from Runtime Fabric (proxy "", no proxy "")
+
+Using 'US' region
+transport-layer.prod.cloudhub.io:443 ✔
+https://anypoint.mulesoft.com ✔
+https://worker-cloud-helm-prod.s3.amazonaws.com ✔
+https://exchange2-asset-manager-kprod.s3.amazonaws.com ✔
+https://ecr.us-east-1.amazonaws.com ✔
+https://494141260463.dkr.ecr.us-east-1.amazonaws.com ✔
+https://prod-us-east-1-starport-layer-bucket.s3.amazonaws.com ✔
+https://runtime-fabric.s3.amazonaws.com ✔
+tcp://dias-ingestor-nginx.prod.cloudhub.io:443 ✔
+----
+
+If you have outbound connectivity issues that prevent Runtime Fabric from reaching any of the required Anypoint control plane services, work with your network team to verify that you have added the required port IPs and hostnames to the allowlist as described in the port configuration section.
+
 == Certificate Configuration
 
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
