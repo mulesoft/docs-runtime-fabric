@@ -66,33 +66,24 @@ The following image illustrates different MuleSoft and customer responsibilities
 
 image::rtf-shared-responsibility.png[Anypoint Runtime Fabric on Self-Managed Kubernetes Shared Responsibilities Diagram]
 
-=== MuleSoft provided
-+
+=== MuleSoft Provided
+
 MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, Replicasets, and ingress resources.
 
-=== Customer responsibility
-+
+=== Customer Managed
+
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Anypoint Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
-+
-** Ingress controller and external load balancing
-+
-** xref:custom-ingress-configuration.adoc[Customizations to Ingress resources]
-+
-** Log forwarding
-+
-** Monitoring
-+
-** Network ports, NAT gateways, and proxies
-+
-** Host runtime and networking
-+
-** Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
-+
-*** IT team to provision and manage the infrastructure
-+
-*** Network team to specify allowed ports and configure proxy settings
-+
-*** Security team to verify compliance and obtain security certificates
+
+* Ingress controller and xref:custom-ingress-configuration.adoc[Customizations to Ingress resources] 
+* External load balancing
+* Log forwarding
+* Monitoring
+* Network ports, NAT gateways, and proxies
+* Host runtime and networking
+* Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
+** IT team to provision and manage the infrastructure
+** Network team to specify allowed ports and configure proxy settings
+** Security team to verify compliance and obtain security certificates
 
 == Requirements for Runtime Fabric on Self-Managed Kubernetes
 
