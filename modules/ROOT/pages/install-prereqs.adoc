@@ -170,7 +170,7 @@ The following table lists all ports that must be open, along with the respective
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
 | 123 | UDP | NTP | All nodes | Internet | Clock synchronization via Network Time Protocol
-| 443 | TCP | HTTPS | Internet | Controller nodes | Allow inbound requests to Mules
+| 443 | TCP | HTTPS | API consumers | Controller nodes | Allow inbound API requests to ingress controllers
 | 443 | TCP | AMQP over WebSockets | Controller nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
