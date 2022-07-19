@@ -151,7 +151,7 @@ The support team might also ask you to download information through Ops Center a
 
 == Troubleshoot Cluster Shrinking or Expanding Errors 
 
-If you add or remove a node from a Runtime Fabric cluster (expand or shrink the cluster), and then immediately try to add a new node, you may encounter a `cluster status is "shrinking"` or a `cluster status is "expanding"`` error. If this occurs, wait four minutes or longer and then add the new node. 
+If you add or remove a node from a Runtime Fabric cluster (expand or shrink the cluster), and then immediately try to add a new node, you might encounter a `cluster status is "shrinking"` or a `cluster status is "expanding"` error. If this occurs, wait four minutes or longer and then add the new node. 
 
 == Troubleshoot Application Deployment Issues
 
