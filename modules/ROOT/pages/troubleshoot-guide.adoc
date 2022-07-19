@@ -149,6 +149,10 @@ When filing a support case, the support team might ask you to run one or both of
 
 The support team might also ask you to download information through Ops Center as described in xref:using-opscenter#download-debug-info[Download Debug Info].
 
+== Troubleshoot Cluster Shrinking or Expanding Errors 
+
+If you add or remove a node from a Runtime Fabric cluster (expand or shrink the cluster), and then immediately try to add a new node, you might encounter a `cluster status is "shrinking"` or a `cluster status is "expanding"` error. If this occurs, wait four minutes or longer and then add the new node. 
+
 == Troubleshoot Application Deployment Issues
 
 In rare situations, the Anypoint Monitoring agent might prevent an application from deploying. In
@@ -432,3 +436,4 @@ If you restore a backup that was taken on a previous Runtime Fabric agent versio
 === Disabled Mutual Authentication
 
 Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
+
