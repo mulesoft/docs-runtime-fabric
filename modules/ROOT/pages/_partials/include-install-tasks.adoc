@@ -46,6 +46,7 @@ rtfctl get mule-license
 // end::licenseKey[]
 
 // tag::ingressResource[]
+
 == Configure the Ingress Resource Template
 
 [IMPORTANT]
