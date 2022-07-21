@@ -137,7 +137,7 @@ These required values are created and added to `values.yml` when you create the 
 |`activationData` |Activation Data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
 |`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
 |`pullSecretName` |Registry Secret |`<pull_secret>`
-|`muleLicense` |Mule license for applications |`<mule_license_key>`
+|`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be base64 encoded.
 |===
 
 === Optional Parameters
