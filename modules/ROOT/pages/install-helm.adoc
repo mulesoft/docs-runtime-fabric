@@ -44,7 +44,6 @@ Runtime Fabric supports installations, upgrades, and rollbacks using Helm for ve
 
 To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data that is needed during installation.
 
-
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
