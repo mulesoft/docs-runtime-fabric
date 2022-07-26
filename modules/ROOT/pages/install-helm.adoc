@@ -57,7 +57,7 @@ To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a R
 
 [NOTE]
 --
-The remaining steps in the Helm-install process reference placeholder values. You can retrieve these values from Runtime Manager when you create the Runtime Fabric instance. 
+The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
 -- 
 
 == Create A Namespace for Runtime Fabric 
