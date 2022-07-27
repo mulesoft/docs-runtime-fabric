@@ -11,6 +11,11 @@ Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure tha
 
 To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
 
+[NOTE]
+--
+The following table does not include ports and hostnames from API Manager that you may also need to allow. Refer to xref:api-manager::runtime-urls-whitelist.adoc[the API Manager documentation] for a list of additional ports and hostnames. 
+--
+
 [%header%autowidth.spread]
 |===
 | Port | Layer 4 Protocol | Layer 5 Protocol | Source | Destination | Description
