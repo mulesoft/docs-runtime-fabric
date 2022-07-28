@@ -18,7 +18,6 @@ When you use Helm to install Runtime Fabric, you:
 . Download the `values.yml` file and install Runtime Fabric
 . Complete install steps
 
-
 == Before you Begin
 
 Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure that you have:
@@ -55,6 +54,11 @@ To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a R
 * Google Kubernetes Engine
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
+
+[NOTE]
+--
+The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
+-- 
 
 == Create A Namespace for Runtime Fabric 
 
