@@ -106,7 +106,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 . Run the following command:
 +
 ----
-helm install -f values.yaml
+helm install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.yaml -n <namespace>
 ----
 
 [[values-yml-reference]]
