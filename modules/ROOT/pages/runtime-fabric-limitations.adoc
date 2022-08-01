@@ -59,4 +59,4 @@ The following table lists known limitations for host operating systems in Runtim
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
 
-include::partial$antivirus-statement.adoc[]
+include::partial$include-antivirus-statement.adoc[]

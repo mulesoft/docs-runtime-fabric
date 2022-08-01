@@ -20,4 +20,4 @@ Run no more than 20 - 25 replicas per core, up to a maximum of 40 replicas per n
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
 
-include::partial$antivirus-statement.adoc[]
+include::partial$include-antivirus-statement.adoc[]
