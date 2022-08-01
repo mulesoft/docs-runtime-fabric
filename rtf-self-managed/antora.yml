@@ -1,0 +1,5 @@
+name: rtf-self-managed-kubernetes
+title: Runtime Fabric on Self-Managed Kubernetes
+version: '2.0'
+nav:
+- modules/ROOT/nav.adoc

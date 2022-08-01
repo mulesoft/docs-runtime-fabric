@@ -1,0 +1,5 @@
+name: rtf-self-vm-bare-metal
+title: Runtime Fabric on VMs / Bare Metal
+version: '1.13'
+nav:
+- modules/ROOT/nav.adoc

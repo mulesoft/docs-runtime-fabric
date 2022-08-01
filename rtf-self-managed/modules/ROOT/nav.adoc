@@ -1,0 +1,13 @@
+.xref:index-self-managed.adoc[On Self-Managed Kubernetes]
+ * xref:limitations-self.adoc[Limitations]
+ *  xref:install-self-managed-network-configuration.adoc[]
+ *  xref:install-self-managed.adoc[Installing Runtime Fabric on Self-Managed Kubernetes (rtfctl)]
+ *  xref:install-helm.adoc[Installing Runtime Fabric on Self-Managed Kubernetes (Helm)]
+ *  xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
+ *  xref:custom-ingress-configuration.adoc[Configuring Ingress]
+ *  xref:configure-local-registry.adoc[Using a Local Registry]
+ *  xref:manage-proxy-self.adoc[Managing Proxies]
+ *  xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric on Self-Managed Kubernetes (rtfctl)]
+ *  xref:upgrade-helm.adoc[Upgrading Runtime Fabric on Self-Managed Kubernetes (Helm)]
+ *  xref:uninstall-self.adoc[Uninstalling Runtime Fabric on Self-Managed Kubernetes]
+
