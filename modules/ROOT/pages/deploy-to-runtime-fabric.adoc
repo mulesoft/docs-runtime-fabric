@@ -28,11 +28,11 @@ The full deployment process includes these steps:
 
 Before deploying an application to Anypoint Runtime Fabric, perform the following:
 
-* Install and configure Anypoint Runtime Fabric. Refer to the installation instructions for xref:install-create-rtf-arm.adoc[Runtime Fabric on VMs / Bare Metal] or xref:install-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes] for more information.
+* Install and configure Anypoint Runtime Fabric. Refer to the installation instructions for xref:install-self-managed.adoc[Runtime Fabric] for more information.
 * Ensure that Runtime Fabric is associated with an environment. Refer to xref:associate-environments.adoc[Associating Business Groups and Environments to Anypoint Runtime Fabric]
-* Determine the resource allocation requirements for your application. Refer to xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
+* Determine the resource allocation requirements for your application. Refer to xref:deploy-resource-allocation-self-managed.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Check if you require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
-* To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric on Self-Managed Kubernetes] or xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric (VM / Baremetal)]
+* To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric].
 
 === Select the Application and Deployment Target
 
@@ -73,43 +73,6 @@ image::rtf-ingress-endpoint.png[A host and path are set for the application's en
 . To preview the endpoint, click the generated preview link.
 . To add additional endpoints, click *+ Add Endpoint*.
 
-=== Configure a Public Endpoint for the Application for VMs/Bare Metal
-
-Use the following steps to configure a public endpoint and network configuration for an application deployed to Runtime Fabric for VMs/Bare Metal.
-
-You must first xref:enable-inbound-traffic.adoc[enable inbound traffic manually]. Ensure your application is configured to accept connections on port 8081.
-
-[NOTE]
-To access a Runtime Fabric instance using more than one FQDN, add additional DNS entries in the `subjectAltName` certificate property. If a certificate has multiple DNS entries specified in the `subjectAltName` property, the available URLs are displayed in the *Public endpoint* section. Each deployed application can only be addressed using a single FQDN.
-
-. Select *Ingress*.
-+
-Ingress is automatically enabled for new application deployments.
-. If you want to keep ingress enabled, from the *Domain* drop-down list, choose the appropriate domain.
-+
-Or, to enable inbound traffic for an existing application, choose the appropriate domain. 
-. To disable inbound traffic for a new application or an existing application, clear the domain selection.
-+
-To clear the selection, highlight the domain name and press Delete. 
-. Optionally, enable or disable the following:
-+
-* *Last-Mile security*: TLS termination and decryption for the forwarded HTTPS connections occurs in the application. This option requires that the Mule application include an SSL certificate and also requires more CPU resources. 
-+
-* *Forward SSL session*: Enables SSL forwarding during a session.
-+
-SSL forwarding is mostly used with client authentication. See xref:anypoint-security::enable-client-authentication.adoc[Enable Client Authentication]. SSL forwarding forwards client certificate details in HTTP request headers so they are available to the application. These fields can identify an authenticated client and allow an application to determine and use the identity.
-+
-The following headers are available:
-+
-[%header,cols="2*a"]
-|===
-| Header Name | Value
-| x-ssl-client-verify | SUCCESS/FAIL
-| x-ssl-issuer | the client certificate issuer.
-| x-ssl-client-serial | the client certificate serial number.
-| x-ssl-client-dn | the contents of the client certificate DN field.
-|===
-
 === Set Up Replication and Storage
 
 After you configure an application's endpoints, set up replication to configure the number of application instances to deploy. 
@@ -134,7 +97,7 @@ If there is an insufficient number of worker nodes or resources available on the
 . To enable data persistence, select *Use Persistent Object Storage*.
 . Specify the number of *Cores* and amount of *Memory* to allocate to each replica of the application by adjusting the sliders to the appropriate values.
 +
-If needed, review xref:deploy-resource-allocation.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
+If needed, review xref:deploy-resource-allocation-self-managed.adoc[determine resource allocation] for applications deployed to Runtime Fabric.
 
 === (Optional) Enable TLS v1 and TLS v1.1
 
@@ -209,7 +172,7 @@ When deploying applications, you may encounter the following issues:
 
 == See Also
 
-* xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric]
+* xref:deploy-resource-allocation-self-managed.adoc[Determine Application Resource Allocation on Runtime Fabric]
 * xref:runtime-manager::developing-applications-for-cloudhub.adoc[Deploy a Mule Application to CloudHub]
 * xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploy a Mule Application to a Hybrid Environment]
 

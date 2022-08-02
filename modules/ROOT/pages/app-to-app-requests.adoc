@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-In an Anypoint Runtime Fabric cluster, every application replica exposes an endpoint inside the cluster. When you enable inbound traffic, that endpoint is exposed externally. Refer to xref:enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric] for additional information about servicing external requests and configuring the load balancer. 
+In an Anypoint Runtime Fabric cluster, every application replica exposes an endpoint inside the cluster. When you enable inbound traffic, that endpoint is exposed externally. Refer to xref:custom-ingress-configuration.adoc[Configuring Ingress for Runtime Fabric] for additional information about servicing external requests. 
 
 To send a request from one application to another application inside the cluster, use the application name and environment ID. 
 

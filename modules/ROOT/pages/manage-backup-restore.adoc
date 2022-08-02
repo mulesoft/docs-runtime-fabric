@@ -135,9 +135,3 @@ kubectl scale --replicas=0 -n rtf deployment.apps/agent
 This process may require several minutes to complete.
 
 For Runtime Fabric on Self-Managed Kubernetes, confirm the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
-
-
-== See Also
-
-* xref:manage-nodes.adoc[Add or Remove a Node from a Runtime Fabric]
-* xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites]

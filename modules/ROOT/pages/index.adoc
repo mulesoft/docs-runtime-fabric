@@ -22,7 +22,7 @@ There are two management options for Anypoint Runtime Fabric:
 
 * *Runtime Fabric on VMs / Bare Metal*: a version of Runtime Fabric where MuleSoft provides required software infrastructure components, including Docker and Kubernetes. You install this version on virtual machines that you operate and manage.
 
-Each of these options has its own system requirements and installation procedures. See xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes] and xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal] for more information on each option.
+Each of these options has its own system requirements and installation procedures.  and  for more information on each option.
 
 [%header,cols="3*a"]
 |===
@@ -56,9 +56,4 @@ You can enable monitoring and alerting in AWS, Azure, or Google Cloud | Included
 Hybrid deployments of Mule applications require you to install a version of the Mule runtime on a server and deploy one or more applications on the server. Each application shares the Mule runtime server and the resources allocated to it. Other resources such as certificates or database connections may also be shared using domains.
 
 Anypoint Runtime Fabric provisions resources differently. Each Mule application and API gateway runs within its own Mule runtime and in its own container. The resources available to the container are specified when deploying a Mule application or API proxy. This enables Mule applications to horizontally scale across nodes without relying on other dependencies. It also ensures that different applications do not compete with each other for resources on the same node.
-
-== See Also
-
-* xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes]
-* xref:index-vm-bare-metal.adoc[Anypoint Runtime Fabric on VMs / Bare Metal]
 
