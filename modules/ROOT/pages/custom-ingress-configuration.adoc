@@ -1,4 +1,4 @@
-= Configuring Ingress for Runtime Fabric on Self-Managed Kubernetes
+= Configuring Ingress for Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ endif::[]
 This content refers to configuring ingress on Runtime Fabric for versions 1.10 and later. Refer to the documentation for versions 1.8 or 1.9 for previous ingress configuration instructions.
 ==== 
 
-Anypoint Runtime Fabric on Self-Managed Kubernetes enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, ingress class name, and HTTP and HTTPS rules. 
+Anypoint Runtime Fabric enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, ingress class name, and HTTP and HTTPS rules. 
 
 If you do not apply an ingress resource template for an application, you can’t add ingress endpoints when you deploy it.  
 

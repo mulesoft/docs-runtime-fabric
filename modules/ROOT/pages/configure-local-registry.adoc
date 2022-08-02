@@ -1,4 +1,4 @@
-= Using a Local Registry with Runtime Fabric on Self-Managed Kubernetes
+= Using a Local Registry with Runtime Fabric
 
 Runtime Fabric uses its own registry to store the necessary Docker images for installing and managing Runtime Fabric and for running applications in Kubernetes. If your security policies require that you pull your Docker images from a registry under your control, you can set up a local registry to pull and store these Docker images.
 
@@ -6,7 +6,6 @@ Runtime Fabric uses its own registry to store the necessary Docker images for in
 
 Review the following limitations on support for local registries: 
 
-* Runtime Fabric supports local registries on Self-Managed Kubernetes only.
 * You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later.
 * You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
 +

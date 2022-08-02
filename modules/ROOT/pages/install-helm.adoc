@@ -1,9 +1,4 @@
-= Installing Runtime Fabric on Self-Managed Kubernetes Using Helm
-
-[IMPORTANT]
-====
-Installing Runtime Fabric on Self-Managed Kubernetes requires tasks that must be performed by both IT administrators and MuleSoft organization administrators.
-====
+= Installing Runtime Fabric on EKS, AKS, and GKE Using Helm
 
 You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
 
@@ -20,10 +15,10 @@ When you use Helm to install Runtime Fabric, you:
 
 == Before you Begin
 
-Before installing Anypoint Runtime Fabric in a self-managed Kubernetes environment, ensure that you have:
+Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure that you have:
 
-* Reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
-* xref:install-self-managed-network-configuration.adoc[Configured your network to support Runtime Fabric on Self-Managed Kubernetes].
+* Reviewed the architecture and requirements outlined in the xref:index-self-managed.adoc[Runtime Fabric Overview].
+* xref:install-self-managed-network-configuration.adoc[Configured your network to support Runtime Fabric].
 * Installed and configured your Kubernetes environment as follows:
 +
 ** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
@@ -42,7 +37,7 @@ Runtime Fabric supports installations, upgrades, and rollbacks using Helm for ve
 
 == Create a Runtime Fabric Using Runtime Manager
 
-To install Runtime Fabric on Self-Managed Kubernetes with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data that is needed during installation.
+To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data that is needed during installation.
 
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
@@ -174,5 +169,5 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 == See Also
 
-* xref:custom-ingress-configuration.adoc[Configure Ingress for Runtime Fabric on Self-Managed Kubernetes]
+* xref:custom-ingress-configuration.adoc[Configure Ingress for Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]

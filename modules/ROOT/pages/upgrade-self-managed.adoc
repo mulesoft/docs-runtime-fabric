@@ -1,6 +1,6 @@
-= Upgrading Runtime Fabric for Self-Managed Kubernetes Using rtfctl
+= Upgrading Runtime Fabric on EKS, AKS, and GKE Using rtfctl
 
-To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, upgrade Runtime Fabric components and the `rtfctl` command-line utility.
+To upgrade Anypoint Runtime Fabric, upgrade Runtime Fabric components and the `rtfctl` command-line utility.
 
 == About Component Upgrades
 
@@ -47,7 +47,7 @@ Always use the most current version of the `rtfctl` command-line utility to ensu
 
 == Apply the Upgrades
 
-To upgrade Anypoint Runtime Fabric for Self-Managed Kubernetes, you:
+To upgrade Anypoint Runtime Fabric, you:
 
 . Upgrade Runtime Fabric Components
 . Upgrade the `rtfctl` command-line utility

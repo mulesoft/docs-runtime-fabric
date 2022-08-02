@@ -1,9 +1,9 @@
-= Limitations for Runtime Fabric on Self-Managed Kubernetes
+= Limitations for Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following information is important when installing, configuring, and managing Anypoint Runtime Fabric on Self-Managed Kubernetes.
+The following information is important when installing, configuring, and managing Anypoint Runtime Fabric.
 
 [%header%autowidth.spread]
 |===

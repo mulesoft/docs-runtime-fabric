@@ -16,9 +16,7 @@ The full deployment process includes these steps:
 
 . Select the application and deployment target
 . Configure the deployment target
-. Configure a Public Endpoint for the Application (for Self-Managed Kubernetes)
- (Runtime Fabric on Self-Managed Kubernetes only)
-. Specify the network configuration for the application (Runtime Fabric on VMs/Bare Metal only)
+. Configure a public endpoint for the application 
 . Set up replication
 . (Optional) Enable TLSv1 and TLSv1.1
 . Configure application properties
@@ -52,11 +50,11 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 +
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
-=== Configure a Public Endpoint for the Application for Self-Managed Kubernetes
+=== Configure a Public Endpoint for the Application 
 
-Use the following steps to configure a public endpoint for an application deployed to Runtime Fabric for Self-Managed Kubernetes.
+Use the following steps to configure a public endpoint for an application deployed to Runtime Fabric.
 
-Available domains and paths for an application come from the ingress resource template configured by your Runtime Fabric administrator. Refer to xref:custom-ingress-configuration.adoc[Use Custom Ingress Resource Templates in Runtime Fabric on Self-Managed Kubernetes] for more information. 
+Available domains and paths for an application come from the ingress resource template configured by your Runtime Fabric administrator. Refer to xref:custom-ingress-configuration.adoc[Use Custom Ingress Resource Templates in Runtime Fabric] for more information. 
 
 [NOTE]
 If you do not select a domain, the application is deployed to an empty domain.

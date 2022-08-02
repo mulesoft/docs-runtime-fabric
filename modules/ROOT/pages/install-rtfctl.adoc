@@ -19,7 +19,7 @@ Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics
 ====
 The tasks in the section must be performed by an IT administrator.
 
-If you're using Runtime Fabric on Self-Managed Kubernetes for AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
+If you're using Runtime Fabric for AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
 
 `az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
@@ -56,7 +56,7 @@ sudo chmod +x rtfctl
 
 For Runtime Fabric on VMs / Bare Metal, you must run `rtfctl` from a controller node. The `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/``. Confirm that the current working directory is also `/opt/anypoint/runtimefabric/`. The tool detects the required configuration to manage the cluster.
 
-For Runtime Fabric on Self-Managed Kubernetes, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+For Runtime Fabric, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
 
 * Run `rtfctl` commands as a privileged user.
 * To list all supported commands, run `rtfctl -h`. 
@@ -613,5 +613,5 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
 
 == See Also
 
-* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric on Self-Managed Kubernetes]
+* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
 * xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
