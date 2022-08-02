@@ -1,7 +1,6 @@
 = Anypoint Runtime Fabric Overview
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+:page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, upgrade-index.adoc, uninstall-manual.adoc
+:page-notice-banner-message: Looking for Runtime Fabric on VMs / Bare Metal? See version 1.13 for the lastest documentation. 
 
 Anypoint Runtime Fabric is a container service that allows you to run Mule applications, composite APIs and API gateways across any environment with centralized management via Anypoint Platform.
 
