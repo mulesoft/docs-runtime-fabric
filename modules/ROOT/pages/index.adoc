@@ -1,5 +1,5 @@
 = Anypoint Runtime Fabric Overview
-:page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, upgrade-index.adoc, uninstall-manual.adoc, index.adoc
+:page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, upgrade-index.adoc, uninstall-manual.adoc, index-self-managed.adoc
 :page-notice-banner-message: For Runtime Fabric on VMs / Bare Metal documentation, see version 1.13 or earlier.  
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric runs as a service in existing Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) environments.
@@ -12,7 +12,7 @@ Some capabilities of Anypoint Runtime Fabric include:
 * Automated application fail-over.
 * Application management with Anypoint Runtime Manager.
 
-== Core Components of Anypoint Runtime Fabric 
+== Core Components of Runtime Fabric 
 
 Anypoint Runtime Fabric and its underlying components run as Kubernetes deployment objects in EKS, AKS, or GKE environments. You manage the objects via Anypoint Platform.
 
@@ -74,7 +74,7 @@ The successful operation of Anypoint Runtime Fabric is a shared responsibility. 
 
 The following image illustrates different MuleSoft and customer responsibilities for Anypoint Runtime Fabric instances:
 
-image::rtf-shared-responsibility.png[Anypoint Runtime Fabric Shared Responsibilities Diagram]
+image::rtf-shared-responsibility.png[Anypoint Runtime Fabric shared responsibilities diagram]
 
 === MuleSoft Provided
 
@@ -153,7 +153,7 @@ Runtime Fabric supports any ingress controller that is compatible with your Kube
 
 [IMPORTANT]
 ====
-For GKE customers, the ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. See link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+The ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. See the following link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
 ====
 
 === Logs
@@ -201,8 +201,3 @@ You can enable monitoring and alerting in AWS, Azure, Google Cloud, or RedHat Op
 Hybrid deployments of Mule applications require you to install a version of the Mule runtime on a server and deploy one or more applications on the server. Each application shares the Mule runtime server and the resources allocated to it. Other resources such as certificates or database connections may also be shared using domains.
 
 Anypoint Runtime Fabric provisions resources differently. Each Mule application and API gateway runs within its own Mule runtime and in its own container. The resources available to the container are specified when deploying a Mule application or API proxy. This enables Mule applications to horizontally scale across nodes without relying on other dependencies. It also ensures that different applications do not compete with each other for resources on the same node.
-
-== See Also
-
-* xref:install-self-managed.adoc[Install Runtime Fabric]
-

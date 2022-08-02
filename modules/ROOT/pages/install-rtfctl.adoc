@@ -54,9 +54,7 @@ sudo chmod +x rtfctl
 
 === Running Commands
 
-For Runtime Fabric on VMs / Bare Metal, you must run `rtfctl` from a controller node. The `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/``. Confirm that the current working directory is also `/opt/anypoint/runtimefabric/`. The tool detects the required configuration to manage the cluster.
-
-For Runtime Fabric, `rtfctl` consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+The `rtfctl` command line tool consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
 
 * Run `rtfctl` commands as a privileged user.
 * To list all supported commands, run `rtfctl -h`. 
@@ -65,85 +63,6 @@ For Runtime Fabric, `rtfctl` consumes kubeconfig files as described in https://k
 === Checking for Proxy Settings
 
 When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and will accept a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
-
-
-== Commands for Managing the Runtime Fabric Appliance
-
-Use the following commands to manage the Runtime Fabric Appliance.
-
-[NOTE]
-These commands are for Runtime Fabric on VMs / Bare Metal only.
-
-=== `appliance` 
-
-Performs operations on the Runtime Fabric appliance 
-
-* Applies alert sender email
-+
-----
-rtfctl appliance apply alert-smtp-from "<sender>@<domain>.com"
-----
-
-
-* Renews an expired client certificate by downloading the certificate bundle
-+
-----
-rtfctl appliance renew-expired-client-cert --auth 'Bearer <YOUR ANYPOINT AUTHORIZATION TOKEN>' --url 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org-id>/fabrics/<fabric-id>/certificate-bundle'
-----
-
-* Renews an expired client certificate using a pre-downloaded package
-+
-----
-rtfctl appliance renew-expired-client-cert --file <cert-bundle-filename>
-----
-
-* Reinstalls Runtime Fabric components using the latest scripts
-+
-----
-rtfctl appliance reinstall
-----
-
-* Reinstalls Runtime Fabric components without downloading the latest scripts
-+
-----
-rtfctl appliance reinstall --skip-download
-----
-
-* Generates an appliance diagnostics report
-+
-----
-rtfctl appliance report --file <filename>.tar.gz
-----
-
-* Performs rollback to the existing version after a failed appliance upgrade 
-+
-----
-rtfctl appliance rollback
-----
-
-* Lists rollback steps without executing the rollback
-+
-----
-rtfctl appliance rollback --dry-run
-----
-
-* Performs rollback to the existing version after a failed appliance upgrade without prompting for confirmation
-+
-----
-rtfctl appliance rollback --confirm
-----
-
-* Upgrades the cluster using a pre-downloaded package
-+
-----
-rtfctl appliance upgrade --file runtimefabric-<VERSION>.tar.gz
-----
-  
-* Upgrades the cluster by downloading a package
-+
-----
-rtfctl appliance upgrade --url https://<host>/<path-to-installer-package>
-----
 
 == Commands for Configuring Runtime Fabric
 

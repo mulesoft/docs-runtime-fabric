@@ -64,9 +64,6 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 .. Ensure the value of `secretRef: name` matches the `name` field defined in your Kubernetes secret file.
 .. Modify other fields of the custom resource template as required for your environment.
 .. Run `kubectl apply -f custom-resource.yaml`.
-+
-If you are using Runtime Fabric on VMs / Bare Metal, run this command from a controller node.
-
 . Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
 +
 ----

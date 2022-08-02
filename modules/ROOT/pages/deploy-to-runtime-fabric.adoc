@@ -162,8 +162,6 @@ When deploying applications, you may encounter the following issues:
 
 * If the application encounters an error during startup, the deployment will stop and the status updates to *Failed*. An error message preview is displayed when clicking on the application and viewing the right sidebar. To view the entire message, click on the *Manage Application* button.
 
-* If you are using Runtime Fabric on VMs/Bare Metal, view the application logs in Ops Center or your third party logging provider to see additional details.
-
 * An error message indicating `insufficient resources` is returned when Runtime Fabric doesn't have the CPU cores or memory available for the deployment. When selecting multiple replicas, it's important to know that the cores and memory specified applies to _each_ replica.
 
 * If a re-deployment to an existing running application fails, the previous application remains running and active. This behavior enables zero-downtime application re-deployments. Runtime Manager will report the details and status of the failed deployment to help resolve the failure.

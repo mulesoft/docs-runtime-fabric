@@ -1,6 +1,6 @@
 = Upgrading Runtime Fabric on EKS, AKS, and GKE Using rtfctl
 
-To upgrade Anypoint Runtime Fabric, upgrade Runtime Fabric components and the `rtfctl` command-line utility.
+You can use the Runtime Fabric command line tool, `rtfctl`, to upgrade Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE). 
 
 == About Component Upgrades
 
