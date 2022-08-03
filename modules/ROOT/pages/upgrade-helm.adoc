@@ -1,4 +1,4 @@
-= Upgrading Runtime Fabric on Self-Managed Kubernetes Using Helm
+= Upgrading Runtime Fabric on EKS, AKS, and GKE Using Helm
 
 You can use Helm to upgrade Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
 

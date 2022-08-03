@@ -13,9 +13,7 @@ this node is named `rtf-controller-1` by default.
 
 The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps in xref:install-rtfctl.adoc[Install rtfctl] before continuing.
 
-For Runtime Fabric on VMs / Bare Metal, the `rtfctl` binary is in directory `/opt/anypoint/runtimefabric/`. Confirm that the current working directory is also `/opt/anypoint/runtimefabric/`.
-
-For Runtime Fabric on Self-Managed Kubernetes, confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.   
+Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.   
 
 Run `rtfctl` commands as a privileged user.
 

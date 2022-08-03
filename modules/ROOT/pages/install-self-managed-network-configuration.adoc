@@ -1,11 +1,11 @@
-= Configuring Your Network to Support Runtime Fabric on Self-Managed Kubernetes
+= Configuring Your Network to Support Runtime Fabric
 
 [IMPORTANT]
 ====
 Network configuration must be performed by an IT administrator.
 ====
 
-Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure that the following ports and hostnames are configured correctly.
+Before installing or using Runtime Fabric, ensure that the following ports and hostnames are configured correctly.
 
 == Port Configuration
 
@@ -31,7 +31,7 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 == Hostname Configuration
 
-To function correctly, Runtime Fabric on Self-Managed Kubernetes requires the following hostname configurations:
+To function correctly, Runtime Fabric requires the following hostname configurations:
 
 [%header,cols="4*a"]
 |===

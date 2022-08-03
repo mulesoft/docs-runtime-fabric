@@ -42,10 +42,3 @@ A list of the environments for the business group appears.
 
 . Select the environments under the business group to associate with this Runtime Fabric.
 . Click *Apply* to confirm the changes.
-
-
-== See Also
-
-* xref:enable-inbound-traffic.adoc[Enable Inbound Traffic to Runtime Fabric]
-* xref:runtime-fabric-logs.adoc[Configure Log Forwarding on Anypoint Runtime Fabric]
-* xref:configure-alerting.adoc[Configure Alerting on Anypoint Runtime Fabric]
