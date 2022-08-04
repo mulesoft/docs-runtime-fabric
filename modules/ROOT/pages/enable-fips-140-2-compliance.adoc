@@ -8,6 +8,7 @@ These instructions assume that you are familiar with https://csrc.nist.gov/csrc/
 
 . Using `kubectl`, patch the `custom-properties` secret in the `rtf` namespace by setting the `FIPS_ENABLED` key to `true`:
 +
+[source,copy]
 ----
 # kubectl patch secret custom-properties -n rtf -p='{"stringData":{"FIPS_ENABLED": "true"}}'
 ----
@@ -16,6 +17,7 @@ After making this change, when you deploy new applications or restart existing a
 
 . To verify an application is running in FIPS 140-2 compliance mode, review the application’s startup log:
 +
+[source,copy]
 ----
 # kubectl logs <app-pod-name> -n <env-id> -c app -f| grep -i fips
 

@@ -12,12 +12,14 @@ After the installation has completed succesfully, insert the Mule license key.
 +
 * On MacOS, run the following command:
 +
+[source,copy]
 ----
 BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
 ----
 +
 * On Unix, run the following command:
 +
+[source,copy]
 ----
 BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 ----
@@ -28,18 +30,21 @@ BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 ** Use the base64.exe program included with Windows git (C:\Program Files\Git\usr\bin).
 ** Use the following Powershell command:
 +
+[source,copy]
 ----
 $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
 ----
 
 . On the controller node acting as the leader during installation (the installer node), use the `rtfctl` utility with the Base64 value of your license key: 
 +
+[source,copy]
 ----
 rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 ----
 
 . To verify the Mule license key has applied correctly, run:
 +
+[source,copy]
 ----
 rtfctl get mule-license
 ----

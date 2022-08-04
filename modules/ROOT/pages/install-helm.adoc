@@ -61,6 +61,7 @@ You must create a namespace named `rtf` in your Kubernetes cluster. This namespa
 
 To create the namespace, run: 
 
+[source,copy]
 ----
 kubectl create ns rtf 
 ----
@@ -73,6 +74,7 @@ The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re us
 
 To create the pull secret, run:
 
+[source,copy]
 ----
 kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
@@ -83,6 +85,7 @@ You need to add the Runtime Fabric Helm repo to the namespace you created. The R
 
 To add the Helm repo, run:
 
+[source,copy]
 ----
 helm repo add <name> <helm_repo_url> --username <your_username> --password <your_password>
 ----
@@ -100,6 +103,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 . Add any optional parameters needed. 
 . Run the following command:
 +
+[source,copy]
 ----
 helm install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.yaml -n <namespace>
 ----
@@ -109,6 +113,7 @@ helm install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.
 
 The following is an example `values.yml` file. 
 
+[source,yaml]
 ----
 activationData: <activation data>
   proxy:

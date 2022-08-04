@@ -22,12 +22,14 @@ To uninstall Runtime Fabric using Helm:
 . Using Runtime Manager, delete the Runtime Fabric.
 . Run the following command:
 +
+[source,copy]
 ----
 helm uninstall runtime-fabric -n rtf
 ----
 
 If need to uninstall due to an error in the installation process, for example, if the install did not complete correctly, run the following command:
 +
+[source,copy]
 ----
 helm uninstall runtime-fabric -n rtf --no-hooks
 ----

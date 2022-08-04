@@ -70,6 +70,7 @@ Creating a backup per node, such as via a VM snapshot, is not supported.
 
 To create a backup, run the following command:
 
+[source,copy]
 ----
 ./rtfctl backup <path_to_backup_file>
 ----
@@ -100,11 +101,13 @@ To restore a cluster on Runtime Fabric, create a cluster *without* running the `
 . Copy the backup file you previously created, and make sure it is available to `rtfctl`.
 . Confirm your Kubernetes (kubectl) context is set to the backed-up cluster, and scale down all Runtime Fabric components on the original backed-up cluster:
 +
+[source,copy]
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
 
 . Restore the cluster from the backup: 
+[source,copy]
 ----
 ./rtfctl restore <path_to_backup_file>
 ----

@@ -66,12 +66,14 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 .. Run `kubectl apply -f custom-resource.yaml`.
 . Check the logs of the Persistence Gateway pod to ensure it can communicate with the database:
 +
+[source,copy]
 ----
 kubectl get pods -n rtf
 ----
 +
 Look for pods with the name prefix `persistence-gateway`
 +
+[source,copy]
 ----
 kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -nrtf
 ----
@@ -90,7 +92,7 @@ The output of this command should be similar to the following:
 == Kubernetes Custom Resource Template
 
 Use the example template below to create a Kubernetes custom resource. This custom resource enables the Kubernetes cluster to connect to your data store.
-
+[source,yaml]
 ----
 apiVersion: rtf.mulesoft.com/v1
 kind: PersistenceGateway

@@ -227,13 +227,19 @@ Use one of the xref:example-ingress-resource-templates[example templates] to cre
 . Include a `.yaml` extension in the file name. 
 . To apply an ingress template, run:
 +
-`kubectl apply -f <TEMPLATE_FILENAME.yaml>`
+[source,copy]
+--
+kubectl apply -f <TEMPLATE_FILENAME.yaml>
+--
 
 If there is an issue in the template, Kubernetes `api-server` returns an error and the command fails. 
 
 After you apply a template successfully, you can view it with:
 
-`kubectl describe ingress [Ingress Name] -n rtf`
+[source,copy]
+--
+kubectl describe ingress [Ingress Name] -n rtf
+--
 
 === Configure Ingress for a Mule Application  
 
@@ -288,25 +294,40 @@ To troubleshoot this issue:
 
 . Verify that the application is listening on port 8081:
 +
-`kubectl port-forward -n [NAMESPACE] svc/<APP_NAME> 8081:8081` 
+[source,copy]
+--
+kubectl port-forward -n [NAMESPACE] svc/<APP_NAME> 8081:8081 
+--
 
 . Verify that the application is running and responding to HTTP requests:
 +
-`curl -v \http://127.0.0.1:8081/`
+[source,copy]
+--
+curl -v \http://127.0.0.1:8081/
+--
 +
 This helps determine if the API access issue is on the Mule app itself.  
 
 . Validate that an ingress resource exists for that application service: 
 +
-`kubectl get ingress -n [NAMESPACE]`
+[source,copy]
+--
+kubectl get ingress -n [NAMESPACE]
+--
 
 . Validate that the service was created:
-+
-`kubectl get svc -n [NAMESPACE]`
+
+[source,copy]
+--
+kubectl get svc -n [NAMESPACE]
+--
 +
 If not, check the Runtime Fabric agent logs:
 +
-`kubectl logs -n rtf [AGENT_POD_NAME] -f`
+[source,copy]
+--
+kubectl logs -n rtf [AGENT_POD_NAME] -f
+--
 
 If the service and ingress object look healthy, see additional troubleshooting tasks. 
 
@@ -318,6 +339,7 @@ To troubleshoot this issue:
 
 . Verify the ingress and service resources:
 +
+[source,copy]
 ----
 kubectl get ingress -n<APP-NAMESPACE>
 kubectl get svc -n<APP-NAMESPACE>
@@ -337,7 +359,10 @@ NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)               
 
 . Check the ingress resource for your app to ensure that the HTTP path in the resource, annotations, and host are correctly rendered:
 +
-`kubectl get ing -n<APP-NAMESPACE> <INGRESS-RESOURCE-NAME> -oyaml`
+[source,copy]
+--
+kubectl get ing -n<APP-NAMESPACE> <INGRESS-RESOURCE-NAME> -oyaml
+--
 +
 The results should be similar to:
 +
@@ -374,7 +399,10 @@ status:
 
 . Check the application pod logs to ensure that you’ve configured the correct listening port:
 +
-`kubectl logs -f -n<APP-NAMESPACE> <APP-POD-NAME> -c app`
+[source,copy]
+--
+kubectl logs -f -n<APP-NAMESPACE> <APP-POD-NAME> -c app
+--
 +
 The results should be similar to:
 +

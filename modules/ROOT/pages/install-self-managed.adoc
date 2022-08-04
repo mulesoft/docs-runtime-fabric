@@ -50,24 +50,28 @@ Runtime Fabric uses the `rtfctl` command-line utility for installation and manag
 +
 * Windows
 +
+[source,copy]
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
 ----
 +
 * MacOS (Darwin)
 +
+[source,copy]
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
 ----
 +
 * Linux
 +
+[source,copy]
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
 . Change file permissions for the `rtfctl` command-line utility:
 +
+[source,copy]
 ----
 sudo chmod +x rtfctl
 ----
@@ -77,13 +81,14 @@ sudo chmod +x rtfctl
 After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
 
 If your Kubernetes configuration is not located in the `\~/.kube/config` directory, set the `KUBECONFIG` environment variable before running `rtfctl`:
+[source,copy]
 ----
 export KUBECONFIG=<path-to-kubeconfig>
 ----
 
-
 . Validate that your Kubernetes environment is read for installation:
 +
+[source,copy]
 ----
 rtfctl validate <activation_data>
 ----
@@ -98,6 +103,7 @@ The `rtfctl` command-line utility outputs any incompatibilities with the Kuberne
 
 . Install Runtime Fabric:
 +
+[source,copy]
 ----
 rtfctl install <activation_data>
 ----
