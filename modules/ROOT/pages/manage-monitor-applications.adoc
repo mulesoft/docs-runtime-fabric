@@ -33,6 +33,7 @@ If you are using a version of Anypoint Runtime Fabric older than 1.8.50, use por
 When you deploy an application to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint 
 Monitoring, pass the following custom property when deploying your application:
 
+[source,copy]
 ----
 anypoint.platform.config.analytics.agent.enabled=false
 ----

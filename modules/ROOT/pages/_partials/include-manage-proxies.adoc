@@ -14,6 +14,7 @@ This step is performed one time on one controller node.
 . Log into a controller node where `rtfctl` is installed. 
 . Run the following command, replacing the placeholder values with the following:
 +
+[source,copy]
 ----
 sudo /opt/anypoint/runtimefabric/rtfctl apply monitoring-proxy "socks5://<user>:<pass>@<10.0.0.2>:<8080>"
 ----
@@ -28,6 +29,7 @@ The password must be URL encoded.
 * *<8080>*: The host port on the host where the SOCKS5 proxy is listening for requests.
 . To verify the change was successful, run the following command to output the current value of the monitoring proxy: 
 +
+[source,copy]
 -----
 sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
 -----
@@ -53,6 +55,7 @@ Perform these steps one time on one controller node.
 . Log in to a controller node where `rtfctl` has been installed. 
 . Run the following command, replacing the placeholder values with the following:
 +
+[source,copy]
 ----
 sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
 ----
@@ -69,6 +72,7 @@ The password must be URL encoded.
 * (Optional) `--confirm`: Skips manual acknowledgement of the change. If not specified, the `rtfctl apply proxy` command prompts you to confirm the change before continuing.
 . To verify the change was successful, run the following command to output the current value of the HTTP proxy:
 +
+[source,copy]
 ----
 sudo /opt/anypoint/runtimefabric/rtfctl get http-proxy
 ----
@@ -76,6 +80,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl get http-proxy
 The output should match the value expected.
 . To remove the proxy values, run:
 +
+[source,copy]
 -----
 sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----

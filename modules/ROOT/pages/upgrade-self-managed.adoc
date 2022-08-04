@@ -17,9 +17,11 @@ Runtime Fabric component upgrades do not require adding a node.
 === Determine the Component Versions You Are Using
 
 From a local workstation that has a `Kubeconfig` file and can access Kubernetes, or from a support bastion, run the following command:
-```
+
+[source,copy]
+--
 .rtfctl version
-```
+--
 
 The output looks something like this:
 
@@ -74,16 +76,19 @@ After the upgrade, it’s normal for Runtime Fabric to report as “degraded” 
 
 . From your terminal, run the following command: 
 +
+[source,copy]
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 . Change file permissions for the `rtfctl` binary: 
 +
+[source,copy]
 ----
 chmod +x rtfctl
 ----
 . Alternatively, to update `rtfctl` in place as a user who owns the `rtfctl` binary, run:
 +
+[source,copy]
 ----
 `rtfctl update`
 ----

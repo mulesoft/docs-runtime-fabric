@@ -49,6 +49,7 @@ Dependency versions are specific to the Runtime Fabric version.
 
 . Obtain `rtf-runtime-registry` credentials:
 +
+[source,copy]
 ----
 # rtfctl get registry-credentials <activation-data>
 ----
@@ -57,6 +58,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 
 . Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
+[source,copy]
 ---- 
 # eval $(rtfctl get docker-registry-login <activation-data>)
 # docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
@@ -68,6 +70,7 @@ You should see a message that the login was successful.
 +
 For the US control plane:
 +
+[source,copy]
 ---- 
 # docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
 # docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
@@ -76,6 +79,7 @@ For the US control plane:
 +
 For the EU control plane:
 +
+[source,copy]
 ---- 
 # docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
 # docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
@@ -86,6 +90,7 @@ For the EU control plane:
 
 . If you use authentication to access your registry, create the required secret in the rtf namespace:
 +
+[source,copy]
 ----
 # kubectl create namespace rtf
 # kubectl create secret docker-registry regcred --namespace=rtf --docker-server=<docker_server> --docker-username=<docker_username> --docker-email=<docker_email> --docker-password=<docker_password> 
@@ -95,12 +100,14 @@ For the EU control plane:
 
 . Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
 +
+[source,copy]
 ----
 # rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
 ----
 +
 Alternatively, if you use authentication to access your registry, use the following command:
 +
+[source,copy]
 ----
 # rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server> --image-pull-secret <your-local-reg-secret>
 ----
