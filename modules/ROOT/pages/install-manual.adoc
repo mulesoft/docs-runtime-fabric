@@ -174,7 +174,7 @@ The internal load balancer is distributed across the controller nodes for shared
 
 == Variables to Define
 
-Use the following required variables to install Rutime Fabric. 
+Use the following required variables to install Runtime Fabric. 
 
 [%header,cols="3*a"]
 .Required Installation Variables
