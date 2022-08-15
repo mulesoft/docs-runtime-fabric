@@ -1,0 +1,147 @@
+= Installing Runtime Fabric on Red Hat OpenShift
+
+You can install Anypoint Runtime Fabric on a Red Hat OpenShift installation. 
+
+Runtime Fabric supports the following Red Hat OpenShift deployment options:
+
+* Red Hat OpenShift Service on AWS
+* Microsoft Azure Red Hat OpenShift
+* Red Hat OpenShift Dedicated
+* Red Hat OpenShift on IBM Cloud
+* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
+
+== Install Runtime Fabric on Red Hat OpenShift
+
+When you use install Runtime Fabric on Red Hat OpenShift, you’ll:
+
+. Create a Runtime Fabric using Runtime Manager
+. Create a namespace for Runtime Fabric
+. Create a Docker pull secret for pulling the Runtime Fabric component images
+. Install and configure the Runtime Fabric operator
+. Complete the remaining installation steps to validate your Runtime Fabric and configure ingress 
+
+=== Before You Begin
+
+Before installing Runtime Fabric on Red Hat OpenShift, ensure:
+
+* You have reviewed the architecture and requirements outlined in Runtime Fabric on Self-Managed Kubernetes
+* You have reviewed the network requirements 
+* You have installed and configured a supported Red Hat OpenShift Kubernetes environment with:
+** A supported Kubernetes version
+** An ingress controller to send external requests to applications
+* You have privileged user permissions to complete the installation process
+
+=== Create a Runtime Fabric using Runtime Manager
+
+To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
+
+. From Anypoint Platform, select Runtime Manager.
+. Click *Runtime Fabrics*.
+. Click *Create Runtime Fabric*.
+. Enter the name of the new Runtime Fabric, then select the Red Hat OpenShift option. 
+. Review the Support responsibility disclaimer, then if you agree click *Accept*.
+. Click *Operator*.
+. Copy the activation data. 
+
+=== Create A Namespace for Runtime Fabric 
+
+In your Red Hat OpenShift cluster, create a namespace for installing Runtime Fabric. This namespace is where you install Runtime Fabric components. 
+
+To create the namespace, run: 
+----
+kubectl create ns rtf 
+----
+
+=== Create A Docker Pull Secret 
+
+After you create the namespace, you create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+
+To create the pull secret, run:
+----
+kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
+
+=== Install the Red Hat OpenShift Runtime Fabric Operator
+
+You install the Runtime Fabric operator (`rtf-agent-operator`) from the OperatorHub.
+
+. In the Red Hat OpenShift console, navigate to **Operators** > **OperatorHub**.
+. In the OperatorHub search field, search for the Runtime Fabric operator.
+. In the rtf-agent-operator dialog, click **Install**.
+
+NOTE: Installing the Runtime Fabric operator requires manual approval and may take several minutes to complete.
+
+== Configure the Runtime Fabric operator
+
+To configure the Runtime Fabric operator, you supply the necessary values when prompted.
+ 
+. In the Red Hat OpenShift console, navigate to **Operators** > **Installed Operators**.
+. Select the Runtime Fabric operator.
+. In the console, click **Create Instance**, and select **Configure via form view**. 
+. Add any required parameters. Refer to the Installation Parameters Reference for guidance.
+. Click **Create**.
+
+== Installation Parameters Reference
+
+The following is an example YAML view of the installation parameters. 
+
+[source,yaml]
+--
+activationData: <activation data>
+OGQ=
+  proxy.http.proxy:
+  proxy.http.no_proxy:
+  proxy.monitoring.proxy:
+muleLicense: <mule license key>
+global:
+image:
+  rtfRegistry: <rtf-runtime-registry.kqa.msap.io or local registry value>
+    pullSecretName: rtf-pull-secret
+  containerLogPaths:
+  - /var/lib/docker/containers
+  - /var/log/containers
+  - /var/log/pods
+--
+
+=== Required Parameters
+
+The values for these required parameters are set when you create the Runtime Fabric in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret. 
+
+[%header%autowidth.spread]
+|===
+|Key |Value |Example
+|`activationData` |Activation data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
+|`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
+|`pullSecretName` |Registry secret |`<pull_secret>`
+|`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
+|===
+
+=== Optional Parameters
+Set these optional parameters as needed.
+
+[%header%autowidth.spread]
+|===
+|Key |Value |Example
+a|      
+      
+* `proxy.http_proxy`
+* `proxy.http_no_proxy` |Proxy and no_proxy values a| 
+
+* `http://<user>:<pass>@<10.0.0.1>:<8080>` 
+* `<1.1.1.1:8888,2.2.2.2:9999>`
+|`proxy.monitoring_proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
+|`global.containerLogPaths` |The Filebeat read path a|
+
+* `/var/lib/docker/`
+* `/var/log/containers`
+* `/var/log/pods`
+|===
+
+
+include::partial$include-install-tasks.adoc[tags=licenseKey]
+include::partial$include-install-tasks.adoc[tags=ingressResource]
+include::partial$include-install-tasks.adoc[tags=validate]
+
+

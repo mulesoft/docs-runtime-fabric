@@ -33,3 +33,14 @@ If need to uninstall due to an error in the installation process, for example, i
 ----
 helm uninstall runtime-fabric -n rtf --no-hooks
 ----
+
+== Uninstalling Runtime Fabric on Red Hat OpenShift
+
+Perform the following procedure to uninstall Runtime Fabric on Red Hat OpenShift:
+
+. Using Runtime Manager, delete all Mule applications and API gateways deployed on Runtime Fabric.
+. Verify on all associated environments that you have removed all applications.
+. Using Runtime Manager, delete the Runtime Fabric.
+. In the Red Hat OpenShift console, navigate to **Operators** > **Installed Operators**.
+. Select the Runtime Fabric operator.
+. Click **Uninstall**.
