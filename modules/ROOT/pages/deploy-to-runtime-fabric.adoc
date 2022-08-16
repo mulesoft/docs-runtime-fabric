@@ -32,6 +32,9 @@ Before deploying an application to Anypoint Runtime Fabric, perform the followin
 * Check if you require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
 * To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric].
 
+[IMPORTANT]
+If you're using Runtime Fabric on Red Hat OpenShift, see xref:install-openshift.adoc#prepare-for-deploying-mule-apps-to-red-hat-openshift[Prepare for Deploying Mule Apps to Red Hat OpenShift] for necessary configuration steps. 
+
 === Select the Application and Deployment Target
 
 . Sign into https://anypoint.mulesoft.com[Anypoint Platform].

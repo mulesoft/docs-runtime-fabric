@@ -139,9 +139,37 @@ a|
 * `/var/log/pods`
 |===
 
-
 include::partial$include-install-tasks.adoc[tags=licenseKey]
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
+
+== Prepare for Deploying Mule Apps to Red Hat OpenShift
+
+Before you deploy any Mule applications to your Red Hat OpenShift cluster, perform the following steps. 
+
+Also, before attempting to deploy an Mule applications, ensure you've installed your Mule license key. 
+
+. Create a namespace for your Mule app deployments. See xref:create-custom-namespace.adoc[Creating Application Namespaces for Application Deployments.]
+. On your Red Hat OpenShift cluster, apply the following ClusterRoleBinding. Be sure to replace the `<your_namespace>` placeholder with the value you created in step 1.
++
+[source,yaml]
+--
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rtf-restricted
+  namespace: <your_namespace>
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    name: rtf-restricted
+    namespace: <your_namespace>
+--
+. In the `custom-properties` ConfigMap for your namespace, disable the per-app service account, by setting `DISABLE_PER_APP_SA` to `true`. 
+. Restart the rtf-agent pod. 
+. From Runtime Manager, deploy a Mule app using your namespace. See xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric] for instructions.
 
 
