@@ -6,14 +6,14 @@ Anypoint Runtime Fabric provides Persistence Gateway, which enables Mule applica
 ====
 Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mule runtime engine 4.2.1 or later.
 
-You can also use the Mule Maven plugin version 3.5.4 or later to enable persistent object stores for Runtime Fabric deployments. 
+You can also use the Mule Maven plugin version 3.5.4 or later to enable persistent object stores for Runtime Fabric deployments.
 ====
 
 == Using Persistence Gateway in a Mule Application
 
 After Persistence Gateway is configured in Anypoint Runtime Fabric, it is available for Mule applications deployed to Mule runtime engine, version 4.2.1 or later. When configured, users can select *Use Persistent Object Storage* when deploying an application using Runtime Manager. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for more information.
 
-Mule applications use the Object Store v2 REST API via the Object Store Connector to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application. 
+Mule applications use the Object Store v2 REST API via the Object Store Connector to connect to Persistence Gateway. This enables you to deploy to both Anypoint Runtime Fabric and CloudHub without having to modify your Mule application.
 
 [NOTE]
 ====
@@ -38,7 +38,7 @@ To configure Persistence Gateway, you must create a Kubernetes custom resource t
 
 === Before You Begin
 
-Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^]. 
+Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^].
 
 During configuration, Persistence Gateway creates the required database schema. Afterwards, when an application deployed to Runtime Fabric is configured to use persistent object storage, the Persistence Gateway writes the necessary rows to the database.
 
@@ -56,7 +56,9 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 [IMPORTANT]
 --
 * Do not change `--from-literal=persistence-gateway-creds`. You can replace `<SECRET NAME>` with any value you want to use for the secret.
-* Do not use the "@" character in the database username. 
+* Do not use the "@" character in the database username.
+* If your PostgresSQL user account password contains special characters, make sure to encode your connection URL before pushing it as Kubernetes secret. For more information, see https://help.mulesoft.com/s/article/RTF-Persistent-Gateway-Does-Not-Allow-Login-Due-to-Account-Password-With-Special-Characters[RTF Persistent Gateway Does Not Allow Login Due to Account Password With Special Characters].
+
 --
 
 . Create a custom resource for your data store:
@@ -84,7 +86,7 @@ The output of this command should be similar to the following:
 2021/04/09 16:35:31 Connecting to PostgreSQL backend...
 2021/04/09 16:35:32 Starting watcher for /var/run/secrets/rtf-object-store/persistence-gateway-creds
 2021/04/09 16:35:32 Watching for changes on /var/run/secrets/rtf-object-store/persistence-gateway-creds
-2021/04/09 16:35:35 Succesfully connected to the PostgreSQL backend.
+2021/04/09 16:35:35 Successfully connected to the PostgreSQL backend.
 192.168.2.101 - - [09/Apr/2021:16:35:55 +0000] "GET /api/v1/status/ready HTTP/1.1" 200 2 "" "kube-probe/1.18+"
 ----
 
