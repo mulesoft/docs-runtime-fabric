@@ -57,7 +57,7 @@ kubectl create secret generic <SECRET NAME> -n rtf --from-literal=persistence-ga
 --
 * Do not change `--from-literal=persistence-gateway-creds`. You can replace `<SECRET NAME>` with any value you want to use for the secret.
 * Do not use the "@" character in the database username.
-*  If your PostgresSQL user account password contains special characters, make sure to encode your connection URL before pushing it as Kubernetes secret. For more information, see https://help.mulesoft.com/s/article/RTF-Persistent-Gateway-Does-Not-Allow-Login-Due-to-Account-Password-With-Special-Characters[RTF Persistent Gateway Does Not Allow Login Due to Account Password With Special Characters].
+* If your PostgresSQL user account password contains special characters, make sure to encode your connection URL before pushing it as Kubernetes secret. For more information, see https://help.mulesoft.com/s/article/RTF-Persistent-Gateway-Does-Not-Allow-Login-Due-to-Account-Password-With-Special-Characters[RTF Persistent Gateway Does Not Allow Login Due to Account Password With Special Characters].
 
 --
 
