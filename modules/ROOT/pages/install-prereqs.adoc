@@ -106,6 +106,7 @@ Runtime Fabric on VMs / Bare Metal requires one of the following operating syste
 ** v7.4 - v7.9
 ** v8.0 - v8.3
 ** v8.4 (using Runtime Fabric Appliance version 1.1.1636064094-8b70d2d and later)
+** v8.6 (using Runtime Fabric Appliance version 1.1.1660253001-ab8f5e5 and later)
 * CentOS 
 ** v7.4 - v7.9
 +
