@@ -127,6 +127,8 @@ The JKS file information is saved in the global secrets group for your organizat
 * Option 3: *Import from Secrets Manager* 
 +
 Refer to the instructions in xref::configure-adv-tls-context.adoc[Importing a TLS Context from Secrets Manager (Advanced)].
++
+NOTE: If you make any changes to the TLS context in Secrets Manager, they are not automatically applied to the inbound traffic configuration. If you make any changes, navigate to the *Inbound Traffic* tab, and click Save and Deploy.
 
 == Optionally Select Security Policies
 
