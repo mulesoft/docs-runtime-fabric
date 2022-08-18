@@ -21,6 +21,8 @@ Before you deploy Mule applications and API proxies to Runtime Fabric, you must 
 
 You can use Runtime Manager to manually deploy Mule applications and API proxies. See xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
 
+You can also use the Anypoint Platform CLI to deploy Mule applications. See xref:deploy-to-rtf-cli.adoc[Deploying and Managing Apps in Runtime Fabric Using the CLI].
+
 == Deploy Using Maven
 
 Runtime Fabric supports Maven for managing and deploying a Mule application or API proxy. 
