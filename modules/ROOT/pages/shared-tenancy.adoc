@@ -82,8 +82,9 @@ subjects:
 * RoleBindings
 * ServiceAccounts
 . Run some commands
-. Complete the RTF installation by following the steps in https://docs.mulesoft.com/runtime-fabric/1.13/install-self-managed
-Or
-https://docs.mulesoft.com/runtime-fabric/1.13/install-helm
-Or 
-Link to openshift install docs
+. Complete the RTF installation:
++
+* xref:install-self-managed.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using `rtfctl`]
+* xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
+* xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
+

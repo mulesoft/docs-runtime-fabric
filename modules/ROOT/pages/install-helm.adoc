@@ -26,9 +26,10 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 ** Running an ingress controller to send external requests to applications.
 * Installed Helm 3 or later and have privileged user permissions.
 
-[NOTE]
+[IMPORTANT]
 --
-If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:upgrade-helm.adoc[upgrade documentation]. 
+* If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:upgrade-helm.adoc[upgrade documentation].
+* If you want to set up shared tenancy, you must configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
 --
 
 === Helm Support 

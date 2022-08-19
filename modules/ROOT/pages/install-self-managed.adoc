@@ -15,9 +15,10 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
 ** An ingress controller to send external requests to applications.
 * You create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
 
-[WARNING]
+[IMPORTANT]
 ====
-If you want to use a local registry with Runtime Fabric, follow the installation instructions in xref:configure-local-registry.adoc[Using a Local Registry with Runtime Fabric]. You must set up the local registry during installation.
+* If you want to use a local registry with Runtime Fabric, follow the installation instructions in xref:configure-local-registry.adoc[Using a Local Registry with Runtime Fabric]. You must set up the local registry during installation.
+* If you want to set up shared tenancy, you must configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
 ====
 
 == Create a Runtime Fabric using Runtime Manager
