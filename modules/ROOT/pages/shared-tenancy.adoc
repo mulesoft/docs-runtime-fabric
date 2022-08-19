@@ -16,7 +16,7 @@ Runtime Fabric installs the rtf-agent in the Runtime Fabric namespace, and it ha
 
 === Example
 
-The following is an example of a rtf:agent ClusterRole that allows everything regarding cronjobs. available in the whole cluster, but doesn’t itself grant permissions for the whole cluster. It’s available in the whole cluster, but doesn’t itself grant permissions for the whole cluster.
+The following is an example of a Runtime Fabric agent ClusterRole that allows all cronjob actions (`verbs`). The ClusterRole is available in the whole cluster, but it doesn’t yet have permissions for the whole cluster.
 
 [source,yaml]
 ----
@@ -40,7 +40,7 @@ rules:
  - watch
 ----
    
-Runtime Fabric will then create required RoleBinding objects which will use the ClusterRole rtf:agent to allow corresponding ServiceAccount to perform various actions (verbs) on cronjobs in two namespaces.
+Runtime Fabric creates the required RoleBinding objects which use the ClusterRole rtf:agent to allow corresponding ServiceAccount to perform various actions (verbs) on cronjobs in two namespaces.
 
 [source,yaml]
 ----
