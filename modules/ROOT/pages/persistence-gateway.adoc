@@ -32,7 +32,7 @@ The following table lists the limits on the data stored by Persistence Gateway:
 
 Before enabling Persistence Gateway, ensure that you have:
 
-* Created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^].
+* Created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgreSQL^].
 * Chosen a PostgreSQL version that does not reserve the `partition` keyword. 
 
 [NOTE]
