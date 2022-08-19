@@ -4,8 +4,6 @@ Anypoint Runtime Fabric provides Persistence Gateway, which enables Mule applica
 
 [NOTE]
 ====
-Persistence Gateway is supported on Anypoint Runtime Fabric 1.9 or later and Mule runtime engine 4.2.1 or later.
-
 You can also use the Mule Maven plugin version 3.5.4 or later to enable persistent object stores for Runtime Fabric deployments.
 ====
 
@@ -30,22 +28,24 @@ The following table lists the limits on the data stored by Persistence Gateway:
 | Maximum TTL. | The amount of time data is stored in Persistence Gateway, value is set to 30 days.
 |===
 
+== Before You Begin
 
-[[Configure-Persistence-Gateway]]
-== Configure Persistence Gateway
+Before enabling Persistence Gateway, ensure that you have:
 
-To configure Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
-
-=== Before You Begin
-
-Before enabling Persistence Gateway, ensure that you have created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^].
-
-During configuration, Persistence Gateway creates the required database schema. Afterwards, when an application deployed to Runtime Fabric is configured to use persistent object storage, the Persistence Gateway writes the necessary rows to the database.
+* Created a database to serve as the data source for data stored by Persistence Gateway. This database must be compatible with a https://www.postgresql.org/support/versioning/[supported version of PostgresSQL^].
+* Chosen a PostgreSQL version that does not reserve the `partition` keyword. 
 
 [NOTE]
 ====
 Only plain text connections to the database are supported.
 ====
+ 
+[[Configure-Persistence-Gateway]]
+== Configure Persistence Gateway
+
+During configuration, Persistence Gateway creates the required database schema. Afterwards, when an application deployed to Runtime Fabric is configured to use persistent object storage, the Persistence Gateway writes the necessary rows to the database.
+
+To configure Persistence Gateway, you must create a Kubernetes custom resource that allows the cluster to connect to your persistence data store.
 
 . Create a Kubernetes secret:
 +
