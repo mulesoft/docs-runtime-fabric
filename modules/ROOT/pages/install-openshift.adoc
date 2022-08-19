@@ -12,7 +12,7 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 
 == Install Runtime Fabric on Red Hat OpenShift
 
-When you use install Runtime Fabric on Red Hat OpenShift, you’ll:
+When you install Runtime Fabric on Red Hat OpenShift, you’ll:
 
 . Create a Runtime Fabric using Runtime Manager
 . Create a namespace for Runtime Fabric
@@ -33,7 +33,7 @@ Before installing Runtime Fabric on Red Hat OpenShift, ensure:
 
 [IMPORTANT]
 --
-* If you want to set up shared tenancy, you must configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
+* If you want to set up shared tenancy, configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
 --
 
 === Create a Runtime Fabric using Runtime Manager
@@ -151,7 +151,7 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 == Prepare for Deploying Mule Apps to Red Hat OpenShift
 
-Before you deploy any Mule applications to your Red Hat OpenShift cluster, perform the following steps. 
+Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure you've installed your Mule license key and then, perform the following steps.
 
 Also, before attempting to deploy an Mule applications, ensure you've installed your Mule license key. 
 
