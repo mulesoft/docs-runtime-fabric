@@ -96,9 +96,10 @@ The following is an example YAML view of the installation parameters.
 --
 activationData: <activation data>
 OGQ=
-  proxy.http.proxy:
-  proxy.http.no_proxy:
-  proxy.monitoring.proxy:
+proxy:
+  http_proxy:
+  http_no_proxy:
+  monitoring_proxy:
 muleLicense: <mule license key>
 global:
 image:
