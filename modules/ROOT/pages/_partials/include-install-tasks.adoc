@@ -83,3 +83,50 @@ Before deploying an application to your Runtime Fabric:
 . Review and update the Inbound Traffic settings based upon your Kubernetes environment.
 . Deploy an application to verify that Runtime Fabric is installed and configured correctly.
 // end::validate[]
+
+// tag::namespace[]
+
+== Create A Namespace for Runtime Fabric 
+
+You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+
+To create the namespace, run: 
+
+[source,copy]
+----
+kubectl create ns rtf 
+----
+// end::namespace[]
+
+// tag::pullsecret[]
+
+== Create A Docker Pull Secret 
+
+After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+
+To create the pull secret, run:
+
+[source,copy]
+----
+kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
+// end::pullsecret[]
+
+// tag::sharedtenancy[]
+
+== (Optional) Configure Shared Tenancy
+
+If you want to configure xref:shared-tenancy.adoc[shared tenancy], add the required Kubernetes objects. The objects include:
+
+* clusterRoles/Roles
+* serviceAccounts
+* clusterRoleBindings/roleBindings
+
+. In your cluster, create a file call `configuration.yml`.
+. Copy and paste the following:
+
+[add config file]
+
+// end::sharedtenancy[]

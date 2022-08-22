@@ -29,7 +29,6 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 [IMPORTANT]
 --
 * If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:upgrade-helm.adoc[upgrade documentation].
-* If you want to set up shared tenancy, you must configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
 --
 
 === Helm Support 
@@ -56,29 +55,9 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
 -- 
 
-== Create A Namespace for Runtime Fabric 
-
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
-
-To create the namespace, run: 
-
-[source,copy]
-----
-kubectl create ns rtf 
-----
-
-== Create A Docker Pull Secret 
-
-After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
-
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
-
-To create the pull secret, run:
-
-[source,copy]
-----
-kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
-----
+include::partial$include-install-tasks.adoc[tags=namespace]
+include::partial$include-install-tasks.adoc[tags=pullsecret]
+include::partial$include-install-tasks.adoc[tags=sharedtenancy]
 
 == Add the Runtime Fabric Helm Repository
 

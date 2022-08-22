@@ -75,15 +75,8 @@ subjects:
  
 == Configure Shared Tenancy 
 
-. Create the Kubernetes objects required to install the Runtime Fabric agent:
-+
-* Namespaces
-* ClusterRoles/Roles
-* RoleBindings
-* ServiceAccounts
-. Run some commands
-. Complete the RTF installation:
-+
+You configure shared tenancy when you install Runtime Fabric. Refer to the appropriate installation instructions:
+
 * xref:install-self-managed.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using `rtfctl`]
 * xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
