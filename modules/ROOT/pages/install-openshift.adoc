@@ -48,25 +48,9 @@ To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric us
 . Click *Operator*.
 . Copy the activation data. 
 
-=== Create A Namespace for Runtime Fabric 
-
-In your Red Hat OpenShift cluster, create a namespace for installing Runtime Fabric. This namespace is where you install Runtime Fabric components. 
-
-To create the namespace, run: 
-----
-kubectl create ns rtf 
-----
-
-=== Create A Docker Pull Secret 
-
-After you create the namespace, you create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
-
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
-
-To create the pull secret, run:
-----
-kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
-----
+include::partial$include-install-tasks.adoc[tags=namespace]
+include::partial$include-install-tasks.adoc[tags=pullsecret]
+include::partial$include-install-tasks.adoc[tags=sharedtenancy]
 
 === Install the Red Hat OpenShift Runtime Fabric Operator
 
