@@ -72,6 +72,10 @@ SSL certificate verify ok.
 
 If any other issuer is listed, traffic is being intercepted. 
 
+== Troubleshoot connectivity issues on Anypoint Monitoring sidecar container for application pods
+
+If you experience connetivity issues in the monitoring sidecar container of application deployment pods it could be that you need to review xref:install-self-managed-network-configuration.adoc#port-configuration[networking port prerrequisites] to unblock all required ports. If you have decided not to allow the legacy Anypoint Monitoring, Anypoint Visualizer port 5044 you may get some errors even though functionality is not affected. For more details on this please refer to the following knowledge article: https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container["Failed to connect to failover" ERROR logs in RTF application pod sidecar container^]
+
 == Troubleshoot Chrony Synchronization Check Failure
 
 Runtime Fabric requires chrony for its time synchronization daemon. If chrony is not found by the `init.sh` installation script, Runtime Fabric installation fails with the following error:
