@@ -248,7 +248,7 @@ subjects:
   name: am-log-forwarder
   namespace: {{ .Release.Namespace }}
 
-## ClusterRole to read underlying openshift version
+## ClusterRole to read underlying Open Shift version
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -262,7 +262,7 @@ rules:
       - get
       - list
 
-## ClusterRoleBinding for the openshift version reader role
+## ClusterRoleBinding for the OpenShift version reader role
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -389,7 +389,7 @@ roleRef:
   name: sf-edge-user
   apiGroup: rbac.authorization.k8s.io
 
-## PodSecurityPoliy for persistence gateway
+## PodSecurityPolicy for Persistence Gateway
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
