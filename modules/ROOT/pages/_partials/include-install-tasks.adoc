@@ -126,7 +126,291 @@ If you want to configure xref:shared-tenancy.adoc[shared tenancy], add the requi
 
 . In your cluster, create a file call `configuration.yml`.
 . Copy and paste the following:
++
+[source,copy]
+----
+##rtf-agent ServiceAccount
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: ${RTF_NAMESPACE}
+  name: rtf-agent
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+imagePullSecrets:
+  - name: ${RTF_PULL_SECRET}
 
-[add config file]
+## rtf:agent ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rtf:agent
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+rules:
+  - apiGroups: ["extensions", "apps"]
+    resources: ["deployments", "deployments/scale", "daemonsets", "replicasets"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["events", "pods", "pods/log", "pods/exec", "nodes"]
+    verbs: ["get", "watch", "list"]
+  - apiGroups: [""]
+    resources: ["pods/portforward", "configmaps", "namespaces", "secrets", "services", "serviceaccounts", "events"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
+  - apiGroups: ["batch", "extensions"]
+    resources: ["jobs", "cronjobs"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete", "deletecollection"]
+  - apiGroups: ["policy"]
+    resources: ["podsecuritypolicies"]
+    resourceNames: ["rtf-restricted"]
+    verbs: ["use"]
+  - apiGroups: ["policy", "networking.k8s.io"]
+    resources: ["podsecuritypolicies", "networkpolicies"]
+    verbs: ["*"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["rolebindings", "roles"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
+  - apiGroups: ["extensions", "networking.k8s.io"]
+    resources: ["ingresses", "networkpolicies"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
+  - apiGroups: ["policy"]
+    resources: ["podsecuritypolicies"]
+    verbs: ["use"]
+  - apiGroups: ["rtf.mulesoft.com"]
+    resources: ["persistencegateways"]
+    verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
+  - apiGroups: ["autoscaling"]
+    resources: ["horizontalpodautoscalers"]
+    verbs: ["*"]
+
+## rtf-agent RoleBinding for rtf namespace
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rtf:agent
+  namespace: ${RTF_NAMESPACE}
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: ${RTF_NAMESPACE}
+roleRef:
+  kind: ClusterRole
+  name: rtf:agent
+  apiGroup: rbac.authorization.k8s.io
+
+## rtf-agent RoleBinding for App namespaces
+### NOTE: Add RoleBindings for all the required namespaces for rtf:agent ClusterRole
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rtf:agent
+  namespace: ${APP_NAMESPACE}
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: ${RTF_NAMESPACE}
+roleRef:
+  kind: ClusterRole
+  name: rtf:agent
+  apiGroup: rbac.authorization.k8s.io
+
+## scc ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: ${RTF_NAMESPACE}
+namespace: {{ .Release.Namespace }}
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: system:openshift:scc:anyuid
+subjects:
+- kind: ServiceAccount
+  name: rtf-agent
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: resource-cache
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: rtf-persistence-gateway
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: cluster-status
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: am-log-forwarder
+  namespace: {{ .Release.Namespace }}
+
+## ClusterRole to read underlying openshift version
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rtf-cluster-version-reader
+rules:
+  - apiGroups:
+      - config.openshift.io
+    resources:
+      - clusterversions
+    verbs:
+      - get
+      - list
+
+## ClusterRoleBinding for the openshift version reader role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rtf-cluster-version-reader-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: rtf-cluster-version-reader
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: ${RTF_NAMESPACE}
+
+## ClusterRole for permissions to access nodes and pods
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rtf:agent-extension
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+rules:
+  apiGroups: [""]
+  resources: ["nodes", "pods"]
+  verbs: ["get", "list", "watch"]
+
+## ClusterRoleBinding for the extension of rtf:agent role
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rtf:agent-extension
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace:  ${RTF_NAMESPACE}
+roleRef:
+  kind: ClusterRole
+  name: rtf:agent-extension
+  apiGroup: rbac.authorization.k8s.io
+
+## PSP for edge
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: sf-edge
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+spec:
+  privileged: false
+  hostNetwork: true
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  hostPorts:
+  - min: 0
+    max: 65535
+  volumes:
+  - '*'
+
+## ServiceAccount for edge-user
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sf-edge
+  namespace: ${RTF_NAMESPACE}
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+imagePullSecrets:
+  - name: ${RTF_PULL_SECRET}
+
+## ClusterRole for edge user
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sf-edge-user
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+rules:
+- apiGroups:
+  - networking.k8s.io
+  - extensions
+  resources:
+  - ingresses
+  verbs:
+  - watch
+- apiGroups:
+  - policy
+  resourceNames:
+  - sf-edge
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  - secrets
+  verbs:
+  - list
+  - get
+
+## RoleBinding for edge to app namespaces
+### NOTE: Add RoleBindings for all the required namespaces for sf-edge-user ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: edge-clusterrole-binding
+  namespace: ${APP_NAMESPACE}
+  labels:
+    app.kubernetes.io/instance: rtf-automation
+subjects:
+- kind: ServiceAccount
+  name: sf-edge
+  namespace: ${RTF_NAMESPACE}
+roleRef:
+  kind: ClusterRole
+  name: sf-edge-user
+  apiGroup: rbac.authorization.k8s.io
+
+## PodSecurityPoliy for persistence gateway
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: persistence-gateway-psp
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+spec:
+  privileged: false
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  hostPorts:
+    - min: 0
+      max: 65535
+  volumes:
+    - '*'
+----
 
 // end::sharedtenancy[]

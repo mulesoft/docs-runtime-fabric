@@ -9,6 +9,7 @@ When you use Helm to install Runtime Fabric, you:
 . Create a Runtime Fabric using Runtime Manager
 . Create the `rtf` namespace for Runtime Fabric 
 . Create a Docker pull secret for pulling the Runtime Fabric component images
+. Optionally, configure shared tenancy
 . Add the Runtime Fabric Helm repository
 . Download the `values.yml` file and install Runtime Fabric
 . Complete install steps
