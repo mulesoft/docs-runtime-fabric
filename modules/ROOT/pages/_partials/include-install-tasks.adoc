@@ -113,7 +113,6 @@ To create the pull secret, run:
 kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 // end::pullsecret[]
-<<<<<<< HEAD
 
 // tag::sharedtenancy[]
 
@@ -131,5 +130,3 @@ If you want to configure xref:shared-tenancy.adoc[shared tenancy], add the requi
 [add config file]
 
 // end::sharedtenancy[]
-=======
->>>>>>> 8580b7c9337111aba8a4194df487fb04810b2471
