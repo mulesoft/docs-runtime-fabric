@@ -72,9 +72,9 @@ SSL certificate verify ok.
 
 If any other issuer is listed, traffic is being intercepted. 
 
-== Troubleshoot connectivity issues on Anypoint Monitoring sidecar container for application pods
+== Troubleshoot Connectivity Issues on Anypoint Monitoring Sidecar Container for Application Pods
 
-If you experience connetivity issues in the monitoring sidecar container of application deployment pods it could be that you need to review xref:install-self-managed-network-configuration.adoc#port-configuration[networking port prerrequisites] to unblock all required ports. If you have decided not to allow the legacy Anypoint Monitoring, Anypoint Visualizer port 5044 you may get some errors even though functionality is not affected. For more details on this please refer to the following knowledge article: https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container["Failed to connect to failover" ERROR logs in RTF application pod sidecar container^]
+If you experience connectivity issues in the monitoring sidecar container of application deployment pods, review the xref:install-self-managed-network-configuration.adoc#port-configuration[networking port prerequisites] to unblock all required ports. If decide not to allow Anypoint Monitoring, Anypoint Visualizer port 5044 may report errors even though functionality is not affected. For more details, see: https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container["Failed to connect to failover" ERROR logs in RTF application pod sidecar container^].
 
 == Troubleshoot Chrony Synchronization Check Failure
 
