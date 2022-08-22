@@ -17,6 +17,7 @@ When you install Runtime Fabric on Red Hat OpenShift, you’ll:
 . Create a Runtime Fabric using Runtime Manager
 . Create a namespace for Runtime Fabric
 . Create a Docker pull secret for pulling the Runtime Fabric component images
+. Optionally, configure shared tenancy
 . Install and configure the Runtime Fabric operator
 . Complete the remaining installation steps to validate your Runtime Fabric and configure ingress 
 
