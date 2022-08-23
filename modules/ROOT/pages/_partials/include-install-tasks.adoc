@@ -118,11 +118,7 @@ kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-ser
 
 == (Optional) Configure Shared Tenancy
 
-If you want to configure xref:shared-tenancy.adoc[shared tenancy], add the required Kubernetes objects. The objects include:
-
-* clusterRoles/Roles
-* serviceAccounts
-* clusterRoleBindings/roleBindings
+If you want to configure xref:shared-tenancy.adoc[shared tenancy], add the required Kubernetes objects. The objects include clusterRoles/Roles, serviceAccounts, and clusterRoleBindings/roleBindings
 
 . In your cluster, create a file call `configuration.yml`.
 . Copy and paste the following:
