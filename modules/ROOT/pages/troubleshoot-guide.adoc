@@ -441,3 +441,9 @@ If you restore a backup that was taken on a previous Runtime Fabric agent versio
 
 Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
 
+== Troubleshoot Missing Email Alert Customizations
+
+Scenario: After an appliance upgrade, you lose customizations made to your email alerts.
+
+This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xref:upgrade-index.adoc#before-you-upgrade-the-runtime-fabric-appliance[before you upgrade the Runtime Fabric appliance]. The suggested workaround is to back up any customizations before you run the upgrade and then reapply the customizations when the upgrade completes.
+
