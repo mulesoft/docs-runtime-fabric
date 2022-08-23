@@ -445,5 +445,5 @@ Runtime Fabric version 1.11 and later requires mutual authentication. If you upg
 
 Scenario: After an appliance upgrade, you lose customizations made to your email alerts.
 
-This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xref:upgrade-index.adoc#before-you-upgrade-the-runtime-fabric-appliance[before you upgrade the Runtime Fabric appliance]. The suggested workaround is to back up any customizations before you run the upgrade and then reapply the customizations when the upgrade is completex.
+This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xref:upgrade-index.adoc#before-you-upgrade-the-runtime-fabric-appliance[before you upgrade the Runtime Fabric appliance]. The suggested workaround is to back up any customizations before you run the upgrade and then reapply the customizations when the upgrade completes.
 
