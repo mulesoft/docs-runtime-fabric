@@ -83,21 +83,15 @@ If you want to configure shared tenancy, add the required Kubernetes objects. Th
 * serviceAccounts
 * clusterRoleBindings/roleBindings
 
-. In your cluster, create an additional namespace in which to run Runtime Fabric:
+. In your cluster, create an additional namespace for application deployments, and add the `rtf.mulesoft.com/role=workers` label to the namespace:
 +
 [source,copy]
 ----
 oc create ns <namespace>
+oc edit <namespace> --> add label rtf.mulesoft.com/role=workers
 ----
 +
 Repeat this step to add as many namespaces as you need. 
-
-. Add the `rtf.mulesoft.com/role=workers` label to the namespace:
-+
-[source,copy]
-----
-oc edit <namespace> --> add label rtf.mulesoft.com/role=workers
-----
 
 . Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
 +
@@ -118,7 +112,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In your cluster, create a ConfigMap file named shared-tenancy and list any additional namespaces:
+. In the `rtf` namespace, create a ConfigMap file named shared-tenancy and list any additional namespaces:
 +
 [source,copy]
 ----
@@ -132,6 +126,9 @@ data:
   ADDITIONAL_NAMESPACE_1: "additional-namespace1"
   ADDITIONAL_NAMESPACE_2: "additional-namespace2"
 ----
++
+[IMPORTANT]
+You must name the ConfigMap `shared-tenancy`.
 
 === Install the Red Hat OpenShift Runtime Fabric Operator
 
