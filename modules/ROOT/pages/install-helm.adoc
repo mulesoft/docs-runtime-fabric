@@ -56,9 +56,29 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
 -- 
 
-include::partial$include-install-tasks.adoc[tags=namespace]
-include::partial$include-install-tasks.adoc[tags=pullsecret]
-include::partial$include-install-tasks.adoc[tags=sharedtenancy]
+== Create A Namespace for Runtime Fabric 
+
+You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+
+To create the namespace, run: 
+
+[source,copy]
+----
+kubectl create ns rtf 
+----
+
+== Create A Docker Pull Secret 
+
+After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+
+To create the pull secret, run:
+
+[source,copy]
+----
+kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
 
 == Add the Runtime Fabric Helm Repository
 
@@ -75,7 +95,65 @@ helm repo add <name> <helm_repo_url> --username <your_username> --password <your
 --
 If you already added the Helm repo, and you get a result that Runtime Fabric skipped adding the repo, run `helm repo update` before installing, or upgrading to, a new Runtime Fabric version. 
 --
+
+== (Optional) Configure Shared Tenancy
+
+If you want to configure shared tenancy, add the required Kubernetes objects. The objects include:
+
+* clusterRoles/Roles
+* serviceAccounts
+* clusterRoleBindings/roleBindings
+
+. In your cluster, create an additional namespace in which to run Runtime Fabric:
++
+[source,copy]
+----
+kubectl create ns <namespace>
+----
++
+Repeat this step to add as many namespaces as you need. 
  
+. Add the `rtf.mulesoft.com/role=workers` label to the namespace:
++
+[source,copy]
+----
+kubectl edit <namespace> --> add label rtf.mulesoft.com/role=workers
+----
+
+. Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
++
+[source,copy]
+----
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: <name>
+  namespace: {{additional-namespace}}
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: {{RTF_NAMESPACE}}
+roleRef:
+  kind: ClusterRole
+  name: rtf:agent
+  apiGroup: rbac.authorization.k8s.io
+----
+
+. In your cluster, create a ConfigMap file named shared-tenancy and list any additional namespaces:
++
+[source,copy]
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shared-tenancy
+  namespace: {{ RTF_NAMESPACE }}
+data:
+  RTF_NAMPESPACE: "rtf"
+  ADDITIONAL_NAMESPACE_1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE_2: "additional-namespace2"
+----
+
 == Install Runtime Fabric
 
 To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager. 
