@@ -34,11 +34,6 @@ Before installing Runtime Fabric on Red Hat OpenShift, ensure:
 ** An ingress controller to send external requests to applications
 * You have privileged user permissions to complete the installation process
 
-[IMPORTANT]
---
-* If you want to set up shared tenancy, configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
---
-
 === Create a Runtime Fabric using Runtime Manager
 
 To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric using Runtime Manager. This is required to obtain the activation data which is needed during installation.
