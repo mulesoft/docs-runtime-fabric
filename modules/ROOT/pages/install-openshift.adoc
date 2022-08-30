@@ -229,7 +229,6 @@ Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensur
 Also, before attempting to deploy an Mule applications, ensure you've installed your Mule license key. 
 
 . Create a namespace for your Mule app deployments. See xref:create-custom-namespace.adoc[Creating Application Namespaces for Application Deployments.]
-. In the `custom-properties` ConfigMap for your namespace, disable the per-app service account, by setting `DISABLE_PER_APP_SA` to `true`. 
 . From Runtime Manager, deploy a Mule app using your namespace. See xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric] for instructions.
 
 
