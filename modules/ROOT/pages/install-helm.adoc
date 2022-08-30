@@ -106,12 +106,17 @@ If you want to configure shared tenancy, add the required Kubernetes objects. Th
 
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
+[NOTE]
+--
+The following examples use a namespace called `DESIGN`.
+--
++
 [source,copy]
 ----
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: <namespace-name>
+    name: DESIGN
 labels:
     rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
     rtf.mulesoft.com/org: <ORG-ID>
@@ -145,7 +150,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In the `rtf` namespace, create a ConfigMap file named shared-tenancy and list any additional namespaces:
+. In the `rtf` namespace, create a ConfigMap file named `shared-tenancy` and list any additional namespaces:
 +
 [source,copy]
 ----
@@ -156,8 +161,8 @@ metadata:
   namespace: {{ RTF_NAMESPACE }}
 data:
   RTF_NAMPESPACE: "rtf"
-  ADDITIONAL_NAMESPACE_1: "additional-namespace1"
-  ADDITIONAL_NAMESPACE_2: "additional-namespace2"
+  SANDBOX: <ENVIRONMENT-ID>
+  DESIGN: "design-apps"
 ----
 +
 [IMPORTANT]
