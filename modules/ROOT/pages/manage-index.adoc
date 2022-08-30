@@ -36,9 +36,6 @@ See xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric].
 See xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric].
 ** Enable mutual authentication.
 +
-See xref:config-mutual-auth.adoc[Configuring Mutual Authentication with Anypoint Platform].
-** Add or remove nodes from a cluster to maintain cluster health or to perform an upgrade.
-+
 ** Back up Runtime Fabric.
 +
 See xref:manage-backup-restore.adoc[Back up and Restore Runtime Fabric].
