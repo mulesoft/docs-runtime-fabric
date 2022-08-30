@@ -104,16 +104,28 @@ If you want to configure shared tenancy, add the required Kubernetes objects. Th
 * serviceAccounts
 * clusterRoleBindings/roleBindings
 
-. In your cluster, create an additional namespace for application deployments, and add the `rtf.mulesoft.com/role=workers` label to the namespace:
+. In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
 [source,copy]
 ----
-kubectl create ns <namespace>
-kubectl edit <namespace> --> add label rtf.mulesoft.com/role=workers
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: <namespace-name>
+labels:
+    rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
+    rtf.mulesoft.com/org: <ORG-ID>
+    rtf.mulesoft.com/role: workers
 ----
+
+. Apply the file you just created:
 +
-Repeat this step to add as many namespaces as you need. 
- 
+[source,copy]
+----
+kubectl apply -f <filename>.yaml
+----
+
+. Repeat steps 1 and 2 to add as many namespaces as you need.  
 . Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
 +
 [source,copy]
@@ -156,7 +168,9 @@ You must name the ConfigMap `shared-tenancy`.
 To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager. 
 
 . Download the `values.yml` file.
-. Add any optional parameters needed. 
+. Add any optional parameters needed.
++
+If you’re using shared tenancy, set `sharedTenancy` to `true`. 
 . Run the following command:
 +
 [source,copy]
@@ -207,6 +221,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
+|`sharedTenancy` |Enables shared tenancy |`sharedTenancy=true`
 a|      
       
 * `proxy.http_proxy`
