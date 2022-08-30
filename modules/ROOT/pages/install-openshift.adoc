@@ -202,6 +202,7 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
+|`sharedTenancy` |Enable shared tenancy |`sharedTenancy = true`
 a|      
       
 * `proxy.http_proxy`
