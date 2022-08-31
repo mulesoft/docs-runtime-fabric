@@ -1,10 +1,7 @@
 // tag::licenseKey[]
 == Insert the Mule License Key
 
-[IMPORTANT]
-====
-The procedures in the section must be performed by an IT administrator.
-====
+If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility.
 
 After the installation has completed succesfully, insert the Mule license key.
 
@@ -54,11 +51,6 @@ rtfctl get mule-license
 
 == Configure the Ingress Resource Template
 
-[IMPORTANT]
-====
-The procedures in this section should be performed by an IT administrator.
-====
-
 If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
 
 [NOTE]
@@ -69,11 +61,6 @@ For GKE customers, the ingress controller included with GKE will provision a sep
 
 // tag::validate[]
 == Validate Your Runtime Fabric
-
-[IMPORTANT]
-====
-The procedures in this section should be performed by an IT administrator.
-====
 
 After completing the installation, your Runtime Fabric should be activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is `Active`.
 
