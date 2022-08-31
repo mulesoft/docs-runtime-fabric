@@ -85,7 +85,7 @@ If you want to configure shared tenancy, add the required Kubernetes objects. Th
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: <namespace-name>
+    name: <namespace>
 labels:
     rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
     rtf.mulesoft.com/org: <ORG-ID>
@@ -130,8 +130,7 @@ metadata:
   name: shared-tenancy
   namespace: {{ RTF_NAMESPACE }}
 data:
-  ADDITIONAL_NAMESPACE_1: "additional-namespace1"
-  ADDITIONAL_NAMESPACE_2: "additional-namespace2"
+  ADDITIONAL_NAMESPACE: "additional-namespace"
 ----
 +
 [IMPORTANT]
