@@ -120,7 +120,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In the `rtf` namespace, create a ConfigMap file named shared-tenancy and list any additional namespaces:
+. In the `rtf` namespace, create a ConfigMap file named `rtf-authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
 ----
@@ -134,7 +134,7 @@ data:
 ----
 +
 [IMPORTANT]
-You must name the ConfigMap `shared-tenancy`.
+You must name the ConfigMap `rtf-authorized-namespaces`.
 
 === Install the Red Hat OpenShift Runtime Fabric Operator
 
