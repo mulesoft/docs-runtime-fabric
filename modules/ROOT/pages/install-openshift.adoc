@@ -130,7 +130,6 @@ metadata:
   name: shared-tenancy
   namespace: {{ RTF_NAMESPACE }}
 data:
-  RTF_NAMPESPACE: "rtf"
   ADDITIONAL_NAMESPACE_1: "additional-namespace1"
   ADDITIONAL_NAMESPACE_2: "additional-namespace2"
 ----
