@@ -11,7 +11,7 @@
   ** xref:upgrade-helm.adoc[Upgrade GKE, AKS, EKS with Helm]
   ** xref:upgrade-openshift.adoc[Upgrade RedHat OpenShift]
 * xref:uninstall-self.adoc[Uninstall Runtime Fabric]
-* xref:shared-tenancy.adoc[Shared Tenancy]
+* xref:authorized-namespaces.adoc[Authorized Namespaces]
 * xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
 * xref:configure-local-registry.adoc[Use a Local Registry]

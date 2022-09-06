@@ -1,14 +1,14 @@
-= Configuring Shared Tenancy in Runtime Fabric
+= Configuring Authorized Namespaces in Runtime Fabric
 
-Shared tenancy enables you to deploy Runtime Fabric alongside other services in a Kubernetes cluster. By limiting permissions in your Runtime Fabric cluster, you can allow access only to resources within namespaces assigned to Runtime Fabric. 
+Authorized namespaces enables you to deploy Runtime Fabric alongside other services in a Kubernetes cluster. By limiting permissions in your Runtime Fabric cluster, you can allow access only to resources within namespaces assigned to Runtime Fabric. 
 
-With shared tenancy, you have control of the creation of the following Runtime Fabric resources:
+With authorized namespaces, you have control of the creation of the following Runtime Fabric resources:
 
 * Namespaces
 * RoleBindings
 * ServiceAccounts
 
-== How Shared Tenancy Works
+== How Authorized Namespaces Work
 
 At install time, you provide a configuration file that consists of your namespaces, ServiceAccounts, ClusterRoles/Roles, and RoleBindings.
 
@@ -73,9 +73,9 @@ subjects:
   namespace: default
 ----
  
-== Configure Shared Tenancy 
+== Configure Authorized Namespaces 
 
-You configure shared tenancy when you install Runtime Fabric. Refer to the appropriate installation instructions:
+You configure authorized namespaces when you install Runtime Fabric. Refer to the appropriate installation instructions:
 
 * xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
