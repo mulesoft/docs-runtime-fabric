@@ -9,7 +9,7 @@ When you use Helm to install Runtime Fabric, you:
 . Create a Runtime Fabric using Runtime Manager
 . Create the `rtf` namespace for Runtime Fabric 
 . Create a Docker pull secret for pulling the Runtime Fabric component images
-. Optionally, configure shared tenancy
+. Optionally, configure additional authorized namespaces
 . Add the Runtime Fabric Helm repository
 . Download the `values.yml` file and install Runtime Fabric
 . Complete install steps
@@ -96,9 +96,9 @@ helm repo add <name> <helm_repo_url> --username <your_username> --password <your
 If you already added the Helm repo, and you get a result that Runtime Fabric skipped adding the repo, run `helm repo update` before installing, or upgrading to, a new Runtime Fabric version. 
 --
 
-== (Optional) Configure Shared Tenancy
+== (Optional) Configure Authorized Namespaces
 
-If you want to configure shared tenancy, add the required Kubernetes objects. The objects include:
+If you want to configure authorized namespaces, add the required Kubernetes objects. The objects include:
 
 * clusterRoles/Roles
 * serviceAccounts
@@ -145,21 +145,21 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In the `rtf` namespace, create a ConfigMap file named `rtf-authorized-namespaces` and list any additional namespaces:
+. In the `rtf` namespace, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
 ----
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: shared-tenancy
+  name: authorized-namespaces
   namespace: {{ RTF_NAMESPACE }}
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace"
 ----
 +
 [IMPORTANT]
-You must name the ConfigMap `rtf-authorized-namespaces`.
+You must name the ConfigMap `authorized-namespaces`.
 
 == Install Runtime Fabric
 
@@ -168,7 +168,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 . Download the `values.yml` file.
 . Add any optional parameters needed.
 +
-If you’re using shared tenancy, set `sharedTenancy` to `true`. 
+If you’re using authorized namespaces, set `authorizedNamespaces` to `true`. 
 . Run the following command:
 +
 [source,copy]
@@ -219,7 +219,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`sharedTenancy` |Enables shared tenancy |`sharedTenancy=true`
+|`authorizedNamespaces` |Enables additional namespaces |`authorizedNamespaces=true`
 a|      
       
 * `proxy.http_proxy`
