@@ -70,9 +70,9 @@ To create the pull secret, run:
 oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
-== (Optional) Configure Shared Tenancy
+== (Optional) Configure Authorized Namespaces
 
-If you want to configure shared tenancy, add the required Kubernetes objects. The objects include:
+If you want to configure authorized namespaces, add the required Kubernetes objects. The objects include:
 
 * clusterRoles/Roles
 * serviceAccounts
@@ -120,21 +120,21 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In the `rtf` namespace, create a ConfigMap file named `rtf-authorized-namespaces` and list any additional namespaces:
+. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
 ----
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: shared-tenancy
+  name: authorized-namespaces
   namespace: {{ RTF_NAMESPACE }}
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace"
 ----
 +
 [IMPORTANT]
-You must name the ConfigMap `rtf-authorized-namespaces`.
+You must name the ConfigMap `authorized-namespaces`.
 
 === Install the Red Hat OpenShift Runtime Fabric Operator
 
@@ -155,7 +155,7 @@ To configure the Runtime Fabric operator, you supply the necessary values when p
 . In the console, click **Create Instance**, and select **Configure via form view**. 
 . Add any required parameters. Refer to the Installation Parameters Reference for guidance.
 +
-If you’re using shared tenancy, set `sharedTenancy` to `true`.
+If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
 . Click **Create**.
 
 == Installation Parameters Reference
@@ -200,7 +200,7 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`sharedTenancy` |Enable shared tenancy |`sharedTenancy = true`
+|`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces = true`
 a|      
       
 * `proxy.http_proxy`
