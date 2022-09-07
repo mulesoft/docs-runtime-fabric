@@ -72,7 +72,7 @@ oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<
 
 == (Optional) Configure Authorized Namespaces
 
-If you want to configure authorized namespaces, add the required Kubernetes objects. The objects include:
+If you want to configure xref:authorized-namespaces.adoc[authorized namespaces], add the required Kubernetes objects. The objects include:
 
 * clusterRoles/Roles
 * serviceAccounts
