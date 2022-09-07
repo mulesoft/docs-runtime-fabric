@@ -98,7 +98,7 @@ If you already added the Helm repo, and you get a result that Runtime Fabric ski
 
 == (Optional) Configure Authorized Namespaces
 
-If you want to configure authorized namespaces, add the required Kubernetes objects. The objects include:
+If you want to configure xref:authorized-namespaces.adoc[authorized namespaces], add the required Kubernetes objects. The objects include:
 
 * clusterRoles/Roles
 * serviceAccounts
