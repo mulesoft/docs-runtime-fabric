@@ -161,6 +161,15 @@ data:
 [IMPORTANT]
 You must name the ConfigMap `authorized-namespaces`.
 
+. If, after fully installing Runtime Fabric, you later add or delete any namespaces, you must restart the Runtime Fabric agent pod. To do so, run the following command:
++
+[source,copy]
+----
+kubectl delete pod <agent-pod-name> -n <agent-namespace-name>
+----
++
+After you delete the pod, Kubernetes starts a new one. 
+
 == Install Runtime Fabric
 
 To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager. 
