@@ -159,7 +159,7 @@ If you add or remove a node from a Runtime Fabric cluster (expand or shrink the 
 
 == Troubleshoot Application Deployment Issues
 
-=== Anypoint Monitoring agent issues
+=== Anypoint Monitoring Agent issues
 
 In rare situations, the Anypoint Monitoring agent might prevent an application from deploying. In
 these situations, you might see the following messages:
@@ -182,9 +182,9 @@ This indicates that the agent is restarting. There should be no impact to the ru
 application. Application metrics are queued, and are again collected after the agent
 restarts.
 
-=== VMware vmxnet 3 issues
+=== VMware VMXNET Generation 3 Issues
 
-If your appliance is hosted on a VMware environment and are unable to deploy any applications please refer to the following knowledge article: https://help.mulesoft.com/s/article/RTF-Networking-Issues-with-VMware[RTF Networking Issues with VMware and "[Runtime Fabric\] java.net.UnknownHostException:" Errors^]
+If you host your Runtime Fabric appliance on a VMware environment and are unable to deploy any applications, refer to the following MuleSoft knowledge base article: https://help.mulesoft.com/s/article/RTF-Networking-Issues-with-VMware[RTF Networking Issues with VMware and "[Runtime Fabric\] java.net.UnknownHostException:" Errors^].
 
 == Troubleshoot Application Runtime Issues
 
