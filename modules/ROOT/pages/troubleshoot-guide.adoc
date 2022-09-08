@@ -449,17 +449,18 @@ This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xre
 
 == Troubleshoot External Log Forwarding
 
-=== TLSv1.3 Support 
+=== Log Aggregators Must Use TLS v1.2 
 
-Current image libraries do not include support for this protocol version.
-If your log aggregator is not acepting TLVv1.2 you will experience that your logs are not being forwarded and warnings like these on your external log forwarder pods:
+Runtime Fabric external log forwarding libraries does not support TLS v1.3.
+
+If your log aggregator does not use TLS v1.2, your logs won't be forwarded, and you'll see warnings on your external log forwarder pods, similar to:
 
 ----
 [ warn] [engine] failed to flush chunk '8-1652967809.949249428.flb', retry in 10 seconds: task_id=5, input=tail.0 > output=es.0 (out_id=0)
 [ warn] [engine] chunk '8-1652967799.665591977.flb' cannot be retried: task_id=1, input=tail.0 > output=es.0
 ----
 
-On your log aggregator you may have an error message like the following as well:
+On your log aggregator, you may see an error message similar to:
 
 ----
 [WARN ][o.e.h.AbstractHttpServerTransport] [] caught exception while handling client http traffic, closing connection Netty4HttpChannel{localAddress=0.0.0.0/0.0.0.0:9200, remoteAddress=/*.*.*.*:1787}
@@ -471,4 +472,4 @@ io.netty.handler.codec.DecoderException: javax.net.ssl.SSLHandshakeException: Cl
 Caused by: javax.net.ssl.SSLHandshakeException: Client requested protocol TLSv1.2 is not enabled or supported in server context
 ----
 
-You will have to either enable TLSv1.2 or set your networking infrastrcuture to have an intermediate node terminate the TLSv1.2 session and create a new TLSv1.3 to the final destination. External log forwarder libraries do not support TLSv1.3 at the time of this writing.
+In such cases, either enable TLSv v1.2, or set your networking infrastructure to have an intermediate node terminate the TLS v1.2 session and create a new TLS v1.3 session to the final destination. 
