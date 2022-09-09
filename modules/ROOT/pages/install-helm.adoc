@@ -98,14 +98,10 @@ If you already added the Helm repo, and you get a result that Runtime Fabric ski
 
 == (Optional) Configure Authorized Namespaces
 
-If you want to configure xref:authorized-namespaces.adoc[authorized namespaces], add the required Kubernetes objects. The objects include:
-
-* clusterRoles/Roles
-* serviceAccounts
-* clusterRoleBindings/roleBindings
+If you want to configure xref:authorized-namespaces.adoc[authorized namespaces], add the required Kubernetes objects. 
 
 [NOTE]
-To configure authorized namespaces, Runtime Fabric has clusterwide permissions for the rtf:resource-metrics-collector clusterRole. These permissions apply to all nodes, pods, and namespaces.
+Runtime Fabric has cluster-wide permissions for the rtf:resource-metrics-collector clusterRole. These permissions apply to all nodes, pods, and namespaces.
 
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
