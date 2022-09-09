@@ -78,6 +78,9 @@ If you want to configure xref:authorized-namespaces.adoc[authorized namespaces],
 * serviceAccounts
 * clusterRoleBindings/roleBindings
 
+[NOTE]
+To configure authorized namespaces, Runtime Fabric has clusterwide permissions for the rtf:resource-metrics-collector clusterRole. These permissions apply to all nodes, pods, and namespaces.
+
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
 [source,copy]
@@ -136,7 +139,7 @@ data:
 [IMPORTANT]
 You must name the ConfigMap `authorized-namespaces`.
 
-. If, after fully installing Runtime Fabric, you later add or delete any namespaces, you must restart the Runtime Fabric agent pod. To do so, run the following command:
+. If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
 +
 [source,copy]
 ----
