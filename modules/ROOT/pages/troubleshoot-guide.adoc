@@ -451,7 +451,7 @@ This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xre
 
 === Log Aggregators Must Use TLS v1.2 
 
-Runtime Fabric external log forwarding libraries does not support TLS v1.3.
+Runtime Fabric external log forwarding libraries do not support TLS v1.3.
 
 If your log aggregator does not use TLS v1.2, your logs won't be forwarded, and you'll see warnings on your external log forwarder pods, similar to:
 
