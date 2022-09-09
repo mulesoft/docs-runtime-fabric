@@ -158,7 +158,7 @@ data:
 ----
 +
 [IMPORTANT]
-You must name the ConfigMap `authorized-namespaces`.
+You must name the ConfigMap `authorized-namespaces`, and you must create it _before_ installing Runtime Fabric.
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
 +
