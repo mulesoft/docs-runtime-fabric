@@ -131,7 +131,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: {{ RTF_NAMESPACE }}
+  namespace: rtf-namespace
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace1"
   ADDITIONAL_NAMESPACE: "additional-namespace2"
