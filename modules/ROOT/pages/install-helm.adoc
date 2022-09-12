@@ -98,10 +98,14 @@ If you already added the Helm repo, and you get a result that Runtime Fabric ski
 
 == (Optional) Configure Authorized Namespaces
 
-If you want to configure xref:authorized-namespaces.adoc[authorized namespaces], add the required Kubernetes objects. 
+You can optionally configure xref:authorized-namespaces.adoc[authorized namespaces], which enable you to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
 
-[NOTE]
-Runtime Fabric has cluster-wide permissions for the rtf:resource-metrics-collector clusterRole. These permissions apply to all nodes, pods, and namespaces.
+=== Before You Begin
+
+Before configuring authorized namespaces, note the following:
+
+* Runtime Fabric has cluste-rwide permissions for the `rtf:resource-metrics-collector` clusterRole. These permissions apply to all nodes, pods, and namespaces.
+* You must create the `authorized-namespaces` ConfigMap file _before_ installing Runtime Fabric. Additionally, you must name the ConfigMap, `authorized-namespaces`.
 
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
@@ -156,9 +160,6 @@ metadata:
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace"
 ----
-+
-[IMPORTANT]
-You must name the ConfigMap `authorized-namespaces`, and you must create it _before_ installing Runtime Fabric.
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
 +
