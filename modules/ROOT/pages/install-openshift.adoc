@@ -8,7 +8,7 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 * Microsoft Azure Red Hat OpenShift
 * Red Hat OpenShift Dedicated
 * Red Hat OpenShift on IBM Cloud
-* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)\
+* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
 
 Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.10.
 
@@ -25,7 +25,7 @@ When you install Runtime Fabric on Red Hat OpenShift, you’ll:
 
 == Before You Begin
 
-Before installing Runtime Fabric on Red Hat OpenShift, ensure:
+Before installing Runtime Fabric on Red Hat OpenShift, ensure that:
 
 * You have reviewed the architecture and requirements outlined in Runtime Fabric on Self-Managed Kubernetes
 * You have reviewed the network requirements 
@@ -231,9 +231,9 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 == Prepare for Deploying Mule Apps to Red Hat OpenShift
 
-Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure you've installed your Mule license key and then, perform the following steps.
+Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure that you've installed your Mule license key and then, perform the following steps.
 
-Also, before attempting to deploy an Mule applications, ensure you've installed your Mule license key. 
+Also, before attempting to deploy an Mule applications, ensure that you've installed your Mule license key. 
 
 . Create a namespace for your Mule app deployments. See xref:create-custom-namespace.adoc[Creating Application Namespaces for Application Deployments.]
 . From Runtime Manager, deploy a Mule app using your namespace. See xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric] for instructions.
