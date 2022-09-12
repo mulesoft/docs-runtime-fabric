@@ -44,3 +44,11 @@ Perform the following procedure to uninstall Runtime Fabric on Red Hat OpenShift
 . In the Red Hat OpenShift console, navigate to **Operators** > **Installed Operators**.
 . Select the Runtime Fabric operator.
 . Click **Uninstall**.
+. Using the following Helm command, uninstall Runtime Fabric from the cluster:
++
+[source,copy]
+----
+helm uninstall runtime-fabric -n rtf --no-hooks
+----
+
+
