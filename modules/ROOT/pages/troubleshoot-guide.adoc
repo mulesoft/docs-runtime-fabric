@@ -453,3 +453,29 @@ Scenario: After an appliance upgrade, you lose customizations made to your email
 
 This is a limitation in Runtime Fabric on VMs / Bare Metal, as documented in xref:upgrade-index.adoc#before-you-upgrade-the-runtime-fabric-appliance[before you upgrade the Runtime Fabric appliance]. The suggested workaround is to back up any customizations before you run the upgrade and then reapply the customizations when the upgrade completes.
 
+== Troubleshoot External Log Forwarding
+
+=== Log Aggregators Must Use TLS v1.2 
+
+Runtime Fabric external log forwarding libraries do not support TLS v1.3.
+
+If your log aggregator does not use TLS v1.2, your logs won't be forwarded, and you'll see warnings on your external log forwarder pods, similar to:
+
+----
+[ warn] [engine] failed to flush chunk '8-1652967809.949249428.flb', retry in 10 seconds: task_id=5, input=tail.0 > output=es.0 (out_id=0)
+[ warn] [engine] chunk '8-1652967799.665591977.flb' cannot be retried: task_id=1, input=tail.0 > output=es.0
+----
+
+On your log aggregator, you may see an error message similar to:
+
+----
+[WARN ][o.e.h.AbstractHttpServerTransport] [] caught exception while handling client http traffic, closing connection Netty4HttpChannel{localAddress=0.0.0.0/0.0.0.0:9200, remoteAddress=/*.*.*.*:1787}
+
+io.netty.handler.codec.DecoderException: javax.net.ssl.SSLHandshakeException: Client requested protocol TLSv1.2 is not enabled or supported in server context
+
+...
+
+Caused by: javax.net.ssl.SSLHandshakeException: Client requested protocol TLSv1.2 is not enabled or supported in server context
+----
+
+In such cases, either enable TLSv v1.2, or set your networking infrastructure to have an intermediate node terminate the TLS v1.2 session and create a new TLS v1.3 session to the final destination. 
