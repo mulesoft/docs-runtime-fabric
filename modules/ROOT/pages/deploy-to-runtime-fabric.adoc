@@ -31,6 +31,7 @@ Before deploying an application to Anypoint Runtime Fabric, perform the followin
 * Determine the resource allocation requirements for your application. Refer to xref:deploy-resource-allocation-self-managed.adoc[Determine Application Resource Allocation on Runtime Fabric] for more information.
 * Check if you require the *Exchange Contributors* permission to deploy applications to Runtime Fabric.
 * To deploy an application to a specific domain (endpoint), ensure that you have set up domains (endpoints) in your environment. Refer to xref:custom-ingress-configuration.adoc[Configure Ingress For Runtime Fabric].
+* If you're using Runtime Fabric on Red Hat OpenShift, follow the steps in xref:install-openshift.adoc#prepare-for-deploying-mule-apps-to-red-hat-openshift[Prepare for Deploying Mule Apps to Red Hat OpenShift] to enable app deployment.
 
 === Select the Application and Deployment Target
 
