@@ -3,5 +3,5 @@
 To install Runtime Fabric, choose from one of the following options:
 
 * xref:install-self-managed.adoc[Install GKE, AKS, EKS with rtfctl]
-* xref:install-helm.adoc.adoc[Install GKE, AKS, EKS with Helm]
+* xref:install-helm.adoc[Install GKE, AKS, EKS with Helm]
 * xref:install-openshift.adoc[Install on RedHat OpenShift]
