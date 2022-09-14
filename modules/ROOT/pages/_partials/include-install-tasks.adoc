@@ -70,4 +70,3 @@ Before deploying an application to your Runtime Fabric:
 . Review and update the Inbound Traffic settings based upon your Kubernetes environment.
 . Deploy an application to verify that Runtime Fabric is installed and configured correctly.
 // end::validate[]
-
