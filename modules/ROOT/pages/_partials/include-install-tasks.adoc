@@ -1,12 +1,12 @@
 // tag::licenseKey[]
 == Insert the Mule License Key
 
-If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility.
+If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility or Helm.
 
-After the installation has completed succesfully, insert the Mule license key.
+Before you install the license key, encode it to Base64 format.
 
-. Base64 encode the new Mule `.lic` license file provided by MuleSoft:
-+
+=== Encode the License Key
+
 * On MacOS, run the following command:
 +
 [source,copy]
@@ -32,7 +32,9 @@ BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
 ----
 
-. On the controller node acting as the leader during installation (the installer node), use the `rtfctl` utility with the Base64 value of your license key: 
+=== Apply the License Key Using rtfctl
+
+. On the controller node acting as the leader during installation (the installer node), run the following command: 
 +
 [source,copy]
 ----
@@ -44,6 +46,15 @@ rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 [source,copy]
 ----
 rtfctl get mule-license
+----
+
+=== Apply the License Key Using Helm
+
+To apply the license using Helm, run the following command:
+
+[source,copy]
+----
+helm upgrade --set muleLicense=$BASE64_ENCODED_LICENSE
 ----
 // end::licenseKey[]
 
