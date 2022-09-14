@@ -1,10 +1,7 @@
 // tag::licenseKey[]
 == Insert the Mule License Key
 
-[IMPORTANT]
-====
-The procedures in the section must be performed by an IT administrator.
-====
+If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility.
 
 After the installation has completed succesfully, insert the Mule license key.
 
@@ -54,11 +51,6 @@ rtfctl get mule-license
 
 == Configure the Ingress Resource Template
 
-[IMPORTANT]
-====
-The procedures in this section should be performed by an IT administrator.
-====
-
 If your ingress controller requires custom annotations and ingress class definition, follow the instructions in xref:custom-ingress-configuration.adoc[Defining a Custom Ingress Configuration].
 
 [NOTE]
@@ -70,11 +62,6 @@ For GKE customers, the ingress controller included with GKE will provision a sep
 // tag::validate[]
 == Validate Your Runtime Fabric
 
-[IMPORTANT]
-====
-The procedures in this section should be performed by an IT administrator.
-====
-
 After completing the installation, your Runtime Fabric should be activated within your Anypoint organization. To validate your installation, go to Anypoint Runtime Manager and confirm that the status of the Runtime Fabric is `Active`.
 
 Before deploying an application to your Runtime Fabric:
@@ -83,33 +70,3 @@ Before deploying an application to your Runtime Fabric:
 . Review and update the Inbound Traffic settings based upon your Kubernetes environment.
 . Deploy an application to verify that Runtime Fabric is installed and configured correctly.
 // end::validate[]
-
-// tag::namespace[]
-
-== Create A Namespace for Runtime Fabric 
-
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
-
-To create the namespace, run: 
-
-[source,copy]
-----
-kubectl create ns rtf 
-----
-// end::namespace[]
-
-// tag::pullsecret[]
-
-== Create A Docker Pull Secret 
-
-After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
-
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
-
-To create the pull secret, run:
-
-[source,copy]
-----
-kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
-----
-// end::pullsecret[]
