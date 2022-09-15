@@ -50,5 +50,30 @@ Perform the following procedure to uninstall Runtime Fabric on Red Hat OpenShift
 ----
 helm uninstall runtime-fabric -n rtf --no-hooks
 ----
+. Delete the `rtf` namespace from the cluster:
++
+[source,copy]
+----
+oc delete ns rtf
+----
 
+=== Troubleshooting Deletion of the rtf Namespace
+
+If the command to delete the `rtf` namespace does not work, complete the following steps:
+
+. Run the following command:
++
+[source,copy]
+----
+oc get ns rtf -o json > rtf.json
+----
+. Edit `rtf.json` and remove `kubernetes` from the `finalizer` array.
+. Run the following commands:
++
+[source,copy]
+----
+oc replace --raw "/api/v1/namespaces/rtf/finalize" -f ./rtf.json
+oc get ns
+----
+. Confirm the `rtf` namespace is no longer present.
 
