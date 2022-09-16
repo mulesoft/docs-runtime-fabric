@@ -1,6 +1,6 @@
 = Configuring Authorized Namespaces in Runtime Fabric
 
-Authorized namespaces enables you to deploy Runtime Fabric alongside other services in a Kubernetes cluster. By limiting permissions in your Runtime Fabric cluster, you can allow access only to resources within namespaces assigned to Runtime Fabric. 
+Authorized namespaces enables you to deploy Runtime Fabric alongside other services in a Kubernetes cluster. By limiting permissions in your cluster, you can allow Runtime Fabric to access resources only within namespaces assigned to Runtime Fabric. 
 
 With authorized namespaces, you have control of the creation of the following Runtime Fabric resources:
 
@@ -12,7 +12,7 @@ With authorized namespaces, you have control of the creation of the following Ru
 
 At install time, you provide a configuration file that consists of your namespaces, ServiceAccounts, ClusterRoles/Roles, and RoleBindings.
 
-Runtime Fabric installs the rtf-agent in the Runtime Fabric namespace, and it has access to any additional namespaces you create.
+Runtime Fabric installs the rtf-agent in the Runtime Fabric namespace, and it has access to any additional namespaces that you provide in the authorized namespace list.
 
 === Example
 
