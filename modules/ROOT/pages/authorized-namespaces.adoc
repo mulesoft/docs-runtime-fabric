@@ -12,7 +12,7 @@ With authorized namespaces, you have control of the creation of the following Ru
 
 At install time, you provide a configuration file that consists of your namespaces, ServiceAccounts, ClusterRoles/Roles, and RoleBindings.
 
-Runtime Fabric installs the rtf-agent in the Runtime Fabric namespace, and it has access to any additional namespaces that you provide in the authorized namespace list.
+Runtime Fabric installs the Runtime Fabric agent (rtf-agent) in the Runtime Fabric namespace, and it has access to any additional namespaces that you provide in the authorized namespace list.
 
 === Example
 
