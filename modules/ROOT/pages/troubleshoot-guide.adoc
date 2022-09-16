@@ -186,6 +186,28 @@ restarts.
 
 If you host your Runtime Fabric appliance on a VMware environment and are unable to deploy any applications, refer to the following MuleSoft knowledge base article: https://help.mulesoft.com/s/article/RTF-Networking-Issues-with-VMware[RTF Networking Issues with VMware and "[Runtime Fabric\] java.net.UnknownHostException:" Errors^].
 
+=== CrashLoopBackOff - Couldn't initialize inotify
+
+You are noticing pods in ``CrashLoopBackOff`` state and describing thos pods you oberve and error event like the following:
+----
+[Kubernetes] Container "anypoint-monitoring" - CrashLoopBackOff - Couldn't initialize inotify
+----
+
+This is caused by the user running RTF maxing out INotify instances, because of a low value in the ``inotify.max_user_instances`` kernel setting. This value should be set to ``1048576``. The installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
+
+You may fix the situation running the following command:
+----
+$ sysctl -w fs.inotify.max_user_watches=1048576
+----
+
+To make the change persistent so it survives the node reboots, set the setting in a file inside ``/etc/sysctl.d`` directory, for example:
+----
+$ cat /etc/sysctl.d/inotify.conf
+fs.inotify.max_user_watches=1048576
+----
+
+You are advised to review this situation with your system administrator to make sure that this value is not changed again in the future.
+
 == Troubleshoot Application Runtime Issues
 
 If any of the following Runtime Fabric alert messages are reported, you might need to recover
