@@ -530,6 +530,14 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
   hello-world-77f5897949-z54gb   Pending
 ----
 
+== Understanding rtfctl output
+
+The Runtime Fabric Control command line tool `rtfctl` commonly calls other applications and system tools and the output of those calls is sent to the standard output and standard error output for your review. This output will have to be understood in the context of each operation being performed.
+
+We have tried to include a last output line on our most verbose commands to make it clear whether the operation succeed or failed. Normal operation may include some intermediate _failure_ messages like when a stopped system unit is attempted to be stop again.
+If you are in doubt about whether a message represents a problem or not please discuss it with your system administrator.
+Of coursse, you are always welcome to contact our support team if you would like further clarification.
+
 == See Also
 
 * xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
