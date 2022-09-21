@@ -56,11 +56,9 @@ To upgrade Anypoint Runtime Fabric, you:
 
 Before upgrading your production environment, perform these steps on a nonproduction Runtime Fabric instance to verify compatibility with your environment. Plan to upgrade when your team is not deploying new applications or managing existing applications on Runtime Fabric. When your nonproduction upgrade succeeds, perform these steps in your production environment.
 
-Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information.
-
 === Upgrade Runtime Fabric Components
 
-Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Anypoint Runtime Fabric Release Notes] information to learn more about the most recent component versions.
+Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Anypoint Runtime Fabric Release Notes] information to learn more about the most recent component versions.
 
 . Navigate to your Runtime Fabric by selecting it on the *Runtime Fabrics* tab in Runtime Manager.
 . Select *Upgrade to vx.x*. The status of the Runtime Fabric is updated to show that the upgrade procedure is in progress.

@@ -13,7 +13,7 @@ If you set up a local registry, you can upgrade to a version later than 1.12.0 w
 +
 You cannot add a local registry to any version of an existing Runtime Fabric instance, even if you upgrade that installation to 1.12.0 or later.
 * If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
-* You're responsible for synchronization between your registry and the Runtime Fabric registry. MuleSoft doesn't provide additional software to synchronize images between the registries. Push all the dependency images for your version to your local registry before you start the installation. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.  
+* You're responsible for synchronization between your registry and the Runtime Fabric registry. MuleSoft doesn't provide additional software to synchronize images between the registries. Push all the dependency images for your version to your local registry before you start the installation. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.  
 * If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
 
 ----
@@ -36,7 +36,7 @@ Ensure that you've performed the following tasks:
 . Set up, configure, and test your private Docker image registry.
 . Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
 +
-See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc#1120[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
+See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
 +
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version.
