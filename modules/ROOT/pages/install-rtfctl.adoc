@@ -530,6 +530,14 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
   hello-world-77f5897949-z54gb   Pending
 ----
 
+== Understanding rtfctl Output
+
+The `rtfctl` command line tool commonly calls other applications and system tools, and the output of those calls is sent to standard output and standard error output. This output is written in the context of each operation performed.
+
+The `rtfctl` command line tool includes a last output line on the most verbose commands to make it clear whether the operation succeed or failed. Normal operation may include some intermediate _failure_ messages, such as when a stopped system unit is attempted to be stopped again.
+
+If you are in doubt about whether a message represents a problem or not, discuss it with your system administrator or contact MuleSoft support.
+
 == See Also
 
 * xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
