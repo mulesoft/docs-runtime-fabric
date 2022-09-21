@@ -195,7 +195,7 @@ If you host your Runtime Fabric appliance on a VMware environment and are unable
 
 The `inotify.max_user_instances` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
 
-To fix the situation, run the following command:
+To correct the setting, run the following command:
 ----
 $ sysctl -w fs.inotify.max_user_watches=1048576
 ----
@@ -206,7 +206,7 @@ $ cat /etc/sysctl.d/inotify.conf
 fs.inotify.max_user_watches=1048576
 ----
 
-Additionally review this situation with your system administrator to make sure that this value is not changed again in the future.
+Additionally, review this situation with your system administrator to make sure that this value is not changed again in the future.
 
 == Troubleshoot Application Runtime Issues
 
