@@ -156,13 +156,19 @@ You install the Runtime Fabric operator (`rtf-agent-operator`) from the Operator
 
 NOTE: Installing the Runtime Fabric operator requires manual approval and may take several minutes to complete.
 
-== Configure the Runtime Fabric operator
+== Configure the Runtime Fabric Operator
 
 To configure the Runtime Fabric operator, you supply the necessary values when prompted.
  
 . In the Red Hat OpenShift console, navigate to **Operators** > **Installed Operators**.
 . In the console, switch the value of **Project** to the namespace you created for installing Runtime Fabric.
-. In the console, click **Create Instance**, and select **Configure via form view**. 
+. In the console, click **Create Instance**, and select **Configure via form view**.
++
+[WARNING]
+--
+Do not change the name of the instance. Doing so can create installation errors.
+-- 
+
 . Add any required parameters. Refer to the Installation Parameters Reference for guidance.
 +
 If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
