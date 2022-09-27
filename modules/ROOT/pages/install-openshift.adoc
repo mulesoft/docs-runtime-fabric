@@ -33,6 +33,9 @@ Before installing Runtime Fabric on Red Hat OpenShift, ensure that:
 ** A supported Kubernetes version
 ** An ingress controller to send external requests to applications
 * You have privileged user permissions to complete the installation process
+* You have access to the following URLs needed for Red Hat OpenShift registry:
+** `registry.connect.redhat.com` (See the https://access.redhat.com/RegistryAuthentication[Red Hat Container Registry Authentication^])
+** `https://rhc4tp-prod-z8cxf-image-registry-us-east-1-evenkyleffocxqvofrk.s3.dualstack.us-east-1.amazonaws.com`
 
 == Create a Runtime Fabric using Runtime Manager
 
