@@ -17,8 +17,7 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
 
 [IMPORTANT]
 ====
-* If you want to use a local registry with Runtime Fabric, follow the installation instructions in xref:configure-local-registry.adoc[Using a Local Registry with Runtime Fabric]. You must set up the local registry during installation.
-* If you want to set up shared tenancy, configure it before installing Runtime Fabric. See xref:shared-tenancy.adoc[Configuring Shared Tenancy in Runtime Fabric] for instructions. 
+* If you want to use a local registry with Runtime Fabric, follow the installation instructions in xref:configure-local-registry.adoc[Using a Local Registry with Runtime Fabric]. You must set up the local registry during installation. 
 ====
 
 == Create a Runtime Fabric using Runtime Manager
