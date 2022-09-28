@@ -271,7 +271,7 @@ image::rtf-ingress-endpoint.png[The host and path fields are populated for the e
 
 == Existing Ingress Configurations Translated Post-Upgrade 
 
-When upgrading to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review the table below to determine if any action is required after upgrading.
+When upgrading to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review the following table to determine if any action is required after upgrading.
 
 [%header%autowidth.spread]
 |===

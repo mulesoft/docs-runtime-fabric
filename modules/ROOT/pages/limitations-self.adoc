@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following information is important when installing, configuring, and managing Anypoint Runtime Fabric.
+Review the following table of limitations before installing, configuring, and managing Anypoint Runtime Fabric. 
 
 [%header%autowidth.spread]
 |===
