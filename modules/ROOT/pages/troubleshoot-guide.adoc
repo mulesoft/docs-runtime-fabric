@@ -188,19 +188,13 @@ If you host your Runtime Fabric appliance on a VMware environment and are unable
 
 === Troubleshoot "CrashLoopBackOff - Couldn't initialize inotify" Errors
 
-Low values for INotify settings.
-
-There are a couple of Linux kernel values that control the usage for INotify that could limit them and cause issues. These values are:
-* `inotify.max_user_watches`
-* `inotify.max_user_instances`
- 
-When usage reaches the maximum you can run into issues. The sympotms are error events like this on application pods:
+If inotify values are too low for your environment, you might encounter the following error message:
 
 ----
 [Kubernetes] Container "anypoint-monitoring" - CrashLoopBackOff - Couldn't initialize inotify
 ----
 
-Alerts displayed on `gravity status` command output:
+You might also see the the following alerts displayed on the `gravity status` command output:
 
 ----
         * rtf-worker-1 (172.31.3.5, worker_node)
@@ -209,7 +203,11 @@ Alerts displayed on `gravity status` command output:
             Remote access:	online
 ----
 
-This problems are caused by the aforementioned settings being too low for your environment usage.
+Two Linux kernel values control inotify usage:
+
+* `inotify.max_user_watches`
+* `inotify.max_user_instances`
+ 
 
 The `inotify.max_user_watches` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
 
@@ -224,9 +222,9 @@ $ cat /etc/sysctl.d/inotify.conf
 fs.inotify.max_user_watches=1048576
 ----
 
-Regarding `inotify.max_user_instances` most OS distributions set this at 128 by default. This value will be low for worker nodes with many application deplyoments and replicas. If you run into this problem you can enlarge the setting following the same steps described above.
+Most OS distributions set `inotify.max_user_instances` to `128` by default. This value is too low for worker nodes with many application deployments and replicas. If you encounter this error, increase the value for `inotify.max_user_instances` following the steps described above.
 
-In any of these cases please review this situation with your system administrator to make sure that these values are fit for your usage and also that they are not reduced again in the future.
+In either case, review this situation with your system administrator to make sure that these values are appropriate for your usage and are not reduced in the future.
 
 == Troubleshoot Application Runtime Issues
 
