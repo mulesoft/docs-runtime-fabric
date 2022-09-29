@@ -104,8 +104,24 @@ You can optionally configure xref:authorized-namespaces.adoc[authorized namespac
 
 Before configuring authorized namespaces, note the following:
 
-* Runtime Fabric requires cluster-wide permissions for the `rtf:resource-metrics-collector` ClusterRole.
 * You must create the `authorized-namespaces` ConfigMap file _before_ installing Runtime Fabric. Additionally, you must name the ConfigMap, `authorized-namespaces`.
+* The `rtf:resource-metrics-collector` ClusterRole has cluster-wide permissions to `get` and `list` nodes, pods, and namespaces and has `watch` permissions for nodes. The role ClusterRole is defined as follows:
++
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rtf:resource-metrics-collector
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "pods", "namespaces"]
+    verbs: ["list", "get"]
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["watch"]
+----
 
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
