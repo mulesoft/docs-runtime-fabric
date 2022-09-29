@@ -1,13 +1,17 @@
 = Anypoint Runtime Fabric Overview
 :page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc
-:page-notice-banner-message: For Runtime Fabric on VMs / Bare Metal documentation, see version 1.13 or earlier.  
+:page-notice-banner-message: For Runtime Fabric appliance documentation, see version 1.13 or earlier.  
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric supports:
 
 * Amazon Elastic Kubernetes Service (EKS)
 * Azure Kubernetes Service (AKS)
-* Google Kubernetes Engine (GKE) e
-* RedHat OpenShift
+* Google Kubernetes Engine (GKE)
+* Red Hat OpenShift Service on AWS
+* Microsoft Azure Red Hat OpenShift
+* Red Hat OpenShift Dedicated (on AWS or Google Cloud)
+* Red Hat OpenShift on IBM Cloud
+* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine) to enable deployments on VMs and bare metal
 
 Some capabilities of Anypoint Runtime Fabric include:
 
