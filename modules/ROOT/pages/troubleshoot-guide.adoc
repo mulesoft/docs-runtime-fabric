@@ -188,12 +188,28 @@ If you host your Runtime Fabric appliance on a VMware environment and are unable
 
 === Troubleshoot "CrashLoopBackOff - Couldn't initialize inotify" Errors
 
- If you don't set enough INotify instances in the `inotify.max_user_instances` kernel setting, you might encounter an error similar to the following:
+If inotify values are too low for your environment, you might encounter the following error message:
+
 ----
 [Kubernetes] Container "anypoint-monitoring" - CrashLoopBackOff - Couldn't initialize inotify
 ----
 
-The `inotify.max_user_instances` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
+You might also see the the following alerts displayed on the `gravity status` command output:
+
+----
+        * rtf-worker-1 (172.31.3.5, worker_node)
+            Status:		degraded
+            [×]			Unable to initialize inotify (too many open files)
+            Remote access:	online
+----
+
+Two Linux kernel values control inotify usage:
+
+* `inotify.max_user_watches`
+* `inotify.max_user_instances`
+ 
+
+The `inotify.max_user_watches` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
 
 To correct the setting, run the following command:
 ----
@@ -206,7 +222,9 @@ $ cat /etc/sysctl.d/inotify.conf
 fs.inotify.max_user_watches=1048576
 ----
 
-Additionally, review this situation with your system administrator to make sure that this value is not changed again in the future.
+Most OS distributions set `inotify.max_user_instances` to `128` by default. This value is too low for worker nodes with many application deployments and replicas. If you encounter this error, increase the value for `inotify.max_user_instances` following the steps described above.
+
+In either case, review this situation with your system administrator to make sure that these values are appropriate for your usage and are not reduced in the future.
 
 == Troubleshoot Application Runtime Issues
 
