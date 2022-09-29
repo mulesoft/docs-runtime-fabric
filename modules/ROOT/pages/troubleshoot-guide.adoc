@@ -188,12 +188,30 @@ If you host your Runtime Fabric appliance on a VMware environment and are unable
 
 === Troubleshoot "CrashLoopBackOff - Couldn't initialize inotify" Errors
 
- If you don't set enough INotify instances in the `inotify.max_user_instances` kernel setting, you might encounter an error similar to the following:
+Low values for INotify settings.
+
+There are a couple of Linux kernel values that control the usage for INotify that could limit them and cause issues. These values are:
+* `inotify.max_user_watches`
+* `inotify.max_user_instances`
+ 
+When usage reaches the maximum you can run into issues. The sympotms are error events like this on application pods:
+
 ----
 [Kubernetes] Container "anypoint-monitoring" - CrashLoopBackOff - Couldn't initialize inotify
 ----
 
-The `inotify.max_user_instances` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
+Alerts displayed on `gravity status` command output:
+
+----
+        * rtf-worker-1 (172.31.3.5, worker_node)
+            Status:		degraded
+            [×]			Unable to initialize inotify (too many open files)
+            Remote access:	online
+----
+
+This problems are caused by the aforementioned settings being too low for your environment usage.
+
+The `inotify.max_user_watches` setting should be set to `1048576`. The Runtime Fabric installer automatically performs this configuration, so the most likely cause is that another process or user changed this setting to a lower value.
 
 To correct the setting, run the following command:
 ----
@@ -206,7 +224,9 @@ $ cat /etc/sysctl.d/inotify.conf
 fs.inotify.max_user_watches=1048576
 ----
 
-Additionally, review this situation with your system administrator to make sure that this value is not changed again in the future.
+Regarding `inotify.max_user_instances` most OS distributions set this at 128 by default. This value will be low for worker nodes with many application deplyoments and replicas. If you run into this problem you can enlarge the setting following the same steps described above.
+
+In any of these cases please review this situation with your system administrator to make sure that these values are fit for your usage and also that they are not reduced again in the future.
 
 == Troubleshoot Application Runtime Issues
 
