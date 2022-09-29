@@ -11,7 +11,7 @@ Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies 
 * Microsoft Azure Red Hat OpenShift
 * Red Hat OpenShift Dedicated (on AWS or Google Cloud)
 * Red Hat OpenShift on IBM Cloud
-* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine) to enable deployments on VMs and bare metal
+* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine) for deployments on VMs and bare metal
 
 Some capabilities of Anypoint Runtime Fabric include:
 
