@@ -1,15 +1,15 @@
-= Managing Secure Properties with rtfctl
+= Securing App Property Values with rtfctl
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Secure properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment. Secure properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
+Secure application properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment. These properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
 
 Runtime Fabric secure properties always take precedence over application-level properties.
 
 == Install rtfctl 
 
-The `rtfctl` utility is required to manage secure properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before continuing with managing secure properties.
+The `rtfctl` utility is required to manage protected properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before continuing with managing secure properties.
 
 == Set Secure Properties
 
