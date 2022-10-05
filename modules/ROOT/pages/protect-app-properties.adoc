@@ -48,7 +48,3 @@ After you protect a property value, you can't retrieve it. However, you can repl
 . Enter a new value in the field
 . Click *Apply* > *Apply changes.*
 
-
-
-
-
