@@ -25,6 +25,7 @@
  ** xref:deploy-to-rtf-cli.adoc[Deploying Mule Applications from the CLI]
  ** xref:deploy-maven-4.x.adoc[Deploy Applications Using Maven (Mule 4)]
  ** xref:deploy-maven-3.x.adoc[Deploy Applications Using Maven (Mule 3)]
+ ** xref:protect-app-properties.adoc[Protect App Property Values]
  ** xref:runtime-patch-updates.adoc[Manage Mule Runtime Patch Updates for Runtime Fabric]
  ** xref:app-versioning.adoc[Review Application Versioning]
  ** xref:app-to-app-requests.adoc[Send Application-to-Application Requests]
