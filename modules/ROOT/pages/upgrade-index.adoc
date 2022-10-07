@@ -249,7 +249,7 @@ sudo ./rtfctl apply system-configuration --force --control-plane eu
 
 [NOTE]
 --
-When you run the `apply system-configuration` command on worker nodes, you may see an error similar to the following:
+When you run the `apply system-configuration` command on worker nodes, you might see an error similar to the following:
 
 `Warning: Agent pod is not running.Warning: Failed to get agent version from chartWarning: Failed to get agent version from podDownloading latest scripts`
 
