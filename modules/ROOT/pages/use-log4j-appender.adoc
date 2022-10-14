@@ -7,7 +7,7 @@ https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSynt
 
 == Requirements and Restrictions
 
-* You cannot use Log4j appender and external log forwarding at the same time. 
+* Using a Log4j appender and external log forwarding at the same time might lead to duplicate log collection. Use one or the other.  
 * MuleSoft Support doesn't assist in implementing custom logging configurations or resolving issues caused by custom logging configurations.
 * MuleSoft is not responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
 ** Lost logging data
