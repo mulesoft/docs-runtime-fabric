@@ -7,7 +7,7 @@ See xref:manage-monitor-applications.adoc#logs-titanium[].
 
 == View Logs
 
-To view logs for deployed applications deployed applications:
+To view logs for deployed applications:
 
 . From Anypoint Platform, select *Runtime Manager* > *Applications*.
 . Click the app name.
