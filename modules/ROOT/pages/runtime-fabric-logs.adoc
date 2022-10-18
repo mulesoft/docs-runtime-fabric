@@ -60,16 +60,45 @@ Log levels are specified per Mule application or API proxy during deployment.
 
 == Change the Application Log Level
 
-To change the log level for an application, use Anypoint Runtime Manager to configure the `logging.level.<PACKAGE>=LEVEL` property.
-
-. In Runtime Manager, navigate to an application's *Settings* page.
-. Click the *Properties* tab. 
-. Select *Table View*. 
-. In the *New Key* field, add the `logging.level.<PACKAGE>` property.
-. In the *New Value* field, add the desired log level. 
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+. Click the app name.
+. In the navigation menu, click *Logs*.
+. Select filter options:
 +
-For example, if you add the key
-`logging.level.org.mule.service.http.impl.service.HttpMessageLogger` and a value of `DEBUG`, `DEBUG` level log information is emitted from `HttpMessageLogger`.
+** Filter logs by config ID
++
+Click the *Config* drop-down menu and select the config to view.
+
+** *Filter log by replica*
++
+In a log message for the desired replica, click the name of the replica.
++
+Only the logs for the selected replica appear.
++
+To clear the replica filter and display logs for all replicas, click the *X* button for the selected replica.
+
+** *Filter logs by time date and time range*
++
+Click *Time Range*, select the date range, and optionally time, and click *Apply*.
++
+The *Time range* button label changes to show the selected date and time range.
+
+** *Filter logs by log level*
++
+Click *Log Levels* and check the log levels to display:
++
+--
+** *Fatal*: Fatal messages for when an application fails
+** *Error*: Error messages, such as when an exception occurs
+** *Warn*: Warning messages
+** *Info*: Informative messages
+** *Debug*: Debugging messages
+--
++
+[NOTE]
+Some log levels might not be available depending on the dynamic log level setting for the deployment.
++
+The *Log Levels* button label changes to show the selected number of log levels.
 
 == View Logs from an Application
 
