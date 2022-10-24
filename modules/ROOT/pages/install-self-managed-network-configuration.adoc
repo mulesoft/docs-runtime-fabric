@@ -55,8 +55,6 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
-| 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | Kubernetes base charts repository.
-| 443 | HTTPS | `docker-images-prod.s3.amazonaws.com` | Kubernetes base charts repository.
 | 443 | HTTPS a| 
 * US control plane: `worker-cloud-helm-prod.s3.amazonaws.com`
 * EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
