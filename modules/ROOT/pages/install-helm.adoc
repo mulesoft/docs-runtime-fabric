@@ -245,7 +245,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`authorizedNamespaces` |Enables additional namespaces |`authorizedNamespaces=true`
+|`authorizedNamespaces` |Enables additional namespaces |`authorizedNamespaces:true`
 a|      
       
 * `proxy.http_proxy`
