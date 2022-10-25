@@ -235,7 +235,7 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces = true`
+|`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces:true`
 a|      
       
 * `proxy.http_proxy`
