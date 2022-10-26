@@ -157,6 +157,28 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 . In the *New Value* field, add a value.
 . Add additional properties as needed.
 
+=== Configure Logging and Log Levels
+
+Anypoint Monitoring provides access to log data for applications deployed to Rutime Fabric. To access logs with Anypoint Monitoring, you need a https://www.mulesoft.com/anypoint-pricing[Titanium subscription].
+
+. Click the *Logging* tab.
+. Select the *Enable application logs* option.
+. Click *Apply Changes*.
+
+To configure additional log levels and categories to include in logs:
+
+. Click the *Logging* tab.
+. Select the log level:
++
+** *INFO*: Informative messages
+** *DEBUG*: Debugging messages
+** *WARNING*: Warning messages
+** *ERROR*: Error messages, such as when an exception occurs
+** *FATAL*: Fatal messages for when an application fails
+
+. Optionally, set the log level for specific a Java package class by selecting the log level, entering the `package.name`, and pressing the Enter key.
+. Click *Apply Changes*.
+
 === Deploy the Application
 
 Now you're ready to deploy the application. 
