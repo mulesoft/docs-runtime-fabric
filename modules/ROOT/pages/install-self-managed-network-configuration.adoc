@@ -11,7 +11,7 @@ Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure tha
 
 To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation.
 
-If your firewall permits it, consider allowing the following port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
+For protocol-aware firewalls, consider allowing the following port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
 
 [NOTE]
 --
