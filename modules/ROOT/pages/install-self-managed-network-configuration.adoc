@@ -9,7 +9,9 @@ Before installing or using Runtime Fabric on Self-Managed Kubernetes, ensure tha
 
 == Port Configuration
 
-To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
+To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation.
+
+If your firewall permits it, consider allowing the following port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
 
 [NOTE]
 --
@@ -23,11 +25,6 @@ The following table does not include ports and hostnames from Anypoint Platform 
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
-| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
-
-*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
-
-If you are using a previous version of Anypoint Runtime Fabric you must add this port your allow list. If you are using a newer version, use the port and hostname specified above.
 |===
 
 == Port Used by the Persistence Gateway
