@@ -81,7 +81,7 @@ The daemon-set that forwards logs to Anypoint Monitoring expects application con
 * `/var/log/containers`
 * `/var/lib/docker/containers`
 
-It also creates and writes on the host path `/var/lib/filebeat-data`. For log forwarding to work as expected, ensure that:
+The daemon-set also creates and writes on the host path `/var/lib/filebeat-data`. For log forwarding to work as expected, ensure that:
 
 * The Docker daemon config includes the `json-file` logging driver.
 * The Anypoint Monitoring log forwarder daemon-set container has write access to the host on the host path `/var/lib/filebeat-data`.
