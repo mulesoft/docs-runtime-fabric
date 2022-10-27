@@ -18,6 +18,10 @@ You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
 * When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Anypoint Monitoring.
 
+== Enabling Log4j 
+
+Custom Log4j configurations are enable by default. When you xref:install-helm.adoc[install Runtime Fabric using Helm], the parameter is enabled in `Values.yaml`. Even though the value is set to `true`, you must add an appender. To disable Log4j, set the value to `false`.
+
 == Example: Create a Log4j Configuration Using Splunk
 
 For logs to be viewable in Runtime Fabric and flow to Splunk, configure the `SplunkHttp` Log4j appender.
