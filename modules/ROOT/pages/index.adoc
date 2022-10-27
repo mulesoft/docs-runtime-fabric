@@ -178,22 +178,6 @@ Anypoint Runtime Fabric does not include external log forwarding. You are respon
 
 For Titanium customers, Anypoint Runtime Fabric supports logging using Anypoint Monitoring. See xref:monitoring::logs.adoc[Logs in Anypoint Monitoring] for more information.
 
-==== Anypoint Monitoring Log Forwarding Requisites
-
-The daemon-set forwarding logs to Anypoint Monitoring expects application containers to be writing logs to the following locations:
-
-* /var/log/pods
-* /var/log/containers
-* /var/lib/docker/containers
-
-It also creates and write on the host path `/var/lib/filebeat-data`.
-Because of this it is required for this log forwarding to work as expected that:
-
-* Docker daemon config includes the `json-file` logging driver
-* On the host, the hostPath /var/lib/filebeat-data needs to be writable by the am-log-forwarder daemon-set's container
-
-Usually this works out of the box. On hardened installations the above may not be true and cause log forwarding to fail. Make sure you are fulfilling the requisited mentioned in that case.
-
 === Monitoring
 
 xref:monitoring::index.adoc[Anypoint Monitoring] provides metrics for applications and API gateways deployed to Runtime Fabric. 
