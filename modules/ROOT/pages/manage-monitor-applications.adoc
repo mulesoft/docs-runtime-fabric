@@ -73,6 +73,19 @@ and transmits the log data to Anypoint Monitoring.
 * You can toggle application log forwarding at the application level to Anypoint Monitoring from Runtime Fabric v1.5.25 version and later.
 ====
 
+==== Anypoint Monitoring Log Forwarding Prerequisites
+
+The daemon-set that forwards logs to Anypoint Monitoring expects application containers to write logs to the following locations:
+
+* `/var/log/pods`
+* `/var/log/containers`
+* `/var/lib/docker/containers`
+
+It also creates and writes on the host path `/var/lib/filebeat-data`. For log forwarding to work as expected, ensure that:
+
+* The Docker daemon config includes the `json-file` logging driver.
+* The Anypoint Monitoring log forwarder daemon-set container has write access to the host on the host path `/var/lib/filebeat-data`.
+
 == Anypoint Visualizer
 
 xref:visualizer::index.adoc[Anypoint Visualizer] displays views of different aspects of an application network graph. 
