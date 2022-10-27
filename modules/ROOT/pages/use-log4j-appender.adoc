@@ -17,7 +17,7 @@ https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSynt
 +
 You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
-* When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Runtime Manager.
+* When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Anypoint Monitoring.
 
 == Example: Create a Log4j Configuration Using Splunk
 
