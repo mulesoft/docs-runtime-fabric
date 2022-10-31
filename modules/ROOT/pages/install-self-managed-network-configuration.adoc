@@ -115,7 +115,7 @@ To allow different endpoints to use mutual TLS authentication to establish a con
 |===
 | Control Plane | Certificates
 | US control plane | `transport-layer.prod.cloudhub.io` +
-configuration-resolver.prod.cloudhub.io
+`configuration-resolver.prod.cloudhub.io`
 | EU control plane | `transport-layer.prod-eu.msap.io` +
 `configuration-resolver.prod-eu.msap.io`
 |===

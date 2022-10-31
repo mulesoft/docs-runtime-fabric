@@ -23,7 +23,7 @@ You cannot add a local registry to any version of an existing Runtime Fabric ins
 
 * If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
-* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>
+* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
 
 == Configure a Local Registry for Use with Runtime Fabric 
 
