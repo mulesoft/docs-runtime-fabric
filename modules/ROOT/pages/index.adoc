@@ -136,6 +136,19 @@ Follow best practices by installing Runtime Fabric in an environment with a mini
 
 Adjust the number of nodes and amount of resources allocated according to the amount and type of workload you run on each Anypoint Runtime Fabric instance.
 
+=== Runtime Fabric ClusterRole Access
+
+The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
+
+* `rtf-restricted`                                                       
+* `rtf:agent`                                                              
+* `rtf:certificate-renewal`                                                
+* `rtf:cluster-status`                                                   
+* `rtf:install`                                                            
+* `rtf:mule-clusterip-service`                                             
+* `rtf:persistence-gateway-clro-read-only`                               
+* `rtf:upgrade` 
+
 === Anypoint Platform Roles and Permissions
 
 To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions enabled:
