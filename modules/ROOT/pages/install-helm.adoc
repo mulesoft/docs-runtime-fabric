@@ -152,11 +152,11 @@ kubectl apply -f <filename>.yaml
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: <name>
+  name: rtf-agent
   namespace: <additional-namespace>
 subjects:
   - kind: ServiceAccount
-    name: rtf-namespace
+    name: rtf-agent
     namespace: rtf-namespace
 roleRef:
   kind: ClusterRole
