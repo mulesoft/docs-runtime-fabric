@@ -22,7 +22,7 @@
  ** xref:create-custom-namespace.adoc[Create Namespaces for Application Deployments]
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications]
- ** xref:deploy-to-rtf-cli.adoc[Deploying Mule Applications from the CLI]
+ ** xref:deploy-to-rtf-cli.adoc[Managing Mule Applications from the CLI]
  ** xref:deploy-maven-4.x.adoc[Deploy Applications Using Maven (Mule 4)]
  ** xref:deploy-maven-3.x.adoc[Deploy Applications Using Maven (Mule 3)]
  ** xref:protect-app-properties.adoc[Protect App Property Values]
