@@ -1,0 +1,50 @@
+= Protect Application Property Values in Runtime Fabric
+
+Runtime Fabric enables you to protect application property values by displaying the property name, but not its value, in Anypoint Runtime Manager. 
+
+Additionally, a protected value is not viewable or retrievable by any user. Runtime Fabric resolves the property internally at runtime. These protected application values are encrypted and stored in the Anypoint Security secrets manager, which, in turn, is encrypted per user organization.
+
+[IMPORTANT]
+Protected property values are separate from the encrypted Mule application properties that are stored in secure configuration files. See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties].
+
+== Protect Property Values in Runtime Manager 
+
+Set protected properties via the table view for granular control over each property and value.  
+
+Although you may attempt to protect a single property more than once, Runtime Manager issues a warning and only the final instance of that property is protected.
+
+. From Anypoint Platform, select Runtime Manager.
+. From the left menu, click *Applications*.
+. Click the application name.
+. On the *Settings* page, click the *Properties* tab.
+. Depending on how many properties you want to protect at once, take one of the following actions:
++
+* To protect properties one at a time, click *Table view*.
+* To protect multiple properties, use *Text view* to add the key-value pairs and then switch to *Table view*, and continue to Step 8. 
+. In the *New Key* field, add a property to protect. 
+. In the *New Value* field, add a value.
++
+image::rtf-add-protected-properties.png[Adding properties in table view,75%]
+. Click *Protect* > *Protect value* to confirm.
+. Choose from one of the following:
+** If this application has already been deployed, click *Apply changes*.
+** If you’re ready to deploy the application, click *Deploy Application*.
+
+In the *Properties* tab, the values for properties that you just protected are now no longer visible to you or any other user.
+
+In the following example, the value for `dbPassword` is protected but those for `dbUsername` and `environment` are not:
+
+image::rtf-view-protected-properties.png[The value for dbpassword is shown as protected,75%]
+
+After you commit the values and deploy the application, the protected property values
+don't appear in the console and aren't sent and received between the console and Runtime Manager.
+
+== Replace a Protected Property Value
+
+After you protect a property value, you can't retrieve it. However, you can replace the protected property value with a new protected value:
+
+. In the Table view, click the icon next to the protected value that you want to replace. 
+. Click the menu icon next to the value and then click *Replace protected value*.
+. Enter a new value in the field
+. Click *Apply* > *Apply changes.*
+

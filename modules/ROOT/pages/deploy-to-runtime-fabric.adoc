@@ -109,6 +109,11 @@ Starting with the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-rel
 
 === Configure Application Properties
 
+[NOTE]
+--
+For instructions on protecting application property values, see xref:protect-app-properties.adoc[Protect Application Property Values in Runtime Fabric]
+--
+
 Use Runtime Manager to configure any application property values, such as specifying the environment or setting passwords and usernames. 
 
 Runtime Fabric resolves the property at runtime without exposing the sensitive information.
