@@ -9,7 +9,9 @@ Before installing or using Runtime Fabric, ensure that the following ports and h
 
 == Port Configuration
 
-To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation:
+To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation.
+
+For protocol-aware firewalls, consider allowing the following port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
 
 [NOTE]
 --
@@ -23,11 +25,6 @@ The following table does not include ports and hostnames from Anypoint Platform 
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
 | 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
-| 5044 (deprecated) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
-
-*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
-
-If you are using a previous version of Anypoint Runtime Fabric you must add this port your allow list. If you are using a newer version, use the port and hostname specified above.
 |===
 
 == Port Used by the Persistence Gateway
@@ -55,8 +52,6 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 
 If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
-| 443 | HTTPS | `kubernetes-charts.storage.googleapis.com` | Kubernetes base charts repository.
-| 443 | HTTPS | `docker-images-prod.s3.amazonaws.com` | Kubernetes base charts repository.
 | 443 | HTTPS a| 
 * US control plane: `worker-cloud-helm-prod.s3.amazonaws.com`
 * EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
@@ -120,7 +115,7 @@ To allow different endpoints to use mutual TLS authentication to establish a con
 |===
 | Control Plane | Certificates
 | US control plane | `transport-layer.prod.cloudhub.io` +
-configuration-resolver.prod.cloudhub.io
+`configuration-resolver.prod.cloudhub.io`
 | EU control plane | `transport-layer.prod-eu.msap.io` +
 `configuration-resolver.prod-eu.msap.io`
 |===
