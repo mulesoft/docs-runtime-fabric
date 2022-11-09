@@ -205,10 +205,12 @@ proxy:
   http_proxy:
   http_no_proxy:
   monitoring_proxy:
+custom_log4j_enabled: true
 muleLicense: <mule license key>
 global:
-image:
-  rtfRegistry: <rtf-runtime-registry.kqa.msap.io or local registry value>
+  authorizedNamespaces: false
+  image:
+    rtfRegistry: <rtf-runtime-registry.kqa.msap.io or local registry value>
     pullSecretName: rtf-pull-secret
   containerLogPaths:
   - /var/lib/docker/containers
@@ -235,6 +237,9 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
+|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: false`, default is `true`
+|`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
+=======
 |`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces:true`
 a|      
       

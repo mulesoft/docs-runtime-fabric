@@ -214,8 +214,10 @@ activationData: <activation data>
     http_proxy:
     http_no_proxy:
     monitoring_proxy:
+custom_log4j_enabled: true
 muleLicense: <mule license key>
 global:
+  authorizedNamespaces: false
   image:
     rtfRegistry: rtf-runtime-registry.kprod.msap.io
     pullSecretName: rtf-pull-secret
@@ -245,7 +247,8 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`authorizedNamespaces` |Enables additional namespaces |`authorizedNamespaces:true`
+|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: false`, default is `true`
+|`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
 a|      
       
 * `proxy.http_proxy`
