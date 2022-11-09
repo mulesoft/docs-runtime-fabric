@@ -86,7 +86,7 @@ If your Kubernetes configuration is not located in the `\~/.kube/config` directo
 export KUBECONFIG=<path-to-kubeconfig>
 ----
 
-. Validate that your Kubernetes environment is read for installation:
+. Validate that your Kubernetes environment is ready for installation:
 +
 [source,copy]
 ----
