@@ -126,7 +126,7 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 
 === Configure Logging and Log Levels
 
-Anypoint Monitoring provides access to log data for applications deployed to Rutime Fabric. To access logs with Anypoint Monitoring, you need a https://www.mulesoft.com/anypoint-pricing[Titanium subscription].
+Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs with Anypoint Monitoring, you need a https://www.mulesoft.com/anypoint-pricing[Titanium subscription].
 
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.
