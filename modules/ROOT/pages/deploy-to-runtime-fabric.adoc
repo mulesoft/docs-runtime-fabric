@@ -130,7 +130,7 @@ Anypoint Monitoring provides access to log data for applications deployed to Rut
 
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.
-. To configure additional log levels, use the drop-down list to select the log level:
+. Select the log level from the drop-down list:
 +
 ** *INFO*: Informative messages
 ** *DEBUG*: Debugging messages
