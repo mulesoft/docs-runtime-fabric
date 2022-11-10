@@ -130,12 +130,12 @@ oc apply -f <filename>.yaml
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: rtf-agent
+  name: <name>
   namespace: <additional-namespace>
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf-namespace
+    namespace: rtf
 roleRef:
   kind: ClusterRole
   name: rtf:agent
@@ -150,7 +150,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: rtf-namespace
+  namespace: rtf
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace1"
   ADDITIONAL_NAMESPACE: "additional-namespace2"
