@@ -4,8 +4,12 @@ Runtime Fabric enables you to protect application property values by displaying 
 
 Additionally, a protected value is not viewable or retrievable by any user. Runtime Fabric resolves the property internally at runtime. These protected application values are encrypted and stored in the Anypoint Security secrets manager, which, in turn, is encrypted per user organization.
 
-[IMPORTANT]
 Protected property values are separate from the encrypted Mule application properties that are stored in secure configuration files. See xref:mule-runtime::secure-configuration-properties.adoc[Secure Configuration Properties].
+
+[NOTE]
+--
+You cannot protect application property values for API proxies or gateways deployed from Runtime Manager. 
+--
 
 == Protect Property Values in Runtime Manager 
 
