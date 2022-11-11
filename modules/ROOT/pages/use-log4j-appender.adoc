@@ -85,4 +85,4 @@ After your application starts, logs start flowing to your custom Log4j appender,
 
 == See Also
 
-* xref:mule-runtime::logging-mdc[MDC Logging]
+* xref:mule-runtime::logging-mdc.adoc[MDC Logging]
