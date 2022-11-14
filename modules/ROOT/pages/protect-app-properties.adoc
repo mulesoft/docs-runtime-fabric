@@ -8,7 +8,7 @@ Protected property values are separate from the encrypted Mule application prope
 
 [NOTE]
 --
-You cannot protect application property values for API proxies or gateways deployed from Runtime Manager. 
+Runtime Manager does not support adding protected properties for API proxies or gateways. Instead, use API Manager. 
 --
 
 == Protect Property Values in Runtime Manager 
