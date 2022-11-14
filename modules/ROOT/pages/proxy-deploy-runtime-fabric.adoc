@@ -43,8 +43,8 @@ The *Asset type*, *API version*, and *Asset version* fields for the API are auto
 +
 You should now see the **TLS Context for Inbound Traffic** field enabled.
 ** Select **Add TLS Context**.
-*** Select the secret group where you hosted your TLS context from the **Secret group** drop-down.
-*** Select your TLS context for your HTTPS API Proxy from the **TLS Context** drop-down.
+** Select the secret group where you hosted your TLS context from the **Secret group** drop-down.
+** Select your TLS context for your HTTPS API Proxy from the **TLS Context** drop-down.
 . Enter the *Port* number for your API proxy.
 . Select your *Client Provider*.
 . Click *Advanced Options*.
