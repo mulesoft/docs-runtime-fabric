@@ -25,6 +25,10 @@ You can update resource allocation settings on the application's *Settings* page
 
 == Deploy an API Proxy
 
+Use API Manager to deploy proxies to Runtime Fabric. You can enable proxies to support inbound and outbound requests over HTTP or HTTPS. 
+
+If you need your proxy to support HTTPS, see xref:api-manager::building-https-proxy.adoc[Build HTTPS API Proxies] in the API Manager documentation for additional requirements before getting started.
+
 . From Anypoint Platform, select *API Manager* > *Manage API* > *Manage API From Exchange*.
 . In *API Name*, search for the name of the asset saved in Exchange.
 +
@@ -34,7 +38,22 @@ The *Asset type*, *API version*, and *Asset version* fields for the API are auto
 . Select the Mule version.
 . For *Implementation URI*, specify the base URL path to access the proxy.
 . Optionally, specify a *Path*.
-. Click *Advanced options* and optionally specify advanced parameters, such as *TLS context for outbound traffic* (for HTTPS), *Proxy version*, *Validations*, *Response timeout*, and *Port*.
+. If you want to enable SSL for inbound traffic:
+** Select **HTTPS** for the **Scheme**. 
++
+You should now see the **TLS Context for Inbound Traffic** field enabled.
+** Select **Add TLS Context**.
+*** Select the secret group where you hosted your TLS context from the **Secret group** drop-down.
+*** Select your TLS context for your HTTPS API Proxy from the **TLS Context** drop-down.
+. Enter the *Port* number for your API proxy.
+. Select your *Client Provider*.
+. Click *Advanced Options*.
+. In *Proxy Version*, select *latest*. 
++
+This value ensures that your API proxy uses the latest released proxy version.
+. Click *Add TLS Context* for *TLS Context for Outbound traffic*.
+.. Select the secret group where you hosted your TLS Context from the *Secret Group* drop-down list.
+.. Select your TLS Context for your HTTPS API Proxy from the *TLS Context* drop-down.
 . Click *Save*.
 +
 Your configuration information is saved and API Manager displays the *Deployment Configuration* section.
@@ -52,17 +71,14 @@ API Manager deploys the API proxy to Runtime Fabric. While deploying, a deployme
 
 After deployment, you can manage the deployed API proxy from Runtime Manager.
 
-== Enable and Deploy an HTTPS Proxy
+== Enable an HTTPS Proxy Using Anypoint Studio
 
-You can enable proxies deployed to Runtime Fabric to support inbound and outbound HTTPs requests. To do so, use API Manager to:
+You can enable the proxy to support HTTPs requests using Anypoint Studio.
 
-. Select the proxy type
-. Select the Runtime Fabric deployment target
-. Select an API
-. Use the advanced configure options to add the TLS Context for inbound and outbound HTTPs requests
-. Deploy the proxy to Runtime Fabric
-
-See xref:api-manager::building-https-proxy.adoc[Build HTTPS API Proxies] in the API Manager documentation for additional requirements.
+. Download the API gateway and deploy from API Manager using the instructions in xref:api-manager::download-proxy-task.adoc[Downloading an API Proxy].
+. Open the gateway in Anypoint Studio and insert a keystore (SSL cert) using the instructions in xref:mule-runtime::tls-configuration#use-anypoint-studio-to-configure-tls[Use Anypoint Studio to Configure TLS].
+. Export and deploy the gateway using Runtime Manager according to the instructions in xref:runtime-fabric::deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric].
+. Enable last-mile security on the application using the instructions in https://help.mulesoft.com/s/article/How-to-enable-last-mile-security-in-Runtime-Fabric-RTF[How to enable last-mile security in Runtime Fabric (RTF)].
 
 == Related Resources
 
