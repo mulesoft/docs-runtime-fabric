@@ -208,14 +208,12 @@ Use the `unique-id` placeholder to create a unique application URL. This is usef
 The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and later.
 --
 
+== Using TLS in the Ingress Template
 
-== TLS Secret Management
+To use TLS in the ingress template, you must create a TLS secret. See the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes TLS documentation^] for details. 
 
-When using TLS in the Ingress template, you must also create the associated TLS secret. See the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes documentation] for details. 
+You can use the `rtf.mulesoft.com/synchronized=true` label to configure Runtime Fabric to synchronize any TLS secret updates to all application namespaces, for example: 
 
-When a TLS secret is updated, you can configure Runtime Fabric to synchronize it to all application namespaces by adding a `rtf.mulesoft.com/synchronized=true` label. This allows your ingress controller to immediately apply the updated TLS material.
-
-For example, your TLS secret might look like 
 ```
 apiVersion: v1
 kind: Secret
@@ -230,8 +228,7 @@ data:
 type: kubernetes.io/tls
 ```
 
-If you do not add this label, changes to the secret will not be synchronized into application namespaces. You must manually update the secret in each namespace to allow your ingress controller to apply the updated TLS material.
-
+Applying this label to your secret enables your ingress controller to immediately apply the updated TLS material into application namespaces. If you don't add this label, you must manually update the secret in each namespace.
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
