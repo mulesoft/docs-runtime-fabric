@@ -41,16 +41,15 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 | 443 | AMQP over WebSockets a| 
 * US control plane: `transport-layer.prod.cloudhub.io`
 * EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50, or later)| TCP (Lumberjack) a| 
+| 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
 * US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
-| 5044 (deprecated) |TCP (Lumberjack) a| 
+| 5044 (legacy) |TCP (Lumberjack) a| 
 * US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
 
-*This port and hostname are deprecated in Anypoint Runtime Fabric, version 1.8.50 and later.* 
+*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.* 
 
-If you are using a previous version of Anypoint Runtime Fabric you must add this port and hostname to your allow list. If you are using a newer version, use the port and hostname specified below. This is applicable to endpoints in both the US and EU clouds.
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS a| 
 * US control plane: `worker-cloud-helm-prod.s3.amazonaws.com`
