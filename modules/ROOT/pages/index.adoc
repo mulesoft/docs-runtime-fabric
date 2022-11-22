@@ -103,7 +103,7 @@ These services are isolated within the core Runtime Fabric installation namespac
 
 Runtime Fabric installs the following application services only when they are configured by users:
 
-* Persistence gateway: For ObjectstoreV2 connection (Replication configured by user) 
+* Persistence Gateway: For ObjectstoreV2 connection (Replication configured by user) 
 * Anypoint Monitoring sidecar: For monitoring and logging (One sidecar deployed per application replica)
 
 === Customer Managed
