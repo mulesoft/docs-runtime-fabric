@@ -20,13 +20,6 @@ To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.5
 * US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` 
 * EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
 
-[NOTE]
-====
-If you are using a version of Anypoint Runtime Fabric older than 1.8.50, use port 5044 instead of port 443. Use the following domains:
-
-* US control plane: `dias-ingestor-nginx.prod.cloudhub.io` 
-* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
-====
 
 == Disable Anypoint Monitoring for an Application
 
@@ -75,18 +68,18 @@ The log forwarding agent can transmit up to 300 kilobytes of log data per second
 
 You can enable log forwarding and set log levels when you xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[deploy applications in Runtime Manager]. 
 
-==== Anypoint Monitoring Log Forwarding Prerequisites
+=== Anypoint Monitoring Log Forwarding Prerequisites
 
-The daemon-set that forwards logs to Anypoint Monitoring expects application containers to write logs to the following locations:
+The sidecar that forwards logs to Anypoint Monitoring expects application containers to write logs to the following locations:
 
 * `/var/log/pods`
 * `/var/log/containers`
 * `/var/lib/docker/containers`
 
-The daemon-set also creates and writes on the host path `/var/lib/filebeat-data`. For log forwarding to work as expected, ensure that:
+The sidecar also creates and writes on the host path `/var/lib/filebeat-data`. For log forwarding to work as expected, ensure that:
 
 * The Docker daemon config includes the `json-file` logging driver.
-* The Anypoint Monitoring log forwarder daemon-set container has write access to the host on the host path `/var/lib/filebeat-data`.
+* The Anypoint Monitoring log forwarder sidecar container has write access to the host on the host path `/var/lib/filebeat-data`.
 
 == Anypoint Visualizer
 
