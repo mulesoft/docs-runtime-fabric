@@ -38,14 +38,14 @@ $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.li
 +
 [source,copy]
 ----
-rtfctl apply mule-license $BASE64_ENCODED_LICENSE
+rtfctl apply mule-license $BASE64_ENCODED_LICENSE -n <namespace>
 ----
 
 . To verify the Mule license key has applied correctly, run:
 +
 [source,copy]
 ----
-rtfctl get mule-license
+rtfctl get mule-license -n <namespace>
 ----
 
 === Apply the License Key Using Helm

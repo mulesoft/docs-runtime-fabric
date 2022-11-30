@@ -2,6 +2,8 @@
 
 You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
 
+You can install multiple instances of Runtime Fabric in your cluster, but each instance requires its own namespace.  
+
 == Before you Begin
 
 Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
@@ -43,39 +45,6 @@ Runtime Manager creates the Runtime Fabric and displays the Activation State pag
 
 Runtime Fabric uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
 
-
-. Download the `rtfctl` command-line utility:
-+
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Choose the appropriate method:
-+
-* Windows
-+
-[source,copy]
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
-----
-+
-* MacOS (Darwin)
-+
-[source,copy]
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
-----
-+
-* Linux
-+
-[source,copy]
-----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
-----
-
-. Change file permissions for the `rtfctl` command-line utility:
-+
-[source,copy]
-----
-sudo chmod +x rtfctl
-----
-
 == Install Runtime Fabric
 
 After creating a Runtime Fabric in Runtime Manager and obtaining the activation data, install Runtime Fabric into your Kubernetes service using the `rtfctl` command-line utility.
@@ -101,11 +70,19 @@ The `validate` option verifies that:
 +
 The `rtfctl` command-line utility outputs any incompatibilities with the Kubernetes environment.
 
-. Install Runtime Fabric:
+. Install Runtime Fabric. You can specify a namespace in your Kubernetes cluster in which to install Runtime Fabric. If you don't specify a namespace, Runtime Fabric will be installed in the default `rtf` namespace.
++
+* To install in the default namespace, run:
+[source,copy]
++
+----
+rtfctl install <activation_data>
+----
+* To specify a namespace, run: 
 +
 [source,copy]
 ----
-rtfctl install <activation_data>
+rtfctl install <activation_data> -n <namespace>
 ----
 +
 `<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.

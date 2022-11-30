@@ -2,12 +2,14 @@
 
 You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
 
+You can install multiple instances of Runtime Fabric in your cluster, but each instance requires its own namespace.  
+
 == Steps to Install Runtime Fabric Using Helm
 
 When you use Helm to install Runtime Fabric, you:
 
 . Create a Runtime Fabric using Runtime Manager
-. Create the `rtf` namespace for Runtime Fabric 
+. Create a namespace in which to install Runtime Fabric 
 . Create a Docker pull secret for pulling the Runtime Fabric component images
 . Optionally, configure additional authorized namespaces
 . Add the Runtime Fabric Helm repository
@@ -56,15 +58,15 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
 -- 
 
-== Create A Namespace for Runtime Fabric 
+== Create A Namespace to Install Runtime Fabric 
 
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+You must create a namespace in your Kubernetes cluster in which to install Runtime Fabric. This namespace is where you install Runtime Fabric components. 
 
 To create the namespace, run: 
 
 [source,copy]
 ----
-kubectl create ns rtf 
+kubectl create ns <namespace> 
 ----
 
 == Create A Docker Pull Secret 
@@ -77,7 +79,7 @@ To create the pull secret, run:
 
 [source,copy]
 ----
-kubectl create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+kubectl create secret docker-registry <pull_secret> --namespace <namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
 == Add the Runtime Fabric Helm Repository
@@ -123,6 +125,8 @@ rules:
     verbs: ["watch"]
 ----
 
+=== Configure an Authorized Namespace
+
 . In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
 +
 [source,copy]
@@ -157,7 +161,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <namespace>
 roleRef:
   kind: ClusterRole
   name: rtf:agent
@@ -172,7 +176,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: rtf
+  namespace: <namespace>
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace1"
   ADDITIONAL_NAMESPACE: "additional-namespace2"

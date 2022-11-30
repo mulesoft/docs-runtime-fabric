@@ -12,6 +12,8 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 
 Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.10.
 
+You can install multiple instances of Runtime Fabric in your cluster, but each instance requires its own namespace. 
+
 == Install Runtime Fabric on Red Hat OpenShift
 
 When you install Runtime Fabric on Red Hat OpenShift, you’ll:
@@ -51,13 +53,13 @@ To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric us
 
 == Create A Namespace for Runtime Fabric 
 
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+You must create a namespace in your Kubernetes cluster in which to install Runtime Fabric. This namespace is where you install Runtime Fabric components.  
 
 To create the namespace, run: 
 
 [source,copy]
 ----
-oc create ns rtf 
+oc create ns <namespace>
 ----
 
 == Create A Docker Pull Secret 
@@ -70,7 +72,7 @@ To create the pull secret, run:
 
 [source,copy]
 ----
-oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+oc create secret docker-registry <pull_secret> --namespace <namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
 == (Optional) Configure Authorized Namespaces
@@ -135,7 +137,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <namespace>
 roleRef:
   kind: ClusterRole
   name: rtf:agent
@@ -150,7 +152,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: rtf
+  namespace: <namespace>
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace1"
   ADDITIONAL_NAMESPACE: "additional-namespace2"
