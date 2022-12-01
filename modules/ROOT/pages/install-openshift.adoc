@@ -237,7 +237,7 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: false`, default is `true`
+|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
 =======
 |`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces:true`
