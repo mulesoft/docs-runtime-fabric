@@ -55,7 +55,7 @@ Provides an API that Mule applications use to discover their peers inside the cl
 +
 Provides a cluster-local cache of application dependencies.
 
-These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications increase.
+These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications or nodes increase.
 
 ==== Application Services
 
