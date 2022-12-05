@@ -3,7 +3,7 @@ Before deploying a Mule application to Anypoint Runtime Fabric, determine the co
 
 When a Mule application is deployed to Runtime Fabric, the application is deployed with its own Mule runtime engine (Mule). The number of replicas, or instances of that application and runtime, are also specified. The resources available for each replica are determined by the values you set when deploying an application.
 
-The following performance information is based on clusters with controller nodes using custom Intel Xeon E5-2676 v3 Haswell processors. The processors run at a base clock rate of 2.4 GHz, and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator was hosted on a separate cluster in the same region.
+The following performance information is based on clusters with controller nodes using custom Intel Xeon E5-2676 v3 Haswell processors. The processors run at a base clock rate of 2.4 GHz and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator was hosted on a separate cluster in the same region.
 
 You can allocate the following resources when deploying an application:
 
