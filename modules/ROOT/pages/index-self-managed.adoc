@@ -70,6 +70,23 @@ image::rtf-shared-responsibility.png[Anypoint Runtime Fabric on Self-Managed Kub
 
 MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, Replicasets, and ingress resources.
 
+==== Runtime Fabric Core Services
+
+Runtime Fabric installs the following core services:
+
+* Runtime Fabric agent
+* Mule cluster ip service
+* Resource cache
+
+These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications increase.
+
+==== Application Services
+
+Runtime Fabric installs the following application services only when they are configured by users:
+
+* Persistence Gateway: For Object Store v2 connection (Replication configured by user) 
+* Anypoint Monitoring sidecar: For monitoring and logging (One sidecar deployed per application replica)
+
 === Customer Managed
 
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Anypoint Runtime Fabric on Self-Managed Kubernetes. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
