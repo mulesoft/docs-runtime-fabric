@@ -25,6 +25,7 @@
  ** xref:manage-nodes.adoc[Adding or Remove Nodes]
  ** xref:configure-adv-tls-context.adoc[Importing a TLS Context from Secrets Manager]
  ** xref:runtime-fabric-logs.adoc[Viewing and Configuring Logs]
+ ** xref:use-log4j-appender.adoc[Using a Log4j Appender]
  ** xref:configure-alerting.adoc[Configuring Alerting]
  ** xref:using-opscenter.adoc[Using Ops Center to Monitor Runtime Fabric]
  ** xref:install-patches.adoc[Performing Scheduled Maintenance on Runtime Fabric]

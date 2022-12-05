@@ -120,6 +120,7 @@ activationData: <activation data>
     http_proxy:
     http_no_proxy:
     monitoring_proxy:
+customLog4jEnabled: true    
 muleLicense: <mule license key>
 global:
   image:
@@ -151,6 +152,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
+|`customLog4jEnabled` | Enables or disables custom Log4j configurations | `customLog4jEnabled: false`
 a|      
       
 * `proxy.http_proxy`
