@@ -10,6 +10,13 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 * Red Hat OpenShift on IBM Cloud
 * Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
 
+Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.10.
+
+++++
+include::_partials/rtf-openshift-video.html[]
+++++
+
+
 == Install Runtime Fabric on Red Hat OpenShift
 
 When you install Runtime Fabric on Red Hat OpenShift, you’ll:
