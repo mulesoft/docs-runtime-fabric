@@ -22,9 +22,15 @@ You can use only asynchronous log appenders.
 
 Custom Log4j configurations are disabled by default. When you install Runtime Fabric, the parameter is disabled (`false`) in `Values.yaml`. You must set the value to `true`.
 
-You can also enable custom Log4j configurations by running the following command inside your cluster:
+You can also enable custom Log4j configurations by running the following steps:
 
-???
+. From inside your cluster, run:
++
+----
+kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQo="}}'
+----
+. Restart the Runtime Fabric agent pod. 
+. Restart the application associated with the custom Log4j configuration.
 
 == Example: Create a Log4j Configuration Using Splunk
 
