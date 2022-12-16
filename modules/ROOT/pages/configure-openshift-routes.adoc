@@ -1,4 +1,4 @@
-= Configuring Red Hat OpenShift Routes
+= Configuring Red Hat OpenShift Routes in Runtime Fabric
 
 Runtime Fabric enables you to configure Red Hat OpenShift Routes to create ingress endpoints for your Mule applications. 
 
