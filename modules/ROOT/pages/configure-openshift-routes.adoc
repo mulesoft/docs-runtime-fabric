@@ -1,0 +1,99 @@
+= Configuring Red Hat OpenShift Routes
+
+Runtime Fabric enables you to configure Red Hat OpenShift Routes to create ingress endpoints for your Mule applications. 
+
+== Before You Begin
+
+Configuration of routes in Runtime Fabric follows closely to ingress resource configuration. Before you create routes, review the following:
+* xref:custom-ingress-configuration.adoc#how-ingress-resources-templates-work-in-runtime-fabric[How Ingress Resources Templates Work in Runtime Fabric] 
+* xref:custom-ingress-configuration.adoc#example-ingress-resource-templates[Example Ingress Resource Templates]
+
+This documentation also assumes you’re familiar with https://docs.openshift.com/container-platform/4.10/networking/routes/route-configuration.html#nw-ingress-creating-a-route-via-an-ingress_route-configuration[Creating a route through an Ingress object^].
+
+== Example Ingress Resource Template for A Red Hat OpenShift Route
+The following example illustrates how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress resource template for the networking.k8s.io/v1 API. 
+
+[source,yaml]
+--
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-rtf-ingress
+  namespace: rtf (1)
+  labels:
+spec:
+  ingressClassName: rtf-openshift (2)
+  Tls: (3)
+  - hosts:
+      - app-name.example.com
+    secretName: example-tls
+  rules:
+    - host: app-name.example.com (4)
+      http:
+        Paths: (5)
+        - path: / (6)
+          pathType:
+          backend: (7)
+            serviceName: service-name
+            servicePort: 80
+--
+
+Note the following about this example:
+
+<1> The template must be placed in the `rtf` namespace.
+
+<2> `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
++
+Runtime Fabric uses the` rtf-` prefix to recognize the object as a template. Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class annotation are consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example,`openshift`.
+
+<3> TLS is optional. If specified in the template it will create a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
+
+<4> The `app-name` placeholder parameter is replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+
+<5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
+
+<6> The `path` parameter value is replaced by the value you add in the Path field when you configure ingress for a Mule application. Note that `path` is not a placeholder.
+
+<7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+
+For a list of optional placeholder values, see xref:custom-ingress-configuration.adoc#template-placeholders[Template Placeholders].  
+
+== Configure A Route in Runtime Fabric
+
+To configure a route, complete the following tasks: 
+
+. Create an ingress resource template and apply it in the cluster.
+. Configure ingress for a Mule application.
+
+=== Create an Ingress Resource Template and Apply it in the Cluster
+
+Use the xref:example-ingress-resource-template-for-a-red-hat-openshift-route[example template] to create an ingress resource for a route.
+
+include::partial$include-ingress-tasks.adoc[tags=createTemplate]
+
+=== Configure Ingress for a Mule Application
+
+include::partial$include-ingress-tasks.adoc[tags=configureIngressRuntimeManager]
+
+After you deploy the application, a route will be created to serve traffic to the application as per the template specified.
+
+== Configure Passthrough TLS Termination
+
+You can configure the ingress resource template to include passthrough TLS termination. 
+
+For more information on configuring routes with passthrough TLS termination, refer to the https://docs.openshift.com/container-platform/4.10/networking/routes/route-configuration.html#nw-ingress-creating-a-route-via-an-ingress_route-configuration[Red Hat OpenShift documentation^].
+
+. Follow the steps to create an ingress resource template. 
+. In the template, add the following annotation:
++
+----
+route.openshift.io/termination: passthrough
+----
+. In the template, set the following parameter values:
++
+* Set `path: ''` (an empty string) 
+* Set `pathType: ImplementationSpecific`
+
+. In Runtime Manager, when configuring ingress for a Mule application, in the *Path* field include a `/`.
+
+The application endpoint will show HTTPS for passthrough TLS termination.
