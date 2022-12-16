@@ -5,10 +5,10 @@ Runtime Fabric enables you to configure Red Hat OpenShift Routes to create ingre
 == Before You Begin
 
 Configuration of routes in Runtime Fabric follows closely to ingress resource configuration. Before you create routes, review the following:
+
 * xref:custom-ingress-configuration.adoc#how-ingress-resources-templates-work-in-runtime-fabric[How Ingress Resources Templates Work in Runtime Fabric] 
 * xref:custom-ingress-configuration.adoc#example-ingress-resource-templates[Example Ingress Resource Templates]
-
-This documentation also assumes you’re familiar with https://docs.openshift.com/container-platform/4.10/networking/routes/route-configuration.html#nw-ingress-creating-a-route-via-an-ingress_route-configuration[Creating a route through an Ingress object^].
+* https://docs.openshift.com/container-platform/4.10/networking/routes/route-configuration.html#nw-ingress-creating-a-route-via-an-ingress_route-configuration[Creating a route through an Ingress object^].
 
 == Example Ingress Resource Template for A Red Hat OpenShift Route
 The following example illustrates how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress resource template for the networking.k8s.io/v1 API. 
@@ -23,7 +23,7 @@ metadata:
   labels:
 spec:
   ingressClassName: rtf-openshift (2)
-  Tls: (3)
+  tls: (3)
   - hosts:
       - app-name.example.com
     secretName: example-tls
