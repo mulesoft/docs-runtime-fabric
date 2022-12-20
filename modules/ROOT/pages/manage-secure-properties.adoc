@@ -1,11 +1,11 @@
-= Securing App Property Values with rtfctl
+= Protecting App Property Values with rtfctl
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 Secure application properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment. These properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
 
-Runtime Fabric secure properties always take precedence over application-level properties.
+Runtime Fabric protected properties always take precedence over application-level properties.
 
 == Install rtfctl 
 
