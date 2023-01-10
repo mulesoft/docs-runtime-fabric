@@ -152,8 +152,8 @@ metadata:
   name: authorized-namespaces
   namespace: rtf
 data:
-  ADDITIONAL_NAMESPACE: "additional-namespace1"
-  ADDITIONAL_NAMESPACE: "additional-namespace2"
+  ADDITIONAL_NAMESPACE1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE2: "additional-namespace2"
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
