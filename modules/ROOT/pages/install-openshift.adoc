@@ -147,7 +147,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. Apply the following RoleBinding template to rtf namespace and any additional namespaces:
+. Apply the following RoleBinding template to name rtf an any additional namespace:
 +
 [source,copy]
 ----
@@ -181,7 +181,7 @@ subjects:
     namespace: rtf
 ----
 +
-For `<additional-namespace>`, use the same template as well:
+For additional namespaces, use the same template as well:
 +
 [source,copy]
 ----
@@ -215,7 +215,7 @@ subjects:
     namespace: rtf
 ----
 +
-. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
+. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
 ----
