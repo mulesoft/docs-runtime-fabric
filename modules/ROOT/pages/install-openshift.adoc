@@ -142,7 +142,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. Apply the following RoleBinding template to rtf namespace and any additional namespaces::
+. Apply the following RoleBinding template to rtf namespace and any additional namespaces:
 +
 [source,copy]
 ----
