@@ -18,9 +18,19 @@ You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
 * When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Anypoint Monitoring.
 
-== Enabling Log4j 
+== Enabling Log4j
 
-Custom Log4j configurations are enabled by default. When you install Runtime Fabric, the parameter is enabled in `Values.yaml`. Even though the value is set to `true`, you must add an appender. To disable Log4j, set the value to `false`.
+Custom Log4j configurations are disabled by default. When you install Runtime Fabric, the parameter is disabled (`false`) in `Values.yaml`. You must set the value to `true`.
+
+You can also enable custom Log4j configurations by running the following steps:
+
+. From inside your cluster, run:
++
+----
+kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQo="}}'
+----
+. Restart the Runtime Fabric agent pod.
+. Restart the application associated with the custom Log4j configuration.
 
 == Example: Create a Log4j Configuration Using Splunk
 
@@ -40,7 +50,7 @@ In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources`
     	<Console name="CONSOLE" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{MM-dd HH:mm:ss}] %-5p %c{1} [%t]: %m%n"/>
         </Console>
-        <SplunkHttp name="SPLUNK" 
+        <SplunkHttp name="SPLUNK"
         	source="${env:APP_NAME}"
         	host="${env:POD_NAME}"
         	sourceType="mule-app"
@@ -63,17 +73,17 @@ In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources`
 +
 [source,xml,linenums]
 ----
-<dependency> 
-   <groupId>com.splunk.logging</groupId> 
-   <artifactId>splunk-library-javalogging</artifactId> 
-   <version>x.x.x</version> 
-</dependency>   
+<dependency>
+   <groupId>com.splunk.logging</groupId>
+   <artifactId>splunk-library-javalogging</artifactId>
+   <version>x.x.x</version>
+</dependency>
 *********
 ******************
-<repository> 
-   <id>splunk-artifactory</id> 
-   <name>Splunk Releases</name> 
-   <url>https://splunk.jfrog.io/splunk/ext-releases-local</url>; 
+<repository>
+   <id>splunk-artifactory</id>
+   <name>Splunk Releases</name>
+   <url>https://splunk.jfrog.io/splunk/ext-releases-local</url>;
 </repository>
 ----
 +
