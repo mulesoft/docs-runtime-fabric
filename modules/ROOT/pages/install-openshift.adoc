@@ -142,6 +142,74 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
+. Apply the following RoleBinding template to rtf namespace and any additional namespaces:
++
+[source,copy]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf
+  namespace: rtf
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: rtf
+  - kind: ServiceAccount
+    name: mule-clusterip-service
+    namespace: rtf
+  - kind: ServiceAccount
+    name: resource-cache
+    namespace: rtf
+  - kind: ServiceAccount
+    name: rtf-persistence-gateway
+    namespace: rtf
+  - kind: ServiceAccount
+    name: cluster-status
+    namespace: rtf
+  - kind: ServiceAccount
+    name: am-log-forwarder
+    namespace: rtf
+----
++
+For `<additional-namespace>`, use the same template as well:
++
+[source,copy]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf
+  namespace: <app-namespace-name>
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: rtf
+  - kind: ServiceAccount
+    name: mule-clusterip-service
+    namespace: rtf
+  - kind: ServiceAccount
+    name: resource-cache
+    namespace: rtf
+  - kind: ServiceAccount
+    name: rtf-persistence-gateway
+    namespace: rtf
+  - kind: ServiceAccount
+    name: cluster-status
+    namespace: rtf
+  - kind: ServiceAccount
+    name: am-log-forwarder
+    namespace: rtf
+----
++
 . In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
@@ -268,5 +336,3 @@ Also, before attempting to deploy an Mule applications, ensure that you've insta
 
 . Create a namespace for your Mule app deployments. See xref:create-custom-namespace.adoc[Creating Application Namespaces for Application Deployments.]
 . From Runtime Manager, deploy a Mule app using your namespace. See xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric] for instructions.
-
-
