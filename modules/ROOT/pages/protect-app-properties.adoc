@@ -1,4 +1,4 @@
-= Protect Application Property Values in Runtime Fabric
+= Protecting Application Property Values in Runtime Fabric
 
 Runtime Fabric enables you to protect application property values by displaying the property name, but not its value, in Anypoint Runtime Manager. 
 
