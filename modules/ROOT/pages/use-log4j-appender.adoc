@@ -23,7 +23,7 @@ You can use only asynchronous log appenders.
 
 Custom Log4j configurations are disabled by default. 
 
-To enable custom Log4j configurations perform the following steps:
+To enable custom Log4j configurations, perform the following steps:
 
 . From inside your cluster, run:
 +
