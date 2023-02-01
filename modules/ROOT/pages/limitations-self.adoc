@@ -11,7 +11,7 @@ Review the following table of limitations before installing, configuring, and ma
 | Node count | The maximum number of nodes is 400. | Recommended
 | Node types | VM-based nodes are required. For example, Fargate is not supported. | Yes
 | Replicas per application | The maximum number of replicas per application is 8. | Yes
-| Deployments per Runtime Fabric | The maximum number of deployments being managed by Runtime Fabric at any instance should not exceed 1600 for optimal performance. | 
+| Deployments per Runtime Fabric | The maximum number of deployments being managed by Runtime Fabric at any instance should not exceed 1600 for optimal performance. | Recommended
 | Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environment with Org A and a dev environment with Org B, that is three environment associations. | Yes
 | Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared by another sub org. For example, if you have parent Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B. | Yes
 |===
