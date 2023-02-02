@@ -14,6 +14,7 @@
 * xref:authorized-namespaces.adoc[Configure Authorized Namespaces]
 * xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
+* xref:configure-openshift-routes.adoc[Configure OpenShift Routes]
 * xref:configure-local-registry.adoc[Use a Local Registry]
 * xref:manage-proxy-self.adoc[Manage Proxies]
 * xref:persistence-gateway.adoc[Use Persistence Gateway]
