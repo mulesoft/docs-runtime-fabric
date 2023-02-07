@@ -1,6 +1,6 @@
 = Anypoint Runtime Fabric Overview
 :page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc, config-mutual-auth.adoc
-:page-notice-banner-message: For documentation on Runtime Fabric on VMs/Bare Metal, see version 1.13 or earlier.  
+:page-notice-banner-message: For documentation about Runtime Fabric on VMs/Bare Metal, see version 1.13 or earlier.  
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric supports:
 
