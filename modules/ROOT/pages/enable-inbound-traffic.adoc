@@ -171,8 +171,7 @@ This value should always be higher than your *Read Request Time-out*.
 
 | *Read Request Time-out*
 | The maximum amount of time spent to read a request before it is terminated. +
-This value enables requests with large payloads or slow clients to be terminated to keep resources available.v+
-This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
+This value enables requests with large payloads or slow clients to be terminated to keep resources available. This helps guard against connection pool exhaustion from slow requests or from clients who don't close connections after a response is sent.
 
 For example, if a Mule application takes longer than this value to respond, the connection is automatically closed. +
 This value should always be lower than the *Connection Idle Time-out* value previously configured.
