@@ -1,6 +1,8 @@
 = Runtime Fabric on VMs / Bare Metal
 :page-aliases: architecture.adoc
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Anypoint Runtime Fabric on VMs / Bare Metal Architecture is composed of a set of VMs that form a cluster. Each VM serves as either a controller node or a worker node.
 
 image::architecture-controller-worker.png[]

@@ -1,5 +1,7 @@
 = Enable Inbound Traffic on Anypoint Runtime Fabric (On VMs / Bare Metal)
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Runtime Fabric on VMs / Bare Metal provides load balancing to manage inbound traffic to Mule applications and API proxies. Network traffic is balanced across multiple replicas of an application, which, by default, are deployed across different worker VMs.
 
 You can share Runtime Fabric instances across multiple environments. After installation, configure one or more environments for each Runtime Fabric instance to enable application deployments. Associate at least one environment with each Runtime Fabric instance to deploy Mule applications or API gateways.

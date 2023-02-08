@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 This topic describes common errors and steps to resolve them when installing and managing Anypoint Runtime
 Fabric on VMs / Bare Metal.
 

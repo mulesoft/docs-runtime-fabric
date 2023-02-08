@@ -1,5 +1,7 @@
 = Managing Proxies on Runtime Fabric on VMs / Bare Metal
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Anypoint Runtime Fabric clusters consistently communicate with the Anypoint Platform control plane and image repositories. Applications that are deployed in the cluster can also communicate with external endpoints.
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
