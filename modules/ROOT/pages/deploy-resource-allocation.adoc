@@ -1,8 +1,9 @@
 = Resource Allocation and Performance on Runtime Fabric on VMs/Bare Metal
-
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
 
 include::partial$include-deploy-resource-allocation.adoc[tags=description]
 include::partial$include-deploy-resource-allocation.adoc[tags=licenseCompliance]

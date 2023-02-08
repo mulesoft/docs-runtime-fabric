@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 If your environment has specific security requirements or requires advanced configuration, such as selecting particular ciphers or TLS suites or certificate pinning, you can import a TLS context from the secrets manager.
 
 == Prerequisites

@@ -4,6 +4,8 @@ include::_attributes.adoc[]
 endif::[]
 :noindex:
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 This topic describes how to install Anypoint Runtime Fabric on VMs / Bare Metal on your Azure account. Note that you can also use Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) to install xref:index-self-managed.adoc[Runtime Fabric on Self-Managed Kubernetes].
 
 == Before You Begin

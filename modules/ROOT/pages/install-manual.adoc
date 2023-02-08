@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 This topic describes how to manually install Anypoint Runtime Fabric on VMs / Bare Metal on VMs hosted in your data center.
 
 [WARNING]

@@ -1,6 +1,9 @@
 = Runtime Fabric on VMs / Bare Metal Installation Prerequisites
 :page-aliases: install-sys-reqs.adoc
 
+
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Before installing Runtime Fabric on VMs / Bare Metal, review the information in this topic to ensure your environment is ready for installation.
 
 == Before You Begin

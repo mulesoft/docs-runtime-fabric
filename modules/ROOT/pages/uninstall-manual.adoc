@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 include::reuse::partial$non-inclusive-banner.adoc[]
 
 You can uninstall Runtime Fabric and completely delete your gravity cluster, or you can uninstall Runtime Fabric without deleting your gravity cluster. 

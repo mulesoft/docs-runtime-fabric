@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Runtime Fabric on VMs / Bare Metal enables you to send alerts through an existing SMTP server. Runtime Fabric on VMs / Bare Metal provides alert functionality to send notifications when system health is compromised.
 
 == Built-in Alerts

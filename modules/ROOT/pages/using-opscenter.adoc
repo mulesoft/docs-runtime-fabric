@@ -1,5 +1,7 @@
 = Using Ops Center to Monitor Runtime Fabric on VMs / Bare Metal
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 Use the built-in Ops Center to monitor some metrics from applications running in your Runtime Fabric on VMs / Bare Metal clusters.
 
 Ops Center has limited capabilities. If you need capabilities such as the following, use the appropriate feature in Anypoint Platform:

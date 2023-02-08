@@ -4,6 +4,8 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: upgrade-cluster.adoc, upgrade-components.adoc
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 include::reuse::partial$non-inclusive-banner.adoc[]
 
 To upgrade Anypoint Runtime Fabric on VMs/Bare Metal, upgrade the Runtime Fabric appliance, components, the `rtfctl` command-line utility, and node configurations.

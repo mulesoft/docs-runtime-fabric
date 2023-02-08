@@ -1,5 +1,7 @@
 = Beginning Runtime Fabric Installation on VMs / Bare Metal
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 To install Runtime Fabric on VMs / Bare Metal, first create a Runtime Fabric using Runtime Manager.
 
 == Before you Begin

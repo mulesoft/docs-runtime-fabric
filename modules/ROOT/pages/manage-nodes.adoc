@@ -1,5 +1,7 @@
 = Adding or Removing Nodes from Runtime Fabric on VMs / Bare Metal
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 When using Runtime Fabric on VMs / Bare Metal, you can add and remove nodes from a Runtime Fabric. Scenarios where you may need to add or remove a node include:
 
 * Add a node to scale-up a Runtime Fabric.

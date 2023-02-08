@@ -1,5 +1,7 @@
 = Integrating with Your Logging System Using Log4j
 
+include::reuse::partial$eol-banner.adoc[tag=eolFeatureScheduled]
+
 You can use a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric.
 
 You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
