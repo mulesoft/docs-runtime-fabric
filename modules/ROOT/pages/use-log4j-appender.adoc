@@ -27,7 +27,7 @@ You can also enable custom Log4j configurations by running the following steps:
 . From inside your cluster, run:
 +
 ----
-kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQo="}}'
+kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQ="}}'
 ----
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
