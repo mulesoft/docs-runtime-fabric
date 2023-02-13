@@ -210,7 +210,7 @@ subjects:
     namespace: rtf
 ----
 +
-. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
+. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
 +
 [source,copy]
 ----
@@ -220,8 +220,8 @@ metadata:
   name: authorized-namespaces
   namespace: rtf
 data:
-  ADDITIONAL_NAMESPACE: "additional-namespace1"
-  ADDITIONAL_NAMESPACE: "additional-namespace2"
+  ADDITIONAL_NAMESPACE-1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE-2: "additional-namespace2"
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
