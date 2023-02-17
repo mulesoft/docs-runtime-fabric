@@ -130,8 +130,8 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: <namespace>
-labels:
+  name: <namespace>
+  labels:
     rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
     rtf.mulesoft.com/org: <ORG-ID>
     rtf.mulesoft.com/role: workers
