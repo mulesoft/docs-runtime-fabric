@@ -11,6 +11,13 @@ Protected property values are separate from the encrypted Mule application prope
 Runtime Manager does not support adding protected properties for API proxies or gateways. Instead, use API Manager. 
 --
 
+[NOTE]
+--
+Protecting API Gateway's client ID and secret is currently not supported, either via API or the Anypoint Runtime Manager UI.
+For more information, see https://help.mulesoft.com/s/article/Unable-to-re-deploy-a-Cloudhub-2-0-app-that-uses-API-Autodiscovery-and-has-a-Protected-Property[Unable to re-deploy a Cloudhub 2.0 app that uses API Autodiscovery and has a Protected Property^].
+--
+
+
 == Protect Property Values in Runtime Manager 
 
 Set protected properties via the table view for granular control over each property and value.  
@@ -51,4 +58,3 @@ After you protect a property value, you can't retrieve it. However, you can repl
 . Click the menu icon next to the value and then click *Replace protected value*.
 . Enter a new value in the field
 . Click *Apply* > *Apply changes.*
-
