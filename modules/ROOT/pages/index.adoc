@@ -81,7 +81,7 @@ Customers are responsible for provisioning, configuring, and managing the Kubern
 
 == How Application Deployments Work in Anypoint Runtime Fabric  
 
-When you deploy an application in Anypoint Runtime Fabric on, the following occurs:
+When you deploy an application in Anypoint Runtime Fabric, the following occurs:
 
 . You use Runtime Manager to trigger the application deployment.
 . The Runtime Fabric agent in the target cluster receives a request to deploy the application.
@@ -98,7 +98,7 @@ Each application is deployed into a Kubernetes namespace based on the applicatio
 
 . Runtime Fabric searches for a namespace with the label `rtf.mulesoft.com/envId=<ANYPOINT_ENVIRONMENT_ID>`. 
 . If Runtime Fabric can't find that label, it searches for a namespace with the name `<ANYPOINT_ENVIRONMENT_ID>`. 
-. If Runtime Fabric can't find that namespace, it creates a new namespace called `<ANYPOINT_ENVIRONMENT_ID>`.
+. If Runtime Fabric can't find that namespace, it creates a new namespace called `<ANYPOINT_ENVIRONMENT_ID>` and adds the label `rtf.mulesoft.com/envId=<ANYPOINT_ENVIRONMENT_ID>`.
 
 image::rtf-namespace-flow.png[Application namespace assignment flowchart]
 
