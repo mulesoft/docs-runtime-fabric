@@ -477,7 +477,7 @@ Common causes of this issue include:
 
 === Failed Agent Upgrades
 
-In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
+In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degraded Status as Runtime Fabric Agent Version Mismatch Detected^].
 
 === Restoration of Pre-Upgrade Backups
 
@@ -486,6 +486,19 @@ If you restore a backup that was taken on a previous Runtime Fabric agent versio
 === Disabled Mutual Authentication
 
 Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
+
+== Troubleshoot Agent Pod
+
+If one or more of the RTF Agent pod containers are not starting up check their logs and look for an error message matching an entry here for troubleshooting instructions to known issues.
+
+=== Metrics server not running
+
+The rtfd container is crashing in every attempt. Error message looks like the following:
+----
+2023/02/23 16:35:20 instantiating client: fetching server resource preferences: unable to retrieve the complete list of server APIs: metrics.k8s.io/v1beta1: the server is currently unable to handle the request
+----
+
+The reason is that the metrics-server is not running. This deployment could reside in either the kube-system o the monitoring namespace, depending on your appliance version. The events and logs for this deployment and associated pods have to be investigated for further troubleshooting. Once the metrics-server is up and running the rtfd will come up as expected.
 
 == Troubleshoot Missing Email Alert Customizations
 
