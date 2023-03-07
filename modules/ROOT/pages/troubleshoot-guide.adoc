@@ -498,7 +498,11 @@ The rtfd container is crashing in every attempt. Error message looks like the fo
 2023/02/23 16:35:20 instantiating client: fetching server resource preferences: unable to retrieve the complete list of server APIs: metrics.k8s.io/v1beta1: the server is currently unable to handle the request
 ----
 
-The reason is that the metrics-server is not running. This deployment could reside in either the kube-system o the monitoring namespace, depending on your appliance version. The events and logs for this deployment and associated pods have to be investigated for further troubleshooting. Once the metrics-server is up and running the rtfd will come up as expected.
+The reason is that Kubernetes metrics-server is installed but not running. 
+RTF appliance version 1.1.1636064094-8b70d2d and later includes metrics-server as a deployment in the monitoring namespace.
+The events and logs for this deployment and associated pods have to be investigated for further troubleshooting. Once the metrics-server is up and running the rtfd will come up as expected.
+
+Please reach out to our support team with a full appliance report if you require assistance to restore the metrics-server.
 
 == Troubleshoot Missing Email Alert Customizations
 
