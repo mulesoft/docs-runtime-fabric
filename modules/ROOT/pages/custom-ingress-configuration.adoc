@@ -230,10 +230,10 @@ type: kubernetes.io/tls
 
 Applying this label to your secret enables your ingress controller to immediately apply the updated TLS material into application namespaces. If you don't add this label, you must manually update the secret in each namespace.
 
-== Modifying an Existing Ingress Template
+== Modify an Existing Ingress Template
 
 You can modify existing ingress templates even if they were already used for application deployments.
-Be aware that already created ingresses objects based of this template won't be updated as a consequence of modifying the template.
+Note that already created ingress objects based on this template are not updated if you modify the template.
 
 To update existing ingresses with the template changes, you have to perform a redeployment of the Mule application.
 For example, if you update the base domain which requires to change the endpoint for the ingress template, you must remove the old endpoint and add the new one as part of the application redeployment.
