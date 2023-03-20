@@ -34,7 +34,7 @@ kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED"
 
 == Configure Custom Log4j and Anypoint Monitoring Logs
 
-To use custom Log4kj and Anypoint Monitoring logging at the same time, you must add a specific Anypoint Monitoring console appender pattern to your app log4j2.xml file:
+To use custom Log4j and Anypoint Monitoring logging at the same time, you must add a specific Anypoint Monitoring console appender pattern to your app log4j2.xml file:
 
 . In the log4j2.xml file, define your console appender pattern, for example:
 +
