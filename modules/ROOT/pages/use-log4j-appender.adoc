@@ -45,7 +45,7 @@ To use custom Log4j and Anypoint Monitoring logging at the same time, you must a
 </Console>
 ----
 [start=2]
-. In the `<AsyncRoot>` element define the `AppenderRef` which references the console pattern you previously created:
+. In the `<AsyncRoot>` element define the `AppenderRef` element, which references the console pattern you previously created:
 +
 [source,xml,linenums]
 ----
