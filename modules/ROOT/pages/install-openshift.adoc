@@ -1,4 +1,6 @@
 = Installing Runtime Fabric on Red Hat OpenShift
+:page-aliases: index-vm-bare-metal.adoc
+
 
 You can install Anypoint Runtime Fabric on a Red Hat OpenShift installation. 
 
