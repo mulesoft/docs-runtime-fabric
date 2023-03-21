@@ -1,5 +1,5 @@
 = Performing Scheduled Maintenance on Runtime Fabric on VMs / Bare Metal
-
+:page-support-status: extendedSupport
 include::reuse::partial$non-inclusive-banner.adoc[]
 
 When using Runtime Fabric on VMs / Bare Metal you can Use the following procedures to perform scheduled maintenance. This includes applying OS patches and security updates. 

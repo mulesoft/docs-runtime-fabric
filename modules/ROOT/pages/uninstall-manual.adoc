@@ -1,4 +1,5 @@
 = Uninstalling Runtime Fabric on VMs / Bare Metal
+:page-support-status: old
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
