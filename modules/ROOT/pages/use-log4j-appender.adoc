@@ -54,6 +54,9 @@ To use custom Log4j and Anypoint Monitoring logging at the same time, you must a
 </AsyncRoot>
 ----
 
+[Note]
+Custom Log4j is only supported by Mule applications running on Mule runtime engine instances greater than or equal to Mule version 4.3.0. The Mule image must be built after Nov 17, 2022.
+
 == Example: Create a Log4j Configuration Using Splunk
 
 For logs to be viewable in Runtime Fabric and flow to Splunk, configure the `SplunkHttp` Log4j appender.
