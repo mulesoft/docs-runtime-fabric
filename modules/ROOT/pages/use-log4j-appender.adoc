@@ -53,7 +53,6 @@ To use custom Log4j and Anypoint Monitoring logging at the same time, you must a
     <AppenderRef ref="Console"/>
 </AsyncRoot>
 ----
-
 [NOTE]
 Custom Log4j is only supported by Mule applications running on Mule runtime engine instances greater than or equal to Mule version 4.3.0. The Mule image must be built after Nov 17, 2022. For details, refer to the xref:release-notes/runtime-fabric::runtime-fabric-runtimes-release-notes.adoc#november-14-2022[Runtime Fabric Release Notes].
 
