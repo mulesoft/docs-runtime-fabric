@@ -1,0 +1,39 @@
+== Setting your VM/Bare Metal Cluster for Runtime Fabric Installation
+
+MuleSoft has received customer feedback asking for rapid patching of high severity vulnerabilities in Kubernetes(K8s) and for MuleSoft to better leverage their existing K8s investments and operational practices. In response to this demand, MuleSoft partnered with industry-leading managed K8s platforms vendors such as AWS, Microsoft, Google and IBM. As a result, MuleSoft is proactively transitioning to deliver K8s to their customers via secure, highly available, and managed K8s platform from the above vendors and will stop investing in the black box approach of Runtime Fabric appliance in which you have found limited visibility and extensibility.
+
+Runtime Fabric is compatible with AWS, Google, Microsoft, and IBM RedHat Openshift solutions that deliver faster and consistent security patches. These integrations enable you to easily leverage existing investments in the Kubernetes ecosystem.
+
+== What does this change mean for me? 
+Existing appliance utility users: The licensed Core capacity which is currently allocated to a Runtime Fabric appliance deployment can be migrated to any customer-hosted deployment option such as Runtime Fabric on public clouds, OpenShift, or Mule runtime standalone, subject to the total license limitations. Customers with Flexible Hybrid Deployment rights may also convert Cores to vCores to utilize this capacity on CloudHub 2.0.
+
+== Available Migration Options
+
+If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
+
+If you already have knowledge in public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. Runtime Fabric is currently supported on the following public clouds:
+
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/Runtime[Fabric on AWS Elastics Kubernetes Service^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
+
+If you prefer to standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, enabling both on-premises and public cloud bare-metal solutions.
+
+* Managed Cloud Services
+** https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
+** https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
+** https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
+** https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
+
+* Self-managed services
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[RedHat OpenShift Kubernetes engine (Entry level)^]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[RedHat OpenShift Container Platform (OCP)^]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus^]
+
+If you don’t have investments in Kubernetes and need to stay in your own-hosted environment, https://www.google.com/url?q=https://www.mulesoft.com/lp/dl/mule-esb-enterprise&sa=D&source=docs&ust=1680125428223709&usg=AOvVaw3DzPT38SO_tIf8PhG-wDtd[Mule runtime standalone^] is an available option. Note that this deployment model has reduced runtime resiliency and heavy management overhead.
+
+== What action can I take?
+Choose one of the previously mentioned options and migrate before the EOL deadlines.
+
+== Where can I get more information?
+Review the https://www.mulesoft.com/legal/versioning-back-support-policy#support-matrix[Product Versioning and Back Support Policy^] for more details on Standard Support, Extended Support, and EOL support. 
