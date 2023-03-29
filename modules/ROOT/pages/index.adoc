@@ -4,7 +4,7 @@
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. 
 
-If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, run xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud K8s clusters]. Runtime Fabric supports:
+If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
@@ -14,7 +14,7 @@ If you work in public clouds and have some level of expertise in managing a Kube
 * https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
 * https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
 
-If you prefer to standardize your own bare-metal solutions using public K8s distributions, run https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric on supported IBM Openshift offerings^]. Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
 
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^] 
