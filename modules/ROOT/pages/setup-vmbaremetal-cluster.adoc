@@ -4,7 +4,16 @@ MuleSoft has received customer feedback asking for rapid patching of high severi
 
 Runtime Fabric is compatible with AWS, Google, Microsoft, and IBM RedHat Openshift solutions that deliver faster and consistent security patches. These integrations enable you to easily leverage existing investments in the Kubernetes ecosystem.
 
-== What does this change mean for me? 
+Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
+
+After K8s is setup on the cluster using the solutions previously mentioned, proceed to the Runtime Fabric installation section to setup Runtime Fabric as you would install on an AKS or EKS. 
+
+
+== What does this change mean for appliance users? 
 Existing appliance utility users: The licensed Core capacity which is currently allocated to a Runtime Fabric appliance deployment can be migrated to any customer-hosted deployment option such as Runtime Fabric on public clouds, OpenShift, or Mule runtime standalone, subject to the total license limitations. Customers with Flexible Hybrid Deployment rights may also convert Cores to vCores to utilize this capacity on CloudHub 2.0.
 
 == Available Migration Options
