@@ -41,8 +41,8 @@ If you prefer to standardize your own bare-metal solutions using public Kubernet
 
 If you don’t have investments in Kubernetes and need to stay in your own-hosted environment, https://www.google.com/url?q=https://www.mulesoft.com/lp/dl/mule-esb-enterprise&sa=D&source=docs&ust=1680125428223709&usg=AOvVaw3DzPT38SO_tIf8PhG-wDtd[Mule runtime standalone^] is an available option. Note that this deployment model has reduced runtime resiliency and heavy management overhead.
 
-== What action can I take?
+== What action can appliance users take?
 Choose one of the previously mentioned options and migrate before the EOL deadlines.
 
-== Where can I get more information?
+== Where can appliance users get more information?
 Review the https://www.mulesoft.com/legal/versioning-back-support-policy#support-matrix[Product Versioning and Back Support Policy^] for more details on Standard Support, Extended Support, and EOL support. 
