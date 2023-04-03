@@ -32,6 +32,31 @@ kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED"
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
 
+== Configure Custom Log4j and Anypoint Monitoring Logs
+
+To use custom Log4j and Anypoint Monitoring logging at the same time, you must add a specific Anypoint Monitoring console appender pattern to your app log4j2.xml file:
+
+. In the log4j2.xml file, define your console appender pattern, for example:
++
+[source,xml,linenums]
+----
+<Console name="Console" target="SYSTEM_OUT">
+    <PatternLayout pattern="${env:MULE_LOG_PATTERN:-%m%n}"/>
+</Console>
+----
+[start=2]
+. In the `<AsyncRoot>` element define the `AppenderRef` element, which references the console pattern you previously created:
++
+[source,xml,linenums]
+----
+<AsyncRoot level="INFO">
+    <AppenderRef ref="Console"/>
+</AsyncRoot>
+----
+
+[NOTE]
+Custom Log4j is only supported by Mule applications running on Mule runtime engine instances greater than or equal to Mule version 4.3.0. The Mule image must be built after Nov 17, 2022. For details, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-14-2022[Runtime Fabric Release Notes].
+
 == Example: Create a Log4j Configuration Using Splunk
 
 For logs to be viewable in Runtime Fabric and flow to Splunk, configure the `SplunkHttp` Log4j appender.
