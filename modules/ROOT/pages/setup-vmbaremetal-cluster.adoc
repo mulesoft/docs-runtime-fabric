@@ -4,29 +4,29 @@ MuleSoft received customer feedback asking for rapid patching of high severity v
 
 Runtime Fabric is compatible with AWS, Google, Microsoft, and IBM RedHat Openshift solutions that deliver faster and consistent security patches. These integrations enable you to easily leverage existing investments in the Kubernetes ecosystem.
 
-Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both on-premises and public cloud bare-metal solutions:
 
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
 
-After K8s is setup on the cluster using the solutions previously mentioned, proceed to the Runtime Fabric installation section to setup Runtime Fabric as you would install on an AKS or EKS. 
+After you use one of these solutions to set up K8s on the cluster, proceed to the Runtime Fabric installation section to set up Runtime Fabric as you would install on an AKS or EKS. 
 
 
-== What does this change mean for appliance users? 
-Existing appliance utility users: The licensed Core capacity which is currently allocated to a Runtime Fabric appliance deployment can be migrated to any customer-hosted deployment option such as Runtime Fabric on public clouds, OpenShift, or Mule runtime standalone, subject to the total license limitations. Customers with Flexible Hybrid Deployment rights may also convert Cores to vCores to utilize this capacity on CloudHub 2.0.
+== Change for Appliance Users 
+Existing appliance utility users can migrate the licensed Core capacity currently allocated to a Runtime Fabric appliance deployment to any customer-hosted deployment option such as Runtime Fabric on public clouds, OpenShift, or Mule runtime standalone, subject to the total license limitations. Customers with Flexible Hybrid Deployment rights can also convert Cores to use vCores to utilize this capacity on CloudHub 2.0.
 
 == Available Migration Options
 
 If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
 
-If you already have knowledge in public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. Runtime Fabric is currently supported on the following public clouds:
+If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. The following clouds support Runtime Fabric:
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/Runtime[Fabric on AWS Elastics Kubernetes Service^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
 
-If you prefer to standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, enabling both on-premises and public cloud bare-metal solutions.
+To standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, which enable both on-premises and public cloud bare-metal solutions.
 
 * Managed Cloud Services
 ** https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
@@ -39,10 +39,9 @@ If you prefer to standardize your own bare-metal solutions using public Kubernet
 ** https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[RedHat OpenShift Container Platform (OCP)^]
 ** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus^]
 
-If you don’t have investments in Kubernetes and need to stay in your own-hosted environment, https://www.google.com/url?q=https://www.mulesoft.com/lp/dl/mule-esb-enterprise&sa=D&source=docs&ust=1680125428223709&usg=AOvVaw3DzPT38SO_tIf8PhG-wDtd[Mule runtime standalone^] is an available option. Note that this deployment model has reduced runtime resiliency and heavy management overhead.
+If you don’t have investments in Kubernetes and must stay in your own hosted environment, https://www.google.com/url?q=https://www.mulesoft.com/lp/dl/mule-esb-enterprise&sa=D&source=docs&ust=1680125428223709&usg=AOvVaw3DzPT38SO_tIf8PhG-wDtd[Mule runtime standalone^] is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
 
-== What action can appliance users take?
+== Actions Appliance Users Can Take
 Choose one of the previously mentioned options and migrate before the EOL deadlines.
 
-== Where can appliance users get more information?
 Review the https://www.mulesoft.com/legal/versioning-back-support-policy#support-matrix[Product Versioning and Back Support Policy^] for more details on Standard Support, Extended Support, and EOL support. 
