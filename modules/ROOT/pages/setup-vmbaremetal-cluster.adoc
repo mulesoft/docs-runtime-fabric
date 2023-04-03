@@ -14,6 +14,7 @@ After you use one of these solutions to set up K8s on the cluster, proceed to th
 
 
 == Change for Appliance Users 
+
 Existing appliance utility users can migrate the licensed Core capacity currently allocated to a Runtime Fabric appliance deployment to any customer-hosted deployment option such as Runtime Fabric on public clouds, OpenShift, or Mule runtime standalone, subject to the total license limitations. Customers with Flexible Hybrid Deployment rights can also convert Cores to use vCores to utilize this capacity on CloudHub 2.0.
 
 == Available Migration Options
@@ -42,6 +43,7 @@ To standardize your own bare-metal solutions using public Kubernetes distributio
 If you don’t have investments in Kubernetes and must stay in your own hosted environment, https://www.google.com/url?q=https://www.mulesoft.com/lp/dl/mule-esb-enterprise&sa=D&source=docs&ust=1680125428223709&usg=AOvVaw3DzPT38SO_tIf8PhG-wDtd[Mule runtime standalone^] is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
 
 == Actions Appliance Users Can Take
+
 Choose one of the previously mentioned options and migrate before the EOL deadlines.
 
 Review the https://www.mulesoft.com/legal/versioning-back-support-policy#support-matrix[Product Versioning and Back Support Policy^] for more details on Standard Support, Extended Support, and EOL support. 
