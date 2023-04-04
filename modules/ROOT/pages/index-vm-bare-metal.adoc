@@ -1,4 +1,5 @@
 = Preparing Your VM/Bare Metal Cluster for Runtime Fabric Installation
+:page-aliases: runtime-fabric::setup-vmbaremetal-cluster.adoc
 
 MuleSoft received customer feedback asking for rapid patching of high severity vulnerabilities in Kubernetes (K8s) and for MuleSoft to better leverage their existing K8s investments and operational practices. In response to this demand, MuleSoft partnered with industry-leading managed K8s platforms vendors such as AWS, Microsoft, Google and IBM. As a result, MuleSoft is proactively transitioning to deliver K8s to their customers via secure, highly available, and managed K8s platform from the above vendors and will stop investing in the black box approach of Runtime Fabric appliance in which you have found limited visibility and extensibility.
 
