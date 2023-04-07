@@ -10,7 +10,7 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 * Red Hat OpenShift on IBM Cloud
 * Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
 
-Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.10.
+Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.11.
 
 ++++
 include::_partials/rtf-openshift-video.html[]
@@ -147,7 +147,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. Apply the following RoleBinding template to name rtf an any additional namespace:
+. Apply the following RoleBinding template to rtf namespace any additional namespace:
 +
 [source,copy]
 ----
@@ -215,7 +215,7 @@ subjects:
     namespace: rtf
 ----
 +
-. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
+. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
 +
 [source,copy]
 ----

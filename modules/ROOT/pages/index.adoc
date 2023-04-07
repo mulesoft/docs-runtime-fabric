@@ -146,9 +146,10 @@ Adjust the number of nodes and amount of resources allocated according to the am
 === Runtime Fabric ClusterRole Access
 
 The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
-                                                      
+* `am-log-forwarder`                                                      
 * `rtf:agent`                                                              
-* `rtf:certificate-renewal`                                                
+* `rtf:certificate-renewal`
+* `rtf-restricted`                                                
 * `rtf:cluster-status`                                                   
 * `rtf:install`                                      
 * `rtf:persistence-gateway-clro-read-only`                               

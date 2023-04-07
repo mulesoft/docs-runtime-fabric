@@ -44,9 +44,9 @@ Note the following about this example:
 
 <2> `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
 +
-Runtime Fabric uses the` rtf-` prefix to recognize the object as a template. Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class annotation are consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example,`openshift`.
+Runtime Fabric uses the `rtf-` prefix to recognize the object as a template. Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class annotation are consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example,`openshift`.
 
-<3> TLS is optional. If specified in the template it will create a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
+<3> TLS is optional. If specified in the template, Runtime Fabric creates a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
 
 <4> The `app-name` placeholder parameter is replaced with the actual app name when you deploy the application. It helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
