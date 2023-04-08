@@ -63,7 +63,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 [source,copy]
 ---- 
-# eval $(rtfctl get docker-registry-login <activation-data>)
+# eval $(rtfctl get registry-credentials <activation-data>)
 # docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
 ----
 +
@@ -123,6 +123,3 @@ This command ensures that Runtime Fabric creates the necessary overrides for the
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
 When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
-
-
-
