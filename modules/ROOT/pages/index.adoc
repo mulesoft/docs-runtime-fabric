@@ -1,17 +1,24 @@
 = Anypoint Runtime Fabric Overview
-:page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc, config-mutual-auth.adoc
-:page-notice-banner-message: For Runtime Fabric appliance documentation, see version 1.13 or earlier.  
+:page-aliases: runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc, config-mutual-auth.adoc
 
-Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric supports:
+Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. 
 
-* Amazon Elastic Kubernetes Service (EKS)
-* Azure Kubernetes Service (AKS)
-* Google Kubernetes Engine (GKE)
-* Red Hat OpenShift Service on AWS
-* Microsoft Azure Red Hat OpenShift
-* Red Hat OpenShift Dedicated (on AWS or Google Cloud)
-* Red Hat OpenShift on IBM Cloud
-* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine) for deployments on VMs and bare metal
+If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
+
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
+* https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
+* https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
+* https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
+* https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
+
+If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^] 
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
+
 
 Some capabilities of Anypoint Runtime Fabric include:
 
@@ -140,12 +147,15 @@ Adjust the number of nodes and amount of resources allocated according to the am
 
 The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
                                                       
+* `am-log-forwarder`
 * `rtf:agent`                                                              
-* `rtf:certificate-renewal`                                                
+* `rtf:certificate-renewal` 
+* `rtf-restricted`                                               
 * `rtf:cluster-status`                                                   
 * `rtf:install`                                      
 * `rtf:persistence-gateway-clro-read-only`                               
-* `rtf:upgrade` 
+* `rtf:upgrade`
+* `rtf:mule-clusterip-service`
 
 === Anypoint Platform Roles and Permissions
 

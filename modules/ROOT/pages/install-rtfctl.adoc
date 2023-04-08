@@ -367,7 +367,7 @@ rtfctl threaddump <app-name>
 * Performs a JVM thread dump for an application using a specific replica 
 +
 ----
-rtfctl threaddump <app-name>p --pod <replica-name>
+rtfctl threaddump <app-name> --pod <replica-name>
 ----
 
 == Commands for Troubleshooting Runtime Fabric
