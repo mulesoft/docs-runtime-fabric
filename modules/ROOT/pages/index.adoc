@@ -1,17 +1,24 @@
 = Anypoint Runtime Fabric Overview
-:page-aliases: index-vm-bare-metal.adoc, runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc, config-mutual-auth.adoc
-:page-notice-banner-message: For Runtime Fabric appliance documentation, see version 1.13 or earlier.  
+:page-aliases: runtime-fabric-limitations.adoc, install-prereqs.adoc, install-create-rtf-arm.adoc, install-prerequisites.adoc, install-aws.adoc, install-azure.adoc, install-manual.adoc, deploy-resource-allocation.adoc, enable-inbound-traffic.adoc, manage-proxy.adoc, manage-nodes.adoc, configure-adv-tls-context.adoc, runtime-fabric-logs.adoc, configure-alerting.adoc, using-opscenter.adoc, install-patches.adoc, troubleshoot-guide.adoc, uninstall-manual.adoc, index-self-managed.adoc, install-sys-reqs.adoc, config-mutual-auth.adoc
 
-Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. Anypoint Runtime Fabric supports:
+Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. 
 
-* Amazon Elastic Kubernetes Service (EKS)
-* Azure Kubernetes Service (AKS)
-* Google Kubernetes Engine (GKE)
-* Red Hat OpenShift Service on AWS
-* Microsoft Azure Red Hat OpenShift
-* Red Hat OpenShift Dedicated (on AWS or Google Cloud)
-* Red Hat OpenShift on IBM Cloud
-* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine) for deployments on VMs and bare metal
+If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
+
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
+* https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
+* https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
+* https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
+* https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
+
+If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^] 
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
+
 
 Some capabilities of Anypoint Runtime Fabric include:
 
@@ -34,6 +41,19 @@ image::rtf-shared-responsibility.png[Anypoint Runtime Fabric shared responsibili
 MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, Replicasets, and ingress resources.
 
 ==== Runtime Fabric Core Services
+== Anypoint Runtime Fabric as a Shared Responsibility
+
+The successful operation of Anypoint Runtime Fabric is a shared responsibility. It is critical to understand which areas you provide and manage and which areas MuleSoft provides.
+
+The following image illustrates different MuleSoft and customer responsibilities for Anypoint Runtime Fabric instances:
+
+image::rtf-shared-responsibility.png[Anypoint Runtime Fabric shared responsibilities diagram]
+
+=== MuleSoft Provided
+
+MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and other dependencies used to deploy Mule applications. The Runtime Fabric agent deploys and manages Mule applications by generating and updating Kubernetes resources such as deployments, pods, Replicasets, and ingress resources.
+
+==== Runtime Fabric Core Services
 
 Anypoint Runtime Fabric and its underlying components run as Kubernetes deployment objects in EKS, AKS, GKE, or RedHat OpenShift environments. You manage the objects via Anypoint Platform.
 
@@ -41,9 +61,13 @@ Linux-based operating systems are required for all nodes that run Runtime Fabric
 
 * The Runtime Fabric Agent
 +
+* The Runtime Fabric Agent
++
 The Runtime Fabric agent is deployed as a pod in the cluster and communicates with the control plane via an mTLS outbound connection established at startup. 
 +
++
 The agent is event-driven. When an application state change generates a Kubernetes event, the agent sends metadata describing the current state of the application to the control plane. Kubernetes events include application pod starts, updates, or restarts.
++
 +
 The agent also listens for incoming requests from the control plane. When the agent receives a message from the control plane, the agent makes changes to the Kubernetes resources specified in the message. Such changes include creating a new application, updating an existing application, or deleting an application. 
 
@@ -58,16 +82,42 @@ Provides a cluster-local cache of application dependencies.
 These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications or nodes increase.
 
 ==== Application Services
+* Mule cluster IP service
++
+Provides an API that Mule applications use to discover their peers inside the cluster.
 
+* Resource cache
++
+Provides a cluster-local cache of application dependencies.
+
+These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications or nodes increase.
+
+==== Application Services
+
+Runtime Fabric installs the following application services only when they are configured by users:
 Runtime Fabric installs the following application services only when they are configured by users:
 
 * Persistence Gateway: Provides a persistent ObjectStore v2 interface to Mule applications (Replication configured by user) 
 * Anypoint Monitoring sidecar: For monitoring and logging (One sidecar deployed per application replica)
+* Persistence Gateway: Provides a persistent ObjectStore v2 interface to Mule applications (Replication configured by user) 
+* Anypoint Monitoring sidecar: For monitoring and logging (One sidecar deployed per application replica)
 
+=== Customer Managed
 === Customer Managed
 
 Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
+Customers are responsible for provisioning, configuring, and managing the Kubernetes cluster used for Runtime Fabric. Additional configuration used to set up or enable capabilities on the Kubernetes cluster, such as those listed below, are also the customer's responsibility to manage:
 
+* Ingress controller and xref:custom-ingress-configuration.adoc[Customizations to Ingress resources] 
+* External load balancing
+* Log forwarding
+* Monitoring
+* Network ports, NAT gateways, and proxies
+* Host runtime and networking
+* Provisioning and management of the Kubernetes environment. This requires assistance from the following teams in your organization:
+** IT team to provision and manage the infrastructure
+** Network team to specify allowed ports and configure proxy settings
+** Security team to verify compliance and obtain security certificates
 * Ingress controller and xref:custom-ingress-configuration.adoc[Customizations to Ingress resources] 
 * External load balancing
 * Log forwarding
@@ -140,6 +190,20 @@ Adjust the number of nodes and amount of resources allocated according to the am
 
 The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
                                                       
+* `am-log-forwarder`
+* `rtf:agent`                                                              
+* `rtf:certificate-renewal` 
+* `rtf-restricted`                                               
+* `rtf:cluster-status`                                                   
+* `rtf:install`                                      
+* `rtf:persistence-gateway-clro-read-only`                               
+* `rtf:upgrade`
+* `rtf:mule-clusterip-service`
+
+=== Runtime Fabric ClusterRole Access
+
+The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
+                                                      
 * `rtf:agent`                                                              
 * `rtf:certificate-renewal`                                                
 * `rtf:cluster-status`                                                   
@@ -152,6 +216,10 @@ The following Runtime Fabric ClusterRoles create and read data stored in Kuberne
 To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions enabled:
 
 * To manage permissions for Anypoint Platform users, you must have the ability to use xref:access-management::index.adoc[Anypoint Access Management].
+* To deploy and manage applications ensure you have:
+** The ability to use Anypoint Runtime Manager
+** The Exchange Contributors permission enabled for your Anypoint Platform account
+** The Read Applications and Read Runtime Fabric permissions, which are needed to view all applications on the Applications page in Runtime Manager
 * To deploy and manage applications ensure you have:
 ** The ability to use Anypoint Runtime Manager
 ** The Exchange Contributors permission enabled for your Anypoint Platform account

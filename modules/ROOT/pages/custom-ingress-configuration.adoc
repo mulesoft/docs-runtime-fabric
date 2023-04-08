@@ -230,6 +230,14 @@ type: kubernetes.io/tls
 
 Applying this label to your secret enables your ingress controller to immediately apply the updated TLS material into application namespaces. If you don't add this label, you must manually update the secret in each namespace.
 
+== Modify an Existing Ingress Template
+
+You can modify existing ingress templates even if they were already used for application deployments.
+Note that already created ingress objects based on this template are not updated if you modify the template.
+
+To update existing ingresses with the template changes, you have to perform a redeployment of the Mule application.
+For example, if you update the base domain which requires to change the endpoint for the ingress template, you must remove the old endpoint and add the new one as part of the application redeployment.
+
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
 To configure ingress, complete the following tasks:
@@ -245,51 +253,11 @@ Before configuring ingress in Runtime Fabric, you must set up an ingress control
 
 Use one of the xref:example-ingress-resource-templates[example templates] to create an ingress resource. 
 
-. Copy the example template into a new file and modify it according to the notes. 
-. Include a `.yaml` extension in the file name. 
-. To apply an ingress template, run:
-+
-[source,copy]
---
-kubectl apply -f <TEMPLATE_FILENAME.yaml>
---
-
-If there is an issue in the template, Kubernetes `api-server` returns an error and the command fails. 
-
-After you apply a template successfully, you can view it with:
-
-[source,copy]
---
-kubectl describe ingress [Ingress Name] -n rtf
---
+include::partial$include-ingress-tasks.adoc[tags=createTemplate]
 
 === Configure Ingress for a Mule Application  
 
-You configure ingress for an application when you deploy it to Runtime Fabric using Runtime Manager. Available hosts and paths for an application come from the ingress resource template configured by the Runtime Fabric administrator. 
-
-You can also use this procedure to deploy a test application to validate your ingress resource template.
- 
-[NOTE]
-====
-The following provides an overview of how to configure ingress for an application.
-Refer to xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric] for complete deployment instructions.
-If you are using the Mule Maven plugin to deploy applications to Runtime Fabric, the deployment settings parameter `publicUrl` in the block `http` can accept a comma-delimited string of multiple endpoints. 
-For more information, see xref:mule-runtime::deploy-to-rtf#deploymentsettings-parameters-reference[deploymentSettings Parameters Reference].
-==== 
-
-. Navigate to Runtime Manager and follow the documentation to deploy an application to Runtime Fabric.
-. Select *Ingress*.
-. From the *Host* drop-down list, select a host for the application. 
-. If the hostname uses a wildcard, add a subdomain in the *Subdomain* field. 
-+
-The *Subdomain* field is only available if the hostname uses a wildcard.
-. In the *Path* field, add a URL path to the application’s endpoint:
-+
-image::rtf-ingress-endpoint.png[The host and path fields are populated for the endpoint,80%]
-
-. To preview the endpoint, click the generated preview link.
-. To add additional endpoints, click *+ Add Endpoint*.
-. When ready, click *Deploy application*.  
+include::partial$include-ingress-tasks.adoc[tags=configureIngressRuntimeManager]
 
 == Existing Ingress Configurations Translated Post-Upgrade 
 
