@@ -1,9 +1,0 @@
-== How Antivirus and DPI Software Impacts Runtime Fabric Functionality
-
-Anypoint Runtime Fabric has specific hardware and OS requirements. MuleSoft Support provides Support SLA and Severity Levels based on our validation and certification of the requirements specified in the installation prerequisites for xref:index-self-managed.adoc[Runtime Fabric ].
-
-Some third-party software requires root access to the host. This software includes, but is not limited to, antivirus and DPI software, which has been found to interfere with the behavior and requirements of Runtime Fabric. In many support cases where MuleSoft Support has detected antivirus software, they have seen issues such as port blocking, node-to-node communication blocking, Docker default bridge deletion, and filesystem access issues that interfere with Runtime Fabric installation, upgrade, and normal operations.
-
-In the event that abnormal behavior is observed with Runtime Fabric, you may be asked to disable any running third-party software (including anti-virus or DPI software) to determine if it is the cause of the behavior. If disabling such software restores proper Runtime Fabric functionality, this would demonstrate an implicit incompatibility between that software package and Runtime Fabric, and we would consider the support case resolved.
-
-If you are strictly required to run traditional security tools that interfere with certain components of Runtime Fabric, vendors and security experts that support Kubernetes can support you in meeting this requirement. Cloud platform vendors often add cloud-centric controls that are consistent with well-known security benchmarks, such as the https://www.cisecurity.org/benchmark/kubernetes/[Center for Internet Security (CIS) Kubernetes Benchmark^].
