@@ -11,6 +11,12 @@ Protected property values are separate from the encrypted Mule application prope
 Runtime Manager does not support adding protected properties for API proxies or gateways. Instead, use API Manager. 
 --
 
+[NOTE]
+--
+Protecting API Gateway client ID and secret ID is currently supported in Runtime Fabric, either via API or the Anypoint Runtime Manager UI.
+--
+
+
 == Protect Property Values in Runtime Manager 
 
 Set protected properties via the table view for granular control over each property and value.  
@@ -51,4 +57,3 @@ After you protect a property value, you can't retrieve it. However, you can repl
 . Click the menu icon next to the value and then click *Replace protected value*.
 . Enter a new value in the field
 . Click *Apply* > *Apply changes.*
-
