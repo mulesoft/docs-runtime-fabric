@@ -13,6 +13,9 @@ Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics
 * Manage a Mule license.
 * Manage the alert sender email address.
 
+[Note]
+If you are using the default namespace (rtf), you do not need to specify the additional flag `--namespace <rtf_namespace>`. Note that this flag is introduced only as of rtfctl version 0.4.0.
+
 == Install rtfctl 
 
 [IMPORTANT]
@@ -83,42 +86,31 @@ Applies changes to a Runtime Fabric configuration.
 * Applies an HTTP proxy configuration
 +
 ----
-rtfctl apply http-proxy http://<domain>:<port>
+rtfctl apply http-proxy http://<host>:<port> --namespace <rtf_namespace>
 ----
 
 * Applies an HTTP proxy configuration with hostnames bypassing the proxy
 +
 ----
-rtfctl apply http-proxy http://<domain>:<port> --no-proxy "DOMAIN.com,DOMAIN2.com"
+rtfctl apply http-proxy http://<host>:<port> --no-proxy "DOMAIN1.com,DOMAIN2.com" --namespace <rtf_namespace>
 ----
 
 * Applies an HTTP proxy configuration with authentication
 +
 ----
-rtfctl apply http-proxy http://username:password@<domain>.com:<port>
+rtfctl apply http-proxy http://<username>:<password>@<host>:<port> --namespace <rtf_namespace>
 ----
 
 * Clears an HTTP proxy configuration
 +
 ----
-rtfctl apply http-proxy "" --no-proxy ""
-----
-
-* Applies an ingress configMap for a specific pod 
-+
-[NOTE]
---
-For Runtime Fabric on Self-Managed Kubernertes versions 1.8 and 1.9 only
---
-+
-----
-rtfctl apply ingress-configmap "/<pod>/<path-to-configMap.yaml>"`
+rtfctl apply http-proxy "" --no-proxy "" --namespace <rtf_namespace>
 ----
 
 * Applies a secure property
 +
 ----
-rtfctl apply secure-property --key <key> --value <value> -n <environment>
+rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Applies a system configuration on a host node
@@ -136,18 +128,18 @@ rtfctl apply system-configuration --skip-download
 * Applies a Mule license
 +
 ----
-rtfctl apply mule-license '<BASE64-encoded-license>'
+rtfctl apply mule-license <base64_encoded_license> --namespace <rtf_namespace>
 ----
 * Applies a monitoring proxy
 +
 ----
-rtfctl apply monitoring-proxy "socks5://<username>:<password>@<monitoring-URL>:<PORT>"`
+rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
 ----
 
 * Clears a monitoring proxy configuration
 +
 ----
-rtfctl apply monitoring-proxy ""
+rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
 ----
 
 === `update` 
@@ -171,13 +163,13 @@ Waits for Runtime Fabric components to become ready
 
 * Specifies the number of seconds to wait 
 ----
-rtfctl wait <value in seconds>
+rtfctl wait <value_in_seconds> --namespace <rtf_namespace>
 ----
 
 * Specifies the number of seconds to pass before timing out the wait (Default is 600 seconds)
 
 ----
-rtfctl wait --timeout <value in seconds>
+rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
 ----
 
 == Commands for Installing and Upgrading Runtime Fabric
@@ -199,26 +191,26 @@ Use the following commands when installing or upgrading Runtime Fabric, or when 
 * Installs Runtime Fabric
 
 ----
-rtfctl install <activation data>
+rtfctl install <activation_data>
 ----
 
 * Override the Docker image registry URL and secret 
 +
 ----
-rtfctl install <activation data> --image-pull-registry <string>  --image-pull-secret <string>
+rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
 === `backup`
 Performs a back up of the local Runtime Fabric state.
 ----
-rtfctl backup /var/backups/<backup-filename>.tar.gz
+rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
 === `restore`
 Restores the local Runtime Fabric state from a backup 
 
 ----
-rtfctl restore /var/backups/<filename>.tar.gz
+rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
 === `validate`
@@ -227,28 +219,28 @@ Validates the cluster for a Runtime Fabric installation
 * Performs a validation check
 +
 ----
-rtfctl validate <activation-data>
+rtfctl validate <activation_data>
 ----
 
 * Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
 +
 ----
-rtfctl validate -f <path-to-settings-file>
+rtfctl validate -f <path_to_settings_file>
 ----
 +
 To validate installation with a proxy, you must specify proxy settings in your `settings` file:
 
 ----
 MULE_LICENSE=<your-mule-license>
-ACTIVATION_DATA=<activation-data>
-HTTP_PROXY=http://proxy-domain.com:<port>
+ACTIVATION_DATA=<activation_data>
+HTTP_PROXY=http://<proxy_domain>.com:<port>
 ----
 
 === `version` 
 Displays the Runtime Fabric version information
 
 ----
-rtfctl version
+rtfctl version --namespace <rtf_namespace>
 ----
 
 == Commands for Managing Applications on Runtime Fabric
@@ -271,14 +263,16 @@ Use the following commands to manage applications deployed to Runtime Fabric.
 === `delete`
 Deletes a secure property
 ----
-rtfctl delete secure-property <sample-key> -n <sample-app-namespace>
+rtfctl delete secure-property <sample_key> -n <app_namespace>
 ----
 
 === `describe`
 Displays details for an application in a specific namespace 
 
 ----
-rtfctl describe app <app-name> --namespace <namespace>
+rtfctl describe apps <app_name> --namespace <rtf_namespace>
+
+rtfctl describe apps <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `disk`
@@ -288,13 +282,14 @@ Displays disk usage for an application
 * Displays the disk usage for an application, using the first replica by default
 +
 ----
-rtfctl disk <app-name>
+rtfctl disk <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Displays the disk usage for an application, using a specific replica
 +
 ----
-rtfctl disk <app-name> --details --pod <replica-name>
+rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+
 ----
 
 === `memory`
@@ -303,13 +298,13 @@ Displays the JVM memory usage in a pod
 * Gets the JVM memory for each replica
 +
 ----
-rtfctl memory <app-name>
+rtfctl memory <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Gets the JVM memory for a particular replica
 +
 ----
-rtfctl memory <app-name> --pod <app-name>-pod-1
+rtfctl memory <app_name> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `package` 
@@ -318,26 +313,26 @@ Creates a debugging information package for an application
 * Creates a package for an application using the first pod by default
 +
 ----
-rtfctl package <app-name> <path-to-file>
+rtfctl package <app_name> <application_package_filename> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Creates a package for an application containing the apps, policies, and `.mule` directories
 +
 ----
-rtfctl package <app-name> <path-to-file> --apps --policies --dotmule
+rtfctl package <app_name> <application_package_filename> --apps --policies --dotmule --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Creates a package for an application containing a heap dump
 +
 ----
-rtfctl package <app-name> <path-to-file> --heap-dump
+rtfctl package <app_name> <application_package_filename> --heap-dump --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `restart`
 Restarts an application
 
 ----
-rtfctl restart my-app
+rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `heapdump`
@@ -346,13 +341,13 @@ Triggers a JVM heap dump
 * Performs a JVM heap dump for an application, saving it as ``/tmp/dump.hprof`, using the first replica by default
 +
 ----
-rtfctl heapdump <app-name> /tmp/dump.hprof
+rtfctl heapdump <app_name> <destination_path> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Performs a JVM heap dump for an application, saving it as `/tmp/dump.hprof`, using a specific replica
 +
 ----
-rtfctl heapdump <app-name> /tmp/dump.hprof --pod <replica-name>
+rtfctl heapdump <app_name> <destination_path> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `threaddump`
@@ -361,13 +356,13 @@ Triggers a JVM threaddump
 * Performs a JVM thread dump for an application using the first replica by default
 +
 ----
-rtfctl threaddump <app-name>
+rtfctl threaddump <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Performs a JVM thread dump for an application using a specific replica 
 +
 ----
-rtfctl threaddump <app-name>p --pod <replica-name>
+rtfctl threaddump <app_name> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 == Commands for Troubleshooting Runtime Fabric
@@ -390,43 +385,43 @@ Displays one or more resources
 * Prints a list of all applications in all environments
 +
 ----
-rtfctl get apps
+rtfctl get apps --namespace <rtf_namespace>
 ----
 
 * Prints a list of all applications in a specific environment 
 +
 ----
-rtfctl get apps --namespace <environment>
+rtfctl get apps --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Displays an HTTP proxy configurations
 +
 ----
-rtfctl get http-proxy
+rtfctl get http-proxy --namespace <rtf_namespace>
 ----
 
 * Displays a monitoring proxy configuration
 +
 ----
-rtfctl get monitoring-proxy
+rtfctl get monitoring-proxy --namespace <rtf_namespace>
 ----
 
 * Displays secure properties
 +
 ----
-rtfctl get secure-properties
+rtfctl get secure-properties --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Displays the Mule license
 +
 ----
-rtfctl get mule-license
+rtfctl get mule-license --namespace <rtf_namespace>
 ----
 
 * Displays Runtime Fabric registry credentials
 +
 ----
-rtfctl get registry-credentials <activation data>
+rtfctl get registry-credentials <activation_data>
 ----
 
 === `ping`
@@ -435,20 +430,20 @@ Tests network connectivity
 * Pings example.com from inside an application, using the first replica by default
 +
 ----
-rtfctl ping <app-name> example.com
+rtfctl ping <app_name> <host_or_ip_address> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 * Attempts to connect to example.com on port `12345` from inside an application, using the first replica by default
 +
 ----
-rtfctl ping <app-name> --port 12345
+rtfctl ping <app_name> <host_or_ip_address> --port <port> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
 === `report`
 Generates a diagnostics report at `rtf-report.tar.gz`
 
 ----
-rtfctl report --file <filename>.tar.gz
+rtfctl report --namespace <rtf_namespace>
 ----
 
 === `status` 
@@ -458,13 +453,13 @@ Displays the status of Runtime Fabric
 * Displays status output in JSON
 +
 ----
-rtfctl status --output json
+rtfctl status --output json --namespace <rtf_namespace>
 ----
 	
 * Checks Kubernetes DNS health
 +
 ----
-rtfctl status dns-check --<node-label> "<k>:<v>"
+rtfctl status dns-check --node-label "<k>:<v>"
 ----
 
 === `test` 
@@ -473,19 +468,19 @@ Verifies outbound network connectivity to the Runtime Fabric control plane.
 * Schedules a check on any nodes
 +
 ----
-rtfctl test outbound-network
+rtfctl test outbound-network --namespace <rtf_namespace>
 ----
 
 * Schedules a check the nodes satisfying the `node-label` parameter
 +
 ----
-rtfctl test outbound-network --<node-label> "<k>:<v>"
+rtfctl test outbound-network --node-label "<k>:<v>" --namespace <rtf_namespace>
 ----
  
 * Schedules a check on all nodes
 +
 ----
-rtfctl test outbound-network --all
+rtfctl test outbound-network --all --namespace <rtf_namespace>
 ----
 
 == Usage
@@ -496,14 +491,14 @@ rtfctl test outbound-network --all
 .. Run the following command:
 +
 ----
-$ sudo ./rtfctl apply mule-license '<license-key-information>'
+$ sudo ./rtfctl apply mule-license '<license-key-information>'  --namespace rtf1
 Updating rtf namespace... OK
 ----
 
 === Capture a Heap Dump
 
 ----
-$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof
+$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof --app-namespace bed42b62-XXXX --namespace rtf1
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----
@@ -515,7 +510,7 @@ For additional information, run the `rtfctl heapdump -h` command.
 For application management commands that accept a `--pod` flag, you can obtain the list of replicas using the `describe` command:
 
 ----
-$ sudo ./rtfctl describe apps hello-world --namespace bed42b62-XXXX
+$ sudo ./rtfctl describe apps hello-world --app-namespace bed42b62-XXXX --namespace rtf1
 Name:              hello-world
 Namespace:         bed42b62-XXXX
 Status:            PROGRESSING
