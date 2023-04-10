@@ -6,8 +6,6 @@ Runtime Fabric uses its own registry to store the necessary Docker images for in
 
 Review the following limitations on support for local registries: 
 
-[IMPORTANT]
-You cannot use a local registry to manage Red Hat OpenShift installations. 
 
 * You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later.
 * You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
