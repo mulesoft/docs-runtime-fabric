@@ -1,6 +1,6 @@
 = Installing Runtime Fabric on Red Hat OpenShift
 
-You can install Anypoint Runtime Fabric on a Red Hat OpenShift installation. 
+You can install Anypoint Runtime Fabric on a Red Hat OpenShift installation.
 
 Runtime Fabric supports the following Red Hat OpenShift deployment options:
 
@@ -10,7 +10,7 @@ Runtime Fabric supports the following Red Hat OpenShift deployment options:
 * Red Hat OpenShift on IBM Cloud
 * Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
 
-Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.10.
+Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.11.
 
 ++++
 include::_partials/rtf-openshift-video.html[]
@@ -26,14 +26,14 @@ When you install Runtime Fabric on Red Hat OpenShift, you’ll:
 . Create a Docker pull secret for pulling the Runtime Fabric component images
 . Optionally, configure shared tenancy
 . Install and configure the Runtime Fabric operator
-. Complete the remaining installation steps to validate your Runtime Fabric and configure ingress 
+. Complete the remaining installation steps to validate your Runtime Fabric and configure ingress
 
 == Before You Begin
 
 Before installing Runtime Fabric on Red Hat OpenShift, ensure that:
 
 * You have reviewed the architecture and requirements outlined in Runtime Fabric on Self-Managed Kubernetes
-* You have reviewed the network requirements 
+* You have reviewed the network requirements
 * You have installed and configured a supported Red Hat OpenShift Kubernetes environment with:
 ** A supported Kubernetes version
 ** An ingress controller to send external requests to applications
@@ -49,27 +49,27 @@ To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric us
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select the Red Hat OpenShift option. 
+. Enter the name of the new Runtime Fabric, then select the Red Hat OpenShift option.
 . Review the Support responsibility disclaimer, then if you agree click *Accept*.
 . Click *Operator*.
-. Copy the activation data. 
+. Copy the activation data.
 
-== Create A Namespace for Runtime Fabric 
+== Create A Namespace for Runtime Fabric
 
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components.
 
-To create the namespace, run: 
+To create the namespace, run:
 
 [source,copy]
 ----
-oc create ns rtf 
+oc create ns rtf
 ----
 
-== Create A Docker Pull Secret 
+== Create A Docker Pull Secret
 
-After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric.
 
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here.
 
 To create the pull secret, run:
 
@@ -80,7 +80,7 @@ oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<
 
 == (Optional) Configure Authorized Namespaces
 
-You can optionally configure xref:authorized-namespaces.adoc[authorized namespaces], which enable you to deploy Runtime Fabric alongside other services in a Kubernetes cluster. 
+You can optionally configure xref:authorized-namespaces.adoc[authorized namespaces], which enable you to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
 
 === Before You Begin
 
@@ -112,8 +112,8 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: <namespace>
-labels:
+  name: <namespace>
+  labels:
     rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
     rtf.mulesoft.com/org: <ORG-ID>
     rtf.mulesoft.com/role: workers
@@ -127,7 +127,7 @@ oc apply -f <filename>.yaml
 ----
 
 . Repeat steps 1 and 2  to add as many namespaces as you need.
- 
+
 . Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
 +
 [source,copy]
@@ -147,7 +147,75 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
+. Apply the following RoleBinding template to rtf namespace and any additional namespaces:
++
+[source,copy]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf
+  namespace: rtf
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: rtf
+  - kind: ServiceAccount
+    name: mule-clusterip-service
+    namespace: rtf
+  - kind: ServiceAccount
+    name: resource-cache
+    namespace: rtf
+  - kind: ServiceAccount
+    name: rtf-persistence-gateway
+    namespace: rtf
+  - kind: ServiceAccount
+    name: cluster-status
+    namespace: rtf
+  - kind: ServiceAccount
+    name: am-log-forwarder
+    namespace: rtf
+----
++
+For `<additional-namespace>`, use the same template as well:
++
+[source,copy]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf
+  namespace: <app-namespace-name>
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: rtf
+  - kind: ServiceAccount
+    name: mule-clusterip-service
+    namespace: rtf
+  - kind: ServiceAccount
+    name: resource-cache
+    namespace: rtf
+  - kind: ServiceAccount
+    name: rtf-persistence-gateway
+    namespace: rtf
+  - kind: ServiceAccount
+    name: cluster-status
+    namespace: rtf
+  - kind: ServiceAccount
+    name: am-log-forwarder
+    namespace: rtf
+----
++
+. In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
 +
 [source,copy]
 ----
@@ -157,8 +225,8 @@ metadata:
   name: authorized-namespaces
   namespace: rtf
 data:
-  ADDITIONAL_NAMESPACE: "additional-namespace1"
-  ADDITIONAL_NAMESPACE: "additional-namespace2"
+  ADDITIONAL_NAMESPACE-1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE-2: "additional-namespace2"
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
@@ -168,7 +236,7 @@ data:
 oc -nrtf delete po -l app=agent
 ----
 +
-After you delete the pod, Kubernetes starts a new one. 
+After you delete the pod, Kubernetes starts a new one.
 
 === Install the Red Hat OpenShift Runtime Fabric Operator
 
@@ -183,7 +251,7 @@ NOTE: Installing the Runtime Fabric operator requires manual approval and may ta
 == Configure the Runtime Fabric Operator
 
 To configure the Runtime Fabric operator, you supply the necessary values when prompted.
- 
+
 . In the Red Hat OpenShift console, navigate to **Operators** > **Installed Operators**.
 . In the console, switch the value of **Project** to the namespace you created for installing Runtime Fabric.
 . In the console, click **Create Instance**, and select **Configure via form view**.
@@ -191,7 +259,7 @@ To configure the Runtime Fabric operator, you supply the necessary values when p
 [WARNING]
 --
 Do not change the name of the instance. Doing so can create installation errors.
--- 
+--
 
 . Add any required parameters. Refer to the Installation Parameters Reference for guidance.
 +
@@ -200,7 +268,7 @@ If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
 
 == Installation Parameters Reference
 
-The following is an example YAML view of the installation parameters. 
+The following is an example YAML view of the installation parameters.
 
 [source,yaml]
 --
@@ -225,7 +293,7 @@ global:
 
 === Required Parameters
 
-The values for these required parameters are set when you create the Runtime Fabric in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret. 
+The values for these required parameters are set when you create the Runtime Fabric in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret.
 
 [%header%autowidth.spread]
 |===
@@ -242,16 +310,16 @@ Set these optional parameters as needed.
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: false`, default is `true`
+|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
 =======
 |`authorizedNamespaces` |Enable authorized namespaces |`authorizedNamespaces:true`
-a|      
-      
-* `proxy.http_proxy`
-* `proxy.http_no_proxy` |Proxy and no_proxy values a| 
+a|
 
-* `http://<user>:<pass>@<10.0.0.1>:<8080>` 
+* `proxy.http_proxy`
+* `proxy.http_no_proxy` |Proxy and no_proxy values a|
+
+* `http://<user>:<pass>@<10.0.0.1>:<8080>`
 * `<1.1.1.1:8888,2.2.2.2:9999>`
 |`proxy.monitoring_proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
 |`global.containerLogPaths` |The Filebeat read path a|
@@ -269,9 +337,7 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure that you've installed your Mule license key and then, perform the following steps.
 
-Also, before attempting to deploy an Mule applications, ensure that you've installed your Mule license key. 
+Also, before attempting to deploy an Mule applications, ensure that you've installed your Mule license key.
 
 . Create a namespace for your Mule app deployments. See xref:create-custom-namespace.adoc[Creating Application Namespaces for Application Deployments.]
 . From Runtime Manager, deploy a Mule app using your namespace. See xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications to Runtime Fabric] for instructions.
-
-

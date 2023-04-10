@@ -1,13 +1,13 @@
 = Installing Runtime Fabric on EKS, AKS, and GKE Using Helm
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage. 
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
 
 == Steps to Install Runtime Fabric Using Helm
 
 When you use Helm to install Runtime Fabric, you:
 
 . Create a Runtime Fabric using Runtime Manager
-. Create the `rtf` namespace for Runtime Fabric 
+. Create the `rtf` namespace for Runtime Fabric
 . Create a Docker pull secret for pulling the Runtime Fabric component images
 . Optionally, configure additional authorized namespaces
 . Add the Runtime Fabric Helm repository
@@ -32,9 +32,9 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 * If you use Helm to manage your Runtime Fabric installation, you can use the `rtfctl` command line utility later to manage Mule license keys and proxies. However, you’ll need to track any post-installation changes you make, as explained in the xref:upgrade-helm.adoc[upgrade documentation].
 --
 
-=== Helm Support 
+=== Helm Support
 
-Runtime Fabric supports installations, upgrades, and rollbacks using Helm for versions 1.13 and later. 
+Runtime Fabric supports installations, upgrades, and rollbacks using Helm for versions 1.13 and later.
 
 == Create a Runtime Fabric Using Runtime Manager
 
@@ -53,25 +53,25 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 
 [NOTE]
 --
-The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance. 
--- 
+The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance.
+--
 
-== Create A Namespace for Runtime Fabric 
+== Create A Namespace for Runtime Fabric
 
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components. 
+You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components.
 
-To create the namespace, run: 
+To create the namespace, run:
 
 [source,copy]
 ----
-kubectl create ns rtf 
+kubectl create ns rtf
 ----
 
-== Create A Docker Pull Secret 
+== Create A Docker Pull Secret
 
-After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric. 
+After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric.
 
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here. 
+The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here.
 
 To create the pull secret, run:
 
@@ -93,7 +93,7 @@ helm repo add <name> <helm_repo_url> --username <your_username> --password <your
 
 [NOTE]
 --
-If you already added the Helm repo, and you get a result that Runtime Fabric skipped adding the repo, run `helm repo update` before installing, or upgrading to, a new Runtime Fabric version. 
+If you already added the Helm repo, and you get a result that Runtime Fabric skipped adding the repo, run `helm repo update` before installing, or upgrading to, a new Runtime Fabric version.
 --
 
 == (Optional) Configure Authorized Namespaces
@@ -130,8 +130,8 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: <namespace>
-labels:
+  name: <namespace>
+  labels:
     rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
     rtf.mulesoft.com/org: <ORG-ID>
     rtf.mulesoft.com/role: workers
@@ -144,7 +144,7 @@ labels:
 kubectl apply -f <filename>.yaml
 ----
 
-. Repeat steps 1 and 2 to add as many namespaces as you need.  
+. Repeat steps 1 and 2 to add as many namespaces as you need.
 . Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
 +
 [source,copy]
@@ -185,16 +185,16 @@ data:
 kubectl -nrtf delete po -l app=agent
 ----
 +
-After you delete the pod, Kubernetes starts a new one. 
+After you delete the pod, Kubernetes starts a new one.
 
 == Install Runtime Fabric
 
-To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager. 
+To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager.
 
 . Download the `values.yml` file.
 . Add any optional parameters needed.
 +
-If you’re using authorized namespaces, set `authorizedNamespaces` to `true`. 
+If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
 . Run the following command:
 +
 [source,copy]
@@ -205,7 +205,7 @@ helm install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.
 [[values-yml-reference]]
 == Values.yml Reference
 
-The following is an example `values.yml` file. 
+The following is an example `values.yml` file.
 
 [source,yaml]
 ----
@@ -214,7 +214,7 @@ activationData: <activation data>
     http_proxy:
     http_no_proxy:
     monitoring_proxy:
-custom_log4j_enabled: true
+customLog4jEnabled: true
 muleLicense: <mule license key>
 global:
   authorizedNamespaces: false
@@ -226,7 +226,7 @@ global:
   - /var/log/containers
   - /var/log/pods
 ----
- 
+
 === Required Parameters
 
 These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager:
@@ -247,14 +247,14 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 [%header%autowidth.spread]
 |===
 |Key |Value |Example
-|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: false`, default is `true`
+|`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
-a|      
-      
-* `proxy.http_proxy`
-* `proxy.http_no_proxy` |Proxy and no_proxy values a| 
+a|
 
-* `http://<user>:<pass>@<10.0.0.1>:<8080>` 
+* `proxy.http_proxy`
+* `proxy.http_no_proxy` |Proxy and no_proxy values a|
+
+* `http://<user>:<pass>@<10.0.0.1>:<8080>`
 * `<1.1.1.1:8888,2.2.2.2:9999>`
 |`proxy.monitoring_proxy` | Anypoint Monitoring proxy values | `socks5://<user>:<pass>@<10.0.0.2>:<8080>`
 |`global.containerLogPaths` |The Filebeat read path a|

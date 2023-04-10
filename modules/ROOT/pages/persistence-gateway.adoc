@@ -140,6 +140,42 @@ Modify the following fields based on your environment:
 The default CPU, memory, and limit values are based on a small number of deployed Mule applications. Modify these values based on the requirements of your environment.
 ====
 
+== Persistence Gateway Application Data
+
+Persistence Gateway stores application data using the following two tables:
+
+[source,copy]
+----
+CREATE TABLE IF NOT EXISTS stores (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	org_id VARCHAR(255) NOT NULL,
+	env_id VARCHAR(255) NOT NULL,
+	default_ttl_seconds int NOT NULL,
+	is_fixed_ttl bool NOT NULL,
+	CONSTRAINT UK_stores UNIQUE (name, org_id, env_id)
+);
+CREATE TABLE IF NOT EXISTS items (
+	id SERIAL PRIMARY KEY,
+	store_id INT NOT NULL REFERENCES stores(id),
+	key VARCHAR(255) NOT NULL,
+	partition VARCHAR(255) NOT NULL,
+	value_type VARCHAR(10) NOT NULL,
+	number_value integer,
+	string_value text,
+	binary_value bytea,
+	last_updated timestamp,
+	is_fixed_ttl bool NOT NULL,
+	ttl timestamp NOT NULL,
+	CONSTRAINT UK_items UNIQUE (key, store_id, partition)
+);
+	CREATE INDEX IF NOT EXISTS IDX_items_ttl ON items(ttl)
+;`
+----
+
+To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not to have applications deployed during this process on both clusters to prevent unexpected results.
+
+
 == See Also
 
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
