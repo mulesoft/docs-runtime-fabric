@@ -3,7 +3,7 @@
 Installing multiple instances of Anypoint Runtime Fabric enables you to share the same cluster among multiple Runtime Fabrics, which helps you to use resources efficiently.
 
 [NOTE]
-To use this feature, you must upgrade to the minimum version of 2.2.0 of the Runtime Fabric agent that supports multiple instances.
+To use this feature, you must upgrade to the minimum version of 2.2.1 of the Runtime Fabric agent that supports multiple instances.
 
 [NOTE]
 There will be 1:1 mapping from the agent namespace to the app namespace. Application namespaces cannot be shared amongst multiple instances of Runtime Fabric on the same cluster.
