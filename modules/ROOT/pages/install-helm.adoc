@@ -132,8 +132,9 @@ kind: Namespace
 metadata:
   name: <namespace>
   labels:
-    rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
-    rtf.mulesoft.com/org: <ORG-ID>
+    rtf.mulesoft.com/agentNamespace: <rtf_namespace>
+    rtf.mulesoft.com/envId: <environment_id>
+    rtf.mulesoft.com/org: <org_id>
     rtf.mulesoft.com/role: workers
 ----
 
