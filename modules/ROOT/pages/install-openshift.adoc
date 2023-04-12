@@ -135,7 +135,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
   name: rtf:agent
@@ -150,7 +150,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: rtf
-  namespace: rtf
+
+  namespace: <rtf_namespace>
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -158,22 +159,22 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: mule-clusterip-service
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: resource-cache
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: rtf-persistence-gateway
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: cluster-status
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
-    namespace: rtf
+    namespace: <rtf_namespace>
 ----
 +
 For `<additional-namespace>`, use the same template as well:
@@ -192,22 +193,22 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: mule-clusterip-service
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: resource-cache
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: rtf-persistence-gateway
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: cluster-status
-    namespace: rtf
+    namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
-    namespace: rtf
+    namespace: <rtf_namespace>
 ----
 +
 . In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
@@ -218,10 +219,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: rtf
+  namespace: <rtf_namespace>
 data:
-  ADDITIONAL_NAMESPACE-1: "additional-namespace1"
-  ADDITIONAL_NAMESPACE-2: "additional-namespace2"
+  APPLICATION_NAMESPACE_1: "<app_namespace_1>"
+  APPLICATION_NAMESPACE_2: "<app_namespace_1>
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
