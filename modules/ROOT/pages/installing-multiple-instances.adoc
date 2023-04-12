@@ -1,0 +1,230 @@
+= Installing Multiple Instances of Runtime Fabric on a Single Cluster
+
+Installing multiple instances of Anypoint Runtime Fabric enables you to share the same cluster among multiple Runtime Fabrics, which helps you to use resources efficiently.
+
+[NOTE]
+To use this feature, you must upgrade to the minimum version of 2.2.5 of the Runtime Fabric agent that supports multiple instances.
+
+[NOTE]
+There will be 1:1 mapping from the agent namespace to the app namespace. Application namespaces cannot be shared amongst multiple instances of Runtime Fabric on the same cluster.
+
+[NOTE]
+Hazelcast clustering is not yet supported with Multiple Instances.
+
+== Install Multiple Instances of Runtime Fabric
+
+To install multiple instances of Anypoint Runtime Fabric on a single BYOK (Bring Your Own Kubernetes) cluster, follow these steps:
+
+. Create a Runtime Fabric using Runtime Manager.
+. Create a custom namespace to install the Fabric created in the previous step:
++ 
+----
+kubectl create ns <rtf_namespace>
+----
+[start=3]
+. Create a Docker pull secret to pull the Runtime Fabric component images for the previously created namespace: 
++
+----
+kubectl create secret docker-registry rtf-pull-secret --namespace <rtf_namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
+[start=4]
+. Add the Runtime Fabric helm repository: 
++
+----
+helm repo add <name> <helm_repo_url> --username <your_username> --password <your_password>
+----
+[start=5]
+. Optionally, you can configure the shared tenancy. Refer to <<configure-namespaces,Configure Authorized Namespaces>> for details. 
+. Download and configure the `values.yaml` file from the Anypoint Platform UI.
+. Set the <<required-parameters,required parameters>> for the `values.yaml` file.
+. Install Runtime Fabric on the cluster:
++
+----
+helm install runtime-fabric rtf/rtf-agent --version <rtf_version> -f values.yaml -n <rtf_namespace>
+----
+
+== Values.yaml File Required Parameters
+The values for these required parameters are set when you create the Runtime Fabric instance in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret. 
+
+[%header%autowidth.spread]
+|===
+| Key | Value | Example
+| `activationData` | Activation Data | YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
+| `rtfRegistry` | Registry URL  | US rtf-runtime-registry.kprod.msap.io
+
+EU
+rtf-runtime-registry.kprod-eu.msap.io
+| `pullSecretName` | Registry pull secret | rtf-pull-secret
+| `muleLicense` | Mule license for applications | Mule license key (must be Base64-encoded)
+|===
+
+[[required-parameters]]
+== Values.yaml Optional Parameters
+Set the following optional parameters as needed: 
+
+[%header%autowidth.spread]
+|===
+| Key | Description | Example
+| `authorizedNamespaces` | Enables shared tenancy | authorizedNamespaces=true
+| `crds.install` | Enables installation of Crds and PriorityClass  | install=true
+| `proxy.http.proxy` +
+`proxy.http.no_proxy`
+` | Proxy and no_proxy values | - +http://<user>:<pass>@<10.0.0.1>:<8080>+ +
+- <1.1.1.1:8888,2.2.2.2:9999>
+|`proxy.monitoring.proxy` |Monitoring proxy values | socks5://<user>:<pass>@<10.0.0.2>:<8080>
+|`global.containerLogPaths` | Filebeat read path | - /var/lib/docker/ +
+ - /var/log/containers +
+ - /var/log/pods
+|===
+
+[NOTE]
+For the first agent being installed on the cluster, set the value for `crds.install` to `true`. +
+Set `crds.install` to `false` for all the subsequent agent installations on the same cluster.
+
+== Values.yaml Reference
+The following is an example of the `values.yaml` file:
+
+----
+activationData: <activation_data>
+  proxy:
+    http_proxy:
+    http_no_proxy:
+    monitoring_proxy:
+custom_log4j_enabled: true
+muleLicense: <mule_license_key>
+global:
+  crds:
+    install: true
+  authorizedNamespaces: false
+  image:
+    rtfRegistry: rtf-runtime-registry.kprod.msap.io
+    pullSecretName: rtf-pull-secret
+  containerLogPaths:
+  - /var/lib/docker/containers
+  - /var/log/containers
+  - /var/log/pods
+----
+
+
+== Deploy Mule Applications
+
+. To deploy Mule applications, create an `app-namespace` for each of installed agent: 
++
+----
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <app-namespace>
+  labels:
+    rtf.mulesoft.com/agentNamespace: <rtf_namespace>
+    rtf.mulesoft.com/envId: <environment_id>
+    rtf.mulesoft.com/org: <org_id>
+    rtf.mulesoft.com/role: workers
+----
+[start=2]
+. Create the ingress in the new `<rtf_namespace>`: +
+----
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rtf-ingress
+  namespace: <rtf_namespace>
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: rtf-nginx
+  rules:
+    - host: "testrtf.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/app-name(/|$)(.*)"
+            backend:
+              service:    
+                name: service
+                port:
+                  name: service-port
+----
+
+Use a different host name per `<rtf_namespace>`. If multiple ingresses define different paths for the same host, the ingress controller merges the definitions.  As a result, Mule applications with the same name are not accessible, which causes a k8s issue, not a Runtime Fabric issue.
+
+[[configure-namespaces]]
+== (Optional) Configure Authorized Namespaces
+You can optionally configure authorized namespaces, which enables you to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
+
+You must create the `authorized-namespaces` ConfigMap file before installing Runtime Fabric for the Runtime Fabric namespace. Additionally, you must name the `ConfigMap`, `authorized-namespaces`. The following example shows a `ConfigMap` file:
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authorized-namespaces
+  namespace: <rtf_namespace>
+data:
+  APPLICATION_NAMESPACE_1: "<app_namespace_1>"
+  APPLICATION_NAMESPACE_2: "<app_namespace_1>
+----
+
+The `rtf:resource-metrics-collector` ClusterRole has cluster-wide permissions to `get` and `list nodes`, pods, and namespaces and has `watch` permissions for nodes. The role ClusterRole is defined as follows:
+The following example shows a ClusterRole role:
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rtf:resource-metrics-collector
+  labels:
+    {{- include "labels.standard" . | nindent 4 }}
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "pods", "namespaces"]
+    verbs: ["list", "get"]
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["watch"]
+----
+=== Configure Additional Namespaces
+
+To configure an additional namespace for application deployments and then add the necessary labels to the namespace, follow these steps:
+
+. Create a YAML file with the following contents:
++
+----
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <app-namespace>
+  labels:
+    rtf.mulesoft.com/agentNamespace: <rtf_namespace>
+    rtf.mulesoft.com/envId: <environment_id>
+    rtf.mulesoft.com/org: <org_id>
+    rtf.mulesoft.com/role: workers
+----
+[start=2]
+. Apply the previously created file:
++
+----
+kubectl apply -f <filename>.yaml
+----
+[start=3]
+. Repeat Steps 1 and 2 to add as many namespaces as you need.
+. Create the `RoleBinding` for the Runtime Fabric agent `ClusterRole` that includes the Runtime Fabric agent `ServiceAccount` by applying the following configuration in your additional namespace:
+
++
+----
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: <rb_name>
+  namespace: <ap_-namespace>
+subjects:
+  - kind: ServiceAccount
+    name: rtf-agent
+    namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:agent-<rtf_namespace>
+  apiGroup: rbac.authorization.k8s.io
+----
+
+== See Also
+xref:install-index.adoc[]

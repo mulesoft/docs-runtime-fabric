@@ -7,6 +7,7 @@
   ** xref:install-self-managed.adoc[Install on GKE, AKS, EKS with rtfctl]
   ** xref:install-helm.adoc[Install on GKE, AKS, EKS with Helm]
   ** xref:install-openshift.adoc[Install on RedHat OpenShift]
+  ** xref:install-multiple-instances.adoc[Install Multiple Instances on a Single Cluster]
 * xref:upgrade-index.adoc[Upgrade Runtime Fabric]
   ** xref:upgrade-self-managed.adoc[Upgrade GKE, AKS, EKS with rtfctl]
   ** xref:upgrade-helm.adoc[Upgrade GKE, AKS, EKS with Helm]
