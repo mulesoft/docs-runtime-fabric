@@ -157,7 +157,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
-    namespace: rtf
+    namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
   name: rtf:agent
@@ -172,7 +172,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: authorized-namespaces
-  namespace: rtf
+  namespace: <rtf_namespace>
 data:
   ADDITIONAL_NAMESPACE: "additional-namespace1"
   ADDITIONAL_NAMESPACE: "additional-namespace2"
