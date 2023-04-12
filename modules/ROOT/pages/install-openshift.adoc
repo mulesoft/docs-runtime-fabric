@@ -109,8 +109,9 @@ kind: Namespace
 metadata:
   name: <namespace>
   labels:
-    rtf.mulesoft.com/envId: <ENVIRONMENT-ID>
-    rtf.mulesoft.com/org: <ORG-ID>
+    rtf.mulesoft.com/agentNamespace: <rtf_namespace>
+    rtf.mulesoft.com/envId: <environment_id>
+    rtf.mulesoft.com/org: <org_id>
     rtf.mulesoft.com/role: workers
 ----
 
@@ -131,7 +132,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: <name>
-  namespace: <additional-namespace>
+  namespace: <app_namespace>
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
@@ -150,7 +151,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: rtf
-
   namespace: <rtf_namespace>
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -185,7 +185,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: rtf
-  namespace: <app-namespace-name>
+  namespace: <app_namespace>
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -268,14 +268,13 @@ The following is an example YAML view of the installation parameters.
 
 [source,yaml]
 --
-activationData: <activation data>
-OGQ=
+activationData: <activation_data>
 proxy:
   http_proxy:
   http_no_proxy:
   monitoring_proxy:
 custom_log4j_enabled: true
-muleLicense: <mule license key>
+muleLicense: <mule_license_key>
 global:
   authorizedNamespaces: false
   image:
