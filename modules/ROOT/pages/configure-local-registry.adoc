@@ -5,6 +5,7 @@ Runtime Fabric uses its own registry to store the necessary Docker images for in
 == Limitations on Local Registry Support 
 
 Review the following limitations on support for local registries: 
+ 
 
 [IMPORTANT]
 You cannot use a local registry to manage Red Hat OpenShift installations. 
