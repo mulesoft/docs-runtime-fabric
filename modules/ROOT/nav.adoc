@@ -35,6 +35,7 @@
  ** xref:app-versioning.adoc[Review Application Versioning]
  ** xref:app-to-app-requests.adoc[Send Application-to-Application Requests]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy API Proxies]
+ ** xref:manage-schedules.adoc[Manage App Schedules]
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:view-health.adoc[View Runtime Fabric Health Details]
  ** xref:install-rtfctl.adoc[Use the Runtime Fabric Command Line Tool]
