@@ -1,7 +1,7 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
 * xref:index.adoc[Anypoint Runtime Fabric Overview]
 * xref:limitations-self.adoc[Limitations]
-* xref:setup-vmbaremetal-cluster.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation]
+* xref:index-vm-bare-metal.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation]
 * xref:install-index.adoc[Install Runtime Fabric]
   ** xref:install-self-managed-network-configuration.adoc[Network Configuration]
   ** xref:install-self-managed.adoc[Install on GKE, AKS, EKS with rtfctl]
