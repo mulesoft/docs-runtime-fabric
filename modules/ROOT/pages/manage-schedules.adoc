@@ -1,0 +1,181 @@
+= Managing App Schedules
+
+You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications, all without changing the running application.
+For example, you might want to disable a scheduled job while one of the applications is undergoing maintenance.
+ 
+On the *Schedules* tab, you can:
+
+* View the schedules in your running application.
+* Change the schedules in your application.
+* Run the scheduled job immediately, without changing the schedule.
+* Disable or enable the schedule for a flow.
+
+You configure Scheduler component types as either _fixed frequency_ to trigger at a regular interval or _cron_ to trigger at a date and time based on a specified cron expression.
+
+[IMPORTANT]
+To change a schedule type (between fixed frequency and cron or vice versa),
+you must update and redeploy the app.
+You can't change the schedule type on a deployed application.
+
+[[design-schedule]]
+== Schedule Design Considerations
+
+When designing the schedule, consider the following:
+
+* The Runtime Fabric scheduler reads the job configuration every time it runs.
++
+When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
+* Changing the schedule redeploys your application.
+* If a scheduled job is not triggered because the application is not running,
+Runtime Fabric triggers the job as soon as the app restarts.
+* Schedules are based in the scheduler's defined timezone.
+* For multi-replica apps, Runtime Fabric runs scheduled jobs on all replicas.
++
+If you run the scheduled job immediately by clicking *Run*, the scheduler runs on a single replica.
++
+Runtime Fabric distributes multiple concurrent schedulers across replicas.
+* You cannot manage Runtime Fabric schedules using scripts.
++
+Use the *Schedules* tab or the Runtime Fabric API to manage Runtime Fabric schedules.
+* Flow names can contain only upper and lower case latters, numbers, hyphens (`-`), underscores (`_`), and periods (`.`). The following characters are invalid: `/`, `[`, `]`, `{`, `}`, and `#`.
+* When you create a schedule using a scheduler that has a placeholder, the value that appears when you create a schedule varies based on when the placeholder is discovered. For example:
+** If the value is available before the app is deployed, the value appears.
+** If the value is available before deployment and depends on deployment properties, an estimation of the value appears.
+** If the value is a placeholder (such as `${cronExpression}`) that is provided at the time of deployment, the exact value of the placeholder does not appear in the user interface.
+** Runtime Fabric uses a default value of `60000`.
+* If you make changes to schedulers, you should reupload the application to Exchange to ensure the expected scheduler behavior occurs.
+
+== Before You Begin
+
+To use the scheduling feature in Runtime Manager, deploy an application that includes one or more Scheduler elements using Anypoint Studio 7.13 or later.
+
+image::ch2-scheduler-studio.png[Scheduler component in the Anypoint Studio canvas]
+
+After you deploy the app, you can manage the schedule in Runtime Manager.
+The app doesn't need to be running.
+
+== View and Manage Application Schedules in Runtime Manager
+
+After deploying an app to Runtime Fabric, view and manage the Scheduler elements in Runtime Manager:
+
+// SELECT RTM APPS SHARED
+include::partial$select-private-space.adoc[tag=selectAppsPage]
+include::partial$select-private-space.adoc[tag=clickAppName]
+include::partial$select-private-space.adoc[tag=clickSchedules]
++
+Runtime Manager lists the Scheduler elements in the order they appear in your app:
++
+image::ch2-scheduler-rtm.png[(1) Flow name and (2) the frequency link on the Schedulers page.]
++
+** The *Name* column shows the name of the flow (1) that contains the Scheduler element.
+** The frequency link (2) in the *Schedule* column shows the schedule for the element.
+. If you want to see more information about when the jobs started and ended,
+click *Logs* in the navigation menu:
++
+image::ch2-logs-rtm.png[Logs option in the navigation menu.]
+. Click the frequency link for an element to open the schedule editor.
++
+The schedule editor you see depends on the schedule type:
++
+* <<change-fixed-frequency-schedule,Fixed frequency>>
+* <<change-cron-schedule,Cron>>
+. In the schedule editor, change the schedule or deselect *Enabled* to disable the schedule.
+. Click *Update* to save changed settings or click *Cancel* to exit without saving.
+
+[[change-fixed-frequency-schedule]]
+=== Change a Fixed Frequency Schedule
+
+// SELECT RTM APPS SHARED
+include::partial$select-private-space.adoc[tag=selectAppsPage]
+include::partial$select-private-space.adoc[tag=clickAppName]
+include::partial$select-private-space.adoc[tag=clickSchedules]
++
+The *Schedule* column shows the schedule for the element:
++
+image::ch2-scheduler-fixed-rtm.png[Fixed frequency schedule type]
+. Click the frequency link for an element to open the schedule editor.
+. In the schedule editor, change the schedule or deselect *Enabled* to disable the schedule:
++
+image::ch2-scheduler-editor-fixed.png[Fixed-frequency schedule configuration]
++
+You can specify milliseconds, seconds, minutes, hours, or days for the frequency.
+The minimum recommended frequency between calls is 10 seconds.
+. Click *Update* to save changed settings or click *Cancel* to exit without saving.
+
+
+[[change-cron-schedule]]
+=== Change a Cron Schedule
+
+With cron expressions, you can create more complex schedule frequencies,
+such as every 5 minutes between 9:00 am and 10:00 am on Fridays.
+
+To change the frequency of a cron schedule type:
+
+// SELECT RTM APPS SHARED
+include::partial$select-private-space.adoc[tag=selectAppsPage]
+include::partial$select-private-space.adoc[tag=clickAppName]
+include::partial$select-private-space.adoc[tag=clickSchedules]
++
+The *Schedule* column shows the schedule for the element:
++
+image::ch2-scheduler-cron-rtm.png[cron schedule type]
+. Click the frequency link for an element to open the schedule editor.
+. In the schedule editor, change the schedule or deselect *Enabled* (1) to disable the schedule:
++
+image::ch2-scheduler-editor-cron.png[cron schedule configuration with (1) Enabled option and (2)  Quick Reference link]
+. In the schedule editor, click *Quick Reference* (2) to expand or collapse the table that lists required fields and allowed values.
++
+The cron expression in this example sets the schedule to every 10 seconds.
++
+For information about building cron triggers:
++
+.. View the http://www.quartz-scheduler.org/documentation[Quartz documentation^].
+.. Select a version, click *Documentation > User's Guide > Tutorial*, and then click the *CronTrigger* lesson.
+. Click *Update* to save changed settings or click *Cancel* to exit without saving.
+
+[[run-immediately]]
+== Run a Scheduled Job Immediately
+
+If a job runs nightly but you want to debug it now, you can trigger the job
+while it's running without updating the schedule in your application. When you trigger the job in between instances of the scheduler running, the timer for the indicated time period resets.
+
+[NOTE]
+If you run the scheduled job immediately, the scheduler runs on a single replica
+even for multi-replica apps.
+
+To override the schedule and run the job immediately:
+
+// SELECT RTM APPS SHARED
+include::partial$select-private-space.adoc[tag=selectAppsPage]
+include::partial$select-private-space.adoc[tag=clickAppName]
+include::partial$select-private-space.adoc[tag=clickSchedules]
+. Select the elements to manage and then click *Run*.
+
+[[disable-enable-scheduler]]
+== Disable or Enable a Scheduler Element
+
+You might want to disable a scheduled job if an application you are connecting
+to is undergoing maintenance and then reenable it after maintenance is complete.
+
+Runtime Fabric does not run the scheduled job until you reenable the Scheduler.
+
+*Known issue*: If you disable the scheduler, it still runs when starting an application. If you want to prevent the scheduler from running, set the `startdelay` property to five seconds in your app using Anypoint Studio.
+
+To disable the Scheduler element:
+
+// SELECT RTM APPS SHARED
+include::partial$select-private-space.adoc[tag=selectAppsPage]
+include::partial$select-private-space.adoc[tag=clickAppName]
+include::partial$select-private-space.adoc[tag=clickSchedules]
+. Select the elements to manage and then click *Disable*.
++
+You can also disable or enable the schedule by deselecting or
+selecting *Enabled* in the schedule editor.
++
+image::ch2-scheduler-enable.png[Enabled toggle in the schedule editor]
+
+== See Also
+
+* xref:mule-runtime::scheduler-concept.adoc[]
+* http://www.quartz-scheduler.org/documentation[Quartz documentation^]
+* https://anypoint.mulesoft.com/exchange/?view=grid&type=example&search=&organizationId=68ef9520-24e9-4cf2-b2f5-620025690913[Example Assets provided by MuleSoft^]

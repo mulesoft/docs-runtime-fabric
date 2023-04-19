@@ -1,0 +1,55 @@
+// SELECT PRIVATE SPACE SHARED
+// tag::selectPrivateSpace[]
+. From Anypoint Platform, select *Runtime Manager* > *Private Spaces*.
+// end::selectPrivateSpace[]
+
+
+// CLICK PRIVATE SPACE NAME SHARED
+// tag::clickPrivateSpaceName[]
+. Click the name of the private space to manage.
+// end::clickPrivateSpaceName[]
+
+// CLICK APP NAME SHARED
+// tag::clickAppName[]
+. Click the app name.
+// end::clickAppName[]
+
+// SELECT RTM APPS SHARED
+// tag::selectAppsPage[]
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+// end::selectAppsPage[]
+
+// RENAME SHARED
+// tag::renameItem[]
+. Enter the new name and click *Save*.
+// end::renameItem[]
+
+// CLICK SCHEDULES SHARED
+// tag::clickSchedules[]
+. In the navigation menu, click *Schedules*.
+// end::clickSchedules[]
+
+// CLICK SETTINGS SHARED
+// tag::clickSettings[]
+. In the navigation menu, click *Settings*.
+// end::clickSettings[]
+
+// CLICK SETTINGS SHARED
+// tag::clickPropsOnSettings[]
+. On the *Settings* page, click the *Properties* tab.
+// end::clickPropsOnSettings[]
+
+// CLICK SETTINGS SHARED
+// tag::clickDiagnostics[]
+. In the navigation menu, click *Diagnostics*.
+// end::clickDiagnostics[]
+
+// CLICK SETTINGS SHARED
+// tag::clickLogs[]
+. In the navigation menu, click *Logs*.
+// end::clickLogs[]
+
+// CLICK ADVANCED
+// tag::clickAdvanced[]
+. Click the *Advanced* tab.
+// end::clickAdvanced[]
