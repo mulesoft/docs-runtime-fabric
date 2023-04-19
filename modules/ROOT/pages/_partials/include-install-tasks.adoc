@@ -11,14 +11,14 @@ Before you install the license key, encode it to Base64 format.
 +
 [source,copy]
 ----
-BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
+base64 -b 0 -i <license-file>
 ----
 +
 * On Unix, run the following command:
 +
 [source,copy]
 ----
-BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
+base64 -w0 <license-file>
 ----
 +
 * On Windows, choose one of the following:
