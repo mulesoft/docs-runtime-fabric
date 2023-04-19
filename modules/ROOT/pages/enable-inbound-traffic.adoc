@@ -227,7 +227,6 @@ HTTP messages not containing this header field will be rejected. Two common HTTP
 If you are using WebSockets:
 
 * Provide the correct request headers to upgrade the HTTP connection to WebSockets.
-* xref:mule-runtime::mule-server-notifications.adoc[Configure Mule runtime engine with a WebSockets Listener].
 * Increase the `Connection Idle Time-out` value to 900 seconds (15 minutes) to ensure consistency with the WebSockets Mule application default value.
 
 == Optionally Configure Internal Load Balancer Logs
