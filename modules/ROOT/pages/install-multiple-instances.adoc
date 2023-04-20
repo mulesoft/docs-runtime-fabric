@@ -7,7 +7,7 @@ Installing multiple instances of Anypoint Runtime Fabric enables you to share th
 * Hazelcast clustering is not yet supported with multiple instances.
 
 [NOTE]
-For multiple instances, the first Runtime Fabric agent installation creates crd for persistencegateways.rtf.mulesoft.com and priorityclass rtf-components-high-priority resources. Though is not responsible for cleanup of these resources in case of uninstalling the Runtime Fabric agent.
+For multiple instances, the first Runtime Fabric agent installation creates a custom resource definition (CRD) for `persistencegateways.rtf.mulesoft.com` and priority class `rtf-components-high-priority` resources. Runtime Fabric agent doesn't clean up these resources when you uninstall the agent.
 
 == Install Multiple Instances of Runtime Fabric
 
