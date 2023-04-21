@@ -60,7 +60,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 [source,copy]
 ---- 
-# eval $(rtfctl get docker-registry-login <activation-data>)
+# eval $(rtfctl get registry-credentials <activation-data>)
 # docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
 ----
 +

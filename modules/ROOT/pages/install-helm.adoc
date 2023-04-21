@@ -214,7 +214,7 @@ activationData: <activation data>
     http_proxy:
     http_no_proxy:
     monitoring_proxy:
-custom_log4j_enabled: true
+customLog4jEnabled: true
 muleLicense: <mule license key>
 global:
   authorizedNamespaces: false
