@@ -489,20 +489,18 @@ Runtime Fabric version 1.11 and later requires mutual authentication. If you upg
 
 == Troubleshoot Agent Pod
 
-If one or more of the RTF Agent pod containers are not starting up check their logs and look for an error message matching an entry here for troubleshooting instructions to known issues.
+If one or more Runtime Fabric agent pod containers do not check their logs and look for an error message matching an entry, review the following metrics server not running troubleshooting scenario:
 
-=== Metrics server not running
-
-The rtfd container is crashing in every attempt. Error message looks like the following:
+If the rtfd container crashes in every attempt, it can return the following error message:
 ----
 2023/02/23 16:35:20 instantiating client: fetching server resource preferences: unable to retrieve the complete list of server APIs: metrics.k8s.io/v1beta1: the server is currently unable to handle the request
 ----
 
-The reason is that Kubernetes metrics-server is installed but not running. 
-RTF appliance version 1.1.1636064094-8b70d2d and later includes metrics-server as a deployment in the monitoring namespace.
-The events and logs for this deployment and associated pods have to be investigated for further troubleshooting. Once the metrics-server is up and running the rtfd will come up as expected.
+The error can occur because the Kubernetes metrics server is installed but it is not running. 
+Runtime Fabric appliance version 1.1.1636064094-8b70d2d and later versions includes metrics server as a deployment in the monitoring namespace.
+The events and logs for this deployment and associated pods must be investigated for further troubleshooting. After the metrics server is up and running the rtfd comes up as expected.
 
-Please reach out to our support team with a full appliance report if you require assistance to restore the metrics-server.
+Reach out to the MuleSoft Support team with a full appliance report if you require assistance to restore the metrics server.
 
 == Troubleshoot Missing Email Alert Customizations
 
