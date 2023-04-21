@@ -477,7 +477,7 @@ Common causes of this issue include:
 
 === Failed Agent Upgrades
 
-In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degrade Status as Runtime Fabric Agent Version Mismatch Detected^].
+In this situation, a Runtime Fabric agent upgrade fails and gets rolled back, but the desired (upgraded) version is listed in Anypoint Platform. To correct this issue, apply the procedure described in https://help.mulesoft.com/s/article/Degrade-Status-as-Runtime-Fabric-Agent-Version-Mismatch-Detected[Degraded Status as Runtime Fabric Agent Version Mismatch Detected^].
 
 === Restoration of Pre-Upgrade Backups
 
@@ -486,6 +486,21 @@ If you restore a backup that was taken on a previous Runtime Fabric agent versio
 === Disabled Mutual Authentication
 
 Runtime Fabric version 1.11 and later requires mutual authentication. If you upgrade from a version before 1.11 to 1.11 or later, you can encounter this error message if mutual authentication is not enabled. To fix this, xref:config-mutual-auth.adoc[enable mutual authentication] and run the upgrade again.  
+
+== Troubleshoot Agent Pod
+
+If one or more Runtime Fabric agent pod containers do not check their logs and look for an error message matching an entry, review the following metrics server not running troubleshooting scenario:
+
+If the rtfd container crashes in every attempt, it can return the following error message:
+----
+2023/02/23 16:35:20 instantiating client: fetching server resource preferences: unable to retrieve the complete list of server APIs: metrics.k8s.io/v1beta1: the server is currently unable to handle the request
+----
+
+The error can occur because the Kubernetes metrics server is installed but it is not running. 
+Runtime Fabric appliance version 1.1.1636064094-8b70d2d and later include metrics server as a deployment in the monitoring namespace.
+The events and logs for this deployment and associated pods must be investigated for further troubleshooting. After the metrics server is up and running, the rtfd comes up as expected.
+
+Contact the MuleSoft Support team with a full appliance report if you require assistance to restore the metrics server.
 
 == Troubleshoot Missing Email Alert Customizations
 
