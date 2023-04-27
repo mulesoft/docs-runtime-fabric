@@ -20,16 +20,16 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 
 == Available Migration Options
 
-. If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
+* If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
 
-. If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. The following clouds support Runtime Fabric:
+* If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. The following clouds support Runtime Fabric:
 
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/Runtime[Fabric on AWS Elastics Kubernetes Service^]
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/Runtime[Fabric on AWS Elastics Kubernetes Service^]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
 
-[start=3]
-. To standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, which enable both on-premises and public cloud bare-metal solutions.
+
+* To standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, which enable both on-premises and public cloud bare-metal solutions.
 
 * Managed Cloud Services
 ** https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
@@ -42,8 +42,8 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 ** https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[RedHat OpenShift Container Platform (OCP)^]
 ** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus^]
 
-[start=4]
-. If you don’t have investments in Kubernetes and must stay in your own hosted environment, xref:mule-runtime::whats-new-in-mule.adoc[Mule runtime standalone^] is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
+
+* If you don’t have investments in Kubernetes and must stay in your own hosted environment, xref:mule-runtime::whats-new-in-mule.adoc[Mule runtime standalone^] is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
 
 == Actions Appliance Users Can Take
 
