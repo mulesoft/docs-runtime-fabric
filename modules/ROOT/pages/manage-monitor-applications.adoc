@@ -42,6 +42,9 @@ anypoint.platform.config.analytics.agent.enabled=false
 In some cases, logs with multiple lines might not be fully transmitted to Anypoint Monitoring. This can occur if 
 multiple lines of log output are split across two files due to log rotation inside Runtime Fabric.
 
+[NOTE]
+Even though `anypoint.platform.config.analytics.agent.enabled` is set to false, it does not eliminate the Anypoint Monitoring sidecar container.
+
 == Metrics
 
 Each Mule application and API gateway replica runs a metrics agent that collects and transmits metrics data to 
