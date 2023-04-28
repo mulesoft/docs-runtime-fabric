@@ -232,7 +232,7 @@ Applying this label to your secret enables your ingress controller to immediatel
 
 [TIP]
 ====
-These syncronization mechanism can be used for any secret that you would like replicated from rtf agent namespace into application namespace upon deployment.
+This syncronization mechanism can be used for any secret that you would like replicated from rtf agent namespace into application namespace upon deployment.
 ====
 
 == Modify an Existing Ingress Template
