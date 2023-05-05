@@ -1,0 +1,12 @@
+= Cluster Configurations
+
+To utilize the complete value of Runtime Fabric, refer to your respective Kubernetes (K8s) provider's configuration specification. To get started, review the following configurations that you can use to setup your cluster.
+
+[%header%autowidth.spread]
+|===
+| Type of configuration | EKS-A | EKS | Appliance
+| Infrastructure | Vsphere (&#x2713;)/Bare Metal
+ | Recommended | 
+
+
+|===
