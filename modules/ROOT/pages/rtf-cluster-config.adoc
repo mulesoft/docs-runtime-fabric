@@ -5,8 +5,13 @@ To utilize the complete value of Runtime Fabric, refer to your respective Kubern
 [%header%autowidth.spread]
 |===
 | Type of configuration | EKS-A | EKS | Appliance
-| Infrastructure | Vsphere (&#x2713;)/Bare Metal
- | Recommended | 
-
-
+| Infrastructure | Vsphere (&#x2713;)/Bare Metal. | AWS | Pre-provisioned hosts.
+| Ingress | https://github.com/emissary-ingress/emissary[Emissary^], Nginx-ingress(&#x2713;) or any other available ingress options.
+ | Nginx ingress | Nginx ingress
+| Load balancer | https://github.com/metallb/metallb[MetalLB^] (&#x2713;) | ELB | -
+| Monitoring |Grafana/Prometheus | CloudWatch | Grafana/Prometheus
+| Local cluster registry | https://github.com/goharbor/harbor[Harbor^] or any other compliant implementation. | ECR | Docker registry running inside the cluster.
+| Cluster size limits | Kubernetes imposed limits on the cluster size. | 1000 managed nodes. | 21 total (5 control plane nodes + 16 worker nodes.
+| CK8s Distro | https://github.com/aws/eks-distro[EKS-D^] | https://github.com/aws/eks-distro[EKS-D^] | Custom distro (planet).
+| Cluster mgmt tool | `eksctl` or `eksctl-anywhere` | `eksctl` | Custom utility (rtfctl)
 |===
