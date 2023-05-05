@@ -58,6 +58,9 @@ rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 rtfctl get mule-license
 ----
 
+[NOTE]
+You need to restart your Runtime Fabric Mule apps to take the latest changed license.
+
 
 == See Also
 
