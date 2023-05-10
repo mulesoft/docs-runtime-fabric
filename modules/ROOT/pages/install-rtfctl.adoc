@@ -52,7 +52,7 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 . Change file permissions for the `rtfctl` command-line tool:
 +
 ----
-sudo chmod +x rtfctl
+chmod +x rtfctl
 ----
 
 === Running Commands
