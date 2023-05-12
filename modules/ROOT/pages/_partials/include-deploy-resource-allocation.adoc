@@ -205,15 +205,15 @@ ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a
 == Calculating CPU Cores on Runtime Fabric
 
 CPU cores affect some thread pool settings and default max concurrency in Mule runtime engine.
-For example, a Mule 4.4 runtime uses the following formula in `{MULE_HOME}/conf/scheduler-pools.conf` to calculate the thread pool size, which relies on the predefined cores parameters.
+For example, Mule runtime engine 4.4 uses the following formula in `{MULE_HOME}/conf/scheduler-pools.conf` to calculate the thread pool size, which relies on the predefined cores parameters.
 
 `org.mule.runtime.scheduler.uber.threadPool.maxSize=max(2, cores + ((mem - 245760) / 5120))`
 
-Another example, the Mule 4.4 runtime batch job component limits the default max concurrency to twice the number of available cores.
+Another example, Mule runtime engine 4.4 batch job component limits the default max concurrency to twice the number of available cores.
 
-However, for the Mule app on Runtime Fabric, you can supply a fractional vCPU on `Reserved` CPU and `CPU Limit` settings, you must understand what CPU cores number is used by Mule runtime when it's calculating the thread pool size and the default max concurrency.
+However, for the Mule app on Runtime Fabric, you can supply a fractional vCPU on `Reserved` CPU and `CPU Limit` settings. You must understand what CPU cores number is used by Mule runtime when it's calculating the thread pool size and the default max concurrency.
 
-Mule runtime runs on the (JVM) and it invokes java.lang.Runtime.getRuntime().availableProcessors() to get CPU cores number.
+Mule runtime runs on the JVM and it invokes `java.lang.Runtime.getRuntime().availableProcessors()` to get CPU cores number.
 The JVM on RTF is container awareness, it deduces the CPU cores via container CPU settings enforced by container orchestration.   
 
 
