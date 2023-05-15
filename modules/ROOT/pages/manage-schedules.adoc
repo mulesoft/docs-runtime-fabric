@@ -17,6 +17,9 @@ To change a schedule type (between fixed frequency and cron or vice versa),
 you must update and redeploy the app.
 You can't change the schedule type on a deployed application.
 
+[NOTE]
+The minimum required Mule runtime engine version to use this feature is 4.1.2 and above, and the minimum Runtime Fabric Agent version is 2.0.0 and above.
+
 [[design-schedule]]
 == Schedule Design Considerations
 
