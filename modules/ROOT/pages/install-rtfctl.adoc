@@ -515,7 +515,7 @@ rtfctl test outbound-network --all --namespace <rtf_namespace>
 
 === Install a Mule license
 
-.. Make sure to base64 encode the license, following the instructions in xref:install-manual#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
+.. Make sure to base64 encode the license, following the instructions in xref:install-self-managed#base64-encode-your-mule-license-key[Base64 Encode your Mule License Key].
 .. Run the following command:
 +
 ----
