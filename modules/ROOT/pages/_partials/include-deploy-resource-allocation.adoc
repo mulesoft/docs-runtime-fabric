@@ -233,11 +233,11 @@ A few points to consider about CPU cores or limit configuration:
 |Confluent Schema Registry | 6.0.x
 |===
 +
-* If you have a performance-critical Mule app on Runtime Fabric, do not use the -XX:-UseContainerSupport JVM setting to boost the performance as it can end up with a deployment failure of the app.
+* If you have a performance-critical Mule app on Runtime Fabric, do not use the `-XX:-UseContainerSupport` JVM setting to boost the performance as it can end up with a deployment failure of the app.
 
-* If you have a non-performance critical Mule app on Runtime Fabric, do not use -XX:ActiveProcessorCount=xx to override CPU cores for testing purposes as it can end up with failure at running time.
+* If you have a non-performance critical Mule app on Runtime Fabric, do not use `-XX:ActiveProcessorCount=xx` to override CPU cores for testing purposes as it can end up with failure at running time.
 
-* CPU performance depends on the profile of the Mule app (such as IO, CPU and memory), as the performance is still subject to the container computing power. Therefore, a throughly performance test is necessary when allocating CPU resource on Runtime Fabric.
+* CPU performance depends on the profile of the Mule app (such as IO, CPU and memory), as the performance is still subject to the container computing power. Therefore, a thorough performance test is necessary when allocating CPU resources on Runtime Fabric.
 
 
 
