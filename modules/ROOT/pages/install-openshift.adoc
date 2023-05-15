@@ -19,6 +19,8 @@ When you install Runtime Fabric on Red Hat OpenShift, you’ll:
 . Install and configure the Runtime Fabric operator
 . Complete the remaining installation steps to validate your Runtime Fabric and configure ingress
 
+Runtime Fabric also supports OpenShift routes, refer to xref:configure-openshift-routes.adoc[Configure OpenShift Routes] documentation.
+
 == Before You Begin
 
 Before installing Runtime Fabric on Red Hat OpenShift, ensure that:
