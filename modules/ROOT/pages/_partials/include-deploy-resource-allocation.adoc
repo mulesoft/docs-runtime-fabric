@@ -214,7 +214,31 @@ Another example, Mule runtime engine 4.4 batch job component limits the default 
 However, for the Mule app on Runtime Fabric, you can supply a fractional vCPU on `Reserved` CPU and `CPU Limit` settings. You must understand what CPU cores number is used by Mule runtime when it's calculating the thread pool size and the default max concurrency.
 
 Mule runtime runs on the JVM and it invokes `java.lang.Runtime.getRuntime().availableProcessors()` to get CPU cores number.
-The JVM on RTF is container awareness, it deduces the CPU cores via container CPU settings enforced by container orchestration.   
+The JVM on RTF is container awareness, it deduces the CPU cores via container CPU settings enforced by container orchestration. 
+
+A few points to consider about CPU cores or limit configuration:
+
+* On Anypoint Runtime Manager application settings, the Runtime Fabric CPU limit resource allocation setting decides the CPU cores.
+
+* On Anypoint Runtime Manager application settings, the Runtime Fabric CPU limit is fractional vCPU which rounds up the CPU cores number to an integer. The following are some examples:
++
+[%header%autowidth.spread]
+|===
+|Reserved CPU |CPU Limit |CPU Cores
+|0.1 |0.2 |1
+|0.1 |0.9 |1
+|0.1 |1 |1
+|0.1 |1.01 |2
+|0.1 |1.5 |2
+|Confluent Schema Registry | 6.0.x
+|===
++
+* If you have a performance-critical Mule app on Runtime Fabric, do not use the -XX:-UseContainerSupport JVM setting to boost the performance as it can end up with a deployment failure of the app.
+
+* If you have a non-performance critical Mule app on Runtime Fabric, do not use -XX:ActiveProcessorCount=xx to override CPU cores for testing purposes as it can end up with failure at running time.
+
+* CPU performance depends on the profile of the Mule app (such as IO, CPU and memory), as the performance is still subject to the container computing power. Therefore, a throughly performance test is necessary when allocating CPU resource on Runtime Fabric.
+
 
 
 
