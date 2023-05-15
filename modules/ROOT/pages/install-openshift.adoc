@@ -1,16 +1,12 @@
-= Installing Runtime Fabric on Red Hat OpenShift
+= Installing Runtime Fabric as a Kubernetes (K8s) Operator
 
-You can install Anypoint Runtime Fabric on a Red Hat OpenShift installation.
-
-Runtime Fabric supports the following Red Hat OpenShift deployment options:
+You can install Anypoint Runtime Fabric as a Kubernetes (K8s) operator in the following platforms:
 
 * Red Hat OpenShift Service on AWS
 * Microsoft Azure Red Hat OpenShift
 * Red Hat OpenShift Dedicated
 * Red Hat OpenShift on IBM Cloud
 * Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
-
-Runtime Fabric supports Red Hat OpenShift versions 4.6 to 4.11.
 
 == Install Runtime Fabric on Red Hat OpenShift
 
