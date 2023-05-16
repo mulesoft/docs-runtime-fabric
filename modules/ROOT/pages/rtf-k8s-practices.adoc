@@ -2,7 +2,7 @@
 
 Review the following Kubernetes best practices for Runtime Fabric. Note that to utilize the complete value of Runtime Fabric, you can refer to your respective Kubernetes (K8s) provider's configuration specification for details.
 
-* xref:rtf-scale.adoc[Scale Limits]
+* xref:rtf-scale.adoc[Scalability Benchmarks]
 These scale limits define the node count and deployments per Runtime Fabric. These limits are benchmarked on Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
 * xref:rtf-cluster-config.adoc[Cluster Configuration]
 These cluster configurations help you set up your cluster for Runtime Fabric.
