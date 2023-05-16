@@ -15,11 +15,9 @@ Runtime Fabric functionality and management of application deployments is not af
 * Size of worker nodes
 * Number of pods running per work node
 
-Because Runtime Fabric is K8s based and utilizes cloud-native orchestration principals, it works in best effort manner according to the specified configuration of deployments. 
+Because Runtime Fabric is K8s based and uses cloud-native orchestration principals, it works according to the specified configuration of deployments. 
 
-Review the following benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments.
-
-Cluster configuration used: Runtime Fabric on AWS EKS cluster
+Review the following benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments. The cluster configuration used is Runtime Fabric on AWS EKS cluster:
 
 [%header%autowidth.spread]
 |===
@@ -32,12 +30,12 @@ Cluster configuration used: Runtime Fabric on AWS EKS cluster
 | Ingress  | Fixed, 2 Nodes, Nginx, ingress node group, m5.4xlarge
 |===
 
-The following graphic shows how long does Runtime Fabric agent restar take if invoked by the customers or cluster upgrade:
+The following graphic shows how long the Runtime Fabric agent take to restart if invoked by the customers or cluster upgrade:
 
-image::rtf-scale-cluster-upgrade.png[Diagram that shows restart lacency between near empty cluster and loaded cluster]
+image::rtf-scale-cluster-upgrade.png[Diagram that shows restart latency between near empty cluster and loaded cluster]
 
 Runtime Fabric takes approximately 190 seconds to create the apps irrespective of deployment volume.
-The following table shows how long does it take for a Mule app to start, stop or delete:
+The following table shows how long it takes for a Mule app to start, stop, or delete:
 
 [%header%autowidth.spread]
 |===
@@ -47,7 +45,7 @@ The following table shows how long does it take for a Mule app to start, stop or
 | Delete Latency | ~9 seconds | ~28 seconds 
 |===
 
-The following table shows how long does a node cordon operation take if there is a bad node:
+The following table shows how long a node cordon operation takes to restart if there is a bad node:
 
 [%header%autowidth.spread]
 |===
@@ -56,7 +54,7 @@ The following table shows how long does a node cordon operation take if there is
 | Drain process | ~4 seconds | ~35 seconds  
 |===
 
-Points to consider:
+Aspects to consider:
 
-* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, use at least <TBD> CPU and  <TBD> memory allocations. Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicity when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`).
+* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, use at least <TBD> CPU and  <TBD> memory allocations. Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicitly when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`).
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
