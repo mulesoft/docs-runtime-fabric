@@ -58,5 +58,5 @@ The following table shows how long does a node cordon operation take if there is
 
 Points to consider:
 
-* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, we recommend at least <> CPU and  <> memory allocations. Note that you need to disable node watcher explicity when you operate at a large scale. Node watcher is always enabled by default.
+* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, use at least <TBD> CPU and  <TBD> memory allocations. Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicity when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`).
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
