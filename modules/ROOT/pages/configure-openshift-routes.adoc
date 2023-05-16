@@ -30,12 +30,14 @@ spec:
   rules:
     - host: app-name.example.com (4)
       http:
-        Paths: (5)
-        - path: / (6)
-          pathType:
-          backend: (7)
-            serviceName: service-name
-            servicePort: 80
+        paths: (5)
+      - pathType: Prefix
+        path: / (6)
+        backend: (7)
+          service:
+            name: service-name
+            port:
+              name: service-port
 --
 
 Note the following about this example:
