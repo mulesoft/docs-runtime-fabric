@@ -10,8 +10,8 @@ Review the following requirements and limitations before installing, configuring
 | Limitation | Description 
 | Node types | VM-based nodes are required. For example, Fargate is not supported. 
 | Replicas per application | The maximum number of replicas per application is 8. 
-| Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environment with Org A and a dev environment with Org B, that is three environment associations. 
-| Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared by another sub org. For example, if you have parent Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B. 
+| Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environments with Org A and another development environment with Org B, that is three environment associations. 
+| Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared with another sub org. For example, for a parent Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B. 
 |===
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
@@ -24,13 +24,13 @@ The following descriptions provide you with the general requirements for running
 
 === Kubernetes Support
 
-Runtime Fabric requires a Kubernetes cluster that is provisioned and operational. Verify if your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric].
+Runtime Fabric requires a Kubernetes cluster that is provisioned and operational. Verify whether your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric].
 
-See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[release notes] for your major or minor version of Runtime Fabric for a list of supported Kubernetes versions.
+Refer to the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[release notes] for the list of supported Kubernetes versions for your Runtime Fabric.
 
 === Supported Architectures
 
-Anypoint Runtime Fabric requires worker nodes that use the x86/x64 architecture. ARM-based architectures are not supported.
+Anypoint Runtime Fabric requires worker nodes with the x86-64 architecture. ARM-based nodes are not supported.
 
 === Operating Systems
 
@@ -84,28 +84,28 @@ Runtime Fabric supports any ingress controller that is compatible with your Kube
 
 [IMPORTANT]
 ====
-The ingress controller included with GKE provisions a separate HTTP load balancer per application by default. Before using the ingress controller provided by GKE, learn more about its behavior, exploring workarounds, or using another ingress controller if this behavior is undesirable. See the following link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
+The default behavior of the ingress controller included with GKE is to provide a separate HTTP load balancer for each application. If you find this behavior undesirable, explore possible solutions or consider using another ingress controller. See the following link:https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[KB article] for more details.
 ====
 
 === Logs
 
 For Titanium customers, Anypoint Runtime Fabric supports logging using Anypoint Monitoring. See xref:manage-monitor-applications.adoc#logs[Logs] for more information.
 
-Applications deployed on Runtime Fabric direct logs to `stdout`. The container runtime collects these logs and writes them to a file. The storage location of this file depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
+It is common practice for applications deployed on Runtime Fabric to log directly to `stdout`. The container runtime stores the console log in a file on disk. The storage location of this file depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
   
 === External Log Forwarding
 
-Anypoint Runtime Fabric does not include external log forwarding. You are responsible for installing, configuring, and managing an external log forwarder. You can use any external log forwarding agent that is compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE. Common log forwarding agents include:
+Anypoint Runtime Fabric does not forward logs to an external system. You are responsible for installing and managing this configuration. Any external log forwarding agent compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE can be used. Commonly used log forwarding agents include:
 
 * Splunk Connect for Kubernetes
 * Fluentbit
 
-Runtime Fabric also supports Log4j appenders. 
+Runtime Fabric supports Log4j appenders. 
 
 === Monitoring
 
 xref:monitoring::index.adoc[Anypoint Monitoring] provides metrics for applications and API gateways deployed to Runtime Fabric. 
 
-To collect metrics, Anypoint Monitoring sidecars run in all applications deployed to Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric] for details, including how to enable or disable monitoring. 
+To collect metrics, Anypoint Monitoring employs sidecar containers as part of each application deployment on Runtime Fabric. See xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric] for details, including how to manage monitoring. 
 
 Runtime Fabric does not provide support for integrating third-party monitoring solutions.
