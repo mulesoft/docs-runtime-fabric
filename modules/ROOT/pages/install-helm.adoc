@@ -218,6 +218,8 @@ activationData: <activation data>
 customLog4jEnabled: true
 muleLicense: <mule license key>
 global:
+  nodeWatcherEnabled: true
+  deploymentRateLimitPerSecond: 1
   authorizedNamespaces: false
   image:
     rtfRegistry: rtf-runtime-registry.kprod.msap.io
@@ -263,6 +265,8 @@ a|
 * `/var/lib/docker/`
 * `/var/log/containers`
 * `/var/log/pods`
+|`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
+|`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |===
 
 
