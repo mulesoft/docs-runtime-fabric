@@ -1,6 +1,6 @@
 = Cluster Configurations
 
-To utilize the complete value of Runtime Fabric, refer to your respective Kubernetes (K8s) provider's configuration specification. To get started, review the following configurations that you can use to setup your cluster.
+To use the complete value of Runtime Fabric, refer to your respective Kubernetes (K8s) provider's configuration specification. To get started, review the following configurations that you can use to set up your cluster.
 
 [%header%autowidth.spread]
 |===
