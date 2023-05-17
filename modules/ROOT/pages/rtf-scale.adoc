@@ -61,7 +61,7 @@ Aspects to consider:
 [%header%autowidth.spread]
 |===
 | Cluster Recommendations | Default | 200 Node/8000 App Resource Settings 
-| Agent Resources | Memory 200 mb required, 500 mb limit. CPU 100m required, 1vCore limit. | 3 GB (Memory)/2vCore (required == limit)  
+| Agent Resources | Memory 200 mb request, 500 mb limit. CPU 100m request, 1vCore limit. | 3 GB (Memory)/2vCore (request == limit)  
 |===
 
 <TBD> CPU and <TBD> memory allocations. Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicitly when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`).
