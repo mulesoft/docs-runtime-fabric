@@ -34,13 +34,13 @@ Anypoint Runtime Fabric requires worker nodes with the x86-64 architecture. ARM-
 
 === Operating Systems
 
-Anypoint Runtime Fabric supports any Linux-based operating system supported by Amazon EKS, AKS, GKE, or RedHat OpenShift.
+Anypoint Runtime Fabric works on any Linux distribution supported by Amazon EKS, AKS, GKE, or RedHat OpenShift.
 
 === Nodes and Resources
 
 In general, you should follow the best practices provided by your Kubernetes vendor to ensure availability and simplify the administration of your infrastructure.
 
-Follow best practices by installing Runtime Fabric in an environment with a minimum of two nodes each having the following resources:
+To ensure optimal performance, Runtime Fabric installation requires at least two nodes each equipped with:
 
 * Minimum of two CPU cores
 * At least 15 GiB of RAM
@@ -48,9 +48,9 @@ Follow best practices by installing Runtime Fabric in an environment with a mini
 
 Adjust the number of nodes and amount of resources allocated according to the amount and type of workload you run on each Anypoint Runtime Fabric instance.
 
-=== Runtime Fabric ClusterRole Access
+=== Runtime Fabric Kubernetes Roles
 
-The following Runtime Fabric ClusterRoles create and read data stored in Kubernetes secrets:
+The following Runtime Fabric roles manage data stored in Kubernetes secrets:
                                                       
 * `am-log-forwarder`
 * `rtf:agent`                                                              
@@ -64,13 +64,13 @@ The following Runtime Fabric ClusterRoles create and read data stored in Kuberne
 
 === Anypoint Platform Roles and Permissions
 
-To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions enabled:
+To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions:
 
 * To manage permissions for Anypoint Platform users, you must have the ability to use xref:access-management::index.adoc[Anypoint Access Management].
 * To deploy and manage applications ensure you have:
 ** The ability to use Anypoint Runtime Manager
 ** The Exchange Contributors permission enabled for your Anypoint Platform account
-** The Read Applications and Read Runtime Fabric permissions, which are needed to view all applications on the Applications page in Runtime Manager
+** The read permissions for Applications and Runtime Fabric instances, which are needed to view applications on the Applications page in the Runtime Manager
 * To use Runtime Fabric, you must have the Organization Administrators permission or the Manage Runtime Fabrics permission for the corresponding environments.
 * To delete Runtime Fabric instances, administrators need the Manage Runtime Fabrics permission at the organization level.
 
@@ -80,7 +80,7 @@ Anypoint Runtime Fabric requires an IT administrator to configure network ports,
 
 === Ingress Controller
 
-Runtime Fabric supports any ingress controller that is compatible with your Kubernetes environment and supports a deployment model where a separate ingress resource is created per application deployment. In general, most off-the-shelf ingress controllers support this model.
+Runtime Fabric supports any ingress controller that works well in your Kubernetes environment. It also supports a deployment model with a dedicated ingress per application. Most off-the-shelf ingress controllers support this model.
 
 [IMPORTANT]
 ====
