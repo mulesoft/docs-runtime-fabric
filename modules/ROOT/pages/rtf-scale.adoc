@@ -30,7 +30,7 @@ Review the following benchmarked metrics to understand various management metric
 | Ingress  | Fixed, 2 Nodes, Nginx, ingress node group, m5.4xlarge
 |===
 
-The following graphic shows how long the Runtime Fabric agent take to restart if invoked by the customers or cluster upgrade:
+The following graphic shows how long the Runtime Fabric agent takes to restart if invoked by the customers or cluster upgrade:
 
 image::rtf-scale-cluster-upgrade.png[Diagram that shows restart latency between near empty cluster and loaded cluster]
 
