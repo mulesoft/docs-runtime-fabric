@@ -2,6 +2,6 @@
 
 To install Runtime Fabric, choose from one of the following options:
 
-* xref:install-self-managed.adoc[Install GKE, AKS, EKS with rtfctl]
-* xref:install-helm.adoc[Install GKE, AKS, EKS with Helm]
-* xref:install-openshift.adoc[Install on RedHat OpenShift]
+* xref:install-self-managed.adoc[Install Runtime Fabric using rtfctl]
+* xref:install-helm.adoc[Install Runtime Fabric using Helm]
+* xref:install-openshift.adoc[Install Runtime Fabric as a Kubernetes (K8s) Operator]
