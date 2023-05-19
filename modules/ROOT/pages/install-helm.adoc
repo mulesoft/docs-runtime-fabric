@@ -1,6 +1,6 @@
-= Installing Runtime Fabric on EKS, AKS, and GKE Using Helm
+= Installing Runtime Fabric Using Helm
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
 
 == Steps to Install Runtime Fabric Using Helm
 
@@ -161,7 +161,7 @@ subjects:
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
@@ -210,17 +210,19 @@ The following is an example `values.yml` file.
 
 [source,yaml]
 ----
-activationData: <activation data>
-  proxy:
-    http_proxy:
-    http_no_proxy:
-    monitoring_proxy:
-customLog4jEnabled: true
-muleLicense: <mule license key>
+activationData: <activation_data>
+proxy:
+  http_proxy:
+  http_no_proxy:
+  monitoring_proxy:
+muleLicense: <mule_license_key>
+customLog4jEnabled: false
 global:
+  nodeWatcherEnabled: true
+  deploymentRateLimitPerSecond: 1
   authorizedNamespaces: false
   image:
-    rtfRegistry: rtf-runtime-registry.kprod.msap.io
+    rtfRegistry: rtf-runtime-registry.kqa.msap.io
     pullSecretName: rtf-pull-secret
   containerLogPaths:
   - /var/lib/docker/containers
@@ -250,6 +252,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 |Key |Value |Example
 |`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
+|`crds.install` |Enables crds installations |`crds.install: true`, for first Runtime Fabric installation and false for subsequent installations
 a|
 
 * `proxy.http_proxy`
@@ -263,6 +266,8 @@ a|
 * `/var/lib/docker/`
 * `/var/log/containers`
 * `/var/log/pods`
+|`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
+|`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |===
 
 
