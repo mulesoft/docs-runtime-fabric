@@ -1,0 +1,68 @@
+= Scalability Benchmarks
+
+Runtime Fabric is a core Kubernetes (K8s) software and works alike in all K8s environments which comply with Runtime Fabric hardware and software requirements. The following scale limits are benchmarked on Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
+
+[%header%autowidth.spread]
+|===
+| Limitation | Description | Enforced by Runtime Fabric
+| Node count | The maximum number of nodes is 400. | Recommended
+| Deployments per Runtime Fabric | The maximum number of deployments being managed by Runtime Fabric at any instance should not exceed 8000 for optimal performance. | Recommended
+|===
+
+Runtime Fabric functionality and management of application deployments is not affected by the following:
+
+* Size of individual applications
+* Size of worker nodes
+* Number of pods running per work node
+
+Because Runtime Fabric is K8s based and uses cloud-native orchestration principals, it works according to the specified configuration of deployments. 
+
+Review the following benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments. The cluster configuration used is Runtime Fabric on AWS EKS cluster:
+
+[%header%autowidth.spread]
+|===
+| Configuration | Description 
+| VPC and node groups | Default configuration done from eksctl. 3 subnets (one subnet per node group), NAT Gateway.
+| AWS NLB | Equipped via helm chart at nginx creation. 
+| Node Auto Scaler | Recommended 3 GB (Memory)/200m vCore (req==limit)
+| Workers | m5.4x large, worker node group
+| Monitoring | Fixed, 1 Node, Prometheus, monitoring node group, m5.2x large
+| Ingress  | Fixed, 2 Nodes, Nginx, ingress node group, m5.4xlarge
+|===
+
+The following graphic shows how long the Runtime Fabric agent takes to restart if invoked by the customers or cluster upgrade:
+
+image::rtf-scale-cluster-upgrade.png[Diagram that shows restart latency between near empty cluster and loaded cluster]
+
+Runtime Fabric takes approximately 190 seconds to create the apps irrespective of deployment volume.
+The following table shows how long it takes for a Mule app to start, stop, or delete:
+
+[%header%autowidth.spread]
+|===
+| App Operations | Near Empty Cluster | Loaded 
+| Start Latency | ~110 seconds | 158 seconds 
+| Stop Latency | ~10 seconds | 20 seconds  
+| Delete Latency | ~9 seconds | ~28 seconds 
+|===
+
+The following table shows how long a node cordon operation takes to restart if there is a bad node:
+
+[%header%autowidth.spread]
+|===
+| Node Operation | Empty Cluster | Loaded Cluster
+| Cordon | ~2 seconds | ~2 seconds 
+| Drain process | ~4 seconds | ~35 seconds  
+|===
+
+Aspects to consider:
+
+* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, use at least:
+
+[%header%autowidth.spread]
+|===
+| Cluster Recommendations | Default | 200 Node/8000 App Resource Settings 
+| Agent Resources | Memory 200 mb request, 500 mb limit. CPU 100m request, 1vCore limit. | 3 GB (Memory)/2vCore (request == limit)  
+|===
+
+<TBD> CPU and <TBD> memory allocations. Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicitly when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`).
+* The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
