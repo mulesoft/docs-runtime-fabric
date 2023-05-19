@@ -230,6 +230,10 @@ type: kubernetes.io/tls
 
 Applying this label to your secret enables your ingress controller to immediately apply the updated TLS material into application namespaces. If you don't add this label, you must manually update the secret in each namespace.
 
+[NOTE]
+You can use the synchronization mechanism to replicate any secret from the Runtime Fabric agent namespace into the application namespace upon deployment.
+
+
 == Modify an Existing Ingress Template
 
 You can modify existing ingress templates even if they were already used for application deployments.
