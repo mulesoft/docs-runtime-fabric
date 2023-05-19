@@ -161,7 +161,7 @@ subjects:
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
@@ -210,19 +210,19 @@ The following is an example `values.yml` file.
 
 [source,yaml]
 ----
-activationData: <activation data>
-  proxy:
-    http_proxy:
-    http_no_proxy:
-    monitoring_proxy:
-customLog4jEnabled: true
-muleLicense: <mule license key>
+activationData: <activation_data>
+proxy:
+  http_proxy:
+  http_no_proxy:
+  monitoring_proxy:
+muleLicense: <mule_license_key>
+customLog4jEnabled: false
 global:
   nodeWatcherEnabled: true
   deploymentRateLimitPerSecond: 1
   authorizedNamespaces: false
   image:
-    rtfRegistry: rtf-runtime-registry.kprod.msap.io
+    rtfRegistry: rtf-runtime-registry.kqa.msap.io
     pullSecretName: rtf-pull-secret
   containerLogPaths:
   - /var/lib/docker/containers
@@ -252,6 +252,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 |Key |Value |Example
 |`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
+|`crds.install` |Enables crds installations |`crds.install: true`, for first Runtime Fabric installation and false for subsequent installations
 a|
 
 * `proxy.http_proxy`
