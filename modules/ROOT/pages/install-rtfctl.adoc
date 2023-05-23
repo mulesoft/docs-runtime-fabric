@@ -83,6 +83,9 @@ Use the following commands to configure Runtime Fabric.
 
 Applies changes to a Runtime Fabric configuration.
 
+[NOTE]
+Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
+
 * Applies an HTTP proxy configuration
 +
 ----
