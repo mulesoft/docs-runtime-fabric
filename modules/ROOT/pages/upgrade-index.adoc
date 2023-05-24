@@ -2,6 +2,6 @@
 
 To upgrade Runtime Fabric, choose from one of the following options:
 
-* xref:upgrade-self-managed.adoc[Upgrade GKE, AKS, EKS with rtfctl]
-* xref:upgrade-helm.adoc[Upgrade GKE, AKS, EKS with Helm]
-* xref:upgrade-openshift.adoc[Upgrade RedHat OpenShift]
+* xref:upgrade-self-managed.adoc[Upgrade Runtime Fabric using rtfctl]
+* xref:upgrade-helm.adoc[Upgrade Runtime Fabric using Helm]
+* xref:upgrade-openshift.adoc[Upgrade Runtime Fabric as a Kubernetes (K8s) Operator]

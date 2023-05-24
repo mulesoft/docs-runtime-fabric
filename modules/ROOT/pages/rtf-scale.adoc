@@ -56,7 +56,7 @@ The following table shows how long a node cordon operation takes to restart if t
 
 Aspects to consider:
 
-* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values following the information under this page. For a cluster with 8000 deployments, use at least:
+* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values using the information in the following table. For a cluster with 8000 deployments, use at least:
 +
 [%header%autowidth.spread]
 |===
