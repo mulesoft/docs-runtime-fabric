@@ -1,0 +1,1 @@
+include::release-notes::partial$runtime-fabric/runtime-fabric-rn-landing-page.adoc[]

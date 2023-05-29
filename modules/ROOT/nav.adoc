@@ -1,5 +1,6 @@
 .xref:index.adoc[Anypoint Runtime Fabric]
 * xref:index.adoc[Anypoint Runtime Fabric Overview]
+* xref:runtime-fabric-release-notes.adoc[Runtime Fabric Release Notes]
 * xref:limitations-self.adoc[Requirements and Limitations]
 * xref:index-vm-bare-metal.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation]
 * xref:install-index.adoc[Install Runtime Fabric]
