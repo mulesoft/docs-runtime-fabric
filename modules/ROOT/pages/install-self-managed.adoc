@@ -3,7 +3,7 @@
 You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
 
 [NOTE]
-Runtime Fabric versions 2.2.5 or later that support multiple instances require rtfctl version 0.4 or later.
+Runtime Fabric versions 2.2.5 or later that support multiple instances require `rtfctl` version 0.4 or later.
 
 == Before you Begin
 
