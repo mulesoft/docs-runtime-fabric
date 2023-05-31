@@ -6,6 +6,7 @@ Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies 
 If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
+* https://aws.amazon.com/eks/eks-anywhere/[Amazon EKS Anywhere (EKS-A)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
 * https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
