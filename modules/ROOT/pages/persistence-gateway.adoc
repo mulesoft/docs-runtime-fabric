@@ -142,7 +142,7 @@ The default CPU, memory, and limit values are based on a small number of deploye
 
 == Persistence Gateway Application Data
 
-Persistence Gateway stores application data using the following two tables:
+Persistence Gateway stores application data for each Runtime Fabric Cluster using the following two tables:
 
 [source,copy]
 ----
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS items (
 ;`
 ----
 
-To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not to have applications deployed during this process on both clusters to prevent unexpected results.
+To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not have applications deployed during this process on both clusters to prevent unexpected results.
 
 
 == See Also
