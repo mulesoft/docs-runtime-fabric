@@ -41,6 +41,15 @@ $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.li
 rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 ----
 
++
+You can also apply the Mule license providing the file path directly:
++
+[source,copy]
+----
+rtfctl apply mule-license --file /path/to/license.lic
+----
+
+
 . To verify the Mule license key has applied correctly, run:
 +
 [source,copy]
