@@ -31,19 +31,19 @@ If you're using self-managed Kubernetes on AKS and have the AKS-managed Azure AD
 *Windows:*
 +
 ----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-appliance-windows/latest -o rtfctl.exe
 ----
 +
 *MacOS (Darwin):*
 +
 ----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-appliance-darwin/latest -o rtfctl
 ----
 +
 *Linux:*
 +
 ----
-curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-appliance/latest -o rtfctl
 ----
 
 . Change file permissions for the `rtfctl` command-line utility:
