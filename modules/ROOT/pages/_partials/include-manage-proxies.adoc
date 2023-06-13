@@ -118,8 +118,8 @@ anypoint.platform.proxy_password=password
 
 == Configure a Proxy for a Mule Application
 
-Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
-cluster. You must configure a proxy for each application. 
+Applications deployed in Runtime Fabric inherit proxy settings from the Runtime Fabric 
+cluster. You can also configure a proxy for each application. 
 
 You can set up a proxy on each connector (such as an HTTP requestor) or set up a proxy with application properties as shown in the following example. Setting up a proxy with application properties is less work if you have a large number of connectors in an application.
 ----
