@@ -22,6 +22,38 @@ The tasks in the section must be performed by an IT administrator.
 
 Runtime Fabric on Self-Managed Kubernetes uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].
 
+For Runtime Fabric on Self-managed Kubernetes:
+
+. Download the `rtfctl` command-line utility:
++
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
+----
++
+*MacOS (Darwin):*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
+
+. Change file permissions for the `rtfctl` command-line utility:
++
+----
+sudo chmod +x rtfctl
+----
+
+
+For Runtime Fabric on appliance:
 
 . Download the `rtfctl` command-line utility:
 +
