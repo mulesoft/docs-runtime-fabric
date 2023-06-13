@@ -24,6 +24,38 @@ If you're using self-managed Kubernetes on AKS and have the AKS-managed Azure AD
 `az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
 
+For Runtime Fabric on Self-managed Kubernetes:
+
+. Download the `rtfctl` command-line utility:
++
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
++
+*Windows:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-windows/latest -o rtfctl.exe
+----
++
+*MacOS (Darwin):*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/latest -o rtfctl
+----
++
+*Linux:*
++
+----
+curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+----
+
+. Change file permissions for the `rtfctl` command-line utility:
++
+----
+sudo chmod +x rtfctl
+----
+
+For Runtime Fabric on appliance:
+
 . Download the `rtfctl` command-line utility:
 +
 `rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Download this utility using the URLs below:
