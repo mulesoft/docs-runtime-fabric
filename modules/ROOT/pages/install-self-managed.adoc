@@ -119,6 +119,10 @@ include::partial$include-install-tasks.adoc[tags=licenseKey]
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 
+== Perform a Rollback
+
+To roll back to a previous version of Runtime Fabric trigerred automatically on failed upgrade, refer to the https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^] Knowledge base article for details.
+
 == See Also
 
 * xref:index-self-managed.adoc[Runtime Fabric Overview]
