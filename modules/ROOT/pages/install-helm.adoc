@@ -275,6 +275,10 @@ include::partial$include-install-tasks.adoc[tags=licenseKey]
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 
+== Perform a Rollback
+
+To roll back to a previous version of Runtime Fabric using helm, refer to the https://helm.sh/docs/helm/helm_rollback/[Helm rollback^] documentation for the command description.
+
 
 == See Also
 
