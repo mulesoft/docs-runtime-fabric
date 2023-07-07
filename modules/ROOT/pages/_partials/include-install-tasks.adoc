@@ -47,6 +47,9 @@ You can also apply the Mule license providing the file path directly:
 ----
 rtfctl apply mule-license --file /path/to/license.lic
 ----
++
+[NOTE]
+Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
 
 . To verify the Mule license key has applied correctly, run:
 +
