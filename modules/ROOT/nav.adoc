@@ -9,6 +9,7 @@
   ** xref:install-helm.adoc[Install Runtime Fabric Using Helm]
   ** xref:install-openshift.adoc[Install Runtime Fabric as a Kubernetes (K8s) Operator]
   ** xref:install-multiple-instances.adoc[Install Multiple Instances on a Single Cluster]
+  ** xref:install-multiple-instances-openshift.adoc[Install Multiple Instances on a Single OpenShift Cluster]
 * xref:upgrade-index.adoc[Upgrade Runtime Fabric]
   ** xref:upgrade-self-managed.adoc[Upgrade Runtime Fabric Using rtfctl]
   ** xref:upgrade-helm.adoc[Upgrade Runtime Fabric Using Helm]
