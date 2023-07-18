@@ -1,6 +1,6 @@
 = Deployment Status Messages for Runtime Fabric
 
-Either when you deploy a Mule app for the first time or you make changes to an existing Mule app deployed to Runtime Fabric in Runtime Manager, you can receive multiple deployment status messages:
+Runtime Manager shows deployment status messages when you deploy a Mule app for the first time or when you make changes to an existing Mule app deployed to Runtime Fabric:
 
 
 * xref:runtime-manager::managing-deployed-applications.adoc#application_deploy_states[Application Deployment Status State] +
@@ -18,58 +18,57 @@ These statuses appear when there are issues with app namespaces during deploymen
 [[warning-status]]
 == Warning Messages Status States
 
-When you deploy a Mule app or make a change to an existing Mule app deployed to Runtime Fabric in Runtime Manager, you can see warning messages. Understanding the meaning of these messages is important, as some warnings are only temporary while others can be permanent failures.
-
-Runtime Manager waits a minute after a Mule app is deployed or a new change is applied to an existing Mule app deployed. Runtime Manager then begins to actively check the reported status of its replicas. Any status other than STARTED, STOPPED or pulling image is considered unexpected, and a warning is displayed. This does not necessarily mean there is something wrong with your Mule app or cluster. 
+When you deploy a Mule app or make a change to an existing Mule app deployed to Runtime Fabric, Runtime Manager waits a minute and then begins to actively check the reported status of its replicas. If the status is other than STARTED or STOPPED, a warning message shows. 
+A warning message does not necessarily mean there is something wrong with your Mule app or cluster. Understanding the meaning of these messages is important, as some warnings are only temporary while others can be permanent failures. 
 
 Warning messages appear with the following legend: `1 or more replicas in unexpected state:` followed by the specific description. For example:
 
 `1 or more replicas in unexpected state: [Kubernetes] Container "any point-monitoring" - PodInitializing`
 
 [NOTE]
-In the event the warning does not resolve by itself, work with your IT department and developer team to check the deployment and pod status for troubleshooting.
+If a warning message persists and the related issue does not resolve automatically, work with your IT department and developer team to check the deployment and pod status for troubleshooting.
 
 == Permanent versus Temporary Warning Messages
-Permanent warning messages status usually requires your action to be fixed. Instead, temporary warning messages disappear by themselves. Though, it is advised that you check them with your Kubernetes admin if they don't disappear in reasonable time.
+Permanent warning messages usually require your action to fix the related issue. Instead, temporary warning messages disappear after some time. Check warning messages with your Kubernetes admin if they don't disappear in a reasonable time.
 
-For example, if a node goes down, you likely have pods pending temporarily. Your Kubernetes admin may need to bring that node up manually. Or maybe the machine is taking its time to be rebooted.
+For example, if a node stops working, some pods might be pending temporarily. Your Kubernetes admin may need to restart that node manually, or the machine might take a long time to reboot. 
 
 A Mule app deployment may return a CrashLoopBackOff warning because the Mule app fails to start due to an external dependency being down, such as a database or JMS server. The warning may fix itself when the service comes up. Though, if there is something wrong with the deployment artifact, then the warning message will be permanent.
 
 == Warning Messages Description
 
-The following table lists different types of warning messages. Note that this is not an exhaustive list and for the actual reference you must refer to the Kubernetes documentation.
+The following table shows a non-exhaustive list of different types of warning messages. For a complete reference, refer to the Kubernetes documentation.
 
 [%header%autowidth.spread]
 |===
 |Warning Status|Type |Description |Example
-|PodInitializing|Usually temporary |This status means that there is a pod initialization delay.  Which means that not all containers in your Mule app pods are ready and that it is usually just a matter of time until the pods initialize. If there is a real problem with your deployment, this warning transitions into another state. |<<link-example-1,Link>>
-|CrashLoopBackOff|Usually permanent |This status means there is a problem with your Mule app image and the app is crashing. |<<link-example-2,Link>>
-|Unschedulable|Usually temporary |This status means that there are no nodes available to run the requested replicas. There could be a few reasons, for example: 
+|PodInitializing|Usually temporary |There is a pod initialization delay, not all containers in your Mule app pods are ready and it is usually a matter of time until the pods initialize. If there is a real problem with your deployment, this warning transitions into another state. |<<link-example-1,Link>>
+|CrashLoopBackOff|Usually permanent |There is a problem with your Mule app image and the app is crashing. |<<link-example-2,Link>>
+|Unschedulable|Usually temporary |There are no nodes available to run the requested replicas. Reasons might include: 
 
-* Some nodes may be down for maintenance. +
-* Nodes may not have enough resources available to assign for your deployment. +
-* The *Enforce deploying replicas across nodes* option the *Deployments Target* tab of Runtime Manager is enabled but there are not enough different nodes available for the number of replicas desired. |<<link-example-3,Link>>
+* Nodes being down for maintenance. +
+* Nodes without enough resources available to assign for your deployment. +
+* The *Enforce deploying replicas across nodes* option in the *Deployments Target* tab of Runtime Manager is enabled but there are not enough different nodes available for the number of replicas desired. |<<link-example-3,Link>>
 |===
 
-For more information on Pod Status, refer to the https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-lifetime[Kubernetes official documentation^]. Your Kubernetes administrator is also a great resource to inquire about whether a state should be considered critical or not and advise how to troubleshoot if required.
+For more information on Pod Status, refer to the https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-lifetime[Kubernetes official documentation^]. Reach your Kubernetes administrator to inquire about whether a state should be considered critical or not and request advice on how to troubleshoot if required.
 
 == Warning Messages Examples
 
 [[link-example-1]]
 === PodInitializing Example
-In the following example, the warning message means the pod is ready but is waiting to initialize:
+In the following example, the warning message shows because the pod is ready but is waiting to initialize:
 
 image::rtf-deployment-example-1.png[PodInitializing warning status in Runtime Manager UI]
 
 [[link-example-2]]
 === CrashLoopBackOff Example
 
-In the following example, the warning message  means there is a problem with your Mule app image. Because a corrupt artifact was uploaded and caused the Mule app to crash during the deployment.
+In the following example, the warning message shows that there is a problem with your Mule app image because a corrupt artifact was uploaded and caused the Mule app to crash during the deployment.
 
 image::rtf-deployment-example-2.png[CrashLoopBackOff warning status in Runtime Manager UI]
 
-Your Kubernetes administrator can run in the command line interface the following command to get the error or warning status as well: 
+Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well:  
 
 `kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
 
@@ -88,11 +87,11 @@ pod/omg-s1-now-78b7ffd454-h5x5n   1/2     CrashLoopBackOff   8 (2m57s ago)   20m
 [[link-example-3]]
 === Unschedulable Example
 
-In the following example, the warning message means that 3 nodes were unschedulable because they were not available:
+In the following example, the warning message shows that 3 nodes were unschedulable because they were not available:
 
 image::rtf-deployment-example-2.png[Unschedulable warning status in Runtime Manager UI]
 
-Your Kubernetes administrator can run in the command line interface the following command to get the error or warning status as well: 
+Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well: 
 
 `kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
 
@@ -110,7 +109,7 @@ pod/omg-s1-now-6c5c5d987c-fbmbl   0/2     Pending   0          50m
 
 == App Namespaces Status States
 
-The following table lists statuses when there are issues with app and authorized namespaces. They are prefixed with`[Runtime Fabric]`.
+The following table lists statuses that show when there are issues with the app and authorized namespaces. They are prefixed with`[Runtime Fabric]`.
 
 [%header%autowidth.spread]
 |===
