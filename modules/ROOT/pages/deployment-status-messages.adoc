@@ -1,0 +1,130 @@
+= Deployment Status Messages for Runtime Fabric
+
+Runtime Manager shows deployment status messages when you deploy a Mule app for the first time or when you make changes to an existing Mule app deployed to Runtime Fabric:
+
+
+* xref:runtime-manager::managing-deployed-applications.adoc#application_deploy_states[Application Deployment Status State] +
+These statuses are related to the general application deployment, such as Deleted, Applying, Applied, Failed, or Unknown messages.
+
+* xref:runtime-manager::managing-deployed-applications.adoc#replica_status_states[Replica Status States] +
+These statuses appear when you apply new, or changed, configurations to a deployed Mule app.
+
+* <<warning-status,Warning Messages Status States>> +
+These statuses appear when you receive a warning message while a deployment is in progress.
+
+* <<app-namespaces,App Namespaces Status States>> +
+These statuses appear when there are issues with app namespaces during deployment.
+
+[[warning-status]]
+== Warning Messages Status States
+
+When you deploy a Mule app or make a change to an existing Mule app deployed to Runtime Fabric, Runtime Manager waits a minute and then begins to actively check the reported status of its replicas. If the status is other than STARTED or STOPPED, a warning message shows. 
+A warning message does not necessarily mean there is something wrong with your Mule app or cluster. Understanding the meaning of these messages is important, as some warnings are only temporary while others can be permanent failures. 
+
+Warning messages appear with the following legend: `1 or more replicas in unexpected state:` followed by the specific description. For example:
+
+`1 or more replicas in unexpected state: [Kubernetes] Container "any point-monitoring" - PodInitializing`
+
+[NOTE]
+If a warning message persists and the related issue does not resolve automatically, work with your IT department and developer team to check the deployment and pod status for troubleshooting.
+
+== Permanent versus Temporary Warning Messages
+Permanent warning messages usually require your action to fix the related issue. Instead, temporary warning messages disappear after some time. Check warning messages with your Kubernetes admin if they don't disappear in a reasonable time.
+
+For example, if a node stops working, some pods might be pending temporarily. Your Kubernetes admin may need to restart that node manually, or the machine might take a long time to reboot. 
+
+A Mule app deployment may return a CrashLoopBackOff warning because the Mule app fails to start due to an external dependency being down, such as a database or JMS server. The warning may fix itself when the service comes up. Though, if there is something wrong with the deployment artifact, then the warning message will be permanent.
+
+== Warning Messages Description
+
+The following table shows a non-exhaustive list of different types of warning messages. For a complete reference, refer to the Kubernetes documentation.
+
+[%header%autowidth.spread]
+|===
+|Warning Status|Type |Description |Example
+|PodInitializing|Usually temporary |There is a pod initialization delay, not all containers in your Mule app pods are ready and it is usually a matter of time until the pods initialize. If there is a real problem with your deployment, this warning transitions into another state. |<<link-example-1,Link>>
+|CrashLoopBackOff|Usually permanent |There is a problem with your Mule app image and the app is crashing. |<<link-example-2,Link>>
+|Unschedulable|Usually temporary |There are no nodes available to run the requested replicas. Reasons might include: 
+
+* Nodes being down for maintenance. +
+* Nodes without enough resources available to assign for your deployment. +
+* The *Enforce deploying replicas across nodes* option in the *Deployments Target* tab of Runtime Manager is enabled but there are not enough different nodes available for the number of replicas desired. |<<link-example-3,Link>>
+|===
+
+For more information on Pod Status, refer to the https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-lifetime[Kubernetes official documentation^]. Reach your Kubernetes administrator to inquire about whether a state should be considered critical or not and request advice on how to troubleshoot if required.
+
+== Warning Messages Examples
+
+[[link-example-1]]
+=== PodInitializing Example
+In the following example, the warning message shows because the pod is ready but is waiting to initialize:
+
+image::rtf-deployment-example-1.png[PodInitializing warning status in Runtime Manager UI]
+
+[[link-example-2]]
+=== CrashLoopBackOff Example
+
+In the following example, the warning message shows that there is a problem with your Mule app image because a corrupt artifact was uploaded and caused the Mule app to crash during the deployment.
+
+image::rtf-deployment-example-2.png[CrashLoopBackOff warning status in Runtime Manager UI]
+
+Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well:  
+
+`kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
+
+For example: 
+
+[source,text,linenums]
+----
+➜  ~ kubectl get deployments,pods --namespace 788a26d2-a837-4336-aa7b-1f367cf70d7d
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/omg-s1-now   0/1     1            0           20m
+
+NAME                              READY   STATUS             RESTARTS        AGE
+pod/omg-s1-now-78b7ffd454-h5x5n   1/2     CrashLoopBackOff   8 (2m57s ago)   20m
+----
+
+[[link-example-3]]
+=== Unschedulable Example
+
+In the following example, the warning message shows that 3 nodes were unschedulable because they were not available:
+
+image::rtf-deployment-example-2.png[Unschedulable warning status in Runtime Manager UI]
+
+Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well: 
+
+`kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
+
+For example: 
+
+[source,text,linenums]
+----
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/omg-s1-now   0/1     1            0           170m
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/omg-s1-now-58dd54d9f-xt569    0/2     Pending   0          4s
+pod/omg-s1-now-6c5c5d987c-fbmbl   0/2     Pending   0          50m
+----
+
+== App Namespaces Status States
+
+The following table lists statuses that show when there are issues with the app and authorized namespaces. They are prefixed with`[Runtime Fabric]`.
+
+[%header%autowidth.spread]
+|===
+|Status and description | Type
+|There is an existing namespace <app_namespace> for your current environment <env_id>, please create a custom namespace with required labels to proceed with this deployment. For  more information on creating custom namespaces, refer to documentation. | Permanent
+|Failed to select a namespace. Multiple namespaces <namespaces name> found with  the same rtf.mulesoft.com/envId=<env_id> and rtf.mulesoft.com/agentNamespace=<agent_namespace>  annotation. A single namespace can be annotated with the given environment id / RTF namespace pair. | Permanent
+|No application namespace corresponding to environment '%s' found. Please make sure to update the ConfigMap with the correct application namespace. For more information on 
+configuring authorized namespaces, refer to documentation. | Permanent
+|An application namespace<app_namespace> has not been labeled correctly. The namespace for the current agent deployments must be labeled with rtf.mulesoft.com/agentNamespace=<agent_namespace>. | Permanent
+|An application namespace <app_namespace> has not been labeled correctly. The namespace for the current agent deployments must be labeled with proper rtf.mulesoft.com/envId (but was empty). | Permanent
+|Failed to select a namespace. Multiple namespaces found with the same rtf.mulesoft.com/envId=<env_id> annotation. A single namespace can be annotated with any given environment id. | Permanent
+|===
+
+== See Also
+
+* xref:runtime-fabric::app-versioning.adoc[Reviewing Application Versioning on Runtime Fabric]
+* xref:runtime-manager::managing-deployed-applications.adoc#status_states[Runtime Manager Status States]
+* xref:runtime-fabric:deploy-to-runtime-fabric.adoc[Deploy Mule apps to Runtime Fabric]
