@@ -44,7 +44,7 @@ The following table shows a non-exhaustive list of different types of warning me
 |Warning Status|Type |Description |Example
 |PodInitializing|Usually temporary |There is a pod initialization delay, not all containers in your Mule app pods are ready and it is usually a matter of time until the pods initialize. If there is a real problem with your deployment, this warning transitions into another state. |<<link-example-1,Link>>
 |CrashLoopBackOff|Usually permanent |There is a problem with your Mule app image and the app is crashing. |<<link-example-2,Link>>
-|Unschedulable|Usually temporary |There are no nodes available to run the requested replicas. Reasons might include: 
+|Unschedulable|Usually temporary |There are no nodes available to run the requested replicas. Reasons might include: +
 
 * Nodes being down for maintenance. +
 * Nodes without enough resources available to assign for your deployment. +
@@ -109,9 +109,9 @@ pod/omg-s1-now-6c5c5d987c-fbmbl   0/2     Pending   0          50m
 
 == App Namespaces Status States
 
-The following table lists statuses that show when there are issues with the app and authorized namespaces. They are prefixed with`[Runtime Fabric]`.
+The following table lists statuses that show when there are issues with the app and authorized namespaces. They are prefixed with `[Runtime Fabric]`.
 
-[%header%autowidth.spread]
+[%header,cols="70,30"]
 |===
 |Status and description | Type
 |There is an existing namespace <app_namespace> for your current environment <env_id>, please create a custom namespace with required labels to proceed with this deployment. For  more information on creating custom namespaces, refer to documentation. | Permanent
