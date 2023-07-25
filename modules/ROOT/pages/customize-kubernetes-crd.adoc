@@ -15,14 +15,14 @@ The `kubernetestemplate` resource applies only to new Mule application deploymen
 The `kubernetestemplate` resource enables you to configure the following elements of your applications pods, deployments and services objects:
 
 * Pod
-** Annotations
-** Labels
-** Node selectors
-** Affinity
-** Security context
-** Ephemeral storage limit
-** Tolerations
-** Topology spread constraints
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/[Annotations^]
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[Labels^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Node selectors^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Affinity^]
+** https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[Security context^]
+** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
 
 
 * Deployment
@@ -36,9 +36,17 @@ The `kubernetestemplate` resource enables you to configure the following element
 [Note]
 Configuration elements already defined by Runtime Fabric take precedence over the ones you define in the template.
 
+To get the CRD of key elements that you can configure for the template, you can get the Kubernetes specification by running the following command:
+
+[source,copy]
+----
+kubectl get crd kubernetestemplates.rtf.mulesoft.com -o yaml
+----
+
+
 == Examples
 
-Adding labels at pod, deploy and service objects:
+Configuring `labels` at `pod`, `deploy` and `service` objects:
 
 [source,copy]
 ----
@@ -61,7 +69,7 @@ spec:
         podLabel: value
 ----
 
-Configuring the runtime default `seccompProfile` for `containerSecurityContext` under the pod object:
+Configuring the runtime default `seccompProfile` for `containerSecurityContext` under the `pod` object:
 
 [source,copy]
 ----
@@ -75,6 +83,51 @@ spec:
     containerSecurityContext:
       seccompProfile:
         type: RuntimeDefault
+----
+
+Another example with all the keys that you can configure:
+
+[source,copy]
+----
+apiVersion: "rtf.mulesoft.com/v1"
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  labels:
+spec:
+  deployment:
+    metadata:
+      labels:
+      annotations:
+  service:
+    metadata:
+      labels:
+      annotations:
+  pod:
+    metadata:
+      labels:
+      annotations:
+    containerSecurityContext:
+      seccompProfile: “restricted”
+    tolerations:
+    - key: "example-key"
+      operator: "Exists"
+      effect: "NoSchedule"
+    ephemeralStorageLimit: 4gb
+    nodeSelector:
+      region: us-east
+    affinity:
+    tolerations:
+    - key: "key1"
+      operator: "Exists"
+      effect: "NoSchedule"
+    topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          rtf.mulesoft.com/id: {{ .Values.id }}
 ----
 
 Key elements that can not be overwritten using the CRD:
