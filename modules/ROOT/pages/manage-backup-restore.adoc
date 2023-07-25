@@ -148,10 +148,10 @@ In the following example, you have a Runtime Fabric with a set of Mule applicati
 [start=2]
 . Shutdown `cluster-1`.
 . Remove and shutdown all Mule application deployments.
-. Remove Runtime Fabric installation.
-. Remove Runtime Fabric operator from the OpenShift cluster (optional).
-. Using `curl` hit the management plane API endpoint to regenerate the activation ID. +
-The Runtime Fabric will show as ready for activation so you can install and activate Runtime Fabric again on a new OpenShift cluster. 
+. Remove the Runtime Fabric installation.
+. Remove the Runtime Fabric operator from the OpenShift cluster (optional).
+. Send a `curl` command to the management plane API endpoint to regenerate the activation ID. +
+The Runtime Fabric will show as ready for activation. You can install and activate Runtime Fabric again on a new OpenShift cluster. 
 +
 [source,copy]
 ----
