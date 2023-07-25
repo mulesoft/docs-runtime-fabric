@@ -136,7 +136,7 @@ For Runtime Fabric, confirm the `rtfctl` binary is present in the current direct
 
 == Create a Backup and Restore for OpenShift Clusters
 
-In the following example, you have a Runtime Fabric with a set of Mule applications and configurations deployed on cluster (named `cluster-1`) inside an Openshift cluster. To create a backup and perform a restore, follow these steps:
+In the following example, you have a Runtime Fabric with a set of Mule applications and configurations deployed on cluster (named `cluster-1`) inside an OpenShift cluster. To create a backup and perform a restore, follow these steps:
 
 . Run the backup command: 
 +
