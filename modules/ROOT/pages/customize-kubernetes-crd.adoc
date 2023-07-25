@@ -1,0 +1,126 @@
+== Customize Mule Application Kubernetes Resources
+
+Anypoint Runtime Fabric enables you to customize your Mule application Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
+
+Name the `kubernetestemplate` resource as `mule-application`. You can define the template in two different namespaces:
+
+* Applications namespace +
+The template is applied to all Mule applications deployed to the given namespace.
+
+* Runtime Fabric agent namespace +
+The template is applied to all Mule applications managed by the given Runtime Fabric agent.
+
+The `kubernetestemplate` resource applies only to new Mule application deployments after the resource creation. It does not affect existing deployments. If you redeploy a Mule application after creating or updating the `kubernetestemplate` the template is applied.
+
+The `kubernetestemplate` resource enables you to configure the following elements of your applications pods, deployments and services:
+
+* Pod
+** Annotations
+** Labels
+** Node selectors
+** Affinity
+** Security context
+** Ephemeral storage limit
+** Tolerations
+** Topology spread constraints
+
+
+* Deployment
+** Annotations
+** Labels
+
+* Service
+** Annotations
+** Labels
+
+[Note]
+Configuration elements already defined by Runtime Fabric take precedence over the ones you define in the template.
+
+== Examples
+
+Adding labels at pod, deploy and service levels:
+
+[source,copy]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+spec:
+  deployment:
+    metadata:
+      labels:
+        deploymentLabel: value
+  service:
+    metadata:
+      labels:
+        serviceLabel: value
+  pod:
+    metadata:
+      labels:
+        podLabel: value
+----
+
+Configuring the runtime default seccomp profile:
+
+[source,copy]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  namespace: rtf
+spec:
+  pod:
+    containerSecurityContext:
+      seccompProfile:
+        type: RuntimeDefault
+----
+
+Elements that can not be overwritten using the CRD:
+
+* Deployment
+** Labels
+*** Environment
+*** Organization
+*** Type
+**** rtf.mulesoft.com/id
+**** rtf.mulesoft.com/version
+**** rtf.mulesoft.com/agentNamespace
+
+* Annotations
+** rtfc.mulesoft.com/egress-ruleset (if set in deployment values)
+** rtf.mulesoft.com/desiredStatus
+** rtf.mulesoft.com/replicas
+** rtf.mulesoft.com/version
+
+* Pods
+** Annotations
+*** fluentbit.io/exclude
+*** mulesoft.com/resources
+** Labels
+*** App
+*** Environment
+*** Am-org-id
+*** Root-org-id
+*** Organization
+*** rtf.mulesoft.com/id
+*** rtf.mulesoft.com/generation
+*** Type
+**** rtf.mulesoft.com/disableAmLogForwarding
+*** Name
+* Resources
+** Ephemeral-storage (if is not set in env.resources or cluster flavor is rtfc)
+* SecurityContext
+** runAsUser
+** runAsGroup
+** allowPrivilageEscalation
+** Capabilities
+* NodeSelector
+** kubernetes.io/os
+** kubernetes.io/arch
+** beta.kubernetes.io/os
+** beta.kubernetes.io/arch
+** RTF.DeploymentNodeSelector
+* Affinity
+** podAntiAffinity
