@@ -12,7 +12,7 @@ The template is applied to all Mule applications managed by the given Runtime Fa
 
 The `kubernetestemplate` resource applies only to new Mule application deployments after the resource creation. It does not affect existing deployments. If you redeploy a Mule application after creating or updating the `kubernetestemplate` the template is applied.
 
-The `kubernetestemplate` resource enables you to configure the following elements of your applications pods, deployments and services:
+The `kubernetestemplate` resource enables you to configure the following elements of your applications pods, deployments and services objects:
 
 * Pod
 ** Annotations
@@ -38,7 +38,7 @@ Configuration elements already defined by Runtime Fabric take precedence over th
 
 == Examples
 
-Adding labels at pod, deploy and service levels:
+Adding labels at pod, deploy and service objects:
 
 [source,copy]
 ----
@@ -61,7 +61,7 @@ spec:
         podLabel: value
 ----
 
-Configuring the runtime default seccomp profile:
+Configuring the runtime default `seccompProfile` for `containerSecurityContext` under the pod object:
 
 [source,copy]
 ----
@@ -77,7 +77,7 @@ spec:
         type: RuntimeDefault
 ----
 
-Elements that can not be overwritten using the CRD:
+Key elements that can not be overwritten using the CRD:
 
 * Deployment
 ** Labels
