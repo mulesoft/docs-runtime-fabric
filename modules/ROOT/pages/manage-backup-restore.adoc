@@ -150,8 +150,16 @@ In the following example, you have a Runtime Fabric with a set of Mule applicati
 . Remove and shutdown all Mule application deployments.
 . Remove Runtime Fabric installation.
 . Remove Runtime Fabric operator from the OpenShift cluster (optional).
-. Hit the management plane API endpoint to regenerate the activation ID. +
-The Runtime Fabric will show as ready for activation so you can install and activate Runtime Fabric again on a new OpenShift cluster.
+. Using `curl` hit the management plane API endpoint to regenerate the activation ID. +
+The Runtime Fabric will show as ready for activation so you can install and activate Runtime Fabric again on a new OpenShift cluster. 
++
+[source,copy]
+----
+curl --location --request PATCH 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/{org-id}/fabrics/{fabric-id}/regenerateActivationData' \
+--header 'Authorization: Bearer {bearer-token}
+----
++
+[start=7]
 . Install the Runtime Fabric operator on `cluster-2` using the regenerated activation data ID. +
 The installation must be on the same Runtime Fabric namespace because all labels on the backup point to that installation.
 . Run the restore command to pick the set of resources and restore them in the cluster:
