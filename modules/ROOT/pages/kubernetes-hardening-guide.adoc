@@ -1,0 +1,61 @@
+= Kubernetes Hardening Guide
+
+The following guide describes the security challenges associated with setting up and securing a
+Kubernetes cluster based on the NSA (National Security Agency). For complete guidance, see the https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF[Kubernetes Hardening Guide^].
+
+== Common Sources of Compromise in K8s
+
+Review the following common sources of compromise:
+
+* Supply chain risks
+** Container build cycle
+** Infrastructure acquisition
+* Malicious threat actors
+** Exploit vulnerabilities and misconfigurations
+* Insider threats
+** Administrators, users or cloud providers abusing their privileges
+
+== Mitigations
+
+Review the following mitigations:
+
+* Scan containers and pods for vulnerabilities or misconfigurations.
+* Run containers and pods with the least privileges possible.
+* Use network separation to control the amount of damage a compromise can cause.
+* Use firewalls to limit unneeded network connectivity and use encryption to protect confidentiality.
+* Use strong authentication and authorization to limit user and administrator access as well as to limit the attack surface.
+* Capture and monitor audit logs so that administrators can be alerted to potential malicious activity.
+* Periodically review all K8s settings and use vulnerability scans to ensure risks are appropriately accounted for and security patches are applied.
+
+== Recommendations and Implementation
+
+* Kubernetes pod security
+** Use containers built to run applications as non-root users.
+*** The container image should run app with a non-root user and a non-root group.
+*** K8s enforces non-root containers with `SecurityContext:runAsUser` specifying non 0 users.
+** Use immutable container filesystems by mounting read/write filesystems for application specific directories only.
+** Use technical control to enforce a minimum level of security including:
+*** Preventing privileged containers
+*** Denying container features frequently exploited to breakout, such as hostPID, hostIPC, hostNetwork, allowedHostPath
+*** Rejecting containers that execute as the root user or allow elevation to root
+** Build secure container images
+*** Use only trusted repositories
+*** Scan images for vulnerabilities and misconfigurations. The scanner should allow disregarding false positives.
+** Protect pod service account token
+*** Set a service account token mounted by default on every pod.
+*** Disable with `automountServiceAccountToken: false`
+*** If a token is needed for instance to authenticate to external service, use RBAC to restrict pod privileges in the cluster.
+
+* Authentication and authorization 
+** Create RBAC policies with unique roles for users, administrators, developers, service accounts, and infrastructure team.
+
+* Audit logging and threat detection
+** Persist logs to ensure availability in the case of node, pod or container level failure.
+** Aggregate logs external to the cluster.
+
+* Network separation and hardening
+** Namespaces by default are not isolated but allow applying rules via RBAC, networking policies and resource policies.
+
+* Upgrade and application security practices
+** Promptly apply security patches and updates.
+** Uninstall and delete unused components from the environment.
