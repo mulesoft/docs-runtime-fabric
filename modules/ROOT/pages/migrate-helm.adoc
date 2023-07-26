@@ -4,12 +4,17 @@ You can migrate to xref:runtime-fabric::install-helm.adoc[helm] native for Runti
 
 == Before You Begin
 
-To perform the migration, you must have the following details:
+To perform the migration, you must consider the following:
+
+* The migration is applicable to BYOK clusters which are installed with `rtfctl` and want to migrate to helm managed.
+* The cluster must be on `rtf-agent` v2.2.4 or above. Note that you will first have to upgrade latest before you can initiate the migration. 
+
+Additionally, you must have these details:
 
 * organizationId
 * fabricId
 * Bearer token for Anypoint user account with *manage fabric* privileges
-* rtfctl version >= v1.0.10
+* rtfctl version >= v1.0.10 is downloaded
 
 == Migrate rtfctl to Helm
 
