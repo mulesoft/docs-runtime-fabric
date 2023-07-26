@@ -30,10 +30,10 @@ Running this command performs the following actions:
 * Backs up the current Runtime Fabric installation: tarball is created with input file name.
 * Uninstalls the current Runtime Fabric installation: running the command does not update Mule application deployments, it does not delete any of your configurations applied to the rtf namespace, it does not delete the rtf namespace, and it does not touch any other namespace than the rtf namespace. Uninstalls only the previous runtime-fabric helm chart.
 * Regenerates activation data for provided fabricId.
-* Deletes custom-properties secret in the rtf namespace, because in helm managed rtf the secret is recreated using values from the helm chart.
-* Installs Runtime Fabric with helm commands (e.g. re-renders Runtime Fabric helm chart).
+* Deletes custom-properties secret in the rtf namespace, because helm managed rtf recreates the secret using values from the helm chart.
+* Installs Runtime Fabric with helm commands, such as re-rendering Runtime Fabric helm chart.
 
-Running the command does not upgrade Runtime Fabric to the other version than the existing installation version.
+Running the command does not upgrade Runtime Fabric to the version other than the existing installation version.
 
 === Command Success
 
