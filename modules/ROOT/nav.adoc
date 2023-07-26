@@ -28,6 +28,7 @@
 ** xref:rtf-scale.adoc[Scalability Benchmarks]
 ** xref:rtf-cluster-config.adoc[Cluster Configurations]
 * xref:customize-kubernetes-crd.adoc[Customize Mule application Kubernetes Resources]
+* xref:migrate-helm.adoc[Migrating to helm from rtfctl]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
 * xref:configure-openshift-routes.adoc[Configure OpenShift Routes]
 * xref:persistence-gateway.adoc[Use Persistence Gateway]
