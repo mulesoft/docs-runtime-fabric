@@ -105,7 +105,7 @@ deploying new-app01, the output log would be similar to this :
 ╚═════════════════════╧══════════════════════════════════════════════╝
 ----
 
-Additionally, you can add more parameters to deploy your Mule app. If you want your app to have 2 replicas instead of 1, you can write `--replicas 2`  at the end of your script.
+Additionally, you can add more parameters to deploy your Mule app. If you want your app to have two replicas instead of one, you can write `--replicas 2`  at the end of your script.
 
 You can set the following extra parameters for you deployment:
 
@@ -146,7 +146,7 @@ For example, to add a secure property, run the following command:
 anypoint-cli-v4 runtime-mgr:application:modify <appId>  --secureProperty <key:value> 
 ----
 
-=== Stop, Start and Delete a Mule App
+=== Stop, Start, and Delete a Mule App
 
 To perform these actions, you need the app ID you want to modify.
 
