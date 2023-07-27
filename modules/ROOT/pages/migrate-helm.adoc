@@ -7,7 +7,7 @@ You can migrate to xref:runtime-fabric::install-helm.adoc[helm] native for Runti
 To perform the migration, you must consider the following:
 
 * The migration is applicable to BYOK clusters which are installed with `rtfctl` and want to migrate to helm managed.
-* The cluster must be on `rtf-agent` v2.2.4 or above. Note that you will first have to upgrade latest before you can initiate the migration. 
+* The cluster must be on `rtf-agent` v2.2.5 or above. Note that you will first have to upgrade agent to the required version before you can initiate the migration. 
 
 Additionally, you must have these details:
 
@@ -31,7 +31,7 @@ Running this command performs the following actions:
 * Uninstalls the current Runtime Fabric installation: running the command does not update Mule application deployments, it does not delete any of your configurations applied to the rtf namespace, it does not delete the rtf namespace, and it does not touch any other namespace than the rtf namespace. Uninstalls only the previous runtime-fabric helm chart.
 * Regenerates activation data for provided fabricId.
 * Deletes custom-properties secret in the rtf namespace, because helm managed rtf recreates the secret using values from the helm chart.
-* Installs Runtime Fabric with helm commands, such as re-rendering Runtime Fabric helm chart.
+* Installs Runtime Fabric with helm commands, to re-render Runtime Fabric helm chart.
 
 Running the command does not upgrade Runtime Fabric to the version other than the existing installation version.
 
@@ -39,10 +39,10 @@ Running the command does not upgrade Runtime Fabric to the version other than th
 
 If running the command is successfull:
 
-* Verify that Runtime Fabric is now helm managed either in the Anypoint Runtime Manager UI or via helm values.
+* Verify that Runtime Fabric is now helm managed in the Anypoint Runtime Manager UI.
 * Manage (start, stop, delete, update) previously deployed Mule applications from the Runtime Manager UI.
 * Deploy Mule applications to the target Runtime Fabric from the Runtime Manager UI.
-* Configurations such as ingress templates, persistence gateway, custom resources and proxy values that you applied before the migration are intact.
+* Verify that configurations such as ingress templates, persistence gateway, custom resources and proxy values that you applied before the migration are intact.
 
 === Command Fails
 
