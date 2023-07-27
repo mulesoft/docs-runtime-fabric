@@ -43,7 +43,7 @@
 * xref:manage-index.adoc[Manage Runtime Fabric]
  ** xref:view-health.adoc[View Runtime Fabric Health Details]
  ** xref:install-rtfctl.adoc[Use the Runtime Fabric Command Line Tool]
- ** xref:runtime-patch-updates.adoc[Manage Mule Runtime Patch Updates for Runtime Fabric]
+ ** xref:runtime-patch-updates.adoc[Manage Mule Runtime Releases for Runtime Fabric]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
  ** xref:enable-fips-140-2-compliance.adoc[Enable FIPS 140-2 Compliance Mode]
