@@ -61,3 +61,5 @@ MuleSoft is committed to ensuring the highest level of security and reliability 
 * Upgrade and application security practices:
 ** Promptly apply security patches and updates.
 ** Uninstall and delete unused components from the environment.
+
+You can apply your security configuration for Mule application deployments by following the guidelines on how to xref:runtime-fabric::customize-kubernetes-crd.adoc[Customize Mule Application Kubernetes Resources] documentation.
