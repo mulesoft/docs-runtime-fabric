@@ -169,3 +169,4 @@ The installation must be on the same Runtime Fabric namespace because all labels
 ./rtfctl restore <path_to_backup_file>
 ----
 +
+. Check the status of your Runtime Fabric deployments.
