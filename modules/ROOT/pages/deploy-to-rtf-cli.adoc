@@ -105,8 +105,6 @@ deploying new-app01, the output log would be similar to this :
 ╚═════════════════════╧══════════════════════════════════════════════╝
 ----
 
-Additionally, you can add more parameters to deploy your Mule app. If you want your app to have two replicas instead of one, you can write `--replicas 2`  at the end of your script.
-
 You can set the following extra parameters for you deployment:
 
 * Password and username/client id:  `--password <value> [--username <value> | --client_id <value> | ]`
@@ -119,7 +117,6 @@ You can set the following extra parameters for you deployment:
 * Asset version: `--assetVersion <value>`
 * Group id: `--groupId <value>`
 * Replicas: `--replicas <value>`
-* Replica size: `--replicaSize <value>`
 * Object store v2: `--objectStoreV2`
 * Update strategy: `--updateStrategy <value>`
 * Clustered: `--clustered`
