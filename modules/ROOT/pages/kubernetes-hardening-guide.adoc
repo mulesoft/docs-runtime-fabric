@@ -29,6 +29,8 @@ Review the following mitigations:
 
 == Recommendations and Implementation
 
+MuleSoft is committed to ensuring the highest level of security and reliability for its Mule application deployments. As part of this dedication, MuleSoft not only provides you Kubernetes Hardening guidelines as recommendations but also diligently adheres to these guidelines for their own deployments. By strictly following Kubernetes Hardening guidelines, MuleSoft reinforces the protection of its applications and infrastructure, safeguarding against potential threats and vulnerabilities, while maintaining a robust and secure environment for both its customers and internal operations. 
+
 * Kubernetes pod security:
 ** Use containers built to run applications as non-root users:
 *** The container image should run an app with a non-root user and a non-root group.
