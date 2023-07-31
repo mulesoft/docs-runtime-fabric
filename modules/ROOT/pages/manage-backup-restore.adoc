@@ -142,12 +142,20 @@ In the following example, you have a Runtime Fabric with a set of Mule applicati
 +
 [source,copy]
 ----
-./rtfctl backup <path_to_backup_file>
+./rtfctl backup <path_to_backup_file> -n <rtf_namespace>
 ----
 +
 [start=2]
 . Shutdown `cluster-1`.
-. Remove and shutdown all Mule application deployments.
+. Delete all Mule application deployments by running the following command:
++
+[source,copy]
+----
+kubectl delete ns <app_namespace>
+----
++
+Do not remove applications from the Runtime Manager UI.
+[start=4]
 . Remove the Runtime Fabric installation.
 . Remove the Runtime Fabric operator from the OpenShift cluster (optional).
 . Send a `curl` command to the management plane API endpoint to regenerate the activation ID. +
@@ -166,7 +174,7 @@ The installation must be on the same Runtime Fabric namespace because all labels
 +
 [source,copy]
 ----
-./rtfctl restore <path_to_backup_file>
+./rtfctl restore <path_to_backup_file> -n <rtf_namespace>
 ----
 +
 . Check the status of your Runtime Fabric deployments.
