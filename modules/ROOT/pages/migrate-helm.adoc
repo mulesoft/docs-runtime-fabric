@@ -22,7 +22,7 @@ To migrate your Runtime Fabric from rtfctl to helm, run this command:
 
 [source,copy]
 ----
-rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host qax.anypoint.mulesoft.com  --confirm
+rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host anypoint.mulesoft.com  --confirm
 ----
 
 Running this command performs the following actions:
@@ -48,8 +48,21 @@ If running the command is successfull:
 
 If running the command fails:
 
-. Run `rftctl restore` command with the backup.
-. Re-try `rfctl migrate` command.
+. Run `rftctl restore` command with the backup:
++
+[source,copy]
+----
+rtfctl restore <path_to_backup_file>
+----
++
+[start=2]
+. Re-try `rfctl migrate` command:
++
+[source,copy]
+----
+rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host anypoint.mulesoft.com  --confirm
+----
++
 
 
 == Command Help
