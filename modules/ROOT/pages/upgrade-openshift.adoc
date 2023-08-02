@@ -9,3 +9,5 @@ To upgrade Runtime Fabric on Red Hat OpenShift, use the Runtime Fabric operator 
 . Select the Runtime Fabric operator.
 . Click **Upgrade**.
 
+[Note]
+Starting Runtime Fabric agent version 2.4.0 for any new Mule app deployment, you must use a runtime image built after or on Aug 8, 2023.
