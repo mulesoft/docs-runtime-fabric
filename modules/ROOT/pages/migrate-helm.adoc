@@ -37,12 +37,10 @@ Running the command does not upgrade Runtime Fabric to the version other than th
 
 === Command Success
 
-If running the command is successfull:
+If running the command is successful:
 
-* Verify that Runtime Fabric is now helm managed in the Anypoint Runtime Manager UI.
-* Manage (start, stop, delete, update) previously deployed Mule applications from the Runtime Manager UI.
-* Deploy Mule applications to the target Runtime Fabric from the Runtime Manager UI.
-* Verify that configurations such as ingress templates, persistence gateway, custom resources and proxy values that you applied before the migration are intact.
+* You can verify that Runtime Fabric is now helm managed in the Anypoint Runtime Manager UI.
+* You can verify that configurations such as ingress templates, persistence gateway, custom resources and proxy values that you applied before the migration are intact.
 
 === Command Fails
 
