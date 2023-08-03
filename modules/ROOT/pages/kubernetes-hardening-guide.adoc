@@ -1,9 +1,12 @@
 = Kubernetes Hardening Guide
 
-The following guide describes the security challenges associated with setting up and securing a
-Kubernetes cluster based on the guidelines provided by the NSA (National Security Agency). For complete guidance, see the https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF[Kubernetes Hardening Guide^].
+MuleSoft is committed to ensuring the highest level of security and reliability for its Mule application deployments. As part of this dedication, MuleSoft not only provides you Kubernetes Hardening guidelines as recommendations but also diligently adheres to these guidelines for their own deployments. By strictly following Kubernetes Hardening guidelines, MuleSoft reinforces the protection of its applications and infrastructure, safeguarding against potential threats and vulnerabilities, while maintaining a robust and secure environment for both its customers and internal operations. 
 
-== Common Sources of Compromise in K8s
+Inspired by the NSA (National Security Agency) hardening guide we are enabling granular security controls on Runtime Fabric. The following guide describes the security opportnities associated with setting up and securing a Kubernetes cluster based on the guidelines. For complete guidance, see the https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF[Kubernetes Hardening Guide^].
+
+Runtime fabric agent is fully compliance with the policies section of the https://downloads.cisecurity.org/#/[CIS (Center for Internet Security) Kubernetes benchmark^], when you configure the agent with the following security controls.
+
+== Common Security Concerns on a K8s Cluster
 
 Review the following common sources of compromise:
 
@@ -15,21 +18,19 @@ Review the following common sources of compromise:
 * Insider threats:
 ** Administrators, users or cloud providers abusing their privileges
 
-== Mitigations
+== Secure your Runtime Fabric Environment
 
-Review the following mitigations:
+Runtime Fabric enables you to secure your environment from the previous concerns in following ways:
 
-* Scan containers and pods for vulnerabilities or misconfigurations.
-* Run containers and pods with the least privileges possible.
-* Use network separation to control the amount of damage a compromise can cause.
+* Enable local registry for scanning containers and pods for vulnerabilities or misconfigurations.
+* Review the xref:runtime-fabric::secure-architecture.adoc[security architecture] and xref:runtime-fabric::authorized-namespaces.adoc[authorized namespace] containers and pods with the least privileges possible.
+* Review the security architecture for network isolation and secure connection.
 * Use firewalls to limit unneeded network connectivity and use encryption to protect confidentiality.
 * Use strong authentication and authorization to limit user and administrator access as well as to limit the attack surface.
 * Capture and monitor audit logs so that administrators can be alerted to potential malicious activity.
 * Periodically review all K8s settings and use vulnerability scans to ensure risks are appropriately accounted for and security patches are applied.
 
 == Recommendations and Implementation
-
-MuleSoft is committed to ensuring the highest level of security and reliability for its Mule application deployments. As part of this dedication, MuleSoft not only provides you Kubernetes Hardening guidelines as recommendations but also diligently adheres to these guidelines for their own deployments. By strictly following Kubernetes Hardening guidelines, MuleSoft reinforces the protection of its applications and infrastructure, safeguarding against potential threats and vulnerabilities, while maintaining a robust and secure environment for both its customers and internal operations. 
 
 * Kubernetes pod security:
 ** Use containers built to run applications as non-root users:
