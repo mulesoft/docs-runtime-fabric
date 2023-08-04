@@ -145,6 +145,8 @@ In the following example, you have a Runtime Fabric with a set of Mule applicati
 ./rtfctl backup <path_to_backup_file> -n <rtf_namespace>
 ----
 +
+[NOTE]
+MuleSoft performs the back up based on the detected cluster you have. Though, you can also manually specify the type of back up to perform using the flag `--backup-type` string. The flag options are `auto`, `openshift`, and `full`. With the default `auto` flag option, MuleSoft automatically detects the infrastructure cluster provider to perform the back up.
 [start=2]
 . Shutdown `cluster-1`.
 . Delete all Mule application deployments by running the following command:
