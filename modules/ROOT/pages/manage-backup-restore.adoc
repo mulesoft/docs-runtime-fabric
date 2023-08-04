@@ -171,7 +171,7 @@ curl --location --request PATCH 'https://anypoint.mulesoft.com/runtimefabric/api
 +
 [start=7]
 . Install the Runtime Fabric operator on `cluster-2` using the regenerated activation data ID. +
-The installation must be on the same Runtime Fabric namespace because all labels on the backup point to that installation.
+The installation must be on the same Runtime Fabric namespace. All labels on the backup point to that installation.
 . Run the restore command to pick the set of resources and restore them in the cluster:
 +
 [source,copy]
