@@ -1,0 +1,73 @@
+== Migrating to Helm Managed Runtime Fabric
+
+You can migrate to xref:runtime-fabric::install-helm.adoc[helm] native for Runtime Fabrics that were installed using xref:runtime-fabric::install-self-managed.adoc[rtfctl].
+
+== Before You Begin
+
+To perform the migration, you must consider the following:
+
+* The migration is applicable to BYOK clusters which are installed with `rtfctl` and want to migrate to helm managed.
+* The cluster must be on `rtf-agent` v2.2.5 or above. Note that you will first have to upgrade agent to the required version before you can initiate the migration. 
+
+Additionally, you must have these details:
+
+* organizationId
+* fabricId
+* Bearer token for Anypoint user account with *manage fabric* privileges
+* rtfctl version >= v1.0.10 is downloaded
+
+== Migrate rtfctl to Helm
+
+To migrate your Runtime Fabric from rtfctl to helm, run this command:
+
+[source,copy]
+----
+rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host anypoint.mulesoft.com  --confirm
+----
+
+Running this command performs the following actions:
+
+* Backs up the current Runtime Fabric installation: tarball is created with input file name.
+* Uninstalls the current Runtime Fabric installation: running the command does not update Mule application deployments, it does not delete any of your configurations applied to the rtf namespace, it does not delete the rtf namespace, and it does not touch any other namespace than the rtf namespace. Uninstalls only the previous runtime-fabric helm chart.
+* Regenerates activation data for provided fabricId.
+* Deletes custom-properties secret in the rtf namespace, because helm managed rtf recreates the secret using values from the helm chart.
+* Installs Runtime Fabric with helm commands, to re-render Runtime Fabric helm chart.
+
+Running the command does not upgrade Runtime Fabric to the version other than the existing installation version.
+
+=== Command Success
+
+If running the command is successful:
+
+* You can verify that Runtime Fabric is now helm managed in the Anypoint Runtime Manager UI.
+* You can verify that configurations such as ingress templates, persistence gateway, custom resources and proxy values that you applied before the migration are intact.
+
+=== Command Fails
+
+If running the command fails:
+
+. Run `rftctl restore` command with the backup:
++
+[source,copy]
+----
+rtfctl restore <path_to_backup_file>
+----
++
+[start=2]
+. Re-try `rfctl migrate` command:
++
+[source,copy]
+----
+rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host anypoint.mulesoft.com  --confirm
+----
++
+
+
+== Command Help
+
+To get help with the command, run the following entry:
+
+[source,copy]
+----
+rtfctl migrate –help
+----
