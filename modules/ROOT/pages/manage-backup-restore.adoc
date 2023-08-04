@@ -21,7 +21,7 @@ Do not use the backup and restore process to create concurrent running instances
 
 The Runtime Fabric backup process affects only the Runtime Fabric cluster. The backup process does not back up data from the control plane.
 
-For regular Kubernetes clusters the following is backed up:
+For regular Kubernetes clusters, the following is backed up:
 
 * Runtime Fabric cluster details, such as controller and worker node configurations
 * Cluster-level secure properties 
@@ -36,7 +36,7 @@ For regular Kubernetes clusters the following is backed up:
 ** Edge
 ** Anypoint Monitoring and external logforwarders
 
-For OpenShift clusters the following is backed up:
+For OpenShift clusters, the following is backed up:
 
 * Custom Resources
 * Application namespaces and for each one:
@@ -161,7 +161,7 @@ Do not remove applications from the Runtime Manager UI.
 . Remove the Runtime Fabric installation.
 . Remove the Runtime Fabric operator from the OpenShift cluster (optional).
 . Send a `curl` command to the management plane API endpoint to regenerate the activation ID. +
-The Runtime Fabric will show as ready for activation. You can install and activate Runtime Fabric again on a new OpenShift cluster. 
+The Runtime Fabric shows as ready for activation. You can install and activate Runtime Fabric again on a new OpenShift cluster. 
 +
 [source,copy]
 ----
