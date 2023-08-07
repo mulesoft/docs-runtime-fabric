@@ -1,0 +1,150 @@
+= Anypoint Runtime Fabric Security Architecture
+
+Anypoint Runtime Fabric provides a secure way to manage MuleSoft applications and API gateways deployed onto Runtime Fabrics anywhere and ensures that you own and control the source and destination of your data.
+
+MuleSoft’s architecture model enables a Runtime Fabric to be installed anywhere and managed centrally from Anypoint Platform’s cloud-based Anypoint Management Center, which includes Anypoint Runtime Manager, Anypoint API Manager, Anypoint Monitoring and Access Management. Under this model, all of your data flows are controlled at the location of your Runtime Fabric installation with limited metadata and metrics stored in Anypoint Management Center. This metadata assists you with managing, monitoring, and troubleshooting Runtime Fabrics, integration runtimes, and APIs.
+
+This model is powered by components that run within the Runtime Fabric cluster, referred to as the Runtime Fabric agent. The Runtime Fabric agent establishes the connection to Anypoint Management Center. It also acts as the conduit between the internal components that power Runtime Fabric (such as Kubernetes) and Anypoint Management Center. 
+
+== Runtime Fabric Data Flow
+
+Review the following diagram that shows the Runtime Fabric data flow:
+
+image::rtf-security-data-flow.png[Diagram of Runtime Fabric Data flow]
+
+=== Activation Flow
+
+The following list the steps in the activation flow process:
+
+. As an authorized customer, you obtain a Runtime Fabric activation token from the Runtime Fabric Manager running on the Anypoint control plane. 
+. This activation token is then presented back to Runtime Fabric Manager during creation of the Runtime Fabric.
+. Runtime Fabric Manager responds with a TLS certificate, CA chain, and read-only credentials to the Runtime Fabric container registry.
+. Runtime Fabric agent stores the certificate and CA chain in a Kubernetes Secret.
+. Runtime Fabric agent stores the read-only Docker registry credentials in a Kubernetes Secret.
+. Runtime Fabric agent uses the TLS certificate and CA chain to establish a mutual TLS (mTLS) connection to Anypoint Management Center to communicate with Anypoint Runtime Manager.
+. The container registry credentials are used to pull Mule runtime images from the Runtime Fabric container registry.
+
+=== Management Flow
+
+The following list the steps in the management flow process:
+
+. The mTLS tunnel protects all metadata between Anypoint Management Center and your Runtime Fabric. Runtime Fabric agent initiates and control the tunnel.
+. Application deployment messages contain metadata that describes the application and its dependencies, along with links to Anypoint Management Center Configuration Resolver to fetch the Mulesoft application bundle and configuration from. The Configuration Resolver communication is also protected with the same mTLS credentials.
+. You can use Anypoint Runtime Manager to manage and monitor applications in the Runtime Fabric cluster: 
++
+image::rtf-security-runtime-manager.png[Runtime Manager UI with application status running]
++
+* Management capabilities: start, stop, update MuleSoft applications
+
+* Monitoring capabilities: monitor CPU, memory, and Mule application metrics 
++
+image::rtf-security-anypoint-monitoring.png[Anypoint Monitoring UI with monitoring views and metrics of an application]
++
+[start=4]
+
+. You can use the Anypoint Analytics service to get insight into how your APIs are being used and how they are performing. The service sends this metric data directly to the Analytics API over a one-way TLS connection, see xref:api-manager::analytics-landing-page.adoc[Mule API Analytics]. These metrics consist of data specific to requests:
+
++
+image::rtf-security-anypoint-platform.png[Anypoint Platform UI showing requests by date for an API]
++
+
+[start=5]
+. Runtime Fabric agent,  MuleSoft applications, and API gateway are separate processes. If the Runtime Fabric agent stops working or it loses connectivity with Anypoint Management Center, the MuleSoft applications and API gateways continue to operate.
+. MuleSoft applications and API gateways work as defined in your Mule flows, and no customer data traverse to Anypoint Management Center. Your dataflow is specific to the application that was built and deployed to the runtime.
+
+=== mTLS Certificate Renewal Flow
+
+The following list the mTLS certificate renewal flow process:
+
+. When the mTLS certificate is close to its expiration date, the Runtime Fabric agent requests a renewed certificate from Anypoint Management Center via the existing mTLS tunnel.
+. Anypoint Management Center responds with a new TLS certificate.
+. Runtime Fabric agent overwrites the existing certificate with the new certificate.
+. Runtime Fabric agent restarts and re-establishes the mTLS tunnel with the new certificate.
+
+=== Anypoint Monitoring Certificate Renewal Flow
+
+The following list the Monitoring certificate renewal flow process:
+
+. When the Anypoint Monitoring certificate is close to its expiration date, Runtime Fabric agent requests a renewed certificate from Anypoint Management Center, via the existing mTLS tunnel.
+. Anypoint Management Center responds with a new certificate.
+. Runtime Fabric agent overwrites the existing certificate with the new certificate.
+. Anypoint Monitoring containers re-establish the connection with the new certificate.
+
+=== MuleSoft Image Management
+
+The following list the image management process:
+
+* Vulnerability scanning and Sonar quality gates during build process.
+* All newer image pulls are triggered by customer only.
+* MuleSoft remediates container images and applies available patches according to the normal remediation cadence.
+** Critical vulnerabilities within 30 days
+** High vulnerabilities within 90 days 
+** Medium vulnerabilities within 180 days
+** Low vulnerabilities within 360 days
+
+
+===  Container Privilege Management
+
+The following list the container privilege management process:
+
+. None of the containers need to run as root in Runtime Fabric.
+. Extremely pared down utilities inside the containers.  
+. No Kubernetes service account attached to any application containers.
+
+The Runtime Fabric agent and Mule cluster IP service interact with Kubernetes control plane. To perform any action, these components need all permissions on all resources in the cluster.
+
+
+== Metadata Types Stored in The Cloud
+
+The following metadata types are stored in the cloud:
+
+* Runtime Fabric +
+Information about a Runtime Fabric cluster. Specifically: +
++
+** Name
+** Region
+** Cluster version
+** Runtime Fabric agent version
+** Associated environments
+** Nodes, CPU, memory capacity, Kubernetes version, docker version, Kubernetes health warnings
+
+* Mulesoft application +
+The flow architecture that you create using Anypoint Studio. This flow architecture is metadata about your APIs, and you upload it to API Manager. MuleSoft applications are then deployed to the specified Runtime Fabric.
+
+* Monitoring metrics (optional) +
+Metrics about the basic runtime status that are collected on a poll configured on the runtime. Specifically: +
+
+** CPU Usage - Past Hour, Current Time
+** Memory Usage - Past Hour, Current Time
+** Memory Total - Past Hour, Current Time
+** Message Count - Past Hour, Current Time
+** Response Time - Past Hour, Current Time
+** Error Count - Past Hour, Current Time
+
+* Analytics metrics (optional) +
+You can enable analytics metrics to get insight into how your APIs are used and how they perform. You can configure these metrics and store the results for a maximum of 90 days. You can capture these metrics: +
+
+** API name
+** API version
+** Application
+** Browser
+** City
+** Client IP
+** Continent
+** Country
+** Hardware platform
+** OS family
+** OS major Version
+** OS minor Version
+** OS version
+** Postal code
+** Resource path
+** Status code
+** Timezone
+** User agent type
+** User agent version
+** Verb
+** Violated policy name
+
+* Advanced capabilities +
+You can use advanced capabilities in this model to send payload information to the cloud. These are not turned on by default and require advanced configuration to turn on and use. An example of this capability is xref:runtime-manager::insight.adoc[Runtime Manager Insight] https://docs.mulesoft.com/runtime-manager/insight.
