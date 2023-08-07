@@ -43,7 +43,7 @@ Runtime Fabric enables you to secure your environment from the previous concerns
 *** Rejecting containers that execute as the root user or allow elevation to root
 ** Build secure container images:
 *** Use only trusted repositories
-*** Scan images for vulnerabilities and misconfigurations. The scanner should allow disregarding false positives.
+*** Scan images for vulnerabilities and misconfigurations. The scanner allows disregarding false positives.
 ** Protect pod service account token:
 *** Set a service account token mounted by default on every pod.
 *** Disable with `automountServiceAccountToken: false`
