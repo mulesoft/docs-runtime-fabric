@@ -1,4 +1,4 @@
-== Customize Mule Application Kubernetes Resources
+== Customize Mule App Kubernetes Resources
 
 Anypoint Runtime Fabric enables you to customize your Mule application Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
