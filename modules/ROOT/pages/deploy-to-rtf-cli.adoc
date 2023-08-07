@@ -20,7 +20,7 @@ include::anypoint-cli::partial$rtf-instances.adoc[tag=commands,leveloffset=+1]
 
 == Deploy a Mule App Example
 
-The following example shows how to deploy a Mule application to Runtime Fabric using Anypoint CLI.
+The following example shows how to deploy a Mule appl to Runtime Fabric using Anypoint CLI.
 
 === Configure your Anypoint CLI Space
 
