@@ -34,7 +34,7 @@ npm install -g anypoint-cli-v4
 ----
 +
 [start=2]
-. Install runtime-mgr plugin by running this command:
+. Install the `runtime-mgr` plugin by running this command:
 +
 [source,copy]
 ----
