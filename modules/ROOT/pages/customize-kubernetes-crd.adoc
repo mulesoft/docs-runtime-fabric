@@ -46,7 +46,7 @@ kubectl get crd kubernetestemplates.rtf.mulesoft.com -o yaml
 
 == Examples
 
-Configuring `labels` at `pod`, `deploy` and `service` objects:
+Configuring `labels` at `pod`, `deploy`, and `service` objects:
 
 [source,copy]
 ----
