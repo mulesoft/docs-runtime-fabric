@@ -1,0 +1,179 @@
+== Customize Mule App Kubernetes Resources
+
+Anypoint Runtime Fabric enables you to customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
+
+Name the `kubernetestemplate` resource as `mule-application`. You can define the template in two different namespaces:
+
+* Apps namespace +
+The template is applied to all Mule apps deployed to the given namespace.
+
+* Runtime Fabric agent namespace +
+The template is applied to all Mule apps managed by the given Runtime Fabric agent.
+
+The `kubernetestemplate` resource applies only to new Mule app deployments after the resource creation. It does not affect existing deployments. If you redeploy a Mule app after creating or updating the `kubernetestemplate`, the template is applied.
+
+The `kubernetestemplate` resource enables you to configure the following elements of your apps pods, deployments, and services objects:
+
+* Pod
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/[Annotations^]
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[Labels^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Node selectors^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Affinity^]
+** https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[Security context^]
+** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
+
+
+* Deployment
+** Annotations
+** Labels
+
+* Service
+** Annotations
+** Labels
+
+[Note]
+Configuration elements already defined by Runtime Fabric take precedence over the ones you define in the template.
+
+To get the CRD of key elements that you can configure for the template, you can get the Kubernetes specification by running the following command:
+
+[source,copy]
+----
+kubectl get crd kubernetestemplates.rtf.mulesoft.com -o yaml
+----
+
+
+== Examples
+
+Configuring `labels` at `pod`, `deploy`, and `service` objects:
+
+[source,copy]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+spec:
+  deployment:
+    metadata:
+      labels:
+        deploymentLabel: value
+  service:
+    metadata:
+      labels:
+        serviceLabel: value
+  pod:
+    metadata:
+      labels:
+        podLabel: value
+----
+
+Configuring the runtime default `seccompProfile` for `containerSecurityContext` under the `pod` object:
+
+[source,copy]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  namespace: rtf
+spec:
+  pod:
+    containerSecurityContext:
+      seccompProfile:
+        type: RuntimeDefault
+----
+
+Another example with all the keys that you can configure:
+
+[source,copy]
+----
+apiVersion: "rtf.mulesoft.com/v1"
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  labels:
+spec:
+  deployment:
+    metadata:
+      labels:
+      annotations:
+  service:
+    metadata:
+      labels:
+      annotations:
+  pod:
+    metadata:
+      labels:
+      annotations:
+    containerSecurityContext:
+      seccompProfile: “restricted”
+    tolerations:
+    - key: "example-key"
+      operator: "Exists"
+      effect: "NoSchedule"
+    ephemeralStorageLimit: 4gb
+    nodeSelector:
+      region: us-east
+    affinity:
+    tolerations:
+    - key: "key1"
+      operator: "Exists"
+      effect: "NoSchedule"
+    topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          rtf.mulesoft.com/id: {{ .Values.id }}
+----
+
+Key elements that can not be overwritten using the CRD:
+
+* Deployment
+** Labels
+*** Environment
+*** Organization
+*** Type
+**** rtf.mulesoft.com/id
+**** rtf.mulesoft.com/version
+**** rtf.mulesoft.com/agentNamespace
+
+* Annotations
+** rtfc.mulesoft.com/egress-ruleset (if set in deployment values)
+** rtf.mulesoft.com/desiredStatus
+** rtf.mulesoft.com/replicas
+** rtf.mulesoft.com/version
+
+* Pods
+** Annotations
+*** fluentbit.io/exclude
+*** mulesoft.com/resources
+** Labels
+*** App
+*** Environment
+*** Am-org-id
+*** Root-org-id
+*** Organization
+*** rtf.mulesoft.com/id
+*** rtf.mulesoft.com/generation
+*** Type
+**** rtf.mulesoft.com/disableAmLogForwarding
+*** Name
+* Resources
+** Ephemeral-storage (if is not set in env.resources or cluster flavor is rtfc)
+* SecurityContext
+** runAsUser
+** runAsGroup
+** allowPrivilageEscalation
+** Capabilities
+* NodeSelector
+** kubernetes.io/os
+** kubernetes.io/arch
+** beta.kubernetes.io/os
+** beta.kubernetes.io/arch
+** RTF.DeploymentNodeSelector
+* Affinity
+** podAntiAffinity
