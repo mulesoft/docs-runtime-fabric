@@ -5,7 +5,7 @@ To use the complete value of Runtime Fabric, refer to your respective Kubernetes
 [%header%autowidth.spread]
 |===
 | Type of configuration | EKS-A | EKS | Appliance | MuleSoft requirements
-| Infrastructure | Vsphere/Bare Metal. | AWS | Pre-provisioned hosts. | -
+| Infrastructure | Vsphere/Bare Metal | AWS | Pre-provisioned hosts | -
 | Ingress | https://github.com/emissary-ingress/emissary[Emissary^], Nginx-ingress or any other available ingress options.
  | Nginx ingress | Nginx ingress | Customer-managed component config
 | Load balancer | https://github.com/metallb/metallb[MetalLB^] | ELB | - | Customer-managed component config
