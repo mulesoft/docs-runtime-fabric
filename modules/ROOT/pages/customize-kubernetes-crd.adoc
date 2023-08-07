@@ -10,7 +10,7 @@ The template is applied to all Mule apps deployed to the given namespace.
 * Runtime Fabric agent namespace +
 The template is applied to all Mule apps managed by the given Runtime Fabric agent.
 
-The `kubernetestemplate` resource applies only to new Mule application deployments after the resource creation. It does not affect existing deployments. If you redeploy a Mule application after creating or updating the `kubernetestemplate` the template is applied.
+The `kubernetestemplate` resource applies only to new Mule app deployments after the resource creation. It does not affect existing deployments. If you redeploy a Mule app after creating or updating the `kubernetestemplate`, the template is applied.
 
 The `kubernetestemplate` resource enables you to configure the following elements of your applications pods, deployments and services objects:
 
