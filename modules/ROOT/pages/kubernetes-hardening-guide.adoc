@@ -20,7 +20,7 @@ Review the following common sources of compromise:
 
 == Secure your Runtime Fabric Environment
 
-Runtime Fabric enables you to secure your environment from the previous concerns in following ways:
+Runtime Fabric enables you to secure your environment from the previous concerns:
 
 * Enable local registry for scanning containers and pods for vulnerabilities or misconfigurations.
 * Review the xref:runtime-fabric::secure-architecture.adoc[security architecture] and xref:runtime-fabric::authorized-namespaces.adoc[authorized namespace] containers and pods with the least privileges possible.
