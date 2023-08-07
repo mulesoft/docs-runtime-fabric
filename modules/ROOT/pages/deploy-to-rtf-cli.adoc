@@ -53,7 +53,7 @@ anypoint-cli-v4 conf username <username>
 anypoint-cli-v4 conf password <password>
 ----
 
-To set other parameters for your space, review the xref:anypoint-cli::auth.adoc[Authentication to the Anypoint Platform CLI] documentation.
+To set other parameters for your space, see xref:anypoint-cli::auth.adoc[Authentication to the Anypoint Platform CLI].
 After your CLI space is set, you can deploy and manage Mule applications to Runtime Fabric.
 
 === List Existing Apps
