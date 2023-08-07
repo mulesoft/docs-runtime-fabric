@@ -1,6 +1,6 @@
 == Customize Mule App Kubernetes Resources
 
-Anypoint Runtime Fabric enables you to customize your Mule application Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
+Anypoint Runtime Fabric enables you to customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
 Name the `kubernetestemplate` resource as `mule-application`. You can define the template in two different namespaces:
 
