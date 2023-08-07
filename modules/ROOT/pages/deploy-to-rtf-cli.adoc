@@ -126,7 +126,7 @@ You can set the following extra parameters for you deployment:
 * Secure property: `--secureProperty <key:value>`
 * Properties file: `--propertiesFile <value>`
 * Scope logging config file: `--scopeLoggingConfigFile <value>`
-* Forward ssl session: `--forwardSslSession`
+* Forward SSL session: `--forwardSslSession`
 * Path rewrite: `--pathRewrite <value>`
 * Public endpoints: `--publicEndpoints <value>`
 * Instance type: `--instanceType <value>`
