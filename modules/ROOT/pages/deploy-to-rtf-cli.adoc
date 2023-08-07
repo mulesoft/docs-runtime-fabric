@@ -73,8 +73,8 @@ To deploy the Mule app, run the following command:
 runtime-mgr:application:deploy <appName> <targetId> <runtimeVersion> <artifactId>
 ----
 
-Using (test-mule-1) version as default version: v1.0.6
-deploying new-app01, the output log would be similar to this :
+Using `test-mule-1` version as default: v1.0.6 +
+After deploying `new-app01`, the output log is:
 
 [source,copy]
 ----
