@@ -12,6 +12,6 @@ To use the complete value of Runtime Fabric, refer to your respective Kubernetes
 | Monitoring |Grafana/Prometheus | CloudWatch | Grafana/Prometheus | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
 | Local cluster registry | https://github.com/goharbor/harbor[Harbor^] or any other compliant implementation | ECR | Docker registry running inside the cluster | 
 | Cluster size limits | Kubernetes imposed limits on the cluster size. | 1000 managed nodes | 21 total (5 control plane nodes + 16 worker nodes | -
-| CK8s distro | https://github.com/aws/eks-distro[EKS-D^] | https://github.com/aws/eks-distro[EKS-D^] | Custom distro (planet). | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
+| CK8s distro | https://github.com/aws/eks-distro[EKS-D^] | https://github.com/aws/eks-distro[EKS-D^] | Custom distro (planet) | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
 | Cluster mgmt tool | `eksctl` or `eksctl-anywhere` | `eksctl` | Custom utility (rtfctl) | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
 |===
