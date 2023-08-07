@@ -24,7 +24,7 @@ The following example shows how to deploy a Mule appl to Runtime Fabric using An
 
 === Configure your Anypoint CLI Space
 
-To configure your CLI space, you must download and install `anypoint-cli-v4`:
+To configure your CLI space, download and install `anypoint-cli-v4`:
 
 . Open CLI and run this command:
 +
