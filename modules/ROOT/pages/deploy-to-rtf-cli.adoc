@@ -107,7 +107,7 @@ After deploying `new-app01`, the output log is:
 
 You can set the following extra parameters for you deployment:
 
-* Password and username/client id:  `--password <value> [--username <value> | --client_id <value> | ]`
+* Password and username/client ID:  `--password <value> [--username <value> | --client_id <value> | ]`
 * Client secret:   `--client_secret <value>`
 * Bearer: `--bearer <value>`
 * Organization:  `--organization <value>`
