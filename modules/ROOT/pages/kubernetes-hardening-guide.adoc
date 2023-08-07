@@ -16,7 +16,7 @@ Review the following common sources of compromise:
 * Malicious threat actors:
 ** Exploit vulnerabilities and misconfigurations
 * Insider threats:
-** Administrators, users or cloud providers abusing their privileges
+** Administrators, users, or cloud providers abusing their privileges
 
 == Secure your Runtime Fabric Environment
 
