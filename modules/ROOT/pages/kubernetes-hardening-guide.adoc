@@ -1,0 +1,66 @@
+= Kubernetes Hardening Guide
+
+MuleSoft is committed to ensuring the highest level of security and reliability for its Mule app deployments. As part of this dedication, MuleSoft not only provides you Kubernetes Hardening guidelines as recommendations but also diligently adheres to these guidelines for their own deployments. By strictly following Kubernetes Hardening guidelines, MuleSoft reinforces the protection of its applications and infrastructure, safeguarding against potential threats and vulnerabilities, while maintaining a robust and secure environment for both its customers and internal operations. 
+
+Inspired by the NSA (National Security Agency) hardening guide, we are enabling granular security controls on Runtime Fabric. The following guide describes the security opportunities associated with setting up and securing a Kubernetes cluster based on the guidelines. For complete guidance, see the https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF[Kubernetes Hardening Guide^].
+
+Runtime fabric agent is fully compliance with the policies section of the https://downloads.cisecurity.org/#/[CIS (Center for Internet Security) Kubernetes benchmark^], when you configure the agent with the following security controls.
+
+== Common Security Concerns on a K8s Cluster
+
+Review the following common sources of compromise:
+
+* Supply chain risks:
+** Container build cycle
+** Infrastructure acquisition
+* Malicious threat actors:
+** Exploit vulnerabilities and misconfigurations
+* Insider threats:
+** Administrators, users, or cloud providers abusing their privileges
+
+== Secure your Runtime Fabric Environment
+
+Runtime Fabric enables you to secure your environment from the previous concerns:
+
+* Enable local registry for scanning containers and pods for vulnerabilities or misconfigurations.
+* Review the xref:runtime-fabric::secure-architecture.adoc[security architecture] and xref:runtime-fabric::authorized-namespaces.adoc[authorized namespace] containers and pods with the least privileges possible.
+* Review the security architecture for network isolation and secure connection.
+* Use firewalls to limit unneeded network connectivity and use encryption to protect confidentiality.
+* Use strong authentication and authorization to limit user and administrator access as well as to limit the attack surface.
+* Capture and monitor audit logs so that administrators can be alerted to potential malicious activity.
+* Periodically review all K8s settings and use vulnerability scans to ensure risks are appropriately accounted for and security patches are applied.
+
+== Recommendations and Implementation
+
+* Kubernetes pod security:
+** Use containers built to run applications as non-root users:
+*** The container image should run an app with a non-root user and a non-root group.
+*** K8s enforces non-root containers with `SecurityContext:runAsUser` specifying non 0 users.
+** Use immutable container filesystems by mounting read/write filesystems for application specific directories only.
+** Use technical control to enforce a minimum level of security including:
+*** Preventing privileged containers
+*** Denying container features frequently exploited to breakout, such as hostPID, hostIPC, hostNetwork, allowedHostPath
+*** Rejecting containers that execute as the root user or allow elevation to root
+** Build secure container images:
+*** Use only trusted repositories
+*** Scan images for vulnerabilities and misconfigurations. The scanner allows disregarding false positives.
+** Protect pod service account token:
+*** Set a service account token mounted by default on every pod.
+*** Disable with `automountServiceAccountToken: false`
+*** If a token is needed for instance to authenticate to external service, use RBAC to restrict pod privileges in the cluster.
+
+* Authentication and authorization:
+** Create RBAC policies with unique roles for users, administrators, developers, service accounts, and infrastructure team.
+
+* Audit logging and threat detection:
+** Persist logs to ensure availability in the case of node, pod or container level failure.
+** Aggregate logs external to the cluster.
+
+* Network separation and hardening:
+** Namespaces by default are not isolated but allow applying rules via RBAC, networking policies and resource policies.
+
+* Upgrade and application security practices:
+** Promptly apply security patches and updates.
+** Uninstall and delete unused components from the environment.
+
+You can apply your security configuration for Mule application deployments by following the guidelines on how to xref:runtime-fabric::customize-kubernetes-crd.adoc[Customize Mule Application Kubernetes Resources] documentation.
