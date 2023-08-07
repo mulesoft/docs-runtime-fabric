@@ -28,6 +28,8 @@
 ** xref:rtf-scale.adoc[Scalability Benchmarks]
 ** xref:rtf-cluster-config.adoc[Cluster Configurations]
 * xref:customize-kubernetes-crd.adoc[Customize Mule application Kubernetes Resources]
+* xref:authorized-namespaces.adoc[Configure Authorized Namespaces]
+* xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
 * xref:migrate-helm.adoc[Migrating to helm from rtfctl]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
 * xref:configure-openshift-routes.adoc[Configure OpenShift Routes]
