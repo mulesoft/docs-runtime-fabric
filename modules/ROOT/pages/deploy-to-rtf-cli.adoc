@@ -115,7 +115,7 @@ You can set the following extra parameters for you deployment:
 * Host: `--host <value>`
 * Collect metrics: `--collectMetrics`
 * Asset version: `--assetVersion <value>`
-* Group id: `--groupId <value>`
+* Group ID: `--groupId <value>`
 * Replicas: `--replicas <value>`
 * Object store v2: `--objectStoreV2`
 * Update strategy: `--updateStrategy <value>`
