@@ -20,6 +20,7 @@
 ** xref:rtf-cluster-config.adoc[Cluster Configurations]
 * xref:authorized-namespaces.adoc[Configure Authorized Namespaces]
 * xref:deploy-resource-allocation-self-managed.adoc[Resource Allocation]
+* xref:migrate-helm.adoc[Migrating to helm from rtfctl]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
 * xref:configure-openshift-routes.adoc[Configure OpenShift Routes]
 * xref:configure-local-registry.adoc[Use a Local Registry]
