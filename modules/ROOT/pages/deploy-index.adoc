@@ -1,4 +1,4 @@
-= “Deploying and Managing Applications to Runtime Fabric
+= Deploying and Managing Applications to Runtime Fabric
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API Proxies to a Mule runtime engine that is managed on Runtime Fabric.
 
