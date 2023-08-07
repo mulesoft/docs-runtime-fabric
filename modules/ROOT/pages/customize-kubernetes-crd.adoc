@@ -4,7 +4,7 @@ Anypoint Runtime Fabric enables you to customize your Mule application Kubernete
 
 Name the `kubernetestemplate` resource as `mule-application`. You can define the template in two different namespaces:
 
-* Applications namespace +
+* Apps namespace +
 The template is applied to all Mule apps deployed to the given namespace.
 
 * Runtime Fabric agent namespace +
