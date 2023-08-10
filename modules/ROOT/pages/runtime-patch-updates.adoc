@@ -17,7 +17,7 @@ Here's an example version number, including the patch date:
 
 The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 
-include::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[]
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[]
 
 === Runtime Fabric Mule Runtime Patch Update Schedule 
 
