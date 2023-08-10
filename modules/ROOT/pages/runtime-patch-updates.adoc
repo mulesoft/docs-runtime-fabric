@@ -17,6 +17,8 @@ Here's an example version number, including the patch date:
 
 The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 
+include::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[]
+
 === Runtime Fabric Mule Runtime Patch Update Schedule 
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
