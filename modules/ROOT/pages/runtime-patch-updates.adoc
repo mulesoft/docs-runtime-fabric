@@ -51,7 +51,7 @@ Runtime Fabric updates the app with the version you selected and displays a mess
 +
 Mule deployments on Runtime Fabric are not automatically patched. You must redeploy your applications to apply the latest date-patch updates.
 
-== New Mule Runtime Engine Release Cadence
+== Disable Autoupgrades
 
 
 
