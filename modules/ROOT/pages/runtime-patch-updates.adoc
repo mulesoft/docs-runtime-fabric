@@ -62,42 +62,24 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 [%header,="2*a"]
 |===
 | Action | Runtime Fabric 
-| Deploy net new apps | 
-
+| Deploy net new apps  
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF1]
-
-| Auto-upgrade | 
-
+| Auto-upgrade 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF2]
-
-| Self-upgrade | 
-
+| Self-upgrade
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF3]
-
-| Rollback | 
-
-include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]
-
-| Restart apps |
-
+| Rollback 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]\
+| Restart apps
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF5]
-
-| Keep running applications | 
-
+| Keep running applications 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF6]
-
-| End of Extended Support | 
-
+| End of Extended Support 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF7]
-
-| Retirement | 
-
+| Retirement  
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF8]
-
-| Supportability | 
-
+| Supportability 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF9]
-
 |===
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
