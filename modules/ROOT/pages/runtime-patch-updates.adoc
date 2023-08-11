@@ -69,7 +69,7 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 | Self-upgrade
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF3]
 | Rollback 
-include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]\
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]
 | Restart apps
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF5]
 | Keep running applications 
