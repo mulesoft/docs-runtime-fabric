@@ -1,6 +1,6 @@
-= Managing Mule Runtime Patch Updates for Runtime Fabric 
+= Managing Mule Runtime Releases for Runtime Fabric 
 
-The following provides important information about Mule runtime engine patch updates for Anypoint Runtime Fabric.
+The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
 == Monthly Date-Patch Updates 
 
@@ -17,7 +17,9 @@ Here's an example version number, including the patch date:
 
 The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 
-== Runtime Fabric Runtime Patch Update Schedule 
+
+
+=== Runtime Fabric Mule Runtime Patch Update Schedule 
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
 
@@ -28,7 +30,7 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 [NOTE]
 During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you might be required to update its date-patch version to a later release.
 
-== Update a Single App to the Latest Runtime Patch Release
+=== Update a Single App to the Latest Runtime Patch Release
 
 Before updating apps in the production environment, update them in the sandbox environment and run required tests. 
 
@@ -48,6 +50,52 @@ Runtime Fabric updates the app with the version you selected and displays a mess
 . Redeploy your application.
 +
 Mule deployments on Runtime Fabric are not automatically patched. You must redeploy your applications to apply the latest date-patch updates.
+
+== Edge and LTS Releases for Mule
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
+
+[%header,="2*a"]
+|===
+| Action | Runtime Fabric 
+| Deploy net new apps  
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF1]
+| Auto-upgrade 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF2]
+| Self-upgrade
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF3]
+| Rollback 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]
+| Restart apps
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF5]
+| Keep running applications 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF6]
+| End of Extended Support 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF7]
+| Retirement  
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF8]
+| Supportability 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF9]
+|===
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
+
+=== Runtime Fabric
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro4]
+
+Runtime Fabric requires 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro5]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
+
+== Disable Autoupgrades
+
+Starting with Mule runtime engine 4.5.0, autoupgrades are disabled automatically. If a Mule app is successfully deployed through the API without a build tag, the latest build is auto selected. The grace period section is only valid for versions earlier than 4.5.0. With versions later than 4.5.0, all builds under a Mule runtime engine version are available for deployment.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
