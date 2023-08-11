@@ -54,7 +54,7 @@ image::rtf-rtm-mule-cadence.png[Runtime Manager UI with Mule Edge release dropdo
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.d
 
 [Note]
-New deployments are only possible with Mule runtime engine versions that are within standard support or extended support. You can specify specify the versions through the API or in the Runtime Manager UI. After a version is within the EOL support, redeployments and restars are still possible but no net new deployments are allowed. 
+You can deploy Mule apps with Mule runtime engine versions that are within the standard support or extended support life. Specify the versions through the API or in the Runtime Manager UI. With a Mule runtime engine version in EOL (end of life) support, you can still redeploy and restart Mule apps though you can not deploy new Mule apps. 
 
 === Configure a Public Endpoint for the Application 
 
