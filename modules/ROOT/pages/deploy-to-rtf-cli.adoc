@@ -11,6 +11,11 @@ include::anypoint-cli::partial$cloudhub2-apps.adoc[tags=summary-rtf,leveloffset=
 
 include::anypoint-cli::partial$cloudhub2-apps.adoc[tags=commands-rtf,leveloffset=+1]
 
+[NOTE]
+====
+include::anypoint-cli::partial$mule-4.5-release-channels.adoc[]
+====
+
 [[list-runtime-fabric-instances]]
 == List Runtime Fabric Instances
 
