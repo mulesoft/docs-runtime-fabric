@@ -93,8 +93,9 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
 
-== Disable Autoupgrades
+== Version Rewrite
 
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support. The version overridden with would be a minimum supported build tag.
 Starting with Mule runtime engine 4.5.0, autoupgrades are disabled automatically. If a Mule app is successfully deployed through the API without a build tag, the latest build is auto selected. The grace period section is only valid for versions earlier than 4.5.0. With versions later than 4.5.0, all builds under a Mule runtime engine version are available for deployment.
 
 == See Also
