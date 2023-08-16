@@ -1,4 +1,4 @@
-== Customize Mule App Kubernetes Resources
+= Customize Mule App Kubernetes Resources
 
 Anypoint Runtime Fabric enables you to customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
@@ -23,6 +23,8 @@ The `kubernetestemplate` resource enables you to configure the following element
 ** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
+
+For the security context pod, the key to use is `containerSecurityContext`.
 
 
 * Deployment
