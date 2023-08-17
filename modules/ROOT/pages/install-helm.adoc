@@ -154,7 +154,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: <name>
-  namespace: <additional-namespace>
+  namespace: <additional_namespace>
 subjects:
   - kind: ServiceAccount
     name: rtf-agent
