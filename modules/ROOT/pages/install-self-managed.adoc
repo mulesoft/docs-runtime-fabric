@@ -5,6 +5,9 @@ You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint 
 [NOTE]
 Runtime Fabric versions 2.2.5 or later that support multiple instances require `rtfctl` version 0.4.1 or later.
 
+[NOTE]
+`rtfctl` always installs the latest version of Runtime Fabric agent.
+
 == Before you Begin
 
 Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
