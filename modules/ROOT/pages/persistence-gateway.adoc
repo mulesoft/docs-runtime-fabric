@@ -90,6 +90,18 @@ The output of this command should be similar to the following:
 192.168.2.101 - - [09/Apr/2021:16:35:55 +0000] "GET /api/v1/status/ready HTTP/1.1" 200 2 "" "kube-probe/1.18+"
 ----
 
+== Persistence Gateway with Authorized Namespaces
+
+If you use xref:install-helm.adoc#optional-configure-authorized-namespaces[authorized namespace] and want to use persistence gateway, edit the RoleBinding by adding a new `rtf-persistence-gateway` subject:
+
+[source,copy]
+----
+subjects:
+  - kind: ServiceAccount
+    name: rtf-persistence-gateway
+    namespace: <rtf_namespace>
+----
+
 [[k8-custom-resource-template]]
 == Kubernetes Custom Resource Template
 

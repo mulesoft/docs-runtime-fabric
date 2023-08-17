@@ -4,14 +4,14 @@ To use the complete value of Runtime Fabric, refer to your respective Kubernetes
 
 [%header%autowidth.spread]
 |===
-| Type of configuration | EKS-A | EKS | Appliance
-| Infrastructure | Vsphere/Bare Metal. | AWS | Pre-provisioned hosts.
+| Type of configuration | EKS-A | EKS | Appliance | MuleSoft requirements
+| Infrastructure | Vsphere/Bare Metal | AWS | Pre-provisioned hosts | -
 | Ingress | https://github.com/emissary-ingress/emissary[Emissary^], Nginx-ingress or any other available ingress options.
- | Nginx ingress | Nginx ingress
-| Load balancer | https://github.com/metallb/metallb[MetalLB^] | ELB | -
-| Monitoring |Grafana/Prometheus | CloudWatch | Grafana/Prometheus
-| Local cluster registry | https://github.com/goharbor/harbor[Harbor^] or any other compliant implementation. | ECR | Docker registry running inside the cluster.
-| Cluster size limits | Kubernetes imposed limits on the cluster size. | 1000 managed nodes. | 21 total (5 control plane nodes + 16 worker nodes.
-| CK8s distro | https://github.com/aws/eks-distro[EKS-D^] | https://github.com/aws/eks-distro[EKS-D^] | Custom distro (planet).
-| Cluster mgmt tool | `eksctl` or `eksctl-anywhere` | `eksctl` | Custom utility (rtfctl)
+ | Nginx ingress | Nginx ingress | Customer-managed component config
+| Load balancer | https://github.com/metallb/metallb[MetalLB^] | ELB | - | Customer-managed component config
+| Monitoring |Grafana/Prometheus | CloudWatch | Grafana/Prometheus | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
+| Local cluster registry | https://github.com/goharbor/harbor[Harbor^] or any other compliant implementation | ECR | Docker registry running inside the cluster | 
+| Cluster size limits | Kubernetes imposed limits on the cluster size. | 1000 managed nodes | 21 total (5 control plane nodes + 16 worker nodes | -
+| CK8s distro | https://github.com/aws/eks-distro[EKS-D^] | https://github.com/aws/eks-distro[EKS-D^] | Custom distro (planet) | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
+| Cluster mgmt tool | `eksctl` or `eksctl-anywhere` | `eksctl` | Custom utility (rtfctl) | Check xref:limitations-self.adoc[Requirements and Limitations] of Runtime Fabric
 |===

@@ -1,0 +1,8 @@
+= Secure Runtime Fabric
+ 
+ To secure Anypoint Runtime Fabric, see:
+
+* xref:authorized-namespaces.adoc[Configure Authorized Namespaces]
+* xref:configure-local-registry.adoc[Use a Local Registry]
+* xref:security-architecture.adoc[MuleSoft Anypoint Runtime Fabric Security Architecture]
+* xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide]
