@@ -118,11 +118,11 @@ rtfctl install <activation_data>
 +
 `<activation_data>` is the activation data obtained after creating the Runtime Fabric using Runtime Manager. During installation, the `rtfctl` utility displays any errors encountered.
 
-For private registry installations, add the `--cluster-ops-image` flag:
+For private registry installations, add the `--cluster-ops-image` flag and select the image version as per the release notes of the agent version to install:
 
 [source,copy]
 ----
-rtfctl install <ACTIVATION_DATA> --cluster-ops-image <local-reg-host>/mulesoft/rtf-cluster-ops:v2.0.88
+rtfctl install <ACTIVATION_DATA> --cluster-ops-image <local-reg-host>/mulesoft/rtf-cluster-ops:<version-here>
 ----
 
 
