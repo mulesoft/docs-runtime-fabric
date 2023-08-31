@@ -92,6 +92,9 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
 
+After you select the option *Use Edge Release Channel* in the Runtime Manager UI, the platform shows all the build tags for Edge and LTS channels. The build tag is specific to Runtime Manager and CloudHub 2 because the image can be built multiple times for a given Mule runtime version. 
+The Runtime Manager UI does not show build tags for Mule runtime engine versions < 4.5 but you can still use any build through the API.
+
 == Version Rewrite
 
 Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support. The version overridden with would be a minimum supported build tag. Starting with Mule runtime engine version 4.5, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto selected.
