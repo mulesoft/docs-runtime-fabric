@@ -22,7 +22,7 @@ If your Runtime Fabric is running with an unsupported configuration or does not 
 * `This Runtime Fabric is not supported for any workloads. Learn more.`
 * `This Runtime Fabric is suitable for non-production workloads only. Learn more.`
 
-Refer to xref:install-prereqs.adoc[Anypoint Runtime Fabric Installation Prerequisites] for additional information.
+Refer to xref:install-index.adoc[Installing Runtime Fabric] for additional information.
 
 Proper configuration must be complete before operating and deploying production applications on Runtime Fabric.
 
