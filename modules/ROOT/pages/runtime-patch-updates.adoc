@@ -27,7 +27,7 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 . During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.
 . Beginning on the third full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
-During the grace period, you can select earlier date-patch versions until they are no longer available through the UI but still usable through the API. Note that this behavior changes starting Mule runtime engine version 4.5 with Edge and LTS channel releases, all build tags are available for use in the Runtime Manager UI and API.
+During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
 
 === Update a Single App to the Latest Runtime Patch Release
 
@@ -92,12 +92,12 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
 
-After you select the option *Use Edge Release Channel* in the Runtime Manager UI, the platform shows all the build tags for Edge and LTS channels. The build tag is specific to Runtime Manager and CloudHub 2 because the image can be built multiple times for a given Mule runtime version. 
+After you select the option *Use Edge Release Channel* in the Runtime Manager UI, the platform shows all the build tags for Edge and LTS channels. The build tag is specific to Runtime Manager and CloudHub 2.0 because the image can be built multiple times for a given Mule runtime version. 
 The Runtime Manager UI does not show build tags for Mule runtime engine versions < 4.5 but you can still use any build through the API.
 
 == Version Rewrite
 
-Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support. The version overridden with would be a minimum supported build tag. Starting with Mule runtime engine version 4.5, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto selected.
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support. The version overridden with is a minimum supported build tag. Starting with Mule runtime engine version 4.5, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
