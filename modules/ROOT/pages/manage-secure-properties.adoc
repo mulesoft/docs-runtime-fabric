@@ -57,4 +57,4 @@ sudo ./rtfctl delete secure-property <my_key> -n <namespace>
 == See Also
 
 * xref:install-rtfctl.adoc[Install rtfctl]
-* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
+* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
