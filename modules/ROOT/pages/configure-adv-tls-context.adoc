@@ -78,4 +78,3 @@ This option imports a TLS context from the secrets manager, and supports advance
 * xref:anypoint-security::enable-client-authentication.adoc[Enable Client Authentication]
 * xref:anypoint-security::cipher-suites.adoc[Cipher Suites]
 * xref:anypoint-security::asm-secret-type-support-reference.adoc[Supported Secret Types]
-* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
