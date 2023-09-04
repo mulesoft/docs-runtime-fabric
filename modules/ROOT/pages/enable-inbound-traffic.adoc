@@ -110,8 +110,6 @@ The certificate must be set with a passphrase and a common name (CN) that specif
 Optionally, leave the *Key password* field empty if your key is unencrypted (not recommended).
 .. Specify a value for *CA path certificate (optional)*.
 +
-
-.. Optionally, set any necessary xref:optional-select-security-policies.adoc[security policies] or xref:optional-select-advanced-options.adoc[advanced options].
 .. Select *Add certificate*. The *Key password* field is blanked out for security reasons. 
 +
 The public certificate, private key, and key passcode are saved in the secrets manager.
