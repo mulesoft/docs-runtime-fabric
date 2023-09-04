@@ -10,7 +10,7 @@ To deploy an application to Runtime Fabric, the application must be published in
 
 Before using Maven to deploy a Mule application, you should be familiar with Maven, managing pom.xml files, and working with Maven plugins.
 
-Before deploying an application to Runtime Fabric you should understand the number of resource it requires. See xref:runtime-fabric::deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] for more information.
+Before deploying an application to Runtime Fabric you should understand the number of resource it requires. See xref:deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] for more information.
 
 == Add the Mule Maven Plugin to a Mule Project
 

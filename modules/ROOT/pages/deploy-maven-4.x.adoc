@@ -9,7 +9,7 @@ To deploy an application to Runtime Fabric, the application must be published in
 
 Before using Maven to deploy a Mule application, you should be familiar with Maven, managing pom.xml files, and working with Maven plugins.
 
-Before deploying an application to Runtime Fabric you should understand the number of resource it requires. See xref:runtime-fabric::deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] for more information.
+Before deploying an application to Runtime Fabric you should understand the number of resource it requires. See xref:deploy-resource-allocation.adoc[Resource Allocation on Anypoint Runtime Fabric] for more information.
 
 == Add the Mule Maven Plugin to a Mule Project
 
@@ -141,4 +141,3 @@ For example:
 This allocates 0.5 vCores to each replica.
 | server (optional) | specifies the Maven server that contains Anypoint Platform credentials. This is property is only required if you want to use the credentials stored in your Maven `settings.xml` file. Note: This is not the Mule server name.
 |===
-
