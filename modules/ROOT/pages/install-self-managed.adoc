@@ -9,12 +9,12 @@ Runtime Fabric versions 2.2.5 or later that support multiple instances require `
 
 Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
 
-* You have reviewed the architecture and requirements outlined in xref:index-self-managed.adoc[Runtime Fabric]
+* You have reviewed the architecture and requirements outlined in xref:index.adoc[Runtime Fabric]
 * You have xref:install-self-managed-network-configuration.adoc[configured your network to support Runtime Fabric]
 * You have installed and configured your Kubernetes environment with:
 +
 ** An EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
-** A xref:index-self-managed.adoc#kubernetes-support[supported Kubernetes version]
+** A supported Kubernetes version.
 ** An ingress controller to send external requests to applications.
 * You create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
 
@@ -125,6 +125,6 @@ To roll back to a previous version of Runtime Fabric trigerred automatically on 
 
 == See Also
 
-* xref:index-self-managed.adoc[Runtime Fabric Overview]
+* xref:index.adoc[Runtime Fabric Overview]
 * xref:custom-ingress-configuration.adoc[Configure Ingress for Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc[Deploy a Mule Application to Runtime Fabric]
