@@ -127,4 +127,3 @@ configuring authorized namespaces, refer to documentation. | Permanent
 
 * xref:runtime-fabric::app-versioning.adoc[Reviewing Application Versioning on Runtime Fabric]
 * xref:runtime-manager::managing-deployed-applications.adoc#status_states[Runtime Manager Status States]
-* xref:runtime-fabric:deploy-to-runtime-fabric.adoc[Deploy Mule apps to Runtime Fabric]
