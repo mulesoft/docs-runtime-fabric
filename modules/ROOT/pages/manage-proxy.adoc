@@ -58,7 +58,7 @@ The output should match the value expected.
 
 You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane. 
 
-Note that Anypoint Monitoring xref:configure-a-monitoring-proxy.adoc[uses its own proxy settings], as do xref:configure-a-proxy-for-a-mule-application.adoc[Mule applications].
+Note that Anypoint Monitoring uses its own proxy settings, as do Mule applications.
 
 Updating an HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
