@@ -66,7 +66,7 @@ HTTP requests sent to Runtime Fabric on VMs / Bare Metal are ignored.
 
 * *Accept HTTP requests only*
 +
-Because certificates are not used in this case, click *Add Domain* and manually enter domains for routing requests to applications. Skip the xref:configure-a-tls-context-for-hh.adoc[Configure a TLS context for HTTPS] task.
+Because certificates are not used in this case, click *Add Domain* and manually enter domains for routing requests to applications. 
 +
 [NOTE]
 *Accept HTTP requests only* is not a secure option for external connections. Use this option for network connections for which an external load balancer has previously terminated a secure TLS connection and is forwarding traffic via HTTP to Runtime Fabric on VMs / Bare Metal.
