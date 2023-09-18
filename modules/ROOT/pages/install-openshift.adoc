@@ -176,7 +176,7 @@ subjects:
     namespace: <rtf_namespace>
 ----
 
-Additionally, if you want to use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
 
 [source,yaml]
 ----
