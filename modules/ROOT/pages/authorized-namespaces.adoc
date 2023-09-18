@@ -74,7 +74,7 @@ subjects:
   namespace: default
 ----
 
-If you want to use clustered apps in authorized namespaces mode, you need to create the following RoleBiding:
+Additionally, if you want to use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
 
 [source,yaml]
 ----

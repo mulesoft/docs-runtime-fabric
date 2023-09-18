@@ -32,6 +32,8 @@ kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED"
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
 
+[NOTE]
+Custom Log4j is only supported by Mule applications running on Mule runtime engine instances greater than or equal to Mule version 4.3.0. The Mule image must be built after Nov 17, 2022. For details, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-14-2022[Runtime Fabric Release Notes].
 
 == Example: Create a Log4j Configuration Using Splunk
 
