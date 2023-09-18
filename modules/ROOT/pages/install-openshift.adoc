@@ -120,6 +120,7 @@ metadata:
 oc apply -f <filename>.yaml
 ----
 
+
 . Repeat steps 1 and 2  to add as many namespaces as you need.
 
 . Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
@@ -174,9 +175,28 @@ subjects:
     name: am-log-forwarder
     namespace: <rtf_namespace>
 ----
-+
+
+If you want to use clustered apps in authorized namespaces mode, you need to create the following RoleBiding:
+
+[source,yaml]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf-mule-clusterip-service
+  namespace: <app_namespace>
+subjects:
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:mule-clusterip-service
+  apiGroup: rbac.authorization.k8s.io
+----
+
 For `<additional-namespace>`, use the same template as well:
-+
+
 [source,copy]
 ----
 apiVersion: rbac.authorization.k8s.io/v1
@@ -208,7 +228,8 @@ subjects:
     name: am-log-forwarder
     namespace: <rtf_namespace>
 ----
-+
+
+[start=6]
 . In your cluster, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces. Note that the additional namespace mapping keys must be unique since they use the standard K8s resource (ConfigMap). There is no specific requirements on the format of the key name provided they are unique.
 +
 [source,copy]

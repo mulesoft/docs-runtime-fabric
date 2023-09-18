@@ -165,6 +165,27 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
+
+If you want to use clustered apps in authorized namespaces mode, you need to create the following RoleBiding:
+
+[source,yaml]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf-mule-clusterip-service
+  namespace: <app_namespace>
+subjects:
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:mule-clusterip-service
+  apiGroup: rbac.authorization.k8s.io
+----
+
+[start=5]
 . In the `rtf` namespace, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
