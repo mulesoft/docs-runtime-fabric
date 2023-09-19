@@ -135,6 +135,11 @@ subjects:
   - kind: ServiceAccount
     name: rtf-agent
     namespace: <rtf_namespace>
+# If using persistence gateway uncomment and provide the following. Ref: https://docs.mulesoft.com/runtime-fabric/latest/persistence-gateway#persistence-gateway-with-authorized-namespaces
+# subjects:
+#  - kind: ServiceAccount
+#    name: rtf-persistence-gateway
+#    namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
   name: rtf:agent
