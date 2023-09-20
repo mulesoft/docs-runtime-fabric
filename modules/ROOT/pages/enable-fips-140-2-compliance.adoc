@@ -1,4 +1,5 @@
-= Enabling FIPS 140-2 Compliance Mode for Runtime Fabric
+= Enabling FIPs 140-2 on Mule Applications
+
 
 You can configure Runtime Fabric to run application containers in FIPS 140-2 compliance mode.
 
