@@ -31,13 +31,13 @@ Some capabilities of Anypoint Runtime Fabric include:
 * Automated application fail-over.
 * Application management with Anypoint Runtime Manager.
 
-The Anypoint control plane features, Anypoint CLI, and Mule Maven plugin are available universally across all partners. At runtime plane only Helm based Runtime Fabric management and features are supported for VMWare Tanzu, Alibaba ACK and Rancher. The feature supportability matrix across platforms is as follows:
+The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are available universally across all partners. At runtime plane, only Helm based Runtime Fabric management and features are supported for VMWare Tanzu, Alibaba ACK, and Rancher. The feature supportability matrix across platforms is as follows:
 
 [%header%autowidth.spread]
 |===
 |Support of following use-cases |AWS EKS and AWS EKS-A |BM Openshift Offerings | AKS & GKE | VMWare Tanzu, Alibaba ACK, Rancher
 | Access and use of Anypoint Control Plane including Runtime Manager, Access Management, Anypoint Monitoring, etc.  |Yes |Yes | Yes| Yes
-| Automation tooling such as Mule Maven plugin, Runtime Fabric APIs and Anypoint CLI. |Yes |Yes | Yes | Yes
+| Automation toolings such as the Mule Maven Plugin, Runtime Fabric APIs, and Anypoint CLI. |Yes |Yes | Yes | Yes
 | Runtime Fabric functionality support for compatible K8s versions. |Yes |Yes | Yes | Yes
 | Security updates for Runtime Fabric core software and Mule runtime engine images. |Yes |Yes | Yes | Yes
 | Lifecycle management of Runtime Fabric software via `helm`. |Yes |Yes | Yes | Yes

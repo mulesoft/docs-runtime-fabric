@@ -31,7 +31,7 @@
  ** xref:install-rtfctl.adoc[Use the Runtime Fabric Command Line Tool]
  ** xref:replace-license-key.adoc[Replace a Mule License Key]
  ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
- ** xref:migrate-helm.adoc[Migrating to helm from rtfctl]
+ ** xref:migrate-helm.adoc[Migrating to Helm from RTFCTL]
 * xref:deploy-index.adoc[Deploy and Manage Applications]
  ** xref:runtime-patch-updates.adoc[Manage Mule Runtime Patch Updates]
  ** xref:create-custom-namespace.adoc[Create Namespaces for Application Deployments]
