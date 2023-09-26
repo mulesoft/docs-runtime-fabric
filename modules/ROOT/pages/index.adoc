@@ -48,7 +48,7 @@ The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are
 | Enable FIPS mode for security. |Yes |- | Yes | -
 | Managed lifecycle of Runtime Fabric software via control plane. |Yes |- | Yes | -
 | Setup secure properties using `rtfctl`.|Yes |- | Yes | -
-| Lifecycle management of Runtime Fabric software via `rtfctl`. ≈
+| Lifecycle management of Runtime Fabric software via `rtfctl`. |Yes |- | Yes | -
 | Full Backup/Restore via `rtfctl`. |Yes |- | Yes | -
 | Reference implementations (templates) - performance tuning, CRD configurations
 K8s best practices, recommended cluster sizing, and network configuration. |Yes |- | - | -
