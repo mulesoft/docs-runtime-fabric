@@ -111,8 +111,7 @@ image::rtf-namespace-flow.png[Application namespace assignment flowchart]
 
 === Monitoring Application Deployments
 
-The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`. When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. See xref:logs[Logs] and xref:monitoring[Monitoring] for addtional information. 
-
+The Runtime Fabric agent monitors Kubernetes Deployments labeled with `rtf.mulesoft.com/id`. When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. See xref:limitations-self.adoc#logs[Logs] and xref:limitations-self.adoc#monitoring[Monitoring] for additional information.
 
 == Feature Support List for Runtime Fabric
 
