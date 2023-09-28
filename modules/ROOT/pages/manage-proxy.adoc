@@ -4,10 +4,10 @@ Anypoint Runtime Fabric clusters consistently communicate with the Anypoint Plat
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
 
-* xref:configure-an-anypoint-monitoring-proxy.adoc[Configure an Anypoint Monitoring Proxy]
-* xref:configure-an-http-proxy-for-services-in-runtime-fabric.adoc[Configure an HTTP Proxy for Services in Runtime Fabric]
-* xref:configure-a-proxy-for-the-api-manager-agent.adoc[Configure a Proxy for the API Manager Agent]
-* xref:configure-a-proxy-for-a-mule-application.adoc[Configure a Proxy for a Mule Application]
+* xref:configure-an-anypoint-monitoring-proxy[Configure an Anypoint Monitoring Proxy]
+* xref:configure-an-http-proxy-for-services-in-runtime-fabric[Configure an HTTP Proxy for Services in Runtime Fabric]
+* xref:configure-a-proxy-for-the-api-manager-agent[Configure a Proxy for the API Manager Agent]
+* xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application]
 
 
 Proxies used by Runtime Fabric can be configured during or after installation using the `rtfctl` utility. Application proxies are configured during application deployment.
