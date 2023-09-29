@@ -1,4 +1,4 @@
-= Managing Apps in Runtime Fabric Using the CLI
+= Deploy and Manage Apps in Runtime Fabric Using the CLI
  
 Use these Anypoint Platform CLI commands for deploying and managing applications in Runtime Fabric. The CLI supports both the interactive shell and standard CLI modes. 
 

@@ -12,6 +12,9 @@ If you work in public clouds and have some level of expertise in managing a Kube
 * https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
 * https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
 * https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
+* https://www.google.com/url?q=https://www.alibabacloud.com/product/kubernetes&sa=D&source=docs&ust=1695253295782775&usg=AOvVaw1HvpOJ2m_H7JOIZzcIbyym[Alibaba Cloud Container Service for Kubernetes (ACK)^]
+* https://tanzu.vmware.com/kubernetes-grid#:~:text=Tanzu%20Kubernetes%20Grid%20is%20an,any%20app%20on%20any%20cloud.&text=Run%20the%20same%20Kubernetes%20across,workloads%20properly%20isolated%20and%20secure[VMware Tanzu Kubernetes Grid^]
+* https://rke.docs.rancher.com/[Rancher Kubernetes Engine (RKE)^]
 
 If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
 
@@ -27,6 +30,29 @@ Some capabilities of Anypoint Runtime Fabric include:
 * Scaling applications across multiple replicas.
 * Automated application fail-over.
 * Application management with Anypoint Runtime Manager.
+
+The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are available universally across all partners. At runtime plane, only Helm based Runtime Fabric management and features are supported for VMWare Tanzu, Alibaba ACK, and Rancher. The feature supportability matrix across platforms is as follows:
+
+[%header%autowidth.spread]
+|===
+|Support of following use-cases |AWS EKS and AWS EKS-A |BM Openshift Offerings | AKS & GKE | VMWare Tanzu, Alibaba ACK, Rancher
+| Access and use of Anypoint Control Plane including Runtime Manager, Access Management, Anypoint Monitoring, etc.  |Yes |Yes | Yes| Yes
+| Automation toolings such as the Mule Maven Plugin, Runtime Fabric APIs, and Anypoint CLI. |Yes |Yes | Yes | Yes
+| Runtime Fabric functionality support for compatible K8s versions. |Yes |Yes | Yes | Yes
+| Security updates for Runtime Fabric core software and Mule runtime engine images. |Yes |Yes | Yes | Yes
+| Lifecycle management of Runtime Fabric software via `helm`. |Yes |Yes | Yes | Yes
+| Customization of application workloads using CRDs via `helm`. |Yes |Yes | Yes | Yes
+| Log4j support for App Monitoring |Yes |Yes | Yes | Yes
+| Troubleshooting through `rtfctl report` command. |Yes |Yes | Yes | Yes
+| Lifecycle management of Runtime Fabric software via `operator`. |- |Yes | - | -
+| Enable FIPS mode for security. |Yes |- | Yes | -
+| Managed lifecycle of Runtime Fabric software via control plane. |Yes |- | Yes | -
+| Setup secure properties using `rtfctl`.|Yes |- | Yes | -
+| Lifecycle management of Runtime Fabric software via `rtfctl`. |Yes |- | Yes | -
+| Full Backup/Restore via `rtfctl`. |Yes |- | Yes | -
+| Reference implementations (templates) - performance tuning, CRD configurations
+K8s best practices, recommended cluster sizing, and network configuration. |Yes |- | - | -
+|===
 
 == Anypoint Runtime Fabric as a Shared Responsibility
 
@@ -111,7 +137,7 @@ image::rtf-namespace-flow.png[Application namespace assignment flowchart]
 
 === Monitoring Application Deployments
 
-The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`. When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. See xref:logs[Logs] and xref:monitoring[Monitoring] for addtional information. 
+The Runtime Fabric agent monitors Kubernetes Deployments labelled with `rtf.mulesoft.com/id`. When Kubernetes updates the state of the deployment, the agent sends that update to the control plane. See xref:limitations-self.adoc#logs[Logs] and xref:limitations-self.adoc#monitoring[Monitoring] for additional information. 
 
 
 == Feature Support List for Runtime Fabric

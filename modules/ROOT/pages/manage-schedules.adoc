@@ -57,6 +57,9 @@ image::ch2-scheduler-studio.png[Scheduler component in the Anypoint Studio canva
 After you deploy the app, you can manage the schedule in Runtime Manager.
 The app doesn't need to be running.
 
+[Note]
+Use Mule Maven facade v3 when you deploy through Maven to Runtime Fabric for the schedules to show in the Runtime Manager UI.
+
 == View and Manage Application Schedules in Runtime Manager
 
 After deploying an app to Runtime Fabric, view and manage the Scheduler elements in Runtime Manager:

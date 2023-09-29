@@ -1,4 +1,6 @@
-= Managing Mule Runtime Releases for Runtime Fabric 
+
+= Managing Mule Runtime Patch Updates
+
 
 The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 

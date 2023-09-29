@@ -21,7 +21,7 @@ Do not use the backup and restore process to create concurrent running instances
 
 The Runtime Fabric backup process affects only the Runtime Fabric cluster. The backup process does not back up data from the control plane.
 
-The following is backed up:
+For regular Kubernetes clusters, the following is backed up:
 
 * Runtime Fabric cluster details, such as controller and worker node configurations
 * Cluster-level secure properties 
@@ -35,6 +35,23 @@ The following is backed up:
 ** Object Store
 ** Edge
 ** Anypoint Monitoring and external logforwarders
+
+For OpenShift clusters, the following is backed up:
+
+* Custom Resources
+* Application namespaces and for each one:
+** Secrets
+** Service Account
+** ConfigMap
+** Services
+** CronJobs
+** DaemonSets
+** Deployments
+** Ingress
+** Role
+** Role Bindings
+* Ingress from Runtime Fabric namespace
+
 
 == What Does Not Get Backed Up
 
@@ -105,13 +122,61 @@ To restore a cluster on Runtime Fabric, create a cluster *without* running the `
 ----
 kubectl scale --replicas=0 -n rtf deployment.apps/agent
 ----
-
++
+[start =5]
++
 . Restore the cluster from the backup: 
 [source,copy]
 ----
 ./rtfctl restore <path_to_backup_file>
 ----
-+
 This process may require several minutes to complete.
 
 For Runtime Fabric, confirm the `rtfctl` binary is present in the current directory and the Kubernetes (kubectl) context is set to the cluster you are restoring to.
+
+== Create a Backup and Restore for OpenShift Clusters
+
+In the following example, you have a Runtime Fabric with a set of Mule applications and configurations deployed on cluster (named `cluster-1`) inside an OpenShift cluster. To create a backup and perform a restore, follow these steps:
+
+. Run the backup command: 
++
+[source,copy]
+----
+./rtfctl backup <path_to_backup_file> -n <rtf_namespace>
+----
++
+[NOTE]
+MuleSoft performs the back up based on the detected cluster you have. Though, you can also manually specify the type of back up to perform using the flag `--backup-type` string. The flag options are `auto`, `openshift`, and `full`. With the default `auto` flag option, MuleSoft automatically detects the infrastructure cluster provider to perform the back up.
+[start=2]
+. Shutdown `cluster-1`.
+. Delete all Mule application deployments by running the following command:
++
+[source,copy]
+----
+kubectl delete ns <app_namespace>
+----
++
+Do not remove applications from the Runtime Manager UI.
+[start=4]
+. Remove the Runtime Fabric installation.
+. Remove the Runtime Fabric operator from the OpenShift cluster (optional).
+. Send a `curl` command to the management plane API endpoint to regenerate the activation ID. +
+The Runtime Fabric shows as ready for activation. You can install and activate Runtime Fabric again on a new OpenShift cluster. 
++
+[source,copy]
+----
+curl --location --request PATCH 'https://anypoint.mulesoft.com/runtimefabric/api/organizations/{org-id}/fabrics/{fabric-id}/regenerateActivationData' \
+--header 'Authorization: Bearer {bearer-token}
+----
++
+[start=7]
+. Install the Runtime Fabric operator on `cluster-2` using the regenerated activation data ID. +
+The installation must be on the same Runtime Fabric namespace. All labels on the backup point to that installation.
+. Run the restore command to pick the set of resources and restore them in the cluster:
++
+[source,copy]
+----
+./rtfctl restore <path_to_backup_file> -n <rtf_namespace>
+----
++
+. Check the status of your Runtime Fabric deployments.

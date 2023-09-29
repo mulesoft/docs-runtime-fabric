@@ -64,7 +64,7 @@ To apply the license using Helm, run the following command:
 
 [source,copy]
 ----
-helm upgrade --set muleLicense=$BASE64_ENCODED_LICENSE
+helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values
 ----
 // end::licenseKey[]
 
