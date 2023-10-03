@@ -1,6 +1,8 @@
+
 = Managing Mule Runtime Patch Updates
 
-The following provides important information about Mule runtime engine patch updates for Anypoint Runtime Fabric.
+
+The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
 == Monthly Date-Patch Updates 
 
@@ -17,7 +19,9 @@ Here's an example version number, including the patch date:
 
 The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 
-== Runtime Fabric Runtime Patch Update Schedule 
+
+
+=== Runtime Fabric Mule Runtime Patch Update Schedule 
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
 
@@ -25,10 +29,9 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 . During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.
 . Beginning on the third full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
-[NOTE]
-During the grace period, you can select earlier date-patch versions until they are no longer available. If you select an earlier date-patch, and make any subsequent changes to that application, you might be required to update its date-patch version to a later release.
+During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
 
-== Update a Single App to the Latest Runtime Patch Release
+=== Update a Single App to the Latest Runtime Patch Release
 
 Before updating apps in the production environment, update them in the sandbox environment and run required tests. 
 
@@ -48,6 +51,55 @@ Runtime Fabric updates the app with the version you selected and displays a mess
 . Redeploy your application.
 +
 Mule deployments on Runtime Fabric are not automatically patched. You must redeploy your applications to apply the latest date-patch updates.
+
+== Edge and LTS Releases for Mule
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
+
+[%header,="2*a"]
+|===
+| Action | Runtime Fabric 
+| Deploy net new apps  
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF1]
+| Auto-upgrade 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF2]
+| Self-upgrade
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF3]
+| Rollback 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF4]
+| Restart apps
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF5]
+| Keep running applications 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF6]
+| End of Extended Support 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF7]
+| Retirement  
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF8]
+| Supportability 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF9]
+|===
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
+
+=== Runtime Fabric
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro4]
+
+Runtime Fabric requires 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro5]
+
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro6]
+
+After you select the option *Use Edge Release Channel* in the Runtime Manager UI, the platform shows all the build tags for Edge and LTS channels. The build tag is specific to Runtime Manager and CloudHub 2.0 because the image can be built multiple times for a given Mule runtime version. 
+The Runtime Manager UI does not show build tags for Mule runtime engine versions < 4.5 but you can still use any build through the API.
+
+== Version Rewrite
+
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support. Starting with Mule runtime engine version 4.5, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag or with an incorrect build tag, the latest build is auto-selected.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
