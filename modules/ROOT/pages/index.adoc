@@ -5,7 +5,6 @@ Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies 
 If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
-* https://aws.amazon.com/eks/eks-anywhere/[Amazon EKS Anywhere (EKS-A)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
 * https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
@@ -13,14 +12,16 @@ If you work in public clouds and have some level of expertise in managing a Kube
 * https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
 * https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
 * https://www.google.com/url?q=https://www.alibabacloud.com/product/kubernetes&sa=D&source=docs&ust=1695253295782775&usg=AOvVaw1HvpOJ2m_H7JOIZzcIbyym[Alibaba Cloud Container Service for Kubernetes (ACK)^]
-* https://tanzu.vmware.com/kubernetes-grid#:~:text=Tanzu%20Kubernetes%20Grid%20is%20an,any%20app%20on%20any%20cloud.&text=Run%20the%20same%20Kubernetes%20across,workloads%20properly%20isolated%20and%20secure[VMware Tanzu Kubernetes Grid^]
-* https://rke.docs.rancher.com/[Rancher Kubernetes Engine (RKE)^]
 
 If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
 
+* https://aws.amazon.com/eks/eks-anywhere/[Amazon EKS Anywhere (EKS-A)^]
+* https://rke.docs.rancher.com/[Rancher Kubernetes Engine (RKE)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^] 
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
+* https://tanzu.vmware.com/kubernetes-grid#:~:text=Tanzu%20Kubernetes%20Grid%20is%20an,any%20app%20on%20any%20cloud.&text=Run%20the%20same%20Kubernetes%20across,workloads%20properly%20isolated%20and%20secure[VMware Tanzu Kubernetes Grid^]
+
 
 
 Some capabilities of Anypoint Runtime Fabric include:
