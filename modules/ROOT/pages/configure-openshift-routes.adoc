@@ -19,21 +19,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-rtf-ingress
-  namespace: rtf (1)
+  namespace: rtf #(1)
   labels:
 spec:
-  ingressClassName: rtf-openshift (2)
-  tls: (3)
+  ingressClassName: rtf-openshift #(2)
+  tls: #(3)
   - hosts:
       - app-name.example.com
     secretName: example-tls
   rules:
-    - host: app-name.example.com (4)
+    - host: app-name.example.com #(4)
       http:
-        paths: (5)
+        paths: #(5)
       - pathType: Prefix
-        path: / (6)
-        backend: (7)
+        path: / #(6)
+        backend: #(7)
           service:
             name: service-name
             port:
@@ -42,21 +42,21 @@ spec:
 
 Note the following about this example:
 
-<1> The template must be placed in the `rtf` namespace.
-
-<2> `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
+[calloutlist]
+.. The template must be placed in the `rtf` namespace.
+.. `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
 +
 Runtime Fabric uses the `rtf-` prefix to recognize the object as a template. Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class` annotation are consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example,`openshift`.
 
-<3> TLS is optional. If specified in the template, Runtime Fabric creates a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
+.. TLS is optional. If specified in the template, Runtime Fabric creates a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
 
-<4> Runtime Fabric replaces the `app-name` placeholder parameter with the actual app name when you deploy the application. This helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+.. Runtime Fabric replaces the `app-name` placeholder parameter with the actual app name when you deploy the application. This helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
 
-<5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
+.. A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
-<6> Runtime Fabric replaces the `path` parameter value with the value you add in the Path field when you configure ingress for a Mule application. Note that `path` is not a placeholder.
+.. Runtime Fabric replaces the `path` parameter value with the value you add in the Path field when you configure ingress for a Mule application. Note that `path` is not a placeholder.
 
-<7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+.. These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
 
 For a list of optional placeholder values, see xref:custom-ingress-configuration.adoc#template-placeholders[Template Placeholders].  
 
