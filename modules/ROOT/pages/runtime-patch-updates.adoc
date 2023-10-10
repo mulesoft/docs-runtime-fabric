@@ -99,7 +99,7 @@ The Runtime Manager UI does not show build tags for Mule runtime engine versions
 
 == Version Rewrite
 
-Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting with Mule runtime engine version 4.5, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
