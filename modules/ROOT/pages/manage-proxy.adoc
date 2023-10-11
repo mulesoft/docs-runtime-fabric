@@ -10,6 +10,7 @@ You can configure the proxy settings used by Runtime Fabric outbound connections
 * <<configure-proxy-mule-app, Configure a Proxy for a Mule Application>>
 
 
+
 Proxies used by Runtime Fabric can be configured during or after installation using the `rtfctl` utility. Application proxies are configured during application deployment.
 
 == Install rtfctl 

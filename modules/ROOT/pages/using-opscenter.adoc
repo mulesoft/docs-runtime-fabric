@@ -7,7 +7,7 @@ Ops Center has limited capabilities. If you need capabilities such as the follow
 * xref:access-management::external-identity.adoc[SSO integration]
 * xref:monitoring::index.adoc[Detailed application monitoring with Anypoint Monitoring]
 * xref:runtime-fabric::view-health.adoc[Detailed health reporting for Runtime Fabric]
-* xref:runtime-fabric::runtime-fabric-logs.adoc#forward-logs-to-external-services[External log forwarding]
+
 
 == Access Ops Center
 
