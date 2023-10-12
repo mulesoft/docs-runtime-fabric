@@ -1,4 +1,5 @@
 // tag::monitoring-proxy[]
+[[configure-proxy]]
 == Configure an Anypoint Monitoring Proxy
 
 Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
@@ -36,6 +37,7 @@ The output should match the value expected.
 // end::monitoring-proxy[]
 // tag::http-proxy[]
 
+[[configure-http-proxy]]
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
 You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane. 
@@ -102,6 +104,7 @@ By default, `NO_PROXY` is set to `0.0.0.0/0` and `.local`. These settings ensure
 // end::http-proxy[]
 // tag::api-manager-proxy[]
 
+[[configure-proxy-api]]
 == Configure a Proxy for the API Manager Agent
 
 You can use a proxy to establish communication for Mule applications that you manage with API Manager. This proxy configuration must be set on each Mule application, even if you are using the same configuration for all applications. Note this setting is independent from the application-level proxy that applications use to communicate with other external endpoints, as explained in xref:configure-a-proxy-for-a-mule-application[Configure a Proxy for a Mule Application].
@@ -117,6 +120,7 @@ anypoint.platform.proxy_password=password
 // end::api-manager-proxy[]
 //tag::mule-app-proxy[]
 
+[[configure-proxy-mule-app]]
 == Configure a Proxy for a Mule Application
 
 Applications deployed in Runtime Fabric do not inherit proxy settings from the Runtime Fabric 
