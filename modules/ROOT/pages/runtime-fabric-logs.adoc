@@ -245,7 +245,7 @@ Example output plugin configuration:
     Splunk_Token xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
     Tls          On
 ```
-
+[[Cloud Watch]]
 ==== CloudWatch Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
@@ -274,7 +274,7 @@ Example output plugin configuration:
     log_stream_prefix      my_stream
     auto_create_group      On
 ```
-
+[[Syslog]]
 ==== Syslog Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
