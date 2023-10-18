@@ -13,7 +13,7 @@ If you work in public clouds and have some level of expertise in managing a Kube
 * https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
 * https://www.google.com/url?q=https://www.alibabacloud.com/product/kubernetes&sa=D&source=docs&ust=1695253295782775&usg=AOvVaw1HvpOJ2m_H7JOIZzcIbyym[Alibaba Cloud Container Service for Kubernetes (ACK)^]
 
-If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both On-Prem and public cloud bare-metal solutions:
+If you prefer to standardize your own bare-metal solutions using public K8s distributions, depending on your affinity to public clouds and in-house Kubernetes expertise, the following offerings can enable both On-Prem and public cloud bare-metal solutions:
 
 * https://aws.amazon.com/eks/eks-anywhere/[Amazon EKS Anywhere (EKS-A)^]
 * https://rke.docs.rancher.com/[Rancher Kubernetes Engine (RKE)^]
