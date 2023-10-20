@@ -134,7 +134,7 @@ metadata:
   namespace: <app_namespace>
 subjects:
   - kind: ServiceAccount
-    name: rtf-agent
+    name: rtf-certificate-renewal
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
