@@ -30,7 +30,7 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 . Beginning on the third full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
 [Note]
-Starting Mule runtime engine version 4.5, you can disable autoupgrades of your Mule apps on redeployment by passing the tag required for version pinning.
+Starting with Mule runtime engine version 4.5, you can disable autoupgrades of your Mule apps on redeployment by passing the tag required for version pinning.
 
 During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
 
