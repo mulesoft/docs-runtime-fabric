@@ -49,6 +49,7 @@
  ** xref:app-to-app-requests.adoc[Send Application-to-Application Requests]
  ** xref:proxy-deploy-runtime-fabric.adoc[Deploy API Proxies]
  ** xref:manage-schedules.adoc[Manage App Schedules]
+* xref:rtfctl-permissions.adoc[RTFCTL Kubernetes Permissions]
 * xref:customize-kubernetes-crd.adoc[Customize Mule application Kubernetes Resources]
 * xref:custom-ingress-configuration.adoc[Configure Ingress]
 * xref:configure-openshift-routes.adoc[Configure OpenShift Routes]

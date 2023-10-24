@@ -1,0 +1,64 @@
+= RTFCTL Kubernetes Permissions
+
+Understanding and enabling the specific permissions required over the Kubernetes resources is crucial for successfully running `rtfctl` commands. Properly configured role permissions are essential for seamless execution of `rtfctl` operations.
+
+The following table list all the permissions that you configure using K8s RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[Role based access control^]) in Kubernetes: 
+
+* Namespace +
+The Namespace column indicates that the permission can be a Role based or ClusterRole based:
+ ** Role based: the namespace can be for example, `rtf`, `<app-namespace>`, `rtf-validate`, or `kube-node-lease`.
+ ** ClusterRole: the namespace field doesn't exist there because it applies to the entire cluster, thus blank in the table.
+
+* apiGroups +
+The apiGroups column indicates the apiGroup that group K8s resources. When you create a Role, each K8s resource declares what is their apiGroups. When blank in the table, defaults to the core apiGroup. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
+
+* Kubernetes Resource +
+The Kubernetes Resource column indicates the type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to which the permissions apply.
+
+* Verbs +
+The Verbs column indicates the actions that are allowed on the specified Kubernetes resources.
+
+|===
+|`rtfctl` command |Namespace .3+|apiGroups |Kubernetes Resource |Verbs
+
+|apply
+|rtf
+|<app-namespace>
+|""
+
+|Test
+|Test
+|Test
+|Test
+|Test
+|===
+
+|===
+|`rtfctl` command |Namespace |apiGroups 
+.3+|apply
+|rtf
+|<app-namespace>
+| "" 
+
+| Column 3, row 1
+|===
+
+|===
+|`rtfctl` command |Namespace |apiGroups 
+.3+|Columna 1 fila 1/2/3
+|Fila 1 col 2
+|Fila 1 col 3
+|Fila 2 col 2
+|Fila 2 col 3
+|Fila 3 col 2
+|Fila 3 col 3
+|===
+
+|===
+|`rtfctl` command |Namespace |apiGroups 
+.3+|Columna 1 fila 1/2/3
+|Fila 1 col 2
+.3+|Columna 3 fila 1/2/3
+|Fila 2 col 2
+|Fila 3 col 2
+|===
