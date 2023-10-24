@@ -165,6 +165,27 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
+
+To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+
+[source,yaml]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf-mule-clusterip-service
+  namespace: <app_namespace>
+subjects:
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:mule-clusterip-service
+  apiGroup: rbac.authorization.k8s.io
+----
+
+[start=5]
 . In the `rtf` namespace, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
@@ -175,8 +196,8 @@ metadata:
   name: authorized-namespaces
   namespace: <rtf_namespace>
 data:
-  ADDITIONAL_NAMESPACE: "additional-namespace1"
-  ADDITIONAL_NAMESPACE: "additional-namespace2"
+  ADDITIONAL_NAMESPACE_1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE_2: "additional-namespace2"
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
