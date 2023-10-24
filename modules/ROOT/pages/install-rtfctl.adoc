@@ -556,6 +556,22 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
   hello-world-77f5897949-z54gb   Pending
 ----
 
+== Auditing rtfctl operations
+
+The `rtfctl` command line tool (from vX.X.X and above) audits the rtfctl operations on the cluster. Helping the cluster admins/users to track operations that impact RTF core software.
+Some key points:
+1. Audit logs are stored in a kubernetes secret in `rtfctl-audit` namespace.
+2. Audit logs are cluster scoped and not attached to RTF core software lifecycle.
+3. Execution of commands will continue to function if fails to audit the operation.
+
+----
+$ sudo ./rtfctl audit-logs
+<add a sample output>
+----
+
+Note:
+- Currently Audit logs rollover/rotation is not supported.
+
 == Understanding rtfctl Output
 
 The `rtfctl` command line tool commonly calls other applications and system tools, and the output of those calls is sent to standard output and standard error output. This output is written in the context of each operation performed.
