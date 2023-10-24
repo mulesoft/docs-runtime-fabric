@@ -2,7 +2,7 @@
 
 Understanding and enabling the specific permissions required over the Kubernetes resources is crucial for successfully running `rtfctl` commands. Properly configured role permissions are essential for seamless execution of `rtfctl` operations.
 
-The following table list all the permissions that you configure using K8s RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[Role based access control^]) in Kubernetes: 
+The following table lists all the permissions that you configure using K8s RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[Role based access control^]) in Kubernetes: 
 
 * Namespace +
 The Namespace column indicates that the permission can be a Role based or ClusterRole based:
@@ -21,22 +21,22 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
 [%header%autowidth.spread,cols=".^a,.^a,.^a,.^a,.^a]
 |===
 |`rtfctl` command |Namespace |apiGroups | Kubernetes Resources | Verbs 
-.5+|apply       .2+|rtf             |      |configmaps | create, get, patch, update
+.5+|`apply`       .2+|rtf             |      |configmaps | create, get, patch, update
                                     |      |pods       | deletecollection
                    | <app-namespace>|      |secrets    | get, list, watch
                 .2+|                |      |namespaces | get, list, watch
                                     |      |secrets    | create, get, patch, update
-|update                  |rtf       |      |configmaps, secrets |get
-.2+|wait           |rtf             |      | configmaps, secret |get
+|`update`                  |rtf       |      |configmaps, secrets |get
+.2+|`wait`           |rtf             |      | configmaps, secret |get
                    |                |apps  | daemonsets, deployments |get, list, watch
-.7+|install     .5+|rtf             |      |configmaps, pods/log | get
+.7+|`install`     .5+|rtf             |      |configmaps, pods/log | get
                                     |      |pods       | get, list, watch
                                     |      |secrets       | create, get
                                     |      |serviceaccounts      | create
                                     |batch    |jobs       | create, get 
                 .2+|                |      |namespaces | create
                    | rbac.authorization.k8s.io|clusterrolebindings, clusterroles   | create
-.8+|backup      .8+|                |      |configmaps, namespaces, secrets, serviceaccounts, services | get, list, watch
+.8+|`backup`     .8+|                |      |configmaps, namespaces, secrets, serviceaccounts, services | get, list, watch
                                     |apiextensions.k8s.io      |customresourcedefinitions       | get
                                     |apps      |daemonsets, deployments       | get, list, watch
                                     |batch      |cronjobs       | get, list, watch
@@ -44,7 +44,7 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
                                     |rbac.authorization.k8s.io      |clusterrolebindings, clusterroles, rolebindings, roles       | get, list, watch
                                     |rtf.mulesoft.com      |persistencegateways       | get, list, watch
                                     |scheduling.k8s.io      |priorityclasses       | get
-.9+|restore       .3+|rtf           | apps     |daemonsets | create, get, patch, update
+.9+|`restore`      .3+|rtf           | apps     |daemonsets | create, get, patch, update
                                     | batch    |cronjobs | create, get, patch, update
                                     | rtf.mulesoft.com    |persistencegateways | get, list, watch
                   .6+|              |          |configmaps, namespaces, secrets, serviceaccounts, services | create, get, patch, update
@@ -53,7 +53,7 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
                                     | networking.k8s.io        |ingresses | create, get, patch, update
                                     | rbac.authorization.k8s.io      |clusterrolebindings, clusterroles | create, get, patch, update
                                     | scheduling.k8s.io     |priorityclasses | create, get, patch, update
-.12+|validate       .4+|rtf           |      |configmaps | get
+.12+|`validate`       .4+|rtf           |      |configmaps | get
                                       |      |pods | deletecollection
                                       |      |secrets | delete, get
                                       |batch    |jobs | delete
@@ -65,34 +65,34 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
                                       |      |nodes, pods | get, list, watch
                                       | authorization.k8s.io     |selfsubjectaccessreviews | create
                                       | rbac.authorization.k8s.io     |clusterrolebindings, clusterroles | create, delete
-|version                  |rtf       |      |configmaps, secrets |get
-.3+|delete       .2+|<app-namespace> |      |pods | get, list, watch
+|`version`                  |rtf       |      |configmaps, secrets |get
+.3+|`delete`       .2+|<app-namespace> |      |pods | get, list, watch
                                      |      |secrets | get, list, patch, update, watch 
                     |rtf |      |configmaps, secrets | get 
-.3+|describe       |<app-namespace> |      |pods | get, list, watch
+.3+|`describe`       |<app-namespace> |      |pods | get, list, watch
                     |rtf            |      |configmaps, secrets | get 
                     |               | apps |deployments | get, list, watch 
-.3+|disk       .2+|<app-namespace> |      |pods | get, list, watch
+.3+|`disk`       .2+|<app-namespace> |      |pods | get, list, watch
                                      |      |pods/exec | create 
                     |rtf |      |configmaps, secrets | get  
-.3+|memory       .2+|<app-namespace> |      |pods | get, list, watch
+.3+|`memory`       .2+|<app-namespace> |      |pods | get, list, watch
                                      |      |pods/exec | create 
                     |rtf |      |configmaps, secrets | get  
-.3+|package       .2+|<app-namespace> |      |pods | get, list, watch
+.3+|`package`       .2+|<app-namespace> |      |pods | get, list, watch
                                      |      |pods/exec | create 
                     |rtf |      |configmaps, secrets | get    
-.2+|restart       |<app-namespace> |      |pods | delete, get, list, watch
+.2+|`restart`      |<app-namespace> |      |pods | delete, get, list, watch
                  |rtf             |      |configmaps, secrets | get  
-.3+|heapdump       .2+|<app-namespace> |      |pods | get, list, watch
+.3+|`heapdump`       .2+|<app-namespace> |      |pods | get, list, watch
                                      |      |pods/exec | create 
                     |rtf |      |configmaps, secrets | get 
-.3+|threaddump       .2+|<app-namespace> |      |secrets | get, list, watch
+.3+|`threaddump`       .2+|<app-namespace> |      |secrets | get, list, watch
                                      |      |pods/exec | create 
                     |rtf |      |configmaps, secrets | get 
-.3+|get       |<app-namespace> |      |secrets | get, list, watch
+.3+|`get`       |<app-namespace> |      |secrets | get, list, watch
                     |rtf |      |configmaps, secrets | get 
                     | |  apps    |deployments | get, list, watch 
-.10+|report       .8+|rtf |      |configmaps, limitranges, resourcequotas, secrets, serviceaccounts, services | get, list, watch
+.10+|`report`       .8+|rtf |      |configmaps, limitranges, resourcequotas, secrets, serviceaccounts, services | get, list, watch
                          |      |endpoints, pods/log | get 
                          | apps |daemonsets, deployments, replicasets | get, list, watch
                          | batch |cronjobs | get, list, watch
@@ -102,10 +102,10 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
                          | rtf.mulesoft.com |persistencegateways | get, list, watch
                 |kube-node-lease | coordination.k8s.io     |leases | get 
                 |        |  |events, namespaces, nodes, pods | get, list, watch  
-.3+|status      .3+|rtf     |      |configmaps, pods/log, secrets | get
+.3+|`status`      .3+|rtf     |      |configmaps, pods/log, secrets | get
                          |      |pods | create, delete, get, list, watch 
                          |batch      |jobs | create, delete, get 
-.4+|test      .3+|rtf    |      |configmaps, pods/log, secrets | get
+.4+|`test`      .3+|rtf    |      |configmaps, pods/log, secrets | get
                          |      |pods | create, delete, get, list, watch 
                          |batch      |jobs | create, delete, get
                  |       |       |nodes | get, list, watch    
