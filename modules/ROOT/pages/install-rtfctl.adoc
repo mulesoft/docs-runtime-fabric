@@ -558,7 +558,7 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
 
 == Auditing rtfctl Operations
 
-The `rtfctl` command line tool (from vX.X.X and above) audits the `rtfctl` operations on the cluster. Helping cluster administrators and you to track operations that impact Runtime Fabric core software.
+The `rtfctl` command line tool (from vX.X.X and above) audits the `rtfctl` operations on the cluster and it helps cluster administrators and you to track operations that impact Runtime Fabric core software.
 
 Consider the following points:
 
