@@ -56,9 +56,12 @@ The Verbs column indicates the actions that are allowed on the specified Kuberne
 
 |===
 |`rtfctl` command |Namespace |apiGroups 
-.3+|Columna 1 fila 1/2/3
-|Fila 1 col 2
-.3+|Columna 3 fila 1/2/3
-|Fila 2 col 2
-|Fila 3 col 2
+.3+|Col 1 fila 1/2/3
+.2+|Col 2 fila 1
+|Col 3 fila 1
+|Col 3 fila 2
+|Col 2 fila 2
+|Col 3 fila 3
+|Col 2 fila 3
+|Col 3 fila 4
 |===
