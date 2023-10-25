@@ -32,31 +32,22 @@ base64 -w0 <license-file>
 $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
 ----
 
-=== Apply the License Key Using rtfctl
+=== Apply the License Key from the OpenShift Console
 
-. On the controller node acting as the leader during installation (the installer node), run the following command: 
-+
-[source,copy]
-----
-rtfctl apply mule-license $BASE64_ENCODED_LICENSE
-----
-+
-You can also apply the Mule license providing the file path directly:
-+
-[source,copy]
-----
-rtfctl apply mule-license --file /path/to/license.lic
-----
-+
-[NOTE]
-Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
+To apply the license key from the OpenShift console, follow these steps:
 
-. To verify the Mule license key has applied correctly, run:
+. Navigate to the Runtime Fabric operator.
+. Select the namespace where the Runtime Fabric instance is installed. 
+. Click on the *Runtime Fabric* tab.
+. Click on the *runtime-fabric* instance link.
 +
-[source,copy]
-----
-rtfctl get mule-license
-----
+image::rtf-license-operator-1.png[Runtime Fabric operator with runtime-fabric instance selected]
+[start=5]
+. Update the Runtime Fabric instance CR .yaml file by adding the `muleLicense`.
++
+image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
+
+
 
 === Apply the License Key Using Helm
 
