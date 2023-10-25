@@ -103,7 +103,7 @@ You can configure the ingress resource template to include reencrypt termination
 
 Follow these steps to configure reencrypt termination:
 
-. Create a secret object to hold the destination CA certificate, which can be a self signed certificate, or chain. +
+. Create a secret object to hold the destination CA certificate, which can be a self-signed certificate, or chain. +
 The following mule-app.cert file contains a PEM-encoded certificate (chain or self-signed certificate) of the leaf certificate used in target Mule app's keystore.
 +
 ----
