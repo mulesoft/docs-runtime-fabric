@@ -343,7 +343,63 @@ a|
 * `/var/log/pods`
 |===
 
-include::partial$include-install-tasks.adoc[tags=licenseKey]
+== Insert the Mule License Key
+
+If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility or Helm.
+
+Before you install the license key, encode it to Base64 format.
+
+=== Encode the License Key
+
+* On MacOS, run the following command:
++
+[source,copy]
+----
+base64 -b 0 -i <license-file>
+----
++
+* On Unix, run the following command:
++
+[source,copy]
+----
+base64 -w0 <license-file>
+----
++
+* On Windows, choose one of the following:
+
+** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command.
+** Use the base64.exe program included with Windows git (C:\Program Files\Git\usr\bin).
+** Use the following Powershell command:
++
+[source,copy]
+----
+$BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
+----
+
+=== Apply the License Key from the OpenShift Console
+
+To apply the license key from the OpenShift console, follow these steps:
+
+. Navigate to the Runtime Fabric operator.
+. Select the namespace in which the Runtime Fabric instance is installed.
+. Click on the *Runtime Fabric* tab.
+. Click on the *runtime-fabric* instance link.
++
+image::rtf-license-operator-1.png[Runtime Fabric operator with runtime-fabric instance selected]
+[start=5]
+. Update the Runtime Fabric instance CR .yaml file by adding the `muleLicense`.
++
+image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
+
+=== Apply the License Key Using Helm
+
+To apply the license using Helm, run the following command:
+
+[source,copy]
+----
+helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values
+----
+
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 
