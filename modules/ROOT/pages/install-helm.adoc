@@ -251,6 +251,9 @@ global:
   - /var/log/pods
 ----
 
+[NOTE]
+If you are configuring a Runtime Fabric BYOK with an EU control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Specifically, the property `rtfRegistry: rtf-runtime-registry.kprod-eu.msap.io`.
+
 === Required Parameters
 
 These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager:
