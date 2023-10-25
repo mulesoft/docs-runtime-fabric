@@ -23,7 +23,7 @@ rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_na
 +
 * *<key>*: The key for the secure property used in the Mule application to reference the value.
 * *<value>*: The value for the secure property to store.
-* *<app_namespace>*: The Anypoint environment to scope this secure property to. Only applications deployed to this environment will have access to this secure property.
+* *<app_namespace>*: The Anypoint environment to scope this secure property to. Only applications deployed to this environment have access to this secure property.
 * *<rtf_namespace>*:System namespace scope, defaults to `rtf`.
 
 == View Secure Properties
