@@ -4,27 +4,9 @@ To successfully run `rtfctl` commands, you must understand and enable specific r
 
 The following table lists the permissions that you configure using Kubernetes (K8s) RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control^]): 
 
-* Namespace 
-+
-Permissions can be role-based or cluster role-based:
- ** Role-based: the namespace can be `rtf`, `<app-namespace>`, `rtf-validate`, or `kube-node-lease`.
- ** Cluster role-based: because it applies to the entire cluster, the namespace field doesn't exist and is blank in the table.
-
-* apiGroups 
-+
-The API group for the K8s resources. When you create a role, each K8s resource declares its API group or uses the core API group if not specified. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
-
-* Kubernetes Resource 
-+
-Type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to which the permissions apply.
-
-* Verbs 
-+
-Actions that are allowed on the specified Kubernetes resources.
-
 [%header%autowidth.spread,cols=".^a,.^a,.^a,.^a,.^a]
 |===
-|`rtfctl` Command |Namespace |API Groups | Kubernetes Resources | Verbs 
+|rtfctl Command |Namespace |API Groups | Kubernetes Resources | Verbs 
 .5+|`apply`       .2+|rtf             |      |configmaps | create, get, patch, update
                                     |      |pods       | deletecollection
                    | <app-namespace>|      |secrets    | get, list, watch
@@ -114,3 +96,22 @@ Actions that are allowed on the specified Kubernetes resources.
                          |batch      |jobs | create, delete, get
                  |       |       |nodes | get, list, watch    
 |===
+
+
+* Namespace 
++
+Permissions can be role-based or cluster role-based:
+ * Role-based: the namespace can be rtf, <app-namespace>, rtf-validate, or kube-node-lease.
+ * Cluster role-based: because it applies to the entire cluster, the namespace field doesn't exist and is blank in the table.
+
+* apiGroups 
++
+The API group for the K8s resources. When you create a role, each K8s resource declares its API group or uses the core API group if not specified. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
+
+* Kubernetes Resource 
++
+Type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to which the permissions apply.
+
+* Verbs 
++
+Actions that are allowed on the specified Kubernetes resources.
