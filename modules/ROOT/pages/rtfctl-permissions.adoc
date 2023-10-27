@@ -1,26 +1,30 @@
 = RTFCTL Kubernetes Permissions
 
-Understanding and enabling the specific permissions required over the Kubernetes resources is crucial for successfully running `rtfctl` commands. Properly configured role permissions are essential for seamless execution of `rtfctl` operations.
+To successfully run `rtfctl` commands, you must understand and enable specific role permissions over Kubernetes resources.
 
-The following table lists all the permissions that you configure using K8s RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[Role based access control^]) in Kubernetes: 
+The following table lists the permissions that you configure using Kubernetes (K8s) RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control^]): 
 
-* Namespace +
-The Namespace column indicates that the permission can be a Role based or ClusterRole based:
- ** Role based: the namespace can be for example, `rtf`, `<app-namespace>`, `rtf-validate`, or `kube-node-lease`.
- ** ClusterRole: the namespace field doesn't exist there because it applies to the entire cluster, thus blank in the table.
+* Namespace 
++
+Permissions can be role-based or cluster role-based:
+ ** Role-based: the namespace can be `rtf`, `<app-namespace>`, `rtf-validate`, or `kube-node-lease`.
+ ** Cluster role-based: because it applies to the entire cluster, the namespace field doesn't exist and is blank in the table.
 
-* apiGroups +
-The apiGroups column indicates the apiGroup that group K8s resources. When you create a Role, each K8s resource declares what is their apiGroups. When blank in the table, defaults to the core apiGroup. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
+* apiGroups 
++
+The API group for the K8s resources. When you create a role, each K8s resource declares its API group or uses the core API group if not specified. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
 
-* Kubernetes Resource +
-The Kubernetes Resource column indicates the type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to which the permissions apply.
+* Kubernetes Resource 
++
+Type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to which the permissions apply.
 
-* Verbs +
-The Verbs column indicates the actions that are allowed on the specified Kubernetes resources.
+* Verbs 
++
+Actions that are allowed on the specified Kubernetes resources.
 
 [%header%autowidth.spread,cols=".^a,.^a,.^a,.^a,.^a]
 |===
-|`rtfctl` command |Namespace |apiGroups | Kubernetes Resources | Verbs 
+|`rtfctl` Command |Namespace |API Groups | Kubernetes Resources | Verbs 
 .5+|`apply`       .2+|rtf             |      |configmaps | create, get, patch, update
                                     |      |pods       | deletecollection
                    | <app-namespace>|      |secrets    | get, list, watch
