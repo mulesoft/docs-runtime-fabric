@@ -28,13 +28,7 @@ Enter the business group name in the *Add business group* field and select it fr
 [start=6]
 . Click *Save Changes* or *Discard Changes* to discard or confirm the association.
 
-=== Add or Remove Business Groups
 
-You can add or remove business groups:
-
-To add new business groups, use the *Add business group* field.
-
-To remove a business group, click the trash can icon for the entry.
 
 == Associate Environments
 
