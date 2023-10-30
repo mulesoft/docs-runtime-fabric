@@ -110,7 +110,8 @@ spec:
       labels:
       annotations:
     containerSecurityContext:
-      seccompProfile: RuntimeDefault
+      seccompProfile: 
+        type: RuntimeDefault
     tolerations:
     - key: "example-key"
       operator: "Exists"
