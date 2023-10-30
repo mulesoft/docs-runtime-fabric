@@ -41,16 +41,16 @@ To associate an environment to a Runtime Fabric:
 . Select the environments from the drop-down list:
 
 ** *All Environment* +
-Associates the private space with all sandbox and production environments in the business group and all its children, or in specific child business organizations.
+Associates the Runtime Fabric with all sandbox and production environments in the business group and all its children, or in specific child business organizations.
 
 ** *All Sandbox Environments*
-Associates the private space with only sandbox environments in the business group and all its children, or in specific child business organizations.
+Associates the Runtime Fabric with only sandbox environments in the business group and all its children, or in specific child business organizations.
 ** *All Production Environments*
 +
-Associates the private space with only production environments in the business group and all its children, or in specific child business organizations.
+Associates the Runtime Fabric with only production environments in the business group and all its children, or in specific child business organizations.
 ** *Select Environments Manually*
 +
-Allows you to associate the private space with specific environments in specific child business groups.
+Allows you to associate the Runtime Fabric with specific environments in specific child business groups.
 +
 *** Check the *Sandbox* or *Production* box to bulk select all sandbox or production environments in specific child business organizations.
 *** Check the box for each specific subenvironment to individually select the desired environments in specific child business organizations.
