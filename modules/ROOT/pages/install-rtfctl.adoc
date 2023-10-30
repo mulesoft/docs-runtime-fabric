@@ -564,12 +564,16 @@ Consider the following points:
 
 * Audit logs are stored in a Kubernetes secret in the `rtfctl-audit` namespace.
 * Audit logs are cluster scoped and not attached to Runtime Fabric core software lifecycle.
-* Command executions continue to function if the execution fails to audit the operation.
+* Command executions remain operational even if the auditing process fails to audit the operation.
 
 To audit the operations, run the following command:
 ----
 $ sudo ./rtfctl audit-logs
-<add a sample output>
+----
+
+An output example:
+----
+[{"timestamp":"2023-10-26 00:52:24.446 +0000 UTC","kubeContext":"test-k8scontext","command":["./rtfctl","restart","test-application","--app-namespace","8456f9c7-2149-4983-b02b-6b18ddd28efe","--namespace","rtf"]}]
 ----
 
 [NOTE]
