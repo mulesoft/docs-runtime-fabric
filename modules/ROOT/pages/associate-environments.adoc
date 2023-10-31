@@ -5,6 +5,9 @@ endif::[]
 
 Before deploying applications or API gateways to Anypoint Runtime Fabric, you must associate a Runtime Fabric with one or more Anypoint Platform environments. When deploying a Mule application, you cannot select a Runtime Fabric as a deployment target until you have performed this step in the environment where you want to deploy.
 
+[NOTE]
+Runtime Fabric appliance does not support this feature.
+
 == Associate Business Groups
 
 You can share Runtime Fabric with an organization's business groups. This allows other business groups to deploy applications to a single Runtime Fabric. To use this feature, the business groups must fall under the scope of the organization the Runtime Fabric is registered to.
