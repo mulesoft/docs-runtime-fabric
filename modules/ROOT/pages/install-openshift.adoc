@@ -241,7 +241,7 @@ metadata:
   namespace: <rtf_namespace>
 data:
   APPLICATION_NAMESPACE_1: "<app_namespace_1>"
-  APPLICATION_NAMESPACE_2: "<app_namespace_1>
+  APPLICATION_NAMESPACE_2: "<app_namespace_2>
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
