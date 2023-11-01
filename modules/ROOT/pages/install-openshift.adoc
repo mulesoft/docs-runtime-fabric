@@ -105,7 +105,7 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: <namespace>
+  name: <app_namespace>
   labels:
     rtf.mulesoft.com/agentNamespace: <rtf_namespace>
     rtf.mulesoft.com/envId: <environment_id>
@@ -134,11 +134,11 @@ metadata:
   namespace: <app_namespace>
 subjects:
   - kind: ServiceAccount
-    name: rtf-certificate-renewal
+    name: rtf-agent
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
@@ -173,6 +173,9 @@ subjects:
     namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
+    namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
     namespace: <rtf_namespace>
 ----
 
@@ -226,6 +229,9 @@ subjects:
     namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
+    namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
     namespace: <rtf_namespace>
 ----
 
