@@ -54,6 +54,7 @@ apiVersion: rtf.mulesoft.com/v1
 kind: KubernetesTemplate
 metadata:
   name: mule-application
+  namespace: rtf
 spec:
   deployment:
     metadata:
@@ -93,6 +94,7 @@ apiVersion: "rtf.mulesoft.com/v1"
 kind: KubernetesTemplate
 metadata:
   name: mule-application
+  namespace: rtf
   labels:
 spec:
   deployment:
@@ -108,7 +110,8 @@ spec:
       labels:
       annotations:
     containerSecurityContext:
-      seccompProfile: “restricted”
+      seccompProfile: 
+        type: RuntimeDefault
     tolerations:
     - key: "example-key"
       operator: "Exists"
@@ -117,10 +120,6 @@ spec:
     nodeSelector:
       region: us-east
     affinity:
-    tolerations:
-    - key: "key1"
-      operator: "Exists"
-      effect: "NoSchedule"
     topologySpreadConstraints:
     - maxSkew: 1
       topologyKey: topology.kubernetes.io/zone
