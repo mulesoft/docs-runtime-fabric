@@ -36,7 +36,7 @@ The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are
 
 [%header%autowidth.spread]
 |===
-|Support of following use-cases |AWS EKS and AWS EKS-A |BM Openshift Offerings | AKS & GKE | VMWare Tanzu, Alibaba ACK, Rancher
+|Support of following use-cases |AWS EKS and AWS EKS-A |IBM Openshift Offerings | AKS & GKE | VMWare Tanzu, Alibaba ACK, Rancher
 | Access and use of Anypoint Control Plane including Runtime Manager, Access Management, Anypoint Monitoring, etc.  |Yes |Yes | Yes| Yes
 | Automation toolings such as the Mule Maven Plugin, Runtime Fabric APIs, and Anypoint CLI. |Yes |Yes | Yes | Yes
 | Runtime Fabric functionality support for compatible K8s versions. |Yes |Yes | Yes | Yes
