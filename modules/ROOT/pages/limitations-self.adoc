@@ -71,6 +71,8 @@ The following Runtime Fabric roles manage data stored in Kubernetes secrets:
 * `rtf:upgrade`
 * `rtf:mule-clusterip-service`
 
+Runtime Fabric components, such as RTF agent, have a legitimate use case to consume the Kube API from the cluster where they are running to monitor or update some Kubernetes resources related to delivering Runtime Fabric features.
+
 === Anypoint Platform Roles and Permissions
 
 To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions:

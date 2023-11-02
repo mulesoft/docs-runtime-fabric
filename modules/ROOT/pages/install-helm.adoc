@@ -1,6 +1,6 @@
 = Installing Runtime Fabric Using Helm
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), Alibaba Cloud Container Service for Kubernetes (ACK), Google Kubernetes Engine (GKE), Rancher Kubernetes Engine (RKE) or VMware Tanzu Kubernetes Grid installation that you manage.
 
 == Steps to Install Runtime Fabric Using Helm
 
@@ -250,6 +250,9 @@ global:
   - /var/log/containers
   - /var/log/pods
 ----
+
+[NOTE]
+If you are configuring a Runtime Fabric BYOK with an EU control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Specifically, the property `rtfRegistry: rtf-runtime-registry.kprod-eu.msap.io`.
 
 === Required Parameters
 
