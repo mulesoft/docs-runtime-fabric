@@ -1,0 +1,155 @@
+= Configure Autoscaling (HPA) for Runtime Fabric Deployments
+
+Runtime Fabric instances support scaling Mule application deployments by initiating additional replicas in response to the signals configured.
+
+MuleSoft supports resource usage on Kubernetes (K8s) runtime as a signal, and the applications autoscaling responds to the CPU usage threshold, set by MuleSoft, to scale up or scale down the deployment replicas as needed.
+
+In Kubernetes, a Horizontal Pod Autoscaler automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
+
+== Before You Begin
+
+Enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
+Refer to your managed vendors documentation on how to install or enable metrics API servers.
+
+== Infrastructure Configuration Recommendations
+
+The following configuration recommendations are for your infrastructure team.
+
+=== Configure Node Groups
+
+Configure one node group per availability zone, with a minimum of one node in the node group.
+This ensures that Kubernetes has information about all the availability zones in the cluster and avoids the issue where zone topology unschedulable pod fails to scale-out topologySpread predicate check.
+
+Make sure that nodes from all the node groups have the exact same labels except for the common labels and specific cloud provider labels that are different across nodes or availability zones by default.
+
+Custom labels that are not in the following list and different across nodes need to be excluded from cluster autoscaler when evaluating similar node groups:
+
+----
+eks.amazonaws.com/nodegroup
+failure-domain.beta.kubernetes.io/region
+failure-domain.beta.kubernetes.io/zone
+kubernetes.io/hostname
+topology.kubernetes.io/region
+topology.kubernetes.io/zone
+----
+
+
+=== Start Cluster Autoscaler
+
+Start the cluster autoscaler with flag `--balance-similar-node-groups=true` and exclude the custom labels previously mentioned in the node groups section with the flag `--balancing-ignore-label`.
+This ensures that the cluster autoscaler balances the number of nodes across availability zones. 
+For reference on managed EKS cluster, the cluster autoscaler starts with the following flags:
+
+----
+- --balancing-ignore-label=k8s.amazonaws.com/eniConfigCustom
+- --balancing-ignore-label=vpc.amazonaws.com/eniConfig
+----
+
+=== Configure Overprovisioning Pod
+
+Configure at least one overprovisioning pod per availability zone. Each overprovisioning pod holds a resource that can accommodate three Mule app pods, which improves the performance when new nodes are needed.
+
+[NOTE]
+Refer to your managed vendor documentation for cluster autoscaling best practices and over-provisioning configuration details.
+
+
+=== Configure Topology Spread Constraints
+
+To ensure the autoscaling replicas are evenly spread across zones for high availability, you must customize your Mule apps (enabled with auto scaling) with `topologySpreadConstraints` across zones section. Add the `whenUnsatisfiable: DoNotSchedule` attribute for the configuration:
+
+----
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        rtf.mulesoft.com/id: {{ .Values.id }}
+----
+
+For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
+
+[Note]
+Customizing `topologySpreadConstraints` with the `whenUnsatisfiable: DoNotSchedule` attribute, without previously configuring node groups per availability zone, cluster autoscaler, and overprovisionining, can lead to K8s failing to schedule replicas with `Pending` state.
+
+=== Understand Autoscaling Policy
+
+MuleSoft owns and applies the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/[autoscaling^] policy for your Mule application deployments.
+
+The CPU based HPA policy used for all Mule apps deployed on Runtime Fabric instances, is as follows:
+
+----
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-app
+  namespace: app-namespace
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 15
+        type: Percent
+        value: 100
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 180
+        type: Percent
+        value: 100
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 3
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 70
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app
+
+----
+
+Some points to consider:
+
+* Scale up or down occurs at most every 60 seconds.
+* Each period up to 100% of the running pods may be added or removed.
+* The number of pods added is based on the aggregated calculations over the past 180 seconds.
+* The number of pods removed is based on the aggregated calculations over the past 300 seconds.
+* Max scale up profile is 1 -> 2 -> 4 -> 8 -> 16, where MuleSoft hits 16 replicas in approximately 7 minutes.
+
+=== Application Types that Fit CPU based HPA
+
+* Mule apps that scale based on CPU usage only.
+* HTTP/HTTPS apps with async requests.
+* Mule apps with high-throughput.
+* Mule apps that implie shorter requests.
+* Mule apps that implie lower latencies.
+
+== Performance Considerations
+
+== Configure Autoscaling
+
+To configure autoscalaling for Mule apps deploys to Runtime Fabric, follow these steps:
+
+. Enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
+. In Runtime Manager, click the *Applications* tab.
+. Select *Deploy Application*.
+. In the Runtime section, select *Enable Autoscaling*.
+. Set the *Min Replica Limit* and *Max Replica Limit* fields.
+. Deploy your Mule app.
+
+image::rtf-autoscaling.png[Runtime Manager UI with Enable Autoscaling field selected]
+
+
+== Autoscaling Status in Runtime Manager
+
+After you deployed your Mule app with autoscaling, you can see the *Scaling* status in the Runtime Manager UI:
+
+image::rtf-autoscaling-status.png[Runtime Manager UI with Mule app and Scaling status]
