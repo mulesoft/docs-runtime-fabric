@@ -4,7 +4,7 @@ Runtime Fabric instances support scaling Mule application deployments by initiat
 
 MuleSoft supports resource usage on Kubernetes (K8s) runtime as a signal, and the applications autoscaling responds to the CPU usage threshold, set by MuleSoft, to scale up or scale down the deployment replicas as needed.
 
-In Kubernetes, a Horizontal Pod Autoscaler automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
+In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
 
 == Before You Begin
 
@@ -34,11 +34,19 @@ topology.kubernetes.io/zone
 ----
 
 
-=== Start Cluster Autoscaler
+=== Configure Cluster Autoscaler Flags
 
 Start the cluster autoscaler with flag `--balance-similar-node-groups=true` and exclude the custom labels previously mentioned in the node groups section with the flag `--balancing-ignore-label`.
-This ensures that the cluster autoscaler balances the number of nodes across availability zones. 
-For reference on managed EKS cluster, the cluster autoscaler starts with the following flags:
+These flags ensure that the cluster autoscaler balances the number of nodes across availability zones. 
+
+For reference on managed EKS cluster, the following node labels are different across node groups:
+
+----
+k8s.amazonaws.com/eniConfigCustom
+vpc.amazonaws.com/eniConfig
+----
+
+Therefore, the cluster autoscaler starts with:
 
 ----
 - --balancing-ignore-label=k8s.amazonaws.com/eniConfigCustom
@@ -49,13 +57,73 @@ For reference on managed EKS cluster, the cluster autoscaler starts with the fol
 
 Configure at least one overprovisioning pod per availability zone. Each overprovisioning pod holds a resource that can accommodate three Mule app pods, which improves the performance when new nodes are needed.
 
+For reference on managed EKS cluster, overprovisioning deployment template is as follows:
+
+----
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: overprovisioning
+value: -1
+globalDefault: false
+description: "Priority class used by overprovisioning."
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overprovisioning
+  namespace: rtf
+  labels:
+    rtf.mulesoft.com/ignore-status: "true"
+spec:
+  replicas: ${NUM_OF_AZ}
+  selector:
+    matchLabels:
+      run: overprovisioning
+  template:
+    metadata:
+      labels:
+        run: overprovisioning
+        version: v1
+    spec:
+      priorityClassName: overprovisioning
+      nodeSelector:
+        kubernetes.io/os: linux
+        rtf.mulesoft.com/deployments: true
+      containers:
+        - name: reserve-resources
+          image: ${IMAGE_REGISTRY}/k8s.gcr.io/pause:latest
+          resources:
+            requests:
+              cpu: ${CPU_RESOURCE}
+              memory: ${MEMORY_RESOURCE}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              run: overprovisioning
+              version: v1
+
+----
+
+You must update the `version: v1` each time a change is made to over provisioning deployment to ensure topology spread during rolling update. An alternative is to use:
+
+----
+strategy:
+  type:
+    Recreate
+----    
+
 [NOTE]
 Refer to your managed vendor documentation for cluster autoscaling best practices and over-provisioning configuration details.
 
 
 === Configure Topology Spread Constraints
 
-To ensure the autoscaling replicas are evenly spread across zones for high availability, you must customize your Mule apps (enabled with auto scaling) with `topologySpreadConstraints` across zones section. Add the `whenUnsatisfiable: DoNotSchedule` attribute for the configuration:
+Your Mule app deployments which are enabled with autoscaling, are required to customize the kubernetes resources for the topology spread constraints in pod spec by updating the *whenUnsatisfiable* field with `DoNotSchedule`.
+This configuration ensures that autoscaling replicas are evenly spread across zones for high availability.
 
 ----
 topologySpreadConstraints:
@@ -69,8 +137,8 @@ topologySpreadConstraints:
 
 For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
 
-[NOTE]
-Customizing `topologySpreadConstraints` with the `whenUnsatisfiable: DoNotSchedule` attribute, without previously configuring node groups per availability zone, cluster autoscaler, and overprovisionining, can lead to K8s failing to schedule replicas with `Pending` state.
+[WARNING]
+Customizing topology spread with `whenUnsatisfiable: DoNotSchedule`, without the recommended configurations for node groups per availability zone, cluster autoscaler, and overprovisionining, can lead to K8s failing to schedule the replicas with `Pending state` error.
 
 === Understand Autoscaling Policy
 
