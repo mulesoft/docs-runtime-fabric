@@ -69,7 +69,7 @@ topologySpreadConstraints:
 
 For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
 
-[Note]
+[NOTE]
 Customizing `topologySpreadConstraints` with the `whenUnsatisfiable: DoNotSchedule` attribute, without previously configuring node groups per availability zone, cluster autoscaler, and overprovisionining, can lead to K8s failing to schedule replicas with `Pending` state.
 
 === Understand Autoscaling Policy
@@ -132,7 +132,6 @@ Some points to consider:
 * Mule apps that implie shorter requests.
 * Mule apps that implie lower latencies.
 
-== Performance Considerations
 
 == Configure Autoscaling
 
