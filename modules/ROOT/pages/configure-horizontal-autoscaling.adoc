@@ -8,7 +8,7 @@ In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workloa
 
 == Before You Begin
 
-To configure autoscaling, you must enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
+To configure autoscaling, the cluster administrator must enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
 Refer to your managed vendors documentation on how to install or enable metrics API servers.
 
 == Infrastructure Configuration Recommendations
