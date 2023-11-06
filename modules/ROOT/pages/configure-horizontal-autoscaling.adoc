@@ -193,7 +193,9 @@ Some points to consider:
 * The number of pods removed is based on the aggregated calculations over the past 300 seconds.
 * Max scale up profile is 1 -> 2 -> 4 -> 8 -> 16, where MuleSoft hits 16 replicas in approximately 7 minutes.
 
-=== Application Types that Fit CPU based HPA
+=== Application Types 
+
+The following Mule app types fit CPU based HPA:
 
 * Mule apps that scale based on CPU usage only.
 * HTTP/HTTPS apps with async requests.
