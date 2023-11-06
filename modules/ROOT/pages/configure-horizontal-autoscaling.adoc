@@ -1,14 +1,14 @@
 = Configure Autoscaling (HPA) for Runtime Fabric Deployments
 
-Runtime Fabric instances support scaling Mule application deployments by initiating additional replicas in response to the signals configured.
+Runtime Fabric instances support scaling Mule app deployments by initiating additional replicas in response to the signals configured.
 
-MuleSoft supports resource usage on Kubernetes (K8s) runtime as a signal, and the applications autoscaling responds to the CPU usage threshold, set by MuleSoft, to scale up or scale down the deployment replicas as needed.
+Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure autoscaling on the application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
 
 In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
 
 == Before You Begin
 
-Enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
+To configure autoscaling, you must enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
 Refer to your managed vendors documentation on how to install or enable metrics API servers.
 
 == Infrastructure Configuration Recommendations
@@ -22,8 +22,9 @@ This ensures that Kubernetes has information about all the availability zones in
 
 Make sure that nodes from all the node groups have the exact same labels except for the common labels and specific cloud provider labels that are different across nodes or availability zones by default.
 
-Custom labels that are not in the following list and different across nodes need to be excluded from cluster autoscaler when evaluating similar node groups:
+Custom labels that are not in the following list and different across nodes need to be excluded from cluster autoscaler when evaluating similar node groups.
 
+For reference on managed EKS labels such as:
 ----
 eks.amazonaws.com/nodegroup
 failure-domain.beta.kubernetes.io/region
@@ -197,9 +198,21 @@ Some points to consider:
 * Mule apps that scale based on CPU usage only.
 * HTTP/HTTPS apps with async requests.
 * Mule apps with high-throughput.
-* Mule apps that implie shorter requests.
-* Mule apps that implie lower latencies.
+* Mule apps that imply shorter requests.
+* Mule apps that imply lower latencies.
 
+== Performance Considerations and Limitations
+Use the following considerations and limitations to get a better performance, the policy in use is benchmarked for Mule apps with CPU `Reserved: 0.45vCpu and Limit: 0.55vCpu`, which corresponds to these settings:
+
+----
+        resources:
+          limits:
+            cpu: 550m
+          requests:
+            cpu: 450m
+----
+[NOTE]
+Any deviation from the previous configuration considerations on infrastructure and Mule deployment CPU settings may lead to performance issues and unprecedented scaling behaviors.
 
 == Configure Autoscaling
 
