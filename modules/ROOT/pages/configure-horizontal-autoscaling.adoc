@@ -2,7 +2,7 @@
 
 Runtime Fabric instances support scaling Mule app deployments by initiating additional replicas in response to the signals configured.
 
-Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure autoscaling on the application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
+Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure autoscaling on the Runtime Manager application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
 
 In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
 
