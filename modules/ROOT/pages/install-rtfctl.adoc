@@ -23,7 +23,7 @@ To perform this procedure, you must have root privileges to a controller node ru
 +
 ----
 cd /opt/anypoint/runtimefabric
-sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
+sudo curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-appliance/latest -o rtfctl
 ----
 +
 .. Change file permissions for the `rtfctl` binary: 
