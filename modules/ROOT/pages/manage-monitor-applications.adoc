@@ -13,7 +13,7 @@ xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide fee
 
 By default, Runtime Fabric is configured to send application metrics to Anypoint Monitoring. Data is securely transmitted using mutual TLS encryption. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. 
 
-If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric].
+If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric].
 
 To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.50 or later, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 443 to the following domains:
 
@@ -78,7 +78,7 @@ The log forwarding agent can transmit up to 300 kilobytes of log data per second
 
 You can enable log forwarding and set log levels when you xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[deploy applications in Runtime Manager]. 
 
-==== Anypoint Monitoring Log Forwarding Prerequisites
+=== Anypoint Monitoring Log Forwarding Prerequisites
 
 The daemon-set that forwards logs to Anypoint Monitoring expects application containers to write logs to the following locations:
 

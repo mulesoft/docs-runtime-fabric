@@ -19,44 +19,39 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-rtf-ingress
-  namespace: rtf (1)
+  namespace: rtf #(1)
   labels:
 spec:
-  ingressClassName: rtf-openshift (2)
-  tls: (3)
+  ingressClassName: rtf-openshift #(2)
+  tls: #(3)
   - hosts:
       - app-name.example.com
     secretName: example-tls
   rules:
-    - host: app-name.example.com (4)
+    - host: app-name.example.com #(4)
       http:
-        paths: (5)
-      - pathType: Prefix
-        path: / (6)
-        backend: (7)
-          service:
-            name: service-name
-            port:
-              name: service-port
+        paths: #(5)
+          - pathType: Prefix
+            path: / #(6)
+            backend: #(7)
+               service:
+                 name: service-name
+                 port:
+                  name: service-port
 --
 
 Note the following about this example:
 
-<1> The template must be placed in the `rtf` namespace.
-
-<2> `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
+[calloutlist]
+.. The template must be placed in the `rtf` namespace.
+.. `ingressClassName` must be prefixed with `rtf`-, and must be set to `rtf-openshift`.
 +
 Runtime Fabric uses the `rtf-` prefix to recognize the object as a template. Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class` annotation are consumed by the Runtime Fabric agent only and not by the actual ingress controller. Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example,`openshift`.
-
-<3> TLS is optional. If specified in the template, Runtime Fabric creates a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
-
-<4> Runtime Fabric replaces the `app-name` placeholder parameter with the actual app name when you deploy the application. This helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
-
-<5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
-
-<6> Runtime Fabric replaces the `path` parameter value with the value you add in the Path field when you configure ingress for a Mule application. Note that `path` is not a placeholder.
-
-<7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
+.. TLS is optional. If specified in the template, Runtime Fabric creates a route with edge termination by default unless you set the `route.openshift.io/termination:` annotation.
+.. Runtime Fabric replaces the `app-name` placeholder parameter with the actual app name when you deploy the application. This helps to ensure that each endpoint name is unique if there is not a wildcard in the subdomain.
+.. A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
+.. Runtime Fabric replaces the `path` parameter value with the value you add in the Path field when you configure ingress for a Mule application. Note that `path` is not a placeholder.
+.. These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric.
 
 For a list of optional placeholder values, see xref:custom-ingress-configuration.adoc#template-placeholders[Template Placeholders].  
 
@@ -86,16 +81,96 @@ You can configure the ingress resource template to include passthrough TLS termi
 For more information on configuring routes with passthrough TLS termination, refer to the https://docs.openshift.com/container-platform/4.10/networking/routes/route-configuration.html#nw-ingress-creating-a-route-via-an-ingress_route-configuration[Red Hat OpenShift documentation^].
 
 Follow these steps to create an ingress resource template:
+
 . In the template, add the following annotation:
 +
 ----
 route.openshift.io/termination: passthrough
 ----
+[start=2]
 . In the template, set the following parameter values:
 +
-* Set `path: ''` (an empty string) 
-* Set `pathType: ImplementationSpecific`
+* `path: ''` (an empty string) 
+* `pathType: ImplementationSpecific`
 
-. In Runtime Manager, when configuring ingress for a Mule application, in the *Path* field include a `/`.
+. In Runtime Manager, when configuring ingress for a Mule app, in the *Path* field include a `/`.
 
 The application endpoint will show HTTPS for passthrough TLS termination.
+
+== Configure Reencrypt Termination
+
+You can configure the ingress resource template to include reencrypt termination by adding the `route.openshift.io/termination: reencrypt` annotation to the template.
+
+Follow these steps to configure reencrypt termination:
+
+. Create a secret object to hold the destination CA certificate, which can be a self-signed certificate, or chain. +
+The following mule-app.cert file contains a PEM-encoded certificate (chain or self-signed certificate) of the leaf certificate used in target Mule app's keystore.
++
+----
+kubectl -nrtf create secret generic ah-destination-tls \
+--from-file=tls.crt=mule-app.cert
+----
++
+[start=2]
+. Add a label to the secret to propagate it into the Mule app's namespace.
++
+----
+kubectl -n rtf label secret ah-destination-tls "rtf.mulesoft.com/synchronized=true""
+----
++
+[start=3]
+. Create or delete and re-create the ingress template in Runtime Fabric namespace with the additional `route.openshift.io/destination-ca-certificate-secret:` annotation.
++
+----
+> cat ingress-reencrypt.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    route.openshift.io/termination: "reencrypt"
+    route.openshift.io/destination-ca-certificate-secret: "ah-destination-tls"
+  name: rtf-ingress
+  namespace: rtf
+  labels:
+spec:
+  ingressClassName: rtf-openshift
+  tls:
+  - hosts:
+      - app-name.andrew.com
+    secretName: ah-tls
+  rules:
+  - host: app-name.andrew.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-name
+            port:
+              name: service-port
+----
+[start=4]
+. In Runtime Manager > Application settings, select the ingress endpoint. If the previous ingress endpoint exists with the same name, remove it, apply changes, then select the new ingress endoint and apply changes again.
+. Check and confirm that the ingress, secret, and routes exist in the Mule app's namespace. Requests should now be successful.
++
+----
+kubectl -n <application_namespace> get ingress
+kubectl -n <application_namespace> get routes
+kubectl -n <application_namespace> get secret
+----
+
+For example:
+----
+> kubectl -n 82e05f0d-21d7-4808-8088-2dd132095326 get ingress
+NAME                   CLASS    HOSTS                 ADDRESS                                                       PORTS     AGE
+ah-app-1-rtf-ingress   <none>   ah-app-1.andrew.com   router-default.apps.ah-rtf-rosa-1.9esk.p1.openshiftapps.com   80, 443   7m30s
+
+> kubectl -n 82e05f0d-21d7-4808-8088-2dd132095326 get route
+NAME                         HOST/PORT             PATH   SERVICES   PORT   TERMINATION          WILDCARD
+ah-app-1-rtf-ingress-6vhpq   ah-app-1.andrew.com   /      ah-app-1   http   reencrypt/Redirect   None
+
+> kubectl -n 82e05f0d-21d7-4808-8088-2dd132095326 get secret | grep -i tls
+ah-destination-tls                         Opaque                                1      52m
+ah-tls                                     kubernetes.io/tls                     2      131m
+----

@@ -18,12 +18,13 @@ The `rtfctl` utility is required to manage protected properties on Runtime Fabri
 +
 [source,copy]
 ----
-sudo ./rtfctl apply secure-property --key <my_key> --value <my_value> -n <environment_id>
+rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 +
-* *<my_key>*: The key for the secure property used in the Mule application to reference the value.
-* *<my_value>*: The value for the secure property to store.
-* *<environment_id>*: The Anypoint environment ID to scope this secure property to. Only applications deployed to this environment will have access to this secure property.
+* *<key>*: The key for the secure property used in the Mule application to reference the value.
+* *<value>*: The value for the secure property to store.
+* *<app_namespace>*: The Anypoint environment to scope this secure property to. Only applications deployed to this environment have access to this secure property.
+* *<rtf_namespace>*:System namespace scope, defaults to `rtf`.
 
 == View Secure Properties
 
@@ -57,4 +58,4 @@ sudo ./rtfctl delete secure-property <my_key> -n <namespace>
 == See Also
 
 * xref:install-rtfctl.adoc[Install rtfctl]
-* xref:manage-proxy.adoc[Manage Proxies Used by Runtime Fabric]
+* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]

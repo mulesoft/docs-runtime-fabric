@@ -12,7 +12,7 @@ These statuses appear when you apply new, or changed, configurations to a deploy
 * <<warning-status,Warning Messages Status States>> +
 These statuses appear when you receive a warning message while a deployment is in progress.
 
-* <<app-namespaces,App Namespaces Status States>> +
+* <<app-namespaces-status-states,App Namespaces Status States>> +
 These statuses appear when there are issues with app namespaces during deployment.
 
 [[warning-status]]
@@ -127,4 +127,3 @@ configuring authorized namespaces, refer to documentation. | Permanent
 
 * xref:runtime-fabric::app-versioning.adoc[Reviewing Application Versioning on Runtime Fabric]
 * xref:runtime-manager::managing-deployed-applications.adoc#status_states[Runtime Manager Status States]
-* xref:runtime-fabric:deploy-to-runtime-fabric.adoc[Deploy Mule apps to Runtime Fabric]
