@@ -1,6 +1,6 @@
 = Installing Runtime Fabric Using rtfctl
 
-You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS) or Google Kubernetes Engine (GKE) installation that you manage. 
+You can use the Runtime Fabric command line tool, `rtfctl`, to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), Alibaba Cloud Container Service for Kubernetes (ACK), Google Kubernetes Engine (GKE), Rancher Kubernetes Engine (RKE) or VMware Tanzu Kubernetes Grid installation that you manage. 
 
 [NOTE]
 Runtime Fabric versions 2.2.5 or later that support multiple instances require `rtfctl` version 0.4.1 or later.
@@ -26,6 +26,37 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
 * If you want to use a local registry with Runtime Fabric, follow the installation instructions in xref:configure-local-registry.adoc[Using a Local Registry with Runtime Fabric]. You must set up the local registry during installation. 
 ====
 
+== RTFCTL Versions Compatibility
+
+The following tables list the `rtfctl` versions compatibility with Runtime Fabric appliance 1.x.x agent versions and Runtime Fabric self-managed 2.x.x agent versions. 
+
+=== Runtime Fabric Appliance 1.x.x
+
+The following `rtfctl` versions are compatible with all supported Runtime Fabric agents on appliance clusters:
+
+[%header%autowidth.spread]
+|===
+| RTF appliance 1.x.x agent version | `rtfctl` version 
+| All versions | 0.6.0-2.release-gravity
+| All versions | 0.5.2-4.release-gravity
+| All versions | 0.3.87 to 0.4.22
+|===
+
+=== Runtime Fabric Self-Managed (BYOK) 2.x.x
+
+The following `rtfctl` versions are compatible with Runtime Fabric agents in self-managed Kubernetes clusters:
+
+[%header%autowidth.spread]
+|===
+| RTF self-managed 2.x.x agent version | `rtfctl` version 
+| 2.4.0  | 0.4.1 or later
+| 2.3.34 | 0.4.1 or later
+| 2.3.1 | 0.4.1 or later
+| 2.2.5 | 0.4.1 or later
+| 2.1.30 | 0.3.87 to 1.0.12
+| 2.1.0 | 0.3.87 to 1.0.12
+| 2.0.0 | 0.3.87 to 1.0.12
+|===
 
 
 == Create a Runtime Fabric using Runtime Manager

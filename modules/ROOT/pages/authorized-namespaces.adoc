@@ -14,6 +14,7 @@ At install time, you provide a configuration file that consists of your namespac
 
 Runtime Fabric installs the Runtime Fabric agent (rtf-agent) in the Runtime Fabric namespace, and it has access to any additional namespaces that you provide in the authorized namespace list.
 
+
 === Example
 
 The following is an example of a Runtime Fabric agent ClusterRole that allows the agent to control all cron jobs across all namespaces in a cluster.
@@ -72,6 +73,25 @@ subjects:
   name: rtf-agent-sa
   namespace: default
 ----
+
+To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+
+[source,yaml]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf-mule-clusterip-service
+  namespace: <app_namespace>
+subjects:
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:mule-clusterip-service
+  apiGroup: rbac.authorization.k8s.io
+----
  
 == Configure Authorized Namespaces 
 
@@ -79,4 +99,3 @@ You configure authorized namespaces when you install Runtime Fabric. Refer to th
 
 * xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
-

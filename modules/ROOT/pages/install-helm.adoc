@@ -1,6 +1,6 @@
 = Installing Runtime Fabric Using Helm
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE) installation that you manage.
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), Alibaba Cloud Container Service for Kubernetes (ACK), Google Kubernetes Engine (GKE), Rancher Kubernetes Engine (RKE) or VMware Tanzu Kubernetes Grid installation that you manage.
 
 == Steps to Install Runtime Fabric Using Helm
 
@@ -171,6 +171,27 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
+
+To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+
+[source,yaml]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rtf-mule-clusterip-service
+  namespace: <app_namespace>
+subjects:
+- kind: ServiceAccount
+  name: mule-clusterip-service
+  namespace: <rtf_namespace>
+roleRef:
+  kind: ClusterRole
+  name: rtf:mule-clusterip-service
+  apiGroup: rbac.authorization.k8s.io
+----
+
+[start=5]
 . In the `rtf` namespace, create a ConfigMap file named `authorized-namespaces` and list any additional namespaces:
 +
 [source,copy]
@@ -181,8 +202,8 @@ metadata:
   name: authorized-namespaces
   namespace: <rtf_namespace>
 data:
-  ADDITIONAL_NAMESPACE: "additional-namespace1"
-  ADDITIONAL_NAMESPACE: "additional-namespace2"
+  ADDITIONAL_NAMESPACE_1: "additional-namespace1"
+  ADDITIONAL_NAMESPACE_2: "additional-namespace2"
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
@@ -235,6 +256,9 @@ global:
   - /var/log/containers
   - /var/log/pods
 ----
+
+[NOTE]
+If you are configuring a Runtime Fabric BYOK with an EU control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Specifically, the property `rtfRegistry: rtf-runtime-registry.kprod-eu.msap.io`.
 
 === Required Parameters
 
