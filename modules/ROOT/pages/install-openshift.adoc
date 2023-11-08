@@ -105,7 +105,7 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: <namespace>
+  name: <app_namespace>
   labels:
     rtf.mulesoft.com/agentNamespace: <rtf_namespace>
     rtf.mulesoft.com/envId: <environment_id>
@@ -134,11 +134,11 @@ metadata:
   namespace: <app_namespace>
 subjects:
   - kind: ServiceAccount
-    name: rtf-certificate-renewal
+    name: rtf-agent
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
@@ -173,6 +173,9 @@ subjects:
     namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
+    namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
     namespace: <rtf_namespace>
 ----
 
@@ -227,6 +230,9 @@ subjects:
   - kind: ServiceAccount
     name: am-log-forwarder
     namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
+    namespace: <rtf_namespace>
 ----
 
 [start=6]
@@ -241,7 +247,7 @@ metadata:
   namespace: <rtf_namespace>
 data:
   APPLICATION_NAMESPACE_1: "<app_namespace_1>"
-  APPLICATION_NAMESPACE_2: "<app_namespace_1>
+  APPLICATION_NAMESPACE_2: "<app_namespace_2>
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
