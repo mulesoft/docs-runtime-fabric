@@ -5,6 +5,10 @@ endif::[]
 
 Review the following requirements and limitations before installing, configuring, and managing Anypoint Runtime Fabric. 
 
+== Limitations
+
+The following table provides Runtime Fabric limitations.
+
 [%header%autowidth.spread]
 |===
 | Limitation | Description 
@@ -13,6 +17,11 @@ Review the following requirements and limitations before installing, configuring
 | Associated environments per Runtime Fabric | You can associate a Runtime Fabric with up to 100 environments in any Business Group. For example, if you associate a development and a production environments with Org A and another development environment with Org B, that is three environment associations. 
 | Business groups | You can create up to 50 Runtime Fabrics per org in a Business Group. Any sub org can contain up to 50 Runtime Fabrics, in addition to any shared with another sub org. For example, for a parent Org A and its child Org B, you can have 50 Runtime Fabrics in Org A and 50 in Org B. You can also share all 50 Runtime Fabrics from Org A with Org B, and as a result, you will see 100 Runtime Fabrics in total in the list view of Org B. 
 |===
+
+== Use of Third-Party Software within a Runtime Fabric K8s Cluster
+
+You are expected to use authorized namespaces features to ensure isolation between third-party software and Runtime Fabric software or Mule deployments. Install third-party software in non-rtf specific namespaces to ensure they do not interfere with Runtime Fabric or Mule runtime engine functionality. 
+
 
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
 
@@ -61,6 +70,8 @@ The following Runtime Fabric roles manage data stored in Kubernetes secrets:
 * `rtf:persistence-gateway-clro-read-only`                               
 * `rtf:upgrade`
 * `rtf:mule-clusterip-service`
+
+Runtime Fabric components, such as RTF agent, have a legitimate use case to consume the Kube API from the cluster where they are running to monitor or update some Kubernetes resources related to delivering Runtime Fabric features.
 
 === Anypoint Platform Roles and Permissions
 

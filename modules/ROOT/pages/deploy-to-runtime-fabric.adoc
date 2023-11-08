@@ -48,7 +48,13 @@ The name can contain only lowercase alphanumeric characters, hyphens, and unders
 . From the *Deployment Target* drop-down list, select the name of your Runtime Fabric.
 . Select the Mule runtime engine version from the *Runtime Version* drop-down list.
 +
+
+image::rtf-rtm-mule-cadence.png[Runtime Manager UI with Mule Edge release dropdown window]
+
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
+
+[Note]
+You can deploy Mule apps with Mule runtime engine versions that are within the standard support or extended support life. Specify the versions through the API or in the Runtime Manager UI. With a Mule runtime engine version in EOL (end of life) support, you can redeploy and restart Mule apps but can not deploy new Mule apps. 
 
 === Configure a Public Endpoint for the Application 
 
@@ -194,4 +200,3 @@ When deploying applications, you may encounter the following issues:
 * xref:deploy-resource-allocation-self-managed.adoc[Determine Application Resource Allocation on Runtime Fabric]
 * xref:runtime-manager::developing-applications-for-cloudhub.adoc[Deploy a Mule Application to CloudHub]
 * xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploy a Mule Application to a Hybrid Environment]
-

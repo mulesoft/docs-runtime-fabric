@@ -29,12 +29,12 @@ The following list the steps in the activation flow process:
 The following list the steps in the management flow process:
 
 . The mTLS tunnel protects all metadata between Anypoint Management Center and your Runtime Fabric. Runtime Fabric agent initiates and control the tunnel.
-. Application deployment messages contain metadata that describes the application and its dependencies, along with links to Anypoint Management Center Configuration Resolver to fetch the Mulesoft application bundle and configuration from. The Configuration Resolver communication is also protected with the same mTLS credentials.
+. Application deployment messages contain metadata that describes the application and its dependencies, along with links to Anypoint Management Center Configuration Resolver to fetch the Mule app bundle and configuration from. The Configuration Resolver communication is also protected with the same mTLS credentials.
 . You can use Anypoint Runtime Manager to manage and monitor applications in the Runtime Fabric cluster: 
 +
 image::rtf-security-runtime-manager.png[Runtime Manager UI with application status running]
 +
-* Management capabilities: start, stop, update MuleSoft applications
+* Management capabilities: start, stop, update Mule apps
 
 * Monitoring capabilities: monitor CPU, memory, and Mule application metrics 
 +
@@ -49,8 +49,8 @@ image::rtf-security-anypoint-platform.png[Anypoint Platform UI showing requests 
 +
 
 [start=5]
-. Runtime Fabric agent,  MuleSoft applications, and API gateway are separate processes. If the Runtime Fabric agent stops working or it loses connectivity with Anypoint Management Center, the MuleSoft applications and API gateways continue to operate.
-. MuleSoft applications and API gateways work as defined in your Mule flows, and no customer data traverse to Anypoint Management Center. Your dataflow is specific to the application that was built and deployed to the runtime.
+. Runtime Fabric agent,  Mule apps, and API gateway are separate processes. If the Runtime Fabric agent stops working or it loses connectivity with Anypoint Management Center, Mule apps and API gateways continue to operate.
+. Mule apps and API gateways work as defined in your Mule flows, and no customer data traverse to Anypoint Management Center. Your dataflow is specific to the application that was built and deployed to the runtime.
 
 === mTLS Certificate Renewal Flow
 
@@ -108,8 +108,8 @@ Information about a Runtime Fabric cluster. Specifically: +
 ** Associated environments
 ** Nodes, CPU, memory capacity, Kubernetes version, docker version, Kubernetes health warnings
 
-* Mulesoft application +
-The flow architecture that you create using Anypoint Studio. This flow architecture is metadata about your APIs, and you upload it to API Manager. MuleSoft applications are then deployed to the specified Runtime Fabric.
+* Mule apps +
+The flow architecture that you create using Anypoint Studio. This flow architecture is metadata about your APIs, and you upload it to Runtime Manager. Mule apps are then deployed to the specified Runtime Fabric.
 
 * Monitoring metrics (optional) +
 Metrics about the basic runtime status that are collected on a poll configured on the runtime. Specifically: +
