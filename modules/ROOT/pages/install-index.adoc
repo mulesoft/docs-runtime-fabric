@@ -5,3 +5,5 @@ To install Runtime Fabric, choose from one of the following options:
 * xref:install-self-managed.adoc[Install Runtime Fabric using rtfctl]
 * xref:install-helm.adoc[Install Runtime Fabric using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric as a Kubernetes (K8s) Operator]
+* xref:install-multiple-instances.adoc[Install Multiple Instances of Runtime Fabric on a Single Cluster]
+* xref:install-multiple-instances-openshift.adoc[Install Multiple Instances of Runtime Fabric on a Single OpenShiftCluster]
