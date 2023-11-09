@@ -1,5 +1,5 @@
 name: runtime-fabric
 title: Runtime Fabric
-version: '2.4'
+version: '2.5'
 nav:
 - modules/ROOT/nav.adoc
