@@ -1,15 +1,17 @@
-= Configure Autoscaling (HPA) for Runtime Fabric Deployments
+= Configure Horizontal Autoscaling (HPA) for Runtime Fabric Deployments
 
-Runtime Fabric instances support scaling Mule app deployments by initiating additional replicas in response to the signals configured.
+Runtime Fabric instances support horizontal scaling of Mule app deployments by initiating additional replicas in response to the signals configured.
 
-Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure autoscaling on the Runtime Manager application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
+Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure horizontal autoscaling on the Runtime Manager application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
 
 In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
+
 
 == Before You Begin
 
 To configure autoscaling, the cluster administrator must enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
 Refer to your managed vendors documentation on how to install or enable metrics API servers.
+
 
 == Infrastructure Configuration Recommendations
 
@@ -191,20 +193,17 @@ Some points to consider:
 * Each period up to 100% of the running pods may be added or removed.
 * The number of pods added is based on the aggregated calculations over the past 180 seconds.
 * The number of pods removed is based on the aggregated calculations over the past 300 seconds.
-* Max scale up profile is 1 -> 2 -> 4 -> 8 -> 16, where MuleSoft hits 16 replicas in approximately 7 minutes.
+* Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 16 replicas in approximately 6 minutes.
 
-=== Application Types 
-
-The following Mule app types fit CPU based HPA:
+The following are few examples of Mule app types that fit CPU based HPA:
 
 * Mule apps that scale based on CPU usage only.
 * HTTP/HTTPS apps with async requests.
-* Mule apps with high-throughput.
-* Mule apps that imply shorter requests.
-* Mule apps that imply lower latencies.
+
 
 == Performance Considerations and Limitations
-Use the following considerations and limitations to get a better performance, the policy in use is benchmarked for Mule apps with CPU `Reserved: 0.45vCpu and Limit: 0.55vCpu`, which corresponds to these settings:
+
+In Runtime Fabric, the policy in use was benchmarked for Mule apps with CPU Reserved: 0.45vCpu and Limit: 0.55vCpu, which corresponds to these settings:
 
 ----
         resources:
@@ -213,12 +212,13 @@ Use the following considerations and limitations to get a better performance, th
           requests:
             cpu: 450m
 ----
-[NOTE]
-Any deviation from the previous configuration considerations on infrastructure and Mule deployment CPU settings may lead to performance issues and unprecedented scaling behaviors.
+=== Limitations
+Horizontal autoscaling does not work with clustering and rate limiting.
 
-== Configure Autoscaling
 
-To configure autoscalaling for Mule apps deploys to Runtime Fabric, follow these steps:
+== Configure Horizontal Autoscaling
+
+To configure horizontal autoscaling for Mule apps deployed to Runtime Fabric, follow these steps:
 
 . Enable the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-metrics-apis[support for metrics APIs^] on your managed K8s API server.
 . In Runtime Manager, click the *Applications* tab.
@@ -232,6 +232,15 @@ image::rtf-autoscaling.png[Runtime Manager UI with Enable Autoscaling field sele
 
 == Autoscaling Status in Runtime Manager
 
-After you deployed your Mule app with autoscaling, you can see the *Scaling* status in the Runtime Manager UI:
+When an autoscaling event occurs and your Mule app with horizontal autoscaling scales up, you can see the *Scaling* status in the Runtime Manager UI. 
 
 image::rtf-autoscaling-status.png[Runtime Manager UI with Mule app and Scaling status]
+
+In the *Manage Applications* page, you can track the scaled up replicas startup, and also track the number of replicas your app scaled from and to via the application logs:
+
+—---
+Info	8 minutes ago - 2023-11-08 14:35:01.466 PST - Runtime Manager
+Application id:<app-ID> scaled UP from 1 to 2 replicas.
+Info	a minute ago - 2023-11-08 14:41:24.819 PST - Runtime Manager
+Application id:<app-ID> scaled DOWN from 2 to 1 replicas. :
+—---
