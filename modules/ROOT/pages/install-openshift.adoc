@@ -105,7 +105,7 @@ rules:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: <namespace>
+  name: <app_namespace>
   labels:
     rtf.mulesoft.com/agentNamespace: <rtf_namespace>
     rtf.mulesoft.com/envId: <environment_id>
@@ -134,11 +134,16 @@ metadata:
   namespace: <app_namespace>
 subjects:
   - kind: ServiceAccount
-    name: rtf-certificate-renewal
+    name: rtf-agent
     namespace: <rtf_namespace>
+# If using persistence gateway uncomment and provide the following. Ref: https://docs.mulesoft.com/runtime-fabric/latest/persistence-gateway#persistence-gateway-with-authorized-namespaces
+# subjects:
+#  - kind: ServiceAccount
+#    name: rtf-persistence-gateway
+#    namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
@@ -173,6 +178,9 @@ subjects:
     namespace: <rtf_namespace>
   - kind: ServiceAccount
     name: am-log-forwarder
+    namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
     namespace: <rtf_namespace>
 ----
 
@@ -227,6 +235,9 @@ subjects:
   - kind: ServiceAccount
     name: am-log-forwarder
     namespace: <rtf_namespace>
+  - kind: ServiceAccount
+    name: rtf-certificate-renewal
+    namespace: <rtf_namespace>
 ----
 
 [start=6]
@@ -241,7 +252,7 @@ metadata:
   namespace: <rtf_namespace>
 data:
   APPLICATION_NAMESPACE_1: "<app_namespace_1>"
-  APPLICATION_NAMESPACE_2: "<app_namespace_1>
+  APPLICATION_NAMESPACE_2: "<app_namespace_2>
 ----
 
 . If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
@@ -343,7 +354,63 @@ a|
 * `/var/log/pods`
 |===
 
-include::partial$include-install-tasks.adoc[tags=licenseKey]
+== Insert the Mule License Key
+
+If you didn’t add the Mule license key during install, you can add it using the `rtfctl` command line utility or Helm.
+
+Before you install the license key, encode it to Base64 format.
+
+=== Encode the License Key
+
+* On MacOS, run the following command:
++
+[source,copy]
+----
+base64 -b 0 -i <license-file>
+----
++
+* On Unix, run the following command:
++
+[source,copy]
+----
+base64 -w0 <license-file>
+----
++
+* On Windows, choose one of the following:
+
+** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command.
+** Use the base64.exe program included with Windows git (C:\Program Files\Git\usr\bin).
+** Use the following Powershell command:
++
+[source,copy]
+----
+$BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
+----
+
+=== Apply the License Key from the OpenShift Console
+
+To apply the license key from the OpenShift console, follow these steps:
+
+. Navigate to the Runtime Fabric operator.
+. Select the namespace in which the Runtime Fabric instance is installed.
+. Click on the *Runtime Fabric* tab.
+. Click on the *runtime-fabric* instance link.
++
+image::rtf-license-operator-1.png[Runtime Fabric operator with runtime-fabric instance selected]
+[start=5]
+. Update the Runtime Fabric instance CR .yaml file by adding the `muleLicense`.
++
+image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
+
+=== Apply the License Key Using Helm
+
+To apply the license using Helm, run the following command:
+
+[source,copy]
+----
+helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values
+----
+
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 

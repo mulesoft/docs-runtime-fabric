@@ -24,6 +24,8 @@ The `kubernetestemplate` resource enables you to configure the following element
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
 
+For the security context pod, the key to use is `containerSecurityContext`.
+
 
 * Deployment
 ** Annotations
@@ -54,6 +56,7 @@ apiVersion: rtf.mulesoft.com/v1
 kind: KubernetesTemplate
 metadata:
   name: mule-application
+  namespace: rtf
 spec:
   deployment:
     metadata:
@@ -93,6 +96,7 @@ apiVersion: "rtf.mulesoft.com/v1"
 kind: KubernetesTemplate
 metadata:
   name: mule-application
+  namespace: rtf
   labels:
 spec:
   deployment:
@@ -108,7 +112,8 @@ spec:
       labels:
       annotations:
     containerSecurityContext:
-      seccompProfile: “restricted”
+      seccompProfile: 
+        type: RuntimeDefault
     tolerations:
     - key: "example-key"
       operator: "Exists"
@@ -117,10 +122,6 @@ spec:
     nodeSelector:
       region: us-east
     affinity:
-    tolerations:
-    - key: "key1"
-      operator: "Exists"
-      effect: "NoSchedule"
     topologySpreadConstraints:
     - maxSkew: 1
       topologyKey: topology.kubernetes.io/zone
