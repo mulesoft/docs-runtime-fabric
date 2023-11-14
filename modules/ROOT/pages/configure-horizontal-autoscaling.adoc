@@ -132,8 +132,7 @@ spec:
 
 Some points to consider:
 
-* Scale up or down occurs at most every 60 seconds.
-* Each period up to 100% of the running pods may be added or removed.
+* Up to 100% running pods may be added until the maximum configured replicas is reached.
 * The number of pods added is based on the aggregated calculations over the past 180 seconds.
 * The number of pods removed is based on the aggregated calculations over the past 300 seconds.
 * Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 6 minutes.
