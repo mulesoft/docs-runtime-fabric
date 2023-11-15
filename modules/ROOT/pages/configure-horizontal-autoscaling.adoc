@@ -1,8 +1,8 @@
 = Configure Horizontal Autoscaling (HPA) for Runtime Fabric Deployments
 
-Runtime Fabric instances support horizontal scaling of Mule app deployments by initiating additional replicas in response to the signals configured.
+Runtime Fabric instances support horizontal scaling of Mule app deployments by spinning up additional replicas or spinning down unneeded replicas in response to the CPU usage as a signal.
 
-Mulesoft supports configuring Mule apps to be responsive to the resource usage on Kubernetes (K8s) runtime side. You can configure horizontal autoscaling on the Runtime Manager application deployment page, which responds to the CPU usage threshold by scaling up or scaling down the deployment replicas as needed.
+Mulesoft supports configuring Mule apps to be responsive to the CPU usage on Kubernetes (K8s) runtime side. You can enable CPU based horizontal autoscaling per application on the Runtime Manager application deployment page, which will result in automatic scale up or scale down of the deployment replicas as needed.
 
 In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
 
@@ -132,21 +132,19 @@ spec:
 
 Some points to consider:
 
-* Up to 100% running pods may be added until the maximum configured replicas is reached.
+* Scale up: Each period up to 100% of the running pods may be added until the maximum configured replicas.
+* Scale down: Each period, running pods may be scaled down till it reaches the minimum configured replicas.
 * The number of pods added is based on the aggregated calculations over the past 180 seconds.
 * The number of pods removed is based on the aggregated calculations over the past 300 seconds.
 * Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 6 minutes.
 
-The following are few examples of Mule app types that fit CPU based HPA:
-
-* Mule apps that scale based on CPU usage only.
-* HTTP/HTTPS apps with async requests.
-
 
 == Performance Considerations and Limitations
 
-In Runtime Fabric, the policy in use was benchmarked for Mule apps with CPU Reserved: 0.45vCpu and Limit: 0.55vCpu, which corresponds to these settings:
+For a successful horizontal autoscaling of your Mule apps, review the following performance considerations:
 
+* In Runtime Fabric, the policy in use was benchmarked for Mule apps with CPU Reserved: 0.45vCpu and Limit: 0.55vCpu, which corresponds to these settings:
++
 ----
         resources:
           limits:
@@ -154,6 +152,10 @@ In Runtime Fabric, the policy in use was benchmarked for Mule apps with CPU Rese
           requests:
             cpu: 450m
 ----
++
+* Mule apps that scale based on CPU usage are a good fit with CPU based HPA. For example, HTTP/HTTPS apps with async requests, 'B', 'C'.
+
+* Scale up and scale down performance can vary based on the replica size and the application type.
 === Limitations
 Horizontal autoscaling does not work with clustering and rate limiting.
 
