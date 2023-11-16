@@ -213,7 +213,7 @@ image::rtf-autoscaling.png[Runtime Manager UI with Enable Autoscaling field sele
 
 When an autoscaling event occurs and your Mule app with horizontal autoscaling scales up, you can check the *Scaling* status in the Runtime Manager UI by clicking *View status* in your application’s details window:
 
-image::rtf-autoscaling-status.png[Runtime Manager UI with Mule app and Scaling status]
+image::rtf-hpa-rtm.png[Runtime Manager UI with Mule app and Scaling status]
 
 For beta, MuleSoft does not support autoscaling logs for Runtime Fabric. You can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
 
