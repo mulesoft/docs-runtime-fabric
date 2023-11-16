@@ -135,11 +135,16 @@ spec:
 
 Some points to consider:
 
-* Scale up: Each period up to 100% of the running pods may be added until the maximum configured replicas.
-* Scale down: Each period, running pods may be scaled down till it reaches the minimum configured replicas.
-* The number of pods added is based on the aggregated calculations over the past 180 seconds.
-* The number of pods removed is based on the aggregated calculations over the past 300 seconds.
+Scale up +
+
+* Each period up to 100% of the running pods may be added until the maximum configured replicas.
+* The number of replicas added is based on the aggregated calculations over the past 180 seconds.
 * Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 6 minutes.
+
+Scale down +
+
+* Each period, running replicas may be scaled down till it reaches the minimum configured replicas.
+* The number of replicas removed is based on the aggregated calculations over the past 300 seconds of the stabilization window.
 
 === Autoscaling Patterns and Anti-Patterns
 
