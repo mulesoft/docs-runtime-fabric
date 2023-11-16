@@ -141,6 +141,23 @@ Some points to consider:
 * The number of pods removed is based on the aggregated calculations over the past 300 seconds.
 * Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 6 minutes.
 
+=== Autoscaling Patterns and Anti-Patterns
+
+The following table provides horizontal autoscaling patterns and anti-patterns.
+
+[%header%autowidth.spread]
+|===
+| Traffic or Bench Mark | Resource | Behavior | Result | Limitations
+| HTTPS Simple Benchmark or reverse Proxy, ATOCs SmallG, Low Latency, High Xput, DataWeave transformations, APIKit Routing, Api Gateway Policies | CPU | Autoscaling | Pattern | Works well for CPU scaling (memory heavy apps with high GC are in this bucket because they consume CPU)
+|Memory consumption apps that do not have high CPU from GC. | Memory | Auto scales up but not down | Anti-Pattern | Memory is consumed but never released. Causes infinite autoscaling.
+| Scheduler apps | CPU | Reentrancy and duplicate scheduling | Anti-Pattern | Apps must be re-entrant and must have scheduling to be across apps and not per instance.
+| Batch jobs | CPU |Non-reentrant Apps and do not have built-in parallel processing fail. | Anti-Pattern|
+| Apps with lots of logging, for example, per request audit trail logs. | CPU | Failed to scale since the bottleneck is the filebeat sidecar. | Anti-Pattern | Need to support custom metrics for filebeat CPU. Gap is being closed with GOGC tuning to reduce or eliminate.
+|Large requests with long latency and low TPS – ATOCs largeG |CPU  |Scales up but new replica does not get enough traffic from Kubernetes round robin on connections to distribute well. May not consume enough CPU or memory to trigger on these resources.
+ |Anti-Pattern | Traffic distribution is a multi-replica issue and not just an auto-scale. This type of low Xput app may also not consume large amounts of resources.
+
+
+|===
 
 == Performance Considerations and Limitations
 
@@ -159,6 +176,7 @@ For a successful horizontal autoscaling of your Mule apps, review the following 
 * Mule apps that scale based on CPU usage are a good fit with CPU based HPA. For example, HTTP/HTTPS apps with async requests, 'B', 'C'.
 
 * Scale up and scale down performance can vary based on the replica size and the application type.
+
 === Limitations
 
 * Horizontal autoscaling does not work with clustering and rate limiting.
