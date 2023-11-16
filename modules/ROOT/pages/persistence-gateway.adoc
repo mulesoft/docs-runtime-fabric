@@ -77,7 +77,7 @@ Look for pods with the name prefix `persistence-gateway`
 +
 [source,copy]
 ----
-kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -nrtf
+kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -n rtf
 ----
 +
 The output of this command should be similar to the following:
