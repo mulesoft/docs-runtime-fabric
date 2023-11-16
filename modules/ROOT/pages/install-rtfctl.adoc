@@ -239,6 +239,12 @@ ACTIVATION_DATA=<activation_data>
 HTTP_PROXY=http://<proxy_domain>.com:<port>
 ----
 
+* Override the Docker image registry URL and secret 
++
+----
+rtfctl validate <activation_data> --image-pull-registry <string> --image-pull-secret <string>
+----
+
 === `version` 
 Displays the Runtime Fabric version information
 
