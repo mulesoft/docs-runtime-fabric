@@ -89,11 +89,11 @@ For further details on the configuration, refer to xref:customize-kubernetes-crd
 [WARNING]
 Customizing topology spread with `whenUnsatisfiable: DoNotSchedule`, without the recommended configurations for node groups per availability zone, cluster autoscaler, and overprovisionining, can lead to K8s failing to schedule the replicas with `Pending state` error.
 
-=== Understand Autoscaling Policy
+=== Understand CPU-based Autoscaling Policy
 
 MuleSoft owns and applies the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/[autoscaling^] policy for your Mule application deployments.
 
-The CPU based HPA policy used for all Mule apps deployed on Runtime Fabric instances, is as follows:
+The CPU-based HPA policy used for all Mule apps deployed on Runtime Fabric instances, is as follows:
 
 ----
 apiVersion: autoscaling/v2
@@ -185,7 +185,7 @@ There are some limitations to consider:
 * Horizontal autoscaling does not work with clustering and rate limiting.
 * CPU is the only resource for horizontal autoscaling.
 
-== Configure Horizontal Autoscaling
+== Configure Horizontal Pod Autoscaling
 
 To configure horizontal autoscaling for Mule apps deployed to Runtime Fabric, follow these steps:
 
@@ -197,7 +197,6 @@ To configure horizontal autoscaling for Mule apps deployed to Runtime Fabric, fo
 . Click *Deploy Application*.
 
 image::rtf-autoscaling.png[Runtime Manager UI with Enable Autoscaling field selected]
-
 
 
 == Autoscaling Status and Logs
