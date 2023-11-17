@@ -135,16 +135,9 @@ spec:
 
 Some points to consider:
 
-Scale up +
+Scale up can occur at most every 180 seconds. Each period, up to 100% of the currently running replicas may be added until the maximum configured replicas is reached. For scaling up there is no stabilization window. When the metrics indicate that the target should be scaled up, the target is scaled up immediately.
 
-* Each period up to 100% of the running pods may be added until the maximum configured replicas.
-* The number of replicas added is based on the aggregated calculations over the past 180 seconds.
-* Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 9 minutes.
-
-Scale down +
-
-* Each period, running replicas may be scaled down till it reaches the minimum configured replicas.
-* The number of replicas removed is based on the aggregated calculations over the past 300 seconds of the stabilization window.
+Scale down can occur at most every 15 seconds. Each Period, up to 100% of the currently running replicas may be removed which means the scaling target can be scaled down to the minimum allowed replicas. The number of replicas removed is based on the aggregated calculations over the past 300 seconds of the stabilization window.
 
 Min replicas +
 
@@ -213,7 +206,18 @@ When an autoscaling event occurs and your Mule app with horizontal autoscaling s
 
 image::rtf-hpa-rtm.png[Runtime Manager UI with Mule app and Scaling status]
 
-You can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
+You can also track when autoscaling events occurred through *Audit logs* in Runtime Manager. Each time an application deployment scaled, there is an audit log published under the product *Runtime Manager*, by the *Anypoint Staff* user. The log has *Action* set to `Scaling` with the *Object* as the application ID.
+
+image::rtf-hpa-rtm-2.png[Runtime Manager UI with Audit logs and Scaling status]
+
+The following is an example log payload:
+
+[source,console,linenums]
+----
+{"properties":{"organizationId":"my-orgID-abc","environmentId":"my-envID-xyz","response":{"message":{"message":"Application id:my-appID-123 scaled DOWN from 3 to 2 replicas.","logLevel":"INFO","context":{"logger":"Runtime Manager"},"timestamp":1700234556678}},"deploymentId":"my-appID-123","initialRequest":"/organizations/my-orgID-abc/environments/my-envID-xyz/deployments/my-appID-123/specs/my-specID-456"},"subaction":"Scaling"}
+----
+
+Additionally, you can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
 
 [source,console,linenums]
 ----
