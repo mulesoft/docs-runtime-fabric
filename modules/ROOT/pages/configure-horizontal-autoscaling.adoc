@@ -139,30 +139,24 @@ Scale up +
 
 * Each period up to 100% of the running pods may be added until the maximum configured replicas.
 * The number of replicas added is based on the aggregated calculations over the past 180 seconds.
-* Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 6 minutes.
+* Max scale up profile is 1 -> 2 -> 4 -> 8, where MuleSoft hits 8 replicas in approximately 9 minutes.
 
 Scale down +
 
 * Each period, running replicas may be scaled down till it reaches the minimum configured replicas.
 * The number of replicas removed is based on the aggregated calculations over the past 300 seconds of the stabilization window.
 
-=== Autoscaling Patterns and Anti-Patterns
+Min replicas +
 
-The following table provides horizontal autoscaling patterns and anti-patterns.
+* The minimum number of replicas that would be guaranteed to run at any given point of time.
+* Scale down policy would never remove replicas below this number.
 
-[%header%autowidth.spread]
-|===
-| Traffic or Bench Mark | Resource | Behavior | Result | Limitations
-| HTTPS Simple Benchmark or reverse Proxy, ATOCs SmallG, Low Latency, High Xput, DataWeave transformations, APIKit Routing, Api Gateway Policies | CPU | Autoscaling | Pattern | Works well for CPU scaling (memory heavy apps with high GC are in this bucket because they consume CPU)
-|Memory consumption apps that do not have high CPU from GC. | Memory | Auto scales up but not down | Anti-Pattern | Memory is consumed but never released. Causes infinite autoscaling.
-| Scheduler apps | CPU | Reentrancy and duplicate scheduling | Anti-Pattern | Apps must be re-entrant and must have scheduling to be across apps and not per instance.
-| Batch jobs | CPU |Non-reentrant Apps and do not have built-in parallel processing fail. | Anti-Pattern|
-| Apps with lots of logging, for example, per request audit trail logs. | CPU | Failed to scale since the bottleneck is the filebeat sidecar. | Anti-Pattern | Need to support custom metrics for filebeat CPU. Gap is being closed with GOGC tuning to reduce or eliminate.
-|Large requests with long latency and low TPS – ATOCs largeG |CPU  |Scales up but new replica does not get enough traffic from Kubernetes round robin on connections to distribute well. May not consume enough CPU or memory to trigger on these resources.
- |Anti-Pattern | Traffic distribution is a multi-replica issue and not just an auto-scale. This type of low Xput app may also not consume large amounts of resources.
+Max replicas +
+
+* The maximum number of replicas that are capped, beyond which no more replicas can be added for scale up.
+* Scale up policy would never add replicas above this number.
 
 
-|===
 
 == Performance Considerations and Limitations
 
@@ -178,21 +172,25 @@ For a successful horizontal autoscaling of your Mule apps, review the following 
             cpu: 450m
 ----
 +
-* Mule apps that scale based on CPU usage are a good fit with CPU based HPA. For example, HTTP/HTTPS apps with async requests, 'B', 'C'.
+
+* Mule apps that scale based on CPU usage are a good fit with CPU based HPA. For example: +
+
+** HTTP/HTTPS apps with async requests
+** Reverse proxies
+** Low latency + high throughput apps
+** Dataweave transformations
+** APIKit Routing
+** API Gateways with policies
+** Non-reentrant apps that do not have built in parallel processing such as batch jobs, scheduler apps without re-entrancy and duplicate scheduling across apps and low throughput, high latency apps with large requests may not be a good fit with CPU based HPA.
 
 * Scale up and scale down performance can vary based on the replica size and the application type.
 
 === Limitations
 
+There are some limitations to consider:
+
 * Horizontal autoscaling does not work with clustering and rate limiting.
 * CPU is the only resource for horizontal autoscaling.
-* Low throughput apps will not benefit in general. The Kubernetes connection round-robin algorithm will not distribute traffic effectively.
-* Apps that are not re-entrant have functional issues.
-* Autoscaling for replicas from 1 → 8 are validated.
-* Dashboard support for frequent autoscales are unusable. 
-* There is no audit trail or logging of autoscales up and down available in logs.
-
-
 
 == Configure Horizontal Autoscaling
 
@@ -215,7 +213,7 @@ When an autoscaling event occurs and your Mule app with horizontal autoscaling s
 
 image::rtf-hpa-rtm.png[Runtime Manager UI with Mule app and Scaling status]
 
-For beta, MuleSoft does not support autoscaling logs for Runtime Fabric. You can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
+You can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
 
 [source,console,linenums]
 ----
