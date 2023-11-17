@@ -206,7 +206,7 @@ When an autoscaling event occurs and your Mule app with horizontal autoscaling s
 
 image::rtf-hpa-rtm.png[Runtime Manager UI with Mule app and Scaling status]
 
-You can also track when autoscaling events occurred through *Audit logs* in Runtime Manager. Each time an application deployment scaled, there is an audit log published under the product *Runtime Manager*, by the *Anypoint Staff* user. The log has *Action* set to `Scaling` with the *Object* as the application ID.
+You can also track when autoscaling events occurred through *Audit logs* in Access Management. Each time an application deployment scaled, there is an audit log published under the product *Runtime Manager*, by the *Anypoint Staff* user. The log has *Action* set to `Scaling` with the *Object* as the application ID.
 
 image::rtf-hpa-rtm-2.png[Runtime Manager UI with Audit logs and Scaling status]
 
