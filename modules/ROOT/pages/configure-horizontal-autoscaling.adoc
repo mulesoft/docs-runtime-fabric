@@ -81,7 +81,7 @@ topologySpreadConstraints:
     whenUnsatisfiable: DoNotSchedule
     labelSelector:
       matchLabels:
-        rtf.mulesoft.com/id: {{ .Values.id }}
+        rtf.mulesoft.com/id: "{{ .Values.id }}"
 ----
 
 For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
