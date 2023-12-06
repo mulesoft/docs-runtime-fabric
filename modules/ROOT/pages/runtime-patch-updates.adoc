@@ -34,6 +34,10 @@ Starting with Mule runtime engine version 4.5, you can disable autoupgrades of y
 
 During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
 
+=== Version Rewrite
+
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
+
 === Update a Single App to the Latest Runtime Patch Release
 
 Before updating apps in the production environment, update them in the sandbox environment and run required tests. 
@@ -99,10 +103,6 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 After you select the option *Use Edge Release Channel* in the Runtime Manager UI, the platform shows all the build tags for Edge and LTS channels. The build tag is specific to Runtime Manager and CloudHub 2.0 because the image can be built multiple times for a given Mule runtime version. 
 The Runtime Manager UI does not show build tags for Mule runtime engine versions < 4.5 but you can still use any build through the API.
-
-== Version Rewrite
-
-Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
 
 == See Also
 * xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Runtimes Release Notes]
