@@ -15,6 +15,4 @@ include::3.x@anypoint-cli::partial$runtime-fabric-apps.adoc[tag=summary]
 
 include::3.x@anypoint-cli::partial$runtime-fabric-apps.adoc[tag=commands]
 
-include::3.x@anypoint-cli::partial$rtf-instances.adoc[tag=summary]
-
 include::3.x@anypoint-cli::partial$rtf-instances.adoc[tag=commands]
