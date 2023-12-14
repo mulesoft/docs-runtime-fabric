@@ -123,7 +123,7 @@ Runtime Fabric on VMs / Bare Metal supports log forwarding to:
 *** <<Elasticsearch Configuration Parameters, Elasticsearch Configuration Parameters>>
 *** <<GELF Configuration Parameters, GELF Configuration Parameters>>
 *** <<Splunk Configuration Parameters, Splunk Configuration Parameters>>
-*** <<Cloud Watch, CloudWatch Configuration Parameters>>
+*** <<Cloudwatch, CloudWatch Configuration Parameters>>
 *** <<Syslog, Syslog Configuration Parameters>>
 
 .. Select *Apply changes*.
@@ -245,7 +245,7 @@ Example output plugin configuration:
     Splunk_Token xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
     Tls          On
 ```
-[[Cloud Watch]]
+[[Cloudwatch]]
 ==== CloudWatch Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
