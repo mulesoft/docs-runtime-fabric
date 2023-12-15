@@ -43,7 +43,7 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 ** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus^]
 
 
-* If you don’t have investments in Kubernetes and must stay in your own hosted environment, xref:mule-runtime::whats-new-in-mule.adoc[Mule runtime standalone^] is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
+* If you don’t have investments in Kubernetes and must stay in your own hosted environment, Mule runtime standalone is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
 
 == Actions Appliance Users Can Take
 
