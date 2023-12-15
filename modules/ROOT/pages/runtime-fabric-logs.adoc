@@ -312,7 +312,7 @@ Example output plugin configuration:
     Syslog_Format  rfc5424
     Syslog_Maxsize 2048
 ```
-
+[[Datadog]]
 ==== Datadog Configuration Parameters
 
 [%header%autowidth.spread,cols="a,a,a,a"]
