@@ -7,11 +7,6 @@ Runtime Fabric on Self-Managed Kubernetes uses two types of proxies when running
 
 You can configure the proxy settings used by Runtime Fabric outbound connections to the internet. This includes both HTTP proxies for connecting to the Anypoint Platform control plane and SOCKS5 proxies for sending metrics and logs to Anypoint Monitoring. You can also configure proxies for applications.
 
-* <<configure-proxy, Configure an Anypoint Monitoring Proxy>>
-* <<configure-http-proxy, Configure an HTTP Proxy for Services in Runtime Fabric>>
-* <<configure-proxy-api, Configure a Proxy for the API Manager Agent>>
-* <<configure-proxy-mule-app, Configure a Proxy for a Mule Application>>
-
 
 == Install rtfctl 
 
