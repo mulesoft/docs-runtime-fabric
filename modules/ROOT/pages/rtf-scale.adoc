@@ -67,3 +67,6 @@ Aspects to consider:
 * Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicitly when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`). +
 
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
+
+* RTFCTL clusters are supported only for certain benchmarks.
+* Using Helm enables you to manage any cluster that requires customized resources for Runtime Fabric agent due to the size of the cluster.
