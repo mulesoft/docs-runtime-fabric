@@ -80,7 +80,7 @@ When Anypoint Monitoring is enabled, 50MB memory is reserved for running the Any
 
 == Calculating Memory Allocation on CloudHub and Runtime Fabric
 
-Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload.
+Anypoint Platform allocates native and heap memory for a deployed application. Heap memory is the portion of the total memory that is made available to the Mule runtime and the application. Heap memory is used for tasks like handling payload. Anypoint Platform allocates native memory for deployed applications through the JVM, taking into account the standard practices of Java memory management.
 
 Both CloudHub and Anypoint Runtime Fabric allocate both types of memory. However, they differ in how the memory allocation of each memory type is calculated.
 
