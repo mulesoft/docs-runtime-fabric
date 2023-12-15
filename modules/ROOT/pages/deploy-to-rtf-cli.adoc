@@ -4,16 +4,8 @@ Use these Anypoint Platform CLI commands for deploying and managing applications
 
 Before you get started, review xref:3.x@anypoint-cli::index.adoc[Anypoint CLI prerequisites, installation, and authentication instructions]. 
 
-[[deploy-apps-in-runtime-fabric]]
-== Managing Apps in Runtime Fabric
+include::3.x@anypoint-cli::partial$runtime-fabric-apps.adoc[tag=summary]
 
-include::anypoint-cli::partial$cloudhub2-apps.adoc[tags=summary-rtf,leveloffset=+1]
+include::3.x@anypoint-cli::partial$runtime-fabric-apps.adoc[tag=commands]
 
-include::anypoint-cli::partial$cloudhub2-apps.adoc[tags=commands-rtf,leveloffset=+1]
-
-[[list-runtime-fabric-instances]]
-== List Runtime Fabric Instances
-
-include::anypoint-cli::partial$rtf-instances.adoc[tag=summary,leveloffset=+1]
-
-include::anypoint-cli::partial$rtf-instances.adoc[tag=commands,leveloffset=+1]
+include::3.x@anypoint-cli::partial$rtf-instances.adoc[tag=commands]
