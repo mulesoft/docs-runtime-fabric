@@ -106,7 +106,7 @@ NAME                              READY   STATUS    RESTARTS   AGE
 pod/omg-s1-now-58dd54d9f-xt569    0/2     Pending   0          4s
 pod/omg-s1-now-6c5c5d987c-fbmbl   0/2     Pending   0          50m
 ----
-
+[[app-namespaces]]
 == App Namespaces Status States
 
 The following table lists statuses that show when there are issues with the app and authorized namespaces. They are prefixed with `[Runtime Fabric]`.
