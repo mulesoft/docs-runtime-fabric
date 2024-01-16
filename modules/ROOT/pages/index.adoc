@@ -154,7 +154,7 @@ The following table lists supported and non-supported features.
 Provide your instances of Kubernetes and Docker via Amazon EKS, AKS or GKE clusters. 
 | Installing on any Linux distribution | Supported 
 | Node auto-scaling | Supported using AWS, Azure, Google Cloud, or RedHat OpenShift functionality 
-| External log forwarding | You must provide an external log forwarding service 
+| External log forwarding | You can set up Log4j to forward logs to external systems. 
 | Internal load balancer | You must provide an internal load balancer (Ingress Controller) 
 | Anypoint Security Edge | Not supported 
 | Anypoint Security Tokenization | Not supported 
