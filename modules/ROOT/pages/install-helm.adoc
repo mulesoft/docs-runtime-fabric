@@ -67,6 +67,8 @@ To create the namespace, run:
 kubectl create ns rtf
 ----
 
+Using `rtf` as a namespace applies only in the case of single cluster or single instance.
+
 == Create A Docker Pull Secret
 
 After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric.
