@@ -10,7 +10,7 @@ Review the following limitations on support for local registries:
 [IMPORTANT]
 You cannot use local registries during the installation of OpenShift operator. However, you can use local registries with OpenShift RTF to store Mule Docker images and install and manage Runtime Fabric for running Mule apps. 
 
-* You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later.
+* You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later. Note that rtfctl installs Runtime Fabric agent to the latest version by default.
 * You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
 +
 If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
