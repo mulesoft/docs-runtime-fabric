@@ -53,6 +53,8 @@ image::rtf-rtm-mule-cadence.png[Runtime Manager UI with Mule Edge release dropdo
 
 The *Deployment Target*, *Ingress*, *Properties*, *Logs*, and *JVM* tabs are displayed. Use these tabs to enter additional configuration information for your application.
 
+To learn more about Mule runtime versions supported by Runtime Fabric, refer to xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Anypoint Runtime Fabric Patch Update Release Notes].
+
 [Note]
 You can deploy Mule apps with Mule runtime engine versions that are within the standard support or extended support life. Specify the versions through the API or in the Runtime Manager UI. With a Mule runtime engine version in EOL (end of life) support, you can redeploy and restart Mule apps but can not deploy new Mule apps. 
 
