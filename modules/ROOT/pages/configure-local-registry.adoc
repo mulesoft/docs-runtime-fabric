@@ -193,7 +193,7 @@ kubectl create secret docker-registry rtf-pull-secret --namespace test-gke-rtf-q
 ----
 
 [start=6]
-. Following the Helm path instructions, download the values.yaml file and modify its values. The following is a values.yaml file example:
+. Following the *Helm* path instructions, download the values.yaml file and modify its values. The following is a values.yaml file example:
 +
 [source,copy]
 ----
