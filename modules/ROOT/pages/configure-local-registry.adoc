@@ -29,7 +29,7 @@ You cannot add a local registry to any version of an existing Runtime Fabric ins
 
 * You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
 
-== Configure a Local Registry for Use with Runtime Fabric 
+== Configure Your Local Registry for Runtime Fabric using RTFCTL
 
 To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
 
@@ -124,3 +124,98 @@ This command ensures that Runtime Fabric creates the necessary overrides for the
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
 When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
+
+== Configure Your Local Registry for Runtime Fabric using Helm
+
+To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
+
+=== Before You Begin
+
+Ensure that you've performed the following tasks: 
+
+. Set up, configure, and test your private Docker image registry.
+. Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
++
+See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
++
+[NOTE]
+Dependency versions are specific to the Runtime Fabric version.
+
+=== Configure Your Local Registry and Install Runtime Fabric
+To configure a local registry for Runtime Fabric using Helm, follow these steps:
+
+. In your shell script, run the following script to synchronize container images to a local registry. Note that you must update `PLATFORM_URL`, `AGENT_VERSION`,  `AUTHORIZATION_TOKEN`, and `ACTIVATION_DATA`.
++
+The following script is an example:
++
+[source,copy]
+----
+##!/usr/bin/env bash
+ 
+PLATFORM_URL=<platform-url>
+AGENT_VERSION=<agent-version>
+AUTHORIZATION_TOKEN=<authorization-token>
+MULESOFT_DOCKER_SERVER=rtf-runtime-registry.kqa.msap.io
+PRIVATE_REGISTRY_LOCATION=us-west2-docker.pkg.dev/mulesoft-rtf-gke-test
+ACTIVATION_DATA=xxxx
+#MULE_RUNTIME=poseidon-runtime-4.4.0:20231211-2
+MULE_RUNTIME=poseidon-runtime-4.6.0:33e-java8 
+ 
+echo $PLATFORM_URL ; echo $AGENT_VERSION ; echo $MULESOFT_DOCKER_SERVER ; echo $PRIVATE_REGISTRY_LOCATION
+eval $(rtfctl get registry-credentials ${ACTIVATION_DATA})
+docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
+ 
+dependencies=$(curl "https://${PLATFORM_URL}/runtimefabric/api/agentmanifests/${AGENT_VERSION}" \
+-H "Authorization: bearer $AUTHORIZATION_TOKEN" | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+echo ${dependencies}
+for i in $dependencies
+do
+   echo "Processing $i"
+   docker pull "${MULESOFT_DOCKER_SERVER}/mulesoft/${i}"
+   docker tag  "${MULESOFT_DOCKER_SERVER}/mulesoft/${i}" "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${i}"
+   docker push "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${i}"
+done
+ 
+docker pull "${MULESOFT_DOCKER_SERVER}/mulesoft/${MULE_RUNTIME}"
+docker tag  "${MULESOFT_DOCKER_SERVER}/mulesoft/${MULE_RUNTIME}" "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${MULE_RUNTIME}"
+docker push "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${MULE_RUNTIME}"
+----
+
+[start=2]
+. Create a Runtime Fabric using Runtime Manager and select your desired Kubernetes service.
+. In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
+. Obtain your private `docker-server`, `docker-username`, and `docker-password`.
+. Following the *Helm* path instructions in Runtime Manager, create a secret with your docker server name, username, and password by running the following command in your Unix shell:
++
+[source,copy]
+----
+kubectl create secret docker-registry rtf-pull-secret --namespace test-gke-rtf-qax-helm --docker-server=<docker-servername> --docker-username=<docker-username --docker-password=<docker-password> --docker-email=<docker-email>
+----
+
+[start=6]
+. Following the Helm path instructions, download the values.yaml file and modify its values. The following is a values.yaml file example:
++
+[source,copy]
+----
+activationData: xxx
+proxy:
+ http_proxy:
+ http_no_proxy:
+ monitoring_proxy:
+muleLicense: 
+customLog4jEnabled: false
+global:
+ crds:
+  install: false
+ authorizedNamespaces: false
+ image:
+  rtfRegistry: us-west2-docker.pkg.dev/mulesoft-rtf-gke-test
+  pullSecretName: rtf-pull-secret
+ containerLogPaths:
+ - /var/lib/docker/containers
+ - /var/log/containers
+ - /var/log/pods
+----
+
+[start=7]
+. Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
