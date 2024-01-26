@@ -29,7 +29,7 @@ You cannot add a local registry to any version of an existing Runtime Fabric ins
 
 * You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
 
-== Configure Your Local Registry for Runtime Fabric using RTFCTL
+== Configure Your Local Registry for Runtime Fabric
 
 To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
 
@@ -38,109 +38,17 @@ To configure a local registry, you must gather and add the necessary credentials
 Ensure that you've performed the following tasks: 
 
 . Set up, configure, and test your private Docker image registry.
-. Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
+. <<synchronize, Synchronize>> to your local registry all the Docker images you need to install Runtime Fabric:
 +
 See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
 +
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version.
- 
 
 . xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Download and install the `rtfctl` command line utility] version 0.3.150 or higher.
 . xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Create a Runtime Fabric using Runtime Manager], and gather the activation data. 
 
-=== Configure Your Local Registry and Install Runtime Fabric
-
-. Obtain `rtf-runtime-registry` credentials:
-+
-[source,copy]
-----
-# rtfctl get registry-credentials <activation-data>
-----
-+
-This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
-
-. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
-+
-[source,copy]
----- 
-# eval $(rtfctl get registry-credentials <activation-data>)
-# docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
-----
-+
-You should see a message that the login was successful.
-
-. To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
-+
-For the US control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
-----
-+
-For the EU control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
-----
-
-. Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
-
-. If you use authentication to access your registry, create the required secret in the rtf namespace:
-+
-[source,copy]
-----
-# kubectl create namespace rtf
-# kubectl create secret docker-registry regcred --namespace=rtf --docker-server=<docker_server> --docker-username=<docker_username> --docker-email=<docker_email> --docker-password=<docker_password> 
-# kubectl label secret regcred rtf.mulesoft.com/synchronized=true -n rtf
-----
-+
-
-. Finalize the Runtime Fabric installation, and configure it to pull from your local registry:
-+
-[source,copy]
-----
-# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
-----
-+
-Alternatively, if you use authentication to access your registry, use the following command:
-+
-[source,copy]
-----
-# rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server> --image-pull-secret <your-local-reg-secret>
-----
-+
-This command ensures that Runtime Fabric creates the necessary overrides for the local registry URL and `image-pull-secret` values so Runtime Fabric continues to pull images from the local registry even after an upgrade.
-
-. If you use authentication to access your registry, after you complete the installation, you must recreate the pull secret in the RTF namespace and in any other namespaces where you will deploy applications. 
-. Refer to the xref:install-self-managed.adoc[installation instructions] for further steps, such as inserting the Mule license key.
-
-The `rtfctl uninstall` command deletes any pull secret you specify during installation.
-
-When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
-
-== Configure Your Local Registry for Runtime Fabric using Helm
-
-To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
-
-=== Before You Begin
-
-Ensure that you've performed the following tasks: 
-
-. Set up, configure, and test your private Docker image registry.
-. Synchronize to your local registry all the Docker images you need to install Runtime Fabric:
-+
-See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
-+
-[NOTE]
-Dependency versions are specific to the Runtime Fabric version.
-
+To configure your local registry using `rtfctl` or `helm`, select one of the following options:
 
 [tabs]
 ====
@@ -167,25 +75,10 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 You should see a message that the login was successful.
 
-. To pull and synchronize images, log in into your own private container registry and run the following command, replacing `<docker-server>` where appropriate:
-+
-For the US control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
-----
-+
-For the EU control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
-----
+. Synchronize your container images to your local registry by using one of these options:+
+
+* <<synchronize-automatically,Synchronize images automatically>>
+* <<synchronize-manually,Synchronize images manually>>
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
 
@@ -226,46 +119,11 @@ When using `rtfctl` to perform a backup and restore procedure, the backups point
 Helm::
 +
 --
-To configure a local registry for Runtime Fabric using Helm, follow these steps:
+. Synchronize your container images to your local registry by using one of these options:+
 
-. In your shell script, run the following script to synchronize container images to a local registry. Note that you must update `PLATFORM_URL`, `AGENT_VERSION`,  `AUTHORIZATION_TOKEN`, and `ACTIVATION_DATA`.
-+
-The following script is an example:
-+
-[source,copy]
-----
-##!/usr/bin/env bash
- 
-PLATFORM_URL=<platform-url>
-AGENT_VERSION=<agent-version>
-AUTHORIZATION_TOKEN=<authorization-token>
-MULESOFT_DOCKER_SERVER=rtf-runtime-registry.kqa.msap.io
-PRIVATE_REGISTRY_LOCATION=us-west2-docker.pkg.dev/mulesoft-rtf-gke-test
-ACTIVATION_DATA=xxxx
-#MULE_RUNTIME=poseidon-runtime-4.4.0:20231211-2
-MULE_RUNTIME=poseidon-runtime-4.6.0:33e-java8 
- 
-echo $PLATFORM_URL ; echo $AGENT_VERSION ; echo $MULESOFT_DOCKER_SERVER ; echo $PRIVATE_REGISTRY_LOCATION
-eval $(rtfctl get registry-credentials ${ACTIVATION_DATA})
-docker login $RTF_IMAGE_REGISTRY_ENDPOINT --username $RTF_IMAGE_REGISTRY_USER --password $RTF_IMAGE_REGISTRY_PASSWORD
- 
-dependencies=$(curl "https://${PLATFORM_URL}/runtimefabric/api/agentmanifests/${AGENT_VERSION}" \
--H "Authorization: bearer $AUTHORIZATION_TOKEN" | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
-echo ${dependencies}
-for i in $dependencies
-do
-   echo "Processing $i"
-   docker pull "${MULESOFT_DOCKER_SERVER}/mulesoft/${i}"
-   docker tag  "${MULESOFT_DOCKER_SERVER}/mulesoft/${i}" "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${i}"
-   docker push "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${i}"
-done
- 
-docker pull "${MULESOFT_DOCKER_SERVER}/mulesoft/${MULE_RUNTIME}"
-docker tag  "${MULESOFT_DOCKER_SERVER}/mulesoft/${MULE_RUNTIME}" "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${MULE_RUNTIME}"
-docker push "${PRIVATE_REGISTRY_LOCATION}/mulesoft/${MULE_RUNTIME}"
-----
+* <<synchronize-automatically,Synchronize images automatically>>
+* <<synchronize-manually,Synchronize images manually>>
 
-[start=2]
 . Create a Runtime Fabric using Runtime Manager and select your desired Kubernetes service.
 . In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
@@ -304,5 +162,78 @@ global:
 [start=7]
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
+--
+====
+[[synchronize]]
+== Synchronize Local Registry
+
+To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by running a script automatically or running comands manually. 
+
+[tabs]
+====
+[[synchronize-automatically]]
+Synchronize Automatically:: 
+
++
+--
+To synchronize the dependencies images automatically, you ran a bash script that uses `docker`, `curl`,  and `jq` tools.
+
+[NOTE]
+Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can not be retrieved using this script.
+
+. In your shell script, run the following script. Note that you must update `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value:
+
++
+[source,copy]
+----
+
+##!/usr/bin/env bash
+dependencies=$(curl https://qax.anypoint.mulesoft.com/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+for i in $dependencies
+do
+    echo "Processing $i"
+    docker pull <mulesoft-docker-server>/mulesoft/$i
+    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
+    docker push <local-docker-server>/mulesoft/$i
+done
+----
++
+[%header%autowidth.spread]
+.Script Parameters
+|===
+| Parameters | Description
+| `agent-version` | Runtime Fabric agent release version required for the synchronization.
+| `authorization-token` |  Obtain the authorization token required for the synchronization through the connected apps capability and a link redirects to the connected apps page.
+| `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
+For US control plane: `rtf-runtime-registry.kprod.msap.io` +
+For EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
+|==
+
+--
+[[synchronize-manually]]
+Synchronize Manually:: 
+
++
+--
+
+. To synchronize the dependencies images manually, log in into your own private container registry and run the following command, replacing `docker-server` where appropriate:
++
+For the US control plane:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the EU control plane:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
+----
 --
 ====
