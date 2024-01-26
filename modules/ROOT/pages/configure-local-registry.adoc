@@ -147,6 +147,7 @@ Dependency versions are specific to the Runtime Fabric version.
 RTFCTL:: 
 
 +
+--
 . Obtain `rtf-runtime-registry` credentials:
 +
 [source,copy]
@@ -220,9 +221,11 @@ This command ensures that Runtime Fabric creates the necessary overrides for the
 The `rtfctl uninstall` command deletes any pull secret you specify during installation.
 
 When using `rtfctl` to perform a backup and restore procedure, the backups point to your local registry URL and pull secret. 
+--
  
 Helm::
 +
+--
 To configure a local registry for Runtime Fabric using Helm, follow these steps:
 
 . In your shell script, run the following script to synchronize container images to a local registry. Note that you must update `PLATFORM_URL`, `AGENT_VERSION`,  `AUTHORIZATION_TOKEN`, and `ACTIVATION_DATA`.
@@ -301,39 +304,5 @@ global:
 [start=7]
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
---
-====
-
-
-
-=== Configure Your Local Registry and Install Runtime Fabric
-
-[tabs]
-====
-Tab A:: 
-+
---
-. Obtain `rtf-runtime-registry` credentials:
-+
-[source,copy]
-----
-# rtfctl get registry-credentials <activation-data>
-----
-+
-This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
-
-. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
---
- 
-Tab B::
-+
-Contents of Tab B.
- 
-Tab C::
-+
---
-Contents of Tab C.
- 
-Contains more than one block.
 --
 ====
