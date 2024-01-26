@@ -310,7 +310,20 @@ global:
 
 [tabs]
 ====
-Tab A:: Contents of Tab A.
+Tab A:: 
++
+--
+. Obtain `rtf-runtime-registry` credentials:
++
+[source,copy]
+----
+# rtfctl get registry-credentials <activation-data>
+----
++
+This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
+
+. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
+--
  
 Tab B::
 +
