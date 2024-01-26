@@ -75,7 +75,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 You should see a message that the login was successful.
 
-. Synchronize your container images to your local registry by using one of these options:+
+. Synchronize your container images to your local registry by using one of these options:
 
 * <<synchronize-automatically,Synchronize images automatically>>
 * <<synchronize-manually,Synchronize images manually>>
@@ -171,7 +171,6 @@ To install Runtime Fabric, you must first synchronize the dependencies images to
 
 [tabs]
 ====
-[[synchronize-automatically]]
 Synchronize Automatically:: 
 
 +
@@ -210,7 +209,6 @@ For EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
 |==
 
 --
-[[synchronize-manually]]
 Synchronize Manually:: 
 
 +
