@@ -35,7 +35,7 @@ MuleSoft doesn't provide additional software to synchronize images between the r
 * You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
 
 [[synchronize]]
-== Synchronize Local Registry
+== Synchronize Dependencies Images to Your Local Registry
 
 To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by running a script automatically or running comands manually. 
 
