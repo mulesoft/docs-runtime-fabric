@@ -10,14 +10,19 @@ Review the following limitations on support for local registries:
 [IMPORTANT]
 You cannot use local registries during the installation of OpenShift operator. However, you can use local registries with OpenShift RTF to store Mule Docker images and install and manage Runtime Fabric for running Mule apps. 
 
-* You must use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later. Note that `rtfctl` installs Runtime Fabric agent to the latest version by default.
+* You can use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later. Note that `rtfctl` installs Runtime Fabric agent to the latest version by default.
+* You can use Helm to install Rutime Fabric and configure your local registry.
 * You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
 +
 If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
 +
 You cannot add a local registry to any version of an existing Runtime Fabric instance, even if you upgrade that installation to 1.12.0 or later.
 * If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
-* You're responsible for synchronization between your registry and the Runtime Fabric registry. MuleSoft doesn't provide additional software to synchronize images between the registries. Push all the dependency images for your version to your local registry before you start the installation. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.  
+* You're responsible for synchronization between your registry and the Runtime Fabric registry. 
++
+MuleSoft doesn't provide additional software to synchronize images between the registries. Push all the dependency images for your version to your local registry before you start the installation. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.
++ 
+
 * If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
 
 ----
@@ -43,10 +48,7 @@ Ensure that you've performed the following tasks:
 See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
 +
 [NOTE]
-Dependency versions are specific to the Runtime Fabric version.
-
-. xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Download and install the `rtfctl` command line utility] version 0.3.150 or higher.
-. xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Create a Runtime Fabric using Runtime Manager], and gather the activation data. 
+Dependency versions are specific to the Runtime Fabric version. 
 
 To configure your local registry using `rtfctl` or `helm`, select one of the following options:
 
@@ -56,6 +58,7 @@ RTFCTL::
 
 +
 --
+. xref:install-self-managed.adoc#step-3-download-the-rtfctl-utility[Download and install the `rtfctl` command line utility] version 0.3.150 or higher.
 . Obtain `rtf-runtime-registry` credentials:
 +
 [source,copy]
@@ -75,10 +78,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 You should see a message that the login was successful.
 
-. Synchronize your container images to your local registry by using one of these options:
-
-* <<synchronize-automatically,Synchronize images automatically>>
-* <<synchronize-manually,Synchronize images manually>>
+. <<synchronize,Synchronize your container images>> to your local registry.
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
 
@@ -119,12 +119,8 @@ When using `rtfctl` to perform a backup and restore procedure, the backups point
 Helm::
 +
 --
-. Synchronize your container images to your local registry by using one of these options:+
-
-* <<synchronize-automatically,Synchronize images automatically>>
-* <<synchronize-manually,Synchronize images manually>>
-
-. Create a Runtime Fabric using Runtime Manager and select your desired Kubernetes service.
+. <<synchronize,Synchronize your container images>> to your local registry.
+. xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager], and gather the activation data.
 . In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
 . Following the *Helm* path instructions in Runtime Manager, create a secret with your docker server name, username, and password by running the following command in your Unix shell:
@@ -151,7 +147,7 @@ global:
   install: false
  authorizedNamespaces: false
  image:
-  rtfRegistry: us-west2-docker.pkg.dev/mulesoft-rtf-gke-test
+  rtfRegistry: 
   pullSecretName: rtf-pull-secret
  containerLogPaths:
  - /var/lib/docker/containers
@@ -180,7 +176,7 @@ To synchronize the dependencies images automatically, you ran a bash script that
 [NOTE]
 Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can not be retrieved using this script.
 
-. In your shell script, run the following script. Note that you must update `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value:
+. In your shell script, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
 
 +
 [source,copy]
@@ -213,8 +209,9 @@ Synchronize Manually::
 
 +
 --
+To synchronize the dependencies images manually, follow these steps:
 
-. To synchronize the dependencies images manually, log in into your own private container registry and run the following command, replacing `docker-server` where appropriate:
+. Log in into your own private container registry and run the following command, replacing `docker-server` where appropriate:
 +
 For the US control plane:
 +
