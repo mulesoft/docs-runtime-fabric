@@ -34,6 +34,82 @@ MuleSoft doesn't provide additional software to synchronize images between the r
 
 * You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
 
+[[synchronize]]
+== Synchronize Local Registry
+
+To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by running a script automatically or running comands manually. 
+
+[tabs]
+====
+Synchronize Automatically:: 
+
++
+--
+To synchronize the dependencies images automatically, you ran a bash script that uses `docker`, `curl`,  and `jq` tools.
+
+[NOTE]
+Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can not be retrieved using this script.
+
+Ensure that your xref:access-management::permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
+
+. In your shell script, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
+
++
+[source,copy]
+----
+
+##!/usr/bin/env bash
+dependencies=$(curl https://qax.anypoint.mulesoft.com/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+for i in $dependencies
+do
+    echo "Processing $i"
+    docker pull <mulesoft-docker-server>/mulesoft/$i
+    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
+    docker push <local-docker-server>/mulesoft/$i
+done
+----
++
+[%header%autowidth.spread]
+.Script Parameters
+|===
+| Parameters | Description
+| `agent-version` | Runtime Fabric agent release version required for the synchronization.
+| `authorization-token` |  Obtain the authorization token required for the synchronization through the connected apps capability and a link redirects to the connected apps page.
+| `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
+For US control plane: `rtf-runtime-registry.kprod.msap.io` +
+For EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
+|==
+
+--
+Synchronize Manually:: 
+
++
+--
+To synchronize the dependencies images manually, follow these steps:
+
+. Log in into your own private container registry and run the following command, replacing `docker-server` where appropriate:
++
+For the US control plane:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the EU control plane:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
+----
+--
+====
+
+
 == Configure Your Local Registry for Runtime Fabric
 
 To configure a local registry, you must gather and add the necessary credentials to synchronize the registries. 
@@ -158,79 +234,5 @@ global:
 [start=7]
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
---
-====
-[[synchronize]]
-== Synchronize Local Registry
-
-To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by running a script automatically or running comands manually. 
-
-[tabs]
-====
-Synchronize Automatically:: 
-
-+
---
-To synchronize the dependencies images automatically, you ran a bash script that uses `docker`, `curl`,  and `jq` tools.
-
-[NOTE]
-Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can not be retrieved using this script.
-
-Ensure that your xref:access-management/permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
-
-. In your shell script, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
-
-+
-[source,copy]
-----
-
-##!/usr/bin/env bash
-dependencies=$(curl https://qax.anypoint.mulesoft.com/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
-for i in $dependencies
-do
-    echo "Processing $i"
-    docker pull <mulesoft-docker-server>/mulesoft/$i
-    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
-    docker push <local-docker-server>/mulesoft/$i
-done
-----
-+
-[%header%autowidth.spread]
-.Script Parameters
-|===
-| Parameters | Description
-| `agent-version` | Runtime Fabric agent release version required for the synchronization.
-| `authorization-token` |  Obtain the authorization token required for the synchronization through the connected apps capability and a link redirects to the connected apps page.
-| `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
-For US control plane: `rtf-runtime-registry.kprod.msap.io` +
-For EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
-|==
-
---
-Synchronize Manually:: 
-
-+
---
-To synchronize the dependencies images manually, follow these steps:
-
-. Log in into your own private container registry and run the following command, replacing `docker-server` where appropriate:
-+
-For the US control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
-----
-+
-For the EU control plane:
-+
-[source,copy]
----- 
-# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
-----
 --
 ====
