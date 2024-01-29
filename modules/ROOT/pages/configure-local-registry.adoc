@@ -176,6 +176,8 @@ To synchronize the dependencies images automatically, you ran a bash script that
 [NOTE]
 Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can not be retrieved using this script.
 
+Ensure that your xref::access-management/permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
+
 . In your shell script, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
 
 +
