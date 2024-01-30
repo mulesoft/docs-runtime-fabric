@@ -59,7 +59,7 @@ Ensure that your xref:access-management::permissions-by-product.adoc#runtime-man
 ----
 
 ##!/usr/bin/env bash
-dependencies=$(curl https://qax.anypoint.mulesoft.com/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+dependencies=$(curl <platform-url>/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
 for i in $dependencies
 do
     echo "Processing $i"
@@ -73,6 +73,7 @@ done
 .Script Parameters
 |===
 | Parameters | Description
+| `platform-url` | Anypoint Platform URL, such as https://anypoint.mulesoft.com, or https://eu1.anypoint.mulesoft.com
 | `agent-version` | Runtime Fabric agent release version required for the synchronization.
 | `authorization-token` |  Obtain the authorization token required for the synchronization through the connected apps capability and a link redirects to the connected apps page.
 | `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
@@ -207,32 +208,22 @@ kubectl create secret docker-registry rtf-pull-secret --namespace test-gke-rtf-q
 ----
 
 [start=6]
-. Following the *Helm* path instructions, download the values.yaml file and modify its values. The following is a values.yaml file example:
-+
-[source,copy]
-----
-activationData: xxx
-proxy:
- http_proxy:
- http_no_proxy:
- monitoring_proxy:
-muleLicense: 
-customLog4jEnabled: false
-global:
- crds:
-  install: false
- authorizedNamespaces: false
- image:
-  rtfRegistry: 
-  pullSecretName: rtf-pull-secret
- containerLogPaths:
- - /var/lib/docker/containers
- - /var/log/containers
- - /var/log/pods
-----
+. Following the *Helm* path instructions, download the values.yml file to modify its values. Specifically, for the private registry configuration, update `rtfRegistry` and `pullSecretName` parameters. 
+
+[%header%autowidth.spread]
+|===
+|Key |Value |Example
+|`rtfRegistry` |Registry URL  |For US control plane: `rtf-runtime-registry.kprod.msap.io` +
+For EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
+|`pullSecretName` |Registry secret |`<pull_secret>`
+|===
 
 [start=7]
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
 --
 ====
+
+== See Also
+
+* xref:install-helm.adoc#values-yml-reference[Configure Values.yml Reference]
