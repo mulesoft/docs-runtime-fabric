@@ -65,8 +65,6 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
 
-include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A]
-
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
 
 
