@@ -59,7 +59,7 @@ Ensure that your xref:access-management::permissions-by-product.adoc#runtime-man
 ----
 
 ##!/usr/bin/env bash
-dependencies=$(curl <platform-url>/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
 for i in $dependencies
 do
     echo "Processing $i"
@@ -127,7 +127,7 @@ See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.ad
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version. 
 
-To configure your local registry using `rtfctl` or `helm`, select one of the following options:
+To install Runtime Fabric with local registry using `rtfctl` or `helm`, select one of the following options:
 
 [tabs]
 ====
@@ -197,7 +197,7 @@ Helm::
 +
 --
 . <<synchronize,Synchronize your container images>> to your local registry.
-. xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager], and gather the activation data.
+. xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
 . In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
 . Following the *Helm* path instructions in Runtime Manager, create a secret with your docker server name, username, and password by running the following command in your Unix shell:
