@@ -204,7 +204,7 @@ Helm::
 +
 [source,copy]
 ----
-kubectl create secret docker-registry rtf-pull-secret --namespace test-gke-rtf-qax-helm --docker-server=<docker-servername> --docker-username=<docker-username --docker-password=<docker-password> --docker-email=<docker-email>
+kubectl create secret docker-registry rtf-pull-secret --namespace <rtf-namespace> --docker-server=<docker-servername> --docker-username=<docker-username --docker-password=<docker-password> --docker-email=<docker-email>
 ----
 
 [start=6]
