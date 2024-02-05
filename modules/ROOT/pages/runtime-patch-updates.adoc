@@ -93,8 +93,6 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 [[mule-runtime-version]]
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
 
-=== Runtime Fabric
-
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro4]
 
 Runtime Fabric requires 
