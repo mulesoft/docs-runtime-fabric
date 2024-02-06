@@ -1,5 +1,5 @@
 
-= Managing Mule Runtime Patch Updates for Runtime Fabric
+= Managing Mule Runtime Patch Updates for Apps on Runtime Fabric
 
 The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
@@ -92,8 +92,6 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 [[mule-runtime-version]]
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
-
-=== Runtime Fabric
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro4]
 
