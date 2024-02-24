@@ -8,6 +8,8 @@ Runtime Fabric versions 2.2.5 or later that support multiple instances require `
 [NOTE]
 `rtfctl` always installs the latest version of Runtime Fabric agent.
 
+Refer to xref:rtf-scale.adoc[scalability benchmarking] to review the limits for `rtfctl`-based deployments. For larger deployments, use Helm-based Runtime Fabric deployments so you can allocate additional resources to the agent for optimal performance.
+
 == Before you Begin
 
 Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
