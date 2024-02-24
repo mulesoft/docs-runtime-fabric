@@ -1,4 +1,4 @@
-= Use Anypoint Monitoring
+= Using Anypoint Monitoring
 
 Mule apps and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring to allow viewing metrics within Anypoint Platform.
 
