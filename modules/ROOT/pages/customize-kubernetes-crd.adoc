@@ -147,6 +147,9 @@ Key elements that can not be overwritten using the CRD:
 ** rtf.mulesoft.com/desiredStatus
 ** rtf.mulesoft.com/replicas
 ** rtf.mulesoft.com/version
+** rtf.mulesoft.com/merge-policy
+** rtf.mulesoft.com/environment
+** rtf.mulesoft.com/organization
 
 * Pods
 ** Annotations
@@ -166,10 +169,12 @@ Key elements that can not be overwritten using the CRD:
 * Resources
 ** Ephemeral-storage (if is not set in env.resources or cluster flavor is rtfc)
 * SecurityContext
-** runAsUser
-** runAsGroup
 ** allowPrivilageEscalation
 ** Capabilities
+** privileged
+** readOnlyRootFilesystem
+** runAsUser
+** runAsGroup
 * NodeSelector
 ** kubernetes.io/os
 ** kubernetes.io/arch
