@@ -49,13 +49,13 @@ To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric us
 
 == Create A Namespace for Runtime Fabric
 
-You must create a namespace named `rtf` in your Kubernetes cluster. This namespace is where you install Runtime Fabric components.
+In your Kubernetes cluster, create a namespace for installing Runtime Fabric. This namespace is where you install Runtime Fabric components.
 
 To create the namespace, run:
 
 [source,copy]
 ----
-oc create ns rtf
+oc create ns <rtf-namespace>
 ----
 
 == Create A Docker Pull Secret
