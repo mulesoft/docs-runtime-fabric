@@ -50,7 +50,7 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
 
 *As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.* 
-If you experience any issues please refer this article: https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container[ERROR in sidecar logs]
+If you experience any issues, refer to https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container[ERROR in sidecar logs] knowledge base article.
 
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS a| 
