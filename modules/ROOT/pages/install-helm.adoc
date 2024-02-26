@@ -22,7 +22,7 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 * xref:install-self-managed-network-configuration.adoc[Configured your network to support Runtime Fabric].
 * Installed and configured your Kubernetes environment as follows:
 +
-** Running an EKS, AKS, or GKE Kubernetes environment. Other Kubernetes environments are not supported.
+** Running an ACK, AKS, EKS, EKS-A, GKE, RKE, or VMware Tanzu Kubernetes environment. Other Kubernetes environments are not supported.
 ** Running a supported Kubernetes version.
 ** Running an ingress controller to send external requests to applications.
 * Installed Helm 3 or later and have privileged user permissions.
@@ -66,6 +66,8 @@ To create the namespace, run:
 ----
 kubectl create ns rtf
 ----
+
+Using `rtf` as a namespace applies only in the case of single cluster or single instance.
 
 == Create A Docker Pull Secret
 

@@ -25,7 +25,7 @@ Run `rtfctl` commands as a privileged user.
 +
 [source,copy]
 ----
-BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
+BASE64_ENCODED_LICENSE=$(base64 -b0 -i license.lic)
 ----
 ** On Unix, run the following command:
 +
@@ -78,107 +78,6 @@ The `GET` fabric API `(/organizations/{organizationId}/fabrics/{id})` response i
     "desiredVersion": "2.2.9",
     "availableUpgradeVersion": "2.2.29",
     "createdAt": 1679684859167,
-    "nodes": [
-        {
-            "uid": "50f344a7-a982-4380-b6ab-7cc8f26881ab",
-            "name": "gke-cluster-1-default-pool-f4437ec2-7lkq",
-            "kubeletVersion": "v1.24.9-gke.3200",
-            "dockerVersion": "containerd://1.6.9",
-            "role": "worker",
-            "status": {
-                "isHealthy": true,
-                "isReady": true,
-                "isSchedulable": true
-            },
-            "capacity": {
-                "cpu": 0,
-                "cpuMillis": 940,
-                "memory": "2812Mi",
-                "memoryMi": 2812,
-                "pods": 110
-            },
-            "allocatedRequestCapacity": {
-                "cpu": 0,
-                "cpuMillis": 676,
-                "memory": "2075Mi",
-                "memoryMi": 2075,
-                "pods": 9
-            },
-            "allocatedLimitCapacity": {
-                "cpu": 2,
-                "cpuMillis": 2383,
-                "memory": "2940Mi",
-                "memoryMi": 2940,
-                "pods": 9
-            }
-        },
-        {
-            "uid": "31b86558-8009-44d9-985a-094952c11a78",
-            "name": "gke-cluster-1-default-pool-f4437ec2-9mz7",
-            "kubeletVersion": "v1.24.9-gke.3200",
-            "dockerVersion": "containerd://1.6.9",
-            "role": "worker",
-            "status": {
-                "isHealthy": true,
-                "isReady": true,
-                "isSchedulable": true
-            },
-            "capacity": {
-                "cpu": 0,
-                "cpuMillis": 940,
-                "memory": "2812Mi",
-                "memoryMi": 2812,
-                "pods": 110
-            },
-            "allocatedRequestCapacity": {
-                "cpu": 0,
-                "cpuMillis": 708,
-                "memory": "1310Mi",
-                "memoryMi": 1310,
-                "pods": 8
-            },
-            "allocatedLimitCapacity": {
-                "cpu": 0,
-                "cpuMillis": 900,
-                "memory": "2040Mi",
-                "memoryMi": 2040,
-                "pods": 8
-            }
-        },
-        {
-            "uid": "a2e5d50b-e8a8-45df-a278-4bba4d30619f",
-            "name": "gke-cluster-1-default-pool-f4437ec2-gr6e",
-            "kubeletVersion": "v1.24.9-gke.3200",
-            "dockerVersion": "containerd://1.6.9",
-            "role": "worker",
-            "status": {
-                "isHealthy": true,
-                "isReady": true,
-                "isSchedulable": true
-            },
-            "capacity": {
-                "cpu": 0,
-                "cpuMillis": 940,
-                "memory": "2812Mi",
-                "memoryMi": 2812,
-                "pods": 110
-            },
-            "allocatedRequestCapacity": {
-                "cpu": 0,
-                "cpuMillis": 488,
-                "memory": "1350Mi",
-                "memoryMi": 1350,
-                "pods": 12
-            },
-            "allocatedLimitCapacity": {
-                "cpu": 1,
-                "cpuMillis": 1670,
-                "memory": "2230Mi",
-                "memoryMi": 2230,
-                "pods": 12
-            }
-        }
-    ],
     "secondsSinceHeartbeat": 192,
     "kubernetesVersion": "v1.24.11-gke.1000",
     "licenseExpiryDate": 1653523200000,
