@@ -188,4 +188,3 @@ Key elements that can not be overwritten using the CRD:
 *** rtf.mulesoft.com/merge-policy
 *** rtf.mulesoft.com/environment
 *** rtf.mulesoft.com/organization
-*** ingress.rtf.mulesoft.com/*
