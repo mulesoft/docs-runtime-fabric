@@ -23,6 +23,7 @@ The `kubernetestemplate` resource enables you to configure the following element
 ** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
+** https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting/[Service Account Token^]
 
 For the security context pod, the key to use is `containerSecurityContext`.
 
@@ -111,6 +112,7 @@ spec:
     metadata:
       labels:
       annotations:
+    automountServiceAccountToken: true
     containerSecurityContext:
       seccompProfile: 
         type: RuntimeDefault
@@ -165,6 +167,8 @@ Key elements that can not be overwritten using the CRD:
 *** name
 * Resources
 ** ephemeral-storage (if is not set in env.resources or cluster flavor is rtfc)
+* ServiceAccountToken
+** automountServiceAccountToken
 * SecurityContext
 ** runAsUser
 ** runAsGroup
