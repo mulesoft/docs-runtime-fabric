@@ -166,6 +166,8 @@ Key elements that can not be overwritten using the CRD:
 * Resources
 ** ephemeral-storage (if is not set in env.resources or cluster flavor is rtfc)
 * SecurityContext
+** runAsUser
+** runAsGroup
 ** allowPrivilageEscalation
 ** capabilities
 ** privileged
