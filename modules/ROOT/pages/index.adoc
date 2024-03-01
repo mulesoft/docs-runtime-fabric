@@ -183,7 +183,7 @@ The ingress controller included with GKE provisions a separate HTTP load balance
 
 === Logs
 
-For Titanium customers, Anypoint Runtime Fabric supports logging using Anypoint Monitoring. See xref:manage-monitor-applications.adoc#logs[Logs] for more information.
+include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM]
 
 Applications deployed on Runtime Fabric direct logs to `stdout`. The container runtime collects these logs and writes them to a file. The storage location of this file depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
   
