@@ -1,11 +1,11 @@
 = Monitoring Applications Deployed to Runtime Fabric
 
-Runtime Fabric provides customers varying observability solutions depending on their needs.
+Runtime Fabric provides customers with varying observability solutions depending on their needs.
 
 == Anypoint Monitoring
 
-By default, Runtime Fabric sends application metrics to Anypoint Monitoring. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. Refer to xref:use-anypoint-monitoring.adoc[].
+By default, Runtime Fabric sends application metrics to Anypoint Monitoring. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc[].
 
 == Export Telemetry Externally
 
-You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric. For information about configuring log4j2.xml, see the Log4j Configuration SyntaxLeaving the Site Refer to xref:use-log4j-appender.adoc[]
+You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric. For information about configuring `log4j2.xml`, refer to the xref:use-log4j-appender.adoc[Use Log4j Appender] documentation.
