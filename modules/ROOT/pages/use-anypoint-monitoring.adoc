@@ -81,11 +81,12 @@ For applications deployed or managed using Runtime Fabric versions 2.6.x and abo
 
 Dependent on the features you use, the sidecar agent consumes corresponding resources for optimal performance:
 
-To enable default Anypoint metrics, the sidecar agent (per application replica) requires 0.05vCPU or Core of CPU allocation and 90MiB memory allocation.
+* To enable default Anypoint metrics, the sidecar agent (per application replica) requires 0.05vCPU or Core of CPU allocation and 90MiB memory allocation.
 
-If you opt into xref:runtime-fabric/deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
+* If you opt into xref:runtime-fabric/deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
 
-Allocate capacity to the underlying cluster by using maximum configurations to avoid application deployment failure.
+[NOTE]
+Allocate appropriate capacity to the underlying cluster to avoid application deployment failure.
 
 == Anypoint Visualizer
 
