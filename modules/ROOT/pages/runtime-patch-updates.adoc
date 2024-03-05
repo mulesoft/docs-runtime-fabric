@@ -1,8 +1,12 @@
 
-= Managing Mule Runtime Patch Updates
-
+= Managing Mule Runtime Patch Updates for Apps on Runtime Fabric
 
 The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
+
+
+== Version Rewrite
+
+Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
 
 == Monthly Date-Patch Updates 
 
@@ -13,15 +17,15 @@ The format of the version number for these updates is:
 
 _Major_._Minor_._Patch_ - _Date_ 
 
+<<mule-runtime-version,Mule Runtime Version Naming Changes>>
+
 Here's an example version number, including the patch date:
 
 `4.3.0:20210101`
 
 The monthly patches update applications only to the latest date-patch. They do not change the runtime version.
 
-
-
-=== Runtime Fabric Mule Runtime Patch Update Schedule 
+=== Mule Runtime Patch Updates for Runtime Fabric Schedule 
 
 Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
 
@@ -33,10 +37,6 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 Starting with Mule runtime engine version 4.5, you can disable autoupgrades of your Mule apps on redeployment by passing the tag required for version pinning.
 
 During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
-
-=== Version Rewrite
-
-Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
 
 === Update a Single App to the Latest Runtime Patch Release
 
@@ -65,7 +65,10 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1]
 
+include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro1A]
+
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro2]
+
 
 [%header,="2*a"]
 |===
@@ -90,9 +93,8 @@ include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=RTF9]
 |===
 
+[[mule-runtime-version]]
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro3]
-
-=== Runtime Fabric
 
 include::release-notes::partial$mule-runtime/mule-lts-edge-release-cadence.adoc[tags=MuleIntro4]
 

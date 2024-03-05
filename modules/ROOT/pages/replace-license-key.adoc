@@ -25,7 +25,7 @@ Run `rtfctl` commands as a privileged user.
 +
 [source,copy]
 ----
-BASE64_ENCODED_LICENSE=$(base64 -b0 license.lic)
+BASE64_ENCODED_LICENSE=$(base64 -b0 -i license.lic)
 ----
 ** On Unix, run the following command:
 +
