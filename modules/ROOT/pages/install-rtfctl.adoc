@@ -133,6 +133,8 @@ rtfctl apply system-configuration --skip-download
 ----
 rtfctl apply mule-license <base64_encoded_license> --namespace <rtf_namespace>
 ----
+Note that if Runtime Fabric is installed via Helm, you must update the `mule-license` property in the Helm values and not not use `rtfctl apply mule-license`.
+
 * Applies a monitoring proxy
 +
 ----
