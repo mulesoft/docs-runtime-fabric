@@ -1,13 +1,6 @@
 = Downgrading Runtime Fabric Versions
 
-If you need to downgrade Runtime Fabric version 2.6.x, you must:
-
-. Patch Runtime Fabric to the lower version
-. <<downgrade-rtf,Downgrade Runtime Fabric version>>
-
-== Downgrade Runtime Fabric Version
-
-To perform the downgrade of version, follow these steps:
+If you need to downgrade Runtime Fabric version 2.6.x, you must downgrade the version by patching Runtime Fabric to the lower version, and if you use AM log forwarding, additionally perform the following steps:
 
 . Enable daemon-set log forwarding by calling the following API (bearer token required):
 +
