@@ -11,17 +11,20 @@ You can configure local registry across all Runtime Fabric supported platform ve
 You cannot use local registry for installation or management of Runtime Fabric operator on OpenShift.
 
 * You can use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later. `rtfctl` installs Runtime Fabric agent to the latest version by default.
-* You can use Helm to install Rutime Fabric and configure your local registry.
+* You can use Helm to install Runtime Fabric and configure your local registry.
 * You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
 +
 If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
 +
 You cannot add a local registry to any version of an existing Runtime Fabric instance, even if you upgrade that installation to 1.12.0 or later.
 * If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
-* You're responsible for synchronizing your registry with the Runtime Fabric registry.
+* You are responsible for synchronizing your local registry with required dependencies:
 +
-MuleSoft doesn’t provide additional software to synchronize non-Runtime Fabric core software images between the registries. Push all the dependency images for your Mule app to your local registry before you start the installation. Review the following documentation  to synchronize Runtime Fabric core software dependencies. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version.
-+ 
+** <<synch-rtf, Synchronize Runtime Fabric core software images or dependencies automatically>>
+** <<synch-runtime, Synchronize Mule runtime images or dependencies manually>>
+** Synchronize third party dependencies required by your application. + 
+MuleSoft doesn’t provide additional software to synchronize third party dependencies and images. Push all the dependency images for your Mule app to your local registry before you start the deployments.
+
 
 * If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
 
@@ -32,10 +35,13 @@ MuleSoft doesn’t provide additional software to synchronize non-Runtime Fabric
 
 * If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
-* You also need to synchronize in your registry the Mule runtime versions you intend to use for application deployments. Refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Runtime Fabric Patch Update Release Notes] for information about the latest Mule runtime patch versions. The location of the image will follow this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
+[[synch-runtime]]
+== Synchronize Mule Runtime Dependencies and Images to Your Local Registry
 
-[[synchronize]]
-== Synchronize Dependencies Images to Your Local Registry
+To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image follows this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
+
+[[synch-rtf]]
+== Synchronize Runtime Fabric Core Software Dependencies and Images to Your Local Registry
 
 To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by either running a script automatically or executing commands manually.  
 
@@ -120,7 +126,7 @@ To configure a local registry, you must gather and add the necessary credentials
 Ensure that you've performed the following tasks: 
 
 . Set up, configure, and test your private Docker image registry.
-. <<synchronize, Synchronize>> to your local registry all of the Docker images that you need to install Runtime Fabric:
+. <<synch-rtf, Synchronize>> to your local registry all of the Docker images that you need to install Runtime Fabric:
 +
 See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
 +
