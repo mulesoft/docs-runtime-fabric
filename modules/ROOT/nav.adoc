@@ -30,6 +30,7 @@
   ** xref:manage-backup-restore.adoc[Back Up and Restore Runtime Fabric]
   ** xref:enable-fips-140-2-compliance.adoc[Enable FIPS 140-2 Compliance Mode]
   ** xref:migrate-helm.adoc[Migrating to Helm Managed Runtime Fabric]
+  ** xref:downgrade-runtime-fabric.adoc[Downgrade Runtime Fabric Version]
 * xref:uninstall-self.adoc[Uninstall Runtime Fabric]
 * xref:rtf-k8s-practices.adoc[Kubernetes (K8s) Best Practices for Runtime Fabric]
 ** xref:rtf-scale.adoc[Scalability Benchmarks]
