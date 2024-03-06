@@ -1,6 +1,6 @@
-= Integrating with Your Logging System Using Log4j
+= Exporting Telemetry Externally
 
-You can use a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric.
+You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric.
 
 You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax^].
