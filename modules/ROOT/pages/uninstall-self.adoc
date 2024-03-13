@@ -2,6 +2,7 @@
 
 Depending on your installation method, you can use the Runtime Fabric command line tool (`rtfctl`) or Helm to uninstall Runtime Fabric.
 
+[[unistall-rtfctl-rtf]]
 == Uninstall Runtime Fabric Using rtfctl
 
 To uninstall Runtime Fabric using `rtfctl`:
@@ -76,4 +77,3 @@ oc replace --raw "/api/v1/namespaces/rtf/finalize" -f ./rtf.json
 oc get ns
 ----
 . Confirm the `rtf` namespace is no longer present.
-
