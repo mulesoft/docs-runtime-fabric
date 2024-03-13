@@ -3,43 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After you install and configure Anypoint Runtime Fabric and deploy Mule applications and API proxies, you might need to perform additional tasks.
+To manage Anypoint Runtime Fabric, review the following topics:
 
-* Monitor and View
+* xref:view-health.adoc[Viewing Runtime Fabric Health Details] +
+Use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters.
 
-** View Runtime Fabric status.
-+
-See xref:view-health.adoc[View Runtime Fabric Health Details].
-** Use Anypoint Monitoring and Anypoint Visualizer to monitor applications deployed to Runtime Fabric.
-+
-See xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric].
-** Monitor the performance and health of your Runtime Fabric installation.
+* xref:install-rtfctl.adoc[Using RTFCTL Tool] +
+Use `rtfctl` command line tool install, configure, upgrade, unistall, troubleshoot, back up and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule apps values and install and replace Mule license keys.
 
-* Update
+* xref:replace-license-key.adoc[Replacing a Mule License Key] +
+Use `rtfctl` command line tool to replace an expired Mule license key.
 
-** Install rtfctl to manage Runtime Fabric settings.
-+
-See xref:install-rtfctl.adoc[Install rtfctl].
-** Install patches and perform other scheduled maintenance on Runtime Fabric.
-+
-** Replace your Mule license key.
-+
-See xref:replace-license-key.adoc[Replace a Mule License Key].
+* xref:downgrade-runtime-fabric.adoc[Downgrading Runtime Fabric Version] +
+Use `rtfctl` command line tool or Helm to downgrade Runtime Fabric versions.
 
-* Maintain
-
-** Configure proxy settings used by Runtime Fabric outbound connections.
-+
-See xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric].
-** Manage Runtime Fabric secure properties.
-+
-See xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric].
-** Enable mutual authentication.
-+
-** Back up Runtime Fabric.
-+
-See xref:manage-backup-restore.adoc[Back up and Restore Runtime Fabric].
-
-* Uninstall Runtime Fabric manually.
-+
-See xref:uninstall-self.adoc[Uninstall Runtime Fabric].
+* xref:migrate-helm.adoc[Migrating to Helm Managed Runtime Fabric] +
+Migrate to Helm native for Runtime Fabrics that were installed using `rtfctl`.

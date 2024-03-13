@@ -1,0 +1,9 @@
+= Hardening Mule Apps Deployed to Runtime Fabric
+
+To enhance the security of Mule apps deployed to Anypoint Runtime Fabric and reduce vulnerabilities, review the following topics:
+
+ * xref:protect-app-properties.adoc[Protecting Mule App Property Values Using Rutime Manager] +
+Use Anypoint Runtime Manager to protect Mule app property values by displaying the property name but not its value.
+
+ * xref:manage-secure-properties.adoc[Protecting Mule App Property Values Using RTFCTL] +
+ Use `rtfctl` command line tool to protect Mule app property values.

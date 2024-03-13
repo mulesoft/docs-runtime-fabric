@@ -256,6 +256,7 @@ Displays the Runtime Fabric version information
 rtfctl version --namespace <rtf_namespace>
 ----
 
+[[manage-rtfctl-apps]]
 == Commands for Managing Applications on Runtime Fabric
 
 Use the following commands to manage applications deployed to Runtime Fabric.
