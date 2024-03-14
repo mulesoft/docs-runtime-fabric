@@ -1,8 +1,9 @@
-= Secure Runtime Fabric
+= Securing Runtime Fabric
  
-To secure Anypoint Runtime Fabric, see:
+To secure Anypoint Runtime Fabric, see the following topis:
 
-* xref:authorized-namespaces.adoc[Configure Authorized Namespaces]
-* xref:configure-local-registry.adoc[Use a Local Registry]
-* xref:security-architecture.adoc[MuleSoft Anypoint Runtime Fabric Security Architecture]
-* xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide]
+* xref:security-architecture.adoc[Runtime Fabric Security Architecture]
+* xref:authorized-namespaces.adoc[Configuring Authorized Namespaces]
+* xref:enable-fips-140-2-compliance.adoc[Enabling FIPS 140-2 Compliance Mode]
+* xref:configure-local-registry.adoc[Using a Local Registry]
+* xref:configure-hardening.adoc[Hardening Mule Runtime]

@@ -19,3 +19,6 @@ Use `rtfctl` command line tool or Helm to downgrade Runtime Fabric versions.
 
 * xref:migrate-helm.adoc[Migrating to Helm Managed Runtime Fabric] +
 Migrate to Helm native for Runtime Fabrics that were installed using `rtfctl`.
+
+* xref:prereq-firewalld-forwarding.adoc[Enabling Forwarding When Using firewalld] +
+Enable forwarding on the docker0 device, if you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.x operating system.

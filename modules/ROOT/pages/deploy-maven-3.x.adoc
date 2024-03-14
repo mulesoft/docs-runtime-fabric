@@ -1,4 +1,4 @@
-= Deploying Applications to Runtime Fabric using Maven (Mule 3)
+= Deploying Mule Apps to Runtime Fabric using Maven (Mule 3)
 
 Runtime Fabric supports using Mule Maven Plugin 2.3.x to manage and deploy Mule applications. The information in this topic is specific to deploying a Mule application to Mule runtime engine 3.x.
 
