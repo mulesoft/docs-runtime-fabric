@@ -1,9 +1,17 @@
 = Securing Runtime Fabric
  
-To secure Anypoint Runtime Fabric, see the following topis:
+To secure Anypoint Runtime Fabric, review the following topis:
 
-* xref:security-architecture.adoc[Runtime Fabric Security Architecture]
-* xref:authorized-namespaces.adoc[Configuring Authorized Namespaces]
-* xref:enable-fips-140-2-compliance.adoc[Enabling FIPS 140-2 Compliance Mode]
-* xref:configure-local-registry.adoc[Using a Local Registry]
-* xref:configure-hardening.adoc[Hardening Mule Runtime]
+* xref:security-architecture.adoc[Runtime Fabric Security Architecture] +
+Understand the architecture on how Runtime Fabric provides a secure way to manage MuleSoft applications and API gateways deployed onto Runtime Fabrics anywhere.
+
+* xref:authorized-namespaces.adoc[Configuring Authorized Namespaces] +
+Configure authorized namespaces to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
+* xref:enable-fips-140-2-compliance.adoc[Enabling FIPS 140-2 Compliance Mode] +
+Configure Runtime Fabric to run application containers in FIPS 140-2 compliance mode.
+
+* xref:configure-local-registry.adoc[Using a Local Registry] +
+Use a local registry to pull and store Docker images.
+
+* xref:configure-hardening.adoc[Hardening Mule Runtime] +
+Review best practices for Mule runtime engine hardening with Runtime Fabric.

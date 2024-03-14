@@ -5,6 +5,9 @@ The following topics helps you to install, configure, unistall and upgrade Anypo
 * xref:index-vm-bare-metal.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation] +
 Ensure that VM/Bare metal cluster underlying infrastructure meets the necessary hardware and networking requirements to install Runtime Fabric effectively. 
 
+* xref:install-self-managed-network-configuration.adoc[Configuring Network] +
+Configure ports and hostnames correctly before installing Runtime Fabric.
+
 * xref:install-index.adoc[Installing Runtime Fabric] +
 Install Runtime Fabric using `rtfctl`, Helm, as a Kubernetes (K8s) operator, or install multiple instances of Runtime Fabric.
 

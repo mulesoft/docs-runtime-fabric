@@ -4,6 +4,7 @@
 * xref:runtime-fabric-release-notes.adoc[Release Notes]
 * xref:setting-up-runtime-fabric.adoc[Setting Up Runtime Fabric]
  ** xref:index-vm-bare-metal.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation]
+ ** xref:install-self-managed-network-configuration.adoc[Configuring Network]
  ** xref:install-index.adoc[Installing Runtime Fabric]
     *** xref:install-self-managed.adoc[Installing Runtime Fabric Using RTFCTL]
     *** xref:install-helm.adoc[Installing Runtime Fabric Using Helm]
@@ -12,7 +13,6 @@
     *** xref:install-multiple-instances-openshift.adoc[Installing Multiple Instances on a Single OpenShift Cluster]
  ** xref:configuring-runtime-fabric.adoc[Configuring Runtime Fabric]
   *** xref:associate-environments.adoc[Associating Business Groups and Environments]
-  *** xref:install-self-managed-network-configuration.adoc[Configuring Network]
   *** xref:install-rtfctl.adoc#configure-rtfctl[Configuring Runtime Fabric Using RTFCTL]
   *** xref:custom-ingress-configuration.adoc[Configuring Ingress]
   *** xref:configure-openshift-routes.adoc[Configuring Red Hat OpenShift Routes]
@@ -23,7 +23,7 @@
   *** xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric Using RTFCTL]
   *** xref:upgrade-helm.adoc[Upgrading Runtime Fabric Using Helm]
   *** xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator]
-* xref:manage-index.adoc[Manage Runtime Fabric]
+* xref:manage-index.adoc[Managing Runtime Fabric]
   ** xref:view-health.adoc[Viewing Runtime Fabric Health Details]
   ** xref:install-rtfctl.adoc[Using RTFCTL Tool]
   ** xref:replace-license-key.adoc[Replacing a Mule License Key]
@@ -63,7 +63,7 @@
  ** xref:app-versioning.adoc[Reviewing Mule App Versioning]
  ** xref:manage-schedules.adoc[Managing Mule App Schedules]
  ** xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates]
-* xref:harden-apps-deployed-runtime-fabric.adoc[Hardening Mule Apps Deployed to Runtime Fabric]
+* xref:hardening-apps-deployed-runtime-fabric.adoc[Hardening Mule Apps Deployed to Runtime Fabric]
  ** xref:protect-app-properties.adoc[Protecting Mule App Property Values]
  ** xref:manage-secure-properties.adoc[Protecting Mule App Property Values Using RTFCTL]
 * xref:using-rtfctl.adoc[Using RTFCTL Tool]
@@ -81,7 +81,7 @@
 ** xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]
   *** xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric]
   *** xref:manage-secure-properties.adoc[Protecting Mule App Property Values]
-  * xref:install-rtfctl.adoc[RTFCTL Reference]
+  ** xref:install-rtfctl.adoc[RTFCTL Reference]
 
 
  

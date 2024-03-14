@@ -12,13 +12,13 @@ The `rtfctl` command line tool enables you to locally manage Runtime Fabrics. Us
 
 == Before You Begin Using RTFCTL
 
-Before you start using `rtfctl`, review the following topics to enable `rtfctl` Kubernetes permissions and how to install the `rtfctl` command line tool:
+Before you start using `rtfctl`, see the following topic to enable `rtfctl` Kubernetes permissions and how to install the `rtfctl` command line tool.
 
 * xref:setting-up-rtfctl.adoc[Setting Up RTFCTL]
 
 == Next Steps
 
-After you install the command line tool, you can start using `rtfctl` commands to install and manage Runtime Fabric and manage Mule apps deployed to Runtime Fabric:
+After you install the command line tool, you can start using `rtfctl` commands to install and manage Runtime Fabric and manage Mule apps deployed to Runtime Fabric.
 
 * xref:using-rtfctl-rtf.adoc[Using RTFCTL for Runtime Fabric]
 * xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]

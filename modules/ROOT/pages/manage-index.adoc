@@ -9,7 +9,7 @@ To manage Anypoint Runtime Fabric, review the following topics:
 Use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters.
 
 * xref:install-rtfctl.adoc[Using RTFCTL Tool] +
-Use `rtfctl` command line tool install, configure, upgrade, unistall, troubleshoot, back up and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule apps values and install and replace Mule license keys.
+Use `rtfctl` command line tool to install, configure, upgrade, unistall, troubleshoot, back up and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule apps values and install and replace Mule license keys.
 
 * xref:replace-license-key.adoc[Replacing a Mule License Key] +
 Use `rtfctl` command line tool to replace an expired Mule license key.

@@ -5,9 +5,6 @@ To configure Anypoint Runtime Fabric, review the following topics:
 * xref:associate-environments.adoc[Associating Business Groups and Environments] +
 Associate a Runtime Fabric with one or more Anypoint Platform environments before deploying a Mule app or API proxy.
 
-* xref:install-self-managed-network-configuration.adoc[Configuring Network] +
-Configure ports and hostnames correctly before installing Runtime Fabric.
-
 * xref:install-rtfctl.adoc#configure-rtfctl[Configuring Runtime Fabric Using RTFCTL] +
 Use `rtfctl apply`, `update` and `wait` commands to configure Runtime Fabric.
 

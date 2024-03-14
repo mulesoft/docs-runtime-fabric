@@ -1,12 +1,12 @@
 = Managing Mule Apps Deployed to Runtime Fabric
 
-To manage Mule apps deployed to Runtime Fabric, review the following topics:
+To manage Mule apps deployed to Anypoint Runtime Fabric, review the following topics:
 
 * xref:manage-monitor-applications.adoc[Monitoring Mule Apps Deployed to Runtime Fabric] +
 Use Anypoint Monitoring to view metrics and logs of Mule app deployed to Runtime Fabric. Additionally, you can export telemetry externally by using a Log4j appender to integrate your logging system to deployed Mule apps to Runtime Fabric.
 
-* xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL]
-Use `rtfctl` command line tool to manage Mule apps deployed to Runtime Fabric.
+* xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL] +
+Use `rtfctl delete`, `describe`, `disk`, `memory`, `package`, `restart`, `heapdump`, `threaddump`` commands to manage Mule apps deployed to Runtime Fabric.
 
 * xref:app-to-app-requests.adoc[Sending Application-to-Application Requests] +
 Send a request from one Mule app to another app inside the cluster by using the Mule app name and environment ID.

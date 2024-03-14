@@ -1,7 +1,10 @@
 = Upgrading Runtime Fabric 
 
-To upgrade Runtime Fabric, see one of the following options:
+To upgrade Anypoint Runtime Fabric, review one of the following options:
 
-* xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric using RTFCTL]
-* xref:upgrade-helm.adoc[Upgrading Runtime Fabric using Helm]
-* xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator]
+* xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric using RTFCTL] +
+Use `rtfctl` command line tool to upgrade Runtime Fabric.
+* xref:upgrade-helm.adoc[Upgrading Runtime Fabric using Helm] +
+Use Helm package manager to upgrade Runtime Fabric.
+* xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator] +
+Use the Red Hat OpenShift console to upgrade Runtime Fabric on Red Hat OpenShift.

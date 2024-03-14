@@ -1,0 +1,13 @@
+= Configuring Kubernetes for Runtime Fabric
+
+* xref:rtf-k8s-practices.adoc[Kubernetes (K8s) Best Practices for Runtime Fabric] +
+Review scalability benchmarks and cluster configurations best practices.
+
+* xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] +
+Enable specific role permissions over Kubernetes resources to successfully run `rtfctl` commands.
+
+* xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide] +
+Review security opportunities associated with setting up and securing a Kubernetes cluster based on the Kubernetes Hardening Guide.
+
+* xref:customize-kubernetes-crd.adoc[Customizing Mule Apps Kubernetes Resources] +
+Customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
