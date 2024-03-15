@@ -4,7 +4,9 @@ Anypoint Runtime Fabric provides customers with varying observability solutions 
 
 == Anypoint Monitoring
 
-By default, Runtime Fabric sends application metrics to Anypoint Monitoring. Titanium-plan customers also have application logs automatically sent to Anypoint Monitoring by default. For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc[].
+include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM] 
+
+For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc[].
 
 == Export Telemetry Externally
 
