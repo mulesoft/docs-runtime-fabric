@@ -22,5 +22,5 @@ Review the Mule runtime engine patch updates and the Mule release channels for R
 
 == See Also
 
-* xref:deploy-index.adoc[Deploying Mule Apps Deployed to Runtime Fabric]
+* xref:deploy-index.adoc[Deploying Mule Apps to Runtime Fabric]
 * xref:hardening-apps-deployed-runtime-fabric.adoc[Hardening Mule Apps Deployed to Runtime Fabric]

@@ -10,5 +10,5 @@ Use `rtfctl` command line tool to protect Mule app property values.
 
 == See Also
 
-* xref:deploy-index.adoc[Deploying Mule Apps Deployed to Runtime Fabric]
+* xref:deploy-index.adoc[Deploying Mule Apps to Runtime Fabric]
 * xref:managing-apps-deployed-runtime-fabric.adoc[Managing Mule Apps Deployed to Runtime Fabric]
