@@ -1,6 +1,6 @@
-= Managing App Schedules
+= Managing Mule Apps Schedules
 
-You can use Runtime Manager to view and control the Scheduler components within the flows in your deployed applications, all without changing the running application.
+You can use Anypoint Runtime Manager to view and control the Scheduler components within the flows in your deployed applications, all without changing the running application.
 For example, you might want to disable a scheduled job while one of the applications is undergoing maintenance.
  
 On the *Schedules* tab, you can:

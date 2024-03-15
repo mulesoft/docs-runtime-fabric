@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Runtime Fabric enables you to deploy API proxies to a Mule runtime.
+Anypoint Runtime Fabric enables you to deploy API proxies to a Mule runtime.
 
 == Before you Begin
 

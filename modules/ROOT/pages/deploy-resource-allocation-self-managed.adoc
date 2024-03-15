@@ -1,4 +1,4 @@
-= Resource Allocation and Performance for Runtime Fabric
+= Allocating Resource for Application Deployment on Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

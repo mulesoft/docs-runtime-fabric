@@ -1,0 +1,17 @@
+= Hardening Runtime Fabric
+
+To enhance the security of Anypoint Runtime Fabric and reduce vulnerabilities, review the following topics:
+
+* xref:secure-runtime-fabric.adoc[Securing Runtime Fabric] +
+Secure your Runtime Fabric by learning about Runtime Fabric security architecture, configuring authorized namespaces, enabling FIPS 140-2, using a local registry, and hardening Mule runtime engine for Runtime Fabric.
+
+* xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric] +
+Review Kubernetes (K8s) best practices such as scalability benchmarks and cluster configurations. Additionally, check `rtfctl` Kubernetes permissions, review Kubernetes Hardening Guide, and customize Mule apps Kubernetes resources.
+
+* xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric] +
+Use the `rtfctl` command line tool to back up and restore Runtime Fabric services.
+
+== See Also
+
+* xref:setting-up-runtime-fabric.adoc[Setting Up Runtime Fabric]
+* xref:manage-index.adoc[Managing Runtime Fabric]

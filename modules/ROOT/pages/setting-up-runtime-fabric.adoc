@@ -1,0 +1,26 @@
+= Setting Up Runtime Fabric
+
+The following topics help you install, configure, uninstall, and upgrade Anypoint Runtime Fabric.
+
+* xref:index-vm-bare-metal.adoc[Preparing your VM/Bare Metal Cluster for Runtime Fabric Installation] +
+Ensure that the VM/Bare metal cluster underlying infrastructure meets the necessary hardware and networking requirements to install Runtime Fabric effectively. 
+
+* xref:install-self-managed-network-configuration.adoc[Configuring Network] +
+Configure ports and hostnames correctly before installing Runtime Fabric.
+
+* xref:install-index.adoc[Installing Runtime Fabric] +
+Install Runtime Fabric using `rtfctl`, Helm, as a Kubernetes (K8s) operator, or install multiple instances of Runtime Fabric.
+
+* xref:configuring-runtime-fabric.adoc[Configuring Runtime Fabric] +
+Configure network connections, ingress, Red Hat OpeShift routes, persistence gateway, proxies, and associate business groups and environments. Additionally, you can use `rtfctl` to configure Runtime Fabric.   
+
+* xref:uninstall-self.adoc[Uninstalling Runtime Fabric] +
+Unistall Runtime Fabric using `rtfctl`, Helm, or on Red Hat OpenShift.
+
+* xref:upgrade-index.adoc[Upgrading Runtime Fabric] +
+Upgrade Runtime Fabric using `rtfctl`, Helm, or as a Kubernetes (K8s) operator.
+
+== See Also
+
+* xref:manage-index.adoc[Managing Runtime Fabric]
+* xref:hardening-runtime-fabric.adoc[Hardening Runtime Fabric]
