@@ -1,5 +1,7 @@
 = Configuring Kubernetes for Runtime Fabric
 
+To configure Kubernetes for Anypoint Runtime Fabric, review the following topics:
+
 * xref:rtf-k8s-practices.adoc[Kubernetes (K8s) Best Practices for Runtime Fabric] +
 Review scalability benchmarks and cluster configurations best practices.
 
