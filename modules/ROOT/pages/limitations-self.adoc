@@ -19,3 +19,7 @@ Review the following table of limitations before installing, configuring, and ma
 [[how-antivirus-and-dpi-software-impacts-runtime-fabric-functionality]]
 
 include::partial$include-antivirus-statement.adoc[]
+
+== Logs
+
+include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM]
