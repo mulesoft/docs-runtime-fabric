@@ -9,19 +9,19 @@ To manage Anypoint Runtime Fabric, review the following topics:
 Use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters.
 
 * xref:install-rtfctl.adoc[Using RTFCTL Tool] +
-Use `rtfctl` command line tool to install, configure, upgrade, unistall, troubleshoot, back up and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule apps values and install and replace Mule license keys.
+Use the `rtfctl` command line tool to install, configure, upgrade, uninstall, troubleshoot, back up, and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule app values, and install and replace Mule license keys.
 
 * xref:replace-license-key.adoc[Replacing a Mule License Key] +
-Use `rtfctl` command line tool to replace an expired Mule license key.
+Use the `rtfctl` command line tool to replace an expired Mule license key.
 
 * xref:downgrade-runtime-fabric.adoc[Downgrading Runtime Fabric Version] +
-Use `rtfctl` command line tool or Helm to downgrade Runtime Fabric versions.
+Use the `rtfctl` command line tool or Helm to downgrade Runtime Fabric versions.
 
 * xref:migrate-helm.adoc[Migrating to Helm Managed Runtime Fabric] +
 Migrate to Helm native for Runtime Fabrics that were installed using `rtfctl`.
 
 * xref:prereq-firewalld-forwarding.adoc[Enabling Forwarding When Using firewalld] +
-Enable forwarding on the docker0 device, if you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.x operating system.
+Enable forwarding on the docker device, if you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.x operating system.
 
 == See Also
 

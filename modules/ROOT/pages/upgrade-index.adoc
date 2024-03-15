@@ -3,7 +3,7 @@
 To upgrade Anypoint Runtime Fabric, review one of the following options:
 
 * xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric using RTFCTL] +
-Use `rtfctl` command line tool to upgrade Runtime Fabric.
+Use the `rtfctl` command line tool to upgrade Runtime Fabric.
 * xref:upgrade-helm.adoc[Upgrading Runtime Fabric using Helm] +
 Use Helm package manager to upgrade Runtime Fabric.
 * xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator] +

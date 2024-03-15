@@ -3,7 +3,7 @@
 To secure Anypoint Runtime Fabric, review the following topis:
 
 * xref:security-architecture.adoc[Runtime Fabric Security Architecture] +
-Understand the architecture on how Runtime Fabric provides a secure way to manage MuleSoft applications and API gateways deployed onto Runtime Fabrics anywhere.
+Understand the architecture of how Runtime Fabric provides a secure way to manage MuleSoft applications and API gateways deployed onto Runtime Fabrics anywhere.
 
 * xref:authorized-namespaces.adoc[Configuring Authorized Namespaces] +
 Configure authorized namespaces to deploy Runtime Fabric alongside other services in a Kubernetes cluster.

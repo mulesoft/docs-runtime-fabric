@@ -12,7 +12,7 @@ The `rtfctl` command line tool enables you to locally manage Runtime Fabrics. Us
 
 == Before You Begin Using RTFCTL
 
-Before you start using `rtfctl`, see the following topic to enable `rtfctl` Kubernetes permissions and how to install the `rtfctl` command line tool.
+Before you start using `rtfctl`, see the following topic to enable `rtfctl` Kubernetes permissions and install the `rtfctl` command line tool.
 
 * xref:setting-up-rtfctl.adoc[Setting Up RTFCTL]
 
