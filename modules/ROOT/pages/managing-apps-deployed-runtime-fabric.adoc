@@ -19,3 +19,8 @@ Use Runtime Manager to view and control the Scheduler components within the flow
 
 * xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates] +
 Review the Mule runtime engine patch updates and the Mule release channels for Runtime Fabric.
+
+== See Also
+
+* xref:deploy-index.adoc[Deploying Mule Apps Deployed to Runtime Fabric]
+* xref:hardening-apps-deployed-runtime-fabric.adoc[Hardening Mule Apps Deployed to Runtime Fabric]

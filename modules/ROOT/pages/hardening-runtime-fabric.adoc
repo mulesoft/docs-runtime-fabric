@@ -10,3 +10,8 @@ Review Kubernetes (K8s) best practices such as scalability benchmarks and cluste
 
 * xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric] +
 Use `rtfctl` command line tool to back up and restore Runtime Fabric services.
+
+== See Also
+
+* xref:setting-up-runtime-fabric.adoc[Setting Up Runtime Fabric]
+* xref:manage-index.adoc[Managing Runtime Fabric]

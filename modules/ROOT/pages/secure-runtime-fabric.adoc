@@ -15,3 +15,7 @@ Use a local registry to pull and store Docker images.
 
 * xref:configure-hardening.adoc[Hardening Mule Runtime] +
 Review best practices for Mule runtime engine hardening with Runtime Fabric.
+
+== See Also
+
+* xref:hardening-runtime-fabric.adoc[Hardening Runtime Fabric]
