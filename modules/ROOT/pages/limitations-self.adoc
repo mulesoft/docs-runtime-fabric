@@ -108,7 +108,6 @@ It is common practice for applications deployed on Runtime Fabric to log directl
 
 Anypoint Runtime Fabric does not forward logs to an external system. You are responsible for installing and managing this configuration. Any external log forwarding agent compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE can be used. Commonly used log forwarding agents include:
 
-* Splunk Connect for Kubernetes
 * Fluentbit
 
 Runtime Fabric supports Log4j appenders. 
