@@ -159,7 +159,7 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 
 === Configure Logging and Log Levels
 
-Anypoint Monitoring provides access to log data for applications deployed to Rutime Fabric. To access logs with Anypoint Monitoring, you need a https://www.mulesoft.com/anypoint-pricing[Titanium subscription].
+include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM]
 
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.
@@ -229,4 +229,3 @@ When deploying applications, you may encounter the following issues:
 * xref:deploy-resource-allocation.adoc[Determine Application Resource Allocation on Runtime Fabric]
 * xref:runtime-manager::developing-applications-for-cloudhub.adoc[Deploy a Mule Application to CloudHub]
 * xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploy a Mule Application to a Hybrid Environment]
-
