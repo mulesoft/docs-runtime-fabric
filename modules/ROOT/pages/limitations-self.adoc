@@ -89,7 +89,7 @@ The default behavior of the ingress controller included with GKE is to provide a
 
 === Logs
 
-For Titanium customers, Anypoint Runtime Fabric supports logging using Anypoint Monitoring. See xref:manage-monitor-applications.adoc#logs[Logs] for more information.
+include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM]
 
 It is common practice for applications deployed on Runtime Fabric to log directly to `stdout`. The container runtime stores the console log in a file on disk. The storage location of this file depends on your container runtime and configuration. Refer to the documentation for your Kubernetes environment for details.
   
