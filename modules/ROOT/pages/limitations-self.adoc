@@ -5,6 +5,9 @@ endif::[]
 
 Review the following requirements and limitations before installing, configuring, and managing Anypoint Runtime Fabric. 
 
+[[license-compliance]]
+include::partial$include-deploy-resource-allocation.adoc[tags=licenseCompliance;!instructionsMonitor]
+
 == Limitations
 
 The following table provides Runtime Fabric limitations.

@@ -58,7 +58,7 @@ Resource intensive applications might require additional CPU capacity. If an app
 * The CPU limit is upper-bounded by the CPU cores provided on the worker nodes.
 * The maximum recommended utilization per CPU core is 20 - 25 simple applications and API gateways. More complex applications with higher usage may need more capacity.
 * Runtime Fabric runs a small number of services on worker nodes. These services consume between 0.3 and 0.5 vCPU, depending on whether log forwarding is enabled for Anypoint Monitoring.
-* Each application replica must reserve 50m CPU and 50Mi memory for the container that runs Anypoint Monitoring. This container streams application metrics to the control plane and cannot be disabled.
+* Each application replica must reserve 50m CPU and 150Mi memory for the container that runs Anypoint Monitoring. This container streams application metrics to the control plane and cannot be disabled.
 * Applications compete for the unallocated CPU remaining on their worker node. As more applications are deployed on a worker node, less unallocated CPU is available to share with other applications and can result in poor performance. The following strategies can be considered for minimizing CPU contention with your applications:
 ** Deploy nightly batch applications with other applications that have peak load during the day.
 ** Deploy multiple replicas of an application so that they are distributed across worker nodes to maximize the surface area for unallocated CPU.
