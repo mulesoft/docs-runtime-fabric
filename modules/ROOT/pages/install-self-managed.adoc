@@ -51,6 +51,8 @@ The following `rtfctl` versions are compatible with Runtime Fabric agents in sel
 [%header%autowidth.spread]
 |===
 | RTF self-managed 2.x.x agent version | `rtfctl` version 
+| 2.6.2  | 0.4.1 or later
+| 2.5.0  | 0.4.1 or later
 | 2.4.0  | 0.4.1 or later
 | 2.3.34 | 0.4.1 or later
 | 2.3.1 | 0.4.1 or later
