@@ -1,4 +1,4 @@
-= Deploy Mule Applications to Runtime Fabric 
+= Deploying Mule Apps to Runtime Fabric Using Runtime Manager
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

@@ -16,6 +16,7 @@ Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics
 [Note]
 If you are using the default namespace (rtf), you do not need to specify the additional flag `--namespace <rtf_namespace>`. Note that this flag is introduced only as of rtfctl version 0.4.1.
 
+[[install-rtfctl]]
 == Install rtfctl 
 
 [IMPORTANT]
@@ -67,6 +68,7 @@ The `rtfctl` command line tool consumes kubeconfig files as described in https:/
 
 When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and will accept a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
 
+[[configure-rtfctl]]
 == Commands for Configuring Runtime Fabric
 
 Use the following commands to configure Runtime Fabric.
@@ -254,6 +256,7 @@ Displays the Runtime Fabric version information
 rtfctl version --namespace <rtf_namespace>
 ----
 
+[[manage-rtfctl-apps]]
 == Commands for Managing Applications on Runtime Fabric
 
 Use the following commands to manage applications deployed to Runtime Fabric.
@@ -375,7 +378,7 @@ rtfctl threaddump <app_name> --app-namespace <app_namespace> --namespace <rtf_na
 ----
 rtfctl threaddump <app_name> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
-
+[[troubleshooting-rtfctl]]
 == Commands for Troubleshooting Runtime Fabric
 
 Use the following commands to troubleshoot Runtime Fabric.

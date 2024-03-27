@@ -1,6 +1,6 @@
 = Monitoring Applications Deployed to Runtime Fabric
 
-Runtime Fabric provides customers with varying observability solutions depending on their needs.
+Anypoint Runtime Fabric provides customers with varying observability solutions depending on their needs.
 
 == Anypoint Monitoring
 

@@ -4,7 +4,7 @@ MuleSoft is committed to ensuring the highest level of security and reliability 
 
 Inspired by the NSA (National Security Agency) hardening guide, we are enabling granular security controls on Runtime Fabric. The following guide describes the security opportunities associated with setting up and securing a Kubernetes cluster based on the guidelines. For complete guidance, see the https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF[Kubernetes Hardening Guide^].
 
-Runtime fabric agent is fully compliance with the policies section of the https://downloads.cisecurity.org/#/[CIS (Center for Internet Security) Kubernetes benchmark^], when you configure the agent with the following security controls.
+Runtime Fabric agent is fully compliance with the policies section of the https://downloads.cisecurity.org/#/[CIS (Center for Internet Security) Kubernetes benchmark^], when you configure the agent with the following security controls.
 
 == Common Security Concerns on a K8s Cluster
 

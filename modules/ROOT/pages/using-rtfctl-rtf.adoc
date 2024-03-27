@@ -1,0 +1,16 @@
+= Using RTFCTL for Runtime Fabric
+
+After you set up the `rtfctl` command line tool, use `rtfctl` commands to install, configure, upgrade, uninstall, troubleshoot, back up, and restore Runtime Fabric. Additionally, you can replace a Mule license key. 
+
+* xref:install-self-managed.adoc[Installing Runtime Fabric]
+* xref:install-rtfctl.adoc#configure-rtfctl[Configuring Runtime Fabric]
+* xref:uninstall-self.adoc#unistall-rtfctl-rtf[Uninstalling Runtime Fabric]
+* xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric]
+* xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric]
+* xref:install-rtfctl.adoc#troubleshooting-rtfctl[Troubleshooting Runtime Fabric]
+* xref:replace-license-key.adoc[Replacing a Mule License Key]
+
+== See Also
+
+* xref:install-rtfctl.adoc[RTFCTL Reference]
+* xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule apps]
