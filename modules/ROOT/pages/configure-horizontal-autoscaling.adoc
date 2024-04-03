@@ -181,6 +181,8 @@ For a successful horizontal autoscaling of your Mule apps, review the following 
 
 * Scale up and scale down performance can vary based on the replica size and the application type.
 
+* The policy is optimized for replica sizes with <850m. Larger replica sizes might take longer to scale.
+
 === Limitations
 
 There are some limitations to consider:
