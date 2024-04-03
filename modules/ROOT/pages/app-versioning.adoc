@@ -93,7 +93,8 @@ If it’s the first deployment of the application the rollback version won’t b
 == Recommendations when Deploying Stateful Mule Apps
 
 * MuleSoft supports xref:persistence-gateway.adoc[persistent gateway] for higher availability of applications requiring shared storage.
-* When using Mule xref:mule-runtime::mule-high-availability-ha-clusters.adoc[clustering], a rolling update with a Mule runtime version that has a Hazelcast version change will generate a scenario when, at a certain point of time, the cluster will have more than a member with different Hazelcast versions. This may lead to application failure with a Hazelcast serialization error.
+* When using Mule xref:mule-runtime::mule-high-availability-ha-clusters.adoc[clustering], a rolling update with a Mule runtime version that has a Hazelcast version change will generate a scenario when, at a certain point of time, the cluster will have more than a member with different Hazelcast versions. This may lead to application failure with a Hazelcast serialization error if the Hazelcast versions are incompatible.
+To prevent this kind of error, use the Recreate update strategy.
 
 == Roll Back to a Previous Successful Configuration
 
