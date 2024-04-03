@@ -1,4 +1,4 @@
-= Configure Horizontal Autoscaling (HPA) for Runtime Fabric Deployments
+= Configuring Horizontal Pod Autoscaling (HPA) for Runtime Fabric Deployments
 
 Runtime Fabric instances support horizontal scaling of Mule app deployments by spinning up additional replicas or spinning down unneeded replicas in response to the CPU usage as a signal.
 
