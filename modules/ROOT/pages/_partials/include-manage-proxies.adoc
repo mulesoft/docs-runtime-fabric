@@ -3,10 +3,25 @@
 
 Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
 
+[NOTE]
+Starting Runtime Fabric version 2.6.11, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
+
 The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
 
-* US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
-* EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
+* US control plane: +
+`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com/api/v2/lmetrics` +
+`us1.ingest.mulesoft.com/api/v2/metrics` +
+`us1.ingest.mulesoft.com/api/v2/traces` +
+`us1.ingest.mulesoft.com/api/v2/logs` +
+
+* EU control plane: +
+`dias-ingestor-nginx.prod-eu.msap.io` +
+`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
+`eu1.ingest.mulesoft.com/api/v2/lmetrics` +
+`eu1.ingest.mulesoft.com/api/v2/metrics` +
+`eu1.ingest.mulesoft.com/api/v2/traces` +
+`eu1.ingest.mulesoft.com/api/v2/logs` +
 
 . Log in to a node where `rtfctl` is installed. 
 . Run the following command, replacing the placeholder values with the following:
@@ -34,6 +49,7 @@ sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
 The output should match the value expected.
 // end::monitoring-proxy[]
 // tag::http-proxy[]
+. After setting up the proxy, validate the setup by running the `rtfctl validate` command. See xref:install-rtfctl.adoc#validate[rtfctl Validate] documentation.
 
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
