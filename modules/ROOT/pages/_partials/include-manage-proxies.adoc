@@ -37,7 +37,10 @@ The output should match the value expected.
 
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
-You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane. 
+You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane.
+
+[NOTE]
+Starting Runtime Fabric version 2.6.11, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
 
 Updating an HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
@@ -76,6 +79,7 @@ The output should match the value expected.
 -----
 sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----
+. After setting up the proxy, validate the setup by running the `rtfctl validate` command. See xref:install-rtfctl.adoc#validate[rtfctl Validate] documentation.
 
 === About the HTTP_PROXY Environment Variable 
 

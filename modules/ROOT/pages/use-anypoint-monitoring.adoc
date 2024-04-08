@@ -25,6 +25,9 @@ If you are using a version of Anypoint Runtime Fabric older than 1.8.50, use por
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
 ====
 
+For further details on Anypoint Monitoring endpoints, refer to xref:install-self-managed-network-configuration.adoc[configuring your network to support Runtime Fabric].
+
+
 == Metrics
 
 Each Mule app and API gateway replica runs a metrics agent that collects and transmits metrics data to 
