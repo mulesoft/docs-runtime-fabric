@@ -7,7 +7,7 @@ Mulesoft supports configuring Mule apps to be responsive to the CPU usage on Kub
 In Kubernetes, a Horizontal Pod Autoscaler (HPA) automatically updates a workload resource, with the aim of automatically scaling the workload to match demand. Horizontal scaling means that the response to increased load is to deploy more pods.
 
 [NOTE]
-HPA is supported only on Runtime Fabric agent version 2.6.<>. and higher.
+HPA is supported only on Runtime Fabric agent version 2.6.20 and higher.
 
 This feature applies only to select customers who are opted into the new pricing and packaging model. For more details, see xref:general::pricing.adoc[]
 
@@ -187,7 +187,6 @@ For a successful horizontal autoscaling of your Mule apps, review the following 
 
 There are some limitations to consider:
 
-* Horizontal autoscaling does not work with clustering and rate limiting.
 * CPU is the only resource for horizontal autoscaling.
 
 == Configure Horizontal Pod Autoscaling
