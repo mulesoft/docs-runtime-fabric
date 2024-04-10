@@ -4,7 +4,7 @@
 Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
 
 [NOTE]
-Starting Runtime Fabric version 2.6.20, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
+Starting Runtime Fabric version 2.6.22, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
 
 The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
 
@@ -56,7 +56,7 @@ The output should match the value expected.
 You can configure HTTP and HTTPS proxies so that outbound components can communicate with the control plane.
 
 [NOTE]
-Starting Runtime Fabric version 2.6.20, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
+Starting Runtime Fabric version 2.6.22, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version less than 2.6.22.
 
 Updating an HTTP proxy causes each machine in the cluster to restart all pods running on it. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
