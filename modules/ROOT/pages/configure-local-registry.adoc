@@ -16,7 +16,7 @@ You cannot use local registry for installation or management of Runtime Fabric o
 +
 If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
 +
-You cannot add a local registry to any version of an existing Runtime Fabric instance, even if you upgrade that installation to 1.12.0 or later.
+To add local registry to an existing Runtime Fabric instance, ensure that the installation is Helm-based xref:migrate-helm.adoc[] and perform the steps on the following section to add local registry.
 * If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
 * You are responsible for synchronizing your local registry with required dependencies:
 +
