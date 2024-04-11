@@ -6,7 +6,7 @@ Runtime Fabric is a core Kubernetes (K8s) software and works alike in all K8s en
 |===
 | Limitation | Description | Enforced by Runtime Fabric
 | Deployments per Runtime Fabric | The maximum number of deployments being managed by Runtime Fabric at any instance should not exceed 8000 for optimal performance. | Recommended
-| Horizontal Pod Autoscaling (HPA) | With Runtime Fabric on EKS occasional traffic failure of approximately 0.09% may occur when scaling replicas from 1 to 8. These errors are specific to the pod scaling window, so you may experience traffic failure during scaling operations. | Recommended
+| Horizontal Pod Autoscaling (HPA) | With Runtime Fabric on Amazon EKS, occasional traffic failures of approximately 0.09% may occur when scaling replicas from 1 to 8. These errors are specific to the pod scaling window, so you may experience traffic failure during scaling operations. |
 |===
 
 Runtime Fabric functionality and management of application deployments is not affected by the following:
