@@ -16,11 +16,11 @@ To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.5
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com/` +
+`us1.ingest.mulesoft.com` +
 
 * EU control plane: +
 `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com/` +
+`eu1.ingest.mulesoft.com` +
 
 [NOTE]
 ====
