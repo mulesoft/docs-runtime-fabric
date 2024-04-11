@@ -16,7 +16,6 @@ The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following e
 `us1.ingest.mulesoft.com/api/v2/logs` +
 
 * EU control plane: +
-`dias-ingestor-nginx.prod-eu.msap.io` +
 `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
 `eu1.ingest.mulesoft.com/api/v2/lmetrics` +
 `eu1.ingest.mulesoft.com/api/v2/metrics` +
