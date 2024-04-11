@@ -42,12 +42,18 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 * US control plane: `transport-layer.prod.cloudhub.io`
 * EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
 | 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
-* US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
-* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
-* EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
+* US control plane: +
+`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com` +
+
+* EU control plane: +
+`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
+`eu1.ingest.mulesoft.com` +
+
+ | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 | 5044 (legacy) |TCP (Lumberjack) a| 
 * US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
-* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | Anypoint Monitoring agent for Runtime Fabric.
+* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
 *As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.* 
 If you experience any issues, refer to https://help.mulesoft.com/s/article/Failed-to-connect-to-failover-ERROR-logs-in-RTF-application-pod-sidecar-container[ERROR in sidecar logs] knowledge base article.
