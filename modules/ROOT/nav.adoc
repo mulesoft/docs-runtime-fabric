@@ -18,6 +18,7 @@
   *** xref:configure-openshift-routes.adoc[Configuring Red Hat OpenShift Routes]
   *** xref:persistence-gateway.adoc[Configuring Persistence Gateway]
   *** xref:manage-proxy-self.adoc[Configuring Proxies]
+  *** xref:configure-horizontal-autoscaling.adoc[Configuring Horizonal Pod Autoscaling (HPA)]
 ** xref:uninstall-self.adoc[Uninstalling Runtime Fabric]
 ** xref:upgrade-index.adoc[Upgrading Runtime Fabric]
   *** xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric Using RTFCTL]
