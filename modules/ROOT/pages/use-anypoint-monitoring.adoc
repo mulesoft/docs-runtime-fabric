@@ -14,8 +14,13 @@ If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5
 
 To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.50 or later, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 443 to the following domains:
 
-* US control plane: `dias-ingestor-router.us-east-1.prod.cloudhub.io` 
-* EU control plane: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
+* US control plane: +
+`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com/` +
+
+* EU control plane: +
+`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
+`eu1.ingest.mulesoft.com/` +
 
 [NOTE]
 ====

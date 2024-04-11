@@ -10,17 +10,11 @@ The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following e
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com/api/v2/lmetrics` +
-`us1.ingest.mulesoft.com/api/v2/metrics` +
-`us1.ingest.mulesoft.com/api/v2/traces` +
-`us1.ingest.mulesoft.com/api/v2/logs` +
+`us1.ingest.mulesoft.com/` +
 
 * EU control plane: +
 `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com/api/v2/lmetrics` +
-`eu1.ingest.mulesoft.com/api/v2/metrics` +
-`eu1.ingest.mulesoft.com/api/v2/traces` +
-`eu1.ingest.mulesoft.com/api/v2/logs` +
+`eu1.ingest.mulesoft.com/` +
 
 . Log in to a node where `rtfctl` is installed. 
 . Run the following command, replacing the placeholder values with the following:

@@ -44,18 +44,11 @@ To function correctly, Runtime Fabric requires the following hostname configurat
 | 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com/api/v2/lmetrics` +
-`us1.ingest.mulesoft.com/api/v2/metrics` +
-`us1.ingest.mulesoft.com/api/v2/traces` +
-`us1.ingest.mulesoft.com/api/v2/logs` +
+`us1.ingest.mulesoft.com/` +
 
 * EU control plane: +
-`dias-ingestor-nginx.prod-eu.msap.io` +
 `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com/api/v2/lmetrics` +
-`eu1.ingest.mulesoft.com/api/v2/metrics` +
-`eu1.ingest.mulesoft.com/api/v2/traces` +
-`eu1.ingest.mulesoft.com/api/v2/logs` +
+`eu1.ingest.mulesoft.com/` +
 
  | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 | 5044 (legacy) |TCP (Lumberjack) a| 
