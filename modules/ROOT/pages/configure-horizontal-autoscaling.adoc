@@ -61,11 +61,9 @@ Therefore, the cluster autoscaler starts with:
 - --balancing-ignore-label=vpc.amazonaws.com/eniConfig
 ----
 
-=== Configure Overprovisioning Pod
+=== Configure Overprovisioning Nodes
 
-Configure at least one overprovisioning pod per availability zone. Each overprovisioning pod holds a resource that can accommodate three Mule app pods, which improves the performance when new nodes are needed.
-
-
+Configure at least one overprovisioning node per availability zone. Each overprovisioning nodes holds a resource that can accommodate three Mule app nodes, which improves the performance when new nodes are needed.
 
 [NOTE]
 Refer to your managed vendor documentation for cluster autoscaling best practices and over-provisioning configuration details.
@@ -95,7 +93,7 @@ Customizing topology spread with `whenUnsatisfiable: DoNotSchedule`, without the
 
 MuleSoft owns and applies the https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/[autoscaling^] policy for your Mule application deployments.
 
-The CPU-based HPA policy used for all Mule apps deployed on Runtime Fabric instances, is as follows:
+The following example shows the CPU-based HPA policy used for Mule apps deployed on Runtime Fabric instances. Note that you can choose `minReplicas` and `maxReplicas` values from the Runtime Manager user interface. 
 
 ----
 apiVersion: autoscaling/v2
@@ -111,7 +109,7 @@ spec:
         type: Percent
         value: 100
       selectPolicy: Max
-      stabilizationWindowSeconds: 300
+      stabilizationWindowSeconds: 1800
     scaleUp:
       policies:
       - periodSeconds: 180
@@ -119,7 +117,7 @@ spec:
         value: 100
       selectPolicy: Max
       stabilizationWindowSeconds: 0
-  maxReplicas: 3
+  maxReplicas: <maxReplicasChosenFromRuntimeManagerUI>
   metrics:
   - resource:
       name: cpu
@@ -127,7 +125,7 @@ spec:
         averageUtilization: 70
         type: Utilization
     type: Resource
-  minReplicas: 1
+  minReplicas: <minReplicasChosenFromRuntimeManagerUI>
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
@@ -138,7 +136,7 @@ Some points to consider:
 
 Scale up can occur at most every 180 seconds. Each period, up to 100% of the currently running replicas may be added until the maximum configured replicas is reached. For scaling up there is no stabilization window. When the metrics indicate that the target should be scaled up, the target is scaled up immediately.
 
-Scale down can occur at most every 15 seconds. Each Period, up to 100% of the currently running replicas may be removed which means the scaling target can be scaled down to the minimum allowed replicas. The number of replicas removed is based on the aggregated calculations over the past 300 seconds of the stabilization window.
+Scale down can occur at most every 15 seconds. Each Period, up to 100% of the currently running replicas may be removed which means the scaling target can be scaled down to the minimum allowed replicas. The number of replicas removed is based on the aggregated calculations over the past 1800 seconds of the stabilization window.  
 
 Min replicas +
 
