@@ -10,7 +10,7 @@ xref:app-versioning.adoc#tab-b[Testing]
 
 Tab A:: Contents of Tab A.
 
-
+[[tab-b]]
 Tab B::
 +
 Contents of Tab B.
