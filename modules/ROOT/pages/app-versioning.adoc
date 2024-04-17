@@ -7,15 +7,33 @@ xref:app-versioning.adoc#tab-b[Testing]
 
 [tabs]
 ====
-[[tab-a]]
+
 Tab A:: Contents of Tab A.
 
-[[tab-b]]
+
 Tab B::
 +
 Contents of Tab B.
 
-[[tab-c]]
+
+Tab C::
++
+--
+Contents of Tab C.
+ 
+Contains more than one block.
+--
+====
+
+
+[tabs]
+====
+Tab A:: Contents of Tab A.
+ 
+Tab B::
++
+Contents of Tab B.
+ 
 Tab C::
 +
 --
