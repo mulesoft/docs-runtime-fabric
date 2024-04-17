@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 xref:app-versioning.adoc#tab-b[Testing]
+xref:app-versioning.adoc#tab-c[Testing]
 
 [tabs]
 ====
@@ -20,6 +21,7 @@ Contents of Tab B.
 Tab C::
 +
 --
+[[tab-c]]
 Contents of Tab C.
  
 Contains more than one block.
