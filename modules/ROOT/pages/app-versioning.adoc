@@ -3,6 +3,28 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+xref:app-versioning.adoc#tab-b[Testing]
+
+[tabs]
+====
+[[tab-a]]
+Tab A:: Contents of Tab A.
+
+[[tab-b]]
+Tab B::
++
+Contents of Tab B.
+
+[[tab-c]]
+Tab C::
++
+--
+Contents of Tab C.
+ 
+Contains more than one block.
+--
+====
+
 When an application is deployed to Runtime Fabric, Runtime Manager automatically versions the application and its configuration. Application versioning enables you to:
 
 * View the configuration change history of the application.
