@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 
-xref:app-versioning.adoc#4-3-0-20240408-1[4-3-0-20240408-1]
+xref:app-versioning.adoc#test-1[4-3-0-20240408-1]
 
 
 
@@ -24,8 +24,8 @@ When an application is deployed to Runtime Fabric, Runtime Manager automatically
 ** Resource allocations, including number of cores and memory allocation.
 ** Ingress and property values.
 
-[[4-3-0-20240408-1]]
-= 4.3.0:20240408-1
+[[test-1]]
+== 4.3.0:20240408-1
 
 == Access the Application's Settings Page
 
