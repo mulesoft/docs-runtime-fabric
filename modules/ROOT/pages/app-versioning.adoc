@@ -3,48 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-xref:app-versioning.adoc#tab-b[Testing]
-xref:app-versioning.adoc#tab-c[Testing]
 
-[tabs]
-====
-
-Tab A:: Contents of Tab A.
+xref:app-versioning.adoc#4-3-0-20240408-1[4-3-0-20240408-1]
 
 
-Tab B::
-+
-[[tab-b]]
-Contents of Tab B.
 
-
-Tab C::
-+
---
-[[tab-c]]
-Contents of Tab C.
- 
-Contains more than one block.
---
-====
-
-
-[tabs]
-====
-Tab A:: Contents of Tab A.
- 
-Tab B::
-+
-Contents of Tab B.
- 
-Tab C::
-+
---
-Contents of Tab C.
- 
-Contains more than one block.
---
-====
 
 When an application is deployed to Runtime Fabric, Runtime Manager automatically versions the application and its configuration. Application versioning enables you to:
 
@@ -61,6 +24,8 @@ When an application is deployed to Runtime Fabric, Runtime Manager automatically
 ** Resource allocations, including number of cores and memory allocation.
 ** Ingress and property values.
 
+[[4-3-0-20240408-1]]
+= 4.3.0:20240408-1
 
 == Access the Application's Settings Page
 
