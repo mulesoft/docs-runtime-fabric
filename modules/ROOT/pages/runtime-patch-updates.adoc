@@ -42,7 +42,7 @@ The following table describes the autoupgrade behavior of Mule runtime patch upd
 
 
 If you deploy a Mule app without the build tag, the deployment defaults to or autoupgrades to the latest patch of the selected minor.
-| Versions 4.5 and following | - | Mule runtime image names have the build tag built within them, so you do not have to pass a separate build tag. You are not defaulted to or autoupgraded to the latest patch of the selected minor.
+| Versions 4.5 and later | - | Mule runtime image names have the build tag built within them, so you do not have to pass a separate build tag. You are not defaulted to or autoupgraded to the latest patch of the selected minor.
 
 
 
