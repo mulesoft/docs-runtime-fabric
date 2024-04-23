@@ -4,10 +4,6 @@
 The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
 
-== Version Rewrite
-
-Version rewrite used to override the build tag specified in a deployment request if the build tag was out of support or invalid. Starting October 3, 2023, version rewrite does not override any specified tags for any version. However, if a Mule app is deployed through the API without a build tag, the latest build is auto-selected.
-
 == Monthly Date-Patch Updates 
 
 Once per month, MuleSoft releases a _date-patch update_, which includes backward-compatible bug fixes to address any issues discovered in Mule runtime engine.
@@ -33,10 +29,24 @@ Runtime Fabric runs each application and gateway deployment on a separate Mule r
 . During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.
 . Beginning on the third full week of the month, you must select the latest date-patch of your chosen Mule runtime version when deploying a new application, or when making a change to an existing application.
 
-[Note]
-Starting with Mule runtime engine version 4.5, you can disable autoupgrades of your Mule apps on redeployment by passing the tag required for version pinning.
-
 During the grace period, you can select earlier date-patch versions until they are no longer available through the Runtime Manager UI but still usable through the API. Note that this behavior changes starting with Mule runtime engine version 4.5 with Edge and LTS channel releases. All build tags are available in the Runtime Manager UI and API.
+
+=== Autoupgrade Behavior
+
+The following table describes the autoupgrade behavior of Mule runtime patch updates:
+
+[%header%autowidth.spread]
+|===
+|Mule runtime patch updates | Releases before October 3, 2023 | Releases after October 3, 2023
+| Versions 4.4 and previous |The deployment defaults to or autoupgrades to the latest patch of the selected minor. | Anypoint Platform API requires passing a valid and supported build tag in the deployment specification. If you pass a wrong build tag, the deployment fails.
+
+
+If you deploy a Mul app without the build tag, the deployment defaults to or autoupgrades to the latest patch of the selected minor.
+| Versions 4.5 and following | - | Mule runtime image names have the build tag built within them, so you do not have to pass a separate build tag. You are not defaulted to or autoupgraded to the latest patch of the selected minor.
+
+
+
+|===
 
 === Update a Single App to the Latest Runtime Patch Release
 
