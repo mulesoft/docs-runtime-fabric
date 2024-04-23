@@ -3,6 +3,7 @@
 
 The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
+For a list of patch updates, refer to xref:release-notes::runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric].
 
 == Version Rewrite
 
