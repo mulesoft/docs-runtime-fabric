@@ -106,6 +106,8 @@ image::ch2-scheduler-editor-fixed.png[Fixed-frequency schedule configuration]
 +
 You can specify milliseconds, seconds, minutes, hours, or days for the frequency.
 The minimum recommended frequency between calls is 10 seconds.
++
+include::cloudhub::partial$ch-app-schedule-freq.adoc[]
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
 
 
