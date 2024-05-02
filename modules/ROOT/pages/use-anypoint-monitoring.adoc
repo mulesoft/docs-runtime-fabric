@@ -122,10 +122,23 @@ anypoint.platform.config.analytics.agent.enabled=false
 [NOTE]
 For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
 
-== Enable OpenTelemetry Exporter
 
-Enable trace data collection for Mule apps running on Mule Runtime [versions tbd] by using the xref:monitoring::telemetry-exporter.adoc[OpenTelemetry Exporter] in Anypoint Monitoring. 
+== Enable Trace Data Collection
 
-OpenTelemetry enables Mule runtime engine to bring observability to the behavior of Mule apps, and also, because of distributed tracing, to the interaction between different Mule apps. With the exporter, you can export traces to third-party observability and analytics apps.
+Traces enable you to understand the execution path of a transaction in MuleSoft ecosystem by having full visibility into the execution path of API calls or application transactions. This feature exposes tracing information in OpenTelemetry standard from Mule runtime into the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter].
 
-There is no additional Runtime Fabric configuration to use OpenTelemetry.
+You can enable trace data collection for your Runtime Fabric applications running on Mule runtime version 4.6 or later. 
+
+To enable distributed tracing in your application deployments:
+
+. Click the *Monitoring* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+[NOTE]
+You can't enable trace data collection via Mule Maven plugin, Anypoint CLI, or Studio yet. You can enable trace data collection via UI and API.
+
+Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
+
+[NOTE]
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
