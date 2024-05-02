@@ -127,3 +127,5 @@ For compliance or geospecific requirements if your team or organization cannot s
 Enable trace data collection for Mule apps running on Mule Runtime [versions tbd] by using the xref:monitoring::telemetry-exporter.adoc[OpenTelemetry Exporter] in Anypoint Monitoring. 
 
 OpenTelemetry enables Mule runtime engine to bring observability to the behavior of Mule apps, and also, because of distributed tracing, to the interaction between different Mule apps. With the exporter, you can export traces to third-party observability and analytics apps.
+
+There is no additional Runtime Fabric configuration to use OpenTelemetry.
