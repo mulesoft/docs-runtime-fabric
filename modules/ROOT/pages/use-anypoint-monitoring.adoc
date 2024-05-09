@@ -128,7 +128,7 @@ anypoint.platform.config.analytics.agent.enabled=false
 [NOTE]
 For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
 
-
+[[enable-trace-data]]
 == Enable Trace Data Collection
 
 Traces enable you to understand the execution path of a transaction in MuleSoft ecosystem by having full visibility into the execution path of API calls or application transactions. This feature exposes tracing information in OpenTelemetry standard from Mule runtime into the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter].
