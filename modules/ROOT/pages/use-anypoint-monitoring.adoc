@@ -93,8 +93,14 @@ Dependent on the features you use, the sidecar agent consumes corresponding reso
 
 * If you opt into xref:runtime-fabric/deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
 
+* If you opt into trace data generation for Mule apps, the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 240MB memory allocation.
+
 [NOTE]
 Allocate appropriate capacity to the underlying cluster to avoid application deployment failure.
+
+
+
+
 
 == Anypoint Visualizer
 
@@ -121,3 +127,24 @@ anypoint.platform.config.analytics.agent.enabled=false
 
 [NOTE]
 For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
+
+[[enable-trace-data]]
+== Enable Trace Data Collection
+
+Traces enable you to understand the execution path of a transaction in MuleSoft ecosystem by having full visibility into the execution path of API calls or application transactions. This feature exposes tracing information in OpenTelemetry standard from Mule runtime into the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter].
+
+You can enable trace data collection for your Runtime Fabric applications running on Mule runtime version 4.6 or later. 
+
+To enable distributed tracing in your application deployments:
+
+. Click the *Monitoring* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+[NOTE]
+You can't enable trace data collection via Mule Maven plugin, Anypoint CLI, or Studio yet. You can enable trace data collection via UI and API.
+
+Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
+
+[NOTE]
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
