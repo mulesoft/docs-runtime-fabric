@@ -142,6 +142,3 @@ To enable trace data collection for an app:
 . Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
 
 Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
-
-[NOTE]
-include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
