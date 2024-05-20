@@ -141,9 +141,6 @@ To enable trace data collection for an app:
 . Select the *Enable tracing* checkbox.
 . Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
 
-[NOTE]
-You can't enable trace data collection via Mule Maven plugin, Anypoint CLI, or Studio yet. You can enable trace data collection via UI and API.
-
 Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
 
 [NOTE]
