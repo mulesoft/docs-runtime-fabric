@@ -38,7 +38,7 @@ MuleSoft doesn’t provide additional software to synchronize third party depend
 [[synch-runtime]]
 == Synchronize Mule Runtime Dependencies and Images to Your Local Registry
 
-To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image follows this format: `rtf-runtime-registry.kqa.msap.io/mulesoft/poseidon-runtime-4.4.0:<tag>`.
+To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image follows this format: `rtf-runtime-registry.kprod.msap.io/mulesoft/`.
 
 [[synch-rtf]]
 == Synchronize Runtime Fabric Core Software Dependencies and Images to Your Local Registry
