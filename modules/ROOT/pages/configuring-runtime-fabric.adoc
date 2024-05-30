@@ -22,3 +22,4 @@ Configure proxies when running and hosting Mule apps deployed to Runtime Fabric.
 
 * xref:configure-horizontal-autoscaling.adoc[Configuring Horizontal Pod Autoscaling (HPA)] +
 Configure horizontal autoscaling of Mule app deployments by spinning up additional replicas or spinning down unneeded replicas in response to the CPU usage as a signal.
+Ignore it please
