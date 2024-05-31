@@ -24,6 +24,7 @@ The `kubernetestemplate` resource enables you to configure the following element
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
 ** https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting/[Service Account Token^]
+** https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/[Environment Variables]
 
 For the security context pod, the key to use is `containerSecurityContext`.
 
@@ -196,3 +197,16 @@ Key elements that can not be overwritten using the CRD:
 *** rtf.mulesoft.com/organization
 
 //update CRD extension
+
+== Enable Console Logging
+
+By default, console logging is disabled if it's detected that your Mule app logs at least one other source. You can override this default behavior using the Kubernetes template, either at the cluster level with the root Kubernetes template or at the Mule app namespace level.
+
+To enable console log using the Kubernetes template, set the `ENABLE_CONSOLE_LOG` variable in the `env` section:
+
+[source,copy]
+----
+pod:
+   env:
+       ENABLE_CONSOLE_LOG: "true"
+----
