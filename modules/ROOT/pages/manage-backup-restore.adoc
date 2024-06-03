@@ -4,6 +4,8 @@ Use the following procedures to back up and restore Runtime Fabric services and 
 
 Data about the state of Runtime Fabric is distributed across the Kubernetes cluster. To preserve applications in the event of system failure, confirm that Runtime Fabric is automatically backed up. When scheduling backups, follow best practices by configuring hourly backups. Store your backup on external storage outside the Runtime Fabric cluster.
 
+Starting `rtfctl` version <tbd>, if you use an rtf-agent version higher than <tbd>, the `rtfctl` backup bundle does not contain the Mule app deployments. The deployments are synched from the Runtime Manager UI at the time of restoration.
+
 == When to Use the Back Up and Restore Process
 
 Common scenarios for using the backup and restore process include: 
@@ -16,6 +18,8 @@ Common scenarios for using the backup and restore process include:
 --
 Do not use the backup and restore process to create concurrent running instances of Runtime Fabric. In other words, do not back up Runtime Fabric A, use that back up to create a new Runtime Fabric B while Runtime Fabric A is still active, and attempt to run them concurrently. This creates application deployment issues.
 --
+
+
 
 == What Gets Backed Up
 
