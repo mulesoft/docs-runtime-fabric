@@ -198,6 +198,7 @@ Key elements that can not be overwritten using the CRD:
 
 //update CRD extension
 
+[[enable-console-logging]]
 == Enable Console Logging
 
 By default, console logging is disabled if it's detected that your Mule app logs at least one other source. You can override this default behavior using the Kubernetes template, either at the cluster level with the root Kubernetes template or at the Mule app namespace level.
