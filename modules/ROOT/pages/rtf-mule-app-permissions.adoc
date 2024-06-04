@@ -1,4 +1,4 @@
-= Enabling Mule App Deployments Kubernetes Permissions on Runtime Fabric
+= Mule App Deployments Kubernetes Permissions on Runtime Fabric
 
 Mule apps deployed on the Runtime Fabric platform do not access the underlying Kubernetes API server. By default, Mule app deployments do not have RBAC configurations (`Role` and `Rolebindings`).
 
@@ -6,6 +6,6 @@ However, if the Mule app use case requires K8s (Kubernetes) API access, you can 
 
 == See Also
 
-* xref:rtf-permissions.adoc[Runtime Fabric Core Software Permissions]
+* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Permissions]
 * xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] 
 * xref:rtf-mule-app-permissions.adoc[Configuring Kubernetes for Runtime Fabric]

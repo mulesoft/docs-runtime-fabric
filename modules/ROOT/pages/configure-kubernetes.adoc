@@ -11,18 +11,8 @@ Review security opportunities associated with setting up and securing a Kubernet
 * xref:customize-kubernetes-crd.adoc[Customizing Mule Apps Kubernetes Resources] +
 Customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
-== Runtime Fabric Kubernetes Permissions
-
-To enable Runtime Fabric Kubernetes permissions, review the following topics.
-
-* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions]
-Review the Kubernetes resource access permissions required by the Runtime Fabric control plane.
-
-* xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] +
-Enable specific role permissions over Kubernetes resources to successfully run `rtfctl` commands.
-
-* xref:rtf-mule-app-permissions.adoc[Enabling Mule App Deployments Kubernetes Permissions on Runtime Fabric]
-Enabling Mule app deployment Kubernetes permissions configuration.
+* xref:rtf-kubernetes-permissions.adoc[Runtime Fabric Kubernetes Permissions]
+Configure Kubernetes permissions for Runtime Fabric.
 
 == See Also
 
