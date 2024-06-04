@@ -45,6 +45,7 @@
     *** xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions]
     *** xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide]
     *** xref:customize-kubernetes-crd.adoc[Customizing Mule Apps Kubernetes Resources]
+    *** xref:rtf-permissions.adoc[Runtime Fabric Core Software Permissions]
   ** xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric]
 * xref:deploy-index.adoc[Deploying Mule Apps]
   ** xref:deploy-resource-allocation-self-managed.adoc[Allocating Resource for Application Deployments]

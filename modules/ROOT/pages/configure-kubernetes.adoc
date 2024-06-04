@@ -14,6 +14,9 @@ Review security opportunities associated with setting up and securing a Kubernet
 * xref:customize-kubernetes-crd.adoc[Customizing Mule Apps Kubernetes Resources] +
 Customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
+* xref:rtf-permissions.adoc[Runtime Fabric Core Software Permissions]
+Review all the Kubernetes resource access authorizations used by Runtime Fabric core software.
+
 == See Also
 
 * xref:hardening-runtime-fabric.adoc[Hardening Runtime Fabric]

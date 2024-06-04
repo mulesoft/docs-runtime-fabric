@@ -1,0 +1,27 @@
+== Runtime Fabric Core Software Permissions
+
+The following table lists all the Kubernetes resource access authorizations used by Runtime Fabric core software.
+These RBAC (Role-based access control) configurations (ClusterRole and Rolebindings) are part of the Runtime Fabric helm charts and are automatically applied during the installation.
+
+[NOTE]
+You can't extend or modify any of these core software access permissions. You need to create and apply the ClusterRole and Rolebindings for the Runtime Fabric Authorized namespaces use case. Refer to xref:authorized-namespaces.adoc[].
+
+[%header%autowidth.spread,cols=".^a,.^a,.^a,.^a]
+|===
+|Namespace |API Groups | Kubernetes Resources | Verbs
+.9+|<rtf-namespace>|extensions, apps   |deployments, deployments/scale, daemonsets, replicasets   | *
+   |“”   |pods, pods/log, pods/portforward, pods/exec, configmaps, secrets, services, namespaces, nodes, serviceaccounts, resourcequotas, events, limitranges   | *
+   |batch   |jobs, cronjobs   | *
+   |extensions  |jobs   | *
+   |networking.k8s.io  |networkpolicies   | *
+   |rbac.authorization.k8s.io  |rolebindings, clusterroles, clusterrolebindings, roles   | *
+   |extensions,networking.k8s.io  |ingresses,networkpolicies   | *
+   |rtf.mulesoft.com  |persistencegateways, kubernetestemplates   | *
+   |autoscaling  |horizontalpodautoscalers   | *
+|===
+
+== Permissions and Mule App Deployments on Runtime Fabric
+
+Mule apps deployed on the Runtime Fabric platform do not expect to access the underlying Kubernetes API server. By default, Mule apps deployments do not have RBAC configurations (Role and Rolebindings).
+
+However, if the Mule app use case requires K8s API access, you can override this behavior by enabling the `automountserviceaccounttoken` via customization CRD and attach a Role (customer-owned) with a Role binding (customer-owned) to the service account that Runtime Fabric core software creates per deployment. Refer to xref:/customize-kubernetes-crd.adoc[].
