@@ -15,8 +15,8 @@ Customize your Mule app Kubernetes resources through the custom resource `kubern
 
 To enable Runtime Fabric Kubernetes permissions, review the following topics.
 
-* xref:rtf-permissions.adoc[Runtime Fabric Core Software Permissions]
-Review all the Kubernetes resource access authorizations used by Runtime Fabric core software.
+* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions]
+Review the Kubernetes resource access permissions required by the Runtime Fabric control plane.
 
 * xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] +
 Enable specific role permissions over Kubernetes resources to successfully run `rtfctl` commands.

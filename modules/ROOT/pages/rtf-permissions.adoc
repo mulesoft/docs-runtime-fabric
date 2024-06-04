@@ -1,7 +1,7 @@
-== Runtime Fabric Core Software Permissions
+= Runtime Fabric Control Plane Access Permissions
 
-The following table lists all the Kubernetes resource access authorizations used by Runtime Fabric core software.
-These RBAC (Role-based access control) configurations (`ClusterRole` and `Rolebindings`) are part of the Runtime Fabric helm charts and are automatically applied during the installation.
+The following table lists the Kubernetes access permissions required by the Runtime Fabric control plane. 
+These access permissions are part of the Runtime Fabric helm chart and are automatically applied during the installation or upgrade.
 
 [NOTE]
 You can't extend or modify any of these core software access permissions. Instead, create and apply the `ClusterRole` and `Rolebindings` for the Runtime Fabric Authorized namespaces use case. Refer to xref:authorized-namespaces.adoc[].
