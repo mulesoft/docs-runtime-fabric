@@ -431,7 +431,8 @@ nodes in a development configuration.
 === Controller Nodes
 
 The minimum number of controller nodes required for a non-production environment is one. Even numbers of
-controllers are not supported.
+controllers are not supported. Keep in mind that single-controller clusters won't be recoverable in the
+event of corruption of the etcd database. For example the issue described in https://help.salesforce.com/s/articleView?id=001121251&type=1[this knowledge article^].
 
 The maximum number of supported controller nodes is 5.
 
