@@ -19,3 +19,8 @@ You can't extend or modify any of these core software access permissions. Instea
    |rtf.mulesoft.com  |persistencegateways, kubernetestemplates   | *
    |autoscaling  |horizontalpodautoscalers   | *
 |===
+
+== See Also
+
+* xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions]
+* xref:rtf-mule-app-permissions.adoc[Mule App Deployments Kubernetes Permissions on Runtime Fabric] 

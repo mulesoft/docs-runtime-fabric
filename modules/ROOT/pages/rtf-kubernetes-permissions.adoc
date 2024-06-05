@@ -2,13 +2,13 @@
 
 To enable Runtime Fabric Kubernetes permissions, review the following topics.
 
-* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions]
+* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions] +
 Review the Kubernetes resource access permissions required by the Runtime Fabric control plane.
 
 * xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] +
 Enable specific role permissions over Kubernetes resources to successfully run `rtfctl` commands.
 
-* xref:rtf-mule-app-permissions.adoc[Mule App Deployments Kubernetes Permissions on Runtime Fabric]
+* xref:rtf-mule-app-permissions.adoc[Mule App Deployments Kubernetes Permissions on Runtime Fabric] +
 Review Mule app deployment Kubernetes permissions configuration.
 
 == See Also
