@@ -185,7 +185,7 @@ rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
 Renews an expired client certificate using a pre-downloaded package
 
 ----
-rtfctl renew-expired-client-cert <cert-bundle-filename> -namespace <rtf_namespace>
+rtfctl renew-expired-client-cert <cert-bundle-filename>
 ----
 
 == Commands for Installing and Upgrading Runtime Fabric
