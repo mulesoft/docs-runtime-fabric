@@ -153,5 +153,5 @@ Type of Kubernetes resources, for example, `pods`, `services`, or `secrets` to w
 Actions that are allowed on the specified Kubernetes resources.
 
 == See Also
-* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions]
+* xref:rtf-permissions.adoc[Runtime Fabric Core Software Kubernetes Permissions]
 * xref:rtf-mule-app-permissions.adoc[Mule App Deployments Kubernetes Permissions on Runtime Fabric] 

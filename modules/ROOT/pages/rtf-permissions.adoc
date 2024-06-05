@@ -1,6 +1,6 @@
-= Runtime Fabric Control Plane Access Permissions
+= Runtime Fabric Core Software Kubernetes Permissions
 
-The following table lists the Kubernetes access permissions required by the Runtime Fabric control plane. 
+The following table lists the Kubernetes access permissions required by the Runtime Fabric agent. 
 These access permissions are part of the Runtime Fabric helm chart and are automatically applied during the installation or upgrade.
 
 [NOTE]

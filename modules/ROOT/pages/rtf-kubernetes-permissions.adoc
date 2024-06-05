@@ -2,8 +2,8 @@
 
 To enable Runtime Fabric Kubernetes permissions, review the following topics.
 
-* xref:rtf-permissions.adoc[Runtime Fabric Control Plane Access Permissions] +
-Review the Kubernetes resource access permissions required by the Runtime Fabric control plane.
+* xref:rtf-permissions.adoc[Runtime Fabric Core Software Kubernetes Permissions] +
+Review the Kubernetes resource access permissions required by the Runtime Fabric agent.
 
 * xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions] +
 Enable specific role permissions over Kubernetes resources to successfully run `rtfctl` commands.
