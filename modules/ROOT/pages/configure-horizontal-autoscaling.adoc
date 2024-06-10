@@ -86,7 +86,7 @@ topologySpreadConstraints:
         rtf.mulesoft.com/id: "{{ .Values.id }}"
 ----
 
-The recommendation to use `whenUnsatisfiable: DoNotSchedule` ensures that pods are evenly spread across availability zones. To modify this setting, use the K8S templates CRD to adjust your deployments using HPA to `whenUnsatisfiable: DoNotSchedule`. You can also use dedicated namespaces (environments) to separate the autoscaling workloads from the classic ones. If you do not make this change, you use `whenUnsatisfiable: ScheduleAnyway`.
+Using `whenUnsatisfiable: DoNotSchedule` guarantees that pods are evenly spread across availability zones. To modify this setting, use the K8S templates CRD to adjust your deployments using HPA to `whenUnsatisfiable: DoNotSchedule`. You can also use dedicated namespaces (environments) to separate the autoscaling workloads from the classic ones. If you don't make this change, you use `whenUnsatisfiable: ScheduleAnyway`.
 
 For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
 
