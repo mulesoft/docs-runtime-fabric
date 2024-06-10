@@ -387,6 +387,7 @@ rtfctl threaddump <app_name> --app-namespace <app_namespace> --namespace <rtf_na
 ----
 rtfctl threaddump <app_name> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
+
 [[troubleshooting-rtfctl]]
 == Commands for Troubleshooting Runtime Fabric
 
