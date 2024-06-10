@@ -160,7 +160,7 @@ HPA bases on https://kubernetes.io/docs/tasks/run-application/horizontal-pod-aut
 ----
 When target utilization value is set, the controller calculates the utilization value as a percentage of the equivalent resource request on the containers in each pod.
 ----
-If pod average utilization is greater than 70% in a period (periods for scale up are set as 180 seconds) HPA will scale up. Refer to the Kubernetes documentation for additional details.
+If pod average use is greater than 70% in a period (periods for scale-up are set as 180 seconds), HPA scales up. Refer to the Kubernetes documentation for additional details.
 
 == Performance Considerations and Limitations
 
