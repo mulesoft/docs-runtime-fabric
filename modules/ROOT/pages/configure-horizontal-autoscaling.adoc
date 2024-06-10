@@ -61,7 +61,7 @@ Therefore, the cluster autoscaler starts with:
 - --balancing-ignore-label=vpc.amazonaws.com/eniConfig
 ----
 
-These are recommendations, the actual configuration of the cluster autoscaler (CA) will depend on the cloud/infrastructre provider (vendor) being used and the topolgy considerations applicable.  Properly configuring the CA is customer managed responsibility.
+These configuration recommendations serve as a guideline; however, the actual configuration of the cluster autoscaler (CA) depend on the cloud or infrastructure provider (vendor) you use and the relevant topology considerations. It is your responsibility to configure the CA appropriately.
 
 === Configure Overprovisioning Nodes
 
@@ -86,8 +86,7 @@ topologySpreadConstraints:
         rtf.mulesoft.com/id: "{{ .Values.id }}"
 ----
 
-The recommendation of using `whenUnsatisfiable: DoNotSchedule` is to ensure pods are evenly spread across availability zones. To change this setting you have to make use of the K8S templates CRD to change your deployments using HPA to `whenUnsatisfiable: DoNotSchedule`. You can use dedicated namespaces (environments) to separate the autoscaling workloads from the classic ones.
-If you don’t make this change you will end up using `whenUnsatisfiable: ScheduleAnyway`.
+The recommendation to use `whenUnsatisfiable: DoNotSchedule` ensures that pods are evenly spread across availability zones. To modify this setting, use the K8S templates CRD to adjust your deployments using HPA to `whenUnsatisfiable: DoNotSchedule`. You can also use dedicated namespaces (environments) to separate the autoscaling workloads from the classic ones. If you do not make this change, you use `whenUnsatisfiable: ScheduleAnyway`.
 
 For further details on the configuration, refer to xref:customize-kubernetes-crd.adoc[] documentation.
 
@@ -156,12 +155,12 @@ Max replicas +
 Enabling HPA can result in customers incurring additional flow usage when your application scales horizontally. To avoid overages from unpredicted scaling, configure the maximum configured replicas judiciously to stay within purchased flow limits. Track your incurred flow usage through xref:general::usage-reports.adoc[usage reports].
 
 HPA uses CPU utilization at average of 70% +
-This means that HPA bases on https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#how-does-a-horizontalpodautoscaler-work[resource requests].
+HPA bases on https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#how-does-a-horizontalpodautoscaler-work[resource requests].
 [quote,kubernetes.io]
 ----
-When target utilization value is set, the controller calculates the utilization value as a percentage of the equivalent resource request on the containers in each Pod.
+When target utilization value is set, the controller calculates the utilization value as a percentage of the equivalent resource request on the containers in each pod.
 ----
-If pod average utilization is greater than 70% in a period (periods for scale up are set as 180 seconds) HPA will scale up. Since this is a Kubernetes feature please refer to that documentation for more details.
+If pod average utilization is greater than 70% in a period (periods for scale up are set as 180 seconds) HPA will scale up. Refer to the Kubernetes documentation for additional details.
 
 == Performance Considerations and Limitations
 
