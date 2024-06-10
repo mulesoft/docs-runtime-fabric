@@ -99,3 +99,9 @@ You configure authorized namespaces when you install Runtime Fabric. Refer to th
 
 * xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
+
+== Add New Namespaces
+
+If you update the authorized-namespaces ConfigMap with a new namespace, you must restart the Runtime Fabric agent deployment using the following command:
+
+`kubectl rollout restart deployment/agent`

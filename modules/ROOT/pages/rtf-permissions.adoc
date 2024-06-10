@@ -1,0 +1,26 @@
+= Runtime Fabric Core Software Kubernetes Permissions
+
+The following table lists the Kubernetes access permissions required by the Runtime Fabric agent. 
+These access permissions are part of the Runtime Fabric helm chart and are automatically applied during the installation or upgrade.
+
+[NOTE]
+You can't extend or modify any of these core software access permissions. Instead, create and apply the `ClusterRole` and `Rolebindings` for the Runtime Fabric Authorized namespaces use case. Refer to xref:authorized-namespaces.adoc[].
+
+[%header%autowidth.spread,cols=".^a,.^a,.^a,.^a]
+|===
+|Namespace |API Groups | Kubernetes Resources | Verbs
+.9+|<rtf-namespace>|extensions, apps   |deployments, deployments/scale, daemonsets, replicasets   | *
+   |“”   |pods, pods/log, pods/portforward, pods/exec, configmaps, secrets, services, namespaces, nodes, serviceaccounts, resourcequotas, events, limitranges   | *
+   |batch   |jobs, cronjobs   | *
+   |extensions  |jobs   | *
+   |networking.k8s.io  |networkpolicies   | *
+   |rbac.authorization.k8s.io  |rolebindings, clusterroles, clusterrolebindings, roles   | *
+   |extensions,networking.k8s.io  |ingresses,networkpolicies   | *
+   |rtf.mulesoft.com  |persistencegateways, kubernetestemplates   | *
+   |autoscaling  |horizontalpodautoscalers   | *
+|===
+
+== See Also
+
+* xref:rtfctl-permissions.adoc[Enabling RTFCTL Kubernetes Permissions]
+* xref:rtf-mule-app-permissions.adoc[Mule App Deployments Kubernetes Permissions on Runtime Fabric] 

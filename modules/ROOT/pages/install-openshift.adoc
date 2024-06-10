@@ -6,7 +6,7 @@ You can install Anypoint Runtime Fabric as a Kubernetes (K8s) operator in the fo
 * Microsoft Azure Red Hat OpenShift
 * Red Hat OpenShift Dedicated
 * Red Hat OpenShift on IBM Cloud
-* Self-managed Red Hat OpenShift editions (Performance Plus, OCP, Kubernetes engine)
+* Self-managed Red Hat OpenShift editions (Platform Plus, OCP, Kubernetes engine)
 
 == Install Runtime Fabric on Red Hat OpenShift
 
