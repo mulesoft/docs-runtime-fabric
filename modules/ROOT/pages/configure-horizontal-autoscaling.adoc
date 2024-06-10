@@ -61,7 +61,7 @@ Therefore, the cluster autoscaler starts with:
 - --balancing-ignore-label=vpc.amazonaws.com/eniConfig
 ----
 
-These configuration recommendations serve as a guideline; however, the actual configuration of the cluster autoscaler (CA) depend on the cloud or infrastructure provider (vendor) you use and the relevant topology considerations. It is your responsibility to configure the CA appropriately.
+These configuration recommendations serve as a guideline. However, the actual configuration of the cluster autoscaler (CA) depends on the cloud or infrastructure provider (vendor) you use and the relevant topology considerations. You must configure the CA appropriately.
 
 === Configure Overprovisioning Nodes
 
