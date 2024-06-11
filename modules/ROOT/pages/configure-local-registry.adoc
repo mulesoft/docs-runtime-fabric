@@ -85,7 +85,7 @@ done
 | `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
 For the US control plane: `rtf-runtime-registry.kprod.msap.io` +
 For the EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
-|==
+|===
 
 --
 Synchronize Manually:: 
@@ -161,7 +161,7 @@ This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and 
 +
 You should see a message that the login was successful.
 
-. <<synchronize,Synchronize your container images>> to your local registry.
+. <<synch-rtf,Synchronize your container images>> to your local registry.
 
 . Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
 

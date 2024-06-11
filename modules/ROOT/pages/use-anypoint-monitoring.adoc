@@ -91,7 +91,7 @@ Dependent on the features you use, the sidecar agent consumes corresponding reso
 
 * To enable default Anypoint metrics, the sidecar agent (per application replica) requires 0.05vCPU or Core of CPU allocation and 90MiB memory allocation.
 
-* If you opt into xref:runtime-fabric/deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
+* If you opt into xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
 
 * If you opt into trace data generation for Mule apps, the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 240MB memory allocation.
 
