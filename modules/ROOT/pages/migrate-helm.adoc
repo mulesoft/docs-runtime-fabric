@@ -1,4 +1,4 @@
-== Migrating to Helm Managed Runtime Fabric
+= Migrating to Helm Managed Runtime Fabric
 
 You can migrate to xref:runtime-fabric::install-helm.adoc[helm] native for Runtime Fabrics that were installed using xref:runtime-fabric::install-self-managed.adoc[rtfctl].
 
