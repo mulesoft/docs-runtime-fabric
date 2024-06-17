@@ -1,4 +1,4 @@
-== Kubernetes (K8s) Best Practices for Runtime Fabric
+= Kubernetes (K8s) Best Practices for Runtime Fabric
 
 Review the following Kubernetes best practices for Runtime Fabric. To use the complete value of Runtime Fabric, you can refer to your respective Kubernetes (K8s) provider's configuration specification for details.
 
