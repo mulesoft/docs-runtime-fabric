@@ -70,3 +70,5 @@ Aspects to consider:
 
 * RTFCTL clusters are supported only for certain benchmarks.
 * Using Helm enables you to manage any cluster that requires customized resources for Runtime Fabric agent due to the size of the cluster.
+* When scaling up Runtime Fabric agent resource limit consider increasing request accordingly
+* It's not a good practice to run a container unbounded by removing the limit completely. For OpenShift operator, removing the limit will actually cause the agent to be set back to the default limit setting mentioned above.
