@@ -98,21 +98,22 @@ Dependent on the features you use, the sidecar agent consumes corresponding reso
 [NOTE]
 Allocate appropriate capacity to the underlying cluster to avoid application deployment failure.
 
-=== (Optional) Disabling log forwarder DeamonSet in Runtime Fabric versions 2.6.x and above
+=== (Optional) Disabling Log Forwarder DeamonSet in Runtime Fabric versions 2.6.x and Higher
 
-After RTF agent is upgraded to version 2.6.0 or higher all deployments there after will only use a single sidecar for metrics and log forwarding.
-If you had any Mule applications running under a previous agent they will have to be redeployed to start using this new log forwarding mechanism. Any update triggered from the control plane will make this change.
+After you upgrade Runtime Fabric agent to version 2.6.0 or higher, all deployments use only a single sidecar for metrics and log forwarding.
+If you had any Mule apps running under a previous agent,  redeploy them to start using the new log forwarding mechanism. Any update you perform in the control plane, triggers the redeployment.
 
-Once all your deployments are using the new sidecar container the `am-log-forwarder` daemonset will just sit idle.
-There is an option to remove the daemon set completely. Just need to disable Anypoint Monitoring log forwarding using the corresponding  https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/runtime-fabric/minor/1.0/console/method/%232251/[Anypoint Platform API call^] sending a payload like this:
-[source,json]
+After all your deployments use the new sidecar container, the `am-log-forwarder` DaemonDet just sits idle.
+
+To remove the daemon set completely, disable Anypoint Monitoring log forwarding using the corresponding  https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/runtime-fabric/minor/1.0/console/method/%232251/[Anypoint Platform API call^] sending a payload like this:
+[source,json
 ----
 {
     "anypointMonitoring": false
 }
 ----
 
-Doing this will not impact the log forwarding to Anypoint Monitoring via the sidecar.
+This disabling does not impact the log forwarding to Anypoint Monitoring via the sidecar.
 
 == Anypoint Visualizer
 
