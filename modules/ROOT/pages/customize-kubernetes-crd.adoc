@@ -133,7 +133,7 @@ spec:
       whenUnsatisfiable: DoNotSchedule  
       labelSelector:  
         matchLabels:  
-          rtf.mulesoft.com/id: {{ .Values.id }}  
+          rtf.mulesoft.com/id: '{{ .Values.id }}'
 
 ----
 
