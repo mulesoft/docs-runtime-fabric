@@ -98,7 +98,7 @@ Dependent on the features you use, the sidecar agent consumes corresponding reso
 [NOTE]
 Allocate appropriate capacity to the underlying cluster to avoid application deployment failure.
 
-=== (Optional) Disabling Log Forwarder DeamonSet in Runtime Fabric versions 2.6.x and Higher
+=== (Optional) Disabling Log Forwarder DeamonSet in Runtime Fabric Versions 2.6.x and Higher
 
 After you upgrade Runtime Fabric agent to version 2.6.0 or higher, all deployments use only a single sidecar for metrics and log forwarding.
 If you had any Mule apps running under a previous agent, redeploy them to start using the new log forwarding mechanism. Any update you perform in the control plane, triggers the redeployment.
