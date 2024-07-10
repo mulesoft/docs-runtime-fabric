@@ -103,7 +103,7 @@ Allocate appropriate capacity to the underlying cluster to avoid application dep
 After you upgrade Runtime Fabric agent to version 2.6.0 or higher, all deployments use only a single sidecar for metrics and log forwarding.
 If you had any Mule apps running under a previous agent, redeploy them to start using the new log forwarding mechanism. Any update you perform in the control plane triggers the redeployment.
 
-After all your deployments use the new sidecar container, the `am-log-forwarder` DaemonDet just sits idle.
+After all your deployments use the new sidecar container, the `am-log-forwarder` DaemonSet just sits idle.
 
 To remove the daemon set completely, disable Anypoint Monitoring log forwarding using the corresponding https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/runtime-fabric/minor/1.0/console/method/%232251/[Anypoint Platform API call^] sending a payload like this:
 [source,json
