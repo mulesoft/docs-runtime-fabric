@@ -242,7 +242,7 @@ Note that already created ingress objects based on this template are not updated
 To update existing ingresses with the template changes, you have to perform a redeployment of the Mule application.
 For example, if you update the base domain which requires to change the endpoint for the ingress template, you must remove the old endpoint and add the new one as part of the application redeployment.
 
-Other changes will be applied as soon as the `ServiceResourceWatcher`, a component of the RTF agent, processes the existing services again after picking up the ingress template change. Because of this it's required to restart the RTF Agent first thing after an existing ingress template change to force reconciliation of all services.
+Other changes take effect once the `ServiceResourceWatcher`, a component of the Runtime Fabric agent, processes the existing services after detecting changes in the ingress template. Therefore, restart the Runtime Fabric agent immediately after any changes to the ingress template to ensure all services are reconciled.
 
 == Configure Ingress for a Mule Application Deployment in Runtime Fabric
 
