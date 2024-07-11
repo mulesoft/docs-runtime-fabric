@@ -202,7 +202,7 @@ When using `rtfctl` to perform a backup and restore procedure, the backups point
 Helm::
 +
 --
-. <<synchronize,Synchronize your container images>> to your local registry.
+. <<synch-rtf,Synchronize your container images>> to your local registry.
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
 . In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
