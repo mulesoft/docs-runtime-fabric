@@ -91,12 +91,29 @@ Dependent on the features you use, the sidecar agent consumes corresponding reso
 
 * To enable default Anypoint metrics, the sidecar agent (per application replica) requires 0.05vCPU or Core of CPU allocation and 90MiB memory allocation.
 
-* If you opt into xref:runtime-fabric/deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
+* If you opt into xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[forwarding application logs to Anypoint Monitoring], the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 150MiB memory allocation
 
 * If you opt into trace data generation for Mule apps, the sidecar agent (per application replica) requires up to 30% of CPU limit configured for application replica and up to 240MB memory allocation.
 
 [NOTE]
 Allocate appropriate capacity to the underlying cluster to avoid application deployment failure.
+
+=== (Optional) Disabling Log Forwarder DeamonSet in Runtime Fabric Versions 2.6.x and Higher
+
+After you upgrade Runtime Fabric agent to version 2.6.0 or higher, all deployments use only a single sidecar for metrics and log forwarding.
+If you had any Mule apps running under a previous agent, redeploy them to start using the new log forwarding mechanism. Any update you perform in the control plane triggers the redeployment.
+
+After all your deployments use the new sidecar container, the `am-log-forwarder` DaemonSet just sits idle.
+
+To remove the DeamonSet completely, disable Anypoint Monitoring log forwarding using the corresponding https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/runtime-fabric/minor/1.0/console/method/%232251/[Anypoint Platform API call] sending a payload like this:
+[source,json
+----
+{
+    "anypointMonitoring": false
+}
+----
+
+This disabling does not impact the log forwarding to Anypoint Monitoring via the sidecar.
 
 == Anypoint Visualizer
 
@@ -133,8 +150,9 @@ include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
 Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions. 
 When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter]. 
 
-You can enable trace data collection for your Runtime Fabric applications running on Mule version 4.6 or later. 
-You can't enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio. You can enable trace data collection using only the UI and API.
+* You can enable trace data collection for your Runtime Fabric applications running on Mule version 4.6 or later, and the minimum Runtime Fabric agent version required is 2.6.31 or above. 
+* You can enable trace data collection using only the Runtime Manager UI and API, but you can't enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio.
+
 
 To enable trace data collection for an app:
 
