@@ -35,7 +35,7 @@ In the *Config changes* tab on the application's *Settings* page. Runtime Fabric
 +
 The last ten configuration deployments are displayed in order of their respective configuration date. Each configuration in the history has a unique hash to identify it.
 
-image::app-versioning.png["Configuration page for a runtime fabric application, displaying application file, version, deployment target, runtime version, and replicas"]
+image::app-versioning.png["Configuration page for a Runtime Fabric application, displaying the application file, version, deployment target, runtime version, and replicas"]
 
 [NOTE]
 The configuration history displays the last ten configuration deployments in order of creation date.
