@@ -79,7 +79,7 @@ image::app-versioning-replica-status.png["Status of replicas for a Mule app in t
 +
 Once the configuration is successfully applied and deployed, a message appears at the top of the page.
 +
-image::app-versioning-config-applied-success.png["Configuration applied successfully for a Mule app in Runtime Manager UI"]
+image::app-versioning-config-applied-success.png["Configuration applied successfully status for a Mule app in the Runtime Manager UI"]
 +
 The application status, configuration identifier, date, and other information is updated in the status box.  The new configuration is displayed at the top of the *Config changes* list, along with a *Last successful* label to indicate that it's the last configuration successfully deployed.
 +
