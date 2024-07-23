@@ -74,7 +74,7 @@ This model means there is zero downtime while updates are applied to the applica
 [NOTE]
 Since updates are applied as rolling updates, there will be different application versions running at the same time until the update is completed, so make sure your applications are able to run multiple versions in parallel.
 +
-image::app-versioning-replica-status.png["Replicas Status for a Mule app in Runtime Manager UI"]
+image::app-versioning-replica-status.png["Replicas Status for a Mule app in the Runtime Manager UI"]
 +
 Once the configuration is successfully applied and deployed, a message appears at the top of the page.
 +
