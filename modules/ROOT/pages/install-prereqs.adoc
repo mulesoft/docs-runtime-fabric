@@ -310,7 +310,7 @@ The controller VM that is the leader for installation performs the following act
 A minimum of 6 nodes are required for a production configuration of Runtime Fabric on VMs/ Bare Metal, as shown in
 the following diagram.
 
-image::architecture-production.png["Diagram of a Mule development with control plane, controllers, such as internal load balancer, agent, workers, and TCP load balancer"]
+image::architecture-production.png["Diagram of a Mule development with the control plane, controllers, such as an internal load balancer, agent, workers, and TCP load balancer"]
 
 The following sections describe the minimum system requirements of controller and worker
 nodes in a production configuration.
