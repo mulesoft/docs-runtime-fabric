@@ -84,7 +84,7 @@ The application status, configuration identifier, date, and other information is
 +
 If the updates to the configuration fail to deploy, you get an `Desired configuration wasn't applied` message, and the *Configuration status* displays an `Update failed` label. The configuration is displayed in the *Config changes* history without a label.
 +
-image::app-versioning-update-failed.png["Configuration failed to apply for a Mule app in Runtime Manager UI"]
+image::app-versioning-update-failed.png["Configuration failed to apply status for a Mule app in the Runtime Manager UI"]
 +
 In cases of failure, the deployment attempts to roll back to the last successful version of the configuration, but in certain situations, the rollback may not succeed. The status of the configuration displays `Update failed`.
 +
