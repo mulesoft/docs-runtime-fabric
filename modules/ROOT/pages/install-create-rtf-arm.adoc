@@ -25,7 +25,7 @@ If you do not see the *Runtime Fabrics* tab in Runtime Manager as described belo
 [IMPORTANT]
 After creating the Runtime Fabric, Runtime Manager displays the corresponding activation data. Record this data to use later when installing running the Runtime Fabric on VMs / Bare Metal installer.
 
-image::runtime-fabric-arm.png["Runtime Fabric instance installation steps in Runtime Manager UI"]
+image::runtime-fabric-arm.png["Runtime Fabric instance installation steps in the Runtime Manager UI"]
 
 Runtime Manager initially indicates that the Runtime Fabric is in the activation state. This changes after Runtime Fabric on VMs / Bare Metal is installed and connected to Runtime Manager.
 
