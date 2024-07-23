@@ -27,7 +27,7 @@ Anypoint Runtime Fabric on VMs / Bare Metal supports development and production 
 
 The development configuration is intended for testing only. It requires at least one controller and two worker nodes. The controller node runs the internal load balancer and agents used to connect to Anypoint Platform. Communication between the agent and Anypoint Platform is always outbound. Multiple replicas of application can run across workers.
 
-image::architecture-development.png["Diagram of a network development architecture of MuleSoft control plane with controllers, such as internal load balancer, agent, and workers"]
+image::architecture-development.png["Diagram of a network development architecture of the MuleSoft control plane with controllers, such as an internal load balancer, agent, and workers"]
 
 === Production Configuration
 
