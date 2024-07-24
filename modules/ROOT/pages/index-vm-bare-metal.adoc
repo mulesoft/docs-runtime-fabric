@@ -82,7 +82,7 @@ The successful operation of Anypoint Runtime Fabric on VMs / Bare Metal is a sha
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
-image::runtimefabricresponsibility.png[Runtime Fabric Shared Responsibilities]
+image::runtimefabricresponsibility.png["Runtime Fabric Shared Responsibilities"]
 
 * MuleSoft responsibility:
 +
