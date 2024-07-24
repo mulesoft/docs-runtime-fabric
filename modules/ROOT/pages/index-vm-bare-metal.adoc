@@ -46,7 +46,7 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 The following diagram shows the general network architecture of Runtime Fabric on VMs / Bare Metal.
 
-image::architecture-network.png["Diagram of network architecture of Runtime Fabric and TCP load balancer connection with internal load balancers of controllers and workers"]
+image::architecture-network.png["Diagram of the network architecture of Runtime Fabric and TCP load balancer connection with an internal load balancers of controllers and workers"]
 
 This diagram shows the TCP load balancer used to load balance requests across the internal load balancers running on the controllers. It also shows the internal load balancer that distributes requests to each replica of Mule applications running on the workers.
 
