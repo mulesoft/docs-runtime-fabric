@@ -35,7 +35,7 @@ In the *Config changes* tab on the application's *Settings* page. Runtime Fabric
 +
 The last ten configuration deployments are displayed in order of their respective configuration date. Each configuration in the history has a unique hash to identify it.
 
-image::app-versioning.png[]
+image::app-versioning.png["Configuration page for a Runtime Fabric application, displaying the application file, version, deployment target, runtime version, and replicas"]
 
 [NOTE]
 The configuration history displays the last ten configuration deployments in order of creation date.
@@ -52,7 +52,7 @@ The *All changes* tab displays a history of versions created from the configurat
 . Once your changes are made, click *Apply Changes*. +
 At the top of the *Settings* page, a status bar appears.
 +
-image:app-versioning-applying-config.png[]
+image:app-versioning-applying-config.png["Applying configuration status for a Mule app in the Runtime Manager UI"]
 . Click *View Status* to view the status for each replica in the deployment. +
 Replica statuses include:
 * Started: The replica is receiving traffic.
@@ -74,17 +74,17 @@ This model means there is zero downtime while updates are applied to the applica
 [NOTE]
 Since updates are applied as rolling updates, there will be different application versions running at the same time until the update is completed, so make sure your applications are able to run multiple versions in parallel.
 +
-image::app-versioning-replica-status.png[]
+image::app-versioning-replica-status.png["Replicas status for a Mule app in the Runtime Manager UI"]
 +
 Once the configuration is successfully applied and deployed, a message appears at the top of the page.
 +
-image::app-versioning-config-applied-success.png[]
+image::app-versioning-config-applied-success.png["Configuration applied successfully status for a Mule app in Runtime Manager UI"]
 +
 The application status, configuration identifier, date, and other information is updated in the status box.  The new configuration is displayed at the top of the *Config changes* list, along with a *Last successful* label to indicate that it's the last configuration successfully deployed.
 +
 If the updates to the configuration fail to deploy, you get an `Desired configuration wasn't applied` message, and the *Configuration status* displays an `Update failed` label. The configuration is displayed in the *Config changes* history without a label.
 +
-image::app-versioning-update-failed.png[]
+image::app-versioning-update-failed.png["Configuration failed to apply status for a Mule app in the Runtime Manager UI"]
 +
 In cases of failure, the deployment attempts to roll back to the last successful version of the configuration, but in certain situations, the rollback may not succeed. The status of the configuration displays `Update failed`.
 +
