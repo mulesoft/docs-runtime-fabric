@@ -52,7 +52,7 @@ The *All changes* tab displays a history of versions created from the configurat
 . Once your changes are made, click *Apply Changes*. +
 At the top of the *Settings* page, a status bar appears.
 +
-image:app-versioning-applying-config.png["Applying configuration status for a Mule app in Runtime Manager UI"]
+image:app-versioning-applying-config.png["Applying configuration status for a Mule app in the Runtime Manager UI"]
 
 . Click *View Status* to view the status for each replica in the deployment. +
 Replica statuses include:
