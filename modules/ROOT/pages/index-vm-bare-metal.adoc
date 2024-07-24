@@ -62,7 +62,7 @@ Enabled only if one or more dedicated internal load balancer nodes is available 
 
 Higher inbound traffic loads require dedicated nodes. To determine if dedicated nodes are needed for your environment, refer to the performance information in xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
-image::architecture-network2.png["Diagram of network architecture of Runtime Fabric and TCP load balancer connection with requests ping"]
+image::architecture-network2.png["Diagram of the network architecture of Runtime Fabric and TCP load balancer connection with requests ping"]
 
 . The incoming HTTP request is forwarded to the external TCP load balancer.
 . The TCP load balancer forwards the request to an available internal load balancer on Runtime Fabric.
