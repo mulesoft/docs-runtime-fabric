@@ -215,3 +215,17 @@ pod:
    env:
        ENABLE_CONSOLE_LOG: "true"
 ----
+
+[[disable-service-account]]
+== Disable Per App Service Account
+
+By default, a new service account is created for every Mule application deployment. You can override this default behavior using the Kubernetes template.
+
+To disable the creation of a new service account per Mule application using the Kubernetes template, set the `EDISABLE_PER_APP_SA` variable in the `env` section:
+
+[source,copy]
+----
+pod:
+   env:
+       DISABLE_PER_APP_SA: "true"
+----
