@@ -219,9 +219,9 @@ pod:
 [[disable-service-account]]
 == Disable Per App Service Account
 
-By default, a new service account is created for every Mule application deployment. You can override this default behavior using the Kubernetes template.
+By default, a service account will be created for every Mule application deployment. You can override this default behavior using the Kubernetes template, either at the cluster level with the root Kubernetes template or at the Mule app namespace level.
 
-To disable the creation of a new service account per Mule application using the Kubernetes template, set the `EDISABLE_PER_APP_SA` variable in the `env` section:
+To disable the creation of the Service Account per Mule application using the Kubernetes template, set the `DISABLE_PER_APP_SA` variable in the `env` section:
 
 [source,copy]
 ----
