@@ -1,4 +1,4 @@
-= Enabling FIPs 140-2 on Mule Applications
+= Enabling FIPS 140-2 on Mule Applications
 
 
 You can configure Mule Application containers to run in FIPS 140-2 compliance mode.
