@@ -14,3 +14,6 @@ image::runtime-fabric-yaml.png[Runtime Fabric instance .yaml file.]
 image::rtfd-change-values.png[Update rtfd resource allocations to recommended values.]
 +
 . Click *Save*.
+
+[NOTE]
+For Helm-based upgrades, if the helm-based installations had previously overridden `rtfd` container resources in the `values.yaml` file, then you must manually increase the allocations, as Helm-based upgrades respect pre-release manual overrides.
