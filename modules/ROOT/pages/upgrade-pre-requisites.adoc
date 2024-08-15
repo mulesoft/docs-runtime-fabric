@@ -1,6 +1,6 @@
 = Upgrade Pre-requisites 
 
-For all OpenShift upgrades from versions 2.6.52 and earlier to versions 2.7.0 and later, you must manually increase the `rtfd` container resources to the desired values. See xref:runtime-fabric::rtf-scale.adoc[Scalability Benchmarks] for guidance on container resource values.
+For all OpenShift upgrades from versions 2.6.52 and earlier to versions 2.7.0 and later, you must manually increase the `rtfd` container resources to the desired values. See xref:runtime-fabric::rtf-scale.adoc[Scalability Benchmarks] for guidance on `rtfd` container resource values.
 
 To update `rtfd` container resources: 
 
