@@ -16,4 +16,4 @@ image::rtfd-change-values.png[Update rtfd resource allocations to recommended va
 . Click *Save*.
 
 [NOTE]
-For Helm-based upgrades, if the helm-based installations had previously overridden `rtfd` container resources in the `values.yaml` file, then you must manually increase the allocations as per scalability guidelines, as Helm-based upgrades respect pre-release manual overrides.
+For Helm-based upgrades, if the Helm-based installations had previously overridden `rtfd` container resources in the `values.yaml` file, then you must manually increase the allocations as per scalability guidelines, as Helm-based upgrades respect pre-release manual overrides.
