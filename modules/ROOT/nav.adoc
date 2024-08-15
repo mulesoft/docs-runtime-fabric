@@ -24,6 +24,7 @@
   *** xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric Using RTFCTL]
   *** xref:upgrade-helm.adoc[Upgrading Runtime Fabric Using Helm]
   *** xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator]
+  *** xref:upgrade-pre-requisites.adoc[Upgrade Pre-requisites]
 * xref:manage-index.adoc[Managing Runtime Fabric]
   ** xref:view-health.adoc[Viewing Runtime Fabric Health Details]
   ** xref:install-rtfctl.adoc[Using RTFCTL Tool]

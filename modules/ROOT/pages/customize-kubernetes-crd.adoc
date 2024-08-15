@@ -1,5 +1,6 @@
 = Customizing Mule App Kubernetes Resources
 
+
 Anypoint Runtime Fabric enables you to customize your Mule app Kubernetes resources through the custom resource `kubernetestemplates.rtf.mulesoft.com` template.
 
 Name the `kubernetestemplate` resource as `mule-application`. You can define the template in two different namespaces:
@@ -213,4 +214,19 @@ To enable console log using the Kubernetes template, set the `ENABLE_CONSOLE_LOG
 pod:
    env:
        ENABLE_CONSOLE_LOG: "true"
+----
+
+[[disable-service-account]]
+== Disable Per Application Service Account
+
+By default, a https://kubernetes.io/docs/concepts/security/service-accounts/[service account^] is created for every Mule application deployment. You can override this default behavior using the Kubernetes template, either at the cluster level with the root Kubernetes template or at the Mule app namespace level. 
+If disabled, the Mule application deployment uses the https://kubernetes.io/docs/concepts/security/service-accounts/#default-service-accounts[default service account^].
+
+To disable the creation of the service account per Mule application using the Kubernetes template, set the `DISABLE_PER_APP_SA` variable in the `env` section:
+
+[source,copy]
+----
+pod:
+   env:
+       DISABLE_PER_APP_SA: "true"
 ----
