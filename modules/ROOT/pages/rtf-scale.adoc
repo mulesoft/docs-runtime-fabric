@@ -61,11 +61,10 @@ Aspects to consider:
 [%header%autowidth.spread]
 |===
 | Cluster Recommendations | Default | 200 Node/8000 App Resource Settings 
-| Agent Resources | Memory 200 mb request, 500 mb limit. CPU 100m request, 1vCore limit. | 3 GB (Memory)/2vCore (request == limit)  
+| Agent Resources | Memory 200 MB request, 500 MB limit. CPU 100mi request, 1vCore limit. | 1 GB (Memory)/1vCore (request == limit)  
+| Daemon Resources | Memory 200 MB request, 300 MB limit. CPU 150mi request, 300mi limit. | 500 MB (Memory)/1.2vCore (request == limit)  
 |===
 +
-* Note that in Helm you need to disable node watcher `nodeWatcherEnabled` explicitly when you operate at a large scale. Node watcher is always enabled by default (`nodeWatcherEnabled: true`). +
-
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
 
 * RTFCTL clusters are supported only for certain benchmarks.
