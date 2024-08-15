@@ -62,7 +62,7 @@ Aspects to consider:
 |===
 | Cluster Recommendations | Default | 200 Node/8000 App Resource Settings 
 | Agent Resources | Memory 200Mi request, 500Mi limit. CPU 100m request, 1vCore limit. | 1000Mi (Memory)/1vCore (request == limit)  
-| Daemon Resources | Memory 200 MB request, 300 MB limit. CPU 150mi request, 300mi limit. | 500 MB (Memory)/1.2vCore (request == limit)  
+| Daemon Resources | Memory 200Mi request, 300Mi limit. CPU 150m request, 200m limit. | 1200Mi (Memory)/500m  (request == limit)  
 |===
 +
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
