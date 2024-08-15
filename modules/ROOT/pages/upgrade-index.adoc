@@ -8,7 +8,8 @@ Use the `rtfctl` command line tool to upgrade Runtime Fabric.
 Use Helm package manager to upgrade Runtime Fabric.
 * xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator] +
 Use the Red Hat OpenShift console to upgrade Runtime Fabric on Red Hat OpenShift.
-* xref:upgrade-pre-requisites.adoc[Upgrade Pre-requisit] 
+* xref:upgrade-pre-requisites.adoc[Upgrade Pre-requisites] +
+Update the `rtfd` container values.
 
 == See Also
 
