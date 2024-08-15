@@ -46,7 +46,6 @@ The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are
 | Log4j support for App Monitoring |Yes |Yes | Yes | Yes
 | Troubleshooting through `rtfctl report` command. |Yes |Yes | Yes | Yes
 | Lifecycle management of Runtime Fabric software via `operator`. |- |Yes | - | -
-| Enable FIPS mode for security. |Yes |- | Yes | -
 | Managed lifecycle of Runtime Fabric software via control plane. |Yes |- | Yes | -
 | Setup secure properties using `rtfctl`.|Yes |- | Yes | -
 | Lifecycle management of Runtime Fabric software via `rtfctl`. |Yes |- | Yes | -
