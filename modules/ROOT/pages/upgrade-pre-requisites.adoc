@@ -1,0 +1,16 @@
+= Upgrade Pre-requisites 
+
+For all OpenShift upgrades from versions 2.6.52 and earlier to versions 2.7.0 and later, you must manually increase the `rtfd` container resources to the desired values.
+
+To update `rtfd` container resources: 
+
+. In the Red Hat OpenShift console, navigate to *Operators* > *Installed Operators*.
+. Select the *Runtime Fabric* operator and open the Runtime Fabric instance `.yaml` file.
++
+image::runtime-fabric-yaml.png[Runtime Fabric instance .yaml file.]
++
+. In the `.yaml` file, go to  `spec:` > `agent:` > `rtfd:`, and update the resource allocations to recommended values.
++
+image::rtfd-change-values.png[Update rtfd resource allocations to recommended values.]
++
+. Click *Save*.
