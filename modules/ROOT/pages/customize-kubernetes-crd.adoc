@@ -216,6 +216,10 @@ pod:
        ENABLE_CONSOLE_LOG: "true"
 ----
 
+include::partial$log-console-stdout.adoc[]
+
+
+
 [[disable-service-account]]
 == Disable Per Application Service Account
 

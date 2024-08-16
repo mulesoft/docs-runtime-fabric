@@ -1,0 +1,2 @@
+[NOTE:]
+For clusters that forward logs using `stdout`, there is potential impact on log forwarding functionality. Work with your Kubernetes team to adjust log forwarding configurations accordingly and ensure continuous log monitoring and collection.
