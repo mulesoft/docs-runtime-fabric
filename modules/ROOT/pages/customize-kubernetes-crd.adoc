@@ -214,3 +214,5 @@ pod:
    env:
        ENABLE_CONSOLE_LOG: "true"
 ----
+
+include::partial$log-console-stdout.adoc[]
