@@ -82,4 +82,4 @@ Review the following scale considerations:
 * Using Helm enables you to manage any cluster that requires customized resources for Runtime Fabric agent due to the size of the cluster.
 * When scaling up Runtime Fabric agent resource limit, consider increasing the request accordingly.
 * Try not to run a container unbounded by removing the limit completely. For OpenShift operators, removing the limit sets the agent to the default limit setting.
-*  `resource-cache` and `mule-clusterip-service` services can be scaled horizontally since they are stateless.
+*  `resource-cache` and `mule-clusterip-service` services can be scaled horizontally because they are stateless.
