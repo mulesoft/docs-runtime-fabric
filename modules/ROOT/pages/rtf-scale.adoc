@@ -1,6 +1,10 @@
 = Scalability Benchmarks
 
-Runtime Fabric is a core Kubernetes (K8s) software and works alike in all K8s environments which comply with Runtime Fabric hardware and software requirements. The following scale limits are benchmarked on Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
+Runtime Fabric is a core Kubernetes (K8s) software and works alike in all K8s environments which comply with Runtime Fabric hardware and software requirements. 
+
+== Scale Limits
+
+The following scale limits are benchmarked on Amazon Elastic Kubernetes Service (Amazon EKS) cluster.
 
 [%header%autowidth.spread]
 |===
@@ -17,6 +21,8 @@ Runtime Fabric functionality and management of application deployments is not af
 
 Because Runtime Fabric is K8s based and uses cloud-native orchestration principals, it works according to the specified configuration of deployments. 
 
+== Benchmarked Metrics
+
 Review the following benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments. The cluster configuration used is Runtime Fabric on AWS EKS cluster:
 
 [%header%autowidth.spread]
@@ -29,6 +35,9 @@ Review the following benchmarked metrics to understand various management metric
 | Monitoring | Fixed, 1 Node, Prometheus, monitoring node group, m5.2x large
 | Ingress  | Fixed, 2 Nodes, Nginx, ingress node group, m5.4xlarge
 |===
+
+
+== Runtime Fabric Restart Latency
 
 The following graphic shows how long the Runtime Fabric agent takes to restart if invoked by the customers or cluster upgrade:
 
@@ -54,7 +63,9 @@ The following table shows how long a node cordon operation takes to restart if t
 | Drain process | ~4 seconds | ~35 seconds  
 |===
 
-Aspects to consider:
+== Considerations
+
+Review the following scale considerations:
 
 * Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values using the information in the following table. For a cluster with 8000 deployments, use at least:
 +
@@ -71,3 +82,4 @@ Aspects to consider:
 * Using Helm enables you to manage any cluster that requires customized resources for Runtime Fabric agent due to the size of the cluster.
 * When scaling up Runtime Fabric agent resource limit, consider increasing the request accordingly.
 * Try not to run a container unbounded by removing the limit completely. For OpenShift operators, removing the limit sets the agent to the default limit setting.
+*  `resource-cache` and `mule-clusterip-service` services can be scaled horizontally since they are stateless.
