@@ -124,7 +124,7 @@ spec:
     - key: "example-key"  
       operator: "Exists"  
       effect: "NoSchedule"  
-    ephemeralStorageLimit: 4gb  
+    ephemeralStorageLimit: 4Gi  
     nodeSelector:  
       region: us-east  
     affinity:  
