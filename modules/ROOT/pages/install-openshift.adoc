@@ -199,7 +199,7 @@ subjects:
   namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:mule-clusterip-service
+  name: rtf:mule-clusterip-service-<rtf-namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
