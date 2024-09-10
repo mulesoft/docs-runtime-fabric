@@ -5,4 +5,3 @@ nav:
 - modules/ROOT/nav.adoc
 asciidoc:
   attributes:
-    supportStatus: eolReachedVersion
