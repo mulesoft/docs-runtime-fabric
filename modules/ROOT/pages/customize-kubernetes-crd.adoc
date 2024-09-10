@@ -218,7 +218,7 @@ pod:
 
 include::partial$log-console-stdout.adoc[]
 
-
+If you use a side car container for Anypoint Monitoring (with AMLogFwdingAppender), console logging is also disabled.
 
 [[disable-service-account]]
 == Disable Per Application Service Account
