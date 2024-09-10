@@ -115,7 +115,7 @@ The following table lists the permissions that you configure using Kubernetes (K
                          | batch |jobs | create, delete, get, list, watch
                          | networking.k8s.io |ingresses | get, list, watch
                          | rbac.authorization.k8s.io |rolebindings, roles | get, list, watch
-                         | rtf.mulesoft.com |persistencegateways | get, list, watch
+                         | rtf.mulesoft.com |persistencegateways, kubernetestemplates  | get, list, watch
                 |kube-node-lease | coordination.k8s.io     |leases | get
                 | rtfctl-audit   |      |secrets    | create, get, patch, update 
                |                 |      |namespaces | create, get, list, watch   
