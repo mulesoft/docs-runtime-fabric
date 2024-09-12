@@ -3,7 +3,7 @@
 
 Anypoint Runtime Fabric on VMs / Bare Metal Architecture is composed of a set of VMs that form a cluster. Each VM serves as either a controller node or a worker node.
 
-image::architecture-controller-worker.png[]
+image::architecture-controller-worker.png["Diagram of a controller linked to two workers"]
 
 * Controller: a VM dedicated for operating Runtime Fabric, including orchestration services, a distributed database, load balancing, and services that enable you to manage the cluster from Anypoint Platform.
 * Worker: a VM dedicated for running Mule applications and API gateways. Mule applications and API proxies run on workers.
@@ -25,11 +25,11 @@ Anypoint Runtime Fabric on VMs / Bare Metal supports development and production 
 
 The development configuration is intended for testing only. It requires at least one controller and two worker nodes. The controller node runs the internal load balancer and agents used to connect to Anypoint Platform. Communication between the agent and Anypoint Platform is always outbound. Multiple replicas of application can run across workers.
 
-image::architecture-development.png[]
+image::architecture-development.png["Diagram of a network development architecture of the MuleSoft control plane with controllers, such as an internal load balancer, agent, and workers"]
 
 === Production Configuration
 
-image::architecture-production.png[]
+image::architecture-production.png["Diagram of a Mule development with the control plane, controllers, such as an internal load balancer, agent, workers, and TCP load balancer"]
 
 Only controllers run the internal load balancer and agents used to connect to Anypoint Platform.
 
@@ -43,7 +43,7 @@ Mule applications run on workers. Multiple replicas of applications can run acro
 
 The following diagram shows the general network architecture of Runtime Fabric on VMs / Bare Metal.
 
-image::architecture-network.png[]
+image::architecture-network.png["Diagram of network architecture of a Runtime Fabric and TCP load balancer connection with internal load balancers of controllers and workers"]
 
 This diagram shows the TCP load balancer used to load balance requests across the internal load balancers running on the controllers. It also shows the internal load balancer that distributes requests to each replica of Mule applications running on the workers.
 
@@ -59,7 +59,7 @@ Enabled only if one or more dedicated internal load balancer nodes is available 
 
 Higher inbound traffic loads require dedicated nodes. To determine if dedicated nodes are needed for your environment, refer to the performance information in xref:deploy-resource-allocation.adoc#internal-load-balancer[Internal Load Balancer].
 
-image::architecture-network2.png[]
+image::architecture-network2.png["Diagram of network architecture of a Runtime Fabric and TCP load balancer connection with requests ping"]
 
 . The incoming HTTP request is forwarded to the external TCP load balancer.
 . The TCP load balancer forwards the request to an available internal load balancer on Runtime Fabric.
@@ -82,7 +82,7 @@ The successful operation of Anypoint Runtime Fabric on VMs / Bare Metal is a sha
 
 The following image illustrates MuleSoft and customer responsibilities for on-premises Runtime Fabric instances:
 
-image::runtimefabricresponsibility.png[Runtime Fabric Shared Responsiblities]
+image::runtimefabricresponsibility.png["Runtime Fabric Shared Responsibilities"]
 
 * MuleSoft responsibility:
 +
