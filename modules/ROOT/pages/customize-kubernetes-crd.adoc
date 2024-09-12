@@ -25,7 +25,11 @@ The `kubernetestemplate` resource enables you to configure the following element
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
 ** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
 ** https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting/[Service Account Token^]
+
+Note that customization of environment variables is not supported:
 ** https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/[Environment Variables]
+
+The env supported only keywords are for <<enable console logging, enable-console-logging>> and <<disable service account, disable-service-account>>.
 
 For the security context pod, the key to use is `containerSecurityContext`.
 
