@@ -65,7 +65,7 @@ Ensure that your xref:access-management::permissions-by-product.adoc#runtime-man
 ----
 
 ##!/usr/bin/env bash
-dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("openshift")) | "\(.artifact):\(.version)"' | sed 's/"//g')
 for i in $dependencies
 do
     echo "Processing $i"
