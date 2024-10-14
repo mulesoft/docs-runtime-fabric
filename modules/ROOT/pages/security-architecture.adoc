@@ -6,6 +6,8 @@ MuleSoft’s architecture model enables a Runtime Fabric to be installed anywher
 
 This model is powered by components that run within the Runtime Fabric cluster, referred to as the Runtime Fabric agent. The Runtime Fabric agent establishes the connection to Anypoint Management Center. It also acts as the conduit between the internal components that power Runtime Fabric (such as Kubernetes) and Anypoint Management Center. 
 
+image::rtf-security-architecture-diagram.png[]
+
 == Runtime Fabric Data Flow
 
 Review the following diagram that shows the Runtime Fabric data flow:
