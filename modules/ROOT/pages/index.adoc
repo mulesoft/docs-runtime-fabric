@@ -90,6 +90,8 @@ Provides a cluster-local cache of application dependencies.
 
 These services are isolated within the core Runtime Fabric installation namespace and replicas. These services do not multiply as applications or nodes increase.
 
+For more details, review the xref:runtime-fabric::security-architecture.adoc#security-diagram[Runtime Fabric Security Architecture] diagram.
+
 ==== Application Services
 
 Runtime Fabric installs the following application services only when they are configured by users:
