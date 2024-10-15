@@ -301,7 +301,6 @@ a|
 |`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
 |`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |`fipsEnable` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnable: "true"` default value `false`
-|`fipsEnable` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnable: "true"` default value `false`
 |===
 
 
