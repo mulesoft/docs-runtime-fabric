@@ -11,11 +11,6 @@ This model is powered by components that run within the Runtime Fabric cluster, 
 
 The following diagram illustrates the architecture of Runtime Fabric running on a customer's Kubernetes cluster, highlighting the communication between various Runtime Fabric core components and the interaction with the MuleSoft Anypoint control plane. All of the outbound communications are secured by mTLS.
 
-[[security-diagram]]
-== Runtime Fabric Security Architecture
-
-The following diagram illustrates the architecture of Runtime Fabric running on a customer's Kubernetes cluster, highlighting the communication between various Runtime Fabric core components and the interaction with the MuleSoft Anypoint control plane. All of the outbound communications are secured by mTLS.
-
 image::rtf-security-architecture-diagram.png[]
 
 == Runtime Fabric Data Flow
