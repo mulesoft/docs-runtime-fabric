@@ -219,7 +219,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: testsecret-tls
-  namespace: default
+  namespace: <agent-namespace>
   labels:
     rtf.mulesoft.com/synchronized=true
 data:
