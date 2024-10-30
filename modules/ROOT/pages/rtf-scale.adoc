@@ -76,6 +76,7 @@ Review the following scale considerations:
 | Daemon Resources | Memory 200Mi request, 300Mi limit. CPU 150m request, 200m limit. | 1200Mi (Memory)/500m  (request == limit)  
 |===
 +
+* The default resource allocation supports up to 2K apps and 75 nodes.
 * The performance of large-scale deployment orchestration through Runtime Fabric is inversely proportional to the volume of deployments.
 
 * RTFCTL clusters are supported only for certain benchmarks.
