@@ -88,6 +88,8 @@ To install Runtime Fabric, first create a Runtime Fabric using Runtime Manager. 
 +
 Runtime Manager creates the Runtime Fabric and displays the Activation State page. This page displays the activation data used to install Runtime Fabric on a Kubernetes service. Copy this data to the clipboard for use in the next section.
 
+When creating the Runtime Fabric, the business unit you choose is set as the owner business unit. This business unit is referenced in usage reports for reporting allocated cluster capacity. Ensure to select the correct business unit during installation.
+
 == Download the rtfctl Utility
 
 Runtime Fabric uses the `rtfctl` command-line utility for installation and management tasks. See xref:install-rtfctl.adoc[Install the Runtime Fabric Command Line Tool].

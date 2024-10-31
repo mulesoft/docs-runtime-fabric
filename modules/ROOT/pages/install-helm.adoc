@@ -51,6 +51,8 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
 
+When creating the Runtime Fabric, the business unit you choose is set as the owner business unit. This business unit is referenced in usage reports for reporting allocated cluster capacity. Ensure to select the correct business unit during installation.
+
 [NOTE]
 --
 The remaining steps in the Helm-install process reference placeholder values. You can retrieve the actual values from Runtime Manager when you create the Runtime Fabric instance.

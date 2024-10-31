@@ -47,6 +47,8 @@ To install Runtime Fabric on Red Hat OpenShift, first create a Runtime Fabric us
 . Click *Operator*.
 . Copy the activation data.
 
+When creating the Runtime Fabric, the business unit you choose is set as the owner business unit. This business unit is referenced in usage reports for reporting allocated cluster capacity. Ensure to select the correct business unit during installation.
+
 == Create A Namespace for Runtime Fabric
 
 In your Kubernetes cluster, create a namespace for installing Runtime Fabric. This namespace is where you install Runtime Fabric components.
