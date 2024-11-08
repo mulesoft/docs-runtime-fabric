@@ -3,7 +3,7 @@
 Runtime Fabric is a core Kubernetes (K8s) software and works alike in all K8s environments which comply with Runtime Fabric hardware and software requirements. 
 
 [NOTE]
-These scalability benchmarks are applicable starting Runtime Fabric v2.7.0.
+These scalability benchmarks are applicable starting with Runtime Fabric 2.7.0.
 
 == Scale Limits
 
