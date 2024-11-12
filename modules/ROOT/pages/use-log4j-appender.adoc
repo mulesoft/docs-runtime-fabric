@@ -13,6 +13,7 @@ https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSynt
 ** Performance degradation
 ** Running out of disk space
 * Do not use synchronous log appenders.
+* Do not change anything in the console appender or Anypoint Monitoring appender.
 +
 You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
