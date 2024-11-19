@@ -12,7 +12,7 @@ Configure ports and hostnames correctly before installing Runtime Fabric.
 Install Runtime Fabric using `rtfctl`, Helm, as a Kubernetes (K8s) operator, or install multiple instances of Runtime Fabric.
 
 * xref:configuring-runtime-fabric.adoc[Configuring Runtime Fabric] +
-Configure network connections, ingress, Red Hat OpeShift routes, persistence gateway, proxies, and associate business groups and environments. Additionally, you can use `rtfctl` to configure Runtime Fabric.   
+Configure network connections, ingress, Red Hat OpenShift routes, persistence gateway, proxies, and associate business groups and environments. Additionally, you can use `rtfctl` to configure Runtime Fabric.   
 
 * xref:uninstall-self.adoc[Uninstalling Runtime Fabric] +
 Unistall Runtime Fabric using `rtfctl`, Helm, or on Red Hat OpenShift.
