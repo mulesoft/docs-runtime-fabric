@@ -71,3 +71,25 @@ To get help with the command, run the following entry:
 ----
 rtfctl migrate –help
 ----
+
+== Add Annotations and Labels
+
+To add annotations or labels after the migration, you can run these commands:
+
+For annotations:
+[source,copy]
+----
+kubectl annotate secret rtf-muleruntime-license -n rtf \
+
+meta.helm.sh/release-name=runtime-fabric \
+
+meta.helm.sh/release-namespace=rtf --overwrite
+----
+
+For labels:
+[source,copy]
+----
+kubectl label secret rtf-muleruntime-license -n rtf \
+
+app.kubernetes.io/managed-by=Helm --overwrite
+----
