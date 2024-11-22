@@ -98,7 +98,7 @@ After your application starts, logs start flowing to your custom Log4j appender,
 
 == Disable Custom Log4j
 
-If you enabled Custom Log4j in the `values.yaml` during the installation of Runtime Fabric and you want to disable it the RTF cluster level, follow these steps:
+If you enabled Custom Log4j in the `values.yaml` during the installation of Runtime Fabric and you want to disable it at the Runtime Fabric cluster level, follow these steps:
 
 . In your cluster, run:
 +
