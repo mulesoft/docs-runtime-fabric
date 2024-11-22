@@ -74,7 +74,7 @@ rtfctl migrate –help
 
 == Add Annotations and Labels
 
-To add annotations or labels after the migration, you can run these commands:
+To add annotations or labels after the migration, run these commands:
 
 For annotations:
 [source,copy]
