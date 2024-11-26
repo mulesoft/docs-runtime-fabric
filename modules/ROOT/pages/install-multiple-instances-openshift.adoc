@@ -135,7 +135,7 @@ subjects:
     namespace: <rtf_namespace>
 roleRef:
   kind: ClusterRole
-  name: rtf:agent
+  name: rtf:agent-<rtf_namespace>
   apiGroup: rbac.authorization.k8s.io
 ----
 
