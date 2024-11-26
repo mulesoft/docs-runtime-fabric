@@ -32,9 +32,9 @@ The following table does not include ports and hostnames from Anypoint Platform 
 
 The Persistent Gateway requires a Postgres-compliant database to store persistent data across Mule application replicas. Ensure that your Kubernetes cluster has access to this database and port. See xref:persistence-gateway.adoc[Persistence Gateway].
 
-== Hostname Configuration
+== Hostname Endpoints Configuration
 
-To function correctly, Runtime Fabric requires the following hostname configurations:
+To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Ensure to allow these endpoints on your infrastructure side to avoid any installation or deployment issues.
 
 [%header,cols="4*a"]
 |===
