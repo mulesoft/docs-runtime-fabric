@@ -19,6 +19,55 @@ kubectl create ns <rtf_namespace>
 kubectl create secret docker-registry rtf-pull-secret --namespace <rtf_namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
+== Values.yaml Reference
+The following is an example of the `values.yaml` file:
+
+----
+activationData: <activation_data>
+  proxy:
+    http_proxy:
+    http_no_proxy:
+    monitoring_proxy:
+custom_log4j_enabled: true
+muleLicense: <mule_license_key>
+global:
+  crds:
+    install: true
+  authorizedNamespaces: false
+  image:
+    rtfRegistry: rtf-runtime-registry.kprod.msap.io
+    pullSecretName: rtf-pull-secret
+  containerLogPaths:
+  - /var/lib/docker/containers
+  - /var/log/containers
+  - /var/log/pods
+----
+
+== Installing Subsequent Instances of Runtime Fabric
+
+To install subsequent instances of Runtime Fabric for OpenShift, you must repeat the previous steps:
+
+. Create a Runtime Fabric using Runtime Manager for OpenShift.
+. Create a custom namespace to install the Runtime Fabric:
++ 
+----
+kubectl create ns <rtf_namespace>
+----
+[start=3]
+. Create a Docker pull secret to pull the Runtime Fabric component images for the previously created namespace: 
++
+----
+kubectl create secret docker-registry rtf-pull-secret --namespace <rtf_namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
+----
+
+[start=4]
+. In the Red Hat OpenShift console, navigate to *Operators > Installed Operators*.
+. In the console, switch the value of *Project* to the namespace you created for installing Runtime Fabric.
+. Update your values.yaml file with any additional required parameters.
+. Set `authorizedNamespaces` to `true`, if you’re using authorized namespaces.
+. Set `crds.install` to `false`.
+. Click *Create*.
+
 
 == (Optional) Configure Authorized Namespaces
 
@@ -229,55 +278,6 @@ Set the following optional parameters as needed:
 For the first agent being installed on the cluster, set the value for `crds.install` to `true`. +
 Set `crds.install` to `false` for all the subsequent agent installations on the same cluster.
 
-== Values.yaml Reference
-The following is an example of the `values.yaml` file:
-
-----
-activationData: <activation_data>
-  proxy:
-    http_proxy:
-    http_no_proxy:
-    monitoring_proxy:
-custom_log4j_enabled: true
-muleLicense: <mule_license_key>
-global:
-  crds:
-    install: true
-  authorizedNamespaces: false
-  image:
-    rtfRegistry: rtf-runtime-registry.kprod.msap.io
-    pullSecretName: rtf-pull-secret
-  containerLogPaths:
-  - /var/lib/docker/containers
-  - /var/log/containers
-  - /var/log/pods
-----
-
-== Installing Subsequent Instances of Runtime Fabric
-
-To install subsequent instances of Runtime Fabric for OpenShift, you must repeat the previous steps:
-
-. Create a Runtime Fabric using Runtime Manager for OpenShift.
-. Create a custom namespace to install the Runtime Fabric:
-+ 
-----
-kubectl create ns <rtf_namespace>
-----
-[start=3]
-. Create a Docker pull secret to pull the Runtime Fabric component images for the previously created namespace: 
-+
-----
-kubectl create secret docker-registry rtf-pull-secret --namespace <rtf_namespace> --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
-----
-
-[start=4]
-. In the Red Hat OpenShift console, navigate to *Operators > Installed Operators*.
-. In the console, switch the value of *Project* to the namespace you created for installing Runtime Fabric.
-. In the console, click *Create Instance*, and select *Configure via form view*.
-. Add any values.yaml required parameters.
-. Set `authorizedNamespaces` to `true`, if you’re using authorized namespaces.
-. Set the value for `crds.install` to `false`.
-. Click *Create*.
 
 == See Also
 xref:install-index.adoc[]
