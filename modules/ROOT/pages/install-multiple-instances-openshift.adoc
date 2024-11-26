@@ -63,7 +63,7 @@ kubectl create secret docker-registry rtf-pull-secret --namespace <rtf_namespace
 [start=4]
 . In the Red Hat OpenShift console, navigate to *Operators > Installed Operators*.
 . In the console, switch the value of *Project* to the namespace you created for installing Runtime Fabric.
-. Update your values.yaml file with any additional required parameters.
+. Update your `values.yaml` file with any additional required parameters.
 . Set `authorizedNamespaces` to `true`, if you’re using authorized namespaces.
 . Set `crds.install` to `false`.
 . Click *Create*.
