@@ -34,7 +34,7 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 == Hostname Endpoint Configuration
 
-To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to to avoid any installation or deployment issues.
+To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
 [%header,cols="4*a"]
 |===
