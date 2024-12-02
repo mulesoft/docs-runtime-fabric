@@ -101,6 +101,9 @@ Runtime Fabric uses the `rtf-` prefix to recognize the object as a template.
 Templates with `rtf-` prefix in the `spec.ingressClassName` field are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
 Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example, `nginx` or `haproxy`.
 
+[NOTE]
+`kubernetes.io/ingress.class` is deprecated by K8s > 1.18, for details refer to https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#deprecating-the-ingress-class-annotation[Improvements to the Ingress API in Kubernetes 1.18]
+
 <3> TLS is optional.
 +
 If you add the TLS section with a `secretName` attribute, you must ensure that you also create the referred TLS secret in the `rtf` namespace.
