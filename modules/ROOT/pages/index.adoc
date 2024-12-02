@@ -8,7 +8,7 @@ If you work in public clouds and have some level of expertise in managing a Kube
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
 * https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
-* https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
+* https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat OpenShift (ARO)^]
 * https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
 * https://www.ibm.com/cloud/openshift[Red Hat OpenShift on IBM Cloud^]
 * https://www.google.com/url?q=https://www.alibabacloud.com/product/kubernetes&sa=D&source=docs&ust=1695253295782775&usg=AOvVaw1HvpOJ2m_H7JOIZzcIbyym[Alibaba Cloud Container Service for Kubernetes (ACK)^]

@@ -1,4 +1,4 @@
-= Allocating Resource for Application Deployment on Runtime Fabric
+= Allocating Resources for Application Deployment on Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

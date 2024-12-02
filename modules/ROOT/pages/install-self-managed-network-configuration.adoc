@@ -6,6 +6,7 @@ Network configuration must be performed by an IT administrator.
 ====
 
 Before installing or using Runtime Fabric, ensure that the following ports and hostnames are configured correctly.
+Note that all internal communication within the cluster (between pods and services) needs to be allowed.
 
 == Port Configuration
 
@@ -31,9 +32,9 @@ The following table does not include ports and hostnames from Anypoint Platform 
 
 The Persistent Gateway requires a Postgres-compliant database to store persistent data across Mule application replicas. Ensure that your Kubernetes cluster has access to this database and port. See xref:persistence-gateway.adoc[Persistence Gateway].
 
-== Hostname Configuration
+== Hostname Endpoint Configuration
 
-To function correctly, Runtime Fabric requires the following hostname configurations:
+To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
 [%header,cols="4*a"]
 |===
@@ -122,7 +123,8 @@ To allow different endpoints to use mutual TLS authentication to establish a con
 |===
 | Control Plane | Certificates
 | US control plane | `transport-layer.prod.cloudhub.io` +
-`configuration-resolver.prod.cloudhub.io`
+`configuration-resolver.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com`
 | EU control plane | `transport-layer.prod-eu.msap.io` +
 `configuration-resolver.prod-eu.msap.io`
 |===
