@@ -98,8 +98,7 @@ Note the following about this example:
 <2> ingressClassName must be prefixed with `rtf-`, for example, `rtf-nginx`.
 +
 Runtime Fabric uses the `rtf-` prefix to recognize the object as a template.
-Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class` annotation
-are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
+Templates with `rtf-` prefix in the `spec.ingressClassName` field are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
 Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example, `nginx` or `haproxy`.
 
 <3> TLS is optional.
