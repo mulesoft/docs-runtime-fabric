@@ -1,0 +1,226 @@
+= Configuring Ingress with HTTP Route Template Custom Resource In Runtime Fabric
+
+Configure ingress support for Mule apps on Anypoint Runtime Fabric platform through the HTTP route template custom resource.
+
+== Benefits of Ingress Configuration with HTTP Route Template Custom Resource
+
+Current ingress support for Mule apps on the Runtime Fabric platform is confined to https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress] resources, which restricts you from leveraging cloud vendor-native HTTP routing solutions, such as OpenShift Routes on OpenShift clusters, Istio or Service mesh. To address this behavior, Runtime Fabric supports a custom resource `httproutetemplates.rtf.mulesoft.com` template.
+
+Use the HTTP route template custom resource in Runtime Fabric to define and implement custom routing configurations to take advantage of compatibility with a range of ingress controllers and cloud-native routing mechanisms, including support for:
+
+* Wild card for Host based routing.
+* Creation of `httproutetemplates.rtf.mulesoft.com` templates to map a set of application endpoints to a set of arbitrary Http routing resources for Path based routing.
+* Synchronization of the domain or hosts from the Http Route templates, with Anypoint control plane.
+* Using parameter placeholders on `httproutetemplates.rtf.mulesoft.com` templates for additional extensibility.
+
+== HTTP Route Template Custom Resource Placeholders
+
+Runtime Fabric exposes a list of placeholder properties that cluster administartors can use in their HTTP route template custom resource. These placeholders are evaluated and replaced with actual data by Runtime Fabric when rendering the deployment charts.
+
+As a cluster administrator use these HTTP route template placeholder properties in your CRD:
+
+[%header%autowidth.spread]
+|===
+| Property| Description
+| `{{ .ResourceName }}`| Replaces with the Runtime Fabric generated unique routing.
+| `{{ .ApplicationName }}`| Replaces with the Mule app deployment name.
+| `{{ .Namespace }}`| Replaces with the namespace of the Mule app deployment.
+| `{{ .Service.Name }}`| Replaces with the backend service name of the Mule app deployment.
+| `{{ .Service.PortName }}`| Replaces with the backend service port name of the Mule app deployment.
+| `{{ .Service.Port }}`| Replaces with the backend service port number of the Mule app deployment.
+| `{{ .Host }}`| Replaces with the host or domain value from the public endpoint of Mule  app deployment.
+| `{{ .Path }}`| Replaces with the path value from the public endpoint of Mule app deployment.
+| `{{ .OrganizationID }}`| Replaces with the organization ID of the Mule app deployment.
+| `{{ .EnvironmentID }}`| Replaces with the environment ID of the Mule app deployment.
+| `{{ .UniqueId }}`| Replaces with the unique ID.
+|===
+
+== How HTTP Route Template Custom Resource Works in Runtime Fabric
+
+This diagram provides an overview of how to configure ingress with a HTTP route template custom resource in Runtime Fabric:
+
+image::ingress-http-diagram.png[HTTP route template diagram overview]
+
+The `httproutetemplates` resource applies only to new Mule app deployments after the template resource creation. It does not affect existing deployments. If you redeploy a Mule app after creating or updating the `httproutetemplates`, the template is applied.
+
+The `httproutetemplates` resource enables you to route configurations like these:
+
+* `baseEndpoints` +
+Describes a list of endpoints that are associated with the routing resources defined in the template. These endpoints are synchronized by Runtime Fabric with Anypoint control plane.  Application developers can choose from a list of synchronized base endpoints during application deployment and optionally customize the path and subdomain when applicable.
+
+* `resources` +
+Describes a list of Kubernetes routing resource templates, which is created for every matching Mule app ingress endpoint.
+
+To get the CRD of key elements that you can configure for the template, get the Kubernetes specification by running this command:
+
+----
+kubectl get crd httproutetemplates.rtf.mulesoft.com -o yaml
+----
+
+== HTTP Route Template Examples
+
+Review the following HTTP route templates examples for Kubernetes ingress, OpenShift routes, and Kubernetes Gateway API (HTTPRoute)
+
+
+=== Example for Kubernetes Ingress
+This is an HTTP route template example resource for Kubernetes ingress:
+
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: HTTPRouteTemplate
+metadata:
+  name: test-template-ingress
+  namespace: rtf
+spec:
+  baseEndpoints:
+    - https://*.example.com
+    - https://example.internal.com
+  resources:
+    - |
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: {{ .ResourceName }}
+        namespace: {{ .Namespace }}
+        labels:
+        annotations:
+      spec:
+       ingressClassName: nginx 
+       rules:
+       - host: {{ .Host }} 
+         http:
+            paths: 
+            - pathType: Prefix
+              path: {{ .Path }}
+              backend: 
+                service:
+                  name: {{ .Service.Name }}
+                  port:
+                    name: {{ .Service.PortName }}
+              tls:
+              - hosts:
+                - {{ .Host }}
+                secretName: tls-ingress
+----
+
+Note the following about the example:
+
+* `baseEndpoints` define the list of host or domain used for mapping the `Public endpoints` configured on the Mule app deployment.
+* `resources` define one or more Kubernetes routing resource such as ingress resource.
+* `{{ .ResourceName }}` placeholder replaces with the Runtime Fabric generated unique routing resource name. Use this placeholder to ensure the Kubernetes resource name uniqueness constraint. If you don’t use this placeholder,  make sure the resource name is unique.
+* `{{ .Host }}` replaces with the host or domain from the Mule app public URL.
+* `{{ .Path }}` replaces with the path from the Mule app public URL. 
+
+
+=== Example for OpenShift Routes
+This is a HTTP route template example resource for OpenShift routes:
+
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: HTTPRouteTemplate
+metadata:
+  name: test-template-routes
+  namespace: rtf
+spec:
+  baseEndpoints:
+    - https://demo.example.com
+  resources:
+    - |
+apiVersion: v1
+kind: Route
+metadata:
+  name: {{ .ResourceName }}
+  namespace: {{ .Namespace }}
+spec:
+  host: {{ .Host }}
+  path: {{ .Path }}
+  to:
+    kind: Service
+    name: {{ .Service.Name }}
+  tls:
+    termination: edge
+    key: |-
+      -----BEGIN PRIVATE KEY-----
+      [...]
+      -----END PRIVATE KEY-----
+    certificate: |-              
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+    caCertificate: |-
+      -----BEGIN CERTIFICATE-----
+      [...]
+      -----END CERTIFICATE-----
+
+----
+
+=== Example for Kubernetes Gateway API
+
+This is a HTTP Route Template resource for Kubernetes Gateway API (HTTPRoute):
+
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: HttpRouteTemplate
+metadata:
+  name: k8s-gateway-api-cr
+  namespace: rtf
+spec:
+  baseEndpoints:
+    - https://demo.example.com
+  resources: |-
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ .ResourceName }}
+  namespace: {{ .Namespace }}
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: cluster-gateway
+  hostnames:
+  - {{ .Host }}
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: {{ .Path }}
+    backendRefs:
+    - name: {{ .Service.Name }}
+      port: {{ .Service.Port }}
+
+----
+
+[NOTE]
+You are responsible for the configuration of the Kuberneates Gateway resources and allowing HTTPRoutes from the route's namespace to attach.
+
+
+== Using TLS in the Http Route Template Custom Resource
+
+To use TLS in the routing resources in HTTP route template, create a TLS secret in the Runtime Fabric namespace. For details, refer to the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes TLS] documentation.
+
+Use the `rtf.mulesoft.com/synchronized: "true"` label on the TLS secret to configure the Runtime Fabric to manage the secrets lifecycle Create, Update and Delete across all application namespaces, for example:
+
+----
+apiVersion: v1
+kind: Secret
+metadata:
+  name: testsecret-tls
+  namespace: <agent-namespace>
+  labels:
+    rtf.mulesoft.com/synchronized: "true"
+data:
+  tls.crt: base64 encoded cert
+  tls.key: base64 encoded key
+type: kubernetes.io/tls
+
+----
+
+While the usage of this label is highly recommended for seamless management of secrets, if you don’t add this label, you must manually update the secret in each namespace.
+
+== Modify an Existing HTTP Route Template CRD
+You can modify existing `httproutetemplates` templates even if they were already used for application deployments. Note that already created HTTP touting resources based on this template are not updated if you modify the template.
+To update existing HTTP routing resources with the template changes, you have to perform a redeployment of the Mule application from the Anypoint control plane. For example, if you update the base domain which requires to change the endpoint for the ingress template, you must remove the old endpoint and add the new one as part of the application redeployment.
+
+== See Also
+
+* xref:configure-ingress.adoc[]
