@@ -10,7 +10,7 @@ Use the HTTP route-template custom resource in Runtime Fabric to define and impl
 
 * Wildcard for host-based routing.
 * Creation of `httproutetemplates.rtf.mulesoft.com` templates to map a set of application endpoints to a set of arbitrary Http routing resources for Path based routing.
-* Synchronization of the domain or hosts from the Http Route templates, with Anypoint control plane.
+* Synchronization of the domain or hosts from the HTTP route templates, with the Anypoint control plane.
 * Using parameter placeholders on `httproutetemplates.rtf.mulesoft.com` templates for additional extensibility.
 
 == HTTP Route Template Custom Resource Placeholders
