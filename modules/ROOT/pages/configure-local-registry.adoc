@@ -60,7 +60,7 @@ Ensure that your xref:access-management::permissions-by-product.adoc#runtime-man
 
 . In your Unix shell, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
 +
-For non-openshift environments:
+For non-OpenShift environments:
 +
 [source,copy]
 ----
