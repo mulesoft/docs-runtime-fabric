@@ -15,7 +15,7 @@ Use the HTTP route-template custom resource in Runtime Fabric to define and impl
 
 == HTTP Route-Template Custom-Resource Placeholders
 
-Runtime Fabric exposes a list of placeholder properties that cluster administartors can use in their HTTP route template custom resource. These placeholders are evaluated and replaced with actual data by Runtime Fabric when rendering the deployment charts.
+Runtime Fabric reveals placeholder properties that cluster administrators can use in their HTTP route-template custom resource. These placeholders are evaluated and replaced with actual data by Runtime Fabric when rendering the deployment charts.
 
 As a cluster administrator use these HTTP route template placeholder properties in your CRD:
 
