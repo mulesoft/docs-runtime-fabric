@@ -59,7 +59,24 @@ Automated registry synchronization is available from Runtime Fabric version 2.6.
 Ensure that your xref:access-management::permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
 
 . In your Unix shell, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
++
+For non-OpenShift environments:
++
+[source,copy]
+----
 
+##!/usr/bin/env bash
+dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-version>         -H 'Authorization: bearer <authorization-token>' | jq -c '.dependencies |.[] | select(.provider | contains("generic")) | "\(.artifact):\(.version)"' | sed 's/"//g')
+for i in $dependencies
+do
+    echo "Processing $i"
+    docker pull <mulesoft-docker-server>/mulesoft/$i
+    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
+    docker push <local-docker-server>/mulesoft/$i
+done
+----
++
+For OpenShift environments:
 +
 [source,copy]
 ----
