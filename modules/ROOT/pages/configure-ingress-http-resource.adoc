@@ -4,7 +4,7 @@ Configure ingress support for Mule apps on the Anypoint Runtime Fabric platform 
 
 == Benefits of Ingress Configuration with the HTTP Route-Template Custom Resource
 
-Current ingress support for Mule apps on the Runtime Fabric platform is confined to https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress] resources, which restricts you from leveraging cloud vendor-native HTTP routing solutions, such as OpenShift Routes on OpenShift clusters, Istio or Service mesh. To address this behavior, Runtime Fabric supports a custom resource `httproutetemplates.rtf.mulesoft.com` template.
+Current ingress support for Mule apps on the Runtime Fabric platform is confined to https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress] resources, which restrict you from using cloud vendor-native HTTP routing solutions, such as OpenShift Routes on OpenShift clusters, Istio, or Service Mesh. To address this limitation, Runtime Fabric supports a custom resource `httproutetemplates.rtf.mulesoft.com` template.
 
 Use the HTTP route template custom resource in Runtime Fabric to define and implement custom routing configurations to take advantage of compatibility with a range of ingress controllers and cloud-native routing mechanisms, including support for:
 
