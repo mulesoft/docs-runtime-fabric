@@ -107,7 +107,7 @@ Note the following about the example:
 
 * The `baseEndpoints` placeholder defines the list of hosts or domains used for mapping the public endpoints configured on the Mule app deployment.
 * The `resources` placeholder defines one or more Kubernetes routing resources, such as an Ingress resource.
-* The `{ .ResourceName }` placeholder is replaced with the Runtime Fabric generated unique routing resource name. Use this placeholder to ensure the Kubernetes resource name meets the uniqueness constraint. If you don’t use this placeholder, make sure the resource name is unique.
+* The `{ .ResourceName }` placeholder is replaced with the Runtime Fabric generated unique routing resource name. Use this placeholder to ensure the Kubernetes resource name meets the uniqueness constraint. If you don’t use this placeholder, ensure the resource name is unique.
 * The `{ .Host }` placeholder is replaced with the host or domain from the Mule app's public URL.
 * The `{ .Path }` placeholder is replaced with the path from the Mule app's public URL. 
 
