@@ -1,4 +1,4 @@
-= Configuring Ingress with HTTP Route Template Custom Resource In Runtime Fabric
+= Configuring Ingress with HTTP Route Template Custom Resource in Runtime Fabric
 
 Configure ingress support for Mule apps on Anypoint Runtime Fabric platform through the HTTP route template custom resource.
 
