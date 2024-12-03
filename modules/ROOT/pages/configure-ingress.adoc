@@ -1,4 +1,4 @@
-= Configure Ingress in Runtime Fabric
+= Configuring Ingress in Runtime Fabric
 
 To configure ingress in Runtime Fabric, review these topics:
 
