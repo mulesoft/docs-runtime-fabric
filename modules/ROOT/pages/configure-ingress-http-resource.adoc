@@ -8,7 +8,7 @@ Current ingress support for Mule apps on the Runtime Fabric platform is confined
 
 Use the HTTP route-template custom resource in Runtime Fabric to define and implement custom routing configurations. With this approach, you can take advantage of compatibility with a range of ingress controllers and cloud-native routing mechanisms, including support for:
 
-* Wild card for Host based routing.
+* Wildcard for host-based routing.
 * Creation of `httproutetemplates.rtf.mulesoft.com` templates to map a set of application endpoints to a set of arbitrary Http routing resources for Path based routing.
 * Synchronization of the domain or hosts from the Http Route templates, with Anypoint control plane.
 * Using parameter placeholders on `httproutetemplates.rtf.mulesoft.com` templates for additional extensibility.
