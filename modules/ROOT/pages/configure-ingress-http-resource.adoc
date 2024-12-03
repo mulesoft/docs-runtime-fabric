@@ -13,7 +13,7 @@ Use the HTTP route-template custom resource in Runtime Fabric to define and impl
 * Synchronization of the domain or hosts from the HTTP route templates, with the Anypoint control plane.
 * Using parameter placeholders on `httproutetemplates.rtf.mulesoft.com` templates for additional extensibility.
 
-== HTTP Route Template Custom Resource Placeholders
+== HTTP Route-Template Custom-Resource Placeholders
 
 Runtime Fabric exposes a list of placeholder properties that cluster administartors can use in their HTTP route template custom resource. These placeholders are evaluated and replaced with actual data by Runtime Fabric when rendering the deployment charts.
 
