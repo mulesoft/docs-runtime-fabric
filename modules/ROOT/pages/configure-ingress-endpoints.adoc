@@ -15,7 +15,7 @@ Use one of the xref:example-ingress-resource-templates[example templates] to cre
 
 include::partial$include-ingress-tasks.adoc[tags=createTemplate]
 
-== Configure Ingress for a Mule Application  
+== Configure Ingress for a Mule App 
 
 include::partial$include-ingress-tasks.adoc[tags=configureIngressRuntimeManager]
 
