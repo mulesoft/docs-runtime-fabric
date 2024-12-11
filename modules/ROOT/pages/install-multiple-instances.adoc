@@ -4,7 +4,6 @@ Installing multiple instances of Anypoint Runtime Fabric enables you to share th
 
 * To use this feature, you must upgrade to the minimum version of 2.2.5 of the Runtime Fabric agent that supports multiple instances.
 * Agent namespaces map one-to-one to app namespaces. You cannot share app namespaces amongst multiple instances of Runtime Fabric on the same cluster.
-* Hazelcast clustering is not yet supported with multiple instances.
 
 [NOTE]
 For multiple instances, the first Runtime Fabric agent installation creates a custom resource definition (CRD) for `persistencegateways.rtf.mulesoft.com` and priority class `rtf-components-high-priority` resources. Runtime Fabric agent doesn't clean up these resources when you uninstall the agent.
