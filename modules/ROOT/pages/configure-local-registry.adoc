@@ -251,10 +251,10 @@ oc create secret docker-registry rtf-pull-secret --namespace <rtf-namespace> --d
 ----
 
 [start=6]
-. In the OpenShift OCP form view, set the rtfRegistry values to configure the local registry.
+. In the OpenShift form view, set the rtfRegistry values to configure the local registry.
 
 +
-image::ocp-local-registry.png[OCP form view to add values for rtfRegistry]
+image::ocp-local-registry.png[OpenShift form view to add values for rtfRegistry]
 
 [start=7]
 . Continue with the OpenShift installation.
