@@ -110,7 +110,8 @@ If you add the TLS section with a `secretName` attribute, you must ensure that y
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
-<6> The `path` parameter value is replaced by the value you add in the *Path* field when you xref:configure-ingress-for-a-mule-application[configure ingress for a Mule application]. Note that `path` is not a placeholder. 
+<6> The `path` field is updated with the value specified in the *Path* field when configuring path-based routing for an xref:configure-ingress-for-a-mule-application[ingress] in your Mule application.(TODO:refer to the example).
+    Note that `path` is not a placeholder. 
 
 <7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
