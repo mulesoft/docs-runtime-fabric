@@ -243,7 +243,7 @@ You can use the `rtf.mulesoft.com/synchronized: "true"` label to configure Runti
 apiVersion: v1
 kind: Secret
 metadata:
-  name: testsecret-tls
+  name: example-tls
   namespace: <agent-namespace>
   labels:
     rtf.mulesoft.com/synchronized: "true"
@@ -388,7 +388,7 @@ The results should be similar to:
 [source,yaml]
 --
 # kubectl get ing -n<APP-NAMESPACE> <INGRESS-RESOURCE-NAME> -oyaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
