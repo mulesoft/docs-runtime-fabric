@@ -3,9 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Secure application properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment. These properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
+Secure application properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment.
+These properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
 
 Runtime Fabric protected properties always take precedence over application-level properties.
+
+[NOTE]
+This form of secure properties usage is discouraged in favour of the Runtime Manager managed ones.
 
 == Install rtfctl 
 
@@ -54,6 +58,12 @@ sudo ./rtfctl delete secure-property <my_key> -n <namespace>
 +
 * *<my_key>*: The key used in the Mule application to reference the secure property.
 * *<namespace>*: The namespace in which the secure property applies.
+
+== Restoration of Rtfctl Managed Secure Properties
+
+Rtfctl managed secure properties are directly configured in the cluster, these are not sent nor stored in the control plane.
+Because of this, these secure-properties are not taken into account in the backup and restore process thus they need to be
+reapplied after restoration. For more information of how backup and restore works see xref:manage-backup-restore.adoc[this page].
 
 == See Also
 
