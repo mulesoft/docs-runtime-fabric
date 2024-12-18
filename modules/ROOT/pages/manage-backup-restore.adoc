@@ -67,7 +67,7 @@ For OpenShift clusters, the following is backed up:
 
 All changes performed on the control plane side don't need a new backup to be taken into account because those are taken from the platform at the time of restoration.
 
-Any change done on the cluster side are not part of the restoration and they need to be reapplied. These changes include:
+Any changes done on the cluster side aren't part of the restoration and must be reapplied. These changes include:
 
 * Agent upgrades
 * RTFCTL managed secure properties
