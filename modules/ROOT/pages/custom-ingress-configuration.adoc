@@ -108,8 +108,7 @@ If you add the TLS section with a `secretName` attribute, you must ensure that y
 
 <5> A template can include multiple paths for a host, but Runtime Manager displays only the first path rule for the host.
 
-<6> The `path` field is updated with the value specified in the *Path* field when configuring path-based routing for an xref:configure-ingress-for-a-mule-application[ingress] in your Mule application.(TODO:refer to the example).
-    Note that `path` is not a placeholder. 
+<6> The `path` parameter is updated with the value specified in the *Path* field when configuring path-based routing for an xref:configure-ingress-for-a-mule-application[ingress] in your Mule app. Note that `path` is not a placeholder. 
 
 <7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
@@ -141,9 +140,9 @@ spec:
               name: service-port
 --
 
-<Include this/similar screenshot.. I could not attach so will drop in the PR description at the end>
-The resulting application ingress from this template will have the `path` field replaced with the ones configured on the Application deployment.
-In this example application `myapp`, the routing has been configured with the paths `/foo` and `/bar`.
+The resulting Mule app ingress from this template has the `path` parameter replaced with the values you configured on the Mule app deployment.
+
+In this example of the Mule app `myapp`, the routing is configured with the paths `/foo` and `/bar`:
 
 [source,yaml]
 --
@@ -191,8 +190,8 @@ spec:
     secretName: example-tls
 --
 
-Note:
-Refer to the documentation for your ingress controller and configure the path-based routing ingress template accordingly.
+[NOTE]
+Refer to the documentation of your ingress controller and configure the path-based routing ingress template accordingly.
 
 === Template Placeholders 
 
