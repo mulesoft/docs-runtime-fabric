@@ -9,7 +9,7 @@ These properties are accessible in unencrypted form by Mule applications deploye
 Runtime Fabric protected properties always take precedence over application-level properties.
 
 [NOTE]
-This form of secure properties usage is discouraged in favour of the Runtime Manager managed ones.
+Using secure properties outside of Runtime Manager is discouraged in favor of those managed by Runtime Manager.
 
 == Install rtfctl 
 
@@ -59,11 +59,13 @@ sudo ./rtfctl delete secure-property <my_key> -n <namespace>
 * *<my_key>*: The key used in the Mule application to reference the secure property.
 * *<namespace>*: The namespace in which the secure property applies.
 
-== Restoration of Rtfctl Managed Secure Properties
+== Restore RTFCTL Managed Secure Properties
 
-Rtfctl managed secure properties are directly configured in the cluster, these are not sent nor stored in the control plane.
-Because of this, these secure-properties are not taken into account in the backup and restore process thus they need to be
-reapplied after restoration. For more information of how backup and restore works see xref:manage-backup-restore.adoc[this page].
+`rtfctl` managed secure properties are directly configured in the cluster and are neither sent nor stored in the control plane.
+
+Due to this behavior, these secure properties are not included in the backup and restore process, so they need to be reapplied after restoration. 
+
+For details, refer to xref:manage-backup-restore.adoc[].
 
 == See Also
 
