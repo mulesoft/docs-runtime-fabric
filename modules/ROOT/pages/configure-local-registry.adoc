@@ -241,20 +241,20 @@ OpenShift::
 --
 . <<synch-rtf,Synchronize your container images>> to your local registry.
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
-. In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
+. In Runtime Manager, follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
-. Follow the *Helm* path instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
+. Follow the instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
 +
 [source,copy]
 ----
-kubectl create secret docker-registry rtf-pull-secret --namespace <rtf-namespace> --docker-server=<docker-servername> --docker-username=<docker-username --docker-password=<docker-password> --docker-email=<docker-email>
+oc create secret docker-registry rtf-pull-secret --namespace <rtf-namespace> --docker-server=<docker-servername> --docker-username=<docker-username --docker-password=<docker-password> --docker-email=<docker-email>
 ----
 
 [start=6]
-. In the OpenShift OCP form view, set the rtfRegistry values to configure the local registry.
+. In the OpenShift form view, set the rtfRegistry values to configure the local registry.
 
 +
-image::ocp-local-registry.png[OCP form view to add values for rtfRegistry]
+image::ocp-local-registry.png[OpenShift form view to add values for rtfRegistry]
 
 [start=7]
 . Continue with the OpenShift installation.
