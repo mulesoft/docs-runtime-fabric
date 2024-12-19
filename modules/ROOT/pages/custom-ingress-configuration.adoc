@@ -190,6 +190,8 @@ spec:
     secretName: example-tls
 --
 
+image:rtf-ingress.adoc[Runtime Manager UI with ingress configuration window]
+
 [NOTE]
 Refer to the documentation of your ingress controller and configure the path-based routing ingress template accordingly.
 
