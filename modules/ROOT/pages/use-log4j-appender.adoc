@@ -49,7 +49,7 @@ In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources`
 [source,xml,linenums]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" name="cloudhub" packages="com.mulesoft.ch.logging.appender">
+<Configuration status="INFO" name="cloudhub" packages="com.mulesoft.ch.logging.appender, com.splunk.logging">
     <Appenders>
     	<Console name="CONSOLE" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{MM-dd HH:mm:ss}] %-5p %c{1} [%t]: %m%n"/>
