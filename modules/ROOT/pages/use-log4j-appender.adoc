@@ -19,7 +19,7 @@ You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
 * When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Anypoint Monitoring.
 
-== Enabling Log4j
+== Enable Log4j
 
 Custom Log4j configurations are disabled by default. When you install Runtime Fabric, the parameter is disabled (`false`) in `Values.yaml`. You must set the value to `true`.
 
@@ -95,6 +95,21 @@ For the latest version of Splunk, see https://github.com/splunk/splunk-library-j
 
 
 After your application starts, logs start flowing to your custom Log4j appender, and you can view them on your target logging system.
+
+== Disable Custom Log4j
+
+If you enabled Custom Log4j in the `values.yaml` during the installation of Runtime Fabric and you want to disable it at the Runtime Fabric cluster level, follow these steps:
+
+. In your cluster, run:
++
+----
+# kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":""}}
+----
+. Restart the Runtime Fabric agent pod:
+----
+# kubectl delete pod -n rtf -l app=agent
+----
+. Restart the Mule app associated with the custom Log4j configuration.
 
 == See Also
 
