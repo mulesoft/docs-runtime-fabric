@@ -73,35 +73,35 @@ metadata:
   name: test-template-ingress
   namespace: rtf
 spec:
-  baseEndpoints: #(1)
+  baseEndpoints:
     - https://*.example.com
     - https://example.internal.com
-  resources: #(2)
+  resources:
     - |
       apiVersion: networking.k8s.io/v1
       kind: Ingress
       metadata:
-        name: {{ .ResourceName }} #(3)
+        name: {{ .ResourceName }}
         namespace: {{ .Namespace }}
         labels:
         annotations:
       spec:
        ingressClassName: nginx 
+       tls:
+       - hosts:
+         - {{ .Host }}
+         secretName: testsecret-tls
        rules:
-       - host: {{ .Host }} #(4)
+       - host: {{ .Host }} 
          http:
             paths: 
             - pathType: Prefix
-              path: {{ .Path }} #(5)
+              path: {{ .Path }}
               backend: 
                 service:
                   name: {{ .Service.Name }}
                   port:
                     name: {{ .Service.PortName }}
-              tls:
-              - hosts:
-                - {{ .Host }}
-                secretName: tls-ingress
 ----
 
 [calloutlist]
