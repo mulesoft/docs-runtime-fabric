@@ -49,7 +49,7 @@ You can access secure properties from inside your Mule application using `${my.p
 +
 [source,copy]
 ----
-sudo ./rtfctl delete secure-property <my_key> -n <namespace>
+sudo ./rtfctl delete secure-property <my_key> --app-namespace <namespace>
 ----
 +
 * *<my_key>*: The key used in the Mule application to reference the secure property.
