@@ -224,6 +224,29 @@ You can modify existing `httproutetemplates` templates even if they are used for
 
 To update existing HTTP routing resources with the template changes, perform a redeployment of the Mule app from the Anypoint control plane. For example, if you update the base domain, which requires changing the endpoint for the ingress template, remove the old endpoint and add the new one as part of the application redeployment.
 
+== Frequently Asked Questions
+
+*Does Runtime Fabric support the existing ingress templates?*
+
+Yes, Runtime Fabric supports both old and new templates. However, use the new Custom Route templates to configure the ingress for your Mule application deployments.
+
+*What happens if there is a collision between an ingress template and an HTTP Route CR?*
+
+The new HTTP Route CR takes precedence, and the old ingress is used as a fallback.
+
+*What happens if there is a BaseEndpoint or URL collision between two HTTP Route CRs?*
+
+The HTTP Route CR with the name that comes first alphabetically is used for rendering.
+
+*What are some placeholder usage guidelines?*
+
+Placeholders are not mandatory, but use them to make the HTTP Route template more generic. Especially if your deployment has multiple endpoints, use the placeholder `{ .ResourceName }` to make sure unique names for the HTTP Route resources being created.
+
+Placeholders are specific to the templates. This means that placeholders used in ingress templates cannot be used in route templates. For example, the `app-name` placeholder:
+
+* In an ingress template the placeholder is replaced by the application name.
+* In a route template the placeholder is treated as a string `app-name`.
+
 == See Also
 
 * xref:configure-ingress.adoc[]
