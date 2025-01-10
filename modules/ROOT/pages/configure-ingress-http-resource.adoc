@@ -338,7 +338,7 @@ If there are ingress templates and HTTPRoute templates with the same baseEndpoin
 
 *What are some placeholder usage guidelines?*
 
-Placeholders are not mandatory, but use them to make the HTTP Route template more generic. Especially if your deployment has multiple endpoints, use the placeholder `{ .ResourceName }` to make sure unique names for the HTTP Route resources are being created by the Runtime Fabric software.
+Placeholders are not mandatory, but use them to make the HTTP Route template more generic. 
 
 Placeholders are specific to the templates. This means that placeholders used in ingress templates cannot be used in route templates. For example, the `app-name` placeholder:
 
