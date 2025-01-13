@@ -327,6 +327,47 @@ You can modify existing `httproutetemplates` templates at any time. Note that pr
 
 To update existing HTTP routing resources after changing the template, perform a redeployment of the Mule app from the Anypoint control plane. For example, if you update the base domain, which requires changing the endpoint for the ingress template, remove the old endpoint and add the new one as part of the application redeployment.
 
+== Create Role and RoleBindings
+
+If the ingress resource is not the standard ingress type, create a Role or RoleBinding to give the Runtime Fabric agent service account the necessary privileges to create an ingress resource.
+
+This example shows the creation of Role and RoleBinding. For Istio, Gateway API, and other similar configurations, create Roles and RoleBindings that are tailored to your specific needs. You can either create these in all application namespaces or use ClusterRole and ClusterRoleBindings, depending on your preferences and any restrictions you have in place.
+
+Role example:
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rtf-manage-routes
+  namespace: <app-ns>
+rules:
+- apiGroups:
+  - route.openshift.io
+  resources:
+  - routes
+  - routes/custom-host
+  verbs:
+  - '*'
+----
+
+RoleBinding example:
+
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manage-routes
+  namespace: <app-ns>
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: rtf-manage-routes
+subjects:
+- kind: ServiceAccount
+  name: rtf-agent
+  namespace: <rtf-agent-ns>
+----
+
 == Frequently Asked Questions
 
 *Does Runtime Fabric support the existing ingress templates?*
