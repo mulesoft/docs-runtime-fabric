@@ -331,7 +331,7 @@ To update existing HTTP routing resources after changing the template, perform a
 
 If the ingress resource is not the standard ingress type, create a Role or RoleBinding to give the Runtime Fabric agent service account the necessary privileges to create an ingress resource.
 
-This example shows the creation of Role and RoleBinding. For OpenShift and other similar configurations, create Roles and RoleBindings that are tailored to your specific needs. You can either create these in all application namespaces or use ClusterRole and ClusterRoleBindings, depending on your preferences and any restrictions you have in place.
+This example shows the creation of Role and RoleBinding. For OpenShift routes and other similar configurations, create Roles and RoleBindings that are tailored to your specific needs. You can either create these in all application namespaces or use ClusterRole and ClusterRoleBindings, depending on your preferences and any restrictions you have in place.
 
 Role example:
 ----
