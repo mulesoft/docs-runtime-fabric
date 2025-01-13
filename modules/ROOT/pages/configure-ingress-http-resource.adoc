@@ -229,34 +229,34 @@ metadata:
   namespace: rtf
 spec:
   baseEndpoints:
-    - https://demo.example.com
+    - https://example.com/
   resources:
     - |
-apiVersion: v1
-kind: Route
-metadata:
-  name: {{ .ResourceName }}
-  namespace: {{ .Namespace }}
-spec:
-  host: {{ .Host }}
-  path: {{ .Path }}
-  to:
-    kind: Service
-    name: {{ .Service.Name }}
-  tls:
-    termination: edge
-    key: |-
-      -----BEGIN PRIVATE KEY-----
-      [...]
-      -----END PRIVATE KEY-----
-    certificate: |-              
-      -----BEGIN CERTIFICATE-----
-      [...]
-      -----END CERTIFICATE-----
-    caCertificate: |-
-      -----BEGIN CERTIFICATE-----
-      [...]
-      -----END CERTIFICATE-----
+      apiVersion: route.openshift.io/v1
+      kind: Routes
+      metadata:
+        name: {{ .ResourceName }}
+        namespace: {{ .Namespace }}
+      spec:
+        host: {{ .Host }}
+        path: {{ .Path }}
+        to:
+          kind: Service
+          name: {{ .Service.Name }}
+        tls:
+          termination: edge
+          key: |-
+            -----BEGIN PRIVATE KEY-----
+            [...]
+            -----END PRIVATE KEY-----
+          certificate: |-
+            -----BEGIN CERTIFICATE-----
+            [...]
+            -----END CERTIFICATE-----
+          caCertificate: |-
+            -----BEGIN CERTIFICATE-----
+            [...]
+            -----END CERTIFICATE-----
 ----
 
 === Example for Kubernetes Gateway API
@@ -264,34 +264,35 @@ spec:
 This example shows an HTTP route-template resource for Kubernetes Gateway API (HTTPRoute):
 
 ----
-apiVersion: rtf.mulesoft.com/v1
-kind: HttpRouteTemplate
-metadata:
-  name: example-template-gateway
-  namespace: rtf
-spec:
-  baseEndpoints:
-    - https://demo.example.com
-  resources: |-
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: {{ .ResourceName }}
-  namespace: {{ .Namespace }}
-spec:
-  parentRefs:
-  - kind: Gateway
-    name: cluster-gateway
-  hostnames:
-  - {{ .Host }}
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: {{ .Path }}
-    backendRefs:
-    - name: {{ .Service.Name }}
-      port: {{ .Service.Port }}
+apiVersion: rtf.mulesoft.com/v1  
+kind: HTTPRouteTemplate  
+metadata:  
+  name: example-template-gateway  
+  namespace: rtf  
+spec:  
+  baseEndpoints:  
+    - https://example.com  
+  resources:  
+    - |  
+      apiVersion: gateway.networking.k8s.io/v1  
+      kind: HTTPRoute  
+      metadata:  
+        name: {{ .ResourceName }}  
+        namespace: {{ .Namespace }}  
+      spec:  
+        parentRefs:  
+          - kind: Gateway  
+            name: cluster-gateway  
+        hostnames:  
+          - {{ .Host }}  
+        rules:  
+          - matches:  
+              - path:  
+                  type: PathPrefix  
+                  value: {{ .Path }}  
+            backendRefs:  
+              - name: {{ .Service.Name }}  
+                port: {{ .Service.Port }}  
 ----
 
 [NOTE]
