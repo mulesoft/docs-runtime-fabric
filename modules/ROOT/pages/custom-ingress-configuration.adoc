@@ -1,4 +1,4 @@
-= Configuring Ingress for Runtime Fabric
+= Configuring Ingress Resource Template in Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -98,9 +98,11 @@ Note the following about this example:
 <2> ingressClassName must be prefixed with `rtf-`, for example, `rtf-nginx`.
 +
 Runtime Fabric uses the `rtf-` prefix to recognize the object as a template.
-Templates with `rtf-` prefix in the `spec.ingressClassName` field or in the `kubernetes.io/ingress.class` annotation
-are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
+Templates with `rtf-` prefix in the `spec.ingressClassName` field are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
 Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example, `nginx` or `haproxy`.
+
+[NOTE]
+`kubernetes.io/ingress.class` is deprecated by K8s > 1.18, for details refer to https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#deprecating-the-ingress-class-annotation[Improvements to the Ingress API in Kubernetes 1.18]
 
 <3> TLS is optional.
 +
@@ -242,26 +244,6 @@ Note that already created ingress objects based on this template are not updated
 To update existing ingresses with the template changes, you have to perform a redeployment of the Mule application.
 For example, if you update the base domain which requires to change the endpoint for the ingress template, you must remove the old endpoint and add the new one as part of the application redeployment.
 
-== Configure Ingress for a Mule Application Deployment in Runtime Fabric
-
-To configure ingress, complete the following tasks:
-
-. Create an ingress resource template and apply it in the cluster.
-. Configure ingress for a Mule application.
-
-=== Before You Begin
-
-Before configuring ingress in Runtime Fabric, you must set up an ingress controller. See the https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/[Kubernetes documentation^] for a list of ingress controllers. 
-
-=== Create an Ingress Resource Template and Apply it in the Cluster
-
-Use one of the xref:example-ingress-resource-templates[example templates] to create an ingress resource. 
-
-include::partial$include-ingress-tasks.adoc[tags=createTemplate]
-
-=== Configure Ingress for a Mule Application  
-
-include::partial$include-ingress-tasks.adoc[tags=configureIngressRuntimeManager]
 
 == Existing Ingress Configurations Translated Post-Upgrade 
 
