@@ -183,7 +183,7 @@ Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 
 | 0.25  | 8 | 2
 | 0.5 | 10 | 4
 | 0.75 | 10 | 6
-| \>= 1 | 10 | 8
+| &gt;= 1 | 10 | 8
 |===
 // end::cpuKeysCertificates[]
 // tag::keyTypes[]
