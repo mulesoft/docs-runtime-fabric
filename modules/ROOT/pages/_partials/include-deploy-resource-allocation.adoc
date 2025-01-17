@@ -175,7 +175,7 @@ The internal load balancer runs on the controller VMs of Runtime Fabric. Size th
 
 == CPU Requirements for Keys and Certificates
 
-Ensure that you allocate enough CPU resources to support a minmum of 10 PEM/P12 or 8 JKS/JCEKS certificates. The number of recommended cores are:
+Ensure that you allocate enough CPU resources to support a minimum of 10 PEM/P12 or 8 JKS/JCEKS certificates. The number of recommended cores are:
 
 [%header,cols="3*a"]
 |===
