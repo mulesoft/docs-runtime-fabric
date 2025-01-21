@@ -65,7 +65,7 @@ resources:
 Use the `{{ .UniqueID }}` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `/api/{{ .UniqueID }}.com` in the path section of the ingress template, the resulting endpoint will be similar to `/api/7jkbic.com`.
 
 [NOTE]
-The placeholders are currently scoped to the `resources` section of the `httproutetemplates.rtf.mulesoft.com`only.
+The placeholders are currently scoped to the `resources` section of the `httproutetemplates.rtf.mulesoft.com` only.
 Usage of these placeholders on the baseEndpoints and Anypoint Runtime Manager UI will be supported in future releases.
 
 == How the HTTP Route-Template Custom Resource Works in Runtime Fabric
@@ -119,6 +119,7 @@ spec:
         labels:
         annotations:
       spec:
+       ingressClassName: nginx
        tls:
        - hosts:
          - {{ .Host }}
@@ -142,6 +143,9 @@ spec:
 . One or more Kubernetes routing resources, such as an Ingress resource.
 . Host or domain from the Mule app's public URL.
 . Path from the Mule app's public URL. 
+
+[NOTE]
+For Runtime fabric software entire `resources` is a list of strings and gets consumed as is. So you dont have to configure any special prefix like `rtf-` for IngressClassName
 
 On the Anypoint Runtime Manager UI page, application developers see the following Base Endpoints to configure their app deployment.
 
