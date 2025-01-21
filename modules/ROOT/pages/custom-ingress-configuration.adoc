@@ -49,7 +49,6 @@ image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtim
 
 The following examples illustrate how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress-resource template. 
 
-Use the API version appropriate to your Kubernetes version:  
 
 === networking.k8s.io/v1
 
