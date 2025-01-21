@@ -95,7 +95,7 @@ kubectl get crd httproutetemplates.rtf.mulesoft.com -o yaml
 
 Review these HTTP route-templates examples for Kubernetes ingress, OpenShift routes, and Kubernetes Gateway API (HTTPRoute).
 
-
+[[kubernetes-ingress]]
 === Example for Kubernetes Ingress
 This example shows an HTTP route-template resource for Kubernetes ingress:
 
