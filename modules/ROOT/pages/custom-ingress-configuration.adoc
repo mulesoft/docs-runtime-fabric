@@ -43,6 +43,8 @@ image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtim
 . A Mule application developer uses Runtime Manager to configure an application for deployment by selecting an available host, an optional subdomain, and a path combination, as specified in the ingress template. 
 . Runtime Fabric receives the application deployment request and uses the ingress configurations from the template to create a corresponding ingress object in the cluster.
 
+
+[[kubernetes-ingress]]
 == Example Ingress Resource Templates
 
 The following examples illustrate how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress-resource template. 
