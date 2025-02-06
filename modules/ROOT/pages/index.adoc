@@ -127,7 +127,7 @@ When you deploy an application in Anypoint Runtime Fabric on, the following occu
 
 image::rtf-app-deployment.png[Application deployment workflow for Runtime Fabric]
 
-Application pods in the worker namespace must communicate with the resource cache in the Runtime Fabric agent namespace to retrieve deployable artifacts.
+To retrieve deployable artifacts, application pods in the worker namespace must communicate with the resource cache in the Runtime Fabric agent namespace.
 
 === Assigning Namespaces in Anypoint Runtime Fabric
 
