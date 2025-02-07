@@ -343,4 +343,4 @@ The results should be similar to:
 
 Scenario: When using an AWS ALB, you can’t access an application’s endpoint, even though you successfully deployed the application and endpoint. 
 
-If you’re using AWS Load Balancer Controller for ingress, you must specify the `spec.ingressClassName: rtf-alb` annotation in the template. AWS Load Balancer Controller requires the `spec.ingressClassNamegit` annotation to discover and create L7 load balancers for deployed ingress resources for those annotations.
+If you’re using AWS Load Balancer Controller for ingress, you must specify the `spec.ingressClassName: rtf-alb` in the template. AWS Load Balancer Controller requires the `spec.ingressClassNamegit` to discover and create L7 load balancers for deployed ingress resources for those annotations.
