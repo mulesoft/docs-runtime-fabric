@@ -5,6 +5,8 @@ endif::[]
 :page-aliases: enable-inbound-traffic-self.adoc
 
 [IMPORTANT]
+
+test
 ====
 This content refers to configuring ingress on Runtime Fabric for versions 1.10 and later. Refer to the documentation for versions 1.8 or 1.9 for previous ingress configuration instructions.
 ==== 
