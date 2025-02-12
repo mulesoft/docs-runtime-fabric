@@ -168,7 +168,6 @@ CREATE TABLE IF NOT EXISTS stores (
 	CONSTRAINT UK_stores UNIQUE (name, org_id, env_id)
 );
 CREATE TABLE IF NOT EXISTS items (
-	id SERIAL PRIMARY KEY,
 	store_id INT NOT NULL REFERENCES stores(id),
 	key VARCHAR(255) NOT NULL,
 	partition VARCHAR(255) NOT NULL,
@@ -186,6 +185,8 @@ CREATE TABLE IF NOT EXISTS items (
 ----
 
 To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not to have applications deployed during this process on both clusters to prevent unexpected results.
+
+If you're using a version of the Runtime Fabric agent higher than 2.6.22, the `id` parameter in the `CREATE TABLE IF NOT EXISTS items` statement no longer applies. For previous versions of the Runtime Fabric agent 2.6.22, the `id` parameter is available in the items table. 
 
 
 == See Also
