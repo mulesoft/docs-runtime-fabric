@@ -6,8 +6,6 @@ endif::[]
 Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics. The `rtfctl` tool supports the following actions:
 
 * Get the status of a Runtime Fabric.
-* Perform a heap dump or a thread dump of a running application.
-* Display memory usage of a running application.
 * Manage proxy settings.
 * Manage secure properties.
 * Manage a Mule license.
