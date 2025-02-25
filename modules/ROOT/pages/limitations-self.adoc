@@ -49,7 +49,16 @@ Anypoint Runtime Fabric requires worker nodes with the x86-64 architecture. ARM-
 
 === Operating Systems
 
-Anypoint Runtime Fabric works on any Linux distribution supported by Amazon EKS, AKS, GKE, or RedHat OpenShift.
+Anypoint Runtime Fabric works on any Linux distribution supported by:
+
+* Alibaba Cloud Container Service (ACK)
+* Amazon Elastics Kubernetes Service (EKS)
+* Amazon EKS Anywhere (EKS-A)
+* Google Kubernetes Engine (GKE)
+* Microsoft Azure Kubernetes Service (AKS)
+* Rancher Kubernetes Engine (RKE2)
+* Red Hat OpenShift
+* VMware Tanzu
 
 === Nodes and Resources
 
