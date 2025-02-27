@@ -151,7 +151,9 @@ On the Anypoint Runtime Manager UI page, application developers see the followin
 
 image::rtf-ingress-rtm.png[Ingress configuration window in Runtime Manager UI]
 
-Finally, when this application is deployed to the Runtime Fabric target, each endpoint will result in the creation of an ingress resource. In this example:
+Finally, when this application is deployed to the Runtime Fabric target, each endpoint will result in the creation of an ingress resource. 
+
+In this example, the ingress resource generated corresponds to the `myapp.example.com` host endpoint:
 
 ----
 apiVersion: networking.k8s.io/v1
@@ -186,6 +188,8 @@ spec:
     - myapp.example.com
     secretName: testsecret-tls
 ----
+
+In this example, the ingress resource generated corresponds to the `example.com` host endpoint:
 
 ----
 apiVersion: networking.k8s.io/v1
