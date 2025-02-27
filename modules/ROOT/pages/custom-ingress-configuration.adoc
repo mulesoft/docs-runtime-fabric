@@ -93,7 +93,7 @@ Note the following about this example:
 Runtime Fabric uses the `rtf-` prefix to recognize the object as a template.
 Templates with `rtf-` prefix in the `spec.ingressClassName` field are consumed by the Runtime Fabric agent only and not by the actual ingress controller.
 Ingress controllers discover only those resources with a `spec.ingressClassName` value that use the vendor-specific name, for example, `nginx` or `haproxy`.
-
++
 [NOTE]
 `kubernetes.io/ingress.class` is deprecated by K8s > 1.18, for details refer to https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#deprecating-the-ingress-class-annotation[Improvements to the Ingress API in Kubernetes 1.18]
 
@@ -343,4 +343,4 @@ The results should be similar to:
 
 Scenario: When using an AWS ALB, you can’t access an application’s endpoint, even though you successfully deployed the application and endpoint. 
 
-If you’re using AWS Load Balancer Controller for ingress, you must specify the `kubernetes.io/ingress.class: rtf-alb` annotation in the template, _not_ `ingressClassName: rtf-alb`. AWS Load Balancer Controller requires the `ingress.class` annotation to discover and create L7 load balancers for deployed ingress resources for those annotations.
+If you’re using AWS Load Balancer Controller for ingress, you must specify the `spec.ingressClassName: rtf-alb` in the template. AWS Load Balancer Controller requires the `spec.ingressClassName` to discover and create L7 load balancers for deployed ingress resources for those annotations.
