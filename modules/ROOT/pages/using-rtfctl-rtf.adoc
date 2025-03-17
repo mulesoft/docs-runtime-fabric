@@ -4,7 +4,6 @@ After you set up the `rtfctl` command line tool, use `rtfctl` commands to instal
 
 * xref:install-self-managed.adoc[Installing Runtime Fabric]
 * xref:configure-rtf-rtfctl.adoc[Configuring Runtime Fabric]
-* xref:uninstall-self.adoc#unistall-rtfctl-rtf[Uninstalling Runtime Fabric]
 * xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric]
 * xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric]
 * xref:troubleshoot-rtf-rtfctl.adoc[Troubleshooting Runtime Fabric]
