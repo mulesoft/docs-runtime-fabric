@@ -90,3 +90,7 @@ chmod +x rtfctl
 ----
 `rtfctl update`
 ----
+
+== See Also
+
+* xref:using-rtfctl.adoc[]
