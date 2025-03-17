@@ -2,9 +2,10 @@
 
 The `rtfctl` command line tool enables you to locally manage Runtime Fabrics. Using `rtfctl` you can perform the following actions:
 
+* Install, configure, and troubleshoot Runtime Fabrics
 * Get the status of a Runtime Fabric
 * Perform a heap dump or a thread dump of a running application
-* Display memory usage of a running application
+* Display memory usage of a running Mule app
 * Manage proxy settings
 * Manage secure properties
 * Manage a Mule license
@@ -25,4 +26,4 @@ After you install the command line tool, you can start using `rtfctl` commands t
 
 == See Also
 
-* xref:install-rtfctl.adoc[RTFCTL Reference]
+* xref:install-rtfctl.adoc[]

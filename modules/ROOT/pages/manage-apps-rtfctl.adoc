@@ -1,0 +1,10 @@
+
+= Managing Mule Apps on Runtime Fabric with RTFCTL
+
+Use these `rtfctl` commands to manage Mule apps deployed to Runtime Fabric.
+
+include::partial$rtfctl-commands.adoc[tag=manage-rtfctl]
+
+== See Also
+
+* xref:using-rtfctl.adoc[]

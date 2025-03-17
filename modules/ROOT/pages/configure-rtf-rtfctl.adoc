@@ -1,0 +1,10 @@
+
+= Configuring Runtime Fabric with RTFCTL
+
+Use these `rtfctl` commands to configure Runtime Fabric.
+
+include::partial$rtfctl-commands.adoc[tag=configure-rtfctl]
+
+== See Also
+
+* xref:using-rtfctl.adoc[]

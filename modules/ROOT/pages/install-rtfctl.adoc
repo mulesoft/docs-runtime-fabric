@@ -1,34 +1,32 @@
-= Using the Runtime Fabric Command Line Tool
+= Install the Runtime Fabric Command Line Tool
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Install and use the `rtfctl` command line tool to locally manage Runtime Fabrics. The `rtfctl` tool supports the following actions:
+Install the `rtfctl` command-line tool to locally manage Runtime Fabrics.
 
-* Get the status of a Runtime Fabric.
-* Manage proxy settings.
-* Manage secure properties.
-* Manage a Mule license.
-* Manage the alert sender email address.
-
-[Note]
-If you are using the default namespace (rtf), you do not need to specify the additional flag `--namespace <rtf_namespace>`. Note that this flag is introduced only as of rtfctl version 0.4.1.
+[NOTE]
+If you are using the default namespace (rtf), don't specify the flag `--namespace <rtf_namespace>`. This flag is introduced only as of `rtfctl` version 0.4.1.
 
 [[install-rtfctl]]
-== Install rtfctl 
+== Install RTFCTL Tool 
 
 [IMPORTANT]
 ====
-The tasks in the section must be performed by an IT administrator.
+Your IT administrator must perform these installation tasks.
 
-If you're using Runtime Fabric for AKS and have the AKS-managed Azure AD integration enabled, the following command returns the credentials needed to run rtfctl commands:
+If you're using Runtime Fabric for AKS and have the AKS-managed Azure AD integration enabled, this command returns the credentials needed to run `rtfctl` commands:
 
 `az aks get-credentials --name <NAME> --resource-group <RESOURCE_GROUP> --admin` 
 ====
 
-. Download the `rtfctl` command-line tool:
+`rtfctl` is supported on Windows, MacOS (Darwin), and Linux.
+
+Perform these steps for the installation:
+
+. Download the `rtfctl` command-line tool by running the appropriate operating system CURL command:
 +
-`rtfctl` is supported on Windows, MacOS (Darwin), and Linux. Choose the appropriate method:
+
 +
 * Windows
 +
@@ -48,435 +46,41 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl-darwin/l
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -o rtfctl
 ----
 
-. Change file permissions for the `rtfctl` command-line tool:
+. Change the file permissions for the `rtfctl` command-line tool:
 +
 ----
 chmod +x rtfctl
 ----
 
-=== Running Commands
+=== Run Commands
 
-The `rtfctl` command line tool consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+The `rtfctl` command line tool consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
 
 * Run `rtfctl` commands as a privileged user.
 * To list all supported commands, run `rtfctl -h`. 
 * For more information about a specific command, run `rtfctl <command> -h`.
 
-=== Checking for Proxy Settings
+=== Check for Proxy Settings
 
-When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and will accept a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
+When you run commands, `rtfctl` checks for any proxy settings in your environment. The tool looks for a `NO_PROXY` key (in upper case) and accepts a `no_proxy` key (in lower case) if `NO_PROXY` is not used. If both keys are present, `rtfctl` uses `NO_PROXY`. The `rtfctl` tool sets the key in your local Kubernetes context to honor your proxy settings.
 
-[[configure-rtfctl]]
-== Commands for Configuring Runtime Fabric
 
-Use the following commands to configure Runtime Fabric.
 
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:apply[`apply`] | Applies changes to a Runtime Fabric configuration
-|xref:update[`update`] | Updates rtfctl
-|xref:wait[`wait`] | Waits for Runtime Fabric components to become ready
-|xref:renew[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
-|===
+== Install a Mule License
 
-=== `apply` 
+To install a Mule license, follow these steps:
 
-Applies changes to a Runtime Fabric configuration.
-
-[NOTE]
-Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
-
-* Applies an HTTP proxy configuration
-+
-----
-rtfctl apply http-proxy http://<host>:<port> --namespace <rtf_namespace>
-----
-
-* Applies an HTTP proxy configuration with hostnames bypassing the proxy
-+
-----
-rtfctl apply http-proxy http://<host>:<port> --no-proxy "DOMAIN1.com,DOMAIN2.com" --namespace <rtf_namespace>
-----
-
-* Applies an HTTP proxy configuration with authentication
-+
-----
-rtfctl apply http-proxy http://<username>:<password>@<host>:<port> --namespace <rtf_namespace>
-----
-
-* Clears an HTTP proxy configuration
-+
-----
-rtfctl apply http-proxy "" --no-proxy "" --namespace <rtf_namespace>
-----
-
-* Applies a secure property
-+
-----
-rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Applies a system configuration on a host node
-+
-----
-rtfctl apply system-configuration
-----
-
-* Applies a system configuration on a host node without downloading the latest scripts
-+
-----
-rtfctl apply system-configuration --skip-download
-----
-
-* Applies a Mule license
-+
-----
-rtfctl apply mule-license <base64_encoded_license> --namespace <rtf_namespace>
-----
-If Runtime Fabric is installed via Helm, you must update the `mule-license` property in the Helm values.
-
-* Applies a monitoring proxy
-+
-----
-rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
-----
-
-* Clears a monitoring proxy configuration
-+
-----
-rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
-----
-
-=== `update` 
-
-Updates `rtfctl`.
-
-* Updates from the US control plane
-+
-----
-rtfctl update
-----
-
-* Updates `rtfctl` from the EU control plane
-+
-----
-rtfctl update --host eu1.anypoint.mulesoft.com
-----
-
-=== `wait`
-Waits for Runtime Fabric components to become ready
-
-* Specifies the number of seconds to wait 
-----
-rtfctl wait <value_in_seconds> --namespace <rtf_namespace>
-----
-
-* Specifies the number of seconds to pass before timing out the wait (Default is 600 seconds)
-
-----
-rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
-----
-
-=== `renew`
-
-Renews an expired client certificate using a pre-downloaded package
-
-----
-rtfctl renew-expired-client-cert <cert-bundle-filename>
-----
-
-== Commands for Installing and Upgrading Runtime Fabric
-
-Use the following commands when installing or upgrading Runtime Fabric, or when performing a back up or restore. 
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:install[`install`] | Installs Runtime Fabric
-|xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
-|xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
-|xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
-|xref:version[`version`] | Displays the Runtime Fabric version information
-|===
-
-=== `install`
-
-* Installs Runtime Fabric
-
-----
-rtfctl install <activation_data>
-----
-
-* Override the Docker image registry URL and secret 
-+
-----
-rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
-----
-
-=== `backup`
-Performs a back up of the local Runtime Fabric state.
-----
-rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
-----
-
-=== `restore`
-Restores the local Runtime Fabric state from a backup 
-
-----
-rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
-----
-
-=== `validate`
-Validates the cluster for a Runtime Fabric installation
-
-* Performs a validation check
-+
-----
-rtfctl validate <activation_data>
-----
-
-* Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
-+
-----
-rtfctl validate -f <path_to_settings_file>
-----
-+
-To validate installation with a proxy, you must specify proxy settings in your `settings` file:
-
-----
-MULE_LICENSE=<your-mule-license>
-ACTIVATION_DATA=<activation_data>
-HTTP_PROXY=http://<proxy_domain>.com:<port>
-----
-
-* Override the Docker image registry URL and secret 
-+
-----
-rtfctl validate <activation_data> --image-pull-registry <string> --image-pull-secret <string>
-----
-
-=== `version` 
-Displays the Runtime Fabric version information
-
-----
-rtfctl version --namespace <rtf_namespace>
-----
-
-[[manage-rtfctl-apps]]
-== Commands for Managing Applications on Runtime Fabric
-
-Use the following commands to manage applications deployed to Runtime Fabric.
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:delete[`delete`] | Deletes a secure property
-|xref:disk[`disk`] | Displays disk usage for an application
-|xref:restart[`restart`] | Restarts an application
-|===
-
-=== `delete`
-Deletes a secure property
-----
-rtfctl delete secure-property <sample_key> -n <app_namespace>
-----
-
-
-=== `disk`
-
-Displays disk usage for an application
-
-* Displays the disk usage for an application, using the first replica by default
-+
-----
-rtfctl disk <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Displays the disk usage for an application, using a specific replica
-+
-----
-rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-
-----
-
-
-
-=== `restart`
-Restarts an application
-
-----
-rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-
-[[troubleshooting-rtfctl]]
-== Commands for Troubleshooting Runtime Fabric
-
-Use the following commands to troubleshoot Runtime Fabric.
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:get[`get`] | Displays one or more resources
-|xref:ping[`ping`] | Tests network connectivity
-|xref:report[`report`] | Generates a diagnostics report
-|xref:status[`status`] | Displays the status of Runtime Fabric
-|xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
-|===
-
-=== `get`
-
-Displays one or more resources
-
-* Prints a list of all applications in all environments
-+
-----
-rtfctl get apps --namespace <rtf_namespace>
-----
-
-* Prints a list of all applications in a specific environment 
-+
-----
-rtfctl get apps --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Displays an HTTP proxy configurations
-+
-----
-rtfctl get http-proxy --namespace <rtf_namespace>
-----
-
-* Displays a monitoring proxy configuration
-+
-----
-rtfctl get monitoring-proxy --namespace <rtf_namespace>
-----
-
-* Displays secure properties
-+
-----
-rtfctl get secure-properties --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Displays the Mule license
-+
-----
-rtfctl get mule-license --namespace <rtf_namespace>
-----
-
-* Displays Runtime Fabric registry credentials
-+
-----
-rtfctl get registry-credentials <activation_data>
-----
-
-=== `ping`
-Tests network connectivity
-
-* Pings example.com from inside an application, using the first replica by default
-+
-----
-rtfctl ping <app_name> <host_or_ip_address> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Attempts to connect to example.com on port `12345` from inside an application, using the first replica by default
-+
-----
-rtfctl ping <app_name> <host_or_ip_address> --port <port> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-=== `report`
-Generates a diagnostics report at `rtf-report.tar.gz`
-
-----
-rtfctl report --namespace <rtf_namespace>
-----
-
-Run rtfctl report tasks in parallel by using the `workers` flag that controls the number of tasks to run in parallel. The default value is 10.
-
-----
-rtfctl report --workers <num_of_workers>
-----
-
-Faster compression of the tarball generated by `rtfctl report` with the `--use-fast-compression` flag. The default value is false.
-
-----
-rtfctl report --use-fast-compression=true
-----
-
-Select which application namespaces to include in the report besides the installation namespace by using the `--namespaces` flag. The flag controls what to include in the reports and can result in faster collection if only selected namespaces are reported.
-
-
-
-----
-  # Reports rtf installation default namespace (rtf)
-  rtfctl report 
-  # Reports only <rtf_namespace>
-  rtfctl report -n <rtf_namespace>
-  # Reports for <app_namespace_1> and <app_namespace_2> application namespaces that belong to <rtf_namespace>
-  rtfctl report -n <rtf_namespace> --app-namespaces <app_namespace_1>,<app_namespace_2> 
-  rtfctl report -n <rtf_namespace> --app-namespaces <app_namespace_1> --app-namespaces <app_namespace_2> 
-  # Report for all application namespaces that belong to <rtf_namespace>
-  rtfctl report -n <rtf_namespace> --app-namespaces all
-
-----
-
-Specifies the name of the helm release to support installations using custom release names.
-
-----
-rtfctl report --release-name <agentReleaseName>
-----
-
-=== `status` 
-
-Displays the status of Runtime Fabric
-
-* Displays status output in JSON
-+
-----
-rtfctl status --output json --namespace <rtf_namespace>
-----
-	
-* Checks Kubernetes DNS health
-+
-----
-rtfctl status dns-check --node-label "<k>:<v>"
-----
-
-=== `test` 
-Verifies outbound network connectivity to the Runtime Fabric control plane.
-
-* Schedules a check on any nodes
-+
-----
-rtfctl test outbound-network --namespace <rtf_namespace>
-----
-
-* Schedules a check the nodes satisfying the `node-label` parameter
-+
-----
-rtfctl test outbound-network --node-label "<k>:<v>" --namespace <rtf_namespace>
-----
- 
-* Schedules a check on all nodes
-+
-----
-rtfctl test outbound-network --all --namespace <rtf_namespace>
-----
-
-== Usage
-
-=== Install a Mule license
-
-.. Make sure to base64 encode the license.
-.. Run the following command:
+. Make sure to base64 encode the license.
+. Run the following command:
 +
 ----
 $ sudo ./rtfctl apply mule-license '<license-key-information>'  --namespace rtf1
 Updating rtf namespace... OK
 ----
 
-=== Capture a Heap Dump
+== Capture a Heap Dump
+
+To capture a heap dump, run this command:
 
 ----
 $ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof --app-namespace bed42b62-XXXX --namespace rtf1
@@ -486,7 +90,7 @@ Heap dump written to /tmp/dump.hprof
 
 For additional information, run the `rtfctl heapdump -h` command.
 
-=== Working with Multiple Replicas
+== Work with Multiple Replicas
 
 For application management commands that accept a `--pod` flag, you can obtain the list of replicas using the `describe` command:
 
@@ -507,7 +111,7 @@ Replicas:          1 desired | 1 updated | 1 total | 0 available | 1 unavailable
 ----
 
 [[auditing]]
-== Auditing rtfctl Operations
+== Audit RTFCTL Operations
 
 The `rtfctl` command line tool (from v1.0.29 and above) audits the `rtfctl` operations on the cluster and it helps cluster administrators and you to track operations that impact Runtime Fabric core software.
 
@@ -517,7 +121,7 @@ Consider the following points:
 * Audit logs are cluster scoped and not attached to Runtime Fabric core software lifecycle.
 * Command executions remain operational even if the auditing process fails to audit the operation.
 
-To audit the operations, run the following command:
+To audit the operations, run this command:
 ----
 $ sudo ./rtfctl audit-logs
 ----
@@ -530,7 +134,7 @@ An output example:
 [NOTE]
 Currently audit logs rollover or rotation is not supported.
 
-== Understanding rtfctl Output
+== Understand RTFCTL Output
 
 The `rtfctl` command line tool commonly calls other applications and system tools, and the output of those calls is sent to standard output and standard error output. This output is written in the context of each operation performed.
 
@@ -538,9 +142,9 @@ The `rtfctl` command line tool includes a last output line on the most verbose c
 
 If you are in doubt about whether a message represents a problem or not, discuss it with your system administrator or contact MuleSoft support.
 
-== Download Previous rtfctl CLI Versions
+== Download Previous RTFCTL CLI Versions
 
-Use the following rest API call to download different rtfctl tool CLI versions:
+Use the following rest API call to download different `rtfctl` tool CLI versions:
 
 ----
 curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/{version} -o rtfctl
@@ -549,5 +153,4 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/{version
 
 == See Also
 
-* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
-* xref:manage-secure-properties.adoc[Manage Secure Properties in Runtime Fabric]
+* xref:using-rtfctl.adoc[]

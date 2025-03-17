@@ -1,0 +1,429 @@
+// tag::install-rtfctl[]
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:install[`install`] | Installs Runtime Fabric
+|xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
+|xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
+|xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
+|xref:version[`version`] | Displays the Runtime Fabric version information
+|===
+
+=== `install`
+
+* Installs Runtime Fabric
+
+----
+rtfctl install <activation_data>
+----
+
+* Override the Docker image registry URL and secret 
++
+----
+rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
+----
+
+=== `backup`
+Performs a back up of the local Runtime Fabric state.
+----
+rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
+----
+
+=== `restore`
+Restores the local Runtime Fabric state from a backup 
+
+----
+rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
+----
+
+=== `validate`
+Validates the cluster for a Runtime Fabric installation
+
+* Performs a validation check
++
+----
+rtfctl validate <activation_data>
+----
+
+* Performs a validation check and passes the `fabric.tf` configuration file that contains proxy settings
++
+----
+rtfctl validate -f <path_to_settings_file>
+----
++
+To validate installation with a proxy, you must specify proxy settings in your `settings` file:
+
+----
+MULE_LICENSE=<your-mule-license>
+ACTIVATION_DATA=<activation_data>
+HTTP_PROXY=http://<proxy_domain>.com:<port>
+----
+
+* Override the Docker image registry URL and secret 
++
+----
+rtfctl validate <activation_data> --image-pull-registry <string> --image-pull-secret <string>
+----
+
+=== `version` 
+Displays the Runtime Fabric version information
+
+----
+rtfctl version --namespace <rtf_namespace>
+----
+
+[[manage-rtfctl-apps]]
+== Commands for Managing Applications on Runtime Fabric
+
+Use the following commands to manage applications deployed to Runtime Fabric.
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:delete[`delete`] | Deletes a secure property
+|xref:disk[`disk`] | Displays disk usage for an application
+|xref:restart[`restart`] | Restarts an application
+|===
+
+=== `delete`
+Deletes a secure property
+----
+rtfctl delete secure-property <sample_key> -n <app_namespace>
+----
+
+
+=== `disk`
+
+Displays disk usage for an application
+
+* Displays the disk usage for an application, using the first replica by default
++
+----
+rtfctl disk <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Displays the disk usage for an application, using a specific replica
++
+----
+rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+
+----
+
+=== `restart`
+Restarts an application
+
+----
+rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+// end::install-rtf[]
+// tag::configure-rtfctl[]
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:apply[`apply`] | Applies changes to a Runtime Fabric configuration
+|xref:update[`update`] | Updates rtfctl
+|xref:wait[`wait`] | Waits for Runtime Fabric components to become ready
+|xref:renew[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
+|===
+
+=== `apply` 
+
+Applies changes to a Runtime Fabric configuration.
+
+[NOTE]
+Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
+
+* Applies an HTTP proxy configuration
++
+----
+rtfctl apply http-proxy http://<host>:<port> --namespace <rtf_namespace>
+----
+
+* Applies an HTTP proxy configuration with hostnames bypassing the proxy
++
+----
+rtfctl apply http-proxy http://<host>:<port> --no-proxy "DOMAIN1.com,DOMAIN2.com" --namespace <rtf_namespace>
+----
+
+* Applies an HTTP proxy configuration with authentication
++
+----
+rtfctl apply http-proxy http://<username>:<password>@<host>:<port> --namespace <rtf_namespace>
+----
+
+* Clears an HTTP proxy configuration
++
+----
+rtfctl apply http-proxy "" --no-proxy "" --namespace <rtf_namespace>
+----
+
+* Applies a secure property
++
+----
+rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Applies a system configuration on a host node
++
+----
+rtfctl apply system-configuration
+----
+
+* Applies a system configuration on a host node without downloading the latest scripts
++
+----
+rtfctl apply system-configuration --skip-download
+----
+
+* Applies a Mule license
++
+----
+rtfctl apply mule-license <base64_encoded_license> --namespace <rtf_namespace>
+----
+If Runtime Fabric is installed via Helm, you must update the `mule-license` property in the Helm values.
+
+* Applies a monitoring proxy
++
+----
+rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
+----
+
+* Clears a monitoring proxy configuration
++
+----
+rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
+----
+
+=== `update` 
+
+Updates `rtfctl`.
+
+* Updates from the US control plane
++
+----
+rtfctl update
+----
+
+* Updates `rtfctl` from the EU control plane
++
+----
+rtfctl update --host eu1.anypoint.mulesoft.com
+----
+
+=== `wait`
+Waits for Runtime Fabric components to become ready
+
+* Specifies the number of seconds to wait 
+----
+rtfctl wait <value_in_seconds> --namespace <rtf_namespace>
+----
+
+* Specifies the number of seconds to pass before timing out the wait (Default is 600 seconds)
+
+----
+rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
+----
+
+=== `renew`
+
+Renews an expired client certificate using a pre-downloaded package
+
+----
+rtfctl renew-expired-client-cert <cert-bundle-filename>
+----
+// end::configure-rtfctl[]
+// tag::troubleshoot-rtfctl[]
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:get[`get`] | Displays one or more resources
+|xref:ping[`ping`] | Tests network connectivity
+|xref:report[`report`] | Generates a diagnostics report
+|xref:status[`status`] | Displays the status of Runtime Fabric
+|xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
+|===
+
+=== `get`
+
+Displays one or more resources
+
+* Prints a list of all applications in all environments
++
+----
+rtfctl get apps --namespace <rtf_namespace>
+----
+
+* Prints a list of all applications in a specific environment 
++
+----
+rtfctl get apps --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Displays an HTTP proxy configurations
++
+----
+rtfctl get http-proxy --namespace <rtf_namespace>
+----
+
+* Displays a monitoring proxy configuration
++
+----
+rtfctl get monitoring-proxy --namespace <rtf_namespace>
+----
+
+* Displays secure properties
++
+----
+rtfctl get secure-properties --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Displays the Mule license
++
+----
+rtfctl get mule-license --namespace <rtf_namespace>
+----
+
+* Displays Runtime Fabric registry credentials
++
+----
+rtfctl get registry-credentials <activation_data>
+----
+
+=== `ping`
+Tests network connectivity
+
+* Pings example.com from inside an application, using the first replica by default
++
+----
+rtfctl ping <app_name> <host_or_ip_address> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Attempts to connect to example.com on port `12345` from inside an application, using the first replica by default
++
+----
+rtfctl ping <app_name> <host_or_ip_address> --port <port> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+=== `report`
+Generates a diagnostics report at `rtf-report.tar.gz`
+
+----
+rtfctl report --namespace <rtf_namespace>
+----
+
+Run rtfctl report tasks in parallel by using the `workers` flag that controls the number of tasks to run in parallel. The default value is 10.
+
+----
+rtfctl report --workers <num_of_workers>
+----
+
+Faster compression of the tarball generated by `rtfctl report` with the `--use-fast-compression` flag. The default value is false.
+
+----
+rtfctl report --use-fast-compression=true
+----
+
+Select which application namespaces to include in the report besides the installation namespace by using the `--namespaces` flag. The flag controls what to include in the reports and can result in faster collection if only selected namespaces are reported.
+
+
+
+----
+  # Reports rtf installation default namespace (rtf)
+  rtfctl report 
+  # Reports only <rtf_namespace>
+  rtfctl report -n <rtf_namespace>
+  # Reports for <app_namespace_1> and <app_namespace_2> application namespaces that belong to <rtf_namespace>
+  rtfctl report -n <rtf_namespace> --app-namespaces <app_namespace_1>,<app_namespace_2> 
+  rtfctl report -n <rtf_namespace> --app-namespaces <app_namespace_1> --app-namespaces <app_namespace_2> 
+  # Report for all application namespaces that belong to <rtf_namespace>
+  rtfctl report -n <rtf_namespace> --app-namespaces all
+
+----
+
+Specifies the name of the helm release to support installations using custom release names.
+
+----
+rtfctl report --release-name <agentReleaseName>
+----
+
+=== `status` 
+
+Displays the status of Runtime Fabric
+
+* Displays status output in JSON
++
+----
+rtfctl status --output json --namespace <rtf_namespace>
+----
+	
+* Checks Kubernetes DNS health
++
+----
+rtfctl status dns-check --node-label "<k>:<v>"
+----
+
+=== `test` 
+Verifies outbound network connectivity to the Runtime Fabric control plane.
+
+* Schedules a check on any nodes
++
+----
+rtfctl test outbound-network --namespace <rtf_namespace>
+----
+
+* Schedules a check the nodes satisfying the `node-label` parameter
++
+----
+rtfctl test outbound-network --node-label "<k>:<v>" --namespace <rtf_namespace>
+----
+ 
+* Schedules a check on all nodes
++
+----
+rtfctl test outbound-network --all --namespace <rtf_namespace>
+----
+
+// end::troubleshoot-rtfctl[]
+// tag::manage-rtfctl[]
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:delete[`delete`] | Deletes a secure property
+|xref:disk[`disk`] | Displays disk usage for an application
+|xref:restart[`restart`] | Restarts an application
+|===
+
+=== `delete`
+Deletes a secure property
+----
+rtfctl delete secure-property <sample_key> -n <app_namespace>
+----
+
+=== `disk`
+
+Displays disk usage for an application
+
+* Displays the disk usage for an application, using the first replica by default
++
+----
+rtfctl disk <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+* Displays the disk usage for an application, using a specific replica
++
+----
+rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+
+----
+
+=== `restart`
+Restarts an application
+
+----
+rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
+
+// end::manage-rtfctl[]
