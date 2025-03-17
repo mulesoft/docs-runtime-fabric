@@ -5,14 +5,7 @@ Depending on your installation method, you can use the Runtime Fabric command li
 [[unistall-rtfctl-rtf]]
 == Uninstall Runtime Fabric Using rtfctl
 
-To uninstall Runtime Fabric using `rtfctl`:
-
-. Using Runtime Manager, delete all Mule applications and API gateways deployed on Runtime Fabric.
-. Verify on all associated environments that you have removed all applications.
-. Using Runtime Manager, delete the Runtime Fabric.
-. Run the `rtfctl uninstall` command to uninstall the Runtime Fabric services from the Kubernetes cluster.
-. Run the `rtfctl uninstall --confirm` command to verify the uninstall operation.
-. After the uninstall command finishes, verify that there are no Runtime Fabric applications or services running in the cluster.
+include::partial$rtfctl-commands.adoc[tag=unistall-rtfctl]
 
 == Uninstall Runtime Fabric Using Helm
 

@@ -8,6 +8,7 @@ After you set up the `rtfctl` command line tool, use `rtfctl` commands to instal
 * xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric]
 * xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric]
 * xref:troubleshoot-rtf-rtfctl.adoc[Troubleshooting Runtime Fabric]
+* xref:uninstall-rtf-rtfctl.adoc[Uninstall Runtime Fabric]
 * xref:replace-license-key.adoc[Replacing a Mule License Key]
 
 == See Also
