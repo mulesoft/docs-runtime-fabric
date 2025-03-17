@@ -3,9 +3,9 @@
 Depending on your installation method, you can use the Runtime Fabric command line tool (`rtfctl`) or Helm to uninstall Runtime Fabric.
 
 [[unistall-rtfctl-rtf]]
-== Uninstall Runtime Fabric Using rtfctl
+== Uninstall Runtime Fabric Using RTFCT:
 
-include::partial$rtfctl-commands.adoc[tag=unistall-rtfctl]
+include::partial$rtfctl-commands.adoc[tag=uninstall-rtfctl]
 
 == Uninstall Runtime Fabric Using Helm
 
