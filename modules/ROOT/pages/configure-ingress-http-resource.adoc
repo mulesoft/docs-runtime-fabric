@@ -307,7 +307,7 @@ spec:
 You are responsible for the configuration of the Kubernetes Gateway resources and allowing HTTPRoutes from the route's namespace to be attached.
 
 
-== Using TLS in the HTTP Route-Template Custom Resource
+== Use TLS in the HTTP Route-Template Custom Resource
 
 To use TLS in the routing resources in an HTTP route template, you may need to create a TLS secret in the Runtime Fabric namespace. For details, refer to the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes TLS] documentation.
 
