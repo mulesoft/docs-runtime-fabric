@@ -97,7 +97,6 @@ For more details, review the xref:runtime-fabric::security-architecture.adoc#sec
 Runtime Fabric installs the following application services only when they are configured by users:
 
 * Persistence Gateway: Provides a persistent ObjectStore v2 interface to Mule applications (Replication configured by user) 
-* Anypoint Monitoring sidecar: For monitoring and logging (One sidecar deployed per application replica)
 
 === Customer Managed
 
