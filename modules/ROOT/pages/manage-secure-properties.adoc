@@ -40,7 +40,7 @@ sudo ./rtfctl get secure-properties -n <environment_id>
 
 == Access Secure Properties
 
-You can access secure properties from inside your Mule application using `${key}`, that is the key provided in the rtfctl apply command. You can retrieve it as any other xref:mule-runtime::configuring-properties.adoc[configuration property].
+You can access secure properties from inside your Mule application using `${key}`, that is the key provided in the rtfctl apply command. You can retrieve it as any other https://docs.mulesoft.com/mule-runtime/latest/configuring-properties[configuration property].
 
 
 
