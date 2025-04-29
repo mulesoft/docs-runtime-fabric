@@ -308,7 +308,7 @@ muleLicense: <mule_license_key>
 global:
   authorizedNamespaces: false
   image:
-    rtfRegistry: <rtf-runtime-registry.kqa.msap.io or local registry value>
+    rtfRegistry: <rtf-runtime-registry.kprod.msap.io or local registry value>
     pullSecretName: rtf-pull-secret
   containerLogPaths:
   - /var/lib/docker/containers
