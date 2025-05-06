@@ -40,6 +40,7 @@ helm repo add <name> <helm_repo_url> --username <your_username> --password <your
 helm install runtime-fabric rtf/rtf-agent --version <rtf_version> -f values.yaml -n <rtf_namespace>
 ----
 
+[[required-parameters]]
 == Values.yaml File Required Parameters
 The values for these required parameters are set when you create the Runtime Fabric instance in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret. 
 
@@ -55,7 +56,7 @@ rtf-runtime-registry.kprod-eu.msap.io
 | `muleLicense` | Mule license for applications | Mule license key (must be Base64-encoded)
 |===
 
-[[required-parameters]]
+
 == Values.yaml Optional Parameters
 Set the following optional parameters as needed: 
 
