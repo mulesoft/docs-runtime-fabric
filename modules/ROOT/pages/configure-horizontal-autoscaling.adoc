@@ -149,7 +149,7 @@ Min replicas +
 
 Max replicas +
 
-* The maximum number of replicas that are capped, beyond which no more replicas can be added for scale up.
+* The maximum number of replicas that are capped, beyond which no more replicas can be added for scale up. For details, see xref:limitations-self.adoc#limitations[].
 * Scale up policy would never add replicas above this number.
 
 Enabling HPA can result in customers incurring additional flow usage when your application scales horizontally. To avoid overages from unpredicted scaling, configure the maximum configured replicas judiciously to stay within purchased flow limits. Track your incurred flow usage through xref:general::usage-reports.adoc[usage reports].
