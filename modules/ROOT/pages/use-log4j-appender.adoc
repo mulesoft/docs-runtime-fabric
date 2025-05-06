@@ -19,7 +19,7 @@ You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
 * When using custom Log4j configurations, both Mule runtime engine and application logs remain available in Anypoint Monitoring.
 
-== Enabling Log4j
+== Enable Log4j
 
 Custom Log4j configurations are disabled by default. When you install Runtime Fabric, the parameter is disabled (`false`) in `Values.yaml`. You must set the value to `true`.
 
@@ -28,7 +28,7 @@ You can also enable custom Log4j configurations by running the following steps:
 . From inside your cluster, run:
 +
 ----
-kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQ=="}}'
+kubectl -n rtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":"dHJ1ZQ=="}}'
 ----
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
@@ -49,7 +49,7 @@ In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources`
 [source,xml,linenums]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" name="cloudhub" packages="com.mulesoft.ch.logging.appender">
+<Configuration status="INFO" name="cloudhub" packages="com.mulesoft.ch.logging.appender, com.splunk.logging">
     <Appenders>
     	<Console name="CONSOLE" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{MM-dd HH:mm:ss}] %-5p %c{1} [%t]: %m%n"/>
@@ -95,6 +95,21 @@ For the latest version of Splunk, see https://github.com/splunk/splunk-library-j
 
 
 After your application starts, logs start flowing to your custom Log4j appender, and you can view them on your target logging system.
+
+== Disable Custom Log4j
+
+If you enabled Custom Log4j in the `values.yaml` during the installation of Runtime Fabric and you want to disable it at the Runtime Fabric cluster level, follow these steps:
+
+. In your cluster, run:
++
+----
+# kubectl -nrtf patch secret custom-properties -p '{"data":{"CUSTOM_LOG4J_ENABLED":""}}
+----
+. Restart the Runtime Fabric agent pod:
+----
+# kubectl delete pod -n rtf -l app=agent
+----
+. Restart the Mule app associated with the custom Log4j configuration.
 
 == See Also
 
