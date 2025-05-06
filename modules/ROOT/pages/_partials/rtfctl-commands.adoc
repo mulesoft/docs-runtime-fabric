@@ -132,7 +132,7 @@ rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_names
 Applies changes to a Runtime Fabric configuration.
 
 [NOTE]
-Any value used with `rtfcl apply` updates does not work for OpenShift. You have to update the values in the OpenShift console.
+AnYou can use the `rtfctl apply system-configuration` command to update OpenShift system-configuration values. Other rtfctl apply commands are not effective for OpenShift. For any other updates, modify the values in the OpenShift console.
 
 * Applies an HTTP proxy configuration
 +
