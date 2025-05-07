@@ -1,7 +1,7 @@
 // tag::monitoring-proxy[]
 == Configure an Anypoint Monitoring Proxy
 
-For Runtime Fabric deployments on version 2.6.22 and later, Anypoint Monitoring uses an HTTP proxy. Refer to <<configure-http, Configure an HTTP Proxy for Services in Runtime Fabric>> for details. 
+For Runtime Fabric deployments on version 2.6.22 and later, Anypoint Monitoring uses an HTTP proxy. Refer to <<configure-http>> for details. 
 
 For Runtime Fabric versions earlier than 2.6.22 and for legacy deployments, Anypoint Monitoring requires a SOCKS5 proxy. Use these steps for the configuration:
 
