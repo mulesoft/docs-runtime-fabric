@@ -316,9 +316,11 @@ To roll back to a previous version of Runtime Fabric using helm, refer to the ht
 
 == Retrieve Helm Registry Endpoints and Credentials
 
-To obtain the Helm registry endpoints and credentials, make a request to this API endpoint using a bearer token for authentication. Replace ORG_ID with your organization's ID, and ANYPOINT_PLATFORM_URL with your Anypoint Platform region URL:
+To obtain the Helm registry endpoints and credentials, make a request to this API endpoint using a bearer token for authentication: 
 
-https://<ANYPOINT_PLATFORM_URL>/runtimefabric/api/organizations/<ORG_ID>/helmrepoproperties 
+`https://<ANYPOINT_PLATFORM_URL>/runtimefabric/api/organizations/<ORG_ID>/helmrepoproperties`
+
+Replace `<ORG_ID>` with your organization's ID, and `<ANYPOINT_PLATFORM_URL>` with your Anypoint Platform region URL.
 
 The API response has this structure:
 ----
