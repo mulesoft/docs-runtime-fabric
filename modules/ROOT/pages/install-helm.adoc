@@ -314,6 +314,27 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 To roll back to a previous version of Runtime Fabric using helm, refer to the https://helm.sh/docs/helm/helm_rollback/[Helm rollback^] documentation for the command description.
 
+== Retrieve Helm Registry Endpoints and Credentials
+
+To obtain the Helm registry endpoints and credentials, make a request to the following API endpoint. Replace `ORG_ID`` with your organization's ID:
+
+https://anypoint.mulesoft.com/runtimefabric/api/organizations/<ORG_ID>/helmrepoproperties 
+
+The API response has this structure:
+----
+{
+"RTF_IMAGE_REGISTRY_ENDPOINT": "rtf-runtime-registry.kprod.msap.io",
+"RTF_IMAGE_REGISTRY_USER": "username/us-east-1/truncated",
+"RTF_IMAGE_REGISTRY_PASSWORD": "Truncated"
+}
+----
+
+The URL for the Helm repository containing the Helm charts, along with the registry endpoints and credentials, is constructed as follows:
+
+`{RTF_IMAGE_REGISTRY_ENDPOINT}/charts`.
+
+For example:
+`rtf-runtime-registry.kprod.msap.io/charts`
 
 == See Also
 
