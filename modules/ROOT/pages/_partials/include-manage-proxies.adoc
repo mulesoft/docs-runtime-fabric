@@ -1,10 +1,10 @@
 // tag::monitoring-proxy[]
 == Configure an Anypoint Monitoring Proxy
 
-Because the monitoring agent requires a SOCKS5 proxy, you need two proxy types if you use Anypoint Monitoring.
 
-[NOTE]
-Starting Runtime Fabric version 2.6.22, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version 2.6.22 onwards.
+For Runtime Fabric deployments on version 2.6.22 and later, Anypoint Monitoring uses an HTTP proxy. Refer to <<configure-http>> for details. 
+
+For Runtime Fabric versions earlier than 2.6.22 and for legacy deployments, Anypoint Monitoring requires a SOCKS5 proxy. Use these steps for the configuration:
 
 The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
 
@@ -44,12 +44,10 @@ The output should match the value expected.
 // tag::http-proxy[]
 . After setting up the proxy, validate the setup by running the `rtfctl validate` command. See xref:install-rtfctl.adoc#validate[rtfctl Validate] documentation.
 
+[[configure-http]]
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
 You can configure HTTP proxies so that outbound components can communicate with the control plane.
-
-[NOTE]
-Starting Runtime Fabric version 2.6.22, the following HTTP proxy is needed for Anypoint Monitoring sidecar or agents as well. SOCK5 proxy is not required for Mule apps deployed on Runtime Fabrics with version 2.6.22 onwards
 
 You must restart the `rtf-agent` pod and any Mule app that requires a proxy. Although no downtime occurs if you are running multiple replicas, you should perform HTTP proxy updates during a maintenance window. 
 
