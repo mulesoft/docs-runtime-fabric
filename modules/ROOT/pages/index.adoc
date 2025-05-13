@@ -2,6 +2,12 @@
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. 
 
+Watch the Anypoint Runtime Fbaric Product Spotlight video to see a quick overview of Runtime Fabric.
+
+++++
+include::_partials/rtf-spotlight-video.html[]
+++++
+
 If you work in public clouds and have some level of expertise in managing a Kubernetes cluster, Runtime Fabric supports:
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
