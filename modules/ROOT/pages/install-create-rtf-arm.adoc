@@ -13,7 +13,7 @@ Before installing Anypoint Runtime Fabric on VMs / Bare Metal, review the follow
 Additionally, note the following:
 
 * If you do not see the *Runtime Fabrics* tab in Runtime Manager as described below, contact your customer success manager to enable Anypoint Runtime Fabric for your account.
-* Create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
+* Create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.salesforce.com/s/articleView?id=001117134&type=1[How to Specify the RTF Agent Version in Upgrades^].
 
 == Create a Runtime Fabric using Runtime Manager
 
