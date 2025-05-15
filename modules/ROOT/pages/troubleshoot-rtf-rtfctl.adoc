@@ -4,7 +4,9 @@
 
 Use these `rtfctl` commands to troubleshoot Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl]
+== Commands for Troubleshooting Runtime Fabric
+
+include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+2]
 
 == See Also
 
