@@ -1,4 +1,5 @@
 // tag::install-rtfctl[]
+// This isn't used in the RTF docs.
 // Use leveloffset=+2 to change the H1s to H3s.
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -73,6 +74,8 @@ Displays the Runtime Fabric version information
 rtfctl version --namespace <rtf_namespace>
 ----
 
+// Add H2 heading where included
+// Use leveloffset=+2 to change the H1s to H3s.
 // [[manage-rtfctl-apps]]
 // == Commands for Managing Applications on Runtime Fabric
 
