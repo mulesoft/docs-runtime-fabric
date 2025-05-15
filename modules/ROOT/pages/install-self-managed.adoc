@@ -21,7 +21,7 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure:
 ** An ACK, AKS, EKS, EKS-A, GKE, or RKE Kubernetes environment. Other Kubernetes environments are not supported.
 ** A supported Kubernetes version.
 ** An ingress controller to send external requests to applications.
-* You create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^].
+* You create your clusters using the latest Runtime Fabric agent version available. If you can't do so, refer to https://help.salesforce.com/s/articleView?id=001117134&type=1[How to Specify the RTF Agent Version in Upgrades^].
 
 [IMPORTANT]
 ====
@@ -173,7 +173,7 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 == Perform a Rollback
 
-To roll back to a previous version of Runtime Fabric trigerred automatically on failed upgrade, refer to the https://help.mulesoft.com/s/article/RTF-Agent-upgrade-path[How to Specify the RTF Agent Version in Upgrades^] Knowledge base article for details.
+To roll back to a previous version of Runtime Fabric trigerred automatically on failed upgrade, refer to the https://help.salesforce.com/s/articleView?id=001117134&type=1[How to Specify the RTF Agent Version in Upgrades^] Knowledge base article for details.
 
 == See Also
 

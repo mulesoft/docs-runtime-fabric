@@ -114,7 +114,8 @@ If you add the TLS section with a `secretName` attribute, you must ensure that y
 
 <7> These placeholder values are required for Kubernetes validation, but the actual values are not used by Runtime Fabric. 
 
-For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly. For an example using Nginx, see https://help.mulesoft.com/s/article/Path-based-Nginx-Ingress-Routing-Example-for-Runtime-Fabric-on-Self-Managed-Kubernetes[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
+For a path-based routing ingress template, consult your ingress controller documentation and configure it accordingly. For an example using Nginx, see https://help.salesforce.com/s/articleView?id=001116839&type=1
+[Path-based Nginx Ingress Routing Example for Runtime Fabric on Self-Managed Kubernetes].
 
 === networking.k8s.io/v1beta1
 
