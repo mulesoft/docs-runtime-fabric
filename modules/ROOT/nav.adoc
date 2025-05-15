@@ -62,7 +62,7 @@
 * xref:managing-apps-deployed-runtime-fabric.adoc[Managing Mule Apps]
     *** xref:use-log4j-appender.adoc[Exporting Telemetry Externally]
     *** xref:use-anypoint-monitoring.adoc[Using Anypoint Monitoring]
-  ** xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL]
+  ** xref:manage-apps-rtfctl.adoc[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL]
   ** xref:app-to-app-requests.adoc[Sending Application-to-Application Requests]
  ** xref:app-versioning.adoc[Reviewing Mule App Versioning]
  ** xref:manage-schedules.adoc[Managing Mule App Schedules]
