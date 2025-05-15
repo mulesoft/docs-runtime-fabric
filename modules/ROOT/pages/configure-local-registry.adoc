@@ -5,7 +5,6 @@ Runtime Fabric uses its own registry to store the necessary Docker images for in
 == Limitations on Local Registry Support 
 
 You can configure local registry across all Runtime Fabric supported platform vendors to store Mule Docker images (for use when managing application deployments) and Runtime Fabric software images (for use when updating or installing Runtime Fabric software). The following details and limitations apply to both Mule Docker images and Runtime Fabric software images.
- 
 
 [IMPORTANT]
 You cannot use local registry for installation or management of Runtime Fabric operator on OpenShift.
