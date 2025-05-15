@@ -3,6 +3,8 @@
 
 Use these `rtfctl` commands to configure Runtime Fabric.
 
+== Commands for Configuring Runtime Fabric
+
 include::partial$rtfctl-commands.adoc[tag=configure-rtfctl,leveloffset=+2]
 
 == See Also
