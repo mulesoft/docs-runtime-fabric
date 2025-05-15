@@ -94,7 +94,7 @@ Review the xref:release-notes::runtime-fabric/runtime-fabric-release-notes.adoc[
 If the amount of available resources for application deployments is less than the resources of one worker node, add another worker node with the same amount of CPU, memory, and disk resources to Runtime Fabric.
 +
 See xref:manage-nodes.adoc[How to Add a Node to Runtime Fabric].
-* Review https://help.mulesoft.com/s/article/What-items-to-Check-Before-an-RTF-Appliance-Upgrade[What Items to Check Before an RTF Appliance Upgrade^] from the MuleSoft Knowledge Base. 
+* Review https://help.salesforce.com/s/articleView?id=001116597&type=1[What Items to Check Before an RTF Appliance Upgrade^] from the MuleSoft Knowledge Base. 
 
 == Upgrade the `rtfctl` Command-Line Utility
 
@@ -370,7 +370,7 @@ sudo /opt/anypoint/runtimefabric/installer/gravity plan execute --phase=< insert
 
 If this command returns an error, wait several minutes and repeat the previous steps.
 
-See https://help.mulesoft.com/s/article/How-to-Troubleshoot-RTF-Appliance-Upgrade?[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
+See https://help.salesforce.com/s/articleView?id=001116586&type=1[How to Troubleshoot RTF Appliance Upgrade] for additional troubleshooting information.
 
 == Roll Back an Appliance Upgrade
 

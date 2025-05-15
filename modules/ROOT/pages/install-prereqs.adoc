@@ -120,7 +120,7 @@ CentOS 8 has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. Con
 
 [IMPORTANT]
 ====
-There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.mulesoft.com/s/article/RTF-How-to-Resolve-the-Cgroup-Memory-Leaking-Issue-in-Runtime-Fabric[Knowledge Base Article] for additional information.
+There is a known control groups (cgroups) memory leak issue which can lead to pod creation failure or node malfunction in RHEL and CentOS 7. See the  https://help.salesforce.com/s/articleView?id=001122329&type=1[Knowledge Base Article] for additional information.
 
 To avoid this issue, use RHEL or CentOS 8.x in your Runtime Fabric on VMs / Bare Metal installation.
 ====
@@ -286,7 +286,7 @@ The pod CIDR block must not overlap with IP addresses that pods or servers use t
 * A SOCKS5 proxy for Anypoint Monitoring and Visualizer support if outgoing requests to the Internet must route through a proxy
 
 [NOTE]
-If you're using VMWare and are unable to connect to your existing applications or deploy new applications refer to https://help.mulesoft.com/s/article/RTF-Networking-Issues-with-VMware[RTF Networking Issues with VMware^] in the MuleSoft Knowledge Base. 
+If you're using VMWare and are unable to connect to your existing applications or deploy new applications refer to https://help.salesforce.com/s/articleView?id=001120377&type=1[RTF Networking Issues with VMware^] in the MuleSoft Knowledge Base. 
 
 == Mule License
 
