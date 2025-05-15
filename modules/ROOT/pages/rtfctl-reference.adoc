@@ -1,5 +1,6 @@
 
 = RTFCTL Reference
+// This page isn't used in the RTF docs.
 
 Use this reference for `rtfctl` commands.
 
@@ -7,25 +8,27 @@ Use this reference for `rtfctl` commands.
 
 Use these commands to install, upgrade, back up or restore a Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl]
+// I think this is wrong.
+include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+2]
 
 == Configure Runtime Fabric with RTFCTL
 
 Use these commands to configure Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=configure-rtfctl]
+include::partial$rtfctl-commands.adoc[tag=configure-rtfctl,leveloffset=+2]
+
 
 == Troubleshoot Runtime Fabric with RTFCTL
 
 Use these commands to troubleshoot Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl]
+include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+2]
 
 == Manage Mule Apps on Runtime Fabric with RTFCTL
 
 Use these commands to manage applications deployed to Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=manage-rtfctl]
+include::partial$rtfctl-commands.adoc[tag=manage-rtfctl,leveloffset=+2]
 
 == See Also
 
