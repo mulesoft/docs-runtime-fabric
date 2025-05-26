@@ -70,10 +70,9 @@ Regardless of what approach is chosen, make sure you run tests to validate perfo
 
 == Memory Allocation
 
-The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway are the following:
+The minimum values for the amount of memory allocated to each replica of a Mule application or API gateway is:
 
 * 0.7 GiB memory for Mule 4
-* 0.5 GiB memory for Mule 3
 
 When Anypoint Monitoring is enabled, 50MB memory is reserved for running the Anypoint Monitoring sidecar containers, which can burst up to 70MB for each application deployed when processing metrics data.
 // end::memoryAllocation[]

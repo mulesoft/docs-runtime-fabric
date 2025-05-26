@@ -1,4 +1,6 @@
 // tag::install-rtfctl[]
+// This isn't used in the RTF docs.
+// Use leveloffset=+2 to change the H1s to H3s.
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
@@ -9,7 +11,7 @@
 |xref:version[`version`] | Displays the Runtime Fabric version information
 |===
 
-=== `install`
+= `install`
 
 * Installs Runtime Fabric
 
@@ -23,20 +25,20 @@ rtfctl install <activation_data>
 rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
-=== `backup`
+= `backup`
 Performs a back up of the local Runtime Fabric state.
 ----
 rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
-=== `restore`
+= `restore`
 Restores the local Runtime Fabric state from a backup 
 
 ----
 rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
-=== `validate`
+= `validate`
 Validates the cluster for a Runtime Fabric installation
 
 * Performs a validation check
@@ -65,15 +67,17 @@ HTTP_PROXY=http://<proxy_domain>.com:<port>
 rtfctl validate <activation_data> --image-pull-registry <string> --image-pull-secret <string>
 ----
 
-=== `version` 
+= `version` 
 Displays the Runtime Fabric version information
 
 ----
 rtfctl version --namespace <rtf_namespace>
 ----
 
-[[manage-rtfctl-apps]]
-== Commands for Managing Applications on Runtime Fabric
+// Add H2 heading where included
+// Use leveloffset=+2 to change the H1s to H3s.
+// [[manage-rtfctl-apps]]
+// == Commands for Managing Applications on Runtime Fabric
 
 Use the following commands to manage applications deployed to Runtime Fabric.
 
@@ -85,14 +89,14 @@ Use the following commands to manage applications deployed to Runtime Fabric.
 |xref:restart[`restart`] | Restarts an application
 |===
 
-=== `delete`
+= `delete`
 Deletes a secure property
 ----
 rtfctl delete secure-property <sample_key> -n <app_namespace>
 ----
 
 
-=== `disk`
+= `disk`
 
 Displays disk usage for an application
 
@@ -109,7 +113,7 @@ rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_names
 
 ----
 
-=== `restart`
+= `restart`
 Restarts an application
 
 ----
@@ -127,12 +131,12 @@ rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_names
 |xref:renew[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
 |===
 
-=== `apply` 
+= `apply` 
 
 Applies changes to a Runtime Fabric configuration.
 
 [NOTE]
-AnYou can use the `rtfctl apply system-configuration` command to update OpenShift system-configuration values. Other rtfctl apply commands are not effective for OpenShift. For any other updates, modify the values in the OpenShift console.
+You can use the `rtfctl apply system-configuration` command to update OpenShift system-configuration values. Other rtfctl apply commands are not effective for OpenShift. For any other updates, modify the values in the OpenShift console.
 
 * Applies an HTTP proxy configuration
 +
@@ -195,7 +199,7 @@ rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
 rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
 ----
 
-=== `update` 
+= `update` 
 
 Updates `rtfctl`.
 
@@ -211,7 +215,7 @@ rtfctl update
 rtfctl update --host eu1.anypoint.mulesoft.com
 ----
 
-=== `wait`
+= `wait`
 Waits for Runtime Fabric components to become ready
 
 * Specifies the number of seconds to wait 
@@ -225,7 +229,7 @@ rtfctl wait <value_in_seconds> --namespace <rtf_namespace>
 rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
 ----
 
-=== `renew`
+= `renew`
 
 Renews an expired client certificate using a pre-downloaded package
 
@@ -245,7 +249,7 @@ rtfctl renew-expired-client-cert <cert-bundle-filename>
 |xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
 |===
 
-=== `get`
+= `get`
 
 Displays one or more resources
 
@@ -291,7 +295,7 @@ rtfctl get mule-license --namespace <rtf_namespace>
 rtfctl get registry-credentials <activation_data>
 ----
 
-=== `ping`
+= `ping`
 Tests network connectivity
 
 * Pings example.com from inside an application, using the first replica by default
@@ -306,7 +310,7 @@ rtfctl ping <app_name> <host_or_ip_address> --app-namespace <app_namespace> --na
 rtfctl ping <app_name> <host_or_ip_address> --port <port> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
-=== `report`
+= `report`
 Generates a diagnostics report at `rtf-report.tar.gz`
 
 ----
@@ -348,7 +352,7 @@ Specifies the name of the helm release to support installations using custom rel
 rtfctl report --release-name <agentReleaseName>
 ----
 
-=== `status` 
+= `status`
 
 Displays the status of Runtime Fabric
 
@@ -364,7 +368,7 @@ rtfctl status --output json --namespace <rtf_namespace>
 rtfctl status dns-check --node-label "<k>:<v>"
 ----
 
-=== `test` 
+= `test`
 Verifies outbound network connectivity to the Runtime Fabric control plane.
 
 * Schedules a check on any nodes
@@ -378,7 +382,7 @@ rtfctl test outbound-network --namespace <rtf_namespace>
 ----
 rtfctl test outbound-network --node-label "<k>:<v>" --namespace <rtf_namespace>
 ----
- 
+
 * Schedules a check on all nodes
 +
 ----
@@ -396,13 +400,13 @@ rtfctl test outbound-network --all --namespace <rtf_namespace>
 |xref:restart[`restart`] | Restarts an application
 |===
 
-=== `delete`
+= `delete`
 Deletes a secure property
 ----
 rtfctl delete secure-property <sample_key> -n <app_namespace>
 ----
 
-=== `disk`
+= `disk`
 
 Displays disk usage for an application
 
@@ -419,7 +423,7 @@ rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_names
 
 ----
 
-=== `restart`
+= `restart`
 Restarts an application
 
 ----
