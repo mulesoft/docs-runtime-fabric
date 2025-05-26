@@ -1,4 +1,4 @@
-== Uninstall Runtime Fabric Using RTFCTL
+= Uninstall Runtime Fabric Using RTFCTL
 
 include::partial$rtfctl-commands.adoc[tag=uninstall-rtfctl]
 
