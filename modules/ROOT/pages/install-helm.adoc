@@ -286,7 +286,7 @@ Set these optional parameters in `values.yml` as needed before installing Runtim
 |Key |Value |Example
 |`customLog4jEnabled` |Enables or disables custom Log4j configurations | `customLog4jEnabled: true`, default is `false`
 |`authorizedNamespaces` |Enables or disables additional namespaces |`authorizedNamespaces: true`, default is false
-|`crds.install` |Enables crds installations |`crds.install: true`, for first Runtime Fabric installation and false for subsequent installations
+|`crds.install` |Enables crds installations |`crds.install: true`, for first and subsequent Runtime Fabric installations 
 a|
 
 * `proxy.http_proxy`
