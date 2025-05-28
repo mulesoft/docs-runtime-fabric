@@ -11,7 +11,7 @@ Before configuring ingress in Runtime Fabric, set up an ingress controller. For 
 
 == Create an Ingress Resource Template and Apply it in the Cluster
 
-Use one of the xref:example-ingress-resource-templates[example templates] to create an ingress resource. 
+Use one of the xref:custom-ingress-configuration.adoc#kubernetes-ingress[example templates] to create an ingress resource. 
 
 include::partial$include-ingress-tasks.adoc[tags=createTemplate]
 
