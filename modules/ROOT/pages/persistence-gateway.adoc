@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS items (
 	CONSTRAINT UK_items UNIQUE (key, store_id, partition)
 );
 	CREATE INDEX IF NOT EXISTS IDX_items_ttl ON items(ttl)
-;`
+;
 ----
 
 To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not to have applications deployed during this process on both clusters to prevent unexpected results.
