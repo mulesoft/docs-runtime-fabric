@@ -194,6 +194,7 @@ Key elements that can not be overwritten using the CRD:
 ** beta.kubernetes.io/arch
 ** RTF.DeploymentNodeSelector
 * Affinity
+** nodeAffinity: rtf.mulesoft.com/non-worker DoesNotExist
 ** podAntiAffinity
 * Service
 ** labels
