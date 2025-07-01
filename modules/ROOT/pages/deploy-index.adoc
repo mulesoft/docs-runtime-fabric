@@ -27,10 +27,9 @@ You can also use the Anypoint Platform CLI to deploy Mule applications. See xref
 
 Runtime Fabric supports Maven for managing and deploying a Mule application or API proxy. 
 
-To deploy Mule applications and API proxies using Maven, see the topic specific to your Mule version:
+To deploy Mule applications and API proxies using Maven, see:
 
 * xref:deploy-maven-4.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 4)]
-* xref:deploy-maven-3.x.adoc[Deploy an Application to Runtime Fabric using Maven (Mule 3.x)]
 
 == Deployment Considerations
 
