@@ -23,7 +23,7 @@ Use one of the following options to deploy Mule apps to Runtime Fabric:
 * xref:deploy-to-runtime-fabric.adoc[Deploying a Mule App Using Runtime Manager] +
 Use Runtime Manager to manually deploy Mule apps and API proxies.
 
-* xref:deploy-maven-4.x.adoc[Deploying a Mule App to Runtime Fabric using Maven (Mule 4)] +
+* xref:deploy-maven-4.x.adoc[] +
 Use Maven for managing and deploying a Mule application or API proxy. 
 
 * xref:deploy-to-rtf-cli.adoc[Deploying and Managing Apps in Runtime Fabric Using the CLI] +
