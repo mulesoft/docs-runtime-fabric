@@ -25,7 +25,7 @@
  ** xref:configure-hardening.adoc[Perform Mule Runtime Hardening]
  ** xref:deploy-to-runtime-fabric.adoc[Deploy Mule Applications]
  ** xref:deploy-to-rtf-cli.adoc[Managing Mule Applications from the CLI]
- ** xref:deploy-maven-4.x.adoc[Deploy Applications Using Maven ]
+ ** xref:deploy-maven-4.x.adoc[]
  ** xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric]
  ** xref:use-log4j-appender.adoc[Use a Log4j Appender]
  ** xref:protect-app-properties.adoc[Protect App Property Values]
