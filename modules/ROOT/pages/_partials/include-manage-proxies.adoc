@@ -19,7 +19,7 @@ Anypoint Monitoring requires a proxy for communication. The type of proxy you ne
 [[configure-socks5]]
 == Configure a SOCKS5 Proxy for Runtime Fabric
 
-Make sure your SOCKS5 proxy connect to Anypoint Monitoring over TCP at these endpoints, depending on your control plane:
+Make sure your SOCKS5 proxy connects to Anypoint Monitoring over TCP at these endpoints, depending on your control plane:
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
