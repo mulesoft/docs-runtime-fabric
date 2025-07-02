@@ -1,11 +1,25 @@
 // tag::monitoring-proxy[]
 == Configure an Anypoint Monitoring Proxy
 
-For Runtime Fabric deployments on version 2.6.22 and later, Anypoint Monitoring uses an HTTP proxy. Refer to <<configure-http>> for details. 
+Anypoint Monitoring requires a proxy for communication. The type of proxy you need to configure depends on your Runtime Fabric version.
 
-For Runtime Fabric versions earlier than 2.6.22 and for legacy deployments, Anypoint Monitoring requires a SOCKS5 proxy. Use these steps for the configuration:
+.Anypoint Monitoring Proxy Configuration
+|===
+|Runtime Fabric Version |Required Proxy Type |Configuration Details
 
-The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following endpoints:
+|*2.6.22 and Later*
+|*HTTP Proxy*
+|For detailed steps, refer to <<configure-http>>.
+
+|*Earlier than 2.6.22* and *Legacy Deployments*
+|*SOCKS5 Proxy*
+|For detailed steps, refer to <<configure-socks5>>.
+|===
+
+[[configure-socks5]]
+== Configure a SOCKS5 Proxy for Runtime Fabric
+
+Make sure your SOCKS5 proxy connect to Anypoint Monitoring over TCP at these endpoints, depending on your control plane:
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
