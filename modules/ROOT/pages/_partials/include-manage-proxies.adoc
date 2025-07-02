@@ -57,6 +57,7 @@ The output should match the value expected.
 // tag::http-proxy[]
 . After setting up the proxy, validate the setup by running the `rtfctl validate` command. See xref:install-rtfctl.adoc#validate[rtfctl Validate] documentation.
 
+[[configure-http]]
 == Configure an HTTP Proxy for Services in Runtime Fabric
 
 You can configure HTTP proxies so that outbound components can communicate with the control plane.
