@@ -1,10 +1,8 @@
-
-
 = Troubleshooting Runtime Fabric with RTFCTL
 
 Use these `rtfctl` commands to troubleshoot Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl]
+include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+2]
 
 == See Also
 
