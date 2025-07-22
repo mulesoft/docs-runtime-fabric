@@ -81,6 +81,8 @@ The `httproutetemplates` resource enables you to configure routes like these:
 * `baseEndpoints` 
 +
 Endpoints associated with the routing resources defined in the template. These endpoints are synchronized by Runtime Fabric with the Anypoint control plane. Application developers select one or more endpoints during deployment and optionally customize the path and subdomain when applicable.
++
+Specify the `http` or `https` protocol for your endpoints.
 
 * `resources` +
 A list of strings, each declaring a Kubernetes routing resource.
