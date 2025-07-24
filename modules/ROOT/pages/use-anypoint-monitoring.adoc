@@ -141,8 +141,6 @@ Monitoring, pass the following custom property when deploying your Mule app:
 anypoint.platform.config.analytics.agent.enabled=false
 ----
 
-[NOTE]
-For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
 
 [[enable-trace-data]]
 == Enable Trace Data Collection
