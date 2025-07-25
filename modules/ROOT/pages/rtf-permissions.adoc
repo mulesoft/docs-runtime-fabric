@@ -18,6 +18,7 @@ You can't extend or modify any of these core software access permissions. Instea
    |extensions,networking.k8s.io  |ingresses,networkpolicies   | *
    |rtf.mulesoft.com  |persistencegateways, kubernetestemplates   | *
    |autoscaling  |horizontalpodautoscalers   | *
+   |high availability  |leases   | *
 |===
 
 == See Also
