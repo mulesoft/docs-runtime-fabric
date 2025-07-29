@@ -149,9 +149,9 @@ Modify the following fields based on your environment:
 | `spec.objectStore.resources.requests.cpu` | The CPU resource requests for the Persistence Gateway pods. | 200m
 | `spec.objectStore.resources.requests.memory` | The memory resource requests for the Persistence Gateway pods. | 75Mi
 | `spec.objectStore.secretRef.name` | The name of the Persistence Gateway credentials defined in the Kubernetes secret file. | persistence-gateway-creds
-| `spec.objectStore.topologySpreadConstraints.maxSkew` | Describes the degree to which Pods may be unevenly distributed. | 1
-| `spec.objectStore.topologySpreadConstraints.topologyKey` | Key used to understand which criteria should be used to distribute Pods. | topology.kubernetes.io/zone
-| `spec.objectStore.topologySpreadConstraints.whenUnsatisfiable` | Indicates how to deal with a Pod if it doesn't satisfy the spread constraint:. | ScheduleAnyway
+| `spec.objectStore.topologySpreadConstraints.maxSkew` | Describes the degree to which pods may be unevenly distributed. | 1
+| `spec.objectStore.topologySpreadConstraints.topologyKey` | Key that understands which criteria to use to distribute pods. | topology.kubernetes.io/zone
+| `spec.objectStore.topologySpreadConstraints.whenUnsatisfiable` | Indicates how to deal with a pod if it doesn't satisfy the spread constraint. | ScheduleAnyway
 |===
 
 [NOTE]

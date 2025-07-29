@@ -305,12 +305,9 @@ a|
 |`fipsEnabled` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnabled: true` default value `false`
 |===
 
-=== Core Software High Availability Parameters
+=== Configure Core Software High Availability Parameters
 
-From Runtime Fabric version 2.11.0 onwards, high availability parameters can be configured.
-
-Set these optional parameters in `values.yml`  to configure the Runtime Fabric Core Software High Availability parameters.
-Values shown here are the default values.
+From Runtime Fabric version 2.11.0 onwards, you can configure these optional core software high availability parameters in the `values.yml` file. These are the default values:
 
 [source,yaml]
 ----
@@ -371,16 +368,15 @@ resource-cache:
 
 ----
 
-For each runtime fabric deployments (`agent`, `resource-cache` and `mule-clusterip-service`) resources and amount of replicas can be configured.
+For each Runtime Fabric deployment (`agent`, `resource-cache`, and `mule-clusterip-service`), you can configure the `resources` and the number of `replicas`.
 
-In the case of the `agent` deployments, multiple replicas will not increase the throughput it is capable of handling, but in the case of an issue with the leading pod, one of the remaining replicas will take the lead and serve traffic.
+In the case of `agent` deployments, having multiple replicas doesn't increase the throughput it can manage. However, if the leading pod encounters an issue, one of the remaining replicas takes the lead and continues to serve traffic.
 
-By modifying the `topologySpreadConstraints` object it is now possible to determine how each deployment replicas will be spawned among the cluster node. Default value used is the one shown in the example
+By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
 
 [NOTE]
---
-If these values are set but the Runtime Fabric instance is later rolled back to a previous version, the configuration will not be applied for the older version.
---
+If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't be applied to the older version.
+
 
 include::partial$include-install-tasks.adoc[tags=licenseKey]
 include::partial$include-install-tasks.adoc[tags=ingressResource]
