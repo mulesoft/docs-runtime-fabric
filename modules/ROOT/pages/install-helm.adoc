@@ -305,6 +305,78 @@ a|
 |`fipsEnabled` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnabled: true` default value `false`
 |===
 
+=== Configure Core Software High Availability Parameters
+
+From Runtime Fabric version 2.11.0 onwards, you can configure these optional core software high availability parameters in the `values.yml` file. These are the default values:
+
+[source,yaml]
+----
+global:
+  core:
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+
+agent:
+  replicas: 1
+  app:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 1000m
+        memory: 500Mi
+  rtfd:
+    resources:
+      requests:
+        cpu: 150m
+        memory: 200Mi
+      limits:
+        cpu: 200m
+        memory: 300Mi
+
+mule-clusterip-service:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+
+resource-cache:
+    replicas: 1
+    nginx:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 50Mi
+        limits:
+          cpu: 500m
+          memory: 250Mi
+    fetcher:
+      resources:
+        requests:
+          cpu: 50m
+          memory: 50Mi
+        limits:
+          cpu: 50m
+          memory: 100Mi
+
+----
+
+For each Runtime Fabric deployment (`agent`, `resource-cache`, and `mule-clusterip-service`), you can configure the `resources` and the number of `replicas`.
+
+In the case of `agent` deployments, having multiple replicas doesn't increase the throughput it can manage. However, if the leading pod encounters an issue, one of the remaining replicas takes the lead and continues to serve traffic.
+
+By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
+
+[NOTE]
+If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't be applied to the older version.
+
 
 include::partial$include-install-tasks.adoc[tags=licenseKey]
 include::partial$include-install-tasks.adoc[tags=ingressResource]
@@ -316,7 +388,7 @@ To roll back to a previous version of Runtime Fabric using helm, refer to the ht
 
 == Retrieve Helm Registry Endpoints and Credentials
 
-To obtain the Helm registry endpoints and credentials, make a request to this API endpoint using a bearer token for authentication: 
+To obtain the Helm registry endpoints and credentials, make a request to this API endpoint using a bearer token for authentication:
 
 `https://<ANYPOINT_PLATFORM_URL>/runtimefabric/api/organizations/<ORG_ID>/helmrepoproperties`
 

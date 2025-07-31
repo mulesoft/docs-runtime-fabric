@@ -39,7 +39,7 @@ Before enabling Persistence Gateway, ensure that you have:
 ====
 Only plain text connections to the database are supported.
 ====
- 
+
 [[Configure-Persistence-Gateway]]
 == Configure Persistence Gateway
 
@@ -127,6 +127,10 @@ spec:
       requests:
         cpu: 200m
         memory: 75Mi
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
 ----
 
 Modify the following fields based on your environment:
@@ -145,6 +149,9 @@ Modify the following fields based on your environment:
 | `spec.objectStore.resources.requests.cpu` | The CPU resource requests for the Persistence Gateway pods. | 200m
 | `spec.objectStore.resources.requests.memory` | The memory resource requests for the Persistence Gateway pods. | 75Mi
 | `spec.objectStore.secretRef.name` | The name of the Persistence Gateway credentials defined in the Kubernetes secret file. | persistence-gateway-creds
+| `spec.objectStore.topologySpreadConstraints.maxSkew` | Describes the degree to which pods may be unevenly distributed. | 1
+| `spec.objectStore.topologySpreadConstraints.topologyKey` | Key that understands which criteria to use to distribute pods. | topology.kubernetes.io/zone
+| `spec.objectStore.topologySpreadConstraints.whenUnsatisfiable` | Indicates how to deal with a pod if it doesn't satisfy the spread constraint. | ScheduleAnyway
 |===
 
 [NOTE]
@@ -186,7 +193,7 @@ CREATE TABLE IF NOT EXISTS items (
 
 To migrate the persistent data from one cluster to another, backup these two tables entirely from the source cluster and recreate them on the target one database. Do not to have applications deployed during this process on both clusters to prevent unexpected results.
 
-If you're using a version of the Runtime Fabric agent higher than 2.6.22, the `id` parameter in the `CREATE TABLE IF NOT EXISTS items` statement no longer applies. For previous versions of the Runtime Fabric agent 2.6.22, the `id` parameter is available in the items table. 
+If you're using a version of the Runtime Fabric agent higher than 2.6.22, the `id` parameter in the `CREATE TABLE IF NOT EXISTS items` statement no longer applies. For previous versions of the Runtime Fabric agent 2.6.22, the `id` parameter is available in the items table.
 
 
 == See Also
