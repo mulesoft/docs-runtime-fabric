@@ -375,7 +375,7 @@ In the case of `agent` deployments, having multiple replicas doesn't increase th
 By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
 
 [NOTE]
-If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't be applied to the older version.
+If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't applied to the older version.
 
 
 include::partial$include-install-tasks.adoc[tags=licenseKey]
