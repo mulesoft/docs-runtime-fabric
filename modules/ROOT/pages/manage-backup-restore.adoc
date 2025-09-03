@@ -185,6 +185,8 @@ The installation must be on the same Runtime Fabric namespace. All labels on the
 +
 . Check the status of your Runtime Fabric deployments.
 
+[[backup-restore-rtfctl]
+
 == Commands for Backing Up and Restoring a Runtime Fabric with RTFCTL
 
 Use these commands to back up and restore a Runtime Fabric.
