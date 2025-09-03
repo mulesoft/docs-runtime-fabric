@@ -1,12 +1,12 @@
-// tag::install-rtfctl[]
-// This isn't used in the RTF docs.
+
 // Use leveloffset=+2 to change the H1s to H3s.
+// Installing Runtime Fabric Using RTFCTL
+
+tag::install-rtfctl[]
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
 |xref:install[`install`] | Installs Runtime Fabric
-|xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
-|xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |xref:validate[`validate`] | Validates the cluster for Runtime Fabric installation
 |xref:version[`version`] | Displays the Runtime Fabric version information
 |===
@@ -23,19 +23,6 @@ rtfctl install <activation_data>
 +
 ----
 rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
-----
-
-= `backup`
-Performs a back up of the local Runtime Fabric state.
-----
-rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
-----
-
-= `restore`
-Restores the local Runtime Fabric state from a backup 
-
-----
-rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
 = `validate`
@@ -74,10 +61,48 @@ Displays the Runtime Fabric version information
 rtfctl version --namespace <rtf_namespace>
 ----
 
+end::install-rtf[]
+
 // Add H2 heading where included
 // Use leveloffset=+2 to change the H1s to H3s.
-// [[manage-rtfctl-apps]]
-// == Commands for Managing Applications on Runtime Fabric
+// == Backing Up and Restoring Runtime Fabric 
+
+tag::restore-rtfctl[]
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:backup[`backup`] | Performs a back up of the local Runtime Fabric state
+|xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
+|===
+
+= `backup`
+Performs a back up of the local Runtime Fabric state.
+----
+rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
+----
+
+= `restore`
+Restores the local Runtime Fabric state from a backup 
+
+----
+rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace>
+----
+
+Restore only the core Runtime Fabric software components without triggering application synchronization from the control plane.
+
+----
+rtfctl restore <backup_file_name>.tar.gz --namespace <rtf_namespace> --core-software-only
+----
+
+end::restore-rtf[]
+
+
+// Add H2 heading where included
+// Use leveloffset=+2 to change the H1s to H3s.
+// Managing Mule Apps Deployed to Runtime Fabric
+
+tag::manage-apps-rtfctl[]
 
 Use the following commands to manage applications deployed to Runtime Fabric.
 
@@ -119,8 +144,11 @@ Restarts an application
 ----
 rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
-// end::install-rtf[]
-// tag::configure-rtfctl[]
+
+end::manage-apps-rtfctl[]
+
+// Configuring Runtime Fabric with RTFCTL
+tag::configure-rtfctl[]
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -236,8 +264,11 @@ Renews an expired client certificate using a pre-downloaded package
 ----
 rtfctl renew-expired-client-cert <cert-bundle-filename>
 ----
-// end::configure-rtfctl[]
-// tag::troubleshoot-rtfctl[]
+end::configure-rtfctl[]
+
+
+// Troubleshooting Runtime Fabric with RTFCTL
+tag::troubleshoot-rtfctl[]
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -389,51 +420,11 @@ rtfctl test outbound-network --node-label "<k>:<v>" --namespace <rtf_namespace>
 rtfctl test outbound-network --all --namespace <rtf_namespace>
 ----
 
-// end::troubleshoot-rtfctl[]
-// tag::manage-rtfctl[]
-
-[%header%autowidth.spread,cols="a,a"]
-|===
-|Command |Description
-|xref:delete[`delete`] | Deletes a secure property
-|xref:disk[`disk`] | Displays disk usage for an application
-|xref:restart[`restart`] | Restarts an application
-|===
-
-= `delete`
-Deletes a secure property
-----
-rtfctl delete secure-property <sample_key> -n <app_namespace>
-----
-
-= `disk`
-
-Displays disk usage for an application
-
-* Displays the disk usage for an application, using the first replica by default
-+
-----
-rtfctl disk <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-* Displays the disk usage for an application, using a specific replica
-+
-----
-rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-
-----
-
-= `restart`
-Restarts an application
-
-----
-rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
-----
-
-// end::manage-rtfctl[]
+end::troubleshoot-rtfctl[]
 
 
-// tag::uninstall-rtfctl[]
+// Uninstall Runtime Fabric Using RTFCTL
+tag::uninstall-rtfctl[]
 To uninstall Runtime Fabric using `rtfctl` commands, follow these steps:
 
 . Using Runtime Manager, delete all Mule app and API gateways deployed on Runtime Fabric.
@@ -442,4 +433,4 @@ To uninstall Runtime Fabric using `rtfctl` commands, follow these steps:
 . Run the `rtfctl uninstall` command to uninstall the Runtime Fabric services from the Kubernetes cluster.
 . Run the `rtfctl uninstall --confirm` command to verify the uninstall operation.
 . After the uninstall command finishes, verify that there are no Runtime Fabric applications or services running in the cluster.
-// end::uninstall-rtfctl[]
+end::uninstall-rtfctl[]
