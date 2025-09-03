@@ -177,6 +177,12 @@ include::partial$include-install-tasks.adoc[tags=validate]
 
 To roll back to a previous version of Runtime Fabric trigerred automatically on failed upgrade, refer to the https://help.salesforce.com/s/articleView?id=001117134&type=1[How to Specify the RTF Agent Version in Upgrades^] Knowledge base article for details.
 
+== Commands for Installing, Upgrading, and Validating a Runtime Fabric with RTFCTL
+
+Use these commands to install, upgrade, and validate a Runtime Fabric.
+
+include::partial$rtfctl-commands.adoc[tag=install-rtfctl,leveloffset=+2]
+
 == See Also
 
 * xref:index.adoc[Runtime Fabric Overview]

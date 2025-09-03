@@ -2,7 +2,7 @@
 
 You can manage deployed Mule apps to Runtime Fabric using the `rtfctl` command line tool.
 
-* xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric] +
+* xref:manage-apps-rtfctl.adoc[Managing Mule Apps Deployed to Runtime Fabric] +
 Use the `rtfctl delete`, `describe`, `disk`, `memory`, `package`, `restart`, `heapdump`, and `threaddump` commands to manage Mule apps deployed to Runtime Fabric.
 
 * xref:manage-secure-properties.adoc[Protecting Mule App Property Values] +
