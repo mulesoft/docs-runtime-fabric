@@ -104,8 +104,6 @@ end::restore-rtfctl[]
 
 tag::manage-apps-rtfctl[]
 
-Use the following commands to manage applications deployed to Runtime Fabric.
-
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
