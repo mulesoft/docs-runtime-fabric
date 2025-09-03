@@ -61,7 +61,7 @@ Displays the Runtime Fabric version information
 rtfctl version --namespace <rtf_namespace>
 ----
 
-end::install-rtf[]
+end::install-rtfctl[]
 
 // Add H2 heading where included
 // Use leveloffset=+2 to change the H1s to H3s.
