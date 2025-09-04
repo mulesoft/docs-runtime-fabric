@@ -237,7 +237,7 @@ kubectl get ingress -n [NAMESPACE]
 --
 kubectl get svc -n [NAMESPACE]
 --
-
++
 If not, check the Runtime Fabric agent logs:
 +
 [source,copy]
