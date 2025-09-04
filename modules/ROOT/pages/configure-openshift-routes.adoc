@@ -62,6 +62,7 @@ To configure a route, complete the following tasks:
 . Create an ingress resource template and apply it in the cluster.
 . Configure ingress for a Mule application.
 
+[[create-ingress-resource-template-and-apply-it-in-the-cluster]]
 === Create an Ingress Resource Template and Apply it in the Cluster
 
 Use the xref:example-ingress-resource-template-for-a-red-hat-openshift-route[example template] to create an ingress resource for a route.
