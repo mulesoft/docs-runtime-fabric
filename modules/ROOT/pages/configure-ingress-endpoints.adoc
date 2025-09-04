@@ -15,6 +15,7 @@ Use one of the xref:custom-ingress-configuration.adoc#kubernetes-ingress[example
 
 include::partial$include-ingress-tasks.adoc[tags=createTemplate]
 
+[[configure-ingress-for-a-mule-app]]
 == Configure Ingress for a Mule App 
 
 include::partial$include-ingress-tasks.adoc[tags=configureIngressRuntimeManager]
