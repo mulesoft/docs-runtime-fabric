@@ -1,5 +1,5 @@
 
-// Use leveloffset=+2 to change the H1s to H3s.
+// Use leveloffset=+1 to change the H3s to H4s.
 // Installing Runtime Fabric Using RTFCTL
 
 tag::install-rtfctl[]
@@ -64,7 +64,7 @@ rtfctl version --namespace <rtf_namespace>
 end::install-rtfctl[]
 
 // Add H2 heading where included
-// Use leveloffset=+2 to change the H1s to H3s.
+// Use leveloffset=+1 to change the H3s to H4s.
 // == Backing Up and Restoring Runtime Fabric 
 
 tag::restore-rtfctl[]
@@ -99,7 +99,7 @@ end::restore-rtfctl[]
 
 
 // Add H2 heading where included
-// Use leveloffset=+2 to change the H1s to H3s.
+// Use leveloffset=+1 to change the H3s to H4s.
 // Managing Mule Apps Deployed to Runtime Fabric
 
 tag::manage-apps-rtfctl[]

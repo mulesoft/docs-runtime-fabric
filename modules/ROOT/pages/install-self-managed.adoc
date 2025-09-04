@@ -181,7 +181,7 @@ To roll back to a previous version of Runtime Fabric trigerred automatically on 
 
 Use these commands to install, upgrade, and validate a Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=install-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=install-rtfctl,leveloffset=+1]
 
 == See Also
 
