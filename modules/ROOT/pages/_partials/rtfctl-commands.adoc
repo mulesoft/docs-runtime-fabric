@@ -1,5 +1,4 @@
-
-// Use leveloffset=+1 to change the H3s to H4s.
+// Use leveloffset=+2 to change the H1s to H3s.
 // Installing Runtime Fabric Using RTFCTL
 
 tag::install-rtfctl[]
@@ -11,7 +10,7 @@ tag::install-rtfctl[]
 |xref:version[`version`] | Displays the Runtime Fabric version information
 |===
 
-=== `install`
+= `install`
 
 * Installs Runtime Fabric
 
@@ -25,7 +24,7 @@ rtfctl install <activation_data>
 rtfctl install <activation_data> --image-pull-registry <string>  --image-pull-secret <string>
 ----
 
-=== `validate`
+= `validate`
 Validates the cluster for a Runtime Fabric installation
 
 * Performs a validation check
@@ -54,7 +53,7 @@ HTTP_PROXY=http://<proxy_domain>.com:<port>
 rtfctl validate <activation_data> --image-pull-registry <string> --image-pull-secret <string>
 ----
 
-=== `version` 
+= `version` 
 Displays the Runtime Fabric version information
 
 ----
@@ -64,7 +63,7 @@ rtfctl version --namespace <rtf_namespace>
 end::install-rtfctl[]
 
 // Add H2 heading where included
-// Use leveloffset=+1 to change the H3s to H4s.
+// Use leveloffset=+2 to change the H1s to H3s.
 // == Backing Up and Restoring Runtime Fabric 
 
 tag::restore-rtfctl[]
@@ -76,13 +75,13 @@ tag::restore-rtfctl[]
 |xref:restore[`restore`] | Restores local Runtime Fabric state from a backup
 |===
 
-=== `backup`
+= `backup`
 Performs a back up of the local Runtime Fabric state.
 ----
 rtfctl backup <backup_file_name>.tar.gz --namespace <rtf_namespace>
 ----
 
-=== `restore`
+= `restore`
 Restores the local Runtime Fabric state from a backup 
 
 ----
@@ -99,7 +98,7 @@ end::restore-rtfctl[]
 
 
 // Add H2 heading where included
-// Use leveloffset=+1 to change the H3s to H4s.
+// Use leveloffset=+2 to change the H1s to H3s.
 // Managing Mule Apps Deployed to Runtime Fabric
 
 tag::manage-apps-rtfctl[]
@@ -112,14 +111,14 @@ tag::manage-apps-rtfctl[]
 |xref:restart[`restart`] | Restarts an application
 |===
 
-=== `delete`
+= `delete`
 Deletes a secure property
 ----
 rtfctl delete secure-property <sample_key> -n <app_namespace>
 ----
 
 
-=== `disk`
+= `disk`
 
 Displays disk usage for an application
 
@@ -136,7 +135,7 @@ rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_names
 
 ----
 
-=== `restart`
+= `restart`
 Restarts an application
 
 ----
@@ -157,7 +156,7 @@ tag::configure-rtfctl[]
 |xref:renew[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
 |===
 
-=== `apply` 
+= `apply` 
 
 Applies changes to a Runtime Fabric configuration.
 
@@ -225,7 +224,7 @@ rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
 rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
 ----
 
-=== `update` 
+= `update` 
 
 Updates `rtfctl`.
 
@@ -241,7 +240,7 @@ rtfctl update
 rtfctl update --host eu1.anypoint.mulesoft.com
 ----
 
-=== `wait`
+= `wait`
 Waits for Runtime Fabric components to become ready
 
 * Specifies the number of seconds to wait 
@@ -255,7 +254,7 @@ rtfctl wait <value_in_seconds> --namespace <rtf_namespace>
 rtfctl wait --timeout <value_in_seconds> --namespace <rtf_namespace>
 ----
 
-=== `renew`
+= `renew`
 
 Renews an expired client certificate using a pre-downloaded package
 
@@ -278,7 +277,7 @@ tag::troubleshoot-rtfctl[]
 |xref:test[`test`] | Verifies outbound network connectivity to the Runtime Fabric control plane
 |===
 
-=== `get`
+= `get`
 
 Displays one or more resources
 
@@ -324,7 +323,7 @@ rtfctl get mule-license --namespace <rtf_namespace>
 rtfctl get registry-credentials <activation_data>
 ----
 
-=== `ping`
+= `ping`
 Tests network connectivity
 
 * Pings example.com from inside an application, using the first replica by default
@@ -339,7 +338,7 @@ rtfctl ping <app_name> <host_or_ip_address> --app-namespace <app_namespace> --na
 rtfctl ping <app_name> <host_or_ip_address> --port <port> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
-=== `report`
+= `report`
 Generates a diagnostics report at `rtf-report.tar.gz`
 
 ----
@@ -381,7 +380,7 @@ Specifies the name of the helm release to support installations using custom rel
 rtfctl report --release-name <agentReleaseName>
 ----
 
-=== `status`
+= `status`
 
 Displays the status of Runtime Fabric
 
@@ -397,7 +396,7 @@ rtfctl status --output json --namespace <rtf_namespace>
 rtfctl status dns-check --node-label "<k>:<v>"
 ----
 
-=== `test`
+= `test`
 Verifies outbound network connectivity to the Runtime Fabric control plane.
 
 * Schedules a check on any nodes
