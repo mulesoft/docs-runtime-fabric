@@ -6,35 +6,35 @@ Use this reference for `rtfctl` commands.
 
 Use these commands to install, upgrade, and validate a Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=install-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=install-rtfctl,leveloffset=+1]
 
 == Back Up and Restore a Runtime Fabric with RTFCTL
 
 Use these commands to back up and restore a Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=restore-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=restore-rtfctl,leveloffset=+1]
 
 == Configure Runtime Fabric with RTFCTL
 
 Use these commands to configure Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=configure-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=configure-rtfctl,leveloffset=+1]
 
 == Troubleshoot Runtime Fabric with RTFCTL
 
 Use these commands to troubleshoot Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+1]
 
 == Manage Mule Apps on Runtime Fabric with RTFCTL
 
 Use these commands to manage applications deployed to Runtime Fabric.
 
-include::partial$rtfctl-commands.adoc[tag=manage-apps-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=manage-apps-rtfctl,leveloffset=+1]
 
 == Uninstall Runtime Fabric with RTFCTL
 
-include::partial$rtfctl-commands.adoc[tag=uninstall-rtfctl,leveloffset=+2]
+include::partial$rtfctl-commands.adoc[tag=uninstall-rtfctl,leveloffset=+1]
 
 == See Also
 
