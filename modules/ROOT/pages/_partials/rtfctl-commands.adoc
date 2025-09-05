@@ -224,7 +224,7 @@ rtfctl apply monitoring-proxy http://<host>:<port> --namespace <rtf_namespace>
 rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
 ----
 
-= `update` 
+= `update`
 
 Updates `rtfctl`.
 
