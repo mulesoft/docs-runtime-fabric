@@ -1,4 +1,3 @@
-
 = Configuring Runtime Fabric with RTFCTL
 
 Use these `rtfctl` commands to configure Runtime Fabric.
