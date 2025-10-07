@@ -8,6 +8,8 @@ Applications deployed to a production environment must be deployed to an instanc
 
 By default, inbound traffic is disabled to prevent consuming unnecessary resources. To allow Mule applications or API gateways to listen on inbound connections, you must enable inbound traffic.
 
+The Correlation ID for Mule apps running in cluster mode on Runtime Fabric on VMs or bare metal remains a valid UUID. For other deployment targets, the Correlation ID is also prefixed with the cluster node ID.
+
 == Prepare to Enable Inbound Traffic
 
 Before enabling inbound traffic for Runtime Fabric on VMs / Bare Metal, be sure you've addressed the following: 
