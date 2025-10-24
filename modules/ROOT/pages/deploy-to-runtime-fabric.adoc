@@ -25,6 +25,13 @@ The full deployment process includes these steps:
 . Configure application properties
 . Deploy the application
 
+Watch the following video to see how to deploy a Mule application to Runtime Fabric using Runtime Manager:
+
+++++
+include::_partials/rtf-deploy-mule-apps-rtm.html[]
+++++
+
+
 === Prerequisites
 
 Before deploying an application to Anypoint Runtime Fabric, perform the following:
