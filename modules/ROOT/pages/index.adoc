@@ -1,6 +1,8 @@
 = Anypoint Runtime Fabric Overview
 
-Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage. 
+Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage.
+
+Runtime Fabric isolates applications by running a separate Mule runtime server per application and supports automated fail-over and horizontal scaling across multiple replicas. You can use Runtime Fabric with managed Kubernetes services like EKS, AKS, and GKE, or with self-managed distributions like Red Hat OpenShift and Rancher. 
 
 Watch the Anypoint Runtime Fabric Product Spotlight video to see a quick overview of Runtime Fabric.
 
