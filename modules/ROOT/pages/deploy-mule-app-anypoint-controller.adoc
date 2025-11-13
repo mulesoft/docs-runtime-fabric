@@ -1,4 +1,4 @@
-= Deploy Mule Applications Using Anypoint Controller for Kubernetes
+= Deploy and Manage Mule Applications Using Anypoint Controller for Kubernetes
 
 Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources. 
 
@@ -6,78 +6,49 @@ Anypoint Controller is a Kubernetes operator that enables you to deploy and mana
 * Integrate with CI/CD tools like ArgoCD and FluxCD for automated deployments. 
 * Leverage Kubernetes-native features including external secret managers and volume mounts to enhance security and operational flexibility.
 
-== Current Scope and Limitations
+== Scope and Limitations
 
 [NOTE]
-====
-*Limited General Availability*
-
 This feature is currently in Limited General Availability (Limited GA). To enable Anypoint Controller for your organization, contact MuleSoft Support.
-====
 
-=== Supported Deployment Type
+Supported features:
 
-* *Mule Applications*: Only Mule application deployments are supported at this time.
-* *Minimum Runtime Version*: Mule Runtime versions 4.6 and above.
+* Runtime Fabric Mule application deployments
+* Mule runtime versions 4.6 and higher
+* Helm based Runtime Fabric installation or upgrade
 
-=== Unsupported Application Types
+Not supported features:
 
-* *Scheduler-Based Applications*: Scheduler-based Mule applications are not supported.
-* *API Proxies*: API proxy deployments are not currently supported.
+* CloudHub 2.0 Mule application deployments
+* Scheduler-based Mule applications
+* API proxy deployments
+* `rtfctl` based Runtime Fabric installation or upgrade
 
-=== Limited GA Restrictions
+[IMPORTANT]
+Backup and restore functionality (during Limited GA phase) is not supported. Plan your disaster recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
 
-During the Limited GA phase:
 
-* *Backup and Restore*: Backup and restore functionality is not supported for Mule applications managed by Anypoint Controller.
-* *Feature Availability*: This feature requires enrollment and enablement by MuleSoft Support.
+== Before You Begin
 
-== Prerequisites and Environment Setup
+Before you begin, review these prerequisites and environment setup requirements.
 
-=== Supported Platforms
-
-==== Deployment Target
-
-Anypoint Controller is only supported for Runtime Fabric (RTF) deployments. CloudHub 2.0 (CH2) deployments are not supported.
-
-==== Installation Method
-
-Anypoint Controller requires a Helm-based RTF installation or upgrade. It is not supported for rtfctl-based installations.
+=== Installation Method
 
 To use Anypoint Controller, you must:
 
 * Have an existing Runtime Fabric installation using Helm, or
-* Install Runtime Fabric using Helm (see xref:install-helm.adoc[Install Runtime Fabric Using Helm])
+* Install or upgrade Runtime Fabric using Helm (see xref:install-helm.adoc[Install Runtime Fabric Using Helm]) or xref:upgrade-helm.adoc[Upgrade Runtime Fabric Using Helm]
 
 === Management Constraints
 
-Understanding the management model is critical before deploying applications with Anypoint Controller.
+Understanding the management model is critical before deploying applications with Anypoint Controller:
 
-==== GitOps-Only Management
+* Applications created via MuleApplication Custom Resources can only be managed through the Custom Resource itself.
+* All configuration changes must be applied by updating the Custom Resource YAML and applying it to the cluster.
+* The Anypoint Platform Runtime Manager UI displays these applications in read-only mode.
+* Attempts to modify or delete these applications via Anypoint Platform APIs result in an error.
+* The Git repository remains the single source of truth for application configuration.
 
-* *Management Channel*: Mule applications created via MuleApplication Custom Resources can only be managed through the Custom Resource itself.
-* *Version Control Workflow*: All configuration changes must be applied by updating the Custom Resource YAML and applying it to the cluster.
-
-==== UI and API Restrictions
-
-* *Read-Only UI*: The Anypoint Platform Runtime Manager UI displays these applications in read-only mode. You cannot modify them through the UI.
-* *API Restrictions*: Attempts to modify or delete these applications via Anypoint Platform APIs will result in an error.
-* *Clear Separation*: This ensures the Git repository remains the single source of truth for application configuration.
-
-==== Deletion
-
-To delete an application managed by Anypoint Controller, delete the MuleApplication Custom Resource:
-
-[source,bash]
-----
-kubectl delete muleapplication <app-name> -n <namespace>
-----
-
-The controller automatically removes the application from Anypoint Platform and cleans up all Kubernetes resources.
-
-=== Backup and Restore Limitation
-
-During the Limited GA phase, backup and restore functionality is not supported for Mule applications owned by Anypoint Controller. Plan your disaster recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
 
 == Installation and Configuration
 
@@ -1201,14 +1172,21 @@ The controller detects the change and initiates the update automatically.
 
 ==== Delete an Application
 
-Delete the MuleApplication Custom Resource:
+To delete an application managed by Anypoint Controller, delete the MuleApplication Custom Resource:
+
+[source,bash]
+----
+kubectl delete muleapplication <app-name> -n <namespace>
+----
+
+Example:
 
 [source,bash]
 ----
 kubectl delete muleapplication hello-world-app -n my-apps
 ----
 
-The controller:
+The controller automatically:
 
 . Deletes the application from Anypoint Platform
 . Removes all Kubernetes resources (Deployment, Service, ConfigMaps, Secrets)
