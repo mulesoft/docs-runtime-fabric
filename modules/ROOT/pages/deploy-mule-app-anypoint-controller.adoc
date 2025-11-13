@@ -1,6 +1,6 @@
 = Deploy and Manage Mule Applications Using Anypoint Controller for Kubernetes
 
-Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources.
+Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources (CR).
 
 Key Benefits:
 
@@ -26,7 +26,7 @@ This feature is currently in Limited General Availability (Limited GA). To enabl
 Supported features:
 
 * Runtime Fabric Mule application deployments
-* Mule runtime versions 4.6 and higher
+* Mule runtime engine (Mule) versions 4.6 and higher
 * Helm based Runtime Fabric installation or upgrade
 
 Not supported features:
@@ -37,7 +37,7 @@ Not supported features:
 * `rtfctl` based Runtime Fabric installation or upgrade
 
 [IMPORTANT]
-Backup and restore functionality (during Limited GA phase) is not supported. Plan your disaster recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
+Backup and restore functionality (during Limited GA phase) is not supported. Plan your recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
 
 
 == Before You Begin
@@ -172,8 +172,10 @@ Anypoint Controller supports standard Kubernetes volume types, enabling you to m
 
 Use the `volumes` and `volumeMounts` fields to securely provide sensitive data (credentials, API keys, certificates), configuration files, and persistent storage to your application:
 
-* `volumes` - Defines the storage volumes available to the application, such as Kubernetes Secrets, ConfigMaps, persistent volumes, or external secret stores.
-* `volumeMounts` - Specifies where to mount the volumes inside the application container and makes the data accessible at the specified file path.
+* `volumes` +
+Defines the storage volumes available to the application, such as Kubernetes Secrets, ConfigMaps, persistent volumes, or external secret stores.
+* `volumeMounts` +
+Specifies where to mount the volumes inside the application container and makes the data accessible at the specified file path.
 
 When you specify `volumes` and `volumeMounts` in the MuleApplication CR:
 
@@ -283,11 +285,9 @@ spec:
 To integrate with AWS Secrets Manager, Azure Key Vault, or HashiCorp Vault, use the Secrets Store CSI Driver.
 
 [NOTE]
-====
 The Secrets Store CSI Driver must be installed in your cluster. Refer to your cloud provider's documentation for installation instructions.
-====
 
-*Step 1: Create a SecretProviderClass*
+. Create a SecretProviderClass:
 
 [source,yaml]
 ----
@@ -309,7 +309,7 @@ spec:
             objectAlias: db_password
 ----
 
-*Step 2: Reference in MuleApplication*
+. Reference in MuleApplication:
 
 [source,yaml]
 ----
@@ -327,13 +327,13 @@ spec:
       readOnly: true
 ----
 
-*Step 3: Access Secrets*
+. Access Secrets:
 
 The secrets are available at:
 - `/mnt/secrets/aws/db_username`
 - `/mnt/secrets/aws/db_password`
 
-Reference them in your Mule configuration:
+. Reference them in your Mule configuration:
 
 [source,xml]
 ----
@@ -421,8 +421,6 @@ spec:
 === Create a Connected App
 
 Anypoint Controller requires a Connected App to authenticate with Anypoint Platform APIs. The Connected App acts on its own behalf using client credentials.
-
-==== Create the Connected App
 
 . Log in to Anypoint Platform.
 . Navigate to *Access Management* > *Connected Apps*.
@@ -956,7 +954,7 @@ status:
 
 The controller could not apply the configuration to Anypoint Platform. The `message` field contains the error details.
 
-*Common Failure Reasons:*
+Common Failure Reasons:
 
 * Application name already exists (not created via Anypoint Controller)
 * Invalid Runtime Fabric target name
