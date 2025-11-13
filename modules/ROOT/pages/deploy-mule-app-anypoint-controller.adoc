@@ -1,0 +1,1540 @@
+= Deploy Mule Applications Using Anypoint Controller for Kubernetes
+
+Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources. 
+
+* Define your application specifications declaratively in version control, and the controller automatically reconciles them with Anypoint Platform and your cluster. 
+* Integrate with CI/CD tools like ArgoCD and FluxCD for automated deployments. 
+* Leverage Kubernetes-native features including external secret managers and volume mounts to enhance security and operational flexibility.
+
+== Current Scope and Limitations
+
+[NOTE]
+====
+*Limited General Availability*
+
+This feature is currently in Limited General Availability (Limited GA). To enable Anypoint Controller for your organization, contact MuleSoft Support.
+====
+
+=== Supported Deployment Type
+
+* *Mule Applications*: Only Mule application deployments are supported at this time.
+* *Minimum Runtime Version*: Mule Runtime versions 4.6 and above.
+
+=== Unsupported Application Types
+
+* *Scheduler-Based Applications*: Scheduler-based Mule applications are not supported.
+* *API Proxies*: API proxy deployments are not currently supported.
+
+=== Limited GA Restrictions
+
+During the Limited GA phase:
+
+* *Backup and Restore*: Backup and restore functionality is not supported for Mule applications managed by Anypoint Controller.
+* *Feature Availability*: This feature requires enrollment and enablement by MuleSoft Support.
+
+== Prerequisites and Environment Setup
+
+=== Supported Platforms
+
+==== Deployment Target
+
+Anypoint Controller is only supported for Runtime Fabric (RTF) deployments. CloudHub 2.0 (CH2) deployments are not supported.
+
+==== Installation Method
+
+Anypoint Controller requires a Helm-based RTF installation or upgrade. It is not supported for rtfctl-based installations.
+
+To use Anypoint Controller, you must:
+
+* Have an existing Runtime Fabric installation using Helm, or
+* Install Runtime Fabric using Helm (see xref:install-helm.adoc[Install Runtime Fabric Using Helm])
+
+=== Management Constraints
+
+Understanding the management model is critical before deploying applications with Anypoint Controller.
+
+==== GitOps-Only Management
+
+* *Management Channel*: Mule applications created via MuleApplication Custom Resources can only be managed through the Custom Resource itself.
+* *Version Control Workflow*: All configuration changes must be applied by updating the Custom Resource YAML and applying it to the cluster.
+
+==== UI and API Restrictions
+
+* *Read-Only UI*: The Anypoint Platform Runtime Manager UI displays these applications in read-only mode. You cannot modify them through the UI.
+* *API Restrictions*: Attempts to modify or delete these applications via Anypoint Platform APIs will result in an error.
+* *Clear Separation*: This ensures the Git repository remains the single source of truth for application configuration.
+
+==== Deletion
+
+To delete an application managed by Anypoint Controller, delete the MuleApplication Custom Resource:
+
+[source,bash]
+----
+kubectl delete muleapplication <app-name> -n <namespace>
+----
+
+The controller automatically removes the application from Anypoint Platform and cleans up all Kubernetes resources.
+
+=== Backup and Restore Limitation
+
+During the Limited GA phase, backup and restore functionality is not supported for Mule applications owned by Anypoint Controller. Plan your disaster recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
+
+== Installation and Configuration
+
+=== Enable Anypoint Controller in Helm Chart
+
+Configure the `rtf-agent` Helm chart to enable Anypoint Controller during installation or upgrade.
+
+==== For New Installations
+
+In your `values.yaml` file, add the following configuration:
+
+[source,yaml]
+----
+global:
+  crds:
+    install: true
+    anypointController:
+      enabled: true
+----
+
+Install the RTF agent:
+
+[source,bash]
+----
+helm install rtf-agent <chart-repo>/rtf-agent \
+  -f values.yaml \
+  -n <rtf-namespace>
+----
+
+==== For Existing Installations (Upgrade)
+
+Update your `values.yaml` file with the same configuration as above, then upgrade:
+
+[source,bash]
+----
+helm upgrade rtf-agent <chart-repo>/rtf-agent \
+  -f values.yaml \
+  -n <rtf-namespace>
+----
+
+This configuration performs the following actions:
+
+* Installs the MuleApplication Custom Resource Definition (CRD) in your cluster
+* Enables the Anypoint Controller component within the RTF agent
+* Grants the RTF agent necessary permissions to manage MuleApplication resources
+
+=== Create an Anypoint Connected App
+
+Anypoint Controller requires a Connected App to authenticate with Anypoint Platform APIs. The Connected App acts on its own behalf using client credentials.
+
+==== Create the Connected App
+
+. Log in to Anypoint Platform.
+. Navigate to *Access Management* > *Connected Apps*.
+. Click *Create app*.
+. Select *App acts on its own behalf (client credentials)*.
+. Enter a name for your Connected App, such as `anypoint-controller`.
+
+==== Grant Required Permissions
+
+Under *Scopes*, grant the following permissions:
+
+[%header%autowidth.spread]
+|===
+| Category | Permission | Description
+| Exchange | Exchange Viewer | View and download application artifacts from Exchange
+| General | View Environments | View environment details in the organization
+| OpenID | Profile | Access basic profile information
+| Runtime Manager | Create Applications | Create new application deployments
+| Runtime Manager | Delete Applications | Delete existing application deployments
+| Runtime Manager | Read Runtime Fabrics | View Runtime Fabric target information
+|===
+
+==== Save Credentials
+
+. Click *Save*.
+. Copy the *Client ID* and *Client Secret*. You need these values in the next step.
+
+[IMPORTANT]
+====
+Store the Client Secret securely. You cannot retrieve it again after leaving this page.
+====
+
+=== Configure Anypoint Credentials
+
+Create a Kubernetes Secret containing the Connected App credentials in the namespace where RTF is installed.
+
+[source,bash]
+----
+kubectl create secret generic anypoint-credentials \
+  --from-literal=ANYPOINT_CLIENT_ID=<your-client-id> \
+  --from-literal=ANYPOINT_CLIENT_SECRET=<your-client-secret> \
+  -n <rtf-namespace>
+----
+
+Replace the following:
+
+* `<your-client-id>`: The Client ID from your Connected App
+* `<your-client-secret>`: The Client Secret from your Connected App
+* `<rtf-namespace>`: The namespace where RTF is installed (for example, `rtf`)
+
+The Anypoint Controller monitors this secret and automatically reloads credentials when updated, enabling credential rotation without controller restarts.
+
+=== Understanding RTF Agent Kubernetes Permissions
+
+The RTF agent requires specific Kubernetes permissions to manage MuleApplication Custom Resources:
+
+* *Namespace Editing*: The RTF agent needs permissions to edit the Kubernetes namespace where you deploy the MuleApplication CR to add synchronization labels required for tracking and reconciliation.
+
+* *Namespace Flexibility*: You can create MuleApplication Custom Resources in any Kubernetes namespace. The controller watches all namespaces and manages applications regardless of where the CR is created.
+
+* *Resource Creation*: The controller creates application resources (Deployments, Services, ConfigMaps, Secrets) in the same namespace as the MuleApplication CR.
+
+* *Label Management*: The controller adds labels to resources for tracking, ownership, and reconciliation purposes.
+
+== Deploy Applications Using MuleApplication Custom Resource
+
+=== Understanding Custom Resource Definitions
+
+The MuleApplication Custom Resource Definition (CRD) defines the schema for Mule application deployments. When you enable Anypoint Controller, Helm installs this CRD in your cluster.
+
+==== View the CRD
+
+[source,bash]
+----
+kubectl get crd muleapplications.rtf.mulesoft.com
+----
+
+==== Describe the CRD Schema
+
+[source,bash]
+----
+kubectl explain muleapplication.spec
+----
+
+This command shows all available fields and their descriptions.
+
+=== Basic MuleApplication Example
+
+Create a file named `hello-world-app.yaml`:
+
+[source,yaml]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: MuleApplication
+metadata:
+  name: hello-world-app
+  namespace: my-apps
+spec:
+  # Required: Anypoint Platform Configuration (Immutable)
+  target: my-rtf-target
+  businessGroup: MyOrg/Engineering
+  environment: Production
+  
+  # Required: Runtime Configuration
+  runtimeVersion: "4.8.0:2e-java8"
+  
+  # Required: Application Artifact
+  application:
+    group: my-org
+    artifactId: hello-world
+    version: "1.0.0"
+    packaging: jar
+  
+  # Deployment Configuration
+  replicas: 2
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+----
+
+Apply the Custom Resource:
+
+[source,bash]
+----
+kubectl apply -f hello-world-app.yaml
+----
+
+The Anypoint Controller detects the new resource and:
+
+. Creates the application in Anypoint Platform
+. Deploys the application to the specified Runtime Fabric target
+. Continuously monitors and reconciles the desired state
+
+=== MuleApplication Field Reference
+
+==== Required Fields (Immutable After Creation)
+
+These fields are required and cannot be changed after the application is created:
+
+* *target* (string): The name of the Runtime Fabric target as shown in Runtime Manager.
++
+[source,yaml]
+----
+spec:
+  target: production-rtf
+----
+
+* *businessGroup* (string): The hierarchical path of the Anypoint business group. Use forward slashes to separate parent and child groups.
++
+[source,yaml]
+----
+spec:
+  businessGroup: Acme/Finance/MyGroup
+----
++
+If your business group is the root organization, use only the organization name:
++
+[source,yaml]
+----
+spec:
+  businessGroup: Acme
+----
+
+* *environment* (string): The name of the Anypoint environment (not the environment ID).
++
+[source,yaml]
+----
+spec:
+  environment: Production
+----
+
+==== Required: Runtime Version
+
+* *runtimeVersion* (string): The Mule runtime version to use. Must be version 4.6 or above.
++
+[source,yaml]
+----
+spec:
+  runtimeVersion: "4.8.0:2e-java8"
+----
+
+==== Required: Application Artifact
+
+The `application` field specifies the artifact to deploy from Anypoint Exchange, using Maven coordinate conventions:
+
+[source,yaml]
+----
+spec:
+  application:
+    group: my-business-group      # Business group that owns the artifact
+    artifactId: order-processing   # Artifact name
+    version: "1.0.5"              # Artifact version
+    packaging: jar                 # Artifact format (typically "jar")
+----
+
+==== Deployment Configuration
+
+===== Replicas
+
+Specify the number of application instances:
+
+[source,yaml]
+----
+spec:
+  replicas: 3
+----
+
+* Default: `1`
+* Maximum: `16` replicas per application
+
+===== Resource Allocation
+
+Define CPU and memory resources per replica:
+
+[source,yaml]
+----
+spec:
+  resources:
+    requests:
+      cpu: 500m        # Minimum CPU (millicores)
+      memory: 1Gi      # Minimum memory
+    limits:
+      cpu: 2000m       # Maximum CPU
+      memory: 2Gi      # Maximum memory
+----
+
+===== Update Strategy
+
+Control how updates are rolled out:
+
+[source,yaml]
+----
+spec:
+  updateStrategy: rolling  # or "recreate"
+----
+
+* `rolling` (default): Updates replicas incrementally, maintaining availability
+* `recreate`: Terminates all replicas before creating new ones
+
+===== Horizontal Pod Autoscaling
+
+Configure CPU-based autoscaling:
+
+[source,yaml]
+----
+spec:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+----
+
+When autoscaling is enabled, the controller creates a HorizontalPodAutoscaler resource that automatically adjusts replica count based on CPU utilization.
+
+===== Clustering and Persistence
+
+[source,yaml]
+----
+spec:
+  clustered: true                  # Enable Mule clustering
+  persistentObjectStore: true      # Enable persistent object store
+----
+
+===== Replica Distribution
+
+[source,yaml]
+----
+spec:
+  enforceDeployingReplicasAcrossNodes: true
+----
+
+When enabled, Kubernetes ensures replicas are distributed across different nodes for high availability.
+
+==== Application Properties
+
+Define properties directly in the Custom Resource:
+
+[source,yaml]
+----
+spec:
+  properties:
+    - name: http.port
+      value: "8081"
+    - name: api.key
+      value: "my-api-key-123"
+      secure: true    # Encrypt this property
+    - name: max.connections
+      value: "100"
+----
+
+Set `secure: true` for sensitive values that should be encrypted in Anypoint Platform.
+
+==== JVM Configuration
+
+Specify custom JVM arguments:
+
+[source,yaml]
+----
+spec:
+  jvmArgs:
+    - "-Xmx2048m"
+    - "-Xms1024m"
+    - "-Djavax.net.ssl.keyStore=/var/tls/keystore.jks"
+    - "-Djavax.net.ssl.keyStorePassword=changeit"
+----
+
+==== Logging Configuration
+
+Configure package-level logging:
+
+[source,yaml]
+----
+spec:
+  scopeLoggingConfigurations:
+    - scope: com.mulesoft
+      logLevel: DEBUG
+    - scope: org.mule.extension.http
+      logLevel: INFO
+    - scope: org.springframework
+      logLevel: WARN
+    - scope: root
+      logLevel: INFO
+----
+
+Valid log levels: `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`
+
+==== Monitoring and Tracing
+
+[source,yaml]
+----
+spec:
+  disableAmLogForwarding: false    # Keep Anypoint Monitoring log forwarding enabled
+  tracingEnabled: true             # Enable OpenTelemetry tracing (requires Mule 4.6+)
+----
+
+==== Kubernetes Customization
+
+Customize pod, service, and deployment metadata:
+
+[source,yaml]
+----
+spec:
+  pod:
+    metadata:
+      labels:
+        team: engineering
+        cost-center: "12345"
+        app-version: "1.0.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+    
+    # Node placement
+    nodeSelector:
+      environment: production
+      disktype: ssd
+    
+    # Tolerations for tainted nodes
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "mule-apps"
+        effect: "NoSchedule"
+    
+    # Affinity rules
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: hello-world-app
+              topologyKey: kubernetes.io/hostname
+    
+    # Topology spread constraints
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: hello-world-app
+    
+    # Security context
+    containerSecurityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsNonRoot: true
+    
+    # Service account
+    automountServiceAccountToken: true
+    
+    # Environment variables
+    env:
+      - name: ENABLE_CONSOLE_LOG
+        value: "true"
+      - name: TZ
+        value: "America/New_York"
+    
+    # Ephemeral storage
+    ephemeralStorageLimit: 4Gi
+  
+  service:
+    metadata:
+      labels:
+        monitoring: enabled
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+  
+  deployment:
+    metadata:
+      labels:
+        deployment-version: "v1"
+      annotations:
+        fluxcd.io/automated: "true"
+----
+
+=== Mounting Properties from External Sources
+
+The `propertiesFrom` section enables you to inject application properties from Kubernetes Secrets and ConfigMaps without hardcoding them in the Custom Resource.
+
+==== How Property Mounting Works
+
+When you reference a Secret or ConfigMap in `propertiesFrom`, the controller:
+
+. Creates volume and volumeMount configurations automatically
+. Mounts the files to `/etc/mule/properties/` in the Mule application container
+. The Mule agent scans this directory recursively and loads properties before starting the application
+
+==== Supported Property Formats
+
+The Mule agent supports two property file formats:
+
+. *Java Properties Files* (`.properties` extension):
+   - Files ending with `.properties` are parsed as standard Java properties files
+   - Each line follows the `key=value` format
+   - Supports comments with `#` or `!`
+
+. *File-as-Property* (any other file):
+   - The filename becomes the property name
+   - The file content becomes the property value
+   - Useful for single-value secrets
+
+*Property Loading Order:* Properties are loaded alphabetically by source name. Later properties override earlier ones with the same name.
+
+==== Example: Mount Properties from a Secret
+
+Create a Secret:
+
+[source,bash]
+----
+kubectl create secret generic database-credentials \
+  --from-literal=db.username=admin \
+  --from-literal=db.password=secretPass123 \
+  --from-literal=db.host=database.example.com \
+  -n my-apps
+----
+
+Reference it in your MuleApplication:
+
+[source,yaml]
+----
+spec:
+  propertiesFrom:
+    - secretRef:
+        name: database-credentials
+----
+
+Access properties in your Mule application:
+
+[source,xml]
+----
+<db:config name="Database_Config">
+  <db:my-sql-connection 
+    host="${db.host}" 
+    user="${db.username}" 
+    password="${db.password}" />
+</db:config>
+----
+
+==== Example: Mount Properties from a ConfigMap
+
+Create a ConfigMap:
+
+[source,bash]
+----
+kubectl create configmap app-config \
+  --from-literal=api.timeout=30000 \
+  --from-literal=api.retry.count=3 \
+  --from-literal=api.base.url=https://api.example.com \
+  -n my-apps
+----
+
+Reference it in your MuleApplication:
+
+[source,yaml]
+----
+spec:
+  propertiesFrom:
+    - configMapRef:
+        name: app-config
+----
+
+==== Example: Mount a Java Properties File
+
+Create a properties file:
+
+[source,properties]
+----
+# application.properties
+http.port=8081
+http.host=0.0.0.0
+api.key=prod-key-12345
+max.retry.attempts=5
+timeout.seconds=30
+----
+
+Create a ConfigMap from the file:
+
+[source,bash]
+----
+kubectl create configmap app-properties \
+  --from-file=application.properties \
+  -n my-apps
+----
+
+Reference it:
+
+[source,yaml]
+----
+spec:
+  propertiesFrom:
+    - configMapRef:
+        name: app-properties
+----
+
+All properties from the file are loaded and available as `${http.port}`, `${api.key}`, etc.
+
+==== Example: Combine Multiple Property Sources
+
+[source,yaml]
+----
+spec:
+  propertiesFrom:
+    - secretRef:
+        name: database-credentials    # Loaded first
+    - configMapRef:
+        name: app-config              # Loaded second (overrides conflicts)
+    - secretRef:
+        name: api-keys                # Loaded third (overrides conflicts)
+----
+
+==== Example: Optional Property Sources
+
+Make a property source optional (doesn't fail if not found):
+
+[source,yaml]
+----
+spec:
+  propertiesFrom:
+    - configMapRef:
+        name: optional-config
+        optional: true    # Don't fail if this ConfigMap doesn't exist
+----
+
+=== Configure Volumes and Volume Mounts
+
+Anypoint Controller supports standard Kubernetes volume types, enabling you to mount files, secrets, and persistent storage into your Mule application containers.
+
+==== How Volume Mounting Works
+
+When you specify `volumes` and `volumeMounts` in the MuleApplication CR:
+
+. The controller includes these specifications in the Deployment resource
+. Kubernetes mounts the volumes into the Mule application container at the specified paths
+. Your Mule application can access the files at runtime
+
+[NOTE]
+====
+Volumes specified in the MuleApplication CR are mounted to the main Mule application container, not to sidecar containers.
+====
+
+==== Example: Mount a TLS Keystore from a Secret
+
+Create a Secret containing your keystore:
+
+[source,bash]
+----
+kubectl create secret generic java-keystore \
+  --from-file=keystore.jks=./path/to/keystore.jks \
+  --from-literal=keystore.password=changeit \
+  -n my-apps
+----
+
+Mount it in your application:
+
+[source,yaml]
+----
+spec:
+  volumes:
+    - name: tls-keystore
+      secret:
+        secretName: java-keystore
+  volumeMounts:
+    - name: tls-keystore
+      mountPath: /var/tls
+      readOnly: true
+  jvmArgs:
+    - "-Djavax.net.ssl.keyStore=/var/tls/keystore.jks"
+    - "-Djavax.net.ssl.keyStorePassword=changeit"
+----
+
+Your application can now access:
+- `/var/tls/keystore.jks`
+- `/var/tls/keystore.password`
+
+==== Example: Mount Configuration Files from a ConfigMap
+
+Create a ConfigMap with configuration files:
+
+[source,bash]
+----
+kubectl create configmap app-configs \
+  --from-file=log4j2.xml \
+  --from-file=truststore.jks \
+  -n my-apps
+----
+
+Mount the files:
+
+[source,yaml]
+----
+spec:
+  volumes:
+    - name: app-configs
+      configMap:
+        name: app-configs
+  volumeMounts:
+    - name: app-configs
+      mountPath: /opt/mule/conf
+      readOnly: true
+----
+
+==== Example: Use External Secret Manager (AWS Secrets Manager)
+
+To integrate with AWS Secrets Manager, Azure Key Vault, or HashiCorp Vault, use the Secrets Store CSI Driver.
+
+[NOTE]
+====
+The Secrets Store CSI Driver must be installed in your cluster. Refer to your cloud provider's documentation for installation instructions.
+====
+
+*Step 1: Create a SecretProviderClass*
+
+[source,yaml]
+----
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: aws-database-secrets
+  namespace: my-apps
+spec:
+  provider: aws
+  parameters:
+    objects: |
+      - objectName: "production/database/credentials"
+        objectType: "secretsmanager"
+        jmesPath:
+          - path: username
+            objectAlias: db_username
+          - path: password
+            objectAlias: db_password
+----
+
+*Step 2: Reference in MuleApplication*
+
+[source,yaml]
+----
+spec:
+  volumes:
+    - name: aws-secrets
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: aws-database-secrets
+  volumeMounts:
+    - name: aws-secrets
+      mountPath: /mnt/secrets/aws
+      readOnly: true
+----
+
+*Step 3: Access Secrets*
+
+The secrets are available at:
+- `/mnt/secrets/aws/db_username`
+- `/mnt/secrets/aws/db_password`
+
+Reference them in your Mule configuration:
+
+[source,xml]
+----
+<db:config name="Database_Config">
+  <db:my-sql-connection 
+    host="${db.host}" 
+    user="${file:/mnt/secrets/aws/db_username}" 
+    password="${file:/mnt/secrets/aws/db_password}" />
+</db:config>
+----
+
+==== Example: Use Azure Key Vault
+
+[source,yaml]
+----
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: azure-key-vault-secrets
+  namespace: my-apps
+spec:
+  provider: azure
+  parameters:
+    usePodIdentity: "false"
+    useVMManagedIdentity: "true"
+    userAssignedIdentityID: "<client-id>"
+    keyvaultName: "my-keyvault"
+    objects: |
+      array:
+        - |
+          objectName: database-password
+          objectType: secret
+          objectVersion: ""
+    tenantId: "<tenant-id>"
+---
+apiVersion: rtf.mulesoft.com/v1
+kind: MuleApplication
+metadata:
+  name: my-app
+spec:
+  # ... other fields ...
+  volumes:
+    - name: azure-secrets
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: azure-key-vault-secrets
+  volumeMounts:
+    - name: azure-secrets
+      mountPath: /mnt/secrets/azure
+      readOnly: true
+----
+
+==== Example: Mount a Persistent Volume
+
+[source,yaml]
+----
+spec:
+  volumes:
+    - name: app-data
+      persistentVolumeClaim:
+        claimName: mule-app-pvc
+  volumeMounts:
+    - name: app-data
+      mountPath: /mnt/data
+----
+
+Your application can read and write files to `/mnt/data`, and the data persists across pod restarts.
+
+==== Example: Mount an Empty Directory (Temporary Storage)
+
+[source,yaml]
+----
+spec:
+  volumes:
+    - name: temp-storage
+      emptyDir:
+        sizeLimit: 1Gi
+  volumeMounts:
+    - name: temp-storage
+      mountPath: /tmp/processing
+----
+
+=== Template Restrictions
+
+When using Anypoint Controller, certain Runtime Fabric templates are not supported.
+
+==== Unsupported Templates
+
+* *KubernetesTemplate*: Not supported. All Kubernetes-specific configurations must be defined directly in the MuleApplication Custom Resource.
+
+* *HttpRouteTemplate*: Not supported. HTTP routing and ingress configurations must be managed separately using standard Kubernetes Ingress resources or your cluster's ingress controller.
+
+* *Ingress Template*: Not supported for the same reasons as HttpRouteTemplate.
+
+==== Why Templates Are Not Supported
+
+Templates were designed for imperative application management through Runtime Manager. With Anypoint Controller's declarative GitOps approach, all configuration must be explicitly defined in the Custom Resource to maintain:
+
+* A single source of truth in version control
+* Complete visibility of application configuration
+* Reproducible deployments across environments
+
+==== Migrating from Templates
+
+If you currently use KubernetesTemplate for configuration, migrate those settings to the MuleApplication CR fields:
+
+[%header%autowidth.spread]
+|===
+| Template Field | MuleApplication CR Field
+| Pod labels | `spec.pod.metadata.labels`
+| Pod annotations | `spec.pod.metadata.annotations`
+| Node selectors | `spec.pod.nodeSelector`
+| Tolerations | `spec.pod.tolerations`
+| Affinity rules | `spec.pod.affinity`
+| Topology spread | `spec.pod.topologySpreadConstraints`
+| Service annotations | `spec.service.metadata.annotations`
+| Deployment labels | `spec.deployment.metadata.labels`
+|===
+
+== Monitor Application Status and Lifecycle
+
+=== Understanding Status Conditions
+
+Anypoint Controller reports application state through standard Kubernetes status conditions. These conditions provide real-time feedback on the application's deployment and operational status.
+
+=== View Application Status
+
+Check the status of a MuleApplication:
+
+[source,bash]
+----
+kubectl get muleapplication hello-world-app -n my-apps
+----
+
+Output:
+
+[source,console]
+----
+NAME               APPLICATION FILE   DESIRED   READY   ANYPOINT ID   ANYPOINT VERSION
+hello-world-app    hello-world        2         2       abc123def     v456
+----
+
+View detailed status:
+
+[source,bash]
+----
+kubectl get muleapplication hello-world-app -n my-apps -o yaml
+----
+
+Or use `describe`:
+
+[source,bash]
+----
+kubectl describe muleapplication hello-world-app -n my-apps
+----
+
+=== Status Condition: Applied
+
+The `Applied` condition indicates whether the desired configuration was successfully synchronized with Anypoint Platform.
+
+==== Status: True (Success)
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: Applied
+      status: "True"
+      reason: APISuccessResponse
+      message: "Configuration updated successfully"
+      lastTransitionTime: "2024-01-15T10:30:00Z"
+----
+
+*Interpretation:* The controller successfully created or updated the application in Anypoint Platform. The application configuration matches the desired state defined in the CR.
+
+==== Status: False (Failure)
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: Applied
+      status: "False"
+      reason: APIErrorResponse
+      message: "409 Conflict - Application name 'hello-world-app' already exists"
+      lastTransitionTime: "2024-01-15T10:30:00Z"
+----
+
+*Interpretation:* The controller could not apply the configuration to Anypoint Platform. The `message` field contains the error details.
+
+*Common Failure Reasons:*
+
+* Application name already exists (not created via Anypoint Controller)
+* Invalid Runtime Fabric target name
+* Invalid business group or environment name
+* Insufficient vCore entitlement
+* Invalid runtime version
+* Exchange artifact not found
+* Connected App lacks required permissions
+* Network connectivity issues to Anypoint Platform
+
+=== Status Condition: Available
+
+The `Available` condition indicates whether the application has the desired number of ready replicas and is ready to serve traffic.
+
+==== Status: True (Available)
+
+[source,yaml]
+----
+status:
+  readyReplicas: 2
+  conditions:
+    - type: Available
+      status: "True"
+      reason: HaveReadyReplicas
+      message: "Application is ready to serve traffic"
+      lastTransitionTime: "2024-01-15T10:32:00Z"
+----
+
+*Interpretation:* All desired replicas are running and ready. The application is serving traffic.
+
+==== Status: False (Not Available)
+
+[source,yaml]
+----
+status:
+  readyReplicas: 0
+  conditions:
+    - type: Available
+      status: "False"
+      reason: HaveReadyReplicas
+      message: "Application is not ready to serve traffic"
+      lastTransitionTime: "2024-01-15T10:32:00Z"
+----
+
+*Interpretation:* The application doesn't have ready replicas. Check pod status and logs to diagnose the issue.
+
+=== Status Condition: DesiredSpecAppliedOnCluster
+
+The `DesiredSpecAppliedOnCluster` condition indicates whether the currently deployed application version in the cluster matches the desired specification version in Anypoint Platform.
+
+==== Status: True (Synchronized)
+
+[source,yaml]
+----
+status:
+  anypointVersion: v789
+  conditions:
+    - type: DesiredSpecAppliedOnCluster
+      status: "True"
+      reason: DesiredSpecAppliedOnCluster
+      lastTransitionTime: "2024-01-15T10:33:00Z"
+----
+
+*Interpretation:* The running application version matches the desired version. Deployment is complete and synchronized.
+
+==== Status: False (Out of Sync)
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: DesiredSpecAppliedOnCluster
+      status: "False"
+      reason: DesiredSpecAppliedOnCluster
+      lastTransitionTime: "2024-01-15T10:33:00Z"
+----
+
+*Interpretation:* The cluster is still deploying the updated version, or the deployment is in progress.
+
+=== Additional Status Fields
+
+==== Anypoint Platform Identifiers
+
+[source,yaml]
+----
+status:
+  anypointId: abc123def456           # Application ID in Anypoint Platform
+  anypointUri: https://anypoint.mulesoft.com/...  # Direct link to app
+  anypointVersion: v789              # Deployed spec version
+  targetId: target-123               # Runtime Fabric target ID
+  businessGroupId: bg-456            # Business group ID
+  environmentId: env-789             # Environment ID
+----
+
+Use `anypointUri` to quickly navigate to the application in Runtime Manager.
+
+==== Replica Status
+
+[source,yaml]
+----
+status:
+  readyReplicas: 2
+----
+
+The number of replicas that are running and ready to serve traffic.
+
+==== Retry Information
+
+[source,yaml]
+----
+status:
+  retryable: true
+----
+
+Indicates whether a failed operation can be automatically retried. When `true`, the controller retries the operation with exponential backoff.
+
+==== Reconciliation Metadata
+
+[source,yaml]
+----
+status:
+  lastPublishedHash: "a1b2c3d4..."     # Hash of last published spec
+  lastPublishedAt: "2024-01-15T10:30:00Z"  # Last publish timestamp
+----
+
+Used internally by the controller for change detection and reconciliation.
+
+=== Application Lifecycle Management
+
+==== Reconciliation Behavior
+
+The Anypoint Controller continuously reconciles the desired state:
+
+* *Sync Interval*: Every 30 seconds
+* *Change Detection*: Compares the CR spec hash with the last published hash
+* *Automatic Updates*: When changes are detected, the controller updates Anypoint Platform
+* *Retry Logic*: Failed operations are retried with exponential backoff
+* *Maximum Age*: Periodically refreshes state even without changes (every 10 minutes)
+
+==== Update an Application
+
+*Step 1:* Modify your MuleApplication YAML file:
+
+[source,yaml]
+----
+spec:
+  replicas: 5  # Changed from 2 to 5
+----
+
+*Step 2:* Apply the change:
+
+[source,bash]
+----
+kubectl apply -f hello-world-app.yaml
+----
+
+*Step 3:* Monitor the update:
+
+[source,bash]
+----
+kubectl get muleapplication hello-world-app -n my-apps -w
+----
+
+The controller detects the change and initiates the update automatically.
+
+==== Delete an Application
+
+Delete the MuleApplication Custom Resource:
+
+[source,bash]
+----
+kubectl delete muleapplication hello-world-app -n my-apps
+----
+
+The controller:
+
+. Deletes the application from Anypoint Platform
+. Removes all Kubernetes resources (Deployment, Service, ConfigMaps, Secrets)
+. Removes the finalizer from the CR
+. Allows Kubernetes to delete the CR
+
+[IMPORTANT]
+====
+Deletion is permanent. Ensure your Git repository contains the application configuration if you need to redeploy later.
+====
+
+==== Pause Reconciliation
+
+To temporarily prevent the controller from updating an application, add an annotation:
+
+[source,bash]
+----
+kubectl annotate muleapplication hello-world-app \
+  rtf.mulesoft.com/reconcile=false \
+  -n my-apps
+----
+
+To resume:
+
+[source,bash]
+----
+kubectl annotate muleapplication hello-world-app \
+  rtf.mulesoft.com/reconcile- \
+  -n my-apps
+----
+
+== Integrate with CI/CD and GitOps Tools
+
+Anypoint Controller works seamlessly with GitOps and Infrastructure-as-Code tools.
+
+=== GitOps Workflow
+
+. Store MuleApplication manifests in a Git repository
+. Define branch strategies (for example, `dev`, `staging`, `production`)
+. Use pull requests for configuration changes
+. Automate deployment with GitOps tools
+
+=== ArgoCD Integration
+
+*Step 1:* Store your manifests in Git:
+
+[source,console]
+----
+my-mule-apps/
+├── production/
+│   ├── hello-world-app.yaml
+│   └── order-processing-app.yaml
+└── staging/
+    ├── hello-world-app.yaml
+    └── order-processing-app.yaml
+----
+
+*Step 2:* Create an ArgoCD Application:
+
+[source,yaml]
+----
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mule-apps-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/myorg/mule-deployments
+    targetRevision: main
+    path: production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mule-apps
+  syncPolicy:
+    automated:
+      prune: true       # Delete resources removed from Git
+      selfHeal: true    # Revert manual changes
+    syncOptions:
+      - CreateNamespace=true
+----
+
+ArgoCD continuously monitors the Git repository and automatically deploys changes.
+
+=== FluxCD Integration
+
+*Step 1:* Create a GitRepository resource:
+
+[source,yaml]
+----
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: mule-apps
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/myorg/mule-deployments
+  ref:
+    branch: main
+----
+
+*Step 2:* Create a Kustomization resource:
+
+[source,yaml]
+----
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mule-apps-production
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef:
+    kind: GitRepository
+    name: mule-apps
+  path: ./production
+  prune: true
+  targetNamespace: mule-apps
+----
+
+FluxCD automatically reconciles the cluster state with Git.
+
+=== Terraform Integration
+
+[source,hcl]
+----
+resource "kubernetes_manifest" "hello_world_app" {
+  manifest = {
+    apiVersion = "rtf.mulesoft.com/v1"
+    kind       = "MuleApplication"
+    
+    metadata = {
+      name      = "hello-world-app"
+      namespace = "mule-apps"
+    }
+    
+    spec = {
+      target         = "production-rtf"
+      businessGroup  = "MyOrg/Engineering"
+      environment    = "Production"
+      runtimeVersion = "4.8.0:2e-java8"
+      
+      application = {
+        group      = "my-org"
+        artifactId = "hello-world"
+        version    = var.app_version
+        packaging  = "jar"
+      }
+      
+      replicas = var.replica_count
+      
+      resources = {
+        requests = {
+          cpu    = "500m"
+          memory = "1Gi"
+        }
+        limits = {
+          cpu    = "1000m"
+          memory = "2Gi"
+        }
+      }
+    }
+  }
+}
+----
+
+== Troubleshooting
+
+=== Check Controller Logs
+
+View Anypoint Controller logs:
+
+[source,bash]
+----
+kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller --tail=100
+----
+
+Follow logs in real-time:
+
+[source,bash]
+----
+kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller -f
+----
+
+=== Common Issues
+
+==== Application Not Reconciling
+
+*Symptom:* The `Applied` condition remains `False` or changes aren't reflected.
+
+*Solutions:*
+
+. Verify the namespace has the correct label:
++
+[source,bash]
+----
+kubectl get namespace <namespace> --show-labels
+----
++
+The namespace should have `rtf.mulesoft.com/system-ns=<rtf-namespace>`.
++
+Add the label if missing:
++
+[source,bash]
+----
+kubectl label namespace <namespace> rtf.mulesoft.com/system-ns=<rtf-namespace>
+----
+
+. Check the Connected App credentials:
++
+[source,bash]
+----
+kubectl get secret anypoint-credentials -n <rtf-namespace> -o yaml
+----
+
+. Verify the Connected App has required permissions in Anypoint Platform.
+
+. Check controller logs for errors.
+
+==== Application Deployment Fails
+
+*Symptom:* The `Applied` condition is `True`, but `Available` is `False`.
+
+*Solutions:*
+
+. Check pod status:
++
+[source,bash]
+----
+kubectl get pods -n <namespace> -l rtf.mulesoft.com/app=<app-name>
+----
+
+. View pod logs:
++
+[source,bash]
+----
+kubectl logs <pod-name> -n <namespace>
+----
+
+. Check pod events:
++
+[source,bash]
+----
+kubectl describe pod <pod-name> -n <namespace>
+----
+
+. Common causes:
+   - Invalid runtime version
+   - Artifact not found in Exchange
+   - Insufficient resources (CPU/memory)
+   - Image pull errors
+
+==== Invalid Configuration
+
+*Symptom:* `kubectl apply` fails with validation errors.
+
+*Solutions:*
+
+. Validate the YAML syntax:
++
+[source,bash]
+----
+kubectl apply -f app.yaml --dry-run=server
+----
+
+. Check immutable field violations (target, businessGroup, environment cannot be changed after creation).
+
+. Verify required fields are present.
+
+==== Anypoint Platform API Errors
+
+*Symptom:* The `Applied` condition shows `APIErrorResponse`.
+
+*Solutions:*
+
+. Read the error message in the status condition.
+
+. Common errors:
+   - `409 Conflict`: Application name already exists (created outside Anypoint Controller)
+   - `404 Not Found`: Invalid target, business group, or environment name
+   - `403 Forbidden`: Connected App lacks permissions
+   - `400 Bad Request`: Invalid configuration (for example, runtime version)
+
+. Verify configuration matches your Anypoint Platform setup.
+
+==== Credential Rotation
+
+To rotate Connected App credentials:
+
+. Create a new Connected App in Anypoint Platform or regenerate credentials.
+
+. Update the secret:
++
+[source,bash]
+----
+kubectl create secret generic anypoint-credentials \
+  --from-literal=ANYPOINT_CLIENT_ID=<new-client-id> \
+  --from-literal=ANYPOINT_CLIENT_SECRET=<new-client-secret> \
+  -n <rtf-namespace> \
+  --dry-run=client -o yaml | kubectl apply -f -
+----
+
+. The controller automatically detects the change and reloads credentials.
+
+=== Get Help
+
+If you need further assistance:
+
+. Collect diagnostic information:
++
+[source,bash]
+----
+kubectl describe muleapplication <app-name> -n <namespace> > app-status.txt
+kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller --tail=500 > controller-logs.txt
+kubectl get events -n <namespace> --sort-by='.lastTimestamp' > events.txt
+----
+
+. Contact MuleSoft Support with the diagnostic files.
+
+== See Also
+
+* xref:deploy-to-runtime-fabric.adoc[Deploy Applications to Runtime Fabric Using Runtime Manager]
+* xref:install-helm.adoc[Install Runtime Fabric Using Helm]
+* xref:manage-monitor-applications.adoc[Monitor Applications]
+* xref:customize-kubernetes-crd.adoc[Customize Kubernetes Resources Using CRDs]
+* xref:configure-horizontal-autoscaling.adoc[Configure Horizontal Pod Autoscaling]
+* xref:hardening-apps-deployed-runtime-fabric.adoc[Harden Mule Applications]
