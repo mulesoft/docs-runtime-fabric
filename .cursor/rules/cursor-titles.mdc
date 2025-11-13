@@ -1,0 +1,15 @@
+---
+description: Title Writing Guidelines
+globs: 
+alwaysApply: false
+---
+
+- Make the title as unique and descriptive as you can.
+- Focus the title on what this topic is doing for users (use cases, jobs, goals, and what problem the feature solves).
+- Front-load the title with the keywords that are most relevant to your topic and user.
+- Limit the title to 70 characters (including spaces), ideally 55 or fewer.
+- Don’t duplicate titles.
+- Differentiate the content by adding the product name or feature area that your topic applies to. For example, Applying Rulesets doesn't give much context as to which ruleset or why, but Applying Rulesets to Identified APIs does.
+- Use gerunds or noun phrases for concepts. Example: Anypoint Platform Multi-Factor Authentication
+- Use gerunds and plural for multi-task topics. Example: Designing API Specs with MuleSoft Dev Agent
+- Use imperative and singular for single-task topics. Example: Use Different Environments in Runtime Manager.
