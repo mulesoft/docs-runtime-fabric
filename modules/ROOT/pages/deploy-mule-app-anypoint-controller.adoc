@@ -857,7 +857,7 @@ Customize your Mule application deployments for specific use cases:
 * <<deploy-with-jvm-arguments,Deploy with JVM Arguments>>
 * <<deploy-with-node-affinity,Deploy with Node Affinity>>
 
-==== Deploy to a Specific Namespace
+*Deploy to a Specific Namespace*
 
 You can deploy applications to any Kubernetes namespace:
 
@@ -871,7 +871,7 @@ The controller watches all namespaces and manages applications regardless of whe
 
 For more information about namespace permissions and flexibility, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-runtime-fabric-agent-kubernetes-permissions[Understanding Runtime Fabric Agent Kubernetes Permissions].
 
-==== Deploy with Custom Logging
+*Deploy with Custom Logging*
 
 Configure package-level logging for troubleshooting:
 
@@ -887,7 +887,7 @@ spec:
       logLevel: INFO
 ----
 
-==== Deploy with JVM Arguments
+*Deploy with JVM Arguments*
 
 Specify custom JVM arguments for memory tuning or SSL configuration:
 
@@ -900,7 +900,7 @@ spec:
     - "-Djavax.net.ssl.keyStore=/var/tls/keystore.jks"
 ----
 
-==== Deploy with Node Affinity
+*Deploy with Node Affinity*
 
 Control which nodes run your application:
 
@@ -966,7 +966,7 @@ The controller reports these status conditions:
 ====
 The `Applied` condition indicates whether the desired configuration was successfully synchronized with Anypoint Platform.
 
-==== Status: True (Success)
+*Status: True (Success)*
 
 [source,yaml]
 ----
@@ -981,7 +981,7 @@ status:
 
 The controller successfully created or updated the application in Anypoint Platform. The application configuration matches the desired state defined in the CR.
 
-==== Status: False (Failure)
+*Status: False (Failure)*
 
 [source,yaml]
 ----
@@ -1013,7 +1013,7 @@ Common Failure Reasons:
 ====
 The `Available` condition indicates whether the application has the desired number of ready replicas and is ready to serve traffic.
 
-==== Status: True (Available)
+*Status: True (Available)*
 
 [source,yaml]
 ----
@@ -1029,7 +1029,7 @@ status:
 
 All desired replicas are running and ready. The application is serving traffic.
 
-==== Status: False (Not Available)
+*Status: False (Not Available)*
 
 [source,yaml]
 ----
@@ -1051,7 +1051,7 @@ The application doesn't have ready replicas. Check pod status and logs to diagno
 ====
 The `DesiredSpecAppliedOnCluster` condition indicates whether the currently deployed application version in the cluster matches the desired specification version in Anypoint Platform.
 
-==== Status: True (Synchronized)
+*Status: True (Synchronized)*
 
 [source,yaml]
 ----
@@ -1066,7 +1066,7 @@ status:
 
 The running application version matches the desired version. Deployment is complete and synchronized.
 
-==== Status: False (Out of Sync)
+*Status: False (Out of Sync)*
 
 [source,yaml]
 ----
@@ -1092,7 +1092,7 @@ The MuleApplication status includes additional fields that provide operational i
 * <<retry-information,Retry Information>>
 * <<reconciliation-metadata,Reconciliation Metadata>>
 
-==== Anypoint Platform Identifiers
+*Anypoint Platform Identifiers*
 
 Use `anypointUri` to quickly navigate to the application in Runtime Manager.
 
@@ -1107,7 +1107,7 @@ status:
   environmentId: env-789             # Environment ID
 ----
 
-==== Replica Status
+*Replica Status*
 
 The number of replicas that are running and ready to serve traffic.
 
@@ -1117,7 +1117,7 @@ status:
   readyReplicas: 2
 ----
 
-==== Retry Information
+*Retry Information*
 
 Indicates whether a failed operation can be automatically retried. When `true`, the controller retries the operation with exponential backoff.
 
@@ -1127,7 +1127,7 @@ status:
   retryable: true
 ----
 
-==== Reconciliation Metadata
+*Reconciliation Metadata*
 
 Used internally by the controller for change detection and reconciliation.
 
@@ -1576,7 +1576,7 @@ spec:
 .Required: Runtime Version
 ====
 The `runtimeVersion` (string) specifies the Mule runtime version to use. Must be version 4.6 or above.
-+
+
 [source,yaml]
 ----
 spec:
@@ -1603,7 +1603,7 @@ spec:
 [%collapsible]
 .Deployment Configuration
 ====
-===== Replicas
+*Replicas*
 
 The `replicas` field specifies the number of application instances:
 
@@ -1616,7 +1616,7 @@ spec:
 * Default: `1`
 * Maximum: `16` replicas per application
 
-===== Resource Allocation
+*Resource Allocation*
 
 The `resources` field defines CPU and memory resources per replica:
 
@@ -1632,7 +1632,7 @@ spec:
       memory: 2Gi      # Maximum memory
 ----
 
-===== Update Strategy
+*Update Strategy*
 
 The `updateStrategy` field controls how updates are rolled out:
 
@@ -1645,7 +1645,7 @@ spec:
 * `rolling` (default): Updates replicas incrementally, maintaining availability
 * `recreate`: Terminates all replicas before creating new ones
 
-===== Horizontal Pod Autoscaling
+*Horizontal Pod Autoscaling*
 
 The `autoscaling` field configures CPU-based autoscaling:
 
@@ -1660,7 +1660,7 @@ spec:
 
 When autoscaling is enabled, the controller creates a HorizontalPodAutoscaler resource that automatically adjusts replica count based on CPU utilization.
 
-===== Clustering and Persistence
+*Clustering and Persistence*
 
 Configure Mule clustering for high availability and enable persistent object store for stateful applications.
 
@@ -1671,7 +1671,8 @@ spec:
   persistentObjectStore: true      # Enable persistent object store
 ----
 
-===== Replica Distribution
+*Replica Distribution*
+
 When enabled, Kubernetes ensures replicas are distributed across different nodes for high availability.
 
 [source,yaml]
