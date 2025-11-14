@@ -80,8 +80,9 @@ To enable Anypoint Controller during Runtime Fabric installation or upgrade, in 
 * `global.crds.install = true`
 * `global.crds.anypointController.enabled = true`
 
-==== For New Runtime Fabric Installations
-
+[%collapsible]
+.For New Runtime Fabric Installations
+====
 . In your `values.yaml` file, add this configuration:
 
 [source,yaml]
@@ -101,8 +102,11 @@ helm install rtf-agent <chart-repo>/rtf-agent \
   -f values.yaml \
   -n <rtf-namespace>
 ----
+====
 
-==== For Upgrading Existing Runtime Fabric Installations
+[%collapsible]
+.For Upgrading Existing Runtime Fabric Installations
+====
 
 . Update your `values.yaml` file with the same configuration as previously mentioned:
 
@@ -123,6 +127,7 @@ helm upgrade rtf-agent <chart-repo>/rtf-agent \
   -f values.yaml \
   -n <rtf-namespace>
 ----
+====
 
 This configuration performs these actions:
 
@@ -188,8 +193,9 @@ When you specify `volumes` and `volumeMounts` in the MuleApplication CR:
 [NOTE]
 Volumes specified in the MuleApplication CR are mounted to the main Mule application container, not to sidecar containers.
 
-==== Example: Mount Secrets from Kubernetes Secrets
-
+[%collapsible]
+.Example: Mount Secrets from Kubernetes Secrets
+====
 Use Kubernetes native Secrets to store secret data on the Kubernetes cluster and mount them into your Mule application.
 
 .1 Create a Secret in your Kubernetes cluster:
@@ -221,8 +227,11 @@ The secret files are now accessible at:
 
 * `/mnt/secrets/db.username`
 * `/mnt/secrets/db.password`
+====
 
-==== Example: Mount a TLS Keystore from a Secret
+[%collapsible]
+.Example: Mount a TLS Keystore from a Secret
+====
 
 . Create a Secret containing your keystore:
 +
@@ -256,9 +265,11 @@ Your application can now access:
 
 * `/var/tls/keystore.jks`
 * `/var/tls/keystore.password`
+====
 
-==== Example: Mount Configuration Files from a ConfigMap
-
+[%collapsible]
+.Example: Mount Configuration Files from a ConfigMap
+====
 .Create a ConfigMap with configuration files:
 
 [source,bash]
@@ -283,8 +294,11 @@ spec:
       mountPath: /opt/mule/conf
       readOnly: true
 ----
+====
 
-==== Example: Use External Secret Manager (AWS Secrets Manager)
+[%collapsible]
+.Example: Use External Secret Manager (AWS Secrets Manager)
+====
 
 To integrate with AWS Secrets Manager, Azure Key Vault, or HashiCorp Vault, use the Secrets Store CSI Driver.
 
@@ -350,9 +364,11 @@ The secrets are available at:
     password="${file:/mnt/secrets/aws/db_password}" />
 </db:config>
 ----
+====
 
-==== Example: Use Azure Key Vault
-
+[%collapsible]
+.Example: Use Azure Key Vault
+====
 To integrate with Azure Key Vault, configure a SecretProviderClass and reference it in your MuleApplication CR.
 
 [source,yaml]
@@ -395,9 +411,11 @@ spec:
       mountPath: /mnt/secrets/azure
       readOnly: true
 ----
+====
 
-==== Example: Mount a Persistent Volume
-
+[%collapsible]
+.Example: Mount a Persistent Volume
+====
 To mount a persistent volume for storing data that must survive pod restarts, use a PersistentVolumeClaim.
 
 [source,yaml]
@@ -413,9 +431,11 @@ spec:
 ----
 
 Your application can read and write files to `/mnt/data`, and the data persists across pod restarts.
+====
 
-==== Example: Mount an Empty Directory (Temporary Storage)
-
+[%collapsible]
+.Example: Mount an Empty Directory (Temporary Storage)
+====
 To provide temporary storage that is created when a pod starts and deleted when it stops, use an emptyDir volume.
 
 [source,yaml]
@@ -429,6 +449,7 @@ spec:
     - name: temp-storage
       mountPath: /tmp/processing
 ----
+====
 
 === Create a Connected App
 
