@@ -1,4 +1,4 @@
-= Deploy and Manage Mule Applications Using Anypoint Controller for Kubernetes
+= Deploying and Managing Mule Applications Using Anypoint Controller for Kubernetes
 
 Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources (CR).
 

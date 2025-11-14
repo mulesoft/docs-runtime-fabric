@@ -56,7 +56,7 @@
   ** xref:deploy-to-runtime-fabric.adoc[Deploying Mule Apps Using Runtime Manager]
   ** xref:deploy-to-rtf-cli.adoc[Deploying Mule Apps Using Anypoint CLI]
   ** xref:deploy-maven-4.x.adoc[Deploying  Mule Apps Using Maven (Mule 4)]
-  ** xref:deploy-mule-app-anypoint-controller.adoc[Deploying Mule Apps Using Anypoint Controller for Kubernetes]
+  ** xref:deploy-mule-app-anypoint-controller.adoc[Deploying and Managing Mule Apps Using Anypoint Controller for Kubernetes]
   ** xref:proxy-deploy-runtime-fabric.adoc[Deploying API Proxies]
   ** xref:deployment-status-messages.adoc[Deployment Status Messages]
 * xref:managing-apps-deployed-runtime-fabric.adoc[Managing Mule Apps]
