@@ -626,8 +626,6 @@ kubectl describe muleapplication hello-world-app -n my-apps
 +
 Log in to Anypoint Platform and navigate to Runtime Manager. Your application appears in the applications list with a read-only indicator.
 
-=== Deploy with Properties
-
 [%collapsible]
 .Deploy with Properties
 ====
@@ -682,8 +680,6 @@ Apply the manifest:
 kubectl apply -f api-gateway.yaml
 ----
 ====
-
-=== Deploy with External Properties
 
 [%collapsible]
 .Deploy with External Properties
@@ -758,8 +754,6 @@ kubectl apply -f order-service.yaml
 ----
 ====
 
-=== Deploy with Autoscaling
-
 [%collapsible]
 .Deploy with Autoscaling
 ====
@@ -802,8 +796,6 @@ spec:
 The controller creates a HorizontalPodAutoscaler resource that automatically adjusts the replica count based on CPU utilization.
 ====
 
-=== Deploy a Clustered Application
-
 [%collapsible]
 .Deploy a Clustered Application
 ====
@@ -844,8 +836,6 @@ spec:
       memory: 4Gi
 ----
 ====
-
-=== Common Deployment Scenarios
 
 [%collapsible]
 .Common Deployment Scenarios
