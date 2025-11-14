@@ -198,7 +198,7 @@ Volumes specified in the MuleApplication CR are mounted to the main Mule applica
 ====
 Use Kubernetes native Secrets to store secret data on the Kubernetes cluster and mount them into your Mule application.
 
-.1 Create a Secret in your Kubernetes cluster:
+. Create a Secret in your Kubernetes cluster:
 
 [source,bash]
 ----
@@ -208,7 +208,7 @@ kubectl create secret generic my-database-secret \
   -n my-apps
 ----
 [start=2]
-Mount it in your MuleApplication CR:
+.Mount it in your MuleApplication CR:
 
 [source,yaml]
 ----
@@ -270,7 +270,7 @@ Your application can now access:
 [%collapsible]
 .Example: Mount Configuration Files from a ConfigMap
 ====
-.Create a ConfigMap with configuration files:
+. Create a ConfigMap with configuration files:
 
 [source,bash]
 ----
