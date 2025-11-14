@@ -647,6 +647,10 @@ kubectl describe muleapplication hello-world-app -n my-apps
 +
 Log in to Anypoint Platform and navigate to Runtime Manager. Your application appears in the applications list with a read-only indicator.
 
+=== Deployment Examples
+
+Explore different deployment patterns and configurations for common use cases.
+
 [%collapsible]
 .Deploy with Properties
 ====
