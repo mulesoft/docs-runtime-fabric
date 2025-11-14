@@ -874,7 +874,7 @@ spec:
 
 For more Kubernetes customization options including affinity rules, topology spread constraints, and security context, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
 
-== Monitor Application Status
+== Monitor Mule Applications 
 
 Anypoint Controller reports application state through standard Kubernetes status conditions. These conditions provide real-time feedback on the application's deployment and operational status.
 
@@ -1082,7 +1082,7 @@ status:
 
 Used internally by the controller for change detection and reconciliation.
 
-== Manage Application Lifecycle
+== Manage Mule Applications
 
 Anypoint Controller enables you to manage the complete lifecycle of your Mule applications using standard Kubernetes commands and GitOps workflows.
 
