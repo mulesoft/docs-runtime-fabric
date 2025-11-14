@@ -1251,6 +1251,12 @@ Anypoint Controller works seamlessly with GitOps and Infrastructure-as-Code tool
 . Use pull requests for configuration changes.
 . Automate deployment with GitOps tools.
 
+Integrate Anypoint Controller with these tools:
+
+* <<argocd-integration,ArgoCD Integration>>
+* <<fluxcd-integration,FluxCD Integration>>
+* <<terraform-integration,Terraform Integration>>
+
 === ArgoCD Integration
 
 . Store your manifests in Git:
