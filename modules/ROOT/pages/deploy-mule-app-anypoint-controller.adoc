@@ -850,12 +850,7 @@ spec:
 [%collapsible]
 .Common Deployment Scenarios
 ====
-Customize your Mule application deployments for specific use cases:
-
-* <<deploy-to-a-specific-namespace,Deploy to a Specific Namespace>>
-* <<deploy-with-custom-logging,Deploy with Custom Logging>>
-* <<deploy-with-jvm-arguments,Deploy with JVM Arguments>>
-* <<deploy-with-node-affinity,Deploy with Node Affinity>>
+Customize your Mule application deployments for specific use cases.
 
 *Deploy to a Specific Namespace*
 
@@ -1085,12 +1080,7 @@ The cluster is still deploying the updated version, or the deployment is in prog
 [%collapsible]
 .Additional Status Fields
 ====
-The MuleApplication status includes additional fields that provide operational information about the application:
-
-* <<anypoint-platform-identifiers,Anypoint Platform Identifiers>>
-* <<replica-status,Replica Status>>
-* <<retry-information,Retry Information>>
-* <<reconciliation-metadata,Reconciliation Metadata>>
+The MuleApplication status includes additional fields that provide operational information about the application.
 
 *Anypoint Platform Identifiers*
 
