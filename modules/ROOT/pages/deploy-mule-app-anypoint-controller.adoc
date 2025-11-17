@@ -175,9 +175,7 @@ spec:
 
 === Configure Volumes and Volume Mounts
 
-Anypoint Controller supports standard Kubernetes volume types, enabling you to mount files, secrets, and persistent storage into your Mule application containers.
-
-Use the `volumes` and `volumeMounts` fields to securely provide sensitive data (credentials, API keys, certificates), configuration files, and persistent storage to your application:
+Use the `volumes` and `volumeMounts` fields to mount standard Kubernetes volume types into your Mule application containers, including sensitive data (credentials, API keys, certificates), configuration files, and persistent storage:
 
 * `volumes` +
 Defines the storage volumes available to the application, such as Kubernetes Secrets, ConfigMaps, persistent volumes, or external secret stores.
@@ -451,6 +449,7 @@ spec:
 ----
 ====
 
+[[create-an-anypoint-connected-app]]
 === Create a Connected App
 
 Anypoint Controller requires a Connected App to authenticate with Anypoint Platform APIs. The Connected App acts on its own behalf using client credentials.
