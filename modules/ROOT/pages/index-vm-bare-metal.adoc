@@ -5,7 +5,7 @@ MuleSoft received customer feedback asking for rapid patching of high severity v
 
 Runtime Fabric is compatible with AWS, Google, Microsoft, and IBM RedHat Openshift solutions that deliver faster and consistent security patches. These integrations enable you to easily leverage existing investments in the Kubernetes ecosystem.
 
-Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both on-premises and public cloud bare-metal solutions:
+Depending on your affinity to public clouds and in-house Kubernetes expertise, these self-managed Red Hat OpenShift offerings can enable both on-premises and public cloud bare-metal solutions:
 
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^]
@@ -22,7 +22,7 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 
 * If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
 
-* If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to xref:1.13@runtime-fabric::index-self-managed.adoc[Runtime Fabric on public cloud Kubernetes clusters]. The following clouds support Runtime Fabric:
+* If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to Runtime Fabric on public cloud Kubernetes clusters. These clouds support Runtime Fabric:
 
 ** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Runtime Fabric on AWS Elastics Kubernetes Service^]
 ** https://aws.amazon.com/eks/eks-anywhere/[Runtime Fabric on AWS EKS-Anywhere^]
