@@ -4,7 +4,7 @@ You can migrate to xref:runtime-fabric::install-helm.adoc[helm] native for Runti
 
 == Before You Begin
 
-To perform the migration, you must consider the following:
+To perform the migration, you must consider this:
 
 * The migration is applicable to BYOK clusters which are installed with `rtfctl` and want to migrate to helm managed.
 * The cluster must be on `rtf-agent` v2.2.5 or above. Note that you will first have to upgrade agent to the required version before you can initiate the migration. 
@@ -25,7 +25,7 @@ To migrate your Runtime Fabric from rtfctl to helm, run this command:
 rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId <fabricId value> --token <bearer token> --host anypoint.mulesoft.com  --confirm
 ----
 
-Running this command performs the following actions:
+Running this command performs these actions:
 
 * Backs up the current Runtime Fabric installation: tarball is created with input file name.
 * Uninstalls the current Runtime Fabric installation: running the command does not update Mule application deployments, it does not delete any of your configurations applied to the rtf namespace, it does not delete the rtf namespace, and it does not touch any other namespace than the rtf namespace. Uninstalls only the previous runtime-fabric helm chart.
@@ -65,7 +65,7 @@ rtfctl migrate previous-rtf-bkp.tar.gz --organizationId <orgId value> --fabricId
 
 == Command Help
 
-To get help with the command, run the following entry:
+To get help with the command, run this entry:
 
 [source,copy]
 ----

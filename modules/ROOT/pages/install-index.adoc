@@ -1,6 +1,6 @@
 = Installing Runtime Fabric 
 
-To install Anypoint Runtime Fabric, choose any of the following options:
+To install Anypoint Runtime Fabric, choose any of these options:
 
 * xref:install-self-managed.adoc[Installing Runtime Fabric Using RTFCTL] +
 Use the `rtfctl` command line tool to install Runtime Fabric.

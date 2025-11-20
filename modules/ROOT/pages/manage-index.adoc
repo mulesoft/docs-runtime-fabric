@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To manage Anypoint Runtime Fabric, review the following topics:
+To manage Anypoint Runtime Fabric, review these topics:
 
 * xref:view-health.adoc[Viewing Runtime Fabric Health Details] +
 Use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters.

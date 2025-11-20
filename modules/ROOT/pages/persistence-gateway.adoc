@@ -80,7 +80,7 @@ Look for pods with the name prefix `persistence-gateway`
 kubectl logs -f persistence-gateway-6dfb98949c-7xns9 -n rtf
 ----
 +
-The output of this command should be similar to the following:
+The output of this command should be similar to this:
 +
 ----
 2021/04/09 16:35:31 Connecting to PostgreSQL backend...
@@ -133,7 +133,7 @@ spec:
         whenUnsatisfiable: ScheduleAnyway
 ----
 
-Modify the following fields based on your environment:
+Modify these fields based on your environment:
 
 [%header,cols="3*a"]
 |===
@@ -161,7 +161,7 @@ The default CPU, memory, and limit values are based on a small number of deploye
 
 == Persistence Gateway Application Data
 
-Persistence Gateway stores application data using the following two tables:
+Persistence Gateway stores application data using these two tables:
 
 [source,copy]
 ----

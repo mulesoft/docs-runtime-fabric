@@ -25,7 +25,7 @@ The full deployment process includes these steps:
 . Configure application properties
 . Deploy the application
 
-Watch the following video to see how to deploy a Mule application to Runtime Fabric using Runtime Manager:
+Watch this video to see how to deploy a Mule application to Runtime Fabric using Runtime Manager:
 
 ++++
 include::_partials/rtf-deploy-mule-apps-rtm.html[]
@@ -34,7 +34,7 @@ include::_partials/rtf-deploy-mule-apps-rtm.html[]
 
 === Prerequisites
 
-Before deploying an application to Anypoint Runtime Fabric, perform the following:
+Before deploying an application to Anypoint Runtime Fabric, perform this:
 
 * Review the xref:index.adoc#anypoint-platform-roles-and-permissions[Anypoint Platform Roles and Permissions] necessary for deploying applications to Runtime Fabric. 
 * Ensure that Runtime Fabric is associated with an environment. Refer to xref:associate-environments.adoc[Associating Business Groups and Environments to Anypoint Runtime Fabric]
@@ -52,7 +52,7 @@ Before deploying an application to Anypoint Runtime Fabric, perform the followin
 . Provide a name for your application in the *Application Name* field.
 +
 The name can contain only lowercase alphanumeric characters, hyphens, and underscores.
-. Click *Choose File* to select the application to deploy, and then select one of the following options:
+. Click *Choose File* to select the application to deploy, and then select one of these options:
 +
 * *Import file from Exchange*: Select a Mule application stored in Anypoint Exchange.
 * *Upload file*: Select a Mule application file from your filesystem.
@@ -72,7 +72,7 @@ You can deploy Mule apps with Mule runtime engine versions that are within the s
 
 === Configure a Public Endpoint for the Application 
 
-Use the following steps to configure a public endpoint for an application deployed to Runtime Fabric.
+Use these steps to configure a public endpoint for an application deployed to Runtime Fabric.
 
 Available domains and paths for an application come from the ingress resource template configured by your Runtime Fabric administrator. Refer to xref:custom-ingress-configuration.adoc[Use Custom Ingress Resource Templates in Runtime Fabric] for more information. 
 
@@ -122,7 +122,7 @@ If needed, review xref:deploy-resource-allocation-self-managed.adoc[determine re
 Starting with the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#august-3-2021[August 3, 2021 patch releases], Mule runtime disables TLS v1 and TLS v1.1 by default for all runtime versions. When you deploy an application to Runtime Fabric, you can enable TLS v1 or TLS v1.1 using JVM args.
 
 . Click the *JVM* tab. 
-. In the *Java Virtual Machine arguments* field, add one of the following arguments:
+. In the *Java Virtual Machine arguments* field, add one of these arguments:
 * Enable TLSv1.0 and TLSv1.1: `-Drtf.allow.TLSv1.0+`
 * Enable TLSv1.1: `-Drtf.allow.TLSv1.1`
 
@@ -180,14 +180,14 @@ To test inbound traffic for deployed applications, you can send a request using 
 
 . Determine which endpoint exposes the application. The *Application url* field on the *Manage application* page in Runtime Manager contains this information.
 
-. Run the following cURL command for verification:
+. Run this cURL command for verification:
 +
 [source,copy]
 --
 curl -Lvk -XGET {application-path-from-runtime-manager} --resolve {hostname}:443:{ip-address-of-controller}
 --
 +
-In the following example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
+In this example, `{application-path-from-runtime-manager}` is set to `https://newapp.example-rtf.dev`, and `192.168.64.14` is the IP address of a controller machine in your cluster.
 +
 [source,copy]
 --
@@ -201,7 +201,7 @@ To set up a workflow for on-premises application deployment on Runtime Fabric, r
 
 == Common Issues
 
-When deploying applications, you may encounter the following issues:
+When deploying applications, you may encounter these issues:
 
 * If your application remains in the *Starting* status for several minutes, this may be due to specifying a lower amount of resources. It's common for applications to take several minutes to start up when selecting 0.3 cores or lower.
 

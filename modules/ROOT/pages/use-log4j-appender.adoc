@@ -23,7 +23,7 @@ You can use only asynchronous log appenders.
 
 Custom Log4j configurations are disabled by default. When you install Runtime Fabric, the parameter is disabled (`false`) in `Values.yaml`. You must set the value to `true`.
 
-You can also enable custom Log4j configurations by running the following steps:
+You can also enable custom Log4j configurations by running these steps:
 
 . From inside your cluster, run:
 +

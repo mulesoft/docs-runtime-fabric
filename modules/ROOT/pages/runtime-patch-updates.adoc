@@ -1,7 +1,7 @@
 
 = Managing Mule Runtime Patch Updates for Apps on Runtime Fabric
 
-The following provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
+This provides important information about Mule runtime engine patch updates and the Mule runtime engine release channels for Anypoint Runtime Fabric.
 
 For a list of patch updates, refer to xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric].
 
@@ -28,7 +28,7 @@ The monthly patches update applications only to the latest date-patch. They do n
 
 === Mule Runtime Patch Updates for Runtime Fabric Schedule 
 
-Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on the following schedule:
+Runtime Fabric runs each application and gateway deployment on a separate Mule runtime instance. By managing the containerized Mule images used for these deployments, Runtime Fabric enables you to upgrade your Mule runtime version for each deployment on this schedule:
 
 . On the first full week of the month, you have access to new date-patches of updated Mule runtime instances.
 . During the next two weeks, you can redeploy your applications using the newer date-patch to validate its behavior. This is known as a _grace period_.

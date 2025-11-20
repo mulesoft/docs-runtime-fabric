@@ -1,6 +1,6 @@
 = Upgrading Runtime Fabric 
 
-To upgrade Anypoint Runtime Fabric, review one of the following options:
+To upgrade Anypoint Runtime Fabric, review one of these options:
 
 * xref:upgrade-self-managed.adoc[Upgrading Runtime Fabric using RTFCTL] +
 Use the `rtfctl` command line tool to upgrade Runtime Fabric.

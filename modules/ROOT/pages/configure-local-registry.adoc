@@ -15,7 +15,7 @@ You cannot use local registry for installation or management of Runtime Fabric o
 +
 If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
 +
-To add local registry to an existing Runtime Fabric instance, ensure that the installation is Helm-based xref:migrate-helm.adoc[] and perform the steps on the following section to add local registry.
+To add local registry to an existing Runtime Fabric instance, ensure that the installation is Helm-based xref:migrate-helm.adoc[] and perform the steps on this section to add local registry.
 * If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
 * You are responsible for synchronizing your local registry with required dependencies:
 +
@@ -25,7 +25,7 @@ To add local registry to an existing Runtime Fabric instance, ensure that the in
 MuleSoft doesn’t provide additional software to synchronize third party dependencies and images. Push all the dependency images for your Mule app to your local registry before you start the deployments.
 
 
-* If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
+* If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses this label:
 
 ----
   labels:
@@ -57,7 +57,7 @@ Automated registry synchronization is available from Runtime Fabric version 2.6.
 
 Ensure that your xref:access-management::permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
 
-. In your Unix shell, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
+. In your Unix shell, run this script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
 +
 For non-OpenShift environments:
 +
@@ -110,7 +110,7 @@ Synchronize Manually::
 --
 To synchronize the dependencies images manually, follow these steps:
 
-. Log in to your private container registry and run the following command, replacing `docker-server` where appropriate:
+. Log in to your private container registry and run this command, replacing `docker-server` where appropriate:
 +
 For the US control plane:
 +
@@ -139,7 +139,7 @@ To configure a local registry, you must gather and add the necessary credentials
 
 === Before You Begin
 
-Ensure that you've performed the following tasks: 
+Ensure that you've performed these tasks: 
 
 . Set up, configure, and test your private Docker image registry.
 . <<synch-rtf, Synchronize>> to your local registry all of the Docker images that you need to install Runtime Fabric:
@@ -149,7 +149,7 @@ See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.ad
 [NOTE]
 Dependency versions are specific to the Runtime Fabric version. 
 
-To install Runtime Fabric with your local registry using `rtfctl` or `helm`, select one of the following options:
+To install Runtime Fabric with your local registry using `rtfctl` or `helm`, select one of these options:
 
 [tabs]
 ====
@@ -167,7 +167,7 @@ RTFCTL::
 +
 This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
 
-. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
+. Run these commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 [source,copy]
 ---- 
@@ -198,7 +198,7 @@ You should see a message that the login was successful.
 # rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
 ----
 +
-Alternatively, if you use authentication to access your registry, use the following command:
+Alternatively, if you use authentication to access your registry, use this command:
 +
 [source,copy]
 ----
@@ -222,7 +222,7 @@ Helm::
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
 . In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
-. Follow the *Helm* path instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
+. Follow the *Helm* path instructions in Runtime Manager to create a secret with your docker server name, username, and password by running this command in your Unix shell:
 +
 [source,copy]
 ----
@@ -242,7 +242,7 @@ OpenShift::
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
 . In Runtime Manager, follow the instructions on the screen platform.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
-. Follow the instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
+. Follow the instructions in Runtime Manager to create a secret with your docker server name, username, and password by running this command in your Unix shell:
 +
 [source,copy]
 ----

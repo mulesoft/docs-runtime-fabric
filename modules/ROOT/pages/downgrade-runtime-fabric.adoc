@@ -8,7 +8,7 @@ RTFCTL::
 
 +
 --
-For Runtime Fabrics installed using `rtfctl`, use the following PATCH request to specify the agent version to be downgraded:
+For Runtime Fabrics installed using `rtfctl`, use this PATCH request to specify the agent version to be downgraded:
 
 ----
 curl -X PATCH -H 'Authorization: Bearer xxx' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' \
@@ -19,16 +19,16 @@ https://anypoint.mulesoft.com/runtimefabric/api/organizations/<org id>/fabrics/<
 Helm::
 +
 --
-For Runtime Fabrics installed using Helm, use the following Helm command:
+For Runtime Fabrics installed using Helm, use this Helm command:
 ----
 helm upgrade --install runtime-fabric rtf/rtf-agent -f values.yaml -n <rtf-namespace> --version x.x.x
 ----
 --
 ====
 
-If you use AM log forwarding, you must additionally perform the following steps:
+If you use AM log forwarding, you must additionally perform these steps:
 
-. Enable daemon-set log forwarding by calling the following API (bearer token required):
+. Enable daemon-set log forwarding by calling this API (bearer token required):
 +
 ----
 curl -X PATCH -H 'Authorization: Bearer <bearer-token-here>' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' \

@@ -147,7 +147,7 @@ spec:
 [NOTE]
 For Runtime fabric software entire `resources` is a list of strings and gets consumed as is. So you dont have to configure any special prefix like `rtf-` for IngressClassName
 
-On the Anypoint Runtime Manager UI page, application developers see the following Base Endpoints to configure their app deployment.
+On the Anypoint Runtime Manager UI page, application developers see these Base Endpoints to configure their app deployment.
 
 image::rtf-ingress-rtm.png[Ingress configuration window in Runtime Manager UI]
 

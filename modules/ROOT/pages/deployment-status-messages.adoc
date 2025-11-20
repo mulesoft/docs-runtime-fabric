@@ -21,7 +21,7 @@ These statuses appear when there are issues with app namespaces during deploymen
 When you deploy a Mule app or make a change to an existing Mule app deployed to Runtime Fabric, Runtime Manager waits a minute and then begins to actively check the reported status of its replicas. If the status is other than STARTED or STOPPED, a warning message shows. 
 A warning message does not necessarily mean there is something wrong with your Mule app or cluster. Understanding the meaning of these messages is important, as some warnings are only temporary while others can be permanent failures. 
 
-Warning messages appear with the following legend: `1 or more replicas in unexpected state:` followed by the specific description. For example:
+Warning messages appear with this legend: `1 or more replicas in unexpected state:` followed by the specific description. For example:
 
 `1 or more replicas in unexpected state: [Kubernetes] Container "any point-monitoring" - PodInitializing`
 
@@ -37,7 +37,7 @@ A Mule app deployment may return a CrashLoopBackOff warning because the Mule app
 
 == Warning Messages Description
 
-The following table shows a non-exhaustive list of different types of warning messages. For a complete reference, refer to the Kubernetes documentation.
+This table shows a non-exhaustive list of different types of warning messages. For a complete reference, refer to the Kubernetes documentation.
 
 [%header%autowidth.spread]
 |===
@@ -57,18 +57,18 @@ For more information on Pod Status, refer to the https://kubernetes.io/docs/conc
 
 [[link-example-1]]
 === PodInitializing Example
-In the following example, the warning message shows because the pod is ready but is waiting to initialize:
+In this example, the warning message shows because the pod is ready but is waiting to initialize:
 
 image::rtf-deployment-example-1.png[PodInitializing warning status in Runtime Manager UI]
 
 [[link-example-2]]
 === CrashLoopBackOff Example
 
-In the following example, the warning message shows that there is a problem with your Mule app image because a corrupt artifact was uploaded and caused the Mule app to crash during the deployment.
+In this example, the warning message shows that there is a problem with your Mule app image because a corrupt artifact was uploaded and caused the Mule app to crash during the deployment.
 
 image::rtf-deployment-example-2.png[CrashLoopBackOff warning status in Runtime Manager UI]
 
-Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well:  
+Your Kubernetes administrator can run this command in the command line interface to get the error or warning status as well:  
 
 `kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
 
@@ -87,11 +87,11 @@ pod/omg-s1-now-78b7ffd454-h5x5n   1/2     CrashLoopBackOff   8 (2m57s ago)   20m
 [[link-example-3]]
 === Unschedulable Example
 
-In the following example, the warning message shows that 3 nodes were unschedulable because they were not available:
+In this example, the warning message shows that 3 nodes were unschedulable because they were not available:
 
 image::rtf-deployment-example-2.png[Unschedulable warning status in Runtime Manager UI]
 
-Your Kubernetes administrator can run the following command in the command line interface to get the error or warning status as well: 
+Your Kubernetes administrator can run this command in the command line interface to get the error or warning status as well: 
 
 `kubectl get deployments,pods --namespace <ENVIRONMENT_NAMESPACE>`
 
