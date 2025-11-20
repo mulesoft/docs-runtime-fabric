@@ -65,6 +65,7 @@
   ** xref:app-to-app-requests.adoc[Sending Application-to-Application Requests]
   ** xref:app-versioning.adoc[Reviewing Mule App Versioning]
   ** xref:manage-schedules.adoc[Managing Mule App Schedules]
+  ** xref:restart-applications.adoc[Restarting Mule Applications]
   ** xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates]
 * xref:manage-monitor-applications.adoc[Monitoring Mule Apps]
   ** xref:use-log4j-appender.adoc[Exporting Telemetry Externally]
