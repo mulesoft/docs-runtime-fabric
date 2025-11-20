@@ -186,7 +186,12 @@ subjects:
     namespace: <rtf_namespace>
 ----
 
-To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+[NOTE]
+====
+Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` service account is no longer required as log forwarding occurs exclusively through application sidecar containers. You can omit this service account for new installations of version 3.0.0 or later.
+====
+
+To use clustered apps in authorized namespaces mode, this RoleBinding must be created:
 
 [source,yaml]
 ----
