@@ -13,7 +13,7 @@ The following scale limits are benchmarked on Amazon Elastic Kubernetes Service 
 | Horizontal Pod Autoscaling (HPA) | With Runtime Fabric on Amazon EKS, occasional traffic failures of approximately 0.09% may occur when scaling replicas from 1 to 8. These errors are specific to the pod scaling window, so you may experience traffic failure during scaling operations. |
 |===
 
-Runtime Fabric functionality and management of application deployments is not affected by the following:
+Runtime Fabric functionality and management of application deployments is not affected by this:
 
 * Size of individual applications
 * Size of worker nodes
@@ -23,7 +23,7 @@ Because Runtime Fabric is K8s based and uses cloud-native orchestration principa
 
 == Benchmarked Metrics
 
-Review the following benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments. The cluster configuration used is Runtime Fabric on AWS EKS cluster:
+Review these benchmarked metrics to understand various management metrics when compared between a nearly empty cluster and a cluster running 8000 deployments. The cluster configuration used is Runtime Fabric on AWS EKS cluster:
 
 [%header%autowidth.spread]
 |===
@@ -65,9 +65,9 @@ The following table shows how long a node cordon operation takes to restart if t
 
 == Considerations
 
-Review the following scale considerations:
+Review these scale considerations:
 
-* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values using the information in the following table. For a cluster with 8000 deployments, use at least:
+* Runtime Fabric agent requires more than default memory and CPU to manage clusters with large-scale deployments, you can modify such values using the information in this table. For a cluster with 8000 deployments, use at least:
 +
 [%header%autowidth.spread]
 |===

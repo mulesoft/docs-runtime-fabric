@@ -43,7 +43,7 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select one of the following options:
+. Enter the name of the new Runtime Fabric, then select one of these options:
 
 * Amazon Elastic Kubernetes Service
 * Azure Kubernetes Service
@@ -106,7 +106,7 @@ You can optionally configure xref:authorized-namespaces.adoc[authorized namespac
 
 === Before You Begin
 
-Before configuring authorized namespaces, note the following:
+Before configuring authorized namespaces, note this:
 
 * You must create the `authorized-namespaces` ConfigMap file _before_ installing Runtime Fabric. Additionally, you must name the ConfigMap, `authorized-namespaces`.
 * The `rtf:resource-metrics-collector` ClusterRole has cluster-wide permissions to `get` and `list` nodes, pods, and namespaces and has `watch` permissions for nodes. The role ClusterRole is defined as follows:
@@ -127,7 +127,7 @@ rules:
     verbs: ["watch"]
 ----
 
-. In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
+. In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with these contents:
 +
 [source,copy]
 ----
@@ -150,7 +150,7 @@ kubectl apply -f <filename>.yaml
 ----
 
 . Repeat steps 1 and 2 to add as many namespaces as you need.
-. Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
+. Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply this configuration in your additional namespace:
 +
 [source,copy]
 ----
@@ -163,7 +163,7 @@ subjects:
   - kind: ServiceAccount
     name: rtf-agent
     namespace: <rtf_namespace>
-# If using persistence gateway uncomment and provide the following. Ref: https://docs.mulesoft.com/runtime-fabric/latest/persistence-gateway#persistence-gateway-with-authorized-namespaces
+# If using persistence gateway uncomment and provide this. Ref: https://docs.mulesoft.com/runtime-fabric/latest/persistence-gateway#persistence-gateway-with-authorized-namespaces
 # subjects:
 #  - kind: ServiceAccount
 #    name: rtf-persistence-gateway
@@ -176,7 +176,7 @@ roleRef:
 ----
 
 
-To use clustered apps in authorized namespaces mode, the following RoleBinding must be created:
+To use clustered apps in authorized namespaces mode, this RoleBinding must be created:
 
 [source,yaml]
 ----
@@ -210,7 +210,7 @@ data:
   ADDITIONAL_NAMESPACE_2: "additional-namespace2"
 ----
 
-. If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
+. If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run this command:
 +
 [source,copy]
 ----
@@ -227,7 +227,7 @@ To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager
 . Add any optional parameters needed.
 +
 If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
-. Run the following command:
+. Run this command:
 +
 [source,copy]
 ----

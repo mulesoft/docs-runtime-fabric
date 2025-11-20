@@ -16,7 +16,7 @@ Runtime Fabric component upgrades do not require adding a node.
 
 === Determine the Component Versions You Are Using
 
-From a local workstation that has a `Kubeconfig` file and can access Kubernetes, or from a support bastion, run the following command:
+From a local workstation that has a `Kubeconfig` file and can access Kubernetes, or from a support bastion, run this command:
 
 [source,copy]
 --
@@ -72,7 +72,7 @@ After the upgrade, it’s normal for Runtime Fabric to report as “degraded” 
 
 === Upgrade the `rtfctl` Command-Line Utility
 
-. From your terminal, run the following command: 
+. From your terminal, run this command: 
 +
 [source,copy]
 ----

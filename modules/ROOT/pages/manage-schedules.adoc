@@ -23,7 +23,7 @@ The minimum required Mule runtime engine version to use this feature is 4.1.2 or
 [[design-schedule]]
 == Schedule Design Considerations
 
-When designing the schedule, consider the following:
+When designing the schedule, consider this:
 
 * The Runtime Fabric scheduler reads the job configuration every time it runs.
 +

@@ -47,7 +47,7 @@ topology.kubernetes.io/zone
 Start the cluster autoscaler with flag `--balance-similar-node-groups=true` and exclude the custom labels previously mentioned in the node groups section with the flag `--balancing-ignore-label`.
 These flags ensure that the cluster autoscaler balances the number of nodes across availability zones. 
 
-For reference on managed EKS cluster, the following node labels are different across node groups:
+For reference on managed EKS cluster, these node labels are different across node groups:
 
 ----
 k8s.amazonaws.com/eniConfigCustom
@@ -165,7 +165,7 @@ If pod average use is greater than 70% in a period (periods for scale-up are set
 
 == Performance Considerations and Limitations
 
-For a successful horizontal autoscaling of your Mule apps, review the following performance considerations:
+For a successful horizontal autoscaling of your Mule apps, review these performance considerations:
 
 * In Runtime Fabric, the policy in use was benchmarked for Mule apps with CPU Reserved: 0.45vCpu and Limit: 0.55vCpu, which corresponds to these settings:
 +
@@ -230,7 +230,7 @@ The following is an example log payload:
 {"properties":{"organizationId":"my-orgID-abc","environmentId":"my-envID-xyz","response":{"message":{"message":"Application id:my-appID-123 scaled DOWN from 3 to 2 replicas.","logLevel":"INFO","context":{"logger":"Runtime Manager"},"timestamp":1700234556678}},"deploymentId":"my-appID-123","initialRequest":"/organizations/my-orgID-abc/environments/my-envID-xyz/deployments/my-appID-123/specs/my-specID-456"},"subaction":"Scaling"}
 ----
 
-Additionally, you can track the scaled up replicas startup and the number of replicas of your Mule apps by running the following `kubectl` command in your terminal:
+Additionally, you can track the scaled up replicas startup and the number of replicas of your Mule apps by running this `kubectl` command in your terminal:
 
 [source,console,linenums]
 ----

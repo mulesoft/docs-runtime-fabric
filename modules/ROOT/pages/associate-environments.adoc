@@ -69,7 +69,7 @@ image::rtf-associate-environments.png[Runtime Manager UI showing Environments dr
 
 When selecting a production environment, a dialog is displayed that verifies Runtime Fabric has been configured to operate in a production setting. This includes proper hardware configuration, log forwarding, alerting, and possible failure modes.
 
-If your Runtime Fabric is running with an unsupported configuration or does not meet the requirements for a production environment, one of the following messages is displayed:
+If your Runtime Fabric is running with an unsupported configuration or does not meet the requirements for a production environment, one of these messages is displayed:
 
 * `This Runtime Fabric is not supported for any workloads. Learn more.`
 * `This Runtime Fabric is suitable for non-production workloads only. Learn more.`

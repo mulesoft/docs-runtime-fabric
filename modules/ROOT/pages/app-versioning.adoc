@@ -45,7 +45,7 @@ The *All changes* tab displays a history of versions created from the configurat
 
 == Apply Configuration Changes
 
-. On the *Settings* page for the application, you can make the following changes to a deployed configuration: +
+. On the *Settings* page for the application, you can make these changes to a deployed configuration: +
 * Upload a new application package.
 * Make changes to the deployment target and resource allocation.
 * Modify values for *Ingress* and *Properties*.

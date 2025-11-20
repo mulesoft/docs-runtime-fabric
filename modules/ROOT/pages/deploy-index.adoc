@@ -18,7 +18,7 @@ Before you deploy Mule apps and API proxies to Runtime Fabric, you must first pu
 
 == Deployment Options
 
-Use one of the following options to deploy Mule apps to Runtime Fabric:
+Use one of these options to deploy Mule apps to Runtime Fabric:
 
 * xref:deploy-to-runtime-fabric.adoc[Deploying a Mule App Using Runtime Manager] +
 Use Runtime Manager to manually deploy Mule apps and API proxies.
@@ -37,7 +37,7 @@ Use the Anypoint Platform CLI to deploy Mule applications
 Runtime Fabric is a self healing, eventually consistent platform. When building a CI pipeline for Runtime Fabric deployment, you must take eventual consistency into consideration. After triggering a deployment, the application status should become  `RUNNING`. If the application status never indicates `RUNNING`, the replicas contain a `state` and `reason` to indicate why the application is not `RUNNING`.
 
 === Application Deployment
-When an application is deployed, the following events occur:
+When an application is deployed, these events occur:
 
 * The expected state of your application is stored, including application bundle and number of replicas.
 * The application replica status shows as `PENDING`.
@@ -49,7 +49,7 @@ When an application is deployed, the following events occur:
 
 === Application Failure
 
-If an application fails, for example, due to running of out memory, the following events occur:
+If an application fails, for example, due to running of out memory, these events occur:
 
 * The replica status shows as `TERMINATED`.
 * Runtime Fabric immediately attempts to restart the replica.
@@ -59,7 +59,7 @@ If an application fails, for example, due to running of out memory, the followin
 ** The replica finishes loading the application.
 ** The replica status shows as `STARTED` and is able to perform work.
 
-* If the replica is initially unable to restart, for example, it relies on a network resource which temporarily unavailable, the following events occur:
+* If the replica is initially unable to restart, for example, it relies on a network resource which temporarily unavailable, these events occur:
 
 ** The replica status shows as `PENDING`, with a message indicating "CrashLoopBackoff". Runtime Fabric attempts to restart the replica, using exponential backoff to avoid an excessive number of restart attempts. 
 ** The replica status alternates between `RECOVERING` and `PENDING` until the issue preventing a successful restart is resolved.

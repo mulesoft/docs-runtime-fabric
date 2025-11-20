@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Review the following requirements and limitations before installing, configuring, and managing Anypoint Runtime Fabric. 
+Review these requirements and limitations before installing, configuring, and managing Anypoint Runtime Fabric. 
 
 [[license-compliance]]
 include::partial$include-deploy-resource-allocation.adoc[tags=licenseCompliance;!instructionsMonitor]
@@ -90,7 +90,7 @@ Runtime Fabric components, such as RTF agent, have a legitimate use case to cons
 
 === Anypoint Platform Roles and Permissions
 
-To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have the following permissions:
+To successfully use Anypoint Runtime Fabric, your Anypoint Platform account must have these permissions:
 
 * To manage permissions for Anypoint Platform users, you must have the ability to use xref:access-management::index.adoc[Anypoint Access Management].
 * To deploy and manage applications ensure you have:
@@ -110,7 +110,7 @@ Runtime Fabric supports any ingress controller that works well in your Kubernete
 
 [IMPORTANT]
 ====
-The default behavior of the ingress controller included with GKE is to provide a separate HTTP load balancer for each application. If you find this behavior undesirable, explore possible solutions or consider using another ingress controller. See the following link: https://help.salesforce.com/s/articleView?id=001121607&type=1[KB article] for more details.
+The default behavior of the ingress controller included with GKE is to provide a separate HTTP load balancer for each application. If you find this behavior undesirable, explore possible solutions or consider using another ingress controller. See this link: https://help.salesforce.com/s/articleView?id=001121607&type=1[KB article] for more details.
 ====
 
 === Logs

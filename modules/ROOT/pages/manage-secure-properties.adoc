@@ -14,7 +14,7 @@ The `rtfctl` utility is required to manage protected properties on Runtime Fabri
 == Set Secure Properties
 
 . Log into a controller node where `rtfctl` is installed. 
-. Run the following command to set a secure property to the Runtime Fabric under a specific environment, substituting the placeholder fields:
+. Run this command to set a secure property to the Runtime Fabric under a specific environment, substituting the placeholder fields:
 +
 [source,copy]
 ----
@@ -29,7 +29,7 @@ rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_na
 == View Secure Properties
 
 . Log into a controller node where `rtfctl` is installed. 
-. Run the following command to view the secure properties applied to the Runtime Fabric under a specific environment, substituting the placeholder fields:
+. Run this command to view the secure properties applied to the Runtime Fabric under a specific environment, substituting the placeholder fields:
 +
 [source,copy]
 ----
@@ -47,7 +47,7 @@ You can access secure properties from inside your Mule application using `$key`,
 == Remove Secure Properties
 
 . Log into a controller node where `rtfctl` is installed. 
-. Run the following command to remove a secure property from the Runtime Fabric in a specific namespace:
+. Run this command to remove a secure property from the Runtime Fabric in a specific namespace:
 +
 [source,copy]
 ----

@@ -7,7 +7,7 @@ When you deploy an application into an Anypoint Platform environment, Runtime Fa
 == Create A Namespace
 
 . As a user with permissions to create a namespace, log in to a Kubernetes workstation.
-. Run the following commands:
+. Run these commands:
 +
 [source,copy]
 ----
@@ -28,7 +28,7 @@ If you encounter errors when attempting to create namespaces for Runtime Fabric,
 
 === More Than One Namespace Uses the Same Environment ID
 
-Imagine that you created more than one namespace using the same environment ID, as shown in the following example:
+Imagine that you created more than one namespace using the same environment ID, as shown in this example:
 
 [source,copy]
 ----

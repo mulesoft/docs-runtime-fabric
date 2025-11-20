@@ -7,7 +7,7 @@ Anypoint Runtime Fabric enables you to deploy API proxies to a Mule runtime.
 
 == Before you Begin
 
-To deploy API proxies to a Mule runtime, you must have the following permissions on your account:
+To deploy API proxies to a Mule runtime, you must have these permissions on your account:
 
 * Manage APIs Configuration permission
 * Deploy API Proxies permission
@@ -57,7 +57,7 @@ This value ensures that your API proxy uses the latest released proxy version.
 . Click *Save*.
 +
 Your configuration information is saved and API Manager displays the *Deployment Configuration* section.
-. In the *Deployment Configuration* section, configure the following:
+. In the *Deployment Configuration* section, configure this:
 +
 .. Select the *Runtime Fabric target*.
 .. Select the *Runtime version*.

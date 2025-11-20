@@ -26,7 +26,7 @@ Refer to the xref:install-helm.adoc#values-yml-reference[`values.yml` Reference]
 ----
 helm repo update
 ----
-. To complete the upgrade, run the following command:
+. To complete the upgrade, run this command:
 +
 [source,copy]
 ----

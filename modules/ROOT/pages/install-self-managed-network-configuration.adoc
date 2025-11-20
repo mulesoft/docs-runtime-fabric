@@ -5,14 +5,14 @@
 Network configuration must be performed by an IT administrator.
 ====
 
-Before installing or using Runtime Fabric, ensure that the following ports and hostnames are configured correctly.
+Before installing or using Runtime Fabric, ensure that these ports and hostnames are configured correctly.
 Note that all internal communication within the cluster (between pods and services) needs to be allowed.
 
 == Port Configuration
 
-To install or run Runtime Fabric, ensure that you have configured the following ports on your Kubernetes installation.
+To install or run Runtime Fabric, ensure that you have configured these ports on your Kubernetes installation.
 
-For protocol-aware firewalls, consider allowing the following port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
+For protocol-aware firewalls, consider allowing this port traffic to use AMQP (Advanced Message Queuing Protocol) over Websockets.
 
 [NOTE]
 --
@@ -34,7 +34,7 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 == Hostname Endpoint Configuration
 
-To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
+To function correctly, Runtime Fabric requires these hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
 [%header,cols="4*a"]
 |===
@@ -89,7 +89,7 @@ Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint contro
 
 You can use `rtfctl` to verify that Runtime Fabric has the required outbound connectivity. On each node, follow the instructions in xref:install-rtfctl.adoc[Install rtfctl] to install `rtfctl`.
 
-To verify the required outbound connectivity, run the following command on all controller and worker nodes in the cluster:
+To verify the required outbound connectivity, run this command on all controller and worker nodes in the cluster:
 
 ----
 sudo ./rtfctl test outbound-network
@@ -117,7 +117,7 @@ If you have outbound connectivity issues that prevent Runtime Fabric from reachi
 
 == Certificate Configuration
 
-To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
+To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow these certificates:
 
 [%header,cols="2*a"]
 |===

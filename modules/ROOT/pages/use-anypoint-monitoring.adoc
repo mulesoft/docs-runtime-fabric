@@ -15,7 +15,7 @@ Starting with Runtime Fabric agent version 2.6.22, Anypoint Monitoring sidecar i
 
 If you need an outbound proxy, configure Anypoint Runtime Fabric to use a SOCKS5 proxy by following the instructions in xref:manage-proxy-self.adoc[Configuring Proxies on Runtime Fabric].
 
-To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.50 or later, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 443 to the following domains:
+To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.50 or later, ensure that each node in Runtime Fabric can send outbound TCP (Lumberjack) communication using port 443 to these domains:
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
@@ -27,7 +27,7 @@ To verify outbound network connectivity on Anypoint Runtime Fabric version 1.8.5
 
 [NOTE]
 ====
-If you are using a version of Anypoint Runtime Fabric older than 1.8.50, use port 5044 instead of port 443. Use the following domains:
+If you are using a version of Anypoint Runtime Fabric older than 1.8.50, use port 5044 instead of port 443. Use these domains:
 
 * US control plane: `dias-ingestor-nginx.prod.cloudhub.io` 
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
@@ -78,7 +78,7 @@ For Mule apps deployed or managed using Runtime Fabric agent version 2.5.x or lo
 
 For optimal daemonset functionality, follow these prerequisites:
 
-. Check that the application containers write logs to the following locations:
+. Check that the application containers write logs to these locations:
 
 * `/var/log/pods`
 * `/var/log/containers`
@@ -134,7 +134,7 @@ not supported.
 == (Optional) Disable Anypoint Monitoring for a Mule App
 
 When you deploy a Mule app to Runtime Fabric, Anypoint Monitoring is enabled by default. To disable Anypoint 
-Monitoring, pass the following custom property when deploying your Mule app:
+Monitoring, pass this custom property when deploying your Mule app:
 
 [source,copy]
 ----

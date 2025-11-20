@@ -4,7 +4,7 @@ Runtime Fabric enables you to configure Red Hat OpenShift Routes to create ingre
 
 == Before You Begin
 
-Configuration of routes in Runtime Fabric follows closely to ingress resource configuration. Before you create routes, review the following:
+Configuration of routes in Runtime Fabric follows closely to ingress resource configuration. Before you create routes, review this:
 
 * xref:custom-ingress-configuration.adoc#how-ingress-resources-templates-work-in-runtime-fabric[How Ingress Resources Templates Work in Runtime Fabric] 
 * xref:custom-ingress-configuration.adoc#example-ingress-resource-templates[Example Ingress Resource Templates]
@@ -40,7 +40,7 @@ spec:
                   name: service-port
 --
 
-Note the following about this example:
+Note this about this example:
 
 [calloutlist]
 .. The template must be placed in the `rtf` namespace.
@@ -57,7 +57,7 @@ For a list of optional placeholder values, see xref:custom-ingress-configuration
 
 == Configure A Route in Runtime Fabric
 
-To configure a route, complete the following tasks: 
+To configure a route, complete these tasks: 
 
 . Create an ingress resource template and apply it in the cluster.
 . Configure ingress for a Mule application.
@@ -83,13 +83,13 @@ For more information on configuring routes with passthrough TLS termination, ref
 
 Follow these steps to create an ingress resource template:
 
-. In the template, add the following annotation:
+. In the template, add this annotation:
 +
 ----
 route.openshift.io/termination: passthrough
 ----
 [start=2]
-. In the template, set the following parameter values:
+. In the template, set these parameter values:
 +
 * `path: ''` (an empty string) 
 * `pathType: ImplementationSpecific`

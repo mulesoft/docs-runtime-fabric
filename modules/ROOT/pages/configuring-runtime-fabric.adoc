@@ -1,6 +1,6 @@
 = Configuring Runtime Fabric
 
-To configure Anypoint Runtime Fabric, review the following topics:
+To configure Anypoint Runtime Fabric, review these topics:
 
 * xref:associate-environments.adoc[Associating Business Groups and Environments] +
 Associate a Runtime Fabric with one or more Anypoint Platform environments before deploying a Mule app or API proxy.

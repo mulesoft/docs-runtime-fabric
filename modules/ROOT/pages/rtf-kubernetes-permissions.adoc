@@ -1,6 +1,6 @@
 = Runtime Fabric Kubernetes Permissions
 
-To enable Runtime Fabric Kubernetes permissions, review the following topics.
+To enable Runtime Fabric Kubernetes permissions, review these topics.
 
 * xref:rtf-permissions.adoc[Runtime Fabric Core Software Kubernetes Permissions] +
 Review the Kubernetes resource access permissions required by the Runtime Fabric agent.

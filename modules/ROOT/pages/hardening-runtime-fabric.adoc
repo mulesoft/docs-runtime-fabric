@@ -1,6 +1,6 @@
 = Hardening Runtime Fabric
 
-To enhance the security of Anypoint Runtime Fabric and reduce vulnerabilities, review the following topics:
+To enhance the security of Anypoint Runtime Fabric and reduce vulnerabilities, review these topics:
 
 * xref:secure-runtime-fabric.adoc[Securing Runtime Fabric] +
 Secure your Runtime Fabric by learning about Runtime Fabric security architecture, configuring authorized namespaces, enabling FIPS 140-2, using a local registry, and hardening Mule runtime engine for Runtime Fabric.

@@ -5,7 +5,7 @@ When a Mule application is deployed to Runtime Fabric, the application is deploy
 
 The following performance information is based on clusters with controller nodes using custom Intel Xeon E5-2676 v3 Haswell processors. The processors run at a base clock rate of 2.4 GHz and can go as high as 3.0 GHz with Intel Turbo Boost. The load generator was hosted on a separate cluster in the same region.
 
-You can allocate the following resources when deploying an application:
+You can allocate these resources when deploying an application:
 
 * vCPU cores
 ** `Reserved vCPU`
@@ -21,7 +21,7 @@ The maximum amount of vCPU the application can use (the level to which it can bu
 
 == MuleSoft License Compliance
 
-You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure one of the following:
+You are responsible for ensuring that you remain compliant with your MuleSoft licensing. To remain compliant, ensure one of these:
 
 . The sum of CPU Limits allocated to each Mule application replica is less than or equal to the total license quantity.
 . The total CPU capacity provided by Runtime Fabric worker nodes running Mule applications is less than or equal to the licensed quantity.
@@ -50,7 +50,7 @@ When estimating the CPU and memory required for worker nodes, Anypoint Monitorin
 
 == CPU Bursting
 
-When using CPU bursting, you must consider the following factors:
+When using CPU bursting, you must consider these factors:
 
 * Minimum reserved vCPU: 0.02 vCPU.
 * Minimum vCPU limit: 0.07 vCPU.
@@ -126,10 +126,10 @@ Run performance and load testing on your Mule applications to determine the numb
 
 == Internal Load Balancer Memory Allocation
 
-Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. Use the following guidelines when allocating memory:
+Internal load balancer memory requirements are impacted by the number of threads, response time latency, and message sizes. Use these guidelines when allocating memory:
 
 * .5 GB (Default): For fewer than 500 simultaneous active connections.
-* 1.5 GB (Large): For one or both of the following scenarios:
+* 1.5 GB (Large): For one or both of these scenarios:
 
 ** 500 or more simultaneous active connections.
 ** Security policies are enabled.
@@ -205,7 +205,7 @@ ECDSA keys are also supported. In most cases, ECDSA doubles the performance of a
 == Calculating CPU Cores on Runtime Fabric
 
 CPU cores affect some thread pool settings and default max concurrency in Mule runtime engine.
-For example, Mule runtime engine 4.4 uses the following formula in `{MULE_HOME}/conf/scheduler-pools.conf` to calculate the thread pool size, which relies on the predefined cores parameters.
+For example, Mule runtime engine 4.4 uses this formula in `{MULE_HOME}/conf/scheduler-pools.conf` to calculate the thread pool size, which relies on the predefined cores parameters.
 
 `org.mule.runtime.scheduler.uber.threadPool.maxSize=max(2, cores + ((mem - 245760) / 5120))`
 

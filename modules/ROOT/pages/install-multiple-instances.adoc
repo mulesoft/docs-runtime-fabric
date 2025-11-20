@@ -58,7 +58,7 @@ rtf-runtime-registry.kprod-eu.msap.io
 
 
 == Values.yaml Optional Parameters
-Set the following optional parameters as needed: 
+Set these optional parameters as needed: 
 
 [%header%autowidth.spread]
 |===
@@ -184,7 +184,7 @@ rules:
 
 To configure an additional namespace for application deployments and then add the necessary labels to the namespace, follow these steps:
 
-. Create a YAML file with the following contents:
+. Create a YAML file with these contents:
 +
 ----
 apiVersion: v1
@@ -205,7 +205,7 @@ kubectl apply -f <filename>.yaml
 ----
 [start=3]
 . Repeat Steps 1 and 2 to add as many namespaces as you need.
-. Create the `RoleBinding` for the Runtime Fabric agent `ClusterRole` that includes the Runtime Fabric agent `ServiceAccount` by applying the following configuration in your additional namespace:
+. Create the `RoleBinding` for the Runtime Fabric agent `ClusterRole` that includes the Runtime Fabric agent `ServiceAccount` by applying this configuration in your additional namespace:
 
 +
 ----

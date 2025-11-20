@@ -15,7 +15,7 @@ image::rtf-security-architecture-diagram.png[]
 
 == Runtime Fabric Data Flow
 
-Review the following diagram that shows the Runtime Fabric data flow:
+Review this diagram that shows the Runtime Fabric data flow:
 
 image::rtf-security-data-flow.png[Diagram of Runtime Fabric Data flow]
 

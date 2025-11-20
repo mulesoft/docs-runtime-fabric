@@ -32,7 +32,7 @@ Using custom ingress resource templates in Runtime Fabric enables you to take ad
 
 == How Ingress Resources Templates Work in Runtime Fabric
 
-The following diagram provides an overview of how to use ingress resource templates in Runtime Fabric:
+This diagram provides an overview of how to use ingress resource templates in Runtime Fabric:
 
 image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtime Fabric,80%]
 
@@ -47,7 +47,7 @@ image::ingress-diagram.png[Diagram shows the ingress template workflow in Runtim
 [[kubernetes-ingress]]
 == Example Ingress Resource Templates
 
-The following examples illustrate how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress-resource template. 
+These examples illustrate how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress-resource template. 
 
 
 === networking.k8s.io/v1
@@ -84,7 +84,7 @@ spec:
               name: service-port
 --
 
-Note the following about this example:
+Note this about this example:
   
 <1> The template must be placed in the `rtf` namespace.
 
@@ -113,7 +113,7 @@ For a path-based routing ingress template, consult your ingress controller docum
 
 === Template Placeholders 
 
-The following placeholders are optional. If you use a placeholder, replace it in the appropriate location in the template. Placeholders must be lowercase.
+These placeholders are optional. If you use a placeholder, replace it in the appropriate location in the template. Placeholders must be lowercase.
 
 [%header%autowidth.spread]
 |===
@@ -187,7 +187,7 @@ For example, if you update the base domain which requires to change the endpoint
 
 == Existing Ingress Configurations Translated Post-Upgrade 
 
-When upgrading to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review the following table to determine if any action is required after upgrading.
+When upgrading to Runtime Fabric version 1.10, the upgrade process automatically translates any existing ingress ConfigMaps to the ingress resource template format, including annotations, path, namespace, and host parameters. Review this table to determine if any action is required after upgrading.
 
 [%header%autowidth.spread]
 |===
