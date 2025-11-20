@@ -26,6 +26,10 @@ To grant the *Restart Applications* permission to a user:
 . Click the name of the user to assign permissions to.
 . Click the *Permissions* tab and click *Add permissions*.
 . Select *Restart Applications* from the list of permissions and click *Next*.
++
+image::rtf-restart-permission.png[Restart Applications permission in Access Management]
+
+[start=7]
 . Select the business groups to apply the permissions to.
 . Select the environments to apply the permission to.
 . Click *Next*.
@@ -48,6 +52,8 @@ The *Applications* page is displayed.
 +
 The *Restart* option appears in the dropdown list.
 . Click *Restart* to restart the application.
++
+image::rtf-restart-button.png[Restart button permission in Runtime Manager] 
 +
 The *Application status* changes to indicate that the application is restarting.
 +
@@ -100,12 +106,12 @@ You can also restart a Mule application programmatically using the Runtime Manag
         description: Not Found
 --
 
-*Path Parameters:*
+Path parameters:
 
 * `organizationId` (required, string): Your organization ID
 * `environmentId` (required, string): The environment ID where the application is deployed
 
-*Request Body:*
+Request body:
 
 [source,json]
 --
@@ -119,7 +125,7 @@ You can also restart a Mule application programmatically using the Runtime Manag
 }
 --
 
-*Request Body Schema:*
+Request body schema:
 
 The request body must conform to the `ActionExecutionRequest` schema:
 
@@ -129,7 +135,7 @@ The request body must conform to the `ActionExecutionRequest` schema:
 ** `deploymentId` (required, string): The deployment ID of the application
 * `selector` (required, object): An empty object
 
-*Responses:*
+Responses:
 
 * `202 Accepted`: The restart request was successfully accepted. Returns an `AmcActionResponse` object.
 * `400 Bad Request`: The request was malformed or missing required parameters
