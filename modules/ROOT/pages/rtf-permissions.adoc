@@ -16,7 +16,7 @@ You can't extend or modify any of these core software access permissions. Instea
    |networking.k8s.io  |networkpolicies   | *
    |rbac.authorization.k8s.io  |rolebindings, clusterroles, clusterrolebindings, roles   | *
    |extensions,networking.k8s.io  |ingresses,networkpolicies   | *
-   |rtf.mulesoft.com  |persistencegateways, kubernetestemplates   | *
+   |rtf.mulesoft.com  |persistencegateways, kubernetestemplates, httproutetemplates, muleapplications, muleapplications/status   | *
    |autoscaling  |horizontalpodautoscalers   | *
    |high availability  |leases   | *
 |===

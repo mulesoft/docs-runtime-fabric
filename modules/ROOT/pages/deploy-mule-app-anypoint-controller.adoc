@@ -4,7 +4,7 @@ Anypoint Controller is a Kubernetes operator that enables you to deploy and mana
 
 With Anypoint Controller, you can:
 
-* Define application configurations declaratively in version control and let the controller automatically reconcile them with Anypoint Platform and your cluster.
+* Define application configurations declaratively in versioned manifest files and let the controller automatically reconcile them with Anypoint Platform and your cluster.
 * Use standard Kubernetes tools and practices to deploy Mule applications, including `kubectl`, Helm, and custom resources.
 * Leverage Kubernetes features such as external secret managers, volume mounts, and RBAC policies to meet enterprise security requirements.
 
@@ -14,7 +14,7 @@ This guide shows you how to:
 * Deploy Mule applications using declarative Mule application Custom Resources.
 * Monitor application status using Kubernetes-native status conditions.
 * Update, delete, and manage application lifecycles with standard Kubernetes commands.
-* Integrate with CI/CD and GitOps tools like ArgoCD, FluxCD, and Terraform.
+* Integrate with CI/CD and GitOps tools like ArgoCD, FluxCD, and Terraform Kubernetes provider.
 * Configure Kubernetes-specific settings including volumes, secrets, and node affinity.
 * Troubleshoot common deployment and configuration issues.
 
@@ -33,14 +33,16 @@ Anypoint Controller has these limitations and does not support:
 
 * CloudHub 2.0 Mule application deployments
 * Scheduler-based Mule applications
-* API proxy deployments
+* Flex Gateway deployments
 * `rtfctl`-based Runtime Fabric installation or upgrade
 
 [IMPORTANT]
-Backup and restore functionality (during the Limited GA phase) is not supported. Plan your recovery strategy accordingly, leveraging your Git repository as the source of truth for application configurations.
+Backup and restore functionality (during the Limited GA phase) is not supported. Plan your recovery strategy accordingly, leveraging your version control repository as the source of truth for application configurations.
 
 
 == Before You Begin
+
+Anypoint Controller is designed for Kubernetes administrators with cluster access and proficiency in Kubernetes tools such as `kubectl`, Helm, and Custom Resources. 
 
 Before you begin, review these prerequisites and environment setup requirements.
 
@@ -55,11 +57,11 @@ To use Anypoint Controller, you must either:
 
 Understanding the management model is critical before deploying and managing applications with Anypoint Controller:
 
-* Applications created via Mule application Custom Resources can only be managed through the Custom Resource itself.
-* All configuration changes must be applied by updating the Custom Resource YAML and applying it to the cluster.
+* Applications created via Anypoint Controller can only be managed through the Custom Resource itself.
+* All configuration changes must be applied by updating the Custom Resource definition in your deployment tool and applying it to the cluster.
 * The Anypoint Platform Runtime Manager UI displays these applications in read-only mode.
 * Attempts to modify or delete these applications via Anypoint Platform APIs result in an error.
-* The Git repository remains the single source of truth for application configuration.
+
 
 
 == Install and Configure Anypoint Controller
@@ -75,13 +77,27 @@ To set up Anypoint Controller, complete these steps:
 
 === Configure Anypoint Controller in Helm Chart
 
-To enable Anypoint Controller during Runtime Fabric installation or upgrade, in the Helm chart, configure these settings:
+To enable Anypoint Controller, configure these Helm chart settings:
 
-* `global.crds.install = true`
-* `global.crds.anypointController.enabled = true`
+* `global.crds.install = true` +
+Installs the MuleApplication Custom Resource Definition (CRD) in the cluster. The CRD is cluster-scoped and accessible by all Runtime Fabric instances in the cluster.
+
+* `agent.rtfd.anypointController.enabled = true` +
+Enables the Anypoint Controller feature for the specific Runtime Fabric instance.
+
+You can configure these settings independently based on your deployment scenario:
+
+* Single Runtime Fabric instance: +
+Set both `global.crds.install = true` and `agent.rtfd.anypointController.enabled = true`.
+
+* Multiple Runtime Fabric instances in the same cluster: +
+  ** First instance: Set `global.crds.install = true` to install the CRD. Optionally, set `agent.rtfd.anypointController.enabled = true` if this instance manages applications.
+  ** Additional instances: Set only `agent.rtfd.anypointController.enabled = true`. The CRD installed by the first instance is accessible to all instances.
+
+For more information, see xref:install-multiple-instances.adoc[Install Multiple Instances of Runtime Fabric].
 
 [%collapsible]
-.For New Runtime Fabric Installations
+.For New Runtime Fabric Installations (Single Instance)
 ====
 . In your `values.yaml` file, add this configuration:
 
@@ -90,6 +106,9 @@ To enable Anypoint Controller during Runtime Fabric installation or upgrade, in 
 global:
   crds:
     install: true
+
+agent:
+  rtfd:
     anypointController:
       enabled: true
 ----
@@ -105,16 +124,51 @@ helm install rtf-agent <chart-repo>/rtf-agent \
 ====
 
 [%collapsible]
-.For Upgrading Existing Runtime Fabric Installations
+.For Multiple Runtime Fabric Instances
 ====
-
-. Update your `values.yaml` file with the same configuration as previously mentioned:
+First Runtime Fabric instance (installs the CRD):
 
 [source,yaml]
 ----
 global:
   crds:
     install: true
+
+agent:
+  rtfd:
+    anypointController:
+      enabled: true  # Optional: enable if this instance manages applications
+----
+
+Additional Runtime Fabric instances (use existing CRD):
+
+[source,yaml]
+----
+global:
+  crds:
+    install: false  # CRD already installed by first instance
+
+agent:
+  rtfd:
+    anypointController:
+      enabled: true  # Enable controller feature for this instance
+----
+====
+
+[%collapsible]
+.For Upgrading Existing Runtime Fabric Installations
+====
+
+. Update your `values.yaml` file with the appropriate configuration:
+
+[source,yaml]
+----
+global:
+  crds:
+    install: true  # Set to false if CRD is already installed
+
+agent:
+  rtfd:
     anypointController:
       enabled: true
 ----
@@ -129,21 +183,15 @@ helm upgrade rtf-agent <chart-repo>/rtf-agent \
 ----
 ====
 
-This configuration performs these actions:
-
-* Installs the Mule Application Custom Resource Definition (CRD) in your cluster
-* Enables the Anypoint Controller component within the Runtime Fabric agent
-* Grants the Runtime Fabric agent necessary permissions to manage MuleApplication resources
-
 === Define MuleApplication Custom Resource
 
 Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule Application Custom Resource (MuleApplication CR) state and matches it against the desired configured state.
 
-After installing the CRD, define your Mule application as a Custom Resource by creating a YAML manifest file on your local machine or in your Git repository. 
+Define your Mule application as a Custom Resource using your preferred deployment tool (such as YAML manifests with `kubectl`, Terraform, Helm charts, or GitOps tools). 
 
-This file specifies deployment configurations such as CPU and memory resources, replica count, runtime version, application artifact details, properties, volume mounts for secrets and configuration files, and Kubernetes-specific settings. 
+The Custom Resource specifies deployment configurations such as CPU and memory resources, replica count, runtime version, application artifact details, properties, volume mounts for secrets and configuration files, and Kubernetes-specific settings. 
 
-You apply this file to your Kubernetes cluster using `kubectl apply -f <filename>.yaml`, and Anypoint Controller deploys the application based on the specifications.
+After you apply this file to your Kubernetes cluster, for example by using `kubectl apply -f <filename>.yaml`, Anypoint Controller deploys the application based on the specifications.
 
 For a complete reference of all available MuleApplicationCR fields and configuration options, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
 
@@ -1216,7 +1264,7 @@ The controller automatically:
 . Allows Kubernetes to delete the CR.
 
 [IMPORTANT]
-Deletion is permanent. Ensure your Git repository contains the application configuration if you need to redeploy later.
+Deletion is permanent. Ensure your version control repository contains the application configuration if you need to redeploy later.
 
 
 === Pause Reconciliation
@@ -1245,9 +1293,9 @@ Anypoint Controller works seamlessly with GitOps and Infrastructure-as-Code tool
 
 === GitOps Workflow
 
-. Store MuleApplication manifests in a Git repository.
+. Store MuleApplication manifests in a version control repository.
 . Define branch strategies (for example, `dev`, `staging`, `production`).
-. Use pull requests for configuration changes.
+. Use pull requests or merge requests for configuration changes.
 . Automate deployment with GitOps tools.
 
 Integrate Anypoint Controller with these tools:
@@ -1258,7 +1306,7 @@ Integrate Anypoint Controller with these tools:
 
 === ArgoCD Integration
 
-. Store your manifests in Git:
+. Store your manifests in version control:
 +
 [source,console]
 ----
@@ -1291,13 +1339,13 @@ spec:
     namespace: mule-apps
   syncPolicy:
     automated:
-      prune: true       # Delete resources removed from Git
+      prune: true       # Delete resources removed from version control
       selfHeal: true    # Revert manual changes
     syncOptions:
       - CreateNamespace=true
 ----
 
-ArgoCD continuously monitors the Git repository and automatically deploys changes.
+ArgoCD continuously monitors the version control repository and automatically deploys changes.
 
 === FluxCD Integration
 
@@ -1336,7 +1384,7 @@ spec:
   targetNamespace: mule-apps
 ----
 
-FluxCD automatically reconciles the cluster state with Git.
+FluxCD automatically reconciles the cluster state with the version control.
 
 === Terraform Integration
 
