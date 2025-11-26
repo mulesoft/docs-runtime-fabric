@@ -58,7 +58,9 @@ To use Anypoint Controller, you must either:
 Understanding the management model is critical before deploying and managing applications with Anypoint Controller:
 
 * Applications created via Anypoint Controller can only be managed through the Custom Resource itself.
+* To manage existing applications using Anypoint Controller, you must redeploy them as a Kubernetes Custom Resource.
 * All configuration changes must be applied by updating the Custom Resource definition in your deployment tool and applying it to the cluster.
+* Stop and Restart functionality is not supported for applications managed by Anypoint Controller.
 * The Anypoint Platform Runtime Manager UI displays these applications in read-only mode.
 * Attempts to modify or delete these applications via Anypoint Platform APIs result in an error.
 
@@ -2166,6 +2168,12 @@ If you currently use KubernetesTemplate for configuration, migrate those setting
 | Service annotations | `spec.service.metadata.annotations`
 | Deployment labels | `spec.deployment.metadata.labels`
 |===
+
+==== Configuring Application URLs and Ingress
+
+For application URLs and ingress, you can define Kubernetes native Ingress resources in your cluster for Mule applications created with Anypoint Controller. Use standard Kubernetes Ingress controllers and resources to manage HTTP routing and external access to your applications, rather than Runtime Fabric ingress templates.
+
+For more information about configuring ingress for Runtime Fabric, see xref:configure-ingress.adoc[Configure Ingress].
 
 == Troubleshooting
 
