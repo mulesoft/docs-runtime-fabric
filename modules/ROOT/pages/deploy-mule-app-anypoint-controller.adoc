@@ -699,7 +699,7 @@ kubectl describe muleapplication hello-world-app -n my-apps
 
 . Check the application in Runtime Manager:
 +
-Log in to Anypoint Platform and navigate to Runtime Manager. Your application appears in the applications list with a read-only indicator.
+Log in to Anypoint Platform and navigate to Runtime Manager. Your application appears in the applications list in read-only mode, with all management actions (buttons) grayed out.
 
 === Deployment Examples
 
@@ -1598,57 +1598,9 @@ Anypoint Controller detects the new resource and:
 
 === MuleApplication Field Reference
 
-The following table provides a quick reference for MuleApplication CR fields:
+For a comprehensive reference of all Mule application deployment fields and configuration options, see xref:deploy-to-runtime-fabric.adoc#rtf-deploy-reference[Mule Application Deployment Fields].
 
-[%header,cols="2,1,1,1,3"]
-|===
-| Field Path | Type | Required | Default | Description
-
-| `spec.target` | string | Yes (Immutable) | - | Runtime Fabric target name from Runtime Manager
-| `spec.businessGroup` | string | Yes (Immutable) | - | Hierarchical path of the Anypoint business group
-| `spec.environment` | string | Yes (Immutable) | - | Anypoint environment name (not ID)
-| `spec.runtimeVersion` | string | Yes | - | Mule runtime version (4.6+)
-| `spec.application.group` | string | Yes | - | Business group that owns the artifact
-| `spec.application.artifactId` | string | Yes | - | Artifact name in Exchange
-| `spec.application.version` | string | Yes | - | Artifact version
-| `spec.application.packaging` | string | Yes | - | Artifact format (typically `jar`)
-| `spec.replicas` | integer | No | `1` | Number of application instances (max 16)
-| `spec.resources.requests.cpu` | string | No | - | Minimum CPU allocation (e.g., `500m`)
-| `spec.resources.requests.memory` | string | No | - | Minimum memory allocation (e.g., `1Gi`)
-| `spec.resources.limits.cpu` | string | No | - | Maximum CPU allocation
-| `spec.resources.limits.memory` | string | No | - | Maximum memory allocation
-| `spec.updateStrategy` | string | No | `rolling` | Update strategy: `rolling` or `recreate`
-| `spec.autoscaling.enabled` | boolean | No | `false` | Enable horizontal pod autoscaling
-| `spec.autoscaling.minReplicas` | integer | No | - | Minimum replicas for autoscaling
-| `spec.autoscaling.maxReplicas` | integer | No | - | Maximum replicas for autoscaling
-| `spec.clustered` | boolean | No | `false` | Enable Mule clustering
-| `spec.persistentObjectStore` | boolean | No | `false` | Enable persistent object store
-| `spec.enforceDeployingReplicasAcrossNodes` | boolean | No | `false` | Distribute replicas across different nodes
-| `spec.properties` | array | No | - | Application properties (key-value pairs)
-| `spec.propertiesFrom` | array | No | - | Load properties from Secrets/ConfigMaps
-| `spec.jvmArgs` | array | No | - | Custom JVM arguments
-| `spec.scopeLoggingConfigurations` | array | No | - | Package-level logging configuration
-| `spec.disableAmLogForwarding` | boolean | No | `false` | Disable Anypoint Monitoring log forwarding
-| `spec.tracingEnabled` | boolean | No | `false` | Enable OpenTelemetry tracing (Mule 4.6+)
-| `spec.volumes` | array | No | - | Volume specifications for the pod
-| `spec.volumeMounts` | array | No | - | Volume mount specifications
-| `spec.pod.metadata.labels` | object | No | - | Custom labels for pod
-| `spec.pod.metadata.annotations` | object | No | - | Custom annotations for pod
-| `spec.pod.nodeSelector` | object | No | - | Node selector for pod placement
-| `spec.pod.tolerations` | array | No | - | Tolerations for tainted nodes
-| `spec.pod.affinity` | object | No | - | Affinity and anti-affinity rules
-| `spec.pod.topologySpreadConstraints` | array | No | - | Topology spread constraints
-| `spec.pod.containerSecurityContext` | object | No | - | Security context for container
-| `spec.pod.automountServiceAccountToken` | boolean | No | - | Auto-mount service account token
-| `spec.pod.env` | array | No | - | Environment variables
-| `spec.pod.ephemeralStorageLimit` | string | No | - | Ephemeral storage limit
-| `spec.service.metadata.labels` | object | No | - | Custom labels for service
-| `spec.service.metadata.annotations` | object | No | - | Custom annotations for service
-| `spec.deployment.metadata.labels` | object | No | - | Custom labels for deployment
-| `spec.deployment.metadata.annotations` | object | No | - | Custom annotations for deployment
-|===
-
-==== Detailed Field Descriptions
+=== Advanced Field Configurations
 
 [%collapsible]
 .Required Fields (Immutable After Creation)
@@ -2185,14 +2137,14 @@ Anypoint Controller is a feature enabled in the existing `rtfd` container. View 
 
 [source,bash]
 ----
-kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller --tail=100
+kubectl logs -l app=rtf-agent -n <rtf-namespace> -c rtfd --tail=100
 ----
 
 Follow logs in real-time:
 
 [source,bash]
 ----
-kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller -f
+kubectl logs -l app=rtf-agent -n <rtf-namespace> -c rtfd -f
 ----
 
 Enable Debug Logs:
