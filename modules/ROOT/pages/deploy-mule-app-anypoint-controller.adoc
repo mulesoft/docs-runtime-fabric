@@ -349,7 +349,7 @@ spec:
 To integrate with AWS Secrets Manager, Azure Key Vault, or HashiCorp Vault, use the Secrets Store CSI Driver.
 
 [NOTE]
-You must install the Secrets Store CSI Driver in your cluster. Refer to your cloud provider's documentation for installation instructions.
+You must install the Secrets Store CSI Driver in your cluster. Refer to your Secrets Manager's documentation for installation instructions.
 
 . Create a SecretProviderClass:
 +
@@ -513,7 +513,6 @@ Anypoint Controller requires a Connected App to authenticate with Anypoint Platf
 |===
 | Category | Permission | Description
 | Exchange | Exchange Viewer | View and download application artifacts from Exchange
-| General | View Environments | View environment details in the organization
 | OpenID | Profile | Access basic profile information
 | Runtime Manager | Create Applications | Create new application deployments
 | Runtime Manager | Delete Applications | Delete existing application deployments
@@ -636,12 +635,18 @@ This example shows the minimum required fields. For a complete list of all avail
 
 ==== Apply the Manifest
 
-. Ensure the namespace exists:
+. Create the namespace and label it with the Runtime Fabric namespace:
 +
 [source,bash]
 ----
 kubectl create namespace my-apps
+kubectl label namespace my-apps rtf.mulesoft.com/agentNamespace=<rtf-namespace>
 ----
++
+Replace `<rtf-namespace>` with the namespace where your Runtime Fabric is installed (for example, `rtf`).
++
+[IMPORTANT]
+The `rtf.mulesoft.com/agentNamespace` label tells the Runtime Fabric agent which MuleApplication Custom Resources to manage. Only one Runtime Fabric instance can manage applications in a given namespace.
 
 . Apply the application manifest:
 +
@@ -657,11 +662,11 @@ kubectl apply -f hello-world-app.yaml
 kubectl get muleapplication hello-world-app -n my-apps
 ----
 
-When you apply the MuleApplication Custom Resource, Anypoint Controller perform these actions:
+When you apply the Mule application Custom Resource, Anypoint Controller perform these actions:
 
 . Detects the new MuleApplication resource.
 . Validates the configuration.
-. Adds a label to the namespace for synchronization tracking.
+. Adds a label to the namespace for synchronization tracking (`rtf.mulesoft.com/role: workers`).
 . Creates the application in Anypoint Platform.
 . Deploys the application to the specified Runtime Fabric target.
 . Continuously monitors and reconciles the desired state.
@@ -916,15 +921,16 @@ Customize your Mule application deployments for specific use cases.
 
 *Deploy to a Specific Namespace*
 
-You can deploy applications to any Kubernetes namespace:
+You can deploy applications to any Kubernetes namespace. Create the namespace and label it with the Runtime Fabric namespace:
 
 [source,bash]
 ----
 kubectl create namespace production-apps
+kubectl label namespace production-apps rtf.mulesoft.com/agentNamespace=<rtf-namespace>
 kubectl apply -f my-app.yaml -n production-apps
 ----
 
-The controller watches all namespaces and manages applications regardless of where the Custom Resource is created.
+The controller watches namespaces that are labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`, where `<rtf-namespace>` is the namespace where the Runtime Fabric core software is installed. The agent running in that namespace manages Mule application Custom Resources in the labeled application namespace.
 
 For more information about namespace permissions and flexibility, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-runtime-fabric-agent-kubernetes-permissions[Understanding Runtime Fabric Agent Kubernetes Permissions].
 
@@ -1032,7 +1038,6 @@ status:
     - type: Applied
       status: "True"
       reason: APISuccessResponse
-      message: "Configuration updated successfully"
       lastTransitionTime: "2024-01-15T10:30:00Z"
 ----
 
@@ -1055,7 +1060,7 @@ The controller could not apply the configuration to Anypoint Platform. The `mess
 
 Common Failure Reasons:
 
-* Application name already exists (not created via Anypoint Controller)
+* Application name already exists (either not created via Anypoint Controller, or created via Anypoint Controller with the same name)
 * Invalid Runtime Fabric target name
 * Invalid business group or environment name
 * Insufficient vCore entitlement
@@ -1068,7 +1073,7 @@ Common Failure Reasons:
 [%collapsible]
 .Status Condition: Available
 ====
-The `Available` condition indicates whether the application has the desired number of ready replicas and is ready to serve traffic.
+The `Available` condition indicates whether the application has at least one available replica and serving traffic.
 
 *Status: True (Available)*
 
@@ -1084,7 +1089,7 @@ status:
       lastTransitionTime: "2024-01-15T10:32:00Z"
 ----
 
-All desired replicas are running and ready. The application is serving traffic.
+Has at least one available replica and is serving traffic.
 
 *Status: False (Not Available)*
 
@@ -1102,6 +1107,79 @@ status:
 
 The application doesn't have ready replicas. Check pod status and logs to diagnose the issue.
 ====
+
+[%collapsible]
+.Status Condition: Progressing
+====
+The `Progressing` condition indicates whether a deployment rollout is currently underway. This tracks the process of updating pods to match the desired specification.
+
+*Status: True (Rolling Out)*
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: Progressing
+      status: "True"
+      reason: RollingOut
+      message: "Rolling out: 1/2 replicas updated"
+      lastTransitionTime: "2024-01-15T10:35:00Z"
+----
+
+A rollout is in progress. This status is `True` when:
+
+* New replicas are being created
+* Old replicas are being terminated
+* Replicas are waiting to become ready
+
+*Status: False (Idle)*
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: Progressing
+      status: "False"
+      reason: RolloutComplete
+      message: "All replicas updated and ready"
+      lastTransitionTime: "2024-01-15T10:36:00Z"
+----
+
+The deployment has finished. All replicas are updated to the latest version and are ready.
+====
+
+
+[%collapsible]
+.Status Condition: Degraded
+====
+The `Degraded` condition indicates whether the application pods are failing to start or stabilize. This is critical for identifying issues like `CrashLoopBackOff`, `ImagePullBackOff`, or readiness probe failures.
+
+*Status: True (Failing)*
+
+[source,yaml]
+----
+status:
+  conditions:
+    - type: Degraded
+      status: "True"
+      reason: PodFailure
+      message: "Pod hello-world-app-86dcf987-xyz: CrashLoopBackOff: Back-off restarting failed container"
+      lastTransitionTime: "2024-01-15T10:40:00Z"
+----
+
+The application is in a degraded state. One or more pods in the newest ReplicaSet are failing.
+
+If a new version is failing but the old version is still serving traffic, the message will indicate this:
+
+----
+New version rollout blocked: Pod <name>: <error>. Service remains available on previous version.
+----
+
+*Status: Missing (Healthy)*
+
+If the `Degraded` condition is not present in the status list, the application is healthy (or at least not reporting specific pod failures).
+====
+
 
 [%collapsible]
 .Status Condition: DesiredSpecAppliedOnCluster
@@ -1209,7 +1287,6 @@ Manage your application lifecycle:
 
 * <<update-a-mule-application,Update a Mule Application>>
 * <<delete-a-muleapplication,Delete a MuleApplication>>
-* <<pause-reconciliation,Pause Reconciliation>>
 
 === Update a Mule Application
 
@@ -1265,27 +1342,6 @@ The controller automatically:
 
 [IMPORTANT]
 Deletion is permanent. Ensure your version control repository contains the application configuration if you need to redeploy later.
-
-
-=== Pause Reconciliation
-
-To temporarily prevent the controller from updating an application, add an annotation:
-
-[source,bash]
-----
-kubectl annotate muleapplication hello-world-app \
-  rtf.mulesoft.com/reconcile=false \
-  -n my-apps
-----
-
-To resume:
-
-[source,bash]
-----
-kubectl annotate muleapplication hello-world-app \
-  rtf.mulesoft.com/reconcile- \
-  -n my-apps
-----
 
 == Integrate with CI/CD and GitOps Tools
 
@@ -1450,11 +1506,11 @@ Terraform manages the MuleApplication lifecycle and tracks state changes in your
 
 The Runtime Fabric agent requires specific Kubernetes permissions to manage MuleApplication Custom Resources:
 
-* Namespace Editing +
-The Runtime Fabric agent needs permissions to edit the Kubernetes namespace where you deploy the MuleApplication CR to add synchronization labels required for tracking and reconciliation.
+* Namespace Label Requirement +
+To enable the Runtime Fabric agent to manage MuleApplication Custom Resources in a namespace, you must label the namespace with `rtf.mulesoft.com/agentNamespace=<rtf-namespace>`. Only one Runtime Fabric instance can manage applications in a given namespace.
 
 * Namespace Flexibility +
-You can create MuleApplication Custom Resources in any Kubernetes namespace. The controller watches all namespaces and manages applications regardless of where the CR is created.
+You can create MuleApplication Custom Resources in any Kubernetes namespace, as long as the namespace is labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`. A controller running in a given Runtime Fabric agent pod only watches for MuleApplication Custom Resources in namespaces that have this matching label.
 
 * Resource Creation +
 The controller creates application resources (Deployments, Services, ConfigMaps, Secrets) in the same namespace as the MuleApplication CR.
@@ -1934,7 +1990,6 @@ The Mule agent supports two property file formats:
 * Java Properties Files (`.properties` extension):
 ** Files ending with `.properties` are parsed as standard Java properties files
 ** Each line follows the `key=value` format
-** Supports comments with `#` or `!`
 
 * File-as-Property (any other file):
 ** The filename becomes the property name
@@ -2118,7 +2173,7 @@ Use these techniques to diagnose and resolve common issues with Anypoint Control
 
 === Check Controller Logs
 
-View Anypoint Controller logs:
+Anypoint Controller is a feature enabled in the existing `rtfd` container. View the logs to troubleshoot deployment issues:
 
 [source,bash]
 ----
@@ -2130,6 +2185,16 @@ Follow logs in real-time:
 [source,bash]
 ----
 kubectl logs -l app=rtf-agent -n <rtf-namespace> -c anypoint-controller -f
+----
+
+Enable Debug Logs:
+
+By default, the log level is set to `info`, which does not emit detailed information for diagnosis. To enable debug logs for more detailed troubleshooting, add the following environment variables to the `app-config` ConfigMap and restart the agent deployment:
+
+[source,yaml]
+----
+LOG_LEVEL: DEBUG
+LOGGING_LEVEL_ROOT: debug
 ----
 
 === Common Issues
@@ -2148,13 +2213,13 @@ To resolve this issue:
 kubectl get namespace <namespace> --show-labels
 ----
 +
-The namespace should have `rtf.mulesoft.com/system-ns=<rtf-namespace>`.
+The namespace should have `rtf.mulesoft.com/agentNamespace=<rtf-namespace>`.
 +
 Add the label if missing:
 +
 [source,bash]
 ----
-kubectl label namespace <namespace> rtf.mulesoft.com/system-ns=<rtf-namespace>
+kubectl label namespace <namespace> rtf.mulesoft.com/agentNamespace=<rtf-namespace>
 ----
 
 . Check the Connected App credentials:
@@ -2165,7 +2230,7 @@ kubectl get secret anypoint-credentials -n <rtf-namespace> -o yaml
 ----
 
 . Verify the Connected App has required permissions in Anypoint Platform.
-. Check controller logs for errors.
+. Check <<check-controller-logs>> for errors.
 ====
 
 [%collapsible]
