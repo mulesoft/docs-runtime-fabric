@@ -14,18 +14,19 @@ The restart feature is available for Mule applications deployed to Runtime Fabri
 
 == Before You Begin
 
-Before restarting a Mule application, ensure that you have the required permissions:
+Before restarting a Mule application, ensure that you have one of these permissions:
 
-* You must have the *Restart Applications* permission to restart applications.
+* *Restart Applications*
+* *Create Applications*
 
-To grant the *Restart Applications* permission to a user:
+To grant the permissions to a user:
 
 . Sign in to Anypoint Platform using an account that has the Organization Administrator permission.
 . Select *Access Management* from the navigation menu.
 . In the Access Management navigation menu, click *Users*.
 . Click the name of the user to assign permissions to.
 . Click the *Permissions* tab and click *Add permissions*.
-. Select *Restart Applications* from the list of permissions and click *Next*.
+. Select *Restart Applications* or *Create Applications* from the list of permissions and click *Next*.
 +
 image::rtf-restart-permission.png[Restart Applications permission in Access Management]
 
