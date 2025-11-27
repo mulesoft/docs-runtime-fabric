@@ -5,7 +5,7 @@ Anypoint Controller is a Kubernetes operator that enables you to deploy and mana
 With Anypoint Controller, you can:
 
 * Define application configurations declaratively in versioned manifest files and let the controller automatically reconcile them with Anypoint Platform and your cluster.
-* Use standard Kubernetes tools and practices to deploy Mule applications, including `kubectl`, Helm, and custom resources.
+* Use standard Kubernetes tools and practices to deploy Mule applications as Kubernetes Custom Resources, including `kubectl`, Helm, Terraform Kubernetes Provider, and GitOps workflows.
 * Leverage Kubernetes features such as external secret managers, volume mounts, and RBAC policies to meet enterprise security requirements.
 
 This guide shows you how to:
