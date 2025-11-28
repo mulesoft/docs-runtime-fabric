@@ -26,27 +26,20 @@ helm upgrade --install runtime-fabric rtf/rtf-agent -f values.yaml -n <rtf-names
 --
 ====
 
-== Downgrading from Version 3.0.0 or Later
+If you use AM log forwarding, you must additionally perform the following steps:
 
-[IMPORTANT]
-====
-If you are downgrading from Runtime Fabric agent version 3.0.0 or later to an earlier version (2.11.x or earlier), you must re-enable the DaemonSet-based log forwarding mechanism, as earlier versions relied on this architecture for log forwarding.
-====
-
-If you use Anypoint Monitoring log forwarding and are downgrading from version 3.0.0 or later, you must additionally perform these steps:
-
-. Disable application-scoped log forwarding by calling this API (bearer token required):
+. Enable daemon-set log forwarding by calling the following API (bearer token required):
 +
 ----
 curl -X PATCH -H 'Authorization: Bearer <bearer-token-here>' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' \
 https://anypoint.mulesoft.com/runtimefabric/api/organizations/<orgId>/fabrics/<fabricId>/logforwarding/appScoped?enabled=false
 ----
 
-. If the am-log-forwarder daemon-set is not up and running, start the service by using either of these options:
+. Optionally, if am-log-forwarder daemon-set is not up and running, start the service by using either any of these options:
 
 * In the Anypoint Monitoring UI (*RuntimeFabrics --> Fabric --> LogForwarding*), check *Show logs in Anypoint Monitoring*.
 
-* Or send an API request:
+* or send an API request:
 
 +
 ----
@@ -55,6 +48,4 @@ https://anypoint.mulesoft.com/runtimefabric/api/organizations/<orgId>/fabrics/<f
 ----
 
 [NOTE]
-====
-Mule apps redeployed while Runtime Fabric agent version was 2.x must be redeployed to reduce the resource allocation per the downgraded Runtime Fabric agent version.
-====
+Mule apps redeployed while Runtime Fabric agent version was 2.x must be redeployed to reduce the resource allocation per the downgraded rtf-agent version.
