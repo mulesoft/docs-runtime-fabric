@@ -70,7 +70,7 @@ MuleSoft runs Anypoint Monitoring agents alongside Mule apps to send telemetry t
 
 Starting with Runtime Fabric agent version 3.0.0, all telemetry (metrics, logs, and traces) is transported through a single sidecar container deployed per application replica. This architecture provides better resource isolation and eliminates the need for node-level DaemonSet deployments.
 
-Dependent on the features you use, the sidecar agent consumes corresponding resources for optimal performance:
+Depending on the features you use, the sidecar agent consumes corresponding resources for optimal performance:
 
 * To enable default Anypoint metrics, the sidecar agent (per application replica) requires 0.05vCPU or Core of CPU allocation and 90MiB memory allocation.
 
@@ -90,6 +90,7 @@ For Mule apps deployed or managed using Runtime Fabric agent version 2.11.x or e
 
 This architecture has been replaced with the sidecar-only model in version 3.0.0.
 
+[[log-forwarding-in-runtime-fabric-3-0-0]]
 === Log Forwarding in Runtime Fabric 3.0.0
 
 Starting with Runtime Fabric agent version 3.0.0, the DaemonSet-based log forwarding mechanism has been removed. Log forwarding now occurs exclusively through application sidecar containers, which provides better isolation, improved resource management, and simplified operations.
@@ -155,7 +156,7 @@ Replace `{authToken}`, `{orgId}`, and `{fabricId}` with your specific values.
 
 [NOTE]
 ====
-Disabling the DaemonSet does not impact log forwarding to Anypoint Monitoring via the sidecar containers. Your applications will continue to forward logs normally after completing these steps.
+Disabling the DaemonSet doesn't impact log forwarding to Anypoint Monitoring via the sidecar containers. Your applications will continue to forward logs normally after completing these steps.
 ====
 
 [[verify-migration]]

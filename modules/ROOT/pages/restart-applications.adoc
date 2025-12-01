@@ -162,7 +162,7 @@ curl --location 'https://anypoint.mulesoft.com/amc/application-manager/api/v2/or
 
 Replace `{organizationId}`, `{environmentId}`, `{access-token}`, and the values in the request body with your actual values.
 
-After a successful API call (202 Accepted response), you can monitor the application status in Runtime Manager to confirm that the restart completed successfully.
+After a successful API call (202 accepted response), you can monitor the application status in Runtime Manager to confirm that the restart completed successfully.
 
 == See Also
 
