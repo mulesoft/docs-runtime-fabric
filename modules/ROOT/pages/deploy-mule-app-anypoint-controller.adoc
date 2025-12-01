@@ -187,7 +187,7 @@ helm upgrade rtf-agent <chart-repo>/rtf-agent \
 
 === Define MuleApplication Custom Resource
 
-Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule Application Custom Resource (MuleApplication CR) state and matches it against the desired configured state.
+Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule Application Custom Resource (Mule application CR) state and matches it against the desired configured state.
 
 Define your Mule application as a Custom Resource using your preferred deployment tool (such as YAML manifests with `kubectl`, Terraform, Helm charts, or GitOps tools). 
 
@@ -232,14 +232,14 @@ Defines the storage volumes available to the application, such as Kubernetes Sec
 * `volumeMounts` +
 Specifies where to mount the volumes inside the application container and makes the data accessible at the specified file path.
 
-When you specify `volumes` and `volumeMounts` in the MuleApplication CR:
+When you specify `volumes` and `volumeMounts` in the Mule application CR:
 
 . The controller includes these specifications in the Deployment resource.
 . Kubernetes mounts the volumes into the Mule application container at the specified paths.
 . Your Mule application can access the files at runtime.
 
 [NOTE]
-Volumes specified in the MuleApplication CR are mounted to the main Mule application container, not to sidecar containers.
+Volumes specified in the Mule application CR are mounted to the main Mule application container, not to sidecar containers.
 
 [%collapsible]
 .Example: Mount Secrets from Kubernetes Secrets
@@ -247,7 +247,7 @@ Volumes specified in the MuleApplication CR are mounted to the main Mule applica
 Use Kubernetes native Secrets to store secret data on the Kubernetes cluster and mount them into your Mule application.
 
 . Create a Secret in your Kubernetes cluster:
-
++
 [source,bash]
 ----
 kubectl create secret generic my-database-secret \
@@ -256,8 +256,8 @@ kubectl create secret generic my-database-secret \
   -n my-apps
 ----
 [start=2]
-.Mount it in your MuleApplication CR:
-
+. Mount it in your Mule application CR:
++
 [source,yaml]
 ----
 spec:
@@ -291,7 +291,7 @@ kubectl create secret generic java-keystore \
   -n my-apps
 ----
 
-. Mount it in your MuleApplication CR:
+. Mount it in your Mule application CR:
 +
 [source,yaml]
 ----
@@ -328,7 +328,7 @@ kubectl create configmap app-configs \
   -n my-apps
 ----
 [start=2]
-. Mount the files in your MuleApplication CR:
+. Mount the files in your Mule application CR:
 +
 [source,yaml]
 ----
@@ -375,7 +375,7 @@ spec:
             objectAlias: db_password
 ----
 [start=2]
-. Reference in MuleApplication CR:
+. Reference in Mule application CR:
 +
 [source,yaml]
 ----
@@ -417,7 +417,7 @@ The secrets are available at:
 [%collapsible]
 .Example: Use Azure Key Vault
 ====
-To integrate with Azure Key Vault, configure a SecretProviderClass and reference it in your MuleApplication CR.
+To integrate with Azure Key Vault, configure a SecretProviderClass and reference it in your Mule application CR.
 
 [source,yaml]
 ----
@@ -526,7 +526,7 @@ Anypoint Controller requires a Connected App to authenticate with Anypoint Platf
 . Copy the *Client ID* and *Client Secret*. You need these values in the next step.
 
 [IMPORTANT]
-Store the Client Secret securely. You cannot retrieve it again after leaving the create connected app page.
+Store the Client Secret securely. You can't retrieve it again after leaving the create connected app page.
 
 
 === Configure Anypoint Credentials
@@ -541,7 +541,7 @@ kubectl create secret generic anypoint-credentials \
   -n <rtf-namespace>
 ----
 
-Replace the following:
+Replace these:
 
 * `<your-client-id>`: The Client ID from your Connected App
 * `<your-client-secret>`: The Client Secret from your Connected App
@@ -1279,17 +1279,18 @@ Anypoint Controller enables you to manage the complete lifecycle of your Mule ap
 
 Anypoint Controller continuously reconciles the desired state:
 
-* The controller synchronizes the application state every 30 seconds.
-* The controller compares the CR spec hash with the last published hash to detect changes.
-* When changes are detected, the controller updates Anypoint Platform automatically.
-* Failed operations are retried with exponential backoff.
-* The controller periodically refreshes state even without changes (every 10 minutes).
+* Synchronizes the application state every 30 seconds.
+* Compares the CR spec hash with the last published hash to detect changes.
+* When changes are detected, updates Anypoint Platform automatically.
+* Retries failed operations with exponential backoff.
+* Refreshes the state every 10 minutes, even when no changes occur.
 
 Manage your application lifecycle:
 
 * <<update-a-mule-application,Update a Mule Application>>
-* <<delete-a-muleapplication,Delete a MuleApplication>>
+* <<delete-a-muleapplication,Delete a Mule Application>>
 
+[[update-a-mule-application]]
 === Update a Mule Application
 
 . Modify your Mule application YAML file:
@@ -1317,11 +1318,12 @@ kubectl get muleapplication hello-world-app -n my-apps -w
 The controller detects the change and initiates the update automatically.
 
 [NOTE]
-Some fields like `target`, `businessGroup`, and `environment` are immutable and cannot be changed after creation. For a complete list of mutable and immutable fields, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
+Some fields like `target`, `businessGroup`, and `environment` are immutable and can't be changed after creation. For a complete list of mutable and immutable fields, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
 
+[[delete-a-mule-application]]
 === Delete a MuleApplication
 
-To delete an application managed by Anypoint Controller, delete the MuleApplication CR:
+To delete an application managed by Anypoint Controller, delete the Mule application CR:
 
 [source,bash]
 ----
@@ -1338,12 +1340,12 @@ kubectl delete muleapplication hello-world-app -n my-apps
 The controller automatically:
 
 . Deletes the application from Anypoint Platform.
-. Removes all Kubernetes resources (Deployment, Service, ConfigMaps, Secrets).
+. Removes all Kubernetes resources (Deployment, Service, ConfigMaps, and Secrets).
 . Removes the finalizer from the CR.
 . Allows Kubernetes to delete the CR.
 
 [IMPORTANT]
-Deletion is permanent. Ensure your version control repository contains the application configuration if you need to redeploy later.
+Deletion is permanent. Make sure your version control repository contains the application configuration in case you need to redeploy it later.r.
 
 == Integrate with CI/CD and GitOps Tools
 
@@ -1378,7 +1380,7 @@ my-mule-apps/
 ----
 [start=2]
 . Create an ArgoCD Application:
-
++
 [source,yaml]
 ----
 apiVersion: argoproj.io/v1alpha1
@@ -1408,7 +1410,7 @@ ArgoCD continuously monitors the version control repository and automatically de
 === FluxCD Integration
 
 . Create a GitRepository resource:
-
++
 [source,yaml]
 ----
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -1424,7 +1426,7 @@ spec:
 ----
 [start=2]
 . Create a Kustomization resource:
-
++
 [source,yaml]
 ----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -1515,7 +1517,7 @@ To enable the Runtime Fabric agent to manage MuleApplication Custom Resources in
 You can create MuleApplication Custom Resources in any Kubernetes namespace, as long as the namespace is labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`. A controller running in a given Runtime Fabric agent pod only watches for MuleApplication Custom Resources in namespaces that have this matching label.
 
 * Resource Creation +
-The controller creates application resources (Deployments, Services, ConfigMaps, Secrets) in the same namespace as the MuleApplication CR.
+The controller creates application resources (Deployments, Services, ConfigMaps, Secrets) in the same namespace as the Mule application CR.
 
 * Label Management +
 The controller adds labels to resources for tracking, ownership, and reconciliation purposes.
@@ -1527,7 +1529,7 @@ The MuleApplication Custom Resource Definition (CRD) defines the schema for Mule
 
 === View the CRD
 
-This command verifies that the MuleApplication CRD is installed in your cluster.
+This command verifies that the Mule application CRD is installed in your cluster.
 
 [source,bash]
 ----
@@ -1919,7 +1921,7 @@ spec:
 
 === Mounting Properties from External Sources
 
-The `propertiesFrom` field in the MuleApplication CR `spec` enables you to inject application properties from Kubernetes Secrets and ConfigMaps without hardcoding them in the Custom Resource.
+The `propertiesFrom` field in the Mule application CR `spec` enables you to inject application properties from Kubernetes Secrets and ConfigMaps without hardcoding them in the Custom Resource.
 
 [source,yaml]
 ----
@@ -2106,11 +2108,11 @@ Templates were designed for imperative application management through Runtime Ma
 
 ==== Migrating from Templates
 
-If you currently use KubernetesTemplate for configuration, migrate those settings to the MuleApplication CR fields:
+If you currently use KubernetesTemplate for configuration, migrate those settings to the Mule application CR fields:
 
 [%header%autowidth.spread]
 |===
-| Template Field | MuleApplication CR Field
+| Template Field | Mule application CR Field
 | Pod labels | `spec.pod.metadata.labels`
 | Pod annotations | `spec.pod.metadata.annotations`
 | Node selectors | `spec.pod.nodeSelector`
@@ -2149,7 +2151,7 @@ kubectl logs -l app=rtf-agent -n <rtf-namespace> -c rtfd -f
 
 Enable Debug Logs:
 
-By default, the log level is set to `info`, which does not emit detailed information for diagnosis. To enable debug logs for more detailed troubleshooting, add the following environment variables to the `app-config` ConfigMap and restart the agent deployment:
+By default, the log level is set to `info`, which does not emit detailed information for diagnosis. To enable debug logs for more detailed troubleshooting, add these environment variables to the `app-config` ConfigMap and restart the agent deployment:
 
 [source,yaml]
 ----
@@ -2199,6 +2201,13 @@ kubectl get secret anypoint-credentials -n <rtf-namespace> -o yaml
 
 The `Applied` condition is `True`, but `Available` is `False`.
 
+Common causes:
+
+   - Invalid runtime version
+   - Artifact not found in Exchange
+   - Insufficient resources (CPU/memory)
+   - Image pull errors
+
 To resolve this issue:
 
 . Check pod status:
@@ -2221,12 +2230,6 @@ kubectl logs <pod-name> -n <namespace>
 ----
 kubectl describe pod <pod-name> -n <namespace>
 ----
-
-. Common causes:
-   - Invalid runtime version
-   - Artifact not found in Exchange
-   - Insufficient resources (CPU/memory)
-   - Image pull errors
 ====
 
 [%collapsible]
@@ -2244,7 +2247,7 @@ To resolve this issue:
 kubectl apply -f app.yaml --dry-run=server
 ----
 
-. Check immutable field violations (target, businessGroup, environment cannot be changed after creation).
+. Check immutable field violations (target, businessGroup, and environment can't be changed after creation).
 
 . Verify required fields are present.
 ====
@@ -2258,13 +2261,14 @@ To resolve this issue:
 
 . Read the error message in the status condition.
 +
- Common errors:
-   - `409 Conflict`: Application name already exists (created outside Anypoint Controller)
-   - `404 Not Found`: Invalid target, business group, or environment name
-   - `403 Forbidden`: Connected App lacks permissions
-   - `400 Bad Request`: Invalid configuration (for example, runtime version)
+Common errors:
++
+* `409 Conflict`: Application name already exists (created outside Anypoint Controller)
+* `404 Not Found`: Invalid target, business group, or environment name
+* `403 Forbidden`: Connected App lacks permissions
+* `400 Bad Request`: Invalid configuration (for example, runtime version)
 
-. Verify configuration matches your Anypoint Platform setup.
+. Verify the configuration matches your Anypoint Platform setup.
 ====
 
 == See Also
