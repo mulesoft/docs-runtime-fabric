@@ -1,6 +1,6 @@
 = Deploying and Managing Mule Applications Using Anypoint Controller for Kubernetes
 
-Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using GitOps workflows and Custom Resources (CR).
+Anypoint Controller is a Kubernetes operator that enables you to deploy and manage Mule applications on Runtime Fabric using Kubernetes tools and Custom Resources (CR).
 
 With Anypoint Controller, you can:
 
@@ -27,7 +27,7 @@ Anypoint Controller works with these deployment targets, runtime versions, and i
 
 * Runtime Fabric Mule application deployments
 * Mule runtime engine (Mule) versions 4.6 and higher
-* Helm-based Runtime Fabric installation or upgrade
+* Helm-based Runtime Fabric 3.0.0 installation or upgrade
 
 Anypoint Controller has these limitations and does not support:
 
@@ -38,7 +38,7 @@ Anypoint Controller has these limitations and does not support:
 
 [IMPORTANT]
 ====
-rtfctl supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule Application Custom Resources (CRs) are not supported for backup and restore during the Anypoint Controller's Limited GA phase.
+Anypoint Runtime Fabric Command-Line Tool  (rtfctl) supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule Application Custom Resources (CRs) are not supported for backup and restore during the Anypoint Controller's Limited GA phase.
 
 You must plan your recovery strategy using your source control repository as the single source of truth for all application configurations. After a Runtime Fabric cluster restore, you must re-apply your Mule Application CRs from your repository.
 ====
@@ -529,10 +529,6 @@ Anypoint Controller requires a Connected App to authenticate with Anypoint Platf
 . Click *Save*.
 . Copy the *Client ID* and *Client Secret*. You need these values in the next step.
 
-[IMPORTANT]
-Store the Client Secret securely. You can't retrieve it again after leaving the create connected app page.
-
-
 === Configure Anypoint Credentials
 
 Create a Kubernetes Secret `anypoint-credentials` containing the Connected App credentials in the namespace where Runtime Fabric is installed.
@@ -557,7 +553,7 @@ Anypoint Controller monitors this secret and automatically reloads credentials w
 
 To rotate Connected App credentials:
 
-. Create a new Connected App in Anypoint Platform or regenerate credentials.
+. Create a new Connected App in Anypoint Platform.
 
 . Update the secret:
 +
@@ -1255,7 +1251,7 @@ status:
 
 *Retry Information*
 
-Indicates whether a failed operation can be automatically retried. When `true`, the controller retries the operation with exponential backoff.
+Indicates whether a failed operation is retrievable.
 
 [source,yaml]
 ----
