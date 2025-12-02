@@ -17,9 +17,6 @@ Review deployed Mule app versioning to understand configuration changes history,
 * xref:manage-schedules.adoc[Managing Mule App Schedules] +
 Use Runtime Manager to view and control the Scheduler components within the flows in your deployed Mule apps.
 
-* xref:restart-applications.adoc[Restarting Mule Applications] +
-Restart Mule applications deployed to Runtime Fabric using Runtime Manager or the Runtime Manager API to quickly resolve runtime issues without redeploying.
-
 * xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates] +
 Review the Mule runtime engine patch updates and the Mule release channels for Runtime Fabric.
 
