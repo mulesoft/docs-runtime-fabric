@@ -252,3 +252,7 @@ pod:
    env:
        ENABLE_READINESS_PROBE_ON_HTTP_GET: "true"
 ----
+
+== See Also
+
+* xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric]
