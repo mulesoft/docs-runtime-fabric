@@ -8,12 +8,12 @@ https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSynt
 == Requirements and Restrictions
 
 * MuleSoft Support doesn't assist in implementing custom logging configurations or resolving issues caused by custom logging configurations.
-* MuleSoft is not responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
+* MuleSoft isn't responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
 ** Lost logging data
 ** Performance degradation
 ** Running out of disk space
-* Do not use synchronous log appenders.
-* Do not change anything in the console appender or Anypoint Monitoring appender.
+* Don't use synchronous log appenders.
+* Don't change anything in the console appender or Anypoint Monitoring appender.
 +
 You can use only asynchronous log appenders.
 * File appenders, such as FileAppender, RollingFileAppender, AnypointMonitoringFileAppender, and RandomAccessFileAppender, are removed automatically.
@@ -28,7 +28,7 @@ You can also enable custom Log4j configurations by running these steps:
 . From inside your cluster, run:
 +
 ----
-kubectl -n rtf patch secret custom-properties -p '{\"data\": {\"CUSTOM_LOG4J_ENABLED\": \"dHJ1Z0==\"}}'
+kubectl -n rtf patch secret custom-properties -p '{\"data\": {\"CUSTOM_LOG4J_ENABLED\": \"dHJ1ZQ==\"}}'
 ----
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
