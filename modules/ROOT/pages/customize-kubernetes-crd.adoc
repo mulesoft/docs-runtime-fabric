@@ -240,3 +240,19 @@ pod:
    env:
        DISABLE_PER_APP_SA: "true"
 ----
+
+[[enable-readiness-probe]]
+== Enable Readiness Probe on HTTP GET
+
+To enable the native K8s HTTP GET probe for readiness on Mule applications using the Kubernetes template, set the `ENABLE_READINESS_PROBE_ON_HTTP_GET` variable in the `env` section:
+
+[source,copy]
+----
+pod:
+   env:
+       ENABLE_READINESS_PROBE_ON_HTTP_GET: "true"
+----
+
+== See Also
+
+* xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric]
