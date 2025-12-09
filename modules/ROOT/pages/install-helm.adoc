@@ -34,7 +34,7 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 
 === Helm Support
 
-Runtime Fabric supports installations, upgrades, and rollbacks using Helm for versions 1.13 and later.
+Runtime Fabric supports installations, upgrades, and rollbacks using Helm for versions 2.0 and later.
 
 == Create a Runtime Fabric Using Runtime Manager
 
