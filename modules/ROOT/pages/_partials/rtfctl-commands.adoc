@@ -122,7 +122,7 @@ Deletes a secure property
 rtfctl delete secure-property <sample_key> -n <app_namespace>
 ----
 
-=== `describe`
+= `describe`
 
 Displays details for an application in a specific namespace 
 
@@ -148,7 +148,7 @@ rtfctl disk <app_name> --details --pod <replica_name> --app-namespace <app_names
 
 ----
 
-=== `memory`
+= `memory`
 Displays the JVM memory usage in a pod
 
 * Gets the JVM memory for each replica
@@ -163,7 +163,7 @@ rtfctl memory <app_name> --app-namespace <app_namespace> --namespace <rtf_namesp
 rtfctl memory <app_name> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
-=== `package` 
+= `package` 
 Creates a debugging information package for an application
 
 * Creates a package for an application using the first pod by default
@@ -191,7 +191,7 @@ Restarts an application
 rtfctl restart <app_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
-=== `heapdump`
+= `heapdump`
 Triggers a JVM heap dump
 
 * Performs a JVM heap dump for an application, saving it as ``/tmp/dump.hprof`, using the first replica by default
@@ -206,7 +206,7 @@ rtfctl heapdump <app_name> <destination_path> --app-namespace <app_namespace> --
 rtfctl heapdump <app_name> <destination_path> --pod <replica_name> --app-namespace <app_namespace> --namespace <rtf_namespace>
 ----
 
-=== `threaddump`
+= `threaddump`
 Triggers a JVM threaddump
 
 * Performs a JVM thread dump for an application using the first replica by default
