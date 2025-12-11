@@ -21,3 +21,13 @@ The following example sends a request from one application to an application in 
 ```
 http://hello-world.1abc2ce6-cce6-463b-afaa-a1979e3xxxxx:8081/api
 ```
+
+[NOTE]
+====
+If your Environment ID (namespace) starts with a number (0-9), you can't use the short hostname format previously shown (for example, `http://my-app.569c...`). This results in a URI parsing error because hostnames starting with numbers don't comply with RFC 2396 standards.
+
+In these cases, you must use the Fully Qualified Domain Name (FQDN) format instead:
+```
+http://my-app.569c2ce6-cce6-463b-afaa-a1979e3xxxxx.svc.cluster.local:8081/api
+```
+====
