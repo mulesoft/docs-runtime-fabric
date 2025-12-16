@@ -20,6 +20,9 @@ Use Runtime Manager to view and control the Scheduler components within the flow
 * xref:runtime-patch-updates.adoc[Managing Mule Runtime Patch Updates] +
 Review the Mule runtime engine patch updates and the Mule release channels for Runtime Fabric.
 
+* xref:restart-applications.adoc[Restarting Mule Applications on Runtime Fabric] +
+Use Anypoint Runtime Manager to restart Mule applications deployed to Runtime Fabric without redeploying them.
+
 == See Also
 
 * xref:deploy-index.adoc[Deploying Mule Apps to Runtime Fabric]
