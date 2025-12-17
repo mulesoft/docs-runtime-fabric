@@ -41,30 +41,10 @@ The user now has the permissions to restart applications in the business groups 
 [IMPORTANT]
 All application restart activities are tracked in the Access Management audit log. You can view the audit log by navigating to *Access Management* > *Audit Log* in Anypoint Platform.
 
-== Restart an Application Using Runtime Manager
-
-To restart a Mule application deployed to Runtime Fabric using Runtime Manager:
-
-. Sign into Anypoint Platform and navigate to *Runtime Manager*.
-+
-The *Applications* page is displayed.
-. From the *Applications* page, select a Mule application deployed to Runtime Fabric.
-. Click the down arrow button in the top right corner of the application details panel to display available actions.
-+
-The *Restart* option appears in the dropdown list.
-. Click *Restart* to restart the application.
-+
-image::rtf-restart-button.png[Restart button permission in Runtime Manager] 
-+
-The *Application status* changes to indicate that the application is restarting.
-+
-After the restart completes, the *Application status* shows *Running* again.
-
-The restart operation is recorded in the Access Management audit log, which you can access from *Access Management* > *Audit Log*.
 
 == Restart an Application Using the Runtime Manager API
 
-You can also restart a Mule application programmatically using the Runtime Manager API.
+Restart a Mule application programmatically using the Runtime Manager API.
 
 === API Endpoint Specification
 
