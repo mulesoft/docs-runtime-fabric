@@ -23,7 +23,7 @@ This guide shows you how to:
 Anypoint Controller works with these deployment targets, runtime versions, and installation methods:
 
 * Runtime Fabric Mule application deployments
-* Mule runtime engine (Mule) versions 4.6 and higher
+* Mule runtime engine (Mule) versions 4.6 and higher. Note: Support is only available in patch versions released on or after xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-7-2025[November 7, 2025]. Any patch version released prior to this date does not support Anypoint Controller.
 * Helm-based Runtime Fabric 3.0.0 installation or upgrade
 
 Anypoint Controller has these limitations and does not support:
@@ -33,6 +33,9 @@ Anypoint Controller has these limitations and does not support:
 * Flex Gateway deployments
 * `rtfctl`-based Runtime Fabric installation or upgrade
 
+[IMPORTANT]
+====
+Anypoint Runtime Fabric Command-Line Tool  (rtfctl) supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule Application Custom Resources (CRs) are not supported for backup and restore using Anypoint Controller.
 
 You must plan your recovery strategy using your source control repository as the single source of truth for all application configurations. After a Runtime Fabric cluster restore, you must re-apply your Mule Application CRs from your repository.
 ====
