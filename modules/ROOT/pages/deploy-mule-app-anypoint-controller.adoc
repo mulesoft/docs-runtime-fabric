@@ -20,9 +20,6 @@ This guide shows you how to:
 
 == Scope and Limitations
 
-[NOTE]
-This feature is currently in Limited General Availability (Limited GA). To enable Anypoint Controller for your organization, contact MuleSoft Support.
-
 Anypoint Controller works with these deployment targets, runtime versions, and installation methods:
 
 * Runtime Fabric Mule application deployments
@@ -36,9 +33,6 @@ Anypoint Controller has these limitations and does not support:
 * Flex Gateway deployments
 * `rtfctl`-based Runtime Fabric installation or upgrade
 
-[IMPORTANT]
-====
-Anypoint Runtime Fabric Command-Line Tool  (rtfctl) supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule Application Custom Resources (CRs) are not supported for backup and restore during the Anypoint Controller's Limited GA phase.
 
 You must plan your recovery strategy using your source control repository as the single source of truth for all application configurations. After a Runtime Fabric cluster restore, you must re-apply your Mule Application CRs from your repository.
 ====
