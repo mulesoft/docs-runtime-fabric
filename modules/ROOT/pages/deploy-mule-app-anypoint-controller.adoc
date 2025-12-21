@@ -11,7 +11,7 @@ With Anypoint Controller, you can:
 This guide shows you how to:
 
 * Install and configure Anypoint Controller in your Runtime Fabric cluster.
-* Deploy Mule applications using declarative Mule application Custom Resources.
+* Deploy Mule applications using declarative Mule application Custom Resources (CRs).
 * Monitor application status using Kubernetes-native status conditions.
 * Update, delete, and manage application lifecycles with standard Kubernetes commands.
 * Integrate with CI/CD and GitOps tools like ArgoCD, FluxCD, and Terraform Kubernetes provider.
@@ -24,7 +24,7 @@ Anypoint Controller works with these deployment targets, runtime versions, and i
 
 * Runtime Fabric Mule application deployments
 * Mule runtime engine (Mule) versions 4.6 and higher. Note: Support is only available in patch versions released on or after xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-7-2025[November 7, 2025]. Any patch version released prior to this date does not support Anypoint Controller.
-* Helm-based Runtime Fabric 3.0.0 installation or upgrade
+* Helm-based Runtime Fabric 3.0.1 installation or upgrade
 
 Anypoint Controller has these limitations and does not support:
 
@@ -35,7 +35,7 @@ Anypoint Controller has these limitations and does not support:
 
 [IMPORTANT]
 ====
-Anypoint Runtime Fabric Command-Line Tool  (rtfctl) supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule Application Custom Resources (CRs) are not supported for backup and restore using Anypoint Controller.
+Anypoint Runtime Fabric Command-Line Tool  (rtfctl) supports the backup and restore of the Mule Application Custom Resource Definition (CRD). However, Mule application CRs are not supported for backup and restore using Anypoint Controller.
 
 You must plan your recovery strategy using your source control repository as the single source of truth for all application configurations. After a Runtime Fabric cluster restore, you must re-apply your Mule Application CRs from your repository.
 ====
@@ -52,7 +52,7 @@ Before you begin, review these prerequisites and environment setup requirements.
 To use Anypoint Controller, you must either:
 
 * Have an existing Runtime Fabric installation using Helm.
-* xref:install-helm.adoc[Install Runtime Fabric]) or xref:upgrade-helm.adoc[upgrade Runtime Fabric]  using Helm.
+* xref:install-helm.adoc[Install Runtime Fabric] or xref:upgrade-helm.adoc[upgrade Runtime Fabric]  using Helm.
 
 === Management Limitations
 
@@ -72,7 +72,7 @@ Understanding the management model is critical before deploying and managing app
 To set up Anypoint Controller, complete these steps:
 
 . <<configure-anypoint-controller-in-helm-chart,Configure Anypoint Controller in Helm Chart>>
-. <<define-muleapplication-custom-resource,Define Mule Application Custom Resource>>
+. <<define-muleapplication-custom-resource,Define Mule Application CR>>
 . <<configure-volumes-and-volume-mounts,Configure Volumes and Volume Mounts>>
 . <<create-an-anypoint-connected-app,Create a Connected App>>
 . <<configure-anypoint-credentials,Configure Anypoint Credentials>>
@@ -186,9 +186,9 @@ helm upgrade rtf-agent <chart-repo>/rtf-agent \
 ----
 ====
 
-=== Define MuleApplication Custom Resource
+=== Define Mule Application CR
 
-Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule Application Custom Resource (Mule application CR) state and matches it against the desired configured state.
+Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule application CR state and matches it against the desired configured state.
 
 Define your Mule application as a Custom Resource using your preferred deployment tool (such as YAML manifests with `kubectl`, Terraform, Helm charts, or GitOps tools). 
 
@@ -567,7 +567,7 @@ kubectl create secret generic anypoint-credentials \
 
 == Deploy Mule Applications
 
-After installing and configuring Anypoint Controller, you can deploy Mule applications by creating MuleApplication Custom Resources. The controller automatically synchronizes these resources with Anypoint Platform and deploys them to your Runtime Fabric cluster.
+After installing and configuring Anypoint Controller, you can deploy Mule applications by creating Mule application CRs. The controller automatically synchronizes these resources with Anypoint Platform and deploys them to your Runtime Fabric cluster.
 
 For detailed information about CRD fields and Kubernetes permissions, see:
 
@@ -645,7 +645,7 @@ kubectl label namespace my-apps rtf.mulesoft.com/agentNamespace=<rtf-namespace>
 Replace `<rtf-namespace>` with the namespace where your Runtime Fabric is installed (for example, `rtf`).
 +
 [IMPORTANT]
-The `rtf.mulesoft.com/agentNamespace` label tells the Runtime Fabric agent which MuleApplication Custom Resources to manage. Only one Runtime Fabric instance can manage applications in a given namespace.
+The `rtf.mulesoft.com/agentNamespace` label tells the Runtime Fabric agent which Mule application CRs to manage. Only one Runtime Fabric instance can manage applications in a given namespace.
 
 . Apply the application manifest:
 +
@@ -661,7 +661,7 @@ kubectl apply -f hello-world-app.yaml
 kubectl get muleapplication hello-world-app -n my-apps
 ----
 
-When you apply the Mule application Custom Resource, Anypoint Controller perform these actions:
+When you apply the Mule application CR, Anypoint Controller perform these actions:
 
 . Detects the new MuleApplication resource.
 . Validates the configuration.
@@ -929,7 +929,7 @@ kubectl label namespace production-apps rtf.mulesoft.com/agentNamespace=<rtf-nam
 kubectl apply -f my-app.yaml -n production-apps
 ----
 
-The controller watches namespaces that are labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`, where `<rtf-namespace>` is the namespace where the Runtime Fabric core software is installed. The agent running in that namespace manages Mule application Custom Resources in the labeled application namespace.
+The controller watches namespaces that are labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`, where `<rtf-namespace>` is the namespace where the Runtime Fabric core software is installed. The agent running in that namespace manages Mule application CRs in the labeled application namespace.
 
 For more information about namespace permissions and flexibility, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-runtime-fabric-agent-kubernetes-permissions[Understanding Runtime Fabric Agent Kubernetes Permissions].
 
@@ -1505,13 +1505,13 @@ Terraform manages the MuleApplication lifecycle and tracks state changes in your
 
 == Understanding Runtime Fabric Agent Kubernetes Permissions
 
-The Runtime Fabric agent requires specific Kubernetes permissions to manage MuleApplication Custom Resources:
+The Runtime Fabric agent requires specific Kubernetes permissions to manage Mule application CRs:
 
 * Namespace Label Requirement +
-To enable the Runtime Fabric agent to manage MuleApplication Custom Resources in a namespace, you must label the namespace with `rtf.mulesoft.com/agentNamespace=<rtf-namespace>`. Only one Runtime Fabric instance can manage applications in a given namespace.
+To enable the Runtime Fabric agent to manage Mule application CRs in a namespace, you must label the namespace with `rtf.mulesoft.com/agentNamespace=<rtf-namespace>`. Only one Runtime Fabric instance can manage applications in a given namespace.
 
 * Namespace Flexibility +
-You can create MuleApplication Custom Resources in any Kubernetes namespace, as long as the namespace is labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`. A controller running in a given Runtime Fabric agent pod only watches for MuleApplication Custom Resources in namespaces that have this matching label.
+You can create Mule application CRs in any Kubernetes namespace, as long as the namespace is labeled with `rtf.mulesoft.com/agentNamespace: <rtf-namespace>`. A controller running in a given Runtime Fabric agent pod only watches for Mule application CRs in namespaces that have this matching label.
 
 * Resource Creation +
 The controller creates application resources (Deployments, Services, ConfigMaps, Secrets) in the same namespace as the Mule application CR.
@@ -2092,7 +2092,7 @@ When using Anypoint Controller, certain Runtime Fabric templates are not support
 [%header%autowidth.spread]
 |===
 | Template | Support Status | Alternative
-| KubernetesTemplate | Not supported | Define all Kubernetes-specific configurations directly in the MuleApplication Custom Resource fields (`spec.pod`, `spec.service`, `spec.deployment`)
+| KubernetesTemplate | Not supported | Define all Kubernetes-specific configurations directly in the Mule application CR fields (`spec.pod`, `spec.service`, `spec.deployment`)
 | HttpRouteTemplate | Not supported | Manage HTTP routing and ingress configurations separately using standard Kubernetes Ingress resources or your cluster's ingress controller
 | Ingress Template | Not supported | Manage ingress configurations separately using standard Kubernetes Ingress resources or your cluster's ingress controller
 |===
