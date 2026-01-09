@@ -1,6 +1,6 @@
 = Restarting Mule Applications on Runtime Fabric
 
-You can use Anypoint Runtime Manager to restart Mule applications deployed to Runtime Fabric without redeploying them. Restarting an application can help resolve issues such as memory leaks, unresponsive services, or other runtime problems without requiring a full redeployment.
+Use Anypoint Runtime Manager API to restart Mule applications. Restarting an application can help resolve issues such as memory leaks, unresponsive services, or other runtime problems without requiring a full redeployment.
 
 Restarting an application offers several benefits:
 
