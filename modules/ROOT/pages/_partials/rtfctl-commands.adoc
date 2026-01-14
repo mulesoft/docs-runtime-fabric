@@ -245,7 +245,7 @@ tag::configure-rtfctl[]
 |xref:apply[`apply`] | Applies changes to a Runtime Fabric configuration
 |xref:update[`update`] | Updates rtfctl
 |xref:wait[`wait`] | Waits for Runtime Fabric components to become ready
-|xref:renew[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
+|xref:renew-expired-client-cert[`renew-expired-client-cert`] | Renews an expired client certificate using a pre-downloaded package
 |===
 
 [[apply]]
