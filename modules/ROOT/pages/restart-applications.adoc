@@ -150,6 +150,6 @@ After a successful API call (202 accepted response), you can monitor the applica
 * xref:deploy-to-runtime-fabric.adoc[Deploying Mule Apps to Runtime Fabric Using Runtime Manager]
 * xref:app-versioning.adoc[Reviewing Mule App Versioning on Runtime Fabric]
 * xref:manage-schedules.adoc[Managing Mule App Schedules]
-* xref:runtime-manager::audit-logging.adoc[Audit Logging]
+* xref:access-management::audit-logging.adoc[Audit Logging]
 
 
