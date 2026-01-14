@@ -186,6 +186,7 @@ helm upgrade rtf-agent <chart-repo>/rtf-agent \
 ----
 ====
 
+[[define-muleapplication-custom-resource]]
 === Define Mule Application CR
 
 Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule application CR state and matches it against the desired configured state.
@@ -1285,7 +1286,7 @@ Anypoint Controller continuously reconciles the desired state:
 Manage your application lifecycle:
 
 * <<update-a-mule-application,Update a Mule Application>>
-* <<delete-a-muleapplication,Delete a Mule Application>>
+* <<delete-a-mule-application,Delete a Mule Application>>
 
 [[update-a-mule-application]]
 === Update a Mule Application
