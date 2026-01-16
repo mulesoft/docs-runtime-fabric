@@ -19,7 +19,7 @@ When an application is deployed to Runtime Fabric, Runtime Manager automatically
 ** Ingress and property values.
 
 
-Watch the following video to see how to review the versioning of a Mule application deployed to Runtime Fabric using Runtime Manager:
+Watch the following video to see how to review the versioning of a Mule application deployed to Runtime Fabric by using Runtime Manager:
 
 ++++
 include::_partials/rtf-app-versioning-video.html[]
