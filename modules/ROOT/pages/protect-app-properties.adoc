@@ -19,7 +19,12 @@ Protecting API Gateway client ID and secret ID is currently supported in Runtime
 
 == Protect Property Values in Runtime Manager 
 
-Set protected properties via the table view for granular control over each property and value.  
+Set protected properties via the table view for granular control over each property and value.
+
+++++
+include::_partials/rtf-protect-app-properties-video.html[]
+++++
+
 
 Although you may attempt to protect a single property more than once, Runtime Manager issues a warning and only the final instance of that property is protected.
 
