@@ -16,7 +16,7 @@ Runtime Manager does not support adding protected properties for API proxies or 
 Protecting API Gateway client ID and secret ID is currently supported in Runtime Fabric, either via API or the Anypoint Runtime Manager UI.
 --
 
-Watch this video to see how to protect property values in Runtime Manager through Runtime Manager:
+Watch this video to see how to protect property values by using Runtime Manager:
 
 ++++
 include::_partials/rtf-protect-app-properties-video.html[]
