@@ -36,7 +36,7 @@ The following table lists the permissions that you configure using Kubernetes (K
                                     |batch      |cronjobs       | get, list, watch
                                     |networking.k8s.io      |ingresses       | get, list, watch
                                     |rbac.authorization.k8s.io      |clusterrolebindings, clusterroles, rolebindings, roles       | get, list, watch
-                                    |rtf.mulesoft.com      |persistencegateways       | get, list, watch
+                                    |rtf.mulesoft.com      |persistencegateways, kubernetestemplates, httproutetemplates, muleapplications       | get, list, watch
                                     |scheduling.k8s.io      |priorityclasses       | get
 .10+|`restore`      .3+|rtf           | apps     |daemonsets | create, get, patch, update
                                     | batch    |cronjobs | create, get, patch, update
