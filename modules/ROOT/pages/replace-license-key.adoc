@@ -6,35 +6,28 @@ endif::[]
 When your Mule license expires, you must replace your Mule license key. Also use this procedure if you 
 entered an incorrect license key during installation.
 
-Perform the following steps on the controller node used to start the installation. For Azure and AWS installations, 
-this node is named `rtf-controller-1` by default.
+The steps to replace the license key depend on how Runtime Fabric was installed using `rtfctl`, Helm, or Red Hat OpenShift.
 
-== Install rtfctl 
+Perform the steps for your installation type in these sections. For `rtfctl`, perform the steps on the controller node used to start the installation. For Azure and AWS installations, this node is named `rtf-controller-1` by default.
 
-The `rtfctl` utility is required to replace your Mule license key on Runtime Fabric. Follow the steps in xref:install-rtfctl.adoc[Install rtfctl] before continuing.
+== Prepare the License Key
 
-Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.   
+All methods require the Mule `.lic` license file to be Base64 encoded. Encode the new license file provided by MuleSoft before applying it:
 
-Run `rtfctl` commands as a privileged user.
-
-== Procedure
-
-. Base64 encode the new Mule `.lic` license file provided by MuleSoft: 
-
-** On MacOS, run the following command in the terminal: 
+** On MacOS, run this command in the terminal:
 +
 [source,copy]
 ----
 BASE64_ENCODED_LICENSE=$(base64 -b0 -i license.lic)
 ----
-** On Unix, run the following command:
+** On Unix, run this command:
 +
 [source,copy]
 ----
 BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 ----
-** On Windows, choose one of the following: 
-*** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command. 
+** On Windows, choose one of the following:
+*** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command.
 *** Use the `base64.exe` program included with Windows git (`C:\Program Files\Git\usr\bin`).
 *** Use the following Powershell command:
 +
@@ -43,23 +36,82 @@ BASE64_ENCODED_LICENSE=$(base64 -w0 license.lic)
 $BASE64_ENCODED_LICENSE=[convert]::ToBase64String((Get-Content -path "license.lic" -Encoding byte))
 ----
 
+== Replace Using `rtfctl`
+
+Use this method when Runtime Fabric was installed with `rtfctl` (VM, bare metal, or standard Kubernetes).
+
+=== Prerequisites
+
+The `rtfctl` utility is required. Follow the steps in xref:install-rtfctl.adoc[Install RTFCTL] before continuing.
+
+Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+
+Run `rtfctl` commands as a privileged user.
+
+=== Procedure
+
 . Use the `rtfctl` utility to apply the Base64 value of your license key. For more information on the `rtfctl` command, refer to 
-xref:runtime-fabric::install-rtfctl#list-supported-commands[rtfctl commands].
+xref:runtime-fabric::install-rtfctl#list-supported-commands[RTFCTL commands].
 +
 [source,copy]
 ----
 rtfctl apply mule-license $BASE64_ENCODED_LICENSE
 ----
 +
-. To verify the Mule license key has applied correctly, retrieve the contents using the `rtfctl` utility:
+. To verify the Mule license key has been applied correctly, retrieve the contents using the `rtfctl` utility:
 +
 [source,copy]
 ----
 rtfctl get mule-license
 ----
 
+== Replace Using Helm
+
+Use this method when Runtime Fabric was installed with Helm.
+
+Apply the license by running this command (ensure `$BASE64_ENCODED_LICENSE` is set from the Prepare the License Key section):
+
+[source,copy]
+----
+helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values --version <current-version>
+----
+
+Replace `<current-version>` with your current Runtime Fabric Helm chart version.
+
+== Replace on Red Hat OpenShift
+
+Use this method when Runtime Fabric is installed on Red Hat OpenShift (operator-based installation).
+
+You can apply the license either from the OpenShift console (by updating the Runtime Fabric instance custom resource) or using Helm. Ensure you have prepared the Base64-encoded license key as described in Prepare the License Key.
+
+=== Apply the License Key from the OpenShift Console
+
+To apply the license key from the OpenShift console, follow these steps:
+
+. Navigate to the Runtime Fabric operator.
+. Select the namespace in which the Runtime Fabric instance is installed.
+. Click on the *Runtime Fabric* tab.
+. Click on the *runtime-fabric* instance link.
++
+image::rtf-license-operator-1.png[Runtime Fabric operator with runtime-fabric instance selected]
+[start=5]
+. Update the Runtime Fabric instance CR .yaml file by adding the `muleLicense` key with your Base64-encoded license value.
++
+image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
+
+=== Apply the License Key Using Helm on OpenShift
+
+To apply the license using Helm, run the following command (ensure `$BASE64_ENCODED_LICENSE` is set from the Prepare the License Key section):
+
+[source,copy]
+----
+helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values
+----
+
+Replace `rtf` with your Runtime Fabric namespace if different.
+
 [NOTE]
-You need to restart your Runtime Fabric Mule apps to take the latest changed license.
+You need to restart your Runtime Fabric Mule apps for the new license to take effect.
 
 == Get License Expiry Date
 
@@ -101,4 +153,6 @@ image::rtf-license-expiring.png[Runtime Manager UI with Mule License Expiry Date
 
 == See Also
 
-* xref:runtime-fabric::install-rtfctl.adoc[Install rtfctl]
+* xref:runtime-fabric::install-rtfctl.adoc[Install RTFCTL]
+* xref:install-openshift.adoc#insert-the-mule-license-key[Insert the Mule License Key] (OpenShift)
+* xref:install-helm.adoc[Installing Runtime Fabric Using Helm]
