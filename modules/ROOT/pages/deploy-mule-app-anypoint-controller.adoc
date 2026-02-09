@@ -120,7 +120,7 @@ agent:
 
 [source,bash]
 ----
-helm install rtf-agent <chart-repo>/rtf-agent \
+helm install runtime-fabric <chart-repo>/rtf-agent \
   -f values.yaml \
   -n <rtf-namespace>
 ----
@@ -180,7 +180,7 @@ agent:
 
 [source,bash]
 ----
-helm upgrade rtf-agent <chart-repo>/rtf-agent \
+helm upgrade runtime-fabric <chart-repo>/rtf-agent \
   -f values.yaml \
   -n <rtf-namespace>
 ----
