@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
+Test 2
 When an application is deployed to Runtime Fabric, Runtime Manager automatically versions the application and its configuration. Application versioning enables you to:
 
 * View the configuration change history of the application.
