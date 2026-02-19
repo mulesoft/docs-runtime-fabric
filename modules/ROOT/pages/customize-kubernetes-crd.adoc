@@ -253,6 +253,29 @@ pod:
        ENABLE_READINESS_PROBE_ON_HTTP_GET: "true"
 ----
 
+=== Upgrade to Runtime Fabric 3.0.1 or later
+
+When you upgrade to Runtime Fabric 3.0.1 or later, applications that run on Mule runtime patch versions older than those listed from xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-7-2025[November 7, 2025] may fail to become ready or restart correctly. Use Mule runtime patches from November 7, 2025 and later for your applications when upgrading to Runtime Fabric 3.0.1 or later.
+
+If you can't upgrade Mule runtime immediately, apply a Kubernetes template that sets `ENABLE_READINESS_PROBE_ON_HTTP_GET` to `"false"`. This reverts to the previous probe behavior so that applications on older runtime patches can pass health checks until you upgrade them.
+
+. Create or update a Kubernetes template with this content. Set the `namespace` to your Runtime Fabric installation namespace (`rtf`).
++
+[source,yaml]
+----
+apiVersion: "rtf.mulesoft.com/v1"
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  namespace: rtf
+spec:
+  pod:
+    env:
+      ENABLE_READINESS_PROBE_ON_HTTP_GET: "false"
+----
+. Apply the template to your cluster.
+. Restart the affected applications.
+
 == See Also
 
 * xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric]
