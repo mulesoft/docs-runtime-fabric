@@ -253,6 +253,11 @@ pod:
        ENABLE_READINESS_PROBE_ON_HTTP_GET: "true"
 ----
 
+This setting defaults to `false`. When you enable it on Runtime Fabric 3.0.1 or later, use Mule runtime engine patches from November 7, 2025 and later for your applications. For compatible patch versions, see the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc#november-7-2025[November 7, 2025] section of the Runtime Fabric runtimes release notes. Applications on older patches may fail to become ready or restart correctly when this feature is enabled.
+
+To enable the HTTP GET readiness probe for applications running on Mule runtime engine patches older than November 7, 2025, either upgrade those applications to a compatible patch or keep the feature disabled until you can upgrade.
+
+
 == See Also
 
 * xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric]
