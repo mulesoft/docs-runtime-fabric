@@ -74,7 +74,7 @@ To install a Mule license, follow these steps:
 . Run this command:
 +
 ----
-$ sudo ./rtfctl apply mule-license '<license-key-information>'  --namespace rtf1
+./rtfctl apply mule-license '<license-key-information>'  --namespace rtf1
 Updating rtf namespace... OK
 ----
 
@@ -83,7 +83,7 @@ Updating rtf namespace... OK
 To capture a heap dump, run this command:
 
 ----
-$ sudo /usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof --app-namespace bed42b62-XXXX --namespace rtf1
+/usr/local/bin/rtfctl heapdump hello-world /tmp/dump.hprof --app-namespace bed42b62-XXXX --namespace rtf1
 Dumping heap for hello-world-f76484d8-l44qv...
 Heap dump written to /tmp/dump.hprof
 ----
@@ -95,7 +95,7 @@ For additional information, run the `rtfctl heapdump -h` command.
 For application management commands that accept a `--pod` flag, you can obtain the list of replicas using the `describe` command:
 
 ----
-$ sudo ./rtfctl describe apps hello-world --app-namespace bed42b62-XXXX --namespace rtf1
+./rtfctl describe apps hello-world --app-namespace bed42b62-XXXX --namespace rtf1
 Name:              hello-world
 Namespace:         bed42b62-XXXX
 Status:            PROGRESSING
@@ -123,7 +123,7 @@ Consider these points:
 
 To audit the operations, run this command:
 ----
-$ sudo ./rtfctl audit-logs
+./rtfctl audit-logs
 ----
 
 An output example:
