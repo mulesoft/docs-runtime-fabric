@@ -37,7 +37,7 @@ rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_na
 +
 [source,copy]
 ----
-sudo ./rtfctl get secure-properties -n <environment_id>
+./rtfctl get secure-properties -n <environment_id>
 ----
 +
 * *<environment_id>*: The Anypoint environment ID to list the secure properties under.
@@ -53,7 +53,7 @@ You can access secure properties from inside your Mule application using `${my.p
 +
 [source,copy]
 ----
-sudo ./rtfctl delete secure-property <my_key> --app-namespace <namespace>
+./rtfctl delete secure-property <my_key> --app-namespace <namespace>
 ----
 +
 * *<my_key>*: The key used in the Mule application to reference the secure property.
