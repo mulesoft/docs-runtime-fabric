@@ -13,7 +13,7 @@ The SOCKS5 proxy must connect to Anypoint Monitoring over TCP at the following e
 +
 [source,copy]
 ----
-sudo /opt/anypoint/runtimefabric/rtfctl apply monitoring-proxy "socks5://<user>:<pass>@<10.0.0.2>:<8080>"
+/opt/anypoint/runtimefabric/rtfctl apply monitoring-proxy "socks5://<user>:<pass>@<10.0.0.2>:<8080>"
 ----
 +
 * *<user>*: the username needed to authenticate to the SOCKS5 proxy.
@@ -28,7 +28,7 @@ The password must be URL encoded.
 +
 [source,copy]
 -----
-sudo /opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
+/opt/anypoint/runtimefabric/rtfctl get monitoring-proxy
 -----
 +
 The output should match the value expected.
@@ -49,7 +49,7 @@ Updating an HTTP proxy causes each machine in the cluster to restart all pods ru
 +
 [source,copy]
 ----
-sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
+/opt/anypoint/runtimefabric/rtfctl apply http-proxy "http://<user>:<pass>@<10.0.0.1>:<8080>" --no-proxy "<1.1.1.1:8888,2.2.2.2:9999>"
 ----
 +
 * *<user>*: the username needed to authenticate to the HTTP proxy.
@@ -66,7 +66,7 @@ The password must be URL encoded.
 +
 [source,copy]
 ----
-sudo /opt/anypoint/runtimefabric/rtfctl get http-proxy
+/opt/anypoint/runtimefabric/rtfctl get http-proxy
 ----
 +
 The output should match the value expected.
@@ -74,7 +74,7 @@ The output should match the value expected.
 +
 [source,copy]
 -----
-sudo /opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
+/opt/anypoint/runtimefabric/rtfctl apply http-proxy '' --no-proxy ''
 -----
 
 === About the HTTP_PROXY Environment Variable 

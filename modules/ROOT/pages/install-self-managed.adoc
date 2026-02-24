@@ -114,7 +114,7 @@ curl -L https://anypoint.mulesoft.com/runtimefabric/api/download/rtfctl/latest -
 +
 [source,copy]
 ----
-sudo chmod +x rtfctl
+chmod +x rtfctl
 ----
 
 == Install Runtime Fabric
