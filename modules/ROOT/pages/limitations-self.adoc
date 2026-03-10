@@ -41,7 +41,7 @@ The following descriptions provide you with the general requirements for running
 
 Runtime Fabric requires a Kubernetes cluster that is provisioned and operational. Verify whether your environment is correctly configured using the `rtfctl` command-line utility. See xref:install-self-managed.adoc[Install Runtime Fabric].
 
-Refer to the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[release notes] for the list of supported Kubernetes versions for your Runtime Fabric.
+Refer to the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-3.x.x.adoc[release notes] for the list of supported Kubernetes versions for your Runtime Fabric.
 
 === Supported Architectures
 
