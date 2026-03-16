@@ -33,7 +33,7 @@ MuleSoft doesn’t provide additional software to synchronize third party depend
     rtf.mulesoft.com/synchronized: "true"
 ----
 
-* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
+* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace]. You'll need the name of the configured secret when you install Runtime Fabric. 
 
 [[synch-runtime]]
 == Synchronize Mule Runtime Dependencies and Images to Your Local Registry

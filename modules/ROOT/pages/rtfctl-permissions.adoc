@@ -2,7 +2,7 @@
 
 To successfully run `rtfctl` commands, you must understand and enable specific role permissions over Kubernetes resources.
 
-The following table lists the permissions that you configure using Kubernetes (K8s) RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control^]): 
+The following table lists the permissions that you configure using Kubernetes (K8s) RBACs (https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control]): 
 
 [%header%autowidth.spread,cols=".^a,.^a,.^a,.^a,.^a]
 |===
@@ -142,7 +142,7 @@ Permissions can be role-based or cluster role-based:
 
 * apiGroups 
 +
-The API group for the K8s resources. When you create a role, each K8s resource declares its API group or uses the core API group if not specified. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups^] for details.
+The API group for the K8s resources. When you create a role, each K8s resource declares its API group or uses the core API group if not specified. Refer to https://kubernetes.io/docs/reference/using-api/#api-groups[API groups] for details.
 
 * Kubernetes Resource 
 +
