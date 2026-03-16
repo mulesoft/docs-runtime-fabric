@@ -15,14 +15,14 @@ The `kubernetestemplate` resource applies only to new Mule app deployments after
 The `kubernetestemplate` resource enables you to configure the following elements of your apps pods, deployments, and services objects:
 
 * Pod
-** https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/[Annotations^]
-** https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[Labels^]
-** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Node selectors^]
-** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Affinity^]
-** https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[Security context^]
-** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit^]
-** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations^]
-** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints^]
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/[Annotations]
+** https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/[Labels]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Node selectors]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/[Affinity]
+** https://kubernetes.io/docs/tasks/configure-pod-container/security-context/[Security context]
+** https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage[Ephemeral storage limit]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[Tolerations]
+** https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/[Topology spread constraints]
 
 For the security context pod, the key to use is `containerSecurityContext`.
 

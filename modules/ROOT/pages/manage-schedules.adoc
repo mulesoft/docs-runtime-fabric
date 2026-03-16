@@ -135,7 +135,7 @@ The cron expression in this example sets the schedule to every 10 seconds.
 +
 For information about building cron triggers:
 +
-.. View the https://www.quartz-scheduler.org/documentation/[Quartz documentation^].
+.. View the https://www.quartz-scheduler.org/documentation/[Quartz documentation].
 .. Select a version, click *Documentation > User's Guide > Tutorial*, and then click the *CronTrigger* lesson.
 . Click *Update* to save changed settings or click *Cancel* to exit without saving.
 
@@ -183,5 +183,5 @@ image::ch2-scheduler-enable.png[Enabled toggle in the schedule editor]
 == See Also
 
 * xref:mule-runtime::scheduler-concept.adoc[]
-* https://www.quartz-scheduler.org/documentation/[Quartz documentation^]
-* https://anypoint.mulesoft.com/exchange/?view=grid&type=example&search=&organizationId=68ef9520-24e9-4cf2-b2f5-620025690913[Example Assets provided by MuleSoft^]
+* https://www.quartz-scheduler.org/documentation/[Quartz documentation]
+* https://anypoint.mulesoft.com/exchange/?view=grid&type=example&search=&organizationId=68ef9520-24e9-4cf2-b2f5-620025690913[Example Assets provided by MuleSoft]
