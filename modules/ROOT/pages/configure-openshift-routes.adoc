@@ -8,7 +8,7 @@ Configuration of routes in Runtime Fabric follows closely to ingress resource co
 
 * xref:custom-ingress-configuration.adoc#how-ingress-resources-templates-work-in-runtime-fabric[How Ingress Resources Templates Work in Runtime Fabric] 
 * xref:custom-ingress-configuration.adoc#example-ingress-resource-templates[Example Ingress Resource Templates]
-* https://docs.openshift.com/en/container-platform/4.10/networking/routes/route-configuration.html[Creating a route through an Ingress object^].
+* https://docs.openshift.com/en/container-platform/4.10/networking/routes/route-configuration.html[Creating a route through an Ingress object].
 
 == Example Ingress Resource Template for A Red Hat OpenShift Route
 The following example illustrates how to modify a Kubernetes ingress spec to create a Runtime Fabric ingress resource template for the networking.k8s.io/v1 API. 
@@ -78,7 +78,7 @@ After you deploy the application, Runtime Manager creates a route to serve traff
 
 You can configure the ingress resource template to include passthrough TLS termination. 
 
-For more information on configuring routes with passthrough TLS termination, refer to the https://docs.openshift.com/en/container-platform/4.10/networking/routes/route-configuration.html[Red Hat OpenShift documentation^].
+For more information on configuring routes with passthrough TLS termination, refer to the https://docs.openshift.com/en/container-platform/4.10/networking/routes/route-configuration.html[Red Hat OpenShift documentation].
 
 Follow these steps to create an ingress resource template:
 

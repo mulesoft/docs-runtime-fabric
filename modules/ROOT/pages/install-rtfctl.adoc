@@ -56,7 +56,7 @@ chmod +x rtfctl
 
 === Running Commands
 
-The `rtfctl` command line tool consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files^]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
+The `rtfctl` command line tool consumes kubeconfig files as described in https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/[Organizing Cluster Access Using kubeconfig Files]. Use this method to configure which cluster you want to manage. Confirm that the `rtfctl` binary is present in the current working directory and in the user `$PATH`.
 
 * Run `rtfctl` commands as a privileged user.
 * To list all supported commands, run `rtfctl -h`. 
