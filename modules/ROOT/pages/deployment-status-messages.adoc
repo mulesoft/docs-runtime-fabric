@@ -51,7 +51,7 @@ The following table shows a non-exhaustive list of different types of warning me
 * The *Enforce deploying replicas across nodes* option in the *Deployments Target* tab of Runtime Manager is enabled but there are not enough different nodes available for the number of replicas desired. |<<link-example-3,Link>>
 |===
 
-For more information on Pod Status, refer to the https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-lifetime[Kubernetes official documentation^]. Reach your Kubernetes administrator to inquire about whether a state should be considered critical or not and request advice on how to troubleshoot if required.
+For more information on Pod Status, refer to the https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-lifetime[Kubernetes official documentation]. Reach your Kubernetes administrator to inquire about whether a state should be considered critical or not and request advice on how to troubleshoot if required.
 
 == Warning Messages Examples
 
