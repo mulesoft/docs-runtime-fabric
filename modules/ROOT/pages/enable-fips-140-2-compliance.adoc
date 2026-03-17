@@ -3,7 +3,7 @@
 
 You can configure Mule application containers to run in FIPS 140-2 compliance mode.
 
-These instructions assume that you are familiar with https://csrc.nist.gov/files/pubs/fips/140-2/upd2/final/docs/fips1402.pdf[FIPS 140-2^], the US government security standard that requires that compliant parties use only cryptographic algorithms and techniques that have been certified by NIST.
+These instructions assume that you are familiar with https://csrc.nist.gov/files/pubs/fips/140-2/upd2/final/docs/fips1402.pdf[FIPS 140-2], the US government security standard that requires that compliant parties use only cryptographic algorithms and techniques that have been certified by NIST.
 
 == Enable FIPS 140-2 Compliance Mode
 

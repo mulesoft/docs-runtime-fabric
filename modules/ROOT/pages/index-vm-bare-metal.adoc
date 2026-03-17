@@ -7,9 +7,9 @@ Runtime Fabric is compatible with AWS, Google, Microsoft, and IBM RedHat Openshi
 
 Depending on your affinity to public clouds and in-house Kubernetes expertise, the following self-managed Red Hat OpenShift offerings can enable both on-premises and public cloud bare-metal solutions:
 
-* https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)^]
-* https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^]
-* https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[Red Hat OpenShift Kubernetes engine (Entry level)]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)]
+* https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus]
 
 After you use one of these solutions to set up K8s on the cluster, proceed to the Runtime Fabric installation section to set up Runtime Fabric as you would install on an AKS or EKS. 
 
@@ -20,29 +20,29 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 
 == Available Migration Options
 
-* If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0^] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
+* If you are looking for an Integration Platform as a Service, https://www.mulesoft.com/platform/saas/cloudhub-ipaas-cloud-based-integration[Cloudhub 2.0] is the recommended offering. This Mulesoft flagship offering has the lowest operational overhead.
 
 * If you already have knowledge about public clouds and have some experience in managing a Kubernetes cluster, migrate to Runtime Fabric on public cloud Kubernetes clusters. The following clouds support Runtime Fabric:
 
-** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Runtime Fabric on AWS Elastics Kubernetes Service^]
-** https://aws.amazon.com/eks/eks-anywhere/[Runtime Fabric on AWS EKS-Anywhere^]
-** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
-** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Runtime Fabric on AWS Elastics Kubernetes Service]
+** https://aws.amazon.com/eks/eks-anywhere/[Runtime Fabric on AWS EKS-Anywhere]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine]
+** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service]
 
 
 
-* To standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings^]. These seven offerings include pre-built and certified assets, connectors, and operators, which enable both on-premises and public cloud bare-metal solutions.
+* To standardize your own bare-metal solutions using public Kubernetes distributions, follow https://www.youtube.com/watch?v=MYOeX5qjYew[Runtime Fabric supported IBM Openshift offerings]. These seven offerings include pre-built and certified assets, connectors, and operators, which enable both on-premises and public cloud bare-metal solutions.
 
 * Managed Cloud Services
-** https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
-** https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)^]
-** https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
-** https://www.ibm.com/products/openshift[Red Hat OpenShift on IBM Cloud^]
+** https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)]
+** https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat Openshift (ARO)]
+** https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP]
+** https://www.ibm.com/products/openshift[Red Hat OpenShift on IBM Cloud]
 
 * Self-managed services
-** https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[RedHat OpenShift Kubernetes engine (Entry level)^]
-** https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[RedHat OpenShift Container Platform (OCP)^]
-** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus^]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/kubernetes-engine[RedHat OpenShift Kubernetes engine (Entry level)]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[RedHat OpenShift Container Platform (OCP)]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[RedHat OpenShift Platform Plus]
 
 
 * If you don't have investments in Kubernetes and must stay in your own hosted environment, Mule runtime standalone is an available option. This deployment model has reduced runtime resiliency and heavy management overhead.
@@ -51,4 +51,4 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 
 Choose one of the previously mentioned options and migrate before the EOL deadlines.
 
-Review the https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Agreements/versioning-back-support-policy.pdf[Product Versioning and Back Support Policy^] for more details on Standard Support, Extended Support, and EOL support. 
+Review the https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Agreements/versioning-back-support-policy.pdf[Product Versioning and Back Support Policy] for more details on Standard Support, Extended Support, and EOL support. 
