@@ -3,7 +3,7 @@
 You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric.
 
 You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
-https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax^].
+https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax].
 
 == Requirements and Restrictions
 
@@ -90,7 +90,7 @@ In Anypoint Studio, the `log4j2.xml` file is located in the `src/main/resources`
 </repository>
 ----
 +
-For the latest version of Splunk, see https://github.com/splunk/splunk-library-javalogging/tags[GitHub^].
+For the latest version of Splunk, see https://github.com/splunk/splunk-library-javalogging/tags[GitHub].
 
 
 After your application starts, logs start flowing to your custom Log4j appender, and you can view them on your target logging system.
