@@ -9,15 +9,15 @@ endif::[]
 This content refers to configuring ingress on Runtime Fabric for versions 1.10 and later. Refer to the documentation for versions 1.8 or 1.9 for previous ingress configuration instructions.
 ==== 
 
-Anypoint Runtime Fabric enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec^], you can specify annotations, ingress class name, and HTTP and HTTPS rules. 
+Anypoint Runtime Fabric enables you to specify custom Ingress configurations using an ingress resource template. In a template, similar to a https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes ingress spec], you can specify annotations, ingress class name, and HTTP and HTTPS rules. 
 
 If you do not apply an ingress resource template for an application, you can’t add ingress endpoints when you deploy it.  
 
 [IMPORTANT]
 ====
-The ingress controller included with Google Kubernetes Engine (GKE) provisions a separate HTTP load balancer per application by default. Refer to https://help.mulesoft.com/s/article/Default-Ingress-Controller-Behavior-with-Runtime-Fabric-on-GKE[Default Ingress Controller Behavior with Runtime Fabric on GKE^] for more information.
+The ingress controller included with Google Kubernetes Engine (GKE) provisions a separate HTTP load balancer per application by default. 
 
-AWS Application Load Balancers have similar behavior unless you use the `group.name` annotation. Refer to https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html[Application load balancing on Amazon EKS^] for details. 
+AWS Application Load Balancers have similar behavior unless you use the `group.name` annotation. Refer to https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html[Application load balancing on Amazon EKS] for details. 
 ====
 
 == Benefits of Custom Ingress Resource Templates
@@ -152,7 +152,7 @@ The `unique-id` placeholder is available in Runtime Fabric version 1.12.28 and l
 
 == Using TLS in the Ingress Template
 
-To use TLS in the ingress template, you must create a TLS secret. See the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes TLS documentation^] for details. 
+To use TLS in the ingress template, you must create a TLS secret. See the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls[Kubernetes TLS documentation] for details. 
 
 You can use the `rtf.mulesoft.com/synchronized: "true"` label to configure Runtime Fabric to synchronize any TLS secret updates to all application namespaces, for example: 
 
