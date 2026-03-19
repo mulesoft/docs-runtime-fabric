@@ -101,7 +101,7 @@ Runtime Fabric supports any ingress controller that works well in your Kubernete
 
 [IMPORTANT]
 ====
-The default behavior of the ingress controller included with GKE is to provide a separate HTTP load balancer for each application. If you find this behavior undesirable, explore possible solutions or consider using another ingress controller. See the following link: https://help.salesforce.com/s/articleView?id=001121607&type=1[KB article] for more details.
+The default behavior of the ingress controller included with GKE is to provide a separate HTTP load balancer for each application. If you find this behavior undesirable, explore possible solutions or consider using another ingress controller.
 ====
 
 === Logs
