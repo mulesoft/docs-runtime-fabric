@@ -14,7 +14,7 @@ The restart feature is available for Mule applications deployed to Runtime Fabri
 
 == Before You Begin
 
-Before restarting a Mule application, ensure that you have one of these permissions:
+Before restarting a Mule application, ensure that you have both of these permissions:
 
 * *Restart Applications*
 * *Create Applications*
