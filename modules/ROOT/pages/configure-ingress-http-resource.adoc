@@ -74,7 +74,19 @@ The Anypoint Runtime Manager UI resolves the same supported placeholders when yo
 [IMPORTANT]
 For HTTP route templates, the Runtime Manager UI no longer treats legacy strings like `app-name` as placeholders. If you redeploy an application that still uses the old syntax in a host or path, that string is left as literal text.
 
-For an application named `test-app`, configuring `https://test-app.testrtf.com/app-name` previously produced `https://test-app.testrtf.com/test-app`. With the current behavior, the same input produces `https://test-app.testrtf.com/app-name`. To get the application name in the URL, use `https://test-app.testrtf.com/{{ .ApplicationName }}` (or the appropriate segment for your template).
+For example, for an application named `test-app`, configuring:
+
+`https://test-app.testrtf.com/app-name` 
+ 
+Previously produced:
+ 
+`https://test-app.testrtf.com/test-app`
+ 
+With the current behavior, the same input produces:
+ 
+`https://test-app.testrtf.com/app-name`
+ 
+To get the application name in the URL, use `https://test-app.testrtf.com/{{ .ApplicationName }}` (or the appropriate segment for your template).
 
 == How the HTTP Route-Template Custom Resource Works in Runtime Fabric
 
