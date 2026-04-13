@@ -46,7 +46,6 @@ Use the *Schedules* tab or the Runtime Fabric API to manage Runtime Fabric sched
 ** If the value is available before deployment and depends on deployment properties, an estimation of the value appears.
 ** If the value is a placeholder (such as `${cronExpression}`) that is provided at the time of deployment, the exact value of the placeholder does not appear in the user interface.
 ** Runtime Fabric uses a default value of `60000`.
-* If you make changes to schedulers, you should reupload the application to Exchange to ensure the expected scheduler behavior occurs.
 
 == Before You Begin
 
