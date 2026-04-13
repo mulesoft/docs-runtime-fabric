@@ -34,10 +34,10 @@ The following property placeholders are available:
 | `{{ .Path }}`| Path value from the public endpoint of application deployment
 | `{{ .OrganizationID }}`| Organization ID of the application deployment
 | `{{ .EnvironmentID }}`| Environment ID of the application deployment
-| `{{ .UniqueId }}`| Unique ID placeholder to create a unique application URL
+| `{{ .UniqueID }}`| Unique ID placeholder to create a unique application URL
 |===
 
-Use the `{{ .ResourceName }}` placeholder to ensure the uniqueness of the name of the HTTP routing resource being created, especially if the deployment has multiple endpoints. It is recommended to use this placeholder; otherwise, you need to manually ensure the resource name uniqueness. Kubernetes enforces that the names of resources must be unique within a namespace, but not across namespaces.For more details, refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#when-to-use-multiple-namespaces[Namespaces Kubernetes documentation].
+Use the `{{ .ResourceName }}` placeholder to ensure the uniqueness of the name of the HTTP routing resource being created, especially if the deployment has multiple endpoints. It is recommended to use this placeholder; otherwise, you need to manually ensure the resource name uniqueness. Kubernetes enforces that the names of resources must be unique within a namespace, but not across namespaces. For more details, refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#when-to-use-multiple-namespaces[Namespaces Kubernetes documentation].
 
 For example:
 ----
@@ -64,7 +64,7 @@ resources:
           app-name: {{ .ApplicationName }}
 ----
 
-Use the `{{ .UniqueId }}` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `/api/{{ .UniqueId }}.com` in the path section of the ingress template, the resulting endpoint will be similar to `/api/7jkbic.com`.
+Use the `{{ .UniqueID }}` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `/api/{{ .UniqueID }}.com` in the path section of the ingress template, the resulting endpoint will be similar to `/api/7jkbic.com`.
 
 [NOTE]
 In the HTTP route-template custom resource, use placeholders in the `resources` section; Runtime Fabric substitutes values there when it generates Kubernetes routing resources (ingress, routes, gateway HTTPRoute, and similar).
