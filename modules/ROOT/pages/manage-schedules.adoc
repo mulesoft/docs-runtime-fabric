@@ -28,7 +28,7 @@ When designing the schedule, consider the following:
 * The Runtime Fabric scheduler reads the job configuration every time it runs.
 +
 When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
-* Changing the schedule redeploys your application.
+* Updating the schedule in Runtime Manager or through the Runtime Fabric API—for example, the interval, cron expression, or enabled state—applies the new configuration without redeploying the application.
 * If a scheduled job is not triggered because the application is not running,
 Runtime Fabric triggers the job as soon as the app restarts.
 * Schedules are based in the scheduler's defined timezone.
