@@ -1,6 +1,7 @@
 = Managing Mule Apps Schedules
 
-You can use Anypoint Runtime Manager to view and control the Scheduler components within the flows in your deployed applications, all without changing the running application.
+You can use Anypoint Runtime Manager to view and control the Scheduler components within the flows in your deployed applications.
+Some schedule updates can redeploy the application; see <<design-schedule,Schedule design considerations>>.
 For example, you might want to disable a scheduled job while one of the applications is undergoing maintenance.
  
 On the *Schedules* tab, you can:
@@ -28,12 +29,13 @@ When designing the schedule, consider the following:
 * The Runtime Fabric scheduler reads the job configuration every time it runs.
 +
 When you update the scheduler configuration, the change takes effect the next time the scheduler runs.
-* Whether updating a schedule in Runtime Manager or through the Runtime Fabric API redeploys your application depends on the scheduling strategy:
+* When you update a schedule in Runtime Manager or through the Runtime Fabric API, redeployment behavior differs for fixed-frequency and cron schedules:
 +
 ** _Fixed frequency_: Updating the interval or enabling or disabling the schedule typically does not redeploy the application.
 ** _Cron_: Updating the cron expression or related schedule settings can redeploy the application.
 +
 A redeployment occurs when the schedule change produces a difference in the Kubernetes resources for your deployment.
++
 Runtime Fabric applies redeployment when the underlying deployment spec requires it; that outcome is determined by how the Mule application scheduling features represent the change, not by Runtime Fabric itself.
 * If a scheduled job is not triggered because the application is not running,
 Runtime Fabric triggers the job as soon as the app restarts.
