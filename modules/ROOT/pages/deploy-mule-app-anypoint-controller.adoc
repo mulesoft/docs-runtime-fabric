@@ -30,7 +30,7 @@ Anypoint Controller has these limitations and does not support:
 
 * CloudHub 2.0 Mule application deployments
 * Scheduler-based Mule applications
-* Flex Gateway deployments
+* Omni Gateway deployments
 * `rtfctl`-based Runtime Fabric installation or upgrade
 
 [IMPORTANT]
