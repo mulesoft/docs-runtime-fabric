@@ -36,6 +36,8 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
+== US and EU Control Planes
+
 [%header,cols="4*a"]
 |===
 | Port | Protocol | Hostnames | Description
@@ -80,6 +82,22 @@ To function correctly, Runtime Fabric requires the following hostname endpoint c
 | 443 | HTTPS a|
 * US control plane: `configuration-resolver.prod.cloudhub.io`
 * EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
+|===
+
+=== Canada Control Plane
+
+This table lists the required hostname endpoint configurations for the Canada control plane.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 11443 | WSS | `arm-mcm2-service-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | Runtime Fabric message broker for interaction with the control plane.
+| 443 | HTTPS | `ca1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.ca1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the CA control plane, these services are consolidated behind a single endpoint.
+| 8443 | HTTPS | `ingest.ca1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and RTF agent) are pulled from this registry.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Required only for `rtfctl test outbound-network` connectivity checks. Not used for runtime operations.
 |===
 
 == Verify Outbound Connectivity
