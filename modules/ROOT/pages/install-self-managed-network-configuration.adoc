@@ -97,7 +97,7 @@ This table lists the required hostname endpoint configurations for the Canada co
 | 8443 | HTTPS | `ingest.ca1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
 | 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
-| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Required only for `rtfctl test outbound-network` connectivity checks. Not used for runtime operations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
 == Verify Outbound Connectivity
