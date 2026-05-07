@@ -277,6 +277,11 @@ These required values are created and added to `values.yml` when you create the 
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
 
+[IMPORTANT]
+--
+The `rtfRegistry`, `pullSecretName`, `provider`, and `repositoryNamespace` properties are written to the `generated-properties` secret only during the initial Runtime Fabric activation (first agent install). If you modify any of these values after activation, the changes are not reflected in the `generated-properties` secret. To avoid image pull errors or incorrect provider configurations, ensure that these values are set correctly before you activate the cluster for the first time.
+--
+
 === Optional Parameters
 
 Set these optional parameters in `values.yml` as needed before installing Runtime Fabric.

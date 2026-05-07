@@ -230,7 +230,10 @@ kubectl create secret docker-registry rtf-pull-secret --namespace <rtf-namespace
 ----
 
 [start=6]
-. Follow the *Helm* path instructions to download the `values.yml` file so that you can modify its values. For the private registry configuration, update `rtfRegistry` with your local docker server, and update the `pullSecretName` parameter. . 
+. Follow the *Helm* path instructions to download the `values.yml` file so that you can modify its values. For the private registry configuration, update `rtfRegistry` with your local docker server, and update the `pullSecretName` parameter.
++
+[IMPORTANT]
+You must configure the `rtfRegistry` and `pullSecretName` values before activating the cluster for the first time. These properties are written to the `generated-properties` secret only during the initial activation and are not updated if changed afterward. Refer to the xref:install-helm.adoc#values-yml-reference[values.yml Reference] for details.
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
 --
