@@ -259,6 +259,10 @@ global:
   - /var/lib/docker/containers
   - /var/log/containers
   - /var/log/pods
+  deployment:
+    nodeSelector: {}
+  core:
+    affinity: {}
 ----
 
 [NOTE]
@@ -303,6 +307,22 @@ a|
 |`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
 |`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |`fipsEnabled` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnabled: true` default value `false`
+|`global.deployment.nodeSelector` |Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector[nodeSelector^] for RTF core service pods. Constrains RTF components to run on nodes matching the specified labels. |`global.deployment.nodeSelector.environment: production`
+|`global.core.affinity` |Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity[affinity and anti-affinity^] rules for RTF core service pods. Use to control node affinity, pod affinity, or pod anti-affinity for RTF components. a|
+[source,yaml]
+----
+global:
+  core:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+----
 |===
 
 === Configure Core Software High Availability Parameters
