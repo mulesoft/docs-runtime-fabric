@@ -173,6 +173,11 @@ _Result_: Runtime Manager displays a status message confirming the application d
 
 For newly deployed applications, the status initially displays as *Starting*. The status updates to *Started* if the application is successful. Monitor the application status to ensure that it starts successfully.
 
+[NOTE]
+====
+The runtime environment caches application artifacts based on their Maven coordinates (`groupId:artifactId:version`). If you re-publish an Exchange asset under the same version, the cached artifact is served instead of the updated one. Always increment the version number when artifact content changes, or use the `-SNAPSHOT` qualifier for mutable artifacts during development. For details, see xref:deploy-index.adoc#_exchange_asset_caching[Exchange Asset Caching].
+====
+
 
 == Verify Inbound Traffic for Deployed Applications
 
