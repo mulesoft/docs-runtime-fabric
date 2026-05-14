@@ -100,6 +100,16 @@ This table lists the required hostname endpoint configurations for the Canada Cl
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
+=== Japan Cloud
+
+This table lists the required hostname endpoint configurations for the Japan Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
+|===
+
 == Verify Outbound Connectivity
 
 Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
