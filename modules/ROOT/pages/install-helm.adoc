@@ -75,7 +75,7 @@ Using `rtf` as a namespace applies only in the case of single cluster or single 
 
 After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric.
 
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here.
+The registry URL depends on your control plane. Refer to the <<required-parameters,required parameters>> section for the `rtfRegistry` value for your region. If you’re using a local registry, specify those values here.
 
 To create the pull secret, run:
 
@@ -262,8 +262,9 @@ global:
 ----
 
 [NOTE]
-If you are configuring a Runtime Fabric BYOK with an EU control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Specifically, the property `rtfRegistry: rtf-runtime-registry.kprod-eu.msap.io`.
+If you are configuring a Runtime Fabric BYOK with a non-US control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your control plane.
 
+[[required-parameters]]
 === Required Parameters
 
 These required values are created and added to `values.yml` when you create the Runtime Fabric in Runtime Manager:
@@ -272,7 +273,11 @@ These required values are created and added to `values.yml` when you create the 
 |===
 |Key |Value |Example
 |`activationData` |Activation data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
-|`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
+|`rtfRegistry` |Registry URL  a|
+* US: `rtf-runtime-registry.kprod.msap.io`
+* EU: `rtf-runtime-registry.kprod-eu.msap.io`
+* Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
+* Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
