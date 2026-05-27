@@ -37,7 +37,24 @@ MuleSoft doesn’t provide additional software to synchronize third party depend
 [[synch-runtime]]
 == Synchronize Mule Runtime Dependencies and Images to Your Local Registry
 
-To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image follows this format: `rtf-runtime-registry.kprod.msap.io/mulesoft/`.
+To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image depends on the control plane:
+
+[%header%autowidth.spread]
+|===
+| Control Plane | Image Location Format
+| US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
+| EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
+| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+|===
+
+[NOTE]
+====
+For Canada Cloud and Japan Cloud deployments on OpenShift, download the following images from the SFCI registry:
+
+* Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
+* Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
+====
 
 [[synch-rtf]]
 == Synchronize Runtime Fabric Core Software Dependencies and Images to Your Local Registry
@@ -69,8 +86,8 @@ dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-versi
 for i in $dependencies
 do
     echo "Processing $i"
-    docker pull <mulesoft-docker-server>/mulesoft/$i
-    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
+    docker pull <mulesoft-docker-server>/<image-path>/$i
+    docker tag  <mulesoft-docker-server>/<image-path>/$i <local-docker-server>/mulesoft/$i
     docker push <local-docker-server>/mulesoft/$i
 done
 ----
@@ -85,8 +102,8 @@ dependencies=$(curl <platform-url>/runtimefabric/api/agentmanifests/<agent-versi
 for i in $dependencies
 do
     echo "Processing $i"
-    docker pull <mulesoft-docker-server>/mulesoft/$i
-    docker tag  <mulesoft-docker-server>/mulesoft/$i <local-docker-server>/mulesoft/$i
+    docker pull <mulesoft-docker-server>/<image-path>/$i
+    docker tag  <mulesoft-docker-server>/<image-path>/$i <local-docker-server>/mulesoft/$i
     docker push <local-docker-server>/mulesoft/$i
 done
 ----
@@ -99,8 +116,13 @@ done
 | `agent-version` | Runtime Fabric agent release version required for the synchronization.
 | `authorization-token` |  Authorization token required for using connected apps to perform the synchronization. When you use this token, a link redirects to the connected apps page.
 | `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
-For the US control plane: `rtf-runtime-registry.kprod.msap.io` +
-For the EU control plane: `rtf-runtime-registry.kprod-eu.msap.io`
+For US Cloud: `rtf-runtime-registry.kprod.msap.io` +
+For EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io` +
+For Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` +
+For Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+| `image-path` | Image namespace path on the registry. +
+For US Cloud and EU Cloud: `mulesoft` +
+For Canada Cloud and Japan Cloud: `sfci/mulesoft/ms-docker-image`
 |===
 
 --
@@ -112,7 +134,7 @@ To synchronize the dependencies images manually, follow these steps:
 
 . Log in to your private container registry and run the following command, replacing `docker-server` where appropriate:
 +
-For the US control plane:
+For the US Cloud:
 +
 [source,copy]
 ---- 
@@ -121,13 +143,31 @@ For the US control plane:
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
-For the EU control plane:
+For the EU Cloud:
 +
 [source,copy]
 ---- 
 # docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 
 # docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
-# docker push <docker-server>:5000/mulesoft/rtf-agent:v1.12.0
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the Canada Cloud:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the Japan cont  rol plane:
++
+[source,copy]
+---- 
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 --
 ====

@@ -252,10 +252,11 @@ The values for these required parameters are set when you create the Runtime Fab
 |===
 | Key | Value | Example
 | `activationData` | Activation Data | YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
-| `rtfRegistry` | Registry URL  | US rtf-runtime-registry.kprod.msap.io
-
-EU
-rtf-runtime-registry.kprod-eu.msap.io
+| `rtfRegistry` | Registry URL  a|
+* US: `rtf-runtime-registry.kprod.msap.io`
+* EU: `rtf-runtime-registry.kprod-eu.msap.io`
+* Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
+* Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 | `pullSecretName` | Registry pull secret | rtf-pull-secret
 | `muleLicense` | Mule license for applications | Mule license key (must be Base64-encoded)
 |===
