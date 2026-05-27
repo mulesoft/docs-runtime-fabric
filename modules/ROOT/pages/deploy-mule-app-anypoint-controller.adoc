@@ -1919,9 +1919,10 @@ spec:
 The `pod.env` field supports only the following keys:
 
 * `ENABLE_CONSOLE_LOG`: Enables console logging for the application container. For more information, see xref:customize-kubernetes-crd.adoc#enable-console-logging[Enable Console Logging].
-* `ENABLE_READINESS_PROBE_ON_HTTP_GET`: Enables the native Kubernetes HTTP GET probe for readiness. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
+* `ENABLE_READINESS_PROBE_ON_HTTP_GET`: Enables the native Kubernetes HTTP GET probe for readiness. Requires Mule runtime engine patches from November 7, 2025 or later. Older patches might fail to become ready. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
+* `DISABLE_PER_APP_SA`: Disables the per-application service account, so the Mule application uses the default namespace service account. For more information, see xref:customize-kubernetes-crd.adoc#disable-per-application-service-account[Disable Per Application Service Account].
 
-Arbitrary environment variable keys (for example, `TZ` or custom application variables) are ignored because the underlying Helm chart renders only the supported keys into the app container environment. This behavior is the same as the xref:customize-kubernetes-crd.adoc[KubernetesTemplate] CR.
+Arbitrary `pod.env` keys (for example, `MY_CUSTOM_VAR`) are ignored. Only the supported keys are honored. `ENABLE_CONSOLE_LOG` and `ENABLE_READINESS_PROBE_ON_HTTP_GET` are emitted as container environment variables, while `DISABLE_PER_APP_SA` controls deployment-level behavior. This behavior is the same as the xref:customize-kubernetes-crd.adoc[KubernetesTemplate] CR.
 
 The `pod.env` field uses `map[string]string` format (for example, `ENABLE_CONSOLE_LOG: "true"`), not a list of `name`/`value` pairs.
 
