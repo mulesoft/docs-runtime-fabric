@@ -79,6 +79,7 @@
   *** xref:install-self-managed.adoc[Installing Runtime Fabric]
   *** xref:configure-rtf-rtfctl.adoc[Configuring Runtime Fabric]
   *** xref:manage-backup-restore.adoc[Backing Up and Restoring Runtime Fabric]
+  *** xref:manage-agent-truststore-rtfctl.adoc[Managing the Agent Truststore]
   *** xref:troubleshoot-rtf-rtfctl.adoc[Troubleshooting Runtime Fabric]
   *** xref:uninstall-rtf-rtfctl.adoc[Uninstall Runtime Fabric]
 ** xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]

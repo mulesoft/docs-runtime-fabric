@@ -1,0 +1,89 @@
+= Managing the Agent Truststore with RTFCTL
+
+The `rtfctl agent-truststore` command group lets you inspect and update the CA certificates that the Runtime Fabric agent uses to establish mutually authenticated TLS (mTLS) connections with the Anypoint control plane.
+
+== About the Agent Truststore
+
+The Runtime Fabric agent communicates outbound with several MuleSoft services hosted in the Anypoint control plane:
+
+* *Anypoint Runtime Manager* — deploys and manages Mule apps and API gateways
+* *Anypoint API Manager* — applies and enforces API policies
+* *Anypoint Monitoring* — collects runtime metrics and telemetry
+* *Configuration Resolver* — provides Mule app bundles and configuration at deploy time
+
+Every one of these connections is protected by mTLS. The agent validates the server certificates against a set of trusted CA certificates stored in the agent truststore.
+
+== Why Manage the Truststore
+
+The Anypoint control plane is backed by public CA root certificates, which are inherently long-lived and stable. Rotation of these certificates is infrequent. However, in cases where a rotation is required for security reasons — such as a CA compromise or a planned infrastructure change — you must add the new CA to the agent's truststore before the old one is retired to maintain the mTLS connection between the Runtime Fabric agent and the control plane.
+
+The `rtfctl agent-truststore` commands provide these operations directly through `rtfctl`, without requiring any additional tooling.
+
+== Commands
+
+include::partial$rtfctl-commands.adoc[tag=agent-truststore-rtfctl,leveloffset=+1]
+
+== Typical Workflows
+
+=== Inspect the Current Truststore
+
+Before making changes, review which certificates are loaded and when they expire:
+
+----
+rtfctl agent-truststore info --namespace rtf
+----
+
+Use `-o json` to get machine-readable output suitable for scripting or CI checks.
+
+=== Add a New CA to the Truststore (Interactive)
+
+Use `refresh-secret-with-pem` to retrieve the current truststore from the cluster, merge a new PEM file into both the PKCS#12 and PEM stores, preview the result, and upload it back in a single step:
+
+----
+rtfctl agent-truststore refresh-secret-with-pem -c new-ca.pem --namespace rtf
+----
+
+The command prints the subjects of all certificates that will be uploaded and asks for confirmation before patching the secret.
+
+To skip the confirmation prompts (for example, in automation):
+
+----
+rtfctl agent-truststore refresh-secret-with-pem -c new-ca.pem --yes --namespace rtf
+----
+
+=== Add a New CA Manually (Step by Step)
+
+If you prefer full control over each operation, or if you need to work with local files before uploading:
+
+. Download the current truststore and CA PEM from the cluster:
++
+----
+rtfctl agent-truststore retrieve-agent-truststore -o agent-truststore-bk.p12 --namespace rtf
+rtfctl agent-truststore retrieve-ca-pem -o ca-bk.pem --namespace rtf
+----
+
+. Merge the new CA certificates into the local files:
++
+----
+rtfctl agent-truststore merge-pem-into-p12 -i agent-truststore-bk.p12 -c new-ca.pem -o agent-truststore-new.p12
+rtfctl agent-truststore merge-pem-into-pem -i ca-bk.pem -c new-ca.pem -o ca-new.pem
+----
+
+. Upload the updated files back to the cluster:
++
+----
+rtfctl agent-truststore update-truststore-in-secret -i agent-truststore-new.p12 --namespace rtf
+rtfctl agent-truststore update-ca-pem-in-secret -i ca-new.pem --namespace rtf
+----
+
+. Verify the result:
++
+----
+rtfctl agent-truststore info --namespace rtf
+----
+
+== See Also
+
+* xref:security-architecture.adoc[Runtime Fabric Security Architecture]
+* xref:using-rtfctl-rtf.adoc[Using RTFCTL for Runtime Fabric]
+* xref:rtfctl-reference.adoc[RTFCTL Reference]
