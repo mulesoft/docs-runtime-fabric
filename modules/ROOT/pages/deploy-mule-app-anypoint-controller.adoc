@@ -1916,7 +1916,7 @@ spec:
 
 [IMPORTANT]
 =====
-The `pod.env` field supports only the following keys:
+The `pod.env` field supports only these keys:
 
 * `ENABLE_CONSOLE_LOG`: Enables console logging for the application container. For more information, see xref:customize-kubernetes-crd.adoc#enable-console-logging[Enable Console Logging].
 * `ENABLE_READINESS_PROBE_ON_HTTP_GET`: Enables the native Kubernetes HTTP GET probe for readiness. Requires Mule runtime engine patches from November 7, 2025 or later. Older patches might fail to become ready. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
