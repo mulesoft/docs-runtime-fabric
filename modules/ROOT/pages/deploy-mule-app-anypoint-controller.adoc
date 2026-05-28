@@ -1916,24 +1916,11 @@ spec:
 
 [IMPORTANT]
 =====
-The `pod.env` field uses `map[string]string` format (for example, `ENABLE_CONSOLE_LOG: "true"`), not a list of `name`/`value` pairs. As with the xref:customize-kubernetes-crd.adoc[KubernetesTemplate] CR, it supports only the keys listed in this table. Any other key (for example, `MY_CUSTOM_VAR`) is ignored.
+The `pod.env` field uses `map[string]string` format (for example, `ENABLE_CONSOLE_LOG: "true"`), not a list of `name`/`value` pairs. As with the xref:customize-kubernetes-crd.adoc[KubernetesTemplate] CR, it supports only the keys listed in this list. Any other key (for example, `MY_CUSTOM_VAR`) is ignored.
 
-[cols="1,2a,1",options="header"]
-|===
-| Key | Description | Effect
-
-| `ENABLE_CONSOLE_LOG`
-| Enables console logging for the application container. For more information, see xref:customize-kubernetes-crd.adoc#enable-console-logging[Enable Console Logging].
-| Emitted as a container environment variable.
-
-| `ENABLE_READINESS_PROBE_ON_HTTP_GET`
-| Enables the native Kubernetes HTTP GET probe for readiness. Requires Mule runtime engine patches from November 7, 2025 or later; older patches might fail to become ready. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
-| Emitted as a container environment variable.
-
-| `DISABLE_PER_APP_SA`
-| Disables the per-application service account, so the Mule application uses the default namespace service account. For more information, see xref:customize-kubernetes-crd.adoc#disable-service-account[Disable Per Application Service Account].
-| Controls deployment-level behavior.
-|===
+* `ENABLE_CONSOLE_LOG`: Enables console logging for the application container. Emitted as a container environment variable. For more information, see xref:customize-kubernetes-crd.adoc#enable-console-logging[Enable Console Logging].
+* `ENABLE_READINESS_PROBE_ON_HTTP_GET`: Enables the native Kubernetes HTTP GET probe for readiness. Requires Mule runtime engine patches from November 7, 2025 or later; older patches might fail to become ready. Emitted as a container environment variable. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
+* `DISABLE_PER_APP_SA`: Disables the per-application service account, so the Mule application uses the default namespace service account. Controls deployment-level behavior. For more information, see xref:customize-kubernetes-crd.adoc#disable-service-account[Disable Per Application Service Account].
 
 To pass custom configuration values to your Mule application, use the `properties` or `propertiesFrom` fields instead. For more information, see <<mounting-properties-from-external-sources>>.
 =====
