@@ -60,6 +60,8 @@ Anypoint Runtime Fabric works on any Linux distribution supported by:
 * Red Hat OpenShift
 * VMware Tanzu
 
+Runtime Fabric agent supports most Linux distributions. However, you must conduct your own testing to ensure that Runtime Fabric is compatible with your chosen operating system. Also validate xref:mule-runtime::hardware-and-software-requirements.adoc[Mule runtime engine compatibility] and xref:monitoring::am-installing.adoc#os-support[Anypoint Monitoring compatibility] with your operating system.
+
 === Nodes and Resources
 
 In general, you should follow the best practices provided by your Kubernetes vendor to ensure availability and simplify the administration of your infrastructure.
