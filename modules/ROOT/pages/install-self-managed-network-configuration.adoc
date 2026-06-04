@@ -36,52 +36,52 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
-=== US Cloud and EU Cloud
+=== US Cloud
+
+This table lists the required hostname endpoint configurations for the US Cloud.
 
 [%header,cols="4*a"]
 |===
 | Port | Protocol | Hostnames | Description
-| 443 | AMQP over WebSockets a| 
-* US Cloud: `transport-layer.prod.cloudhub.io`
-* EU Cloud: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
-* US Cloud: +
-`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com` +
+| 443 | AMQP over WebSockets | `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
+| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod.cloudhub.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
-* EU Cloud: +
-`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com` +
-
- | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
-| 5044 (legacy) |TCP (Lumberjack) a| 
-* US Cloud: `dias-ingestor-nginx.prod.cloudhub.io`
-* EU Cloud: `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
-
-*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.* 
+*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.*
 
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
-| 443 | HTTPS a| 
-* US Cloud: `worker-cloud-helm-prod.s3.amazonaws.com`
-* EU Cloud: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
-| 443 | HTTPS a|
-* US Cloud: `exchange2-asset-manager-kprod.s3.amazonaws.com`
-* EU Cloud: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`, `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` |Anypoint Exchange for application assets.
-| 443 | HTTPS a|
-* US Cloud: `exchange-files.anypoint.mulesoft.com` 
-* EU Cloud: `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
-| 443 | HTTPS a| 
-* US Cloud: `rtf-runtime-registry.kprod.msap.io`
-* EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
-| 443 | HTTPS a| 
-* US Cloud: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`, `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com`
-* EU Cloud: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`, `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
-| 443 | HTTPS a| 
-* US Cloud: `runtime-fabric.s3.amazonaws.com`
-* EU Cloud: `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
-| 443 | HTTPS a|
-* US Cloud: `configuration-resolver.prod.cloudhub.io`
-* EU Cloud: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
+| 443 | HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
+| 443 | HTTPS | `exchange2-asset-manager-kprod.s3.amazonaws.com` | Anypoint Exchange for application assets.
+| 443 | HTTPS | `exchange-files.anypoint.mulesoft.com` | Anypoint Exchange for application files.
+| 443 | HTTPS | `rtf-runtime-registry.kprod.msap.io` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`, `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+| 443 | HTTPS | `runtime-fabric.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `configuration-resolver.prod.cloudhub.io` | Anypoint Configuration Resolver.
+|===
+
+=== EU Cloud
+
+This table lists the required hostname endpoint configurations for the EU Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 443 | AMQP over WebSockets | `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
+| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
+`eu1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+
+*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.*
+
+| 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
+| 443 | HTTPS | `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
+| 443 | HTTPS | `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`, `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | Anypoint Exchange for application assets.
+| 443 | HTTPS | `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
+| 443 | HTTPS | `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`, `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+| 443 | HTTPS | `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
 
 === Canada Cloud
