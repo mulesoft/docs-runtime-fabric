@@ -262,7 +262,7 @@ global:
 ----
 
 [NOTE]
-If you are configuring a Runtime Fabric BYOK with a non-US control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your control plane.
+If you are configuring a Runtime Fabric BYOK for a non-US Cloud region (EU Cloud, Canada Cloud, Japan Cloud, or India Cloud), review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your cloud region.
 
 [[required-parameters]]
 === Required Parameters
@@ -278,6 +278,7 @@ These required values are created and added to `values.yml` when you create the 
 * EU: `rtf-runtime-registry.kprod-eu.msap.io`
 * Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
@@ -413,7 +414,12 @@ The URL for the Helm repository containing the Helm charts is constructed as fol
 `{RTF_IMAGE_REGISTRY_ENDPOINT}/charts`.
 
 For example:
-`rtf-runtime-registry.kprod.msap.io/charts`
+
+* US Cloud: `rtf-runtime-registry.kprod.msap.io/charts`
+* EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io/charts`
+* Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/charts`
+* Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/charts`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/charts`
 
 == See Also
 

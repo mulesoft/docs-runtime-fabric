@@ -107,7 +107,29 @@ This table lists the required hostname endpoint configurations for the Japan Clo
 [%header,cols="4*a"]
 |===
 | Port | Protocol | Hostnames | Description
+| 11443 | WSS | `arm-mcm2-service-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric message broker for interaction with the control plane.
+| 443 | HTTPS | `jp1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.jp1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Japan Cloud, these services are consolidated behind a single endpoint.
+| 8443 | HTTPS | `ingest.jp1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+|===
+
+=== India Cloud
+
+This table lists the required hostname endpoint configurations for the India Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 8443 | WSS | `runtime-manager.in1.platform.mulesoft.com` | Runtime Fabric message broker for interaction with the control plane (path: `/v1/connect`).
+| 443 | HTTPS | `in1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.in1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the India Cloud, these services are consolidated behind a single endpoint (path: `/resolver`).
+| 8443 | HTTPS | `ingest.in1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
 == Verify Outbound Connectivity
@@ -146,12 +168,21 @@ If you have outbound connectivity issues that prevent Runtime Fabric from reachi
 
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
-[%header,cols="2*a"]
+[%header,cols="5*a"]
 |===
-| Control Plane | Certificates
-| US control plane | `transport-layer.prod.cloudhub.io` +
-`configuration-resolver.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com`
-| EU control plane | `transport-layer.prod-eu.msap.io` +
-`configuration-resolver.prod-eu.msap.io`
+| Cloud | Hostname | Port | Protocol | Purpose
+| US Cloud | `transport-layer.prod.cloudhub.io` | 443 | AMQP over WebSockets | Message broker (mTLS)
+| US Cloud | `configuration-resolver.prod.cloudhub.io` | 443 | HTTPS | Configuration Resolver
+| US Cloud | `us1.ingest.mulesoft.com` | 443 | TCP (Lumberjack) | Anypoint Monitoring ingest
+| EU Cloud | `transport-layer.prod-eu.msap.io` | 443 | AMQP over WebSockets | Message broker (mTLS)
+| EU Cloud | `configuration-resolver.prod-eu.msap.io` | 443 | HTTPS | Configuration Resolver
+| Canada Cloud | `arm-mcm2-service-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | 11443 | WSS | Message broker (mTLS)
+| Canada Cloud | `runtime-manager.ca1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint)
+| Canada Cloud | `ingest.ca1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| Japan Cloud | `arm-mcm2-service-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | 11443 | WSS | Message broker (mTLS)
+| Japan Cloud | `runtime-manager.jp1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint)
+| Japan Cloud | `ingest.jp1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| India Cloud | `runtime-manager.in1.platform.mulesoft.com` | 8443 | WSS | Message broker (mTLS, path: `/v1/connect`)
+| India Cloud | `runtime-manager.in1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint, path: `/resolver`)
+| India Cloud | `ingest.in1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
 |===
