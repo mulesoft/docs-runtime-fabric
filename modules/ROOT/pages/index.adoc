@@ -1,4 +1,4 @@
-= Anypoint Runtime Fabric Overview
+= Runtime Fabric Overview
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage.
 
