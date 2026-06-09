@@ -72,7 +72,7 @@ This table lists the required hostname endpoint configurations for the EU Cloud.
 `eu1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 | 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
-*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.*
+*As of Runtime Fabric version 1.8.50, this port isn't strictly required. It will be deprecated in the future.*
 
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
