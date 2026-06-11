@@ -1,10 +1,11 @@
 = Using Anypoint Monitoring
+:page-aliases: runtime-fabric-logs.adoc
 
 Mule apps and API gateways deployed to Runtime Fabric include native support for Anypoint Monitoring that allows viewing metrics from within Anypoint Platform.
 
 == Anypoint Monitoring
 
-xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components in your Mule app network. Anypoint Monitoring runs as a sidecar in application deployments and gathers metrics for Mule apps and API gateways deployed to Runtime Fabric. Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+xref:monitoring::index.adoc[Anypoint Monitoring] includes tools that provide feedback from Mule flows and components in your Mule app network. Anypoint Monitoring runs as a sidecar in application deployments and gathers metrics for Mule apps and API gateways deployed to Runtime Fabric. Anypoint Platform Integration Advanced customers have access to additional capabilities, including application log retrieval and search.
 
 == Enable Anypoint Monitoring
 
@@ -50,7 +51,7 @@ The following Anypoint Runtime Fabric updates do not impact or restore monitorin
 
 == Logs 
 
-Anypoint Monitoring provides access to xref:monitoring::logs.adoc[log data] for applications deployed to Runtime Fabric. To access logs with Anypoint Monitoring, you need a https://www.mulesoft.com/anypoint-pricing[Titanium subscription]. 
+Anypoint Monitoring provides access to xref:monitoring::logs.adoc[log data] for applications deployed to Runtime Fabric. To access logs with Anypoint Monitoring, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. 
 
 Each Mule app and API gateway replica can store up to 450 megabytes of log data on disk, after which log data 
 is rotated to provide storage for more recent log data.
