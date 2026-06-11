@@ -6,7 +6,7 @@ Anypoint Runtime Fabric provides customers with varying observability solutions 
 
 include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM] 
 
-For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc[].
+For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc#logs[Using Anypoint Monitoring].
 
 == Export Telemetry Externally
 
