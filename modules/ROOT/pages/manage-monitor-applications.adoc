@@ -1,6 +1,6 @@
 = Monitoring Applications Deployed to Runtime Fabric
 
-Anypoint Runtime Fabric provides several observability options for Mule apps and API gateways. Use the following table to determine which option suits your needs:
+Anypoint Runtime Fabric provides several observability options for Mule apps and API gateways. Use this table to determine which option suits your needs:
 
 [cols="1,2,1,1"]
 |===

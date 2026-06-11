@@ -10,7 +10,7 @@ Metrics collection is enabled by default for all plans. Log and trace collection
 [[enable-anypoint-monitoring]]
 === Verify Network Connectivity
 
-For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound TCP traffic on port 443 to the following domains:
+For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound TCP traffic on port 443 to these domains:
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
@@ -22,7 +22,7 @@ For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime
 
 [NOTE]
 ====
-If you are using Runtime Fabric older than version 1.8.50, use port 5044 instead of port 443 and the following domains:
+If you are using Runtime Fabric older than version 1.8.50, use port 5044 instead of port 443 and these domains:
 
 * US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
 * EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
@@ -58,7 +58,7 @@ Metrics collection is automatic. When a Mule app or API gateway replica is deplo
 
 Each replica caches up to 100 MB of metrics data. If the connection to Anypoint Monitoring is interrupted, the cache typically provides at least four days of storage per replica before data is rotated. Custom metrics may consume cache faster.
 
-The following Runtime Fabric operations do not affect or restore existing metrics data:
+These Runtime Fabric operations do not affect or restore existing metrics data:
 
 * Backup and restore
 * Runtime Fabric upgrade
@@ -159,7 +159,7 @@ This architecture was replaced by the single-sidecar model in version 3.0.0.
 
 == Disable Anypoint Monitoring
 
-Anypoint Monitoring is enabled by default. To disable it for a specific Mule app, pass the following property at deployment time:
+Anypoint Monitoring is enabled by default. To disable it for a specific Mule app, pass this property at deployment time:
 
 [source,copy]
 ----
