@@ -1,13 +1,29 @@
 = Monitoring Applications Deployed to Runtime Fabric
 
-Anypoint Runtime Fabric provides customers with varying observability solutions depending on their needs.
+Anypoint Runtime Fabric provides several observability options for Mule apps and API gateways. Use this table to determine which option suits your needs:
 
-== Anypoint Monitoring
+[cols="1,2,1,1"]
+|===
+|Option |Description |Subscription |Configuration
 
-include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM] 
+|Anypoint Monitoring — metrics
+|CPU, memory, and throughput data for app replicas
+|All plans
+|Enabled by default. See xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Enable Anypoint Monitoring].
 
-For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc[].
+|Anypoint Monitoring — logs
+|Application log search and retrieval in Anypoint Monitoring
+|https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced]
+|See xref:use-anypoint-monitoring.adoc#logs[Enable and Configure Log Forwarding] and xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[Configure Logging and Log Levels].
 
-== Export Telemetry Externally
+|Anypoint Monitoring — traces
+|Full transaction-path visibility using OpenTelemetry
+|https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced]
+|See xref:use-anypoint-monitoring.adoc#enable-trace-data[Enable Trace Data Collection].
 
-You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric. For information about configuring `log4j2.xml`, refer to the xref:use-log4j-appender.adoc[Use Log4j Appender] documentation.
+|External telemetry (Log4j)
+|Route logs to an external logging system using a Log4j appender
+|All plans
+|See xref:use-log4j-appender.adoc[Use Log4j Appender].
+
+|===
