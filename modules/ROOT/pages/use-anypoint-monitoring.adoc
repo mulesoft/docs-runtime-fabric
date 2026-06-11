@@ -5,9 +5,9 @@ Anypoint Runtime Fabric includes native support for xref:monitoring::index.adoc[
 
 Metrics collection is enabled by default for all plans. Log and trace collection require an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription.
 
+[[enable-anypoint-monitoring]]
 == Before You Begin
 
-[[enable-anypoint-monitoring]]
 === Verify Network Connectivity
 
 For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound TCP traffic on port 443 to these domains:
@@ -64,9 +64,9 @@ These Runtime Fabric operations do not affect or restore existing metrics data:
 * Runtime Fabric upgrade
 * OS patching of nodes
 
+[[logs]]
 == Enable and Configure Log Forwarding
 
-[[logs]]
 Log forwarding requires an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. When enabled, Anypoint Monitoring provides access to xref:monitoring::logs.adoc[log data] for applications deployed to Runtime Fabric.
 
 To enable log forwarding for a Mule app:
@@ -100,9 +100,8 @@ Starting with Runtime Fabric agent version 3.0.0, logs are forwarded exclusively
 If you are upgrading from Runtime Fabric agent version 2.11.x or earlier, you must complete migration steps before upgrading to version 3.0.0. See xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric].
 ====
 
-== Enable Trace Data Collection
-
 [[enable-trace-data]]
+== Enable Trace Data Collection
 
 [NOTE]
 include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
@@ -144,7 +143,7 @@ Resource requirements per replica depend on which features are enabled:
 
 |Metrics + logs + traces
 |Up to 30% of the app replica's CPU limit
-|Up to 240 MB
+|Up to 240 MiB
 
 |===
 
@@ -161,7 +160,7 @@ This architecture was replaced by the single-sidecar model in version 3.0.0.
 
 Anypoint Monitoring is enabled by default. To disable it for a specific Mule app, pass this property at deployment time:
 
-[source,copy]
+[source,bash]
 ----
 anypoint.platform.config.analytics.agent.enabled=false
 ----
@@ -171,7 +170,7 @@ Disable monitoring only if your team or organization has compliance or geospecif
 
 == See Also
 
-* xref:manage-monitor-applications.adoc[Monitor Applications Deployed to Runtime Fabric]
+* xref:manage-monitor-applications.adoc[Monitoring Applications Deployed to Runtime Fabric]
 * xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[Configure Logging and Log Levels]
 * xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric]
 * xref:install-self-managed-network-configuration.adoc[Configure Network for Runtime Fabric]

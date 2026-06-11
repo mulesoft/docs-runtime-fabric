@@ -9,10 +9,10 @@ Starting with Runtime Fabric agent version 3.0.0, the DaemonSet-based log forwar
 
 If the log forwarder DaemonSet is running on your cluster, complete these steps before upgrading:
 
-. <<enable-app-scoped-log-forwarding>>
-. <<redeploy-apps-legacy-log-forwarding>>
-. <<remove-log-forwarder-daemonset>>
-. <<verify-log-forwarding-migration>>
+. <<enable-app-scoped-log-forwarding,Enable Application-Scoped Log Forwarding>>
+. <<redeploy-apps-legacy-log-forwarding,Redeploy Applications Using Legacy Log Forwarding>>
+. <<remove-log-forwarder-daemonset,Remove the Log Forwarder DaemonSet>>
+. <<verify-log-forwarding-migration,Verify Migration>>
 
 [[enable-app-scoped-log-forwarding]]
 == Enable Application-Scoped Log Forwarding
@@ -68,5 +68,5 @@ After completing the previous steps, verify that:
 
 == See Also
 
-* xref:use-anypoint-monitoring.adoc#logs[Anypoint Monitoring Logs]
+* xref:use-anypoint-monitoring.adoc#logs[Enable and Configure Log Forwarding]
 * xref:upgrade-index.adoc[Upgrading Runtime Fabric]

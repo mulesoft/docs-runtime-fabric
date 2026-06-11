@@ -14,7 +14,7 @@ Anypoint Runtime Fabric provides several observability options for Mule apps and
 |Anypoint Monitoring — logs
 |Application log search and retrieval in Anypoint Monitoring
 |https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced]
-|See xref:use-anypoint-monitoring.adoc#logs[Anypoint Monitoring Logs] and xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[Configure Logging and Log Levels].
+|See xref:use-anypoint-monitoring.adoc#logs[Enable and Configure Log Forwarding] and xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[Configure Logging and Log Levels].
 
 |Anypoint Monitoring — traces
 |Full transaction-path visibility using OpenTelemetry

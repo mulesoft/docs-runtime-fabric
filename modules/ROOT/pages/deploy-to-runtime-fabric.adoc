@@ -146,7 +146,7 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 [[configure-logging-and-log-levels]]
 === Configure Logging and Log Levels
 
-Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. For network and sidecar resource prerequisites, see xref:use-anypoint-monitoring.adoc#logs[Anypoint Monitoring Logs].
+Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. For log forwarding configuration details, see xref:use-anypoint-monitoring.adoc#logs[Enable and Configure Log Forwarding].
 
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.
@@ -157,7 +157,7 @@ Anypoint Monitoring provides access to log data for applications deployed to Run
 ** *WARNING*: Warning messages
 ** *ERROR*: Error messages, such as when an exception occurs
 ** *FATAL*: Fatal messages for when an application fails
-. Optionally, set the log level for specific a Java package class by selecting the log level, entering the `package.name`, and pressing the Enter key.
+. Optionally, set the log level for a specific Java package class by selecting the log level, entering the `package.name`, and pressing the Enter key.
 . Click *Apply Changes*.
 
 === Deploy the Application
