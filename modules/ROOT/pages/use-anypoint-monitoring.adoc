@@ -111,6 +111,22 @@ anypoint.platform.config.analytics.agent.enabled=false
 [NOTE]
 For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
 
+[[enable-trace-data]]
 == Enable Trace Data Collection
 
-For instructions on enabling trace data collection for Mule apps deployed to Runtime Fabric, see xref:manage-monitor-applications.adoc#enable-trace-data[Enable Trace Data Collection].
+[NOTE]
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
+
+Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions.
+When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter].
+
+* You can enable trace data collection for Runtime Fabric applications running on Mule version 4.6 or later. The minimum Runtime Fabric agent version required is 2.6.31 or later.
+* You can enable trace data collection using only the Runtime Manager UI and API. You cannot enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio.
+
+To enable trace data collection for an app:
+
+. Click the *Monitoring* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+After you enable tracing and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
