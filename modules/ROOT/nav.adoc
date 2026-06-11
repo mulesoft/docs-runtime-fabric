@@ -69,7 +69,7 @@
 * xref:manage-monitor-applications.adoc[Monitoring Mule Apps]
   ** xref:use-log4j-appender.adoc[Exporting Telemetry Externally]
   ** xref:use-anypoint-monitoring.adoc[Using Anypoint Monitoring]
-  ** xref:migrate-log-forwarding-3-0-0.adoc[Migrating Log Forwarding Before Upgrading to Version 3.0.0]
+  ** xref:migrate-log-forwarding.adoc[Migrating Log Forwarding Before Upgrading Runtime Fabric]
 * xref:hardening-apps-deployed-runtime-fabric.adoc[Hardening Mule Apps ]
  ** xref:protect-app-properties.adoc[Protecting Mule App Property Values]
  ** xref:manage-secure-properties.adoc[Protecting Mule App Property Values Using RTFCTL]

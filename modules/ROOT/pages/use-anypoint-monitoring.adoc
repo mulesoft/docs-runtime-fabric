@@ -96,7 +96,7 @@ This architecture has been replaced with the sidecar-only model in version 3.0.0
 
 Starting with Runtime Fabric agent version 3.0.0, the DaemonSet-based log forwarding mechanism has been removed. Log forwarding now occurs exclusively through application sidecar containers, which provides better isolation, improved resource management, and simplified operations.
 
-If you are upgrading from Runtime Fabric agent version 2.11.x or earlier and currently use the log forwarder DaemonSet, you must complete migration steps before upgrading. See xref:migrate-log-forwarding-3-0-0.adoc[Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0].
+If you are upgrading from Runtime Fabric agent version 2.11.x or earlier and currently use the log forwarder DaemonSet, you must complete migration steps before upgrading. See xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric].
 
 == (Optional) Disable Anypoint Monitoring for a Mule App
 
