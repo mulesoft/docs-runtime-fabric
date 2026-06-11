@@ -1,5 +1,4 @@
 = Migrate Log Forwarding Before Upgrading Runtime Fabric
-:page-aliases: migrate-log-forwarding-3-0-0.adoc
 
 [IMPORTANT]
 ====
