@@ -4,7 +4,7 @@ Anypoint Runtime Fabric provides several observability options for Mule apps and
 
 [cols="1,2,1,1"]
 |===
-|Option |What it provides |Plan requirement |Where to configure
+|Option |Description |Subscription |Configuration
 
 |Anypoint Monitoring — metrics
 |CPU, memory, and throughput data for app replicas
