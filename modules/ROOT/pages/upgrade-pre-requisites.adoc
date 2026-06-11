@@ -1,4 +1,73 @@
-= Upgrading Pre-requisites 
+= Upgrading Pre-requisites
+
+[[migrate-log-forwarding-3-0-0]]
+== Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0
+
+[IMPORTANT]
+====
+If you are currently using the log forwarder DaemonSet, you must complete these steps before upgrading Runtime Fabric to version 3.0.0. Failure to complete these steps may result in log forwarding disruption.
+====
+
+Starting with Runtime Fabric agent version 3.0.0, the DaemonSet-based log forwarding mechanism has been removed. Log forwarding now occurs exclusively through application sidecar containers. If the log forwarder DaemonSet is running on your cluster, complete these steps before upgrading:
+
+. <<enable-app-scoped-log-forwarding>>
+. <<redeploy-apps-legacy-log-forwarding>>
+. <<remove-log-forwarder-daemonset>>
+. <<verify-log-forwarding-migration>>
+
+[[enable-app-scoped-log-forwarding]]
+=== Enable Application-Scoped Log Forwarding
+
+This setting is enabled by default on most Runtime Fabric instances. However, if it was previously disabled, you must re-enable it using the Runtime Fabric API:
+
+[source,bash]
+----
+curl -X PATCH \
+  -H 'Authorization: Bearer {authToken}' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Accept: application/json, text/plain, */*' \
+  https://anypoint.mulesoft.com/runtimefabric/api/organizations/{orgId}/fabrics/{fabricId}/logforwarding/appScoped?enabled=true
+----
+
+Replace `{authToken}`, `{orgId}`, and `{fabricId}` with your specific values.
+
+[[redeploy-apps-legacy-log-forwarding]]
+=== Redeploy Applications Using Legacy Log Forwarding
+
+All applications currently forwarding logs through the DaemonSet must be redeployed. This switches them to use the sidecar container for log forwarding. You can trigger a redeployment by making any update to the application in Runtime Manager, or by using the Runtime Manager API.
+
+[[remove-log-forwarder-daemonset]]
+=== Remove the Log Forwarder DaemonSet
+
+After all applications are using the new sidecar-based log forwarding, remove the legacy DaemonSet by calling the Runtime Fabric API:
+
+[source,bash]
+----
+curl -X PATCH \
+  -H 'Authorization: Bearer {authToken}' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Accept: application/json, text/plain, */*' \
+  https://anypoint.mulesoft.com/runtimefabric/api/organizations/{orgId}/fabrics/{fabricId}/logforwarding \
+  -d '{"anypointMonitoring": false}'
+----
+
+Replace `{authToken}`, `{orgId}`, and `{fabricId}` with your specific values.
+
+[NOTE]
+====
+Disabling the DaemonSet doesn't impact log forwarding to Anypoint Monitoring via the sidecar containers. Your applications will continue to forward logs normally after completing these steps.
+====
+
+[[verify-log-forwarding-migration]]
+=== Verify Migration
+
+After completing the previous steps, verify that:
+
+* All applications are running and forwarding logs successfully
+* The `am-log-forwarder` DaemonSet is no longer present in your cluster
+* Application logs are visible in Anypoint Monitoring
+
+== Update rtfd Container Resources
 
 For all OpenShift upgrades from versions 2.6.52 and earlier to versions 2.7.0 and later, you must manually increase the `rtfd` container resources to the desired values. See xref:runtime-fabric::rtf-scale.adoc[Scalability Benchmarks] for guidance on `rtfd` container resource values.
 

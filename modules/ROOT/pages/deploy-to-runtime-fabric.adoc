@@ -143,9 +143,10 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 . In the *New Value* field, add a value.
 . Add additional properties as needed.
 
+[[configure-logging-and-log-levels]]
 === Configure Logging and Log Levels
 
-Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs with Anypoint Monitoring, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription.
+Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. For network and sidecar resource prerequisites, see xref:use-anypoint-monitoring.adoc#logs[Anypoint Monitoring Logs].
 
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.

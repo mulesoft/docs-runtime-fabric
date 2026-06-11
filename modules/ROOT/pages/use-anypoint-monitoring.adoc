@@ -96,91 +96,7 @@ This architecture has been replaced with the sidecar-only model in version 3.0.0
 
 Starting with Runtime Fabric agent version 3.0.0, the DaemonSet-based log forwarding mechanism has been removed. Log forwarding now occurs exclusively through application sidecar containers, which provides better isolation, improved resource management, and simplified operations.
 
-The sidecar-only architecture offers several benefits:
-
-* Each application manages its own log forwarding resources, preventing one application from affecting others.
-* No need to manage node-level DaemonSets or worry about node-specific configurations.
-* Log forwarding scales automatically with your application replicas.
-* Reduced cluster-level permissions and better isolation between applications.
-
-=== Migration Steps Required Before Upgrading to Runtime Fabric Agent Version 3.0.0
-
-[IMPORTANT]
-====
-If you are currently using the log forwarder DaemonSet, you must complete these steps before upgrading Runtime Fabric to version 3.0.0. Failure to complete these steps may result in log forwarding disruption.
-====
-
-If the log forwarder DaemonSet is running on your cluster, complete these steps before upgrading:
-
-. <<enable-app-scoped-log-forwarding>>
-. <<redeploy-apps-legacy-log-forwarding>>
-. <<remove-log-forwarder-daemonset>>
-. <<verify-migration>>
-
-[[enable-app-scoped-log-forwarding]]
-==== Enable Application-Scoped Log Forwarding
-
-This setting is enabled by default on most Runtime Fabric instances. However, if it was previously disabled, you must re-enable it using the Runtime Fabric API:
-
-[source,bash]
-----
-curl -X PATCH \
-  -H 'Authorization: Bearer {authToken}' \
-  -H 'Content-Type: application/json;charset=UTF-8' \
-  -H 'Accept: application/json, text/plain, */*' \
-  https://anypoint.mulesoft.com/runtimefabric/api/organizations/{orgId}/fabrics/{fabricId}/logforwarding/appScoped?enabled=true
-----
-
-Replace `{authToken}`, `{orgId}`, and `{fabricId}` with your specific values.
-
-[[redeploy-apps-legacy-log-forwarding]]
-==== Redeploy Applications Using Legacy Log Forwarding
-
-All applications currently forwarding logs through the DaemonSet must be redeployed. This switches them to use the sidecar container for log forwarding. You can trigger a redeployment by making any update to the application in Runtime Manager, or by using the Runtime Manager API.
-
-[[remove-log-forwarder-daemonset]]
-==== Remove the Log Forwarder DaemonSet
-
-After all applications are using the new sidecar-based log forwarding, remove the legacy DaemonSet by calling the Runtime Fabric API:
-
-[source,bash]
-----
-curl -X PATCH \
-  -H 'Authorization: Bearer {authToken}' \
-  -H 'Content-Type: application/json;charset=UTF-8' \
-  -H 'Accept: application/json, text/plain, */*' \
-  https://anypoint.mulesoft.com/runtimefabric/api/organizations/{orgId}/fabrics/{fabricId}/logforwarding \
-  -d '{"anypointMonitoring": false}'
-----
-
-Replace `{authToken}`, `{orgId}`, and `{fabricId}` with your specific values.
-
-[NOTE]
-====
-Disabling the DaemonSet doesn't impact log forwarding to Anypoint Monitoring via the sidecar containers. Your applications will continue to forward logs normally after completing these steps.
-====
-
-[[verify-migration]]
-==== Verify Migration
-
-After completing the previous steps, verify that:
-
-* All applications are running and forwarding logs successfully
-* The `am-log-forwarder` DaemonSet is no longer present in your cluster
-* Application logs are visible in Anypoint Monitoring
-
-== Anypoint Visualizer
-
-xref:visualizer::index.adoc[Anypoint Visualizer] displays views of different aspects of an application network graph. 
-You can use the graph to explore your application network, identify problems, and make decisions.
-
-[WARNING]
-====
-By default, Anypoint Visualizer is disabled when deploying an application to Mule runtime 4.x. 
-See xref:visualizer::setup.adoc#enable-header-injection[Enable Header Injection] for more information.
-Due to the impact on performance, enabling Anypoint Visualizer for application deployments with less than 0.2 vCPU is 
-not supported.
-====
+If you are upgrading from Runtime Fabric agent version 2.11.x or earlier and currently use the log forwarder DaemonSet, you must complete migration steps before upgrading. See xref:upgrade-pre-requisites.adoc#migrate-log-forwarding-3-0-0[Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0].
 
 == (Optional) Disable Anypoint Monitoring for a Mule App
 
@@ -195,23 +111,6 @@ anypoint.platform.config.analytics.agent.enabled=false
 [NOTE]
 For compliance or geospecific requirements if your team or organization cannot send metrics to Anypoint control plane, you can disable Anypoint metrics if you are not contractually obligated to send these metrics for Anypoint usage and billing purposes.
 
-[[enable-trace-data]]
 == Enable Trace Data Collection
 
-[NOTE]
-include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
-
-Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions. 
-When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter]. 
-
-* You can enable trace data collection for your Runtime Fabric applications running on Mule version 4.6 or later, and the minimum Runtime Fabric agent version required is 2.6.31 or above. 
-* You can enable trace data collection using only the Runtime Manager UI and API, but you can't enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio.
-
-
-To enable trace data collection for an app:
-
-. Click the *Monitoring* tab.
-. Select the *Enable tracing* checkbox.
-. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
-
-Once you enable tracing, and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
+For instructions on enabling trace data collection for Mule apps deployed to Runtime Fabric, see xref:manage-monitor-applications.adoc#enable-trace-data[Enable Trace Data Collection].

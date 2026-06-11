@@ -188,7 +188,7 @@ subjects:
 
 [NOTE]
 ====
-Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` service account is no longer required as log forwarding occurs exclusively through application sidecar containers. You can omit this service account for new installations of version 3.0.0 or later. For more information, refer to xref:use-anypoint-monitoring.adoc#log-forwarding-in-runtime-fabric-3-0-0[Log Forwarding in Runtime Fabric 3.0.0].
+Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` service account is no longer required as log forwarding occurs exclusively through application sidecar containers. You can omit this service account for new installations of version 3.0.0 or later. For more information, refer to xref:upgrade-pre-requisites.adoc#migrate-log-forwarding-3-0-0[Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0].
 ====
 
 To use clustered apps in authorized namespaces mode, this RoleBinding must be created:

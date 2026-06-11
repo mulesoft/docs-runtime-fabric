@@ -1,13 +1,57 @@
 = Monitoring Applications Deployed to Runtime Fabric
 
-Anypoint Runtime Fabric provides customers with varying observability solutions depending on their needs.
+Anypoint Runtime Fabric provides several observability options for Mule apps and API gateways. Use the following table to determine which option suits your needs:
+
+[cols="1,2,1,1"]
+|===
+|Option |What it provides |Plan requirement |Where to configure
+
+|Anypoint Monitoring — metrics
+|CPU, memory, and throughput data for app replicas
+|All plans
+|Enabled by default. See xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Enable Anypoint Monitoring].
+
+|Anypoint Monitoring — logs
+|Application log search and retrieval in Anypoint Monitoring
+|https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced]
+|See xref:use-anypoint-monitoring.adoc#logs[Anypoint Monitoring Logs] and xref:deploy-to-runtime-fabric.adoc#configure-logging-and-log-levels[Configure Logging and Log Levels].
+
+|Anypoint Monitoring — traces
+|Full transaction-path visibility using OpenTelemetry
+|https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced]
+|See <<enable-trace-data>>.
+
+|External telemetry (Log4j)
+|Route logs to an external logging system using a Log4j appender
+|All plans
+|See xref:use-log4j-appender.adoc[Use Log4j Appender].
+
+|===
 
 == Anypoint Monitoring
 
-include::reuse::partial$billing/pricing.adoc[tag=logForwardingAM] 
-
-For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available, as described in xref:use-anypoint-monitoring.adoc#logs[Using Anypoint Monitoring].
+For metrics and logs to be sent to Anypoint Monitoring, outbound network connectivity must be available. See xref:use-anypoint-monitoring.adoc[Using Anypoint Monitoring] for network requirements, sidecar resource requirements, and configuration details.
 
 == Export Telemetry Externally
 
 You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric. For information about configuring `log4j2.xml`, refer to the xref:use-log4j-appender.adoc[Use Log4j Appender] documentation.
+
+[[enable-trace-data]]
+== Enable Trace Data Collection
+
+[NOTE]
+include::reuse::partial$billing/pricing.adoc[tag=featureAdvReq]
+
+Traces enable you to understand the path of a transaction in the MuleSoft ecosystem by providing full visibility into the execution path of API calls or application transactions.
+When you enable trace data collection for an app, Anypoint Platform collects and exposes tracing information from Mule runtime engine in the OpenTelemetry standard, enabling you to export it using the Anypoint Monitoring xref:monitoring::telemetry-exporter.adoc[Telemetry Exporter].
+
+* You can enable trace data collection for Runtime Fabric applications running on Mule version 4.6 or later. The minimum Runtime Fabric agent version required is 2.6.31 or later.
+* You can enable trace data collection using only the Runtime Manager UI and API. You cannot enable trace data collection using the Mule Maven plugin, Anypoint CLI, or Anypoint Studio.
+
+To enable trace data collection for an app:
+
+. Click the *Monitoring* tab.
+. Select the *Enable tracing* checkbox.
+. Click *Deploy Application* if you are enabling the feature for a new deployment, or *Apply Changes* if you are editing an existing application.
+
+After you enable tracing and redeploy your application, the Runtime Manager backend starts instrumenting traces for your application.
