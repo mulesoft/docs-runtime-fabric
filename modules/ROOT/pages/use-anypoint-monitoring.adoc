@@ -95,7 +95,10 @@ In some cases, multi-line log entries may not be fully transmitted. This can occ
 
 Starting with Runtime Fabric agent version 3.0.0, logs are forwarded exclusively through a sidecar container deployed alongside each application replica. This replaces the previous DaemonSet-based approach and provides better isolation and resource management.
 
-If you are upgrading from Runtime Fabric agent version 2.11.x or earlier, see xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric] before upgrading.
+[NOTE]
+====
+If you are upgrading from Runtime Fabric agent version 2.11.x or earlier, you must complete migration steps before upgrading to version 3.0.0. See xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric].
+====
 
 == Enable Trace Data Collection
 
