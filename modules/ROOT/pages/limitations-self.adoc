@@ -89,7 +89,7 @@ The following Runtime Fabric roles manage data stored in Kubernetes secrets:
 
 [NOTE]
 ====
-Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` role is no longer used as log forwarding occurs exclusively through application sidecar containers. For more information, refer to xref:upgrade-pre-requisites.adoc#migrate-log-forwarding-3-0-0[Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0].
+Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` role is no longer used as log forwarding occurs exclusively through application sidecar containers. For more information, refer to xref:migrate-log-forwarding-3-0-0.adoc[Migrate Log Forwarding Before Upgrading to Runtime Fabric Agent Version 3.0.0].
 ====
 
 Runtime Fabric components, such as RTF agent, have a legitimate use case to consume the Kube API from the cluster where they are running to monitor or update some Kubernetes resources related to delivering Runtime Fabric features.
