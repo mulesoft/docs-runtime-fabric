@@ -46,11 +46,12 @@ To synchronize in your registry the Mule runtime versions you intend to use for 
 | EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
 | Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 | Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 |===
 
 [NOTE]
 ====
-For Canada Cloud and Japan Cloud deployments on OpenShift, download the following images from the SFCI registry:
+For Canada Cloud, Japan Cloud, and India Cloud deployments on OpenShift, download the following images from the SFCI registry:
 
 * Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
 * Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
@@ -119,10 +120,11 @@ done
 For US Cloud: `rtf-runtime-registry.kprod.msap.io` +
 For EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io` +
 For Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` +
-For Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+For Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` +
+For India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 | `image-path` | Image namespace path on the registry. +
 For US Cloud and EU Cloud: `mulesoft` +
-For Canada Cloud and Japan Cloud: `sfci/mulesoft/ms-docker-image`
+For Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
 |===
 
 --
@@ -161,12 +163,21 @@ For the Canada Cloud:
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
-For the Japan cont  rol plane:
+For the Japan Cloud:
 +
 [source,copy]
----- 
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the India Cloud:
++
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 --
