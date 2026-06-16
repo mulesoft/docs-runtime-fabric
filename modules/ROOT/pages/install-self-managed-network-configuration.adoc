@@ -25,7 +25,7 @@ The following table does not include ports and hostnames from Anypoint Platform 
 | 443 | TCP | HTTPS | API consumers | All nodes | Allow inbound API requests to ingress controllers
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
-| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 443 (v1.8.50, or later) | TCP | HTTPS | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
 |===
 
 == Port Used by the Persistence Gateway
@@ -44,7 +44,7 @@ To function correctly, Runtime Fabric requires the following hostname endpoint c
 | 443 | AMQP over WebSockets a| 
 * US Cloud: `transport-layer.prod.cloudhub.io`
 * EU Cloud: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
+| 443 (v1.8.50 and later)| HTTPS a| 
 * US Cloud: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
 `us1.ingest.mulesoft.com` +

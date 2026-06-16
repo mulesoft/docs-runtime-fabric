@@ -10,7 +10,7 @@ Metrics collection is enabled by default for all plans. Log and trace collection
 
 === Verify Network Connectivity
 
-For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound TCP traffic on port 443 to these domains:
+For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound HTTPS traffic on TCP port 443 to these domains:
 
 * US control plane: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
