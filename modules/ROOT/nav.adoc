@@ -59,7 +59,6 @@
   ** xref:proxy-deploy-runtime-fabric.adoc[Deploying API Proxies]
   ** xref:deployment-status-messages.adoc[Deployment Status Messages]
 * xref:managing-apps-deployed-runtime-fabric.adoc[Managing Mule Apps]
-  ** xref:install-rtfctl.adoc#manage-rtfctl-apps[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL]
   ** xref:manage-apps-rtfctl.adoc[Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL]
   ** xref:app-to-app-requests.adoc[Sending Application-to-Application Requests]
   ** xref:app-versioning.adoc[Reviewing Mule App Versioning]
@@ -83,7 +82,7 @@
   *** xref:troubleshoot-rtf-rtfctl.adoc[Troubleshooting Runtime Fabric]
   *** xref:uninstall-rtf-rtfctl.adoc[Uninstall Runtime Fabric]
 ** xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]
-  *** xref:manage-apps-rtfctl.adoc[Managing Mule Apps Deployed to Runtime Fabric]
+  *** xref:manage-apps-rtfctl-tool.adoc[Managing Mule Apps Deployed to Runtime Fabric]
 
 
 
