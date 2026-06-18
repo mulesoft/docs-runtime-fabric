@@ -72,7 +72,7 @@
 ** xref:setting-up-rtfctl.adoc[Setting Up RTFCTL]
 ** xref:using-rtfctl-rtf.adoc[Using RTFCTL for Runtime Fabric]
 ** xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]
-  *** xref:manage-secure-properties.adoc[Protecting Mule App Property Values]
+  *** xref:manage-secure-properties-tool.adoc[Protecting Mule App Property Values]
 
 
 

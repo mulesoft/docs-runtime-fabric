@@ -1,4 +1,4 @@
-= Protecting Mule App Property Values Using RTFCTL
+= Protecting Mule App Property Values
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
