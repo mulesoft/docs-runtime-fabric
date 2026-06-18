@@ -1,4 +1,4 @@
-= Managing Mule Apps Deployed to Runtime Fabric Using RTFCTL
+= Managing Mule Apps Deployed to Runtime Fabric
 
 Use these `rtfctl` commands to manage Mule apps deployed to Runtime Fabric.
 
