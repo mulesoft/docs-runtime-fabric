@@ -1,0 +1,71 @@
+// Partial content for managing secure properties with RTFCTL
+// Used by multiple navigation entry points
+
+Secure application properties are added in the Runtime Fabric cluster locally, stored securely, and scoped per environment.
+These properties are accessible in unencrypted form by Mule applications deployed in the scoped environment as custom properties.
+
+Runtime Fabric protected properties always take precedence over application-level properties.
+
+[NOTE]
+Using secure properties outside of Runtime Manager is discouraged in favor of those managed by Runtime Manager.
+
+== Install rtfctl
+
+The `rtfctl` utility is required to manage protected properties on Runtime Fabric locally. Follow the steps to xref:install-rtfctl.adoc[install rtfctl] before continuing with managing secure properties.
+
+== Set Secure Properties
+
+. Log into a controller node where `rtfctl` is installed.
+. Run the following command to set a secure property to the Runtime Fabric under a specific environment, substituting the placeholder fields:
++
+[source,copy]
+----
+rtfctl apply secure-property --key <key> --value <value> --app-namespace <app_namespace> --namespace <rtf_namespace>
+----
++
+* *<key>*: The key for the secure property used in the Mule application to reference the value.
+* *<value>*: The value for the secure property to store.
+* *<app_namespace>*: The Anypoint environment to scope this secure property to. Only applications deployed to this environment have access to this secure property.
+* *<rtf_namespace>*:System namespace scope, defaults to `rtf`.
+
+== View Secure Properties
+
+. Log into a controller node where `rtfctl` is installed.
+. Run the following command to view the secure properties applied to the Runtime Fabric under a specific environment, substituting the placeholder fields:
++
+[source,copy]
+----
+./rtfctl get secure-properties -n <environment_id>
+----
++
+* *<environment_id>*: The Anypoint environment ID to list the secure properties under.
+
+== Access Secure Properties
+
+You can access secure properties from inside your Mule application using `${my.property.name}`.
+
+== Remove Secure Properties
+
+. Log into a controller node where `rtfctl` is installed.
+. Run the following command to remove a secure property from the Runtime Fabric in a specific namespace:
++
+[source,copy]
+----
+./rtfctl delete secure-property <my_key> --app-namespace <namespace>
+----
++
+* *<my_key>*: The key used in the Mule application to reference the secure property.
+* *<namespace>*: The namespace in which the secure property applies.
+
+== Restore RTFCTL Managed Secure Properties
+
+`rtfctl` managed secure properties are directly configured in the cluster and are neither sent nor stored in the control plane.
+
+Due to this behavior, these secure properties are not included in the backup and restore process, so they need to be reapplied after restoration.
+
+For details, refer to xref:manage-backup-restore.adoc[].
+
+== See Also
+
+* xref:install-rtfctl.adoc[Install rtfctl]
+* xref:manage-proxy-self.adoc[Manage Proxies Used by Runtime Fabric]
