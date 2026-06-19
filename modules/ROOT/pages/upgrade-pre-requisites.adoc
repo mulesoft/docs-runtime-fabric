@@ -11,7 +11,7 @@ To update `rtfd` container resources:
 +
 image::runtime-fabric-yaml.png[Runtime Fabric instance .yaml file.]
 +
-. In the `.yaml` file, go to `spec:` > `agent:` > `rtfd:`, and update the resource allocations to the following recommended values:
+. In the `.yaml` file, go to `spec:` > `agent:` > `rtfd:`, and update the resource allocations to these recommended values:
 +
 [source,yaml]
 ----
