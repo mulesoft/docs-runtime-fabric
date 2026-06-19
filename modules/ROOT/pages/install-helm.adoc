@@ -259,10 +259,6 @@ global:
   - /var/lib/docker/containers
   - /var/log/containers
   - /var/log/pods
-  deployment:
-    nodeSelector: {}
-  core:
-    affinity: {}
 ----
 
 [NOTE]
@@ -307,22 +303,6 @@ a|
 |`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
 |`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |`fipsEnabled` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnabled: true` default value `false`
-|`global.deployment.nodeSelector` |Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector[nodeSelector^] for Runtime Fabric core service pods. Constrains Runtime Fabric components to run on nodes matching the specified labels. |`global.deployment.nodeSelector.environment: production`
-|`global.core.affinity` |Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity[affinity and anti-affinity^] rules for Runtime Fabric core service pods. Use to control node affinity, pod affinity, or pod anti-affinity for Runtime Fabric components. a|
-[source,yaml]
-----
-global:
-  core:
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: In
-                  values:
-                    - amd64
-----
 |===
 
 === Configure Core Software High Availability Parameters
@@ -393,6 +373,23 @@ For each Runtime Fabric deployment (`agent`, `resource-cache`, and `mule-cluster
 In the case of `agent` deployments, having multiple replicas doesn't increase the throughput it can manage. However, if the leading pod encounters an issue, one of the remaining replicas takes the lead and continues to serve traffic.
 
 By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
+
+You can also use `global.core.affinity` to apply Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity[affinity and anti-affinity^] rules to Runtime Fabric core service pods. Use this to control node affinity, pod affinity, or pod anti-affinity for Runtime Fabric components. For example, to restrict core pods to `amd64` nodes:
+
+[source,yaml]
+----
+global:
+  core:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+----
 
 [NOTE]
 If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't applied to the older version.
