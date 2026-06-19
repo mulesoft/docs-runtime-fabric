@@ -36,57 +36,57 @@ The Persistent Gateway requires a Postgres-compliant database to store persisten
 
 To function correctly, Runtime Fabric requires the following hostname endpoint configurations. Give access to these endpoints in your infrastructure to avoid any installation or deployment issues.
 
-== US and EU Control Planes
+=== US Cloud
+
+This table lists the required hostname endpoint configurations for the US Cloud.
 
 [%header,cols="4*a"]
 |===
 | Port | Protocol | Hostnames | Description
-| 443 | AMQP over WebSockets a| 
-* US control plane: `transport-layer.prod.cloudhub.io`
-* EU control plane: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later)| TCP (Lumberjack) a| 
-* US control plane: +
-`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com` +
+| 443 | AMQP over WebSockets | `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
+| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
+`us1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod.cloudhub.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
-* EU control plane: +
-`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com` +
-
- | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
-| 5044 (legacy) |TCP (Lumberjack) a| 
-* US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
-* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
-
-*As of Runtime Fabric version 1.8.50, this port is not strictly required. It will be deprecated in the future.* 
+*As of Runtime Fabric version 1.8.50, this port isn't strictly required. It will be deprecated in the future.*
 
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
-| 443 | HTTPS a| 
-* US control plane: `worker-cloud-helm-prod.s3.amazonaws.com`
-* EU control plane: `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
-| 443 | HTTPS a|
-* US control plane: `exchange2-asset-manager-kprod.s3.amazonaws.com`
-* EU control plane: `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`, `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` |Anypoint Exchange for application assets.
-| 443 | HTTPS a|
-* US control plane: `exchange-files.anypoint.mulesoft.com` 
-* EU control plane: `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
-| 443 | HTTPS a| 
-* US control plane: `rtf-runtime-registry.kprod.msap.io`
-* EU control plane: `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
-| 443 | HTTPS a| 
-* US control plane: `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`, `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com`
-* EU control plane: `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`, `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
-| 443 | HTTPS a| 
-* US control plane: `runtime-fabric.s3.amazonaws.com`
-* EU control plane: `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
-| 443 | HTTPS a|
-* US control plane: `configuration-resolver.prod.cloudhub.io`
-* EU control plane: `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
+| 443 | HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
+| 443 | HTTPS | `exchange2-asset-manager-kprod.s3.amazonaws.com` | Anypoint Exchange for application assets.
+| 443 | HTTPS | `exchange-files.anypoint.mulesoft.com` | Anypoint Exchange for application files.
+| 443 | HTTPS | `rtf-runtime-registry.kprod.msap.io` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`, `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+| 443 | HTTPS | `runtime-fabric.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `configuration-resolver.prod.cloudhub.io` | Anypoint Configuration Resolver.
 |===
 
-=== Canada Control Plane
+=== EU Cloud
 
-This table lists the required hostname endpoint configurations for the Canada control plane.
+This table lists the required hostname endpoint configurations for the EU Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 443 | AMQP over WebSockets | `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
+| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
+`eu1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+
+*As of Runtime Fabric version 1.8.50, this port isn't strictly required. It will be deprecated in the future.*
+
+| 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
+| 443 | HTTPS | `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
+| 443 | HTTPS | `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`, `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | Anypoint Exchange for application assets.
+| 443 | HTTPS | `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
+| 443 | HTTPS | `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`, `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+| 443 | HTTPS | `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
+|===
+
+=== Canada Cloud
+
+This table lists the required hostname endpoint configurations for the Canada Cloud.
 
 [%header,cols="4*a"]
 |===
@@ -96,6 +96,38 @@ This table lists the required hostname endpoint configurations for the Canada co
 | 8443 | HTTPS | `runtime-manager.ca1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Canada control plane, these services are consolidated behind a single endpoint.
 | 8443 | HTTPS | `ingest.ca1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+|===
+
+=== Japan Cloud
+
+This table lists the required hostname endpoint configurations for the Japan Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 11443 | WSS | `arm-mcm2-service-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric message broker for interaction with the control plane.
+| 443 | HTTPS | `jp1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.jp1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Japan Cloud, these services are consolidated behind a single endpoint.
+| 8443 | HTTPS | `ingest.jp1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+|===
+
+=== India Cloud
+
+This table lists the required hostname endpoint configurations for the India Cloud.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 8443 | WSS | `runtime-manager.in1.platform.mulesoft.com` | Runtime Fabric message broker for interaction with the control plane (path: `/v1/connect`).
+| 443 | HTTPS | `in1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.in1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the India Cloud, these services are consolidated behind a single endpoint (path: `/resolver`).
+| 8443 | HTTPS | `ingest.in1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
 | 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
@@ -136,12 +168,21 @@ If you have outbound connectivity issues that prevent Runtime Fabric from reachi
 
 To allow different endpoints to use mutual TLS authentication to establish a connection, you must configure SSL passthrough to allow the following certificates:
 
-[%header,cols="2*a"]
+[%header,cols="5*a"]
 |===
-| Control Plane | Certificates
-| US control plane | `transport-layer.prod.cloudhub.io` +
-`configuration-resolver.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com`
-| EU control plane | `transport-layer.prod-eu.msap.io` +
-`configuration-resolver.prod-eu.msap.io`
+| Cloud | Hostname | Port | Protocol | Purpose
+| US Cloud | `transport-layer.prod.cloudhub.io` | 443 | AMQP over WebSockets | Message broker (mTLS)
+| US Cloud | `configuration-resolver.prod.cloudhub.io` | 443 | HTTPS | Configuration Resolver
+| US Cloud | `us1.ingest.mulesoft.com` | 443 | TCP (Lumberjack) | Anypoint Monitoring ingest
+| EU Cloud | `transport-layer.prod-eu.msap.io` | 443 | AMQP over WebSockets | Message broker (mTLS)
+| EU Cloud | `configuration-resolver.prod-eu.msap.io` | 443 | HTTPS | Configuration Resolver
+| Canada Cloud | `arm-mcm2-service-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | 11443 | WSS | Message broker (mTLS)
+| Canada Cloud | `runtime-manager.ca1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint)
+| Canada Cloud | `ingest.ca1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| Japan Cloud | `arm-mcm2-service-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | 11443 | WSS | Message broker (mTLS)
+| Japan Cloud | `runtime-manager.jp1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint)
+| Japan Cloud | `ingest.jp1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| India Cloud | `runtime-manager.in1.platform.mulesoft.com` | 8443 | WSS | Message broker (mTLS, path: `/v1/connect`)
+| India Cloud | `runtime-manager.in1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint, path: `/resolver`)
+| India Cloud | `ingest.in1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
 |===

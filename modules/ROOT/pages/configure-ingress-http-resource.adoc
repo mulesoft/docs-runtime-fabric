@@ -15,7 +15,9 @@ Use the HTTP route-template custom resource in Runtime Fabric to define and impl
 
 == HTTP Route-Template Custom-Resource Placeholders
 
-Runtime Fabric provides placeholder properties that cluster administrators can use in their HTTP route-template custom resource. Placeholder properties are replaced with real values during application deployment.
+Runtime Fabric provides placeholder properties for HTTP route templates. Placeholders use Handlebars-style syntax, such as `{{ .ApplicationName }}`. Cluster administrators use them in the HTTP route-template custom resource (`httproutetemplates.rtf.mulesoft.com`). Application developers can enter the same placeholders in the Anypoint Runtime Manager UI when configuring public endpoints for a Mule application deployment (for example in host or path fields).
+
+Placeholder properties are replaced with deployment-specific values when the application deploys.
 
 The following property placeholders are available:
 
@@ -32,10 +34,10 @@ The following property placeholders are available:
 | `{{ .Path }}`| Path value from the public endpoint of application deployment
 | `{{ .OrganizationID }}`| Organization ID of the application deployment
 | `{{ .EnvironmentID }}`| Environment ID of the application deployment
-| `{{ .UniqueId }}`| Unique ID placeholder to create a unique application URL
+| `{{ .UniqueID }}`| Unique ID placeholder to create a unique application URL
 |===
 
-Use the `{ .ResourceName }` placeholder to ensure the uniqueness of the name of the HTTP routing resource being created, especially if the deployment has multiple endpoints. It is recommended to use this placeholder; otherwise, you need to manually ensure the resource name uniqueness. Kubernetes enforces that the names of resources must be unique within a namespace, but not across namespaces.For more details, refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#when-to-use-multiple-namespaces[Namespaces Kubernetes documentation].
+Use the `{{ .ResourceName }}` placeholder to ensure the uniqueness of the name of the HTTP routing resource being created, especially if the deployment has multiple endpoints. It is recommended to use this placeholder; otherwise, you need to manually ensure the resource name uniqueness. Kubernetes enforces that the names of resources must be unique within a namespace, but not across namespaces. For more details, refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#when-to-use-multiple-namespaces[Namespaces Kubernetes documentation].
 
 For example:
 ----
@@ -65,8 +67,26 @@ resources:
 Use the `{{ .UniqueID }}` placeholder to create a unique application URL. This is useful if you want to deploy two applications with same name from different business groups. For example, if you use `/api/{{ .UniqueID }}.com` in the path section of the ingress template, the resulting endpoint will be similar to `/api/7jkbic.com`.
 
 [NOTE]
-The placeholders are currently scoped to the `resources` section of the `httproutetemplates.rtf.mulesoft.com` only.
-Usage of these placeholders on the baseEndpoints and Anypoint Runtime Manager UI will be supported in future releases.
+In the HTTP route-template custom resource, use placeholders in the `resources` section; Runtime Fabric substitutes values there when it generates Kubernetes routing resources (ingress, routes, gateway HTTPRoute, and similar).
+
+The Anypoint Runtime Manager UI resolves the same supported placeholders when you configure public endpoints, so values you enter in the UI are consistent with the template at deployment time. Supported placeholders in the UI replace older, unofficial patterns. For example, to inject the application name dynamically, use `{{ .ApplicationName }}` instead of legacy ingress-style strings such as `app-name`.
+
+[IMPORTANT]
+For HTTP route templates, the Runtime Manager UI no longer treats legacy strings like `app-name` as placeholders. If you redeploy an application that still uses the old syntax in a host or path, that string is left as literal text.
+
+For example, for an application named `test-app`, configuring:
+
+`https://test-app.testrtf.com/app-name` 
+ 
+Previously produced:
+ 
+`https://test-app.testrtf.com/test-app`
+ 
+With the current behavior, the same input produces:
+ 
+`https://test-app.testrtf.com/app-name`
+ 
+To get the application name in the URL, use `https://test-app.testrtf.com/{{ .ApplicationName }}` (or the appropriate segment for your template).
 
 == How the HTTP Route-Template Custom Resource Works in Runtime Fabric
 
@@ -388,12 +408,9 @@ If there are ingress templates and HTTPRoute templates with the same baseEndpoin
 
 *What are some placeholder usage guidelines?*
 
-Placeholders are not mandatory, but use them to make the HTTP Route template more generic. 
+Placeholders are not mandatory, but use them to make the HTTP Route template more generic.
 
-Placeholders are specific to the templates. This means that placeholders used in ingress templates cannot be used in route templates. For example, the `app-name` placeholder:
-
-* In an ingress template the placeholder is replaced by the application name.
-* In a route template the placeholder is treated as a string `app-name`.
+Ingress templates and HTTP route templates use different placeholder conventions. For example, the legacy ingress-style string `app-name` is still replaced by the application name in ingress templates. For HTTP route templates, use Handlebars-style placeholders such as `{{ .ApplicationName }}` in the custom resource and in Runtime Manager; the UI does not replace bare `app-name` strings for HTTP route templates.
 
 == See Also
 

@@ -30,7 +30,7 @@ Anypoint Controller has these limitations and does not support:
 
 * CloudHub 2.0 Mule application deployments
 * Scheduler-based Mule applications
-* Flex Gateway deployments
+* Omni Gateway deployments
 * `rtfctl`-based Runtime Fabric installation or upgrade
 
 [IMPORTANT]
@@ -43,7 +43,7 @@ You must plan your recovery strategy using your source control repository as the
 
 == Before You Begin
 
-Anypoint Controller is designed for Kubernetes administrators with cluster access and proficiency in Kubernetes tools such as `kubectl`, Helm, and Custom Resources. 
+Anypoint Controller is designed for Kubernetes administrators with cluster access and proficiency in Kubernetes tools such as `kubectl`, Helm, and Custom Resources.
 
 Before you begin, review these prerequisites and environment setup requirements.
 
@@ -191,9 +191,9 @@ helm upgrade runtime-fabric <chart-repo>/rtf-agent \
 
 Use the Custom Resource Definition (CRD) to define and manage Mule application configurations similar to any Kubernetes resources through Kubernetes APIs. Anypoint Controller watches the Mule application CR state and matches it against the desired configured state.
 
-Define your Mule application as a Custom Resource using your preferred deployment tool (such as YAML manifests with `kubectl`, Terraform, Helm charts, or GitOps tools). 
+Define your Mule application as a Custom Resource using your preferred deployment tool (such as YAML manifests with `kubectl`, Terraform, Helm charts, or GitOps tools).
 
-The Custom Resource specifies deployment configurations such as CPU and memory resources, replica count, runtime version, application artifact details, properties, volume mounts for secrets and configuration files, and Kubernetes-specific settings. 
+The Custom Resource specifies deployment configurations such as CPU and memory resources, replica count, runtime version, application artifact details, properties, volume mounts for secrets and configuration files, and Kubernetes-specific settings.
 
 After you apply this file to your Kubernetes cluster, for example by using `kubectl apply -f <filename>.yaml`, Anypoint Controller deploys the application based on the specifications.
 
@@ -408,9 +408,9 @@ The secrets are available at:
 [source,xml]
 ----
 <db:config name="Database_Config">
-  <db:my-sql-connection 
-    host="${db.host}" 
-    user="${file:/mnt/secrets/aws/db_username}" 
+  <db:my-sql-connection
+    host="${db.host}"
+    user="${file:/mnt/secrets/aws/db_username}"
     password="${file:/mnt/secrets/aws/db_password}" />
 </db:config>
 ----
@@ -572,7 +572,7 @@ After installing and configuring Anypoint Controller, you can deploy Mule applic
 
 For detailed information about CRD fields and Kubernetes permissions, see:
 
-* xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions] 
+* xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions]
 * xref:deploy-mule-app-anypoint-controller.adoc#understanding-runtime-fabric-agent-kubernetes-permissions[Understanding Runtime Fabric Agent Kubernetes Permissions].
 
 === Create Your First Application
@@ -609,17 +609,17 @@ spec:
   target: my-rtf-target
   businessGroup: MyOrg/Engineering
   environment: Production
-  
+
   # Required: Runtime Configuration
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   # Required: Application Artifact
   application:
     group: my-org
     artifactId: hello-world
     version: "1.0.0"
     packaging: jar
-  
+
   # Deployment Configuration
   replicas: 2
   resources:
@@ -720,15 +720,15 @@ spec:
   businessGroup: MyOrg
   environment: Production
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   application:
     group: my-org
     artifactId: api-gateway
     version: "2.1.0"
     packaging: jar
-  
+
   replicas: 3
-  
+
   # Application properties
   properties:
     - name: http.port
@@ -740,7 +740,7 @@ spec:
       secure: true    # Encrypt this property
     - name: max.connections
       value: "100"
-  
+
   resources:
     requests:
       cpu: 1000m
@@ -798,22 +798,22 @@ spec:
   businessGroup: MyOrg
   environment: Production
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   application:
     group: my-org
     artifactId: order-service
     version: "1.5.0"
     packaging: jar
-  
+
   replicas: 2
-  
+
   # Mount properties from external sources
   propertiesFrom:
     - secretRef:
         name: database-credentials
     - configMapRef:
         name: app-config
-  
+
   resources:
     requests:
       cpu: 500m
@@ -848,19 +848,19 @@ spec:
   businessGroup: MyOrg
   environment: Production
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   application:
     group: my-org
     artifactId: high-traffic-api
     version: "3.0.0"
     packaging: jar
-  
+
   # Configure autoscaling
   autoscaling:
     enabled: true
     minReplicas: 2
     maxReplicas: 10
-  
+
   resources:
     requests:
       cpu: 500m
@@ -890,20 +890,20 @@ spec:
   businessGroup: MyOrg
   environment: Production
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   application:
     group: my-org
     artifactId: workflow-engine
     version: "2.0.0"
     packaging: jar
-  
+
   replicas: 3
-  
+
   # Enable clustering and persistence
   clustered: true
   persistentObjectStore: true
   enforceDeployingReplicasAcrossNodes: true
-  
+
   resources:
     requests:
       cpu: 1000m
@@ -974,7 +974,7 @@ spec:
     nodeSelector:
       environment: production
       disktype: ssd
-    
+
     tolerations:
       - key: "dedicated"
         operator: "Equal"
@@ -985,7 +985,7 @@ spec:
 For more Kubernetes customization options including affinity rules, topology spread constraints, and security context, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
 ====
 
-== Monitor Mule Applications 
+== Monitor Mule Applications
 
 Anypoint Controller reports application state through standard Kubernetes status conditions. These conditions provide real-time feedback on the application's deployment and operational status.
 
@@ -1343,7 +1343,7 @@ The controller automatically:
 . Allows Kubernetes to delete the CR.
 
 [IMPORTANT]
-Deletion is permanent. Make sure your version control repository contains the application configuration in case you need to redeploy it later.r.
+Deletion is permanent. Make sure your version control repository contains the application configuration in case you need to redeploy it later.
 
 == Integrate with CI/CD and GitOps Tools
 
@@ -1456,27 +1456,27 @@ resource "kubernetes_manifest" "hello_world_app" {
   manifest = {
     apiVersion = "rtf.mulesoft.com/v1"
     kind       = "MuleApplication"
-    
+
     metadata = {
       name      = "hello-world-app"
       namespace = "mule-apps"
     }
-    
+
     spec = {
       target         = "production-rtf"
       businessGroup  = "MyOrg/Engineering"
       environment    = "Production"
       runtimeVersion = "4.8.0:2e-java8"
-      
+
       application = {
         group      = "my-org"
         artifactId = "hello-world"
         version    = var.app_version
         packaging  = "jar"
       }
-      
+
       replicas = var.replica_count
-      
+
       resources = {
         requests = {
           cpu    = "500m"
@@ -1561,17 +1561,17 @@ spec:
   target: my-rtf-target
   businessGroup: MyOrg/Engineering
   environment: Production
-  
+
   # Required: Runtime Configuration
   runtimeVersion: "4.8.0:2e-java8"
-  
+
   # Required: Application Artifact
   application:
     group: my-org
     artifactId: hello-world
     version: "1.0.0"
     packaging: jar
-  
+
   # Deployment Configuration
   replicas: 2
   resources:
@@ -1824,7 +1824,7 @@ spec:
 ----
 ====
 
-[%collapsible]
+[#kubernetes-customization%collapsible]
 .Kubernetes Customization
 ====
 Customize pod, service, and deployment metadata:
@@ -1841,19 +1841,19 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8081"
-    
+
     # Node placement
     nodeSelector:
       environment: production
       disktype: ssd
-    
+
     # Tolerations for tainted nodes
     tolerations:
       - key: "dedicated"
         operator: "Equal"
         value: "mule-apps"
         effect: "NoSchedule"
-    
+
     # Affinity rules
     affinity:
       nodeAffinity:
@@ -1872,7 +1872,7 @@ spec:
                 matchLabels:
                   app: hello-world-app
               topologyKey: kubernetes.io/hostname
-    
+
     # Topology spread constraints
     topologySpreadConstraints:
       - maxSkew: 1
@@ -1881,33 +1881,31 @@ spec:
         labelSelector:
           matchLabels:
             app: hello-world-app
-    
+
     # Security context
     containerSecurityContext:
       seccompProfile:
         type: RuntimeDefault
       runAsNonRoot: true
-    
+
     # Service account
     automountServiceAccountToken: true
-    
-    # Environment variables
+
+    # Environment variables (only specific keys are supported)
     env:
-      - name: ENABLE_CONSOLE_LOG
-        value: "true"
-      - name: TZ
-        value: "America/New_York"
-    
+      ENABLE_CONSOLE_LOG: "true"
+      ENABLE_READINESS_PROBE_ON_HTTP_GET: "true"
+
     # Ephemeral storage
     ephemeralStorageLimit: 4Gi
-  
+
   service:
     metadata:
       labels:
         monitoring: enabled
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-  
+
   deployment:
     metadata:
       labels:
@@ -1915,8 +1913,20 @@ spec:
       annotations:
         fluxcd.io/automated: "true"
 ----
+
+[IMPORTANT]
+=====
+The `pod.env` field uses `map[string]string` format (for example, `ENABLE_CONSOLE_LOG: "true"`), not a list of `name`/`value` pairs. As with the xref:customize-kubernetes-crd.adoc[KubernetesTemplate] CR, it supports only the keys listed in this list. Any other key (for example, `MY_CUSTOM_VAR`) is ignored.
+
+* `ENABLE_CONSOLE_LOG`: Enables console logging for the application container. Emitted as a container environment variable. For more information, see xref:customize-kubernetes-crd.adoc#enable-console-logging[Enable Console Logging].
+* `ENABLE_READINESS_PROBE_ON_HTTP_GET`: Enables the native Kubernetes HTTP GET probe for readiness. Requires Mule runtime engine patches from November 7, 2025 or later; older patches might fail to become ready. Emitted as a container environment variable. For more information, see xref:customize-kubernetes-crd.adoc#enable-readiness-probe[Enable Readiness Probe on HTTP GET].
+* `DISABLE_PER_APP_SA`: Disables the per-application service account, so the Mule application uses the default namespace service account. Controls deployment-level behavior. For more information, see xref:customize-kubernetes-crd.adoc#disable-service-account[Disable Per Application Service Account].
+
+To pass custom configuration values to your Mule application, use the `properties` or `propertiesFrom` fields instead. For more information, see <<mounting-properties-from-external-sources>>.
+=====
 ====
 
+[[mounting-properties-from-external-sources]]
 === Mounting Properties from External Sources
 
 The `propertiesFrom` field in the Mule application CR `spec` enables you to inject application properties from Kubernetes Secrets and ConfigMaps without hardcoding them in the Custom Resource.
@@ -1981,9 +1991,9 @@ spec:
 [source,xml]
 ----
 <db:config name="Database_Config">
-  <db:my-sql-connection 
-    host="${db.host}" 
-    user="${db.username}" 
+  <db:my-sql-connection
+    host="${db.host}"
+    user="${db.username}"
     password="${db.password}" />
 </db:config>
 ----
@@ -2277,5 +2287,3 @@ Common errors:
 * xref:customize-kubernetes-crd.adoc[Customize Kubernetes Resources Using CRDs]
 * xref:configure-horizontal-autoscaling.adoc[Configure Horizontal Pod Autoscaling]
 * xref:hardening-apps-deployed-runtime-fabric.adoc[Harden Mule Applications]
-
-

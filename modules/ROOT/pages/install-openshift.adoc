@@ -64,7 +64,7 @@ oc create ns <rtf-namespace>
 
 After you create the namespace, create a pull secret so you can retrieve the Docker images needed to install and run Runtime Fabric.
 
-The default registry URL is `rtf-runtime-registry.kprod.msap.io`. If you’re using a local registry, specify those values here.
+The registry URL depends on your control plane. Refer to the <<required-parameters,required parameters>> section for the `rtfRegistry` value for your region. If you’re using a local registry, specify those values here.
 
 To create the pull secret, run:
 
@@ -188,7 +188,7 @@ subjects:
 
 [NOTE]
 ====
-Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` service account is no longer required as log forwarding occurs exclusively through application sidecar containers. You can omit this service account for new installations of version 3.0.0 or later. For more information, refer to xref:use-anypoint-monitoring.adoc#log-forwarding-in-runtime-fabric-3-0-0[Log Forwarding in Runtime Fabric 3.0.0].
+Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` service account is no longer required as log forwarding occurs exclusively through application sidecar containers. You can omit this service account for new installations of version 3.0.0 or later. For more information, refer to xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric].
 ====
 
 To use clustered apps in authorized namespaces mode, this RoleBinding must be created:
@@ -358,6 +358,7 @@ global:
   - /var/log/pods
 --
 
+[[required-parameters]]
 === Required Parameters
 
 The values for these required parameters are set when you create the Runtime Fabric in Runtime Manager. If you’re not using a local registry, use the default values for the registry URL and pull secret.
@@ -366,7 +367,11 @@ The values for these required parameters are set when you create the Runtime Fab
 |===
 |Key |Value |Example
 |`activationData` |Activation data |YW55cG9pbnQubXVsZXNvZnQuY29tOjBmODdmYzYzLTM3MWUtNDU2Yy1iODg5LTU5NTkyNjYyZjUxZQ==
-|`rtfRegistry` |Registry URL  |`rtf-runtime-registry.kprod.msap.io`
+|`rtfRegistry` |Registry URL  a|
+* US: `rtf-runtime-registry.kprod.msap.io`
+* EU: `rtf-runtime-registry.kprod-eu.msap.io`
+* Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
+* Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===

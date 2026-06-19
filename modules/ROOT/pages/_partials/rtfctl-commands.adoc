@@ -322,16 +322,34 @@ rtfctl apply monitoring-proxy "" --namespace <rtf_namespace>
 
 Updates `rtfctl`.
 
-* Updates from the US control plane
+* Updates `rtfctl` from the US Cloud
 +
 ----
 rtfctl update
 ----
 
-* Updates `rtfctl` from the EU control plane
+* Updates `rtfctl` from the EU Cloud
 +
 ----
 rtfctl update --host eu1.anypoint.mulesoft.com
+----
+
+* Updates `rtfctl` from the Canada Cloud
++
+----
+rtfctl update --host ca1.platform.mulesoft.com
+----
+
+* Updates `rtfctl` from the Japan Cloud
++
+----
+rtfctl update --host jp1.platform.mulesoft.com
+----
+
+* Updates `rtfctl` from the India Cloud
++
+----
+rtfctl update --host in1.platform.mulesoft.com
 ----
 
 [[wait]]

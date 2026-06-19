@@ -60,6 +60,8 @@ Anypoint Runtime Fabric works on any Linux distribution supported by:
 * Red Hat OpenShift
 * VMware Tanzu
 
+Runtime Fabric agent supports most Linux distributions. However, you must conduct your own testing to ensure that Runtime Fabric is compatible with your chosen operating system. Also validate xref:mule-runtime::hardware-and-software-requirements.adoc[Mule runtime engine compatibility] and xref:monitoring::am-installing.adoc#os-support[Anypoint Monitoring compatibility] with your operating system.
+
 === Nodes and Resources
 
 In general, you should follow the best practices provided by your Kubernetes vendor to ensure availability and simplify the administration of your infrastructure.
@@ -87,7 +89,7 @@ The following Runtime Fabric roles manage data stored in Kubernetes secrets:
 
 [NOTE]
 ====
-Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` role is no longer used as log forwarding occurs exclusively through application sidecar containers. For more information, refer to xref:use-anypoint-monitoring.adoc#log-forwarding-in-runtime-fabric-3-0-0[Log Forwarding in Runtime Fabric 3.0.0].
+Starting with Runtime Fabric agent version 3.0.0, the `am-log-forwarder` role is no longer used as log forwarding occurs exclusively through application sidecar containers. For more information, refer to xref:migrate-log-forwarding.adoc[Migrate Log Forwarding Before Upgrading Runtime Fabric].
 ====
 
 Runtime Fabric components, such as RTF agent, have a legitimate use case to consume the Kube API from the cluster where they are running to monitor or update some Kubernetes resources related to delivering Runtime Fabric features.
