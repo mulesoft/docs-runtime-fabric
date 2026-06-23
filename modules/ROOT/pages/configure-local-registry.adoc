@@ -46,29 +46,6 @@ Before you can install or configure Runtime Fabric with a local registry, you mu
 
 To install Runtime Fabric, you must first synchronize the core software images to your local registry. You can perform the synchronization by either running a script automatically or executing commands manually.
 
-[[synch-runtime]]
-=== Synchronize Mule Runtime Images
-
-To synchronize the Mule runtime versions you plan to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes] for the image names and tags. The source registry depends on your control plane:
-
-[%header%autowidth.spread]
-|===
-| Control Plane | Image Location Format
-| US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
-| EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
-| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-|===
-
-[NOTE]
-====
-For Canada Cloud, Japan Cloud, and India Cloud deployments on OpenShift, download the following images from the SFCI registry:
-
-* Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
-* Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
-====
-
 [tabs]
 ====
 Synchronize Automatically:: 
@@ -198,6 +175,28 @@ For the India Cloud:
 --
 ====
 
+[[synch-runtime]]
+=== Synchronize Mule Runtime Images
+
+To synchronize the Mule runtime versions you plan to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes] for the image names and tags. The source registry depends on your control plane:
+
+[%header%autowidth.spread]
+|===
+| Control Plane | Image Location Format
+| US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
+| EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
+| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+|===
+
+[NOTE]
+====
+For Canada Cloud, Japan Cloud, and India Cloud deployments on OpenShift, download the following images from the SFCI registry:
+
+* Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
+* Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
+====
 
 == Configure Your Local Registry for Runtime Fabric
 
