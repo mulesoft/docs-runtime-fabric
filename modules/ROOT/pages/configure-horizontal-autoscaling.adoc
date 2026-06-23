@@ -100,12 +100,19 @@ MuleSoft owns and applies the https://kubernetes.io/docs/concepts/workloads/auto
 
 The following example shows the CPU-based HPA policy used for Mule apps deployed on Runtime Fabric instances. Note that you can choose `minReplicas` and `maxReplicas` values from the Runtime Manager user interface. 
 
+Runtime Fabric deploys your Mule apps with Helm. The `HorizontalPodAutoscaler` resource therefore includes the Helm ownership label and annotations shown in the following example. These values allow Helm to recognize and manage the resource as part of the application release. If you manually create or modify the HPA, you must keep these labels and annotations, where `<app-name>` is the name of your application and `<app-namespace>` is the environment namespace ID:
+
 ----
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: my-app
   namespace: app-namespace
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: <app-name>
+    meta.helm.sh/release-namespace: <app-namespace>
 spec:
   behavior:
     scaleDown:
@@ -248,3 +255,52 @@ The `grep` command filters the output of `kubectl get events` for lines that con
 5m5s   Normal SuccessfulRescale   HorizontalPodAutoscaler   New size: 8; reason: cpu resource utilization (percentage of request) above target
 4m50s  Normal SuccessfulRescale   HorizontalPodAutoscaler   New size: 10; reason:
 ----
+
+== Troubleshooting
+
+=== Deployment Fails with `invalid ownership metadata` Error
+
+When you deploy a Mule app with autoscaling enabled, the deployment can fail and the app shows a *Not running* status in Runtime Manager with an error similar to the following:
+
+[source,text,linenums]
+----
+1 or more replicas in unexpected state: [Runtime Fabric] UNKNOWN: running helm install:
+failed to upgrade: failed to upgrade chart runtime-fabric-public/rtf-mule-chart:<version>:
+Unable to continue with update: HorizontalPodAutoscaler "<app-name>" in namespace
+"<app-namespace>" exists and cannot be imported into the current release: invalid ownership
+metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to
+"Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to
+"<app-name>"; annotation validation error: missing key "meta.helm.sh/release-namespace": must
+be set to "<app-namespace>"
+----
+
+This error occurs when a `HorizontalPodAutoscaler` (or another Kubernetes resource, such as a `Service` or `ServiceAccount`) with the same name already exists in the namespace but is not owned by Helm because it is missing the required Helm ownership label and annotations. Helm refuses to take ownership of a resource it did not create, so the deployment fails. This commonly happens when:
+
+* An HPA was created manually or by a tool other than Runtime Fabric.
+* A previous deployment left orphaned resources on the cluster after the application was removed from Runtime Manager, leaving Runtime Manager and the cluster out of sync.
+
+To resolve the error, use one of the following options:
+
+* *Add the Helm ownership metadata to the existing resource.* Patch the resource so that Helm can adopt it, where `<app-name>` is the application name and `<app-namespace>` is the environment namespace ID:
++
+[source,console,linenums]
+----
+kubectl label horizontalpodautoscaler <app-name> -n <app-namespace> \
+  app.kubernetes.io/managed-by=Helm --overwrite
+
+kubectl annotate horizontalpodautoscaler <app-name> -n <app-namespace> \
+  meta.helm.sh/release-name=<app-name> \
+  meta.helm.sh/release-namespace=<app-namespace> --overwrite
+----
++
+* *Delete the conflicting resource.* If the resource is left over from a previous deployment, delete it so that Runtime Fabric can recreate it during the next deployment. Verify that the resource is not in use before deleting it:
++
+[source,console,linenums]
+----
+kubectl delete horizontalpodautoscaler <app-name> -n <app-namespace>
+----
++
+[NOTE]
+If the error references a different resource type, such as `Service` or `ServiceAccount`, apply the same option to that resource. When the cluster is out of sync, more than one orphaned resource might be missing the Helm ownership metadata.
+
+After you resolve the conflict, redeploy the application from Runtime Manager.
