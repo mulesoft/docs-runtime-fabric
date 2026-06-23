@@ -127,6 +127,9 @@ For US Cloud and EU Cloud: `mulesoft` +
 For Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
 |===
 
+[NOTE]
+For Canada Cloud, Japan Cloud, and India Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script does not account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
+
 --
 Synchronize Manually:: 
 
@@ -157,9 +160,9 @@ For the EU Cloud:
 For the Canada Cloud:
 +
 [source,copy]
----- 
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
@@ -167,8 +170,8 @@ For the Japan Cloud:
 +
 [source,copy]
 ----
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
@@ -176,8 +179,8 @@ For the India Cloud:
 +
 [source,copy]
 ----
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 --
