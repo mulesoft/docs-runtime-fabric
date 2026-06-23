@@ -380,6 +380,23 @@ In the case of `agent` deployments, having multiple replicas doesn't increase th
 
 By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
 
+You can also use `global.core.affinity` to apply Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity[affinity and anti-affinity^] rules to Runtime Fabric core service pods. Use this to control node affinity, pod affinity, or pod anti-affinity for Runtime Fabric components. For example, to restrict core pods to `amd64` nodes:
+
+[source,yaml]
+----
+global:
+  core:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+----
+
 [NOTE]
 If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't applied to the older version.
 
