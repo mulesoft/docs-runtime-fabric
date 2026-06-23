@@ -123,9 +123,10 @@ done
 * Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
-| `image-path` | Image namespace path on the registry. +
-For US Cloud and EU Cloud: `mulesoft` +
-For Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
+| `image-path` a| Image namespace path on the registry.
+
+* US Cloud and EU Cloud: `mulesoft`
+* Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
 |===
 
 [NOTE]
