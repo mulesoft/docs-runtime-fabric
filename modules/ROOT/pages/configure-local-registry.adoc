@@ -116,12 +116,13 @@ done
 | `platform-url` | Anypoint Platform URL, such as https://anypoint.mulesoft.com, or https://eu1.anypoint.mulesoft.com.
 | `agent-version` | Runtime Fabric agent release version required for the synchronization.
 | `authorization-token` |  Authorization token required for using connected apps to perform the synchronization. When you use this token, a link redirects to the connected apps page.
-| `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
-For US Cloud: `rtf-runtime-registry.kprod.msap.io` +
-For EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io` +
-For Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` +
-For Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` +
-For India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
+| `mulesoft-docker-server` a| MuleSoft Docker server required for the synchronization.
+
+* US Cloud: `rtf-runtime-registry.kprod.msap.io`
+* EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io`
+* Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
+* Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 | `image-path` | Image namespace path on the registry. +
 For US Cloud and EU Cloud: `mulesoft` +
 For Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
