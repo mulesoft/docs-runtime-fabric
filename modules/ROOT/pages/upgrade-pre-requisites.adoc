@@ -28,7 +28,7 @@ rtfd:
 . Click *Save*.
 
 [NOTE]
-For Helm-based upgrades, if the Helm-based installations had previously overridden `rtfd` container resources in the `values.yaml` file, you must manually increase the allocations as per scalability guidelines, because Helm-based upgrades respect pre-release manual overrides.
+During a Helm-based upgrade, if you previously overrode `rtfd` container resources in the `values.yaml` file, manually increase the allocations according to the scalability guidelines. This manual step is required because upgrades respect pre-release overrides.
 
 == See Also
 
