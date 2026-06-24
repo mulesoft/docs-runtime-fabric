@@ -1,0 +1,50 @@
+= Generating Apps Diagnostics and Analyzing with Einstein
+
+Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to Runtime Fabric. This feature leverages Einstein generative AI to automate diagnostics collection and provide intelligent, actionable insights.
+
+== Before you Begin
+
+Before running the MuleSoft diagnostics agent:
+
+include::partial$diagnostics-agent.adoc[tag=prerequisites]
+
+
+[[run-diagnostics-agent]]
+== Run the MuleSoft Diagnostics Agent
+
+. From Anypoint Platform, select *Runtime Manager* > *Applications*.
+. Select the app name.
+. In the navigation menu, select *Diagnostics*.
+. Select an active replica from the dropdown list.
+. Click the *Analyze & Troubleshoot* dropdown. You have these options:
+** Select *Generate Mule Diagnostics* to generate and download the diagnostics for manual inspection.
+... Click *Download* to download the Mule diagnostics files.
+** Select *Analyze with Einstein* to generate the Mule diagnostics and run the analysis simultaneously. 
+... Click *View Analysis* to open the analysis page.
+
+=== Generate Mule Diagnostics
+If you download the generated Mule diagnostics, you receive a `.tar` archive containing two key assets:
+
+Mule Thread Dumps::
++
+A thread dump is a snapshot of all the threads in a replica that shows the current state of the server.
+
+Diagnostic Information Analysis File (DIAF)::
++
+include::partial$diagnostics-agent.adoc[tag=diafFile]
++
+[NOTE]
+The DIAF doesn’t replace application logs.
+
+=== Analyze with Einstein
+If you select *Analyze with Einstein*, the system generates the Mule diagnostics and runs the Einstein analysis simultaneously. The resulting analysis identifies root causes and recommends actions based on the DIAF file.
+
+== Considerations and Limitations
+
+include::partial$diagnostics-agent.adoc[tag=considerationsLimitations]
+
+Runtime Fabric retains Mule diagnostics for 30 days or up to 150 MB.
+
+== See Also
+* xref:mule-runtime::mule-troubleshooting-plugin.adoc#understanding-diagnostic-information-analysis-file-diaf[Understanding the Diagnostic Information Analysis File (DIAF)]
+* xref:use-anypoint-monitoring.adoc[Using Anypoint Monitoring with Runtime Fabric]
