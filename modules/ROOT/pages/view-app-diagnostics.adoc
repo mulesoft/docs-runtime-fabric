@@ -8,6 +8,11 @@ Before running the MuleSoft diagnostics agent:
 
 include::partial$diagnostics-agent.adoc[tag=prerequisites]
 
+For Runtime Fabric, verify that you are running these minimum versions:
+
+* `rtf-agent` <TBD>
+* `rtf-mule-actions` 2.0.7
+
 
 [[run-diagnostics-agent]]
 == Run the MuleSoft Diagnostics Agent
