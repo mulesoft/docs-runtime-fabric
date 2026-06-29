@@ -22,7 +22,7 @@ For Runtime Fabric agent version 2.6.22 and later, the monitoring sidecar sends 
 
 [NOTE]
 ====
-For Runtime Fabric versions earlier than 2.6.22, the agent sends TCP (Lumberjack) traffic on port 443 to a different domain. After you upgrade to 2.6.22 or later and redeploy all applications, this domain is no longer used:
+For Runtime Fabric versions earlier than 2.6.22, the agent sends TCP (Lumberjack) traffic on port 443 to a different domain. After you upgrade to 2.6.22 or later and redeploy all applications, these domains are no longer used:
 
 * US Cloud: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
 * EU Cloud: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
