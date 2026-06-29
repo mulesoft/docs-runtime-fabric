@@ -10,28 +10,24 @@ Metrics collection is enabled by default for all plans. Log and trace collection
 
 === Verify Network Connectivity
 
-For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound HTTPS traffic on TCP port 443 to these domains:
+For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound traffic to the control plane ingestion endpoint for your region.
 
-* US Cloud: +
-`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com`
+For Runtime Fabric agent version 2.6.22 and later, the monitoring sidecar sends HTTPS traffic on TCP port 443 to these domains:
 
-* EU Cloud: +
-`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com`
-
-* Canada Cloud (port 8443, OTEL): +
-`ingest.ca1.platform.mulesoft.com`
-
-* Japan Cloud (port 8443, OTEL): +
-`ingest.jp1.platform.mulesoft.com`
-
-* India Cloud (port 8443, OTEL): +
-`ingest.in1.platform.mulesoft.com`
+* US Cloud: `us1.ingest.mulesoft.com`
+* EU Cloud: `eu1.ingest.mulesoft.com`
+* Canada Cloud (port 8443, OTEL): `ingest.ca1.platform.mulesoft.com`
+* Japan Cloud (port 8443, OTEL): `ingest.jp1.platform.mulesoft.com`
+* India Cloud (port 8443, OTEL): `ingest.in1.platform.mulesoft.com`
 
 [NOTE]
 ====
-If you are using Runtime Fabric older than version 1.8.50, use port 5044 instead of port 443 and these domains:
+For Runtime Fabric versions earlier than 2.6.22, the agent sends TCP (Lumberjack) traffic on port 443 to a different domain. After you upgrade to 2.6.22 or later and redeploy all applications, this domain is no longer used:
+
+* US Cloud: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU Cloud: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
+
+For Runtime Fabric versions earlier than 1.8.50, use port 5044 (TCP Lumberjack) and these domains:
 
 * US Cloud: `dias-ingestor-nginx.prod.cloudhub.io`
 * EU Cloud: `dias-ingestor-nginx.prod-eu.msap.io`
