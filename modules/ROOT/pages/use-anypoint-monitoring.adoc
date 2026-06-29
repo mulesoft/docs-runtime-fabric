@@ -12,20 +12,29 @@ Metrics collection is enabled by default for all plans. Log and trace collection
 
 For metrics, logs, and traces to reach Anypoint Monitoring, each node in Runtime Fabric must be able to send outbound HTTPS traffic on TCP port 443 to these domains:
 
-* US control plane: +
+* US Cloud: +
 `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
 `us1.ingest.mulesoft.com`
 
-* EU control plane: +
+* EU Cloud: +
 `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
 `eu1.ingest.mulesoft.com`
+
+* Canada Cloud (port 8443, OTEL): +
+`ingest.ca1.platform.mulesoft.com`
+
+* Japan Cloud (port 8443, OTEL): +
+`ingest.jp1.platform.mulesoft.com`
+
+* India Cloud (port 8443, OTEL): +
+`ingest.in1.platform.mulesoft.com`
 
 [NOTE]
 ====
 If you are using Runtime Fabric older than version 1.8.50, use port 5044 instead of port 443 and these domains:
 
-* US control plane: `dias-ingestor-nginx.prod.cloudhub.io`
-* EU control plane: `dias-ingestor-nginx.prod-eu.msap.io`
+* US Cloud: `dias-ingestor-nginx.prod.cloudhub.io`
+* EU Cloud: `dias-ingestor-nginx.prod-eu.msap.io`
 ====
 
 For the full list of required endpoints, see xref:install-self-managed-network-configuration.adoc[Configure Network for Runtime Fabric].

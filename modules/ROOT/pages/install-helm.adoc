@@ -262,7 +262,7 @@ global:
 ----
 
 [NOTE]
-If you are configuring a Runtime Fabric BYOK with a non-US control plane, review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your control plane.
+If you are configuring a Runtime Fabric BYOK for a non-US Cloud region (EU Cloud, Canada Cloud, Japan Cloud, or India Cloud), review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your cloud region.
 
 [[required-parameters]]
 === Required Parameters
@@ -278,6 +278,7 @@ These required values are created and added to `values.yml` when you create the 
 * EU: `rtf-runtime-registry.kprod-eu.msap.io`
 * Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
@@ -379,6 +380,23 @@ In the case of `agent` deployments, having multiple replicas doesn't increase th
 
 By modifying the `topologySpreadConstraints` object, you can control how the replicas for each deployment are distributed across the cluster nodes.
 
+You can also use `global.core.affinity` to apply Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity[affinity and anti-affinity^] rules to Runtime Fabric core service pods. Use this to control node affinity, pod affinity, or pod anti-affinity for Runtime Fabric components. For example, to restrict core pods to `amd64` nodes:
+
+[source,yaml]
+----
+global:
+  core:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+----
+
 [NOTE]
 If you configure these values and then roll back a Runtime Fabric instance to a previous version, the configuration isn't applied to the older version.
 
@@ -413,7 +431,12 @@ The URL for the Helm repository containing the Helm charts is constructed as fol
 `{RTF_IMAGE_REGISTRY_ENDPOINT}/charts`.
 
 For example:
-`rtf-runtime-registry.kprod.msap.io/charts`
+
+* US Cloud: `rtf-runtime-registry.kprod.msap.io/charts`
+* EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io/charts`
+* Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/charts`
+* Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/charts`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/charts`
 
 == See Also
 

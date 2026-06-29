@@ -1,65 +1,50 @@
-= Using a Local Registry with Runtime Fabric
+= Configure a Local Registry for Runtime Fabric
 
-Runtime Fabric uses its own registry to store the necessary Docker images for installing and managing Runtime Fabric and for running applications in Kubernetes. If your security policies require that you pull your Docker images from a registry under your control, you can set up a local registry to pull and store these Docker images.
+By default, Runtime Fabric pulls the Docker images it needs for installation, management, and application deployments from the MuleSoft-managed registry. If your security policies require that all images come from a registry you control, you can configure Runtime Fabric to use a local registry instead.
 
-== Limitations on Local Registry Support 
+== Requirements and Considerations
 
-You can configure local registry across all Runtime Fabric supported platform vendors to store Mule Docker images (for use when managing application deployments) and Runtime Fabric software images (for use when updating or installing Runtime Fabric software). The following details and limitations apply to both Mule Docker images and Runtime Fabric software images.
+You can configure a local registry across all Runtime Fabric supported platform vendors to store Mule Docker images and Runtime Fabric software images.
 
 [IMPORTANT]
-You cannot use local registry for installation or management of Runtime Fabric operator on OpenShift.
+You cannot use a local registry for installation or management of the Runtime Fabric operator on OpenShift.
+
+=== Supported Configurations
 
 * You can use xref:install-rtfctl.adoc[Runtime Fabric command line utility (`rtfctl`)] version 0.3.150 or later. `rtfctl` installs Runtime Fabric agent to the latest version by default.
 * You can use Helm to install Runtime Fabric and configure your local registry.
-* You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later.
+* You can use a local registry only if you create a new Runtime Fabric instance of version 1.12.0 or later. Once configured, you can upgrade to later versions without reinstalling Runtime Fabric.
 +
-If you set up a local registry, you can upgrade to a version later than 1.12.0 without reinstalling Runtime Fabric.
-+
-To add local registry to an existing Runtime Fabric instance, ensure that the installation is Helm-based xref:migrate-helm.adoc[] and perform the steps on the following section to add local registry.
-* If you create a Runtime Fabric instance to use with a local registry, you cannot later reconfigure it to use the `rtf-runtime-registry` endpoint. To use the `rtf-runtime-registry` endpoint, you must install a new Runtime Fabric instance using the standard installation procedure.
-* You are responsible for synchronizing your local registry with required dependencies:
-+
-** <<synch-rtf, Synchronize Runtime Fabric core software images or dependencies automatically>>
-** <<synch-runtime, Synchronize Mule runtime images or dependencies manually>>
-** Synchronize third party dependencies required by your application. + 
-MuleSoft doesn’t provide additional software to synchronize third party dependencies and images. Push all the dependency images for your Mule app to your local registry before you start the deployments.
+To add a local registry to an existing Runtime Fabric instance, ensure the installation is Helm-based (see xref:migrate-helm.adoc[]) and follow the steps in this page.
 
+[IMPORTANT]
+Local registry configuration is a one-way change. After you configure Runtime Fabric to use a local registry, you cannot reconfigure it to use the `rtf-runtime-registry` endpoint. To revert, you must install a new Runtime Fabric instance using the standard installation procedure.
 
-* If you use a local registry that needs authentication, synchronization and propagation of a pull secret between different namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret across different namespaces if your secret uses the following label:
+=== Synchronization and Authentication
+
+You must keep your local registry synchronized with the images Runtime Fabric requires:
+
+* <<synch-rtf, Synchronize Runtime Fabric Core Software Images>> — synchronize automatically or manually before installation and upgrades.
+* <<synch-runtime, Synchronize Mule Runtime Images>> — synchronize manually for each runtime version you deploy.
+* Third-party dependencies required by your applications — MuleSoft does not provide tooling for this. Push all required images to your local registry before starting deployments.
+
+If your local registry requires authentication, pull secret propagation across namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret automatically if you apply this label to the secret:
 
 ----
   labels:
     rtf.mulesoft.com/synchronized: "true"
 ----
 
-* If you need to authenticate access to your local registry, ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You'll need the name of the configured secret when you install Runtime Fabric. 
+Ensure that the https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials[corresponding credentials are configured as a Kubernetes secret in the `rtf` namespace^]. You need the name of this secret when you install Runtime Fabric.
 
-[[synch-runtime]]
-== Synchronize Mule Runtime Dependencies and Images to Your Local Registry
+== Synchronize Images to Your Local Registry
 
-To synchronize in your registry the Mule runtime versions you intend to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes]. The location of the image depends on the control plane:
-
-[%header%autowidth.spread]
-|===
-| Control Plane | Image Location Format
-| US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
-| EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
-| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-|===
-
-[NOTE]
-====
-For Canada Cloud and Japan Cloud deployments on OpenShift, download the following images from the SFCI registry:
-
-* Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
-* Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
-====
+Before you can install or configure Runtime Fabric with a local registry, you must synchronize the required images. These sections cover Runtime Fabric core software images and Mule runtime images separately, as they use different sources and synchronization methods.
 
 [[synch-rtf]]
-== Synchronize Runtime Fabric Core Software Dependencies and Images to Your Local Registry
+=== Synchronize Runtime Fabric Core Software Images
 
-To install Runtime Fabric, you must first synchronize the dependencies images to your local registry. You can perform the synchronization by either running a script automatically or executing commands manually.  
+To install Runtime Fabric, you must first synchronize the core software images to your local registry. You can perform the synchronization by either running a script automatically or executing commands manually.
 
 [tabs]
 ====
@@ -74,7 +59,7 @@ Automated registry synchronization is available from Runtime Fabric version 2.6.
 
 Ensure that your xref:access-management::permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
 
-. In your Unix shell, run the following script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
+. In your Unix shell, run this script, replacing `agent-version`, `authorization-token`, `mulesoft-docker-server`, and any other parameter value where appropriate:
 +
 For non-OpenShift environments:
 +
@@ -115,15 +100,21 @@ done
 | `platform-url` | Anypoint Platform URL, such as https://anypoint.mulesoft.com, or https://eu1.anypoint.mulesoft.com.
 | `agent-version` | Runtime Fabric agent release version required for the synchronization.
 | `authorization-token` |  Authorization token required for using connected apps to perform the synchronization. When you use this token, a link redirects to the connected apps page.
-| `mulesoft-docker-server` |  MuleSoft Docker server required for the synchronization. +
-For US Cloud: `rtf-runtime-registry.kprod.msap.io` +
-For EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io` +
-For Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` +
-For Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
-| `image-path` | Image namespace path on the registry. +
-For US Cloud and EU Cloud: `mulesoft` +
-For Canada Cloud and Japan Cloud: `sfci/mulesoft/ms-docker-image`
+| `mulesoft-docker-server` a| MuleSoft Docker server required for the synchronization.
+
+* US Cloud: `rtf-runtime-registry.kprod.msap.io`
+* EU Cloud: `rtf-runtime-registry.kprod-eu.msap.io`
+* Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
+* Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
+* India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
+| `image-path` a| Image namespace path on the registry.
+
+* US Cloud and EU Cloud: `mulesoft`
+* Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
 |===
+
+[NOTE]
+For Canada Cloud, Japan Cloud, and India Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script does not account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
 
 --
 Synchronize Manually:: 
@@ -132,7 +123,10 @@ Synchronize Manually::
 --
 To synchronize the dependencies images manually, follow these steps:
 
-. Log in to your private container registry and run the following command, replacing `docker-server` where appropriate:
+[NOTE]
+Repeat the pull/tag/push pattern shown below for each dependency image listed in the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for your version, not just `rtf-agent`.
+
+. Log in to your private container registry and run this command, replacing `docker-server` where appropriate:
 +
 For the US Cloud:
 +
@@ -155,23 +149,106 @@ For the EU Cloud:
 For the Canada Cloud:
 +
 [source,copy]
----- 
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 +
-For the Japan cont  rol plane:
+For the Japan Cloud:
 +
 [source,copy]
----- 
-# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 
-# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0 
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
++
+For the India Cloud:
++
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 --
 ====
 
+[[synch-runtime]]
+=== Synchronize Mule Runtime Images
+
+To synchronize the Mule runtime versions you plan to use for application deployments, refer to the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime patch updates for Runtime Fabric Release Notes] for the image names and tags. The source registry depends on your control plane:
+
+[%header%autowidth.spread]
+|===
+| Control Plane | Image Location Format
+| US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
+| EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
+| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+|===
+
+[NOTE]
+====
+For Canada Cloud, Japan Cloud, and India Cloud deployments on OpenShift, download these images from the SFCI registry:
+
+* Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
+* Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
+====
+
+There is no automated tooling for Mule runtime images. For each runtime version you deploy, manually pull the image from the MuleSoft source registry, retag it for your local registry, and push it, using the same `docker pull`/`docker tag`/`docker push` pattern shown for the core software images.
+
+Log in to both the MuleSoft source registry and your private container registry, then run these commands for your control plane, replacing `<image>` and `<tag>` with the values from the xref:release-notes::runtime-fabric/runtime-fabric-runtimes-release-notes.adoc[Mule runtime release notes] and `<docker-server>` with your local registry server. These examples synchronize a single Mule runtime image; repeat the pattern for each runtime version you deploy.
+
+For the US Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>
+# docker tag rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
+For the EU Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>
+# docker tag rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
+For the Canada Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
+For the Japan Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
+For the India Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
+[NOTE]
+For Canada Cloud, Japan Cloud, and India Cloud, the source image in the SFCI registry uses an `ms-` prefix in the artifact name (for example, `ms-<image>`). When you retag the image for your local registry, drop the `ms-` prefix so that Runtime Fabric can pull it using the expected name.
 
 == Configure Your Local Registry for Runtime Fabric
 
@@ -179,17 +256,12 @@ To configure a local registry, you must gather and add the necessary credentials
 
 === Before You Begin
 
-Ensure that you've performed the following tasks: 
+Ensure that you've completed these steps before proceeding:
 
 . Set up, configure, and test your private Docker image registry.
-. <<synch-rtf, Synchronize>> to your local registry all of the Docker images that you need to install Runtime Fabric:
-+
-See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the required dependencies for your Runtime Fabric version. 
-+
-[NOTE]
-Dependency versions are specific to the Runtime Fabric version. 
+. <<Synchronize Images to Your Local Registry,Synchronize>> all required Docker images to your local registry. See the xref:release-notes::runtime-fabric/runtime-fabric-release-notes-2.x.x.adoc[Runtime Fabric release notes] for the dependency versions specific to your Runtime Fabric version.
 
-To install Runtime Fabric with your local registry using `rtfctl` or `helm`, select one of the following options:
+To install Runtime Fabric with your local registry, select your installation method:
 
 [tabs]
 ====
@@ -207,7 +279,7 @@ RTFCTL::
 +
 This command sets `RTF_IMAGE_REGISTRY_ENDPOINT`, `RTF_IMAGE_REGISTRY_USER`, and `RTF_IMAGE_REGISTRY_PASSWORD` in the current shell environment. 
 
-. Run the following commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
+. Run these commands to verify that the Docker login to the `rtf-runtime-registry` succeeds:
 +
 [source,copy]
 ---- 
@@ -219,7 +291,7 @@ You should see a message that the login was successful.
 
 . <<synch-rtf,Synchronize your container images>> to your local registry.
 
-. Repeat step 3 for all the other dependency images (resourceFetcher, clusterOps etc.) based on the versions published in the Runtime Fabric release notes. 
+. Repeat step 4 for all other dependency images (such as `resourceFetcher` and `clusterOps`) based on the versions published in the Runtime Fabric release notes.
 
 . If you use authentication to access your registry, create the required secret in the rtf namespace:
 +
@@ -238,7 +310,7 @@ You should see a message that the login was successful.
 # rtfctl install ‘<activation_data>’ --image-pull-registry <docker-server>
 ----
 +
-Alternatively, if you use authentication to access your registry, use the following command:
+Alternatively, if you use authentication to access your registry, use this command:
 +
 [source,copy]
 ----
@@ -260,9 +332,9 @@ Helm::
 --
 . <<synch-rtf,Synchronize your container images>> to your local registry.
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
-. In Runtime Manager, select the *Helm* path, and follow the instructions on the screen platform.
+. In Runtime Manager, select the *Helm* path, and follow the on-screen instructions.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
-. Follow the *Helm* path instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
+. Follow the *Helm* path instructions in Runtime Manager to create a secret with your docker server name, username, and password by running this command in your Unix shell:
 +
 [source,copy]
 ----
@@ -270,7 +342,7 @@ kubectl create secret docker-registry rtf-pull-secret --namespace <rtf-namespace
 ----
 
 [start=6]
-. Follow the *Helm* path instructions to download the `values.yml` file so that you can modify its values. For the private registry configuration, update `rtfRegistry` with your local docker server, and update the `pullSecretName` parameter. . 
+. Follow the *Helm* path instructions to download the `values.yml` file so that you can modify its values. For the private registry configuration, update `rtfRegistry` with your local docker server, and update the `pullSecretName` parameter.
 . Continue with the *Helm* path instructions and install Runtime Fabric in your Kubernetes cluster.
 
 --
@@ -280,9 +352,9 @@ OpenShift::
 --
 . <<synch-rtf,Synchronize your container images>> to your local registry.
 . xref:install-helm.adoc#create-a-runtime-fabric-using-runtime-manager[Create a Runtime Fabric using Runtime Manager].
-. In Runtime Manager, follow the instructions on the screen platform.
+. In Runtime Manager, follow the on-screen instructions.
 . Obtain your private `docker-server`, `docker-username`, and `docker-password`.
-. Follow the instructions in Runtime Manager to create a secret with your docker server name, username, and password by running the following command in your Unix shell:
+. Follow the instructions in Runtime Manager to create a secret with your docker server name, username, and password by running this command in your Unix shell:
 +
 [source,copy]
 ----
