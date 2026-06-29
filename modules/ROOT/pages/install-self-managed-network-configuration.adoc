@@ -44,16 +44,18 @@ To function correctly, Runtime Fabric requires the following hostname endpoint c
 | 443 | AMQP over WebSockets a| 
 * US Cloud: `transport-layer.prod.cloudhub.io`
 * EU Cloud: `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later)| HTTPS a| 
-* US Cloud: +
-`dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com` +
-
-* EU Cloud: +
-`dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com` +
+| 443 (v2.6.22 and later)| HTTPS a|
+* US Cloud: `us1.ingest.mulesoft.com`
+* EU Cloud: `eu1.ingest.mulesoft.com`
 
  | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 443 (pre-2.6.22, legacy) | TCP (Lumberjack) a|
+* US Cloud: `dias-ingestor-router.us-east-1.prod.cloudhub.io`
+* EU Cloud: `dias-ingestor-router.eu-central-1.prod-eu.msap.io`
+
+ | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+
+*Required only for RTF versions prior to 2.6.22. After upgrading to RTF 2.6.22 or later and redeploying all applications, these endpoints are no longer used.*
 | 5044 (legacy) |TCP (Lumberjack) a| 
 * US Cloud: `dias-ingestor-nginx.prod.cloudhub.io`
 * EU Cloud: `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
