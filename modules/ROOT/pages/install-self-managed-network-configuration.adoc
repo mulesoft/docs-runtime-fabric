@@ -25,7 +25,7 @@ The following table does not include ports and hostnames from Anypoint Platform 
 | 443 | TCP | HTTPS | API consumers | All nodes | Allow inbound API requests to ingress controllers
 | 443 | TCP | AMQP over WebSockets | All nodes | Internet | Anypoint Platform management services
 | 443 | TCP | HTTPS | All nodes | Internet | API Manager policy updates, API Analytics Ingestion, and Resource retrieval (application files, container images).
-| 443 (v1.8.50, or later) | TCP | Lumberjack | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
+| 443 (v1.8.50, or later) | TCP | HTTPS | All nodes | Internet | Anypoint Monitoring, Anypoint Visualizer
 |===
 
 == Port Used by the Persistence Gateway
@@ -44,12 +44,13 @@ This table lists the required hostname endpoint configurations for the US Cloud.
 |===
 | Port | Protocol | Hostnames | Description
 | 443 | AMQP over WebSockets | `transport-layer.prod.cloudhub.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.us-east-1.prod.cloudhub.io` +
-`us1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 443 (v2.6.22 and later) | HTTPS | `us1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 443 (pre-2.6.22, legacy) | TCP (Lumberjack) | `dias-ingestor-router.us-east-1.prod.cloudhub.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+
+*Required only for Runtime Fabric versions earlier than 2.6.22. After upgrading to Runtime Fabric 2.6.22 or later and redeploying all applications, this endpoint is no longer used.*
 | 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod.cloudhub.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
-*As of Runtime Fabric version 1.8.50, this port isn't strictly required. It will be deprecated in the future.*
-
+*Starting with Runtime Fabric version 1.8.50, this port is not required. It will be deprecated in the future.*
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `worker-cloud-helm-prod.s3.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
 | 443 | HTTPS | `exchange2-asset-manager-kprod.s3.amazonaws.com` | Anypoint Exchange for application assets.
@@ -68,11 +69,13 @@ This table lists the required hostname endpoint configurations for the EU Cloud.
 |===
 | Port | Protocol | Hostnames | Description
 | 443 | AMQP over WebSockets | `transport-layer.prod-eu.msap.io` | Runtime Fabric message broker for interaction with the control plane.
-| 443 (v1.8.50 and later) | TCP (Lumberjack) | `dias-ingestor-router.eu-central-1.prod-eu.msap.io` +
-`eu1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 443 (v2.6.22 and later) | HTTPS | `eu1.ingest.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+| 443 (pre-2.6.22, legacy) | TCP (Lumberjack) | `dias-ingestor-router.eu-central-1.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
+
+*Required only for Runtime Fabric versions earlier than 2.6.22. After upgrading to Runtime Fabric 2.6.22 or later and redeploying all applications, this endpoint is no longer used.*
 | 5044 (legacy) | TCP (Lumberjack) | `dias-ingestor-nginx.prod-eu.msap.io` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric.
 
-*As of Runtime Fabric version 1.8.50, this port isn't strictly required. It will be deprecated in the future.*
+*Starting with Runtime Fabric version 1.8.50, this port is not required. It will be deprecated in the future.*
 
 | 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
