@@ -1,0 +1,24 @@
+
+// tag::prerequisites[]
+* Connect your MuleSoft organization to a Salesforce account. 
+* Enable Agentforce for your organization. See xref:access-management::enabling-agentforce.adoc#enable-einstein-anypoint[Enable Agentforce for Your Anypoint Platform Organization]. 
+* Enable Einstein entitlement for your Anypoint Platform organization. See https://help.salesforce.com/s/articleView?id=platform.mulesoft_enable_einstein_anypoint_platform.htm&type=5[Enable Einstein Entitlement and Routing in Anypoint Platform].
+* Verify that you have either the Mule Developer Generative AI User or Organization Administrator role.
+* Update your Mule runtime to 4.6.23 LTS, 4.9.10 LTS, 4.10 Edge, or later. 
+* Verify that your Mule application is running.
+// end::prerequisites[]
+
+
+// tag::diafFile[]
+The DIAF is a structured, standardized plain-text file. It centralizes diagnostic data and organizes it for improved automated and manual analysis. The DIAF captures the state of events, operations, and critical application data. See xref:mule-runtime::mule-troubleshooting-plugin.adoc[Mule Troubleshooting Plugin]. 
+// end::diafFile[]
+
+// tag::considerationsLimitations[]
+The MuleSoft diagnostics agent uses Einstein generative AI. Limits for running analyses apply per application and per organization:
+
+* 10 analyses per application, per hour
+* 50 analyses per organization, per hour
+* 50 analyses per application, per day
+* 200 analyses per organization, per day
+
+// end::considerationsLimitations[]
