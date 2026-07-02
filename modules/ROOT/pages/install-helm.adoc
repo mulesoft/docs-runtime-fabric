@@ -309,6 +309,8 @@ a|
 |`nodeWatcherEnabled` |Enables or disables node watcher for the cluster | `nodeWatcherEnabled:true` default value `true`
 |`deploymentRateLimitPerSecond` |Sets the deployment rate limit per second | `deploymentRateLimitPerSecond: 1` default value `1`
 |`fipsEnabled` |Enable FIPS for Helm managed Runtime Fabrics. | `fipsEnabled: true` default value `false`
+|`global.core.affinity` |Applies Kubernetes affinity and anti-affinity rules to RTF core service pods. Available from RTF 2.11.0. | See xref:install-helm.adoc#configure-core-software-high-availability-parameters[Configure Core Software High Availability Parameters].
+|`global.core.tolerations` |Applies Kubernetes tolerations to RTF core service pods, allowing them to be scheduled on nodes with matching taints. Available from RTF 2.11.0. | See xref:install-helm.adoc#configure-core-software-high-availability-parameters[Configure Core Software High Availability Parameters].
 |===
 
 === Configure Core Software High Availability Parameters
@@ -395,6 +397,19 @@ global:
                   operator: In
                   values:
                     - amd64
+----
+
+You can use `global.core.tolerations` to apply Kubernetes https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/[tolerations^] to Runtime Fabric core service pods. Use this to allow core pods to be scheduled on nodes that have specific taints. For example, to tolerate a node tainted with `dedicated=rtf:NoSchedule`:
+
+[source,yaml]
+----
+global:
+  core:
+    tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "rtf"
+        effect: "NoSchedule"
 ----
 
 [NOTE]
