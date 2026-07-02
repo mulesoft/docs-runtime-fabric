@@ -148,6 +148,11 @@ Runtime Fabric resolves the property at runtime without exposing the sensitive i
 
 Anypoint Monitoring provides access to log data for applications deployed to Runtime Fabric. To access logs, you need an https://www.mulesoft.com/anypoint-pricing[Anypoint Platform Integration Advanced] subscription. For log forwarding configuration details, see xref:use-anypoint-monitoring.adoc#logs[Enable and Configure Log Forwarding].
 
+[NOTE]
+====
+Runtime Manager provides two ways to configure application log levels: the *Logging* tab (recommended) and the *Properties* tab (legacy). Both methods work, but they write to different configuration paths in the application YAML file. Use the *Logging* tab unless you need TRACE-level logging, which is only available through the *Properties* tab. Choose one method and apply it consistently — mixing both methods for the same application can produce unexpected results.
+====
+
 . Click the *Logging* tab.
 . Select the *Enable application logs* option.
 . Select the log level from the drop-down list:
