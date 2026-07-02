@@ -2,11 +2,12 @@
 
 You can export telemetry externally by using a Log4j appender to integrate your logging system with applications deployed to Runtime Fabric.
 
-You can use any Log4j appender. For information about configuring `log4j2.xml`, see the
+You can use any Log4j appender. Configure the application-level `log4j2.xml` file in your Mule project (located in `src/main/resources`) to define your appenders. For information about the configuration syntax, see the
 https://logging.apache.org/log4j/2.x/manual/configuration.html#ConfigurationSyntax[Log4j Configuration Syntax^].
 
 == Requirements and Restrictions
 
+* Only the application-level `log4j2.xml` file (located in `src/main/resources` of your Mule project) can be customized. The Mule runtime-level `log4j2.xml` file cannot be modified for Runtime Fabric deployments.
 * MuleSoft Support doesn't assist in implementing custom logging configurations or resolving issues caused by custom logging configurations.
 * MuleSoft is not responsible for issues arising from misconfiguration of your Log4j appender, including these or other issues:
 ** Lost logging data
@@ -28,7 +29,7 @@ You can also enable custom Log4j configurations by running the following steps:
 . From inside your cluster, run:
 +
 ----
-kubectl -n rtf patch secret custom-properties -p '{\"data\": {\"CUSTOM_LOG4J_ENABLED\": \"dHJ1Z0==\"}}'
+kubectl -n rtf patch secret custom-properties -p '{\"data\": {\"CUSTOM_LOG4J_ENABLED\": \"dHJ1ZQ==\"}}'
 ----
 . Restart the Runtime Fabric agent pod.
 . Restart the application associated with the custom Log4j configuration.
