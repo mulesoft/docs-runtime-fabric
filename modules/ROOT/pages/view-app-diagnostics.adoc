@@ -1,6 +1,6 @@
-= Generating Apps Diagnostics and Analyzing with Einstein
+= Generating Apps Diagnostics and Analyzing with AI
 
-Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to Runtime Fabric. This feature leverages Einstein generative AI to automate diagnostics collection and provide intelligent, actionable insights.
+Use the MuleSoft diagnostics agent to troubleshoot your Mule applications deployed to Runtime Fabric. This feature leverages generative AI to automate diagnostics collection and provide intelligent, actionable insights.
 
 == Before you Begin
 
@@ -24,7 +24,7 @@ For Runtime Fabric, verify that you are running these minimum versions:
 . Click the *Analyze & Troubleshoot* dropdown. You have these options:
 ** Select *Generate Mule Diagnostics* to generate and download the diagnostics for manual inspection.
 ... Click *Download* to download the Mule diagnostics files.
-** Select *Analyze with Einstein* to generate the Mule diagnostics and run the analysis simultaneously. 
+** Select *Analyze with AI* to generate the Mule diagnostics and run the analysis simultaneously.
 ... Click *View Analysis* to open the analysis page.
 
 === Generate Mule Diagnostics
@@ -41,8 +41,8 @@ include::partial$diagnostics-agent.adoc[tag=diafFile]
 [NOTE]
 The DIAF doesn’t replace application logs.
 
-=== Analyze with Einstein
-If you select *Analyze with Einstein*, the system generates the Mule diagnostics and runs the Einstein analysis simultaneously. The resulting analysis identifies root causes and recommends actions based on the DIAF file.
+=== Analyze with AI
+If you select *Analyze with AI*, the system generates the Mule diagnostics and runs the AI analysis simultaneously. The resulting analysis identifies root causes and recommends actions based on the DIAF file.
 
 == Considerations and Limitations
 
