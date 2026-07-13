@@ -1,65 +1,65 @@
 = Runtime Fabric High Availability and Disaster Recovery
 
-Anypoint Runtime Fabric runs Mule applications on a Kubernetes-based runtime plane that you operate on your own infrastructure or cloud. You achieve high availability (HA) by keeping applications available despite node or zone failures. Disaster recovery (DR) restores the Runtime Fabric cluster and its deployed applications after a larger disruption. MuleSoft doesn't back up customer data or customer-managed configuration; you own cluster backup, restore, and DR.
+Anypoint Runtime Fabric runs Mule applications on a Kubernetes-based runtime plane that you operate on your own infrastructure or cloud. You achieve high availability (HA) by running multiple replicas across availability zones, so that the platform keeps applications available when a node or zone fails. You achieve disaster recovery (DR) by backing up the cluster and restoring it after a larger disruption. MuleSoft does not back up your data or your cluster configuration; you own cluster backup, restore, and DR.
 
 For an overview of HA and DR across all Mule deployment models, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
 
 == High Availability Versus Disaster Recovery
 
-High availability (HA) is the measure of a system's ability to remain accessible despite a system component failure. In Runtime Fabric, you achieve HA by running multiple replicas of an application spread across availability zones so that Kubernetes can reschedule workloads when a node or zone fails.
+High availability (HA) measures a system's ability to remain accessible when a component fails. On Runtime Fabric, you achieve HA by running multiple replicas of an application across availability zones, so that Kubernetes reschedules workloads when a node or zone fails.
 
-Disaster recovery (DR) is the process of restoring a system to an acceptable previous state after a natural or man-made disaster, such as flooding, power failures, server failures, or misconfigurations.
+Disaster recovery (DR) restores a system to an acceptable previous state after a natural or man-made disaster, such as flooding, power failures, server failures, or misconfigurations.
 
-While they both increase overall availability, the difference is that with HA there's generally no loss of service. HA retains the service, and DR retains the data, but with DR there's usually a slight loss of service while the DR plan executes and the system restores.
+Both strategies increase availability, but they differ in one key way: HA generally keeps the service up with no loss, whereas DR preserves the data but usually incurs a brief loss of service while the DR plan runs and the system restores.
 
-These key terms are essential to understanding HA and DR strategies:
+Two measurable objectives drive your DR plan:
 
-Recovery Time Objective (RTO):: The maximum amount of downtime a business can tolerate. The RTO represents the time it takes for the system to recover after a business disruption.
+Recovery Time Objective (RTO):: The maximum downtime a business tolerates. RTO is the time the system takes to recover after a disruption.
 
-Recovery Point Objective (RPO):: The maximum amount of time acceptable for data loss after a disaster. The RPO influences the frequency of data backups.
+Recovery Point Objective (RPO):: The maximum data loss a business accepts after a disaster. RPO drives how often you back up data.
 
 == High Availability in Runtime Fabric
 
-You achieve high availability in Runtime Fabric through replicas spread across availability zones.
+You achieve high availability in Runtime Fabric by spreading replicas across availability zones.
 
-Multiple Replicas:: Deploy each application with a minimum of two replicas for high availability. For more information, see xref:deploy-to-runtime-fabric.adoc[].
+Multiple replicas:: Deploy each application with a minimum of two replicas. See xref:deploy-to-runtime-fabric.adoc[].
 
-Availability Zones:: Runtime Fabric spreads replicas across availability zones. When you enable CPU-based Horizontal Pod Autoscaling (HPA), autoscaled replicas are also spread evenly across zones. For more information, see xref:configure-horizontal-autoscaling.adoc[].
+Availability zones:: Runtime Fabric spreads replicas across availability zones. When you enable CPU-based Horizontal Pod Autoscaling (HPA), Runtime Fabric spreads the autoscaled replicas evenly across zones. See xref:configure-horizontal-autoscaling.adoc[].
 
-Failover:: If a node or zone fails, Kubernetes reschedules replicas onto healthy nodes to maintain availability.
+Failover:: When a node or zone fails, Kubernetes reschedules replicas onto healthy nodes to maintain availability.
 
-Externalized State:: Use object storage to persist data across application replicas and restarts so that no state is lost when a replica is rescheduled.
+Externalized state:: Persist data in object storage across application replicas and restarts, so that no state is lost when a replica reschedules.
 
 == Disaster Recovery in Runtime Fabric
 
-Runtime Fabric provides backup and restore of cluster services and the state required for deployed applications and their configurations. Because you operate the cluster, disaster recovery is your responsibility.
+Runtime Fabric backs up and restores cluster services and the state that deployed applications and their configurations require. Because you operate the cluster, you own disaster recovery.
 
-Backups:: Schedule regular backups with `rtfctl` and store them on external storage outside the cluster. Hourly backups are recommended. The backup covers cluster and application configuration, such as deployments, services, secrets, ingress, ConfigMaps, and Mule application details. It doesn't cover application state, Ops Center data, or control-plane data. For more information, see xref:manage-backup-restore.adoc[].
+Backups:: Schedule regular backups with `rtfctl`, and store them on external storage outside the cluster. MuleSoft recommends hourly backups. The backup covers cluster and application configuration—deployments, services, secrets, ingress, ConfigMaps, and Mule application details—but it does not cover application state, Ops Center data, or control-plane data. See xref:manage-backup-restore.adoc[].
 
-Restore Targets:: You can restore to an existing Runtime Fabric cluster or to a new Kubernetes cluster that has the same configuration as the backed-up cluster.
+Restore targets:: Restore to an existing Runtime Fabric cluster, or to a new Kubernetes cluster that uses the same configuration as the backed-up cluster.
 
-Common Scenarios:: Use backup and restore for major infrastructure upgrades, migrating the cluster (from on-premises to cloud, or between cloud providers), and failover to a standby cluster.
+Common scenarios:: Use backup and restore for major infrastructure upgrades, cluster migrations (from on-premises to cloud, or between cloud providers), and failover to a standby cluster.
 
-Anypoint Configuration:: Back up your own Anypoint configurations, such as VPN routes, private space firewall rules, connections, and queues, by using the Anypoint CLI or Anypoint Platform APIs.
+Anypoint configuration:: Back up your own Anypoint configurations—such as VPN routes, private space firewall rules, connections, and queues—with the Anypoint CLI or Anypoint Platform APIs.
 
-Shared responsibility: MuleSoft manages the Anypoint Platform control plane. You operate the Runtime Fabric cluster, its backups, and its DR.
+MuleSoft manages the Anypoint Platform control plane. You operate the Runtime Fabric cluster, its backups, and its DR.
 
-== Considerations for Backup and Restore
+== Considerations and Limitations
 
-Consider the following factors when you plan backup and restore for Runtime Fabric:
+Account for the following factors when you plan backup and restore for Runtime Fabric:
 
-Concurrent Instances:: Don't use backup and restore to run two concurrent instances of the same Runtime Fabric at the same time. Running the original and a restored copy simultaneously causes deployment conflicts.
+Concurrent instances:: Do not run two concurrent instances of the same Runtime Fabric through backup and restore. Running the original and a restored copy at the same time causes deployment conflicts.
 
-Changes After Backup:: Changes made after a backup, such as created or deleted applications, updated configurations, and agent upgrades, aren't restored and must be reapplied manually.
+Changes after backup:: Runtime Fabric does not restore changes you make after a backup, such as created or deleted applications, updated configurations, and agent upgrades. Reapply these changes manually.
 
-Cluster and Tooling Consistency:: Restore on the same cluster that is listed in the control plane, and use the same `rtfctl` version that you used to create the backup.
+Cluster and tooling consistency:: Restore on the same cluster that the control plane lists, and use the same `rtfctl` version that you used to create the backup.
 
 == Best Practices
 
-* Keep integrations stateless and externalize state to an external store.
+* Keep your integrations stateless, and externalize state to an external store.
 * Run at least two replicas of each application, spread across availability zones.
-* Schedule regular backups and store them on external storage.
-* Test restore procedures regularly.
+* Schedule regular backups, and store them on external storage.
+* Test your restore procedures regularly.
 
 == See Also
 
