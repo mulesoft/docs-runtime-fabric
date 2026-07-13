@@ -10,7 +10,7 @@ High availability (HA) measures a system's ability to remain accessible when a c
 
 Disaster recovery (DR) restores a system to an acceptable previous state after a natural or man-made disaster, such as flooding, power failures, server failures, or misconfigurations.
 
-Both strategies increase availability, but they differ in one key way: HA generally keeps the service up with no loss, whereas DR preserves the data but usually incurs a brief loss of service while the DR plan runs and the system restores.
+Both strategies increase availability but differ in scope: on Runtime Fabric, HA keeps your application serving requests through node and zone failures with no loss of service, whereas DR restores the cluster and its applications after a larger disruption and usually incurs a brief loss of service while the DR plan runs.
 
 Two measurable objectives drive your DR plan:
 
