@@ -8,6 +8,9 @@ To manage Anypoint Runtime Fabric, review the following topics:
 * xref:view-health.adoc[Viewing Runtime Fabric Health Details] +
 Use Anypoint Runtime Manager to view the health of your Anypoint Runtime Fabric clusters.
 
+* xref:rtf-ha-dr.adoc[High Availability and Disaster Recovery] +
+Design Runtime Fabric deployments to stay available during component failures and to recover from disasters while minimizing downtime and data loss.
+
 * xref:install-rtfctl.adoc[Using RTFCTL Tool] +
 Use the `rtfctl` command line tool to install, configure, upgrade, uninstall, troubleshoot, back up, and restore Runtime Fabric. Additionally, you can manage deployed Mule apps, protect Mule app values, and install and replace Mule license keys.
 
