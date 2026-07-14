@@ -107,14 +107,15 @@ done
 * Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
+* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net`
 | `image-path` a| Image namespace path on the registry.
 
 * US Cloud and EU Cloud: `mulesoft`
-* Canada Cloud, Japan Cloud, and India Cloud: `sfci/mulesoft/ms-docker-image`
+* Canada Cloud, Japan Cloud, India Cloud, and Australia Cloud: `sfci/mulesoft/ms-docker-image`
 |===
 
 [NOTE]
-For Canada Cloud, Japan Cloud, and India Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script does not account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
+For Canada Cloud, Japan Cloud, India Cloud, and Australia Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script does not account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
 
 --
 Synchronize Manually:: 
@@ -172,6 +173,15 @@ For the India Cloud:
 # docker tag rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
++
+For the Australia Cloud:
++
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
+----
 --
 ====
 
@@ -188,11 +198,12 @@ To synchronize the Mule runtime versions you plan to use for application deploym
 | Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 | Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 | India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Australia Cloud | `rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 |===
 
 [NOTE]
 ====
-For Canada Cloud, Japan Cloud, and India Cloud deployments on OpenShift, download these images from the SFCI registry:
+For Canada Cloud, Japan Cloud, India Cloud, and Australia Cloud deployments on OpenShift, download these images from the SFCI registry:
 
 * Mule runtime: `/sfci/mulesoft/ms-docker-image/ms-poseidon-runtime-<version>:<tag>`
 * Anypoint Monitoring sidecar: `/sfci/mulesoft/ms-docker-image/ms-dias-anypoint-monitoring-sidecar-ubi:<version>`
@@ -247,8 +258,17 @@ For the India Cloud:
 # docker push <docker-server>/mulesoft/<image>:<tag>
 ----
 
+For the Australia Cloud:
+
+[source,copy]
+----
+# docker pull rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
+# docker tag rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker push <docker-server>/mulesoft/<image>:<tag>
+----
+
 [NOTE]
-For Canada Cloud, Japan Cloud, and India Cloud, the source image in the SFCI registry uses an `ms-` prefix in the artifact name (for example, `ms-<image>`). When you retag the image for your local registry, drop the `ms-` prefix so that Runtime Fabric can pull it using the expected name.
+For Canada Cloud, Japan Cloud, India Cloud, and Australia Cloud, the source image in the SFCI registry uses an `ms-` prefix in the artifact name (for example, `ms-<image>`). When you retag the image for your local registry, drop the `ms-` prefix so that Runtime Fabric can pull it using the expected name.
 
 == Configure Your Local Registry for Runtime Fabric
 
