@@ -7,3 +7,4 @@ include::partial$rtfctl-commands.adoc[tag=troubleshoot-rtfctl,leveloffset=+1]
 == See Also
 
 * xref:using-rtfctl.adoc[]
+include::release-notes::partial$release-notes/rn-known-issues.adoc[tag=knownIssuesSeeAlsoLink]
