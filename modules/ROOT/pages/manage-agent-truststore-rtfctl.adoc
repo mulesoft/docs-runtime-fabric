@@ -1,6 +1,6 @@
 = Managing the Agent Truststore with RTFCTL
 
-The `rtfctl agent-truststore` command group lets you inspect and update the certificate authority (CA) certificates that the Runtime Fabric agent uses to establish mutually authenticated TLS (mTLS) connections with the Anypoint Platform control plane.
+Use the `rtfctl agent-truststore` command group to inspect and update the certificate authority (CA) certificates that the Runtime Fabric agent uses to establish mutually authenticated TLS (mTLS) connections with the Anypoint Platform control plane.
 
 == About the Agent Truststore
 
