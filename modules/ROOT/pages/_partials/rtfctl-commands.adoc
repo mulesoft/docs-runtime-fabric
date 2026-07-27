@@ -545,7 +545,7 @@ tag::agent-truststore-rtfctl[]
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Command |Description
-|xref:agent-truststore-info[`agent-truststore info`] | Print a summary of the agent truststore and ca.pem
+|xref:agent-truststore-info[`agent-truststore info`] | Print a summary of the agent truststore and `ca.pem`
 |xref:agent-truststore-retrieve-truststore[`agent-truststore retrieve-agent-truststore`] | Download the PKCS#12 truststore from the cluster secret to a local file
 |xref:agent-truststore-retrieve-ca-pem[`agent-truststore retrieve-ca-pem`] | Download the ca.pem bundle from the cluster secret to a local file
 |xref:agent-truststore-merge-p12[`agent-truststore merge-pem-into-p12`] | Add certificates from a PEM file into a local PKCS#12 truststore
