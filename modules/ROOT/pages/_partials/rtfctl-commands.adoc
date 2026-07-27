@@ -635,7 +635,7 @@ rtfctl agent-truststore update-ca-pem-in-secret -i ca-new.pem --namespace rtf
 [[agent-truststore-refresh]]
 = `agent-truststore refresh-secret-with-pem`
 
-Reads the current truststore and ca.pem from the cluster secret, merges the provided PEM into both, displays the certificate subjects that will be uploaded, and—after confirmation—patches the secret. Use `--yes` to skip the interactive prompts.
+Reads the current truststore and `ca.pem` from the cluster secret, merges the provided PEM into both, displays the certificate subjects to upload, and—after confirmation—patches the secret. Use `--yes` to skip the interactive prompts.
 
 * Interactive (asks for confirmation before each upload)
 +
