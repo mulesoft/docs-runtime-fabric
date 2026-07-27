@@ -43,7 +43,7 @@ Use `refresh-secret-with-pem` to retrieve the current truststore from the cluste
 rtfctl agent-truststore refresh-secret-with-pem -c new-ca.pem --namespace rtf
 ----
 
-The command prints the subjects of all certificates that will be uploaded and asks for confirmation before patching the secret.
+The command prints the subjects of all certificates to upload and asks for confirmation before patching the secret.
 
 To skip the confirmation prompts (for example, in automation):
 
