@@ -6,10 +6,10 @@ These access permissions are part of the Runtime Fabric helm chart and are autom
 [NOTE]
 You can't extend or modify any of these core software access permissions. Instead, create and apply the `ClusterRole` and `Rolebindings` for the Runtime Fabric Authorized namespaces use case. Refer to xref:authorized-namespaces.adoc[].
 
-[%header%autowidth.spread,cols=".^a,.^a,.^a,.^a]
+[%header%autowidth.spread,cols=".^a,.^a,.^a,.^a"]
 |===
 |Namespace |API Groups | Kubernetes Resources | Verbs
-.9+|<rtf-namespace>|extensions, apps   |deployments, deployments/scale, daemonsets, replicasets   | *
+.10+|<rtf-namespace>|extensions, apps   |deployments, deployments/scale, daemonsets, replicasets   | *
    |“”   |pods, pods/log, pods/portforward, pods/exec, configmaps, secrets, services, namespaces, nodes, serviceaccounts, resourcequotas, events, limitranges   | *
    |batch   |jobs, cronjobs   | *
    |extensions  |jobs   | *
