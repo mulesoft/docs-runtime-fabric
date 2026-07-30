@@ -539,6 +539,119 @@ rtfctl test outbound-network --all --namespace <rtf_namespace>
 end::troubleshoot-rtfctl[]
 
 
+// Agent Truststore Management
+tag::agent-truststore-rtfctl[]
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+|Command |Description
+|xref:agent-truststore-info[`agent-truststore info`] | Print a summary of the agent truststore and `ca.pem`
+|xref:agent-truststore-retrieve-truststore[`agent-truststore retrieve-agent-truststore`] | Download the PKCS#12 truststore from the cluster secret to a local file
+|xref:agent-truststore-retrieve-ca-pem[`agent-truststore retrieve-ca-pem`] | Download the ca.pem bundle from the cluster secret to a local file
+|xref:agent-truststore-merge-p12[`agent-truststore merge-pem-into-p12`] | Add certificates from a PEM file into a local PKCS#12 truststore
+|xref:agent-truststore-merge-pem[`agent-truststore merge-pem-into-pem`] | Add certificates from one PEM file into another PEM bundle
+|xref:agent-truststore-update-truststore[`agent-truststore update-truststore-in-secret`] | Upload a local PKCS#12 truststore into the cluster secret
+|xref:agent-truststore-update-ca-pem[`agent-truststore update-ca-pem-in-secret`] | Upload a local PEM bundle into the cluster secret as ca.pem
+|xref:agent-truststore-refresh[`agent-truststore refresh-secret-with-pem`] | Merge a PEM into the cluster truststore and ca.pem in one step
+|===
+
+[[agent-truststore-info]]
+= `agent-truststore info`
+
+Prints a summary of the agent keystore secret, including all certificates loaded in the PKCS#12 truststore and ca.pem, along with their subjects, expiry dates, and days remaining.
+
+* Print a human-readable summary
++
+----
+rtfctl agent-truststore info --namespace rtf
+----
+
+* Print machine-readable JSON output
++
+----
+rtfctl agent-truststore info -o json --namespace rtf
+----
+
+[[agent-truststore-retrieve-truststore]]
+= `agent-truststore retrieve-agent-truststore`
+
+Downloads the `agent-truststore.p12` file from the cluster secret to a local file. The password is read automatically from the `truststore-password` key in the secret.
+
+----
+rtfctl agent-truststore retrieve-agent-truststore -o agent-truststore-bk.p12 --namespace rtf
+----
+
+* Override the secret name and the output file
++
+----
+rtfctl agent-truststore retrieve-agent-truststore --secret agent-keystore -o agent-truststore-bk.p12 --namespace rtf
+----
+
+[[agent-truststore-retrieve-ca-pem]]
+= `agent-truststore retrieve-ca-pem`
+
+Downloads the `ca.pem` bundle from the cluster secret to a local file.
+
+----
+rtfctl agent-truststore retrieve-ca-pem -o ca-bk.pem --namespace rtf
+----
+
+[[agent-truststore-merge-p12]]
+= `agent-truststore merge-pem-into-p12`
+
+Adds the certificates from a PEM file into a local PKCS#12 truststore file (certificates-only format). Duplicate certificates are detected by subject and skipped.
+
+----
+rtfctl agent-truststore merge-pem-into-p12 -i agent-truststore-bk.p12 -c new-ca.pem -o agent-truststore-new.p12
+----
+
+[[agent-truststore-merge-pem]]
+= `agent-truststore merge-pem-into-pem`
+
+Merges certificates from one PEM file into another PEM bundle. Duplicate certificates are detected by subject and skipped.
+
+----
+rtfctl agent-truststore merge-pem-into-pem -i ca-bk.pem -c new-ca.pem -o ca-new.pem
+----
+
+[[agent-truststore-update-truststore]]
+= `agent-truststore update-truststore-in-secret`
+
+Uploads a local PKCS#12 file into the agent keystore secret, replacing the `agent-truststore.p12` key.
+
+----
+rtfctl agent-truststore update-truststore-in-secret -i agent-truststore-new.p12 --namespace rtf
+----
+
+[[agent-truststore-update-ca-pem]]
+= `agent-truststore update-ca-pem-in-secret`
+
+Uploads a local PEM bundle into the agent keystore secret, replacing the `ca.pem` key.
+
+----
+rtfctl agent-truststore update-ca-pem-in-secret -i ca-new.pem --namespace rtf
+----
+
+[[agent-truststore-refresh]]
+= `agent-truststore refresh-secret-with-pem`
+
+Reads the current truststore and `ca.pem` from the cluster secret, merges the provided PEM into both, displays the certificate subjects to upload, and—after confirmation—patches the secret. Use `--yes` to skip the interactive prompts.
+
+* Interactive (asks for confirmation before each upload)
++
+----
+rtfctl agent-truststore refresh-secret-with-pem -c new-ca.pem --namespace rtf
+----
+
+* Non-interactive (suitable for automation)
++
+----
+rtfctl agent-truststore refresh-secret-with-pem -c new-ca.pem --yes --namespace rtf
+----
+
+end::agent-truststore-rtfctl[]
+
+
 // Uninstall Runtime Fabric Using RTFCTL
 tag::uninstall-rtfctl[]
 To uninstall Runtime Fabric using `rtfctl` commands, follow these steps:
