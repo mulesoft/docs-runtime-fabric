@@ -107,7 +107,7 @@ done
 * Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
-* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net`
+* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net`
 | `image-path` a| Image namespace path on the registry.
 
 * US Cloud and EU Cloud: `mulesoft`
