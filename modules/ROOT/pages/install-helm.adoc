@@ -279,7 +279,7 @@ These required values are created and added to `values.yml` when you create the 
 * Canada: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net`
 * Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
-* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net`
+* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
