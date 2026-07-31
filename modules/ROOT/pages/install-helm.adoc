@@ -438,7 +438,7 @@ For example:
 * Canada Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/charts`
 * Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/charts`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/charts`
-* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/charts`
+* Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/charts`
 
 == See Also
 
