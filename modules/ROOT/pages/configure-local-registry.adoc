@@ -178,8 +178,8 @@ For the Australia Cloud:
 +
 [source,copy]
 ----
-# docker pull rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
-# docker tag rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-rtf-agent:v1.12.0 <docker-server>/mulesoft/rtf-agent:v1.12.0
 # docker push <docker-server>/mulesoft/rtf-agent:v1.12.0
 ----
 --
@@ -195,9 +195,9 @@ To synchronize the Mule runtime versions you plan to use for application deploym
 | Control Plane | Image Location Format
 | US Cloud | `rtf-runtime-registry.kprod.msap.io/mulesoft/<image>:<tag>`
 | EU Cloud | `rtf-runtime-registry.kprod-eu.msap.io/mulesoft/<image>:<tag>`
-| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
-| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Canada Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net/v2/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| Japan Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/v2/sfci/mulesoft/ms-docker-image/<image>:<tag>`
+| India Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/v2/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 | Australia Cloud | `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/v2/sfci/mulesoft/ms-docker-image/<image>:<tag>`
 |===
 
@@ -262,8 +262,8 @@ For the Australia Cloud:
 
 [source,copy]
 ----
-# docker pull rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
-# docker tag rtf-runtime-registry-mulesoft-cp.<placeholder>.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
+# docker pull rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag>
+# docker tag rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/sfci/mulesoft/ms-docker-image/ms-<image>:<tag> <docker-server>/mulesoft/<image>:<tag>
 # docker push <docker-server>/mulesoft/<image>:<tag>
 ----
 
