@@ -82,7 +82,7 @@ Replace `<current-version>` with your current Runtime Fabric Helm chart version.
 
 Use this method when Runtime Fabric is installed on Red Hat OpenShift (operator-based installation).
 
-You can apply the license either from the OpenShift console (by updating the Runtime Fabric instance custom resource) or using Helm. Ensure you have prepared the Base64-encoded license key as described in Prepare the License Key.
+You can apply the license either from the OpenShift console (by updating the Runtime Fabric instance custom resource). Ensure you have prepared the Base64-encoded license key as described in Prepare the License Key.
 
 === Apply the License Key from the OpenShift Console
 
@@ -98,20 +98,6 @@ image::rtf-license-operator-1.png[Runtime Fabric operator with runtime-fabric in
 . Update the Runtime Fabric instance CR .yaml file by adding the `muleLicense` key with your Base64-encoded license value.
 +
 image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
-
-=== Apply the License Key Using Helm on OpenShift
-
-To apply the license using Helm, run the following command (ensure `$BASE64_ENCODED_LICENSE` is set from the Prepare the License Key section):
-
-[source,copy]
-----
-helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICENSE -n rtf --reuse-values
-----
-
-Replace `rtf` with your Runtime Fabric namespace if different.
-
-[NOTE]
-You need to restart your Runtime Fabric Mule apps for the new license to take effect.
 
 == Get License Expiry Date
 
