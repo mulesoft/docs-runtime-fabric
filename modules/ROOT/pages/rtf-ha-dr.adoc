@@ -40,7 +40,7 @@ Runtime Fabric provides high availability for its own core software so that the 
 Deploy each application with a minimum of two replicas. See xref:deploy-to-runtime-fabric.adoc[].
 
 * Availability zones +
-Runtime Fabric spreads Mule application replicas across availability zones. When you enable CPU-based Horizontal Pod Autoscaling (HPA) for a Mule application, Runtime Fabric spreads the autoscaled application replicas evenly across zones. HPA applies to Mule applications, not to the Runtime Fabric core software. See xref:configure-horizontal-autoscaling.adoc[].
+Runtime Fabric uses topology spread constraints to distribute Mule application replicas evenly across availability zones. CPU-based Horizontal Pod Autoscaling (HPA) adjusts the number of application replicas in response to load, but it doesn't control where Kubernetes schedules them; the topology spread constraints keep the added replicas balanced across zones. HPA applies to Mule applications, not to the Runtime Fabric core software. See xref:configure-horizontal-autoscaling.adoc[].
 
 * Failover +
 When a node or zone fails, Kubernetes reschedules replicas onto healthy nodes to maintain availability.
