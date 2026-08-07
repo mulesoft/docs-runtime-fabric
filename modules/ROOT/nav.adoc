@@ -29,6 +29,7 @@
   *** xref:upgrade-pre-requisites.adoc[Upgrading Runtime Fabric on Red Hat OpenShift]
 * xref:manage-index.adoc[Managing Runtime Fabric]
   ** xref:view-health.adoc[Viewing Runtime Fabric Health Details]
+  ** xref:rtf-ha-dr.adoc[High Availability and Disaster Recovery]
   ** xref:replace-license-key.adoc[Replacing a Mule License Key]
   ** xref:downgrade-runtime-fabric.adoc[Downgrading Runtime Fabric Version]
   ** xref:migrate-helm.adoc[Migrating to Helm Managed Runtime Fabric]
