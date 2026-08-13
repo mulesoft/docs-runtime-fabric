@@ -77,7 +77,7 @@ This table lists the required hostname endpoint configurations for the EU Cloud.
 
 *Starting with Runtime Fabric version 1.8.50, this port is not required. It will be deprecated in the future.*
 
-| 443 | HTTPS | `anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
+| 443 | HTTPS | `eu1.anypoint.mulesoft.com` | Anypoint Platform for pulling assets.
 | 443 | HTTPS | `worker-cloud-helm-prod-eu-rt.s3.amazonaws.com`, `worker-cloud-helm-prod-eu-rt.s3.eu-central-1.amazonaws.com` | Runtime Fabric version repository. The Runtime Fabric installation uses software from this repository during installation and upgrades.
 | 443 | HTTPS | `exchange2-asset-manager-kprod-eu.s3.amazonaws.com`, `exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com` | Anypoint Exchange for application assets.
 | 443 | HTTPS | `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
