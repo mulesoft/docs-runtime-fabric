@@ -10,7 +10,7 @@ include::partial$diagnostics-agent.adoc[tag=prerequisites]
 
 For Runtime Fabric, verify that you are running these minimum versions:
 
-* `rtf-agent` <TBD>
+* `rtf-agent` 3.0.102
 * `rtf-mule-actions` 2.0.7
 
 
