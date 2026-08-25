@@ -43,11 +43,12 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select one of the following options:
+. Enter the name of the new Runtime Fabric, then select one of these options:
 
 * Amazon Elastic Kubernetes Service
 * Azure Kubernetes Service
 * Google Kubernetes Engine
+* Oracle Kubernetes Engine
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
 

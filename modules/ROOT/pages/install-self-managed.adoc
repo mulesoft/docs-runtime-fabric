@@ -73,11 +73,12 @@ To install Runtime Fabric, first create a Runtime Fabric using Runtime Manager. 
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select one of the following options:
+. Enter the name of the new Runtime Fabric, then select one of these options:
 +
 * Amazon Elastic Kubernetes Service
 * Azure Kubernetes Service
 * Google Kubernetes Engine
+* Oracle Kubernetes Engine
 
 . Click *Next*.
 . Click *rtfctl*.

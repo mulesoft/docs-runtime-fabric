@@ -11,7 +11,7 @@ Depending on your affinity to public clouds and in-house Kubernetes expertise, t
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform[Red Hat OpenShift Container Platform (OCP)^]
 * https://www.redhat.com/en/technologies/cloud-computing/openshift/platform-plus[Red Hat OpenShift Platform Plus^]
 
-After you use one of these solutions to set up K8s on the cluster, proceed to the Runtime Fabric installation section to set up Runtime Fabric as you would install on an AKS or EKS. 
+After you use one of these solutions to set up K8s on the cluster, proceed to the Runtime Fabric installation section to set up Runtime Fabric as you would install on an AKS, EKS, or OKE. 
 
 
 == Change for Appliance Users 
