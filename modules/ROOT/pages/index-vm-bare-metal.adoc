@@ -28,6 +28,7 @@ Existing appliance utility users can migrate the licensed Core capacity currentl
 ** https://aws.amazon.com/eks/eks-anywhere/[Runtime Fabric on AWS EKS-Anywhere^]
 ** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Runtime Fabric on Google Kubernetes Engine^]
 ** https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Runtime Fabric on Microsoft Azure Kubernetes Service^]
+** https://www.oracle.com/cloud/cloud-native/kubernetes-engine/[Runtime Fabric on Oracle Kubernetes Engine^]
 
 
 
