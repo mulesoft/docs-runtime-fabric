@@ -97,7 +97,7 @@ roleRef:
 
 You configure authorized namespaces when you install Runtime Fabric. Refer to the appropriate installation instructions:
 
-* xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, and GKE Using Helm]
+* xref:install-helm.adoc[Installing Runtime Fabric on EKS, AKS, GKE, and OKE Using Helm]
 * xref:install-openshift.adoc[Install Runtime Fabric on Red Hat OpenShift]
 
 == Add New Namespaces

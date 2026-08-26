@@ -2,7 +2,7 @@
 
 Anypoint Runtime Fabric enables you to deploy Mule applications and API proxies to a Kubernetes cluster that you create, configure, and manage.
 
-Runtime Fabric isolates applications by running a separate Mule runtime server per application and supports automated fail-over and horizontal scaling across multiple replicas. You can use Runtime Fabric with managed Kubernetes services like EKS, AKS, and GKE, or with self-managed distributions like Red Hat OpenShift and Rancher. 
+Runtime Fabric isolates applications by running a separate Mule runtime server per application and supports automated fail-over and horizontal scaling across multiple replicas. You can use Runtime Fabric with managed Kubernetes services like EKS, AKS, GKE, and OKE, or with self-managed distributions like Red Hat OpenShift and Rancher. 
 
 Watch the Anypoint Runtime Fabric Product Spotlight video to see a quick overview of Runtime Fabric.
 
@@ -14,7 +14,8 @@ If you work in public clouds and have some level of expertise in managing a Kube
 
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-aws-elastic-kubernetes-service/[Amazon Elastics Kubernetes Service (EKS)^]
 * https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-google-kubernetes-engine/[Google Kubernetes Engine (GKE)^]
-* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^] 
+* https://developer.mulesoft.com/tutorials-and-howtos/runtime-fabric/runtime-fabric-azure-kubernetes-service/[Microsoft Azure Kubernetes Service (AKS)^]
+* https://www.oracle.com/cloud/cloud-native/kubernetes-engine/[Oracle Kubernetes Engine (OKE)^]
 * https://aws.amazon.com/rosa/[Red Hat OpenShift Service on AWS (ROSA)^]
 * https://azure.microsoft.com/en-us/products/openshift/[Azure Red Hat OpenShift (ARO)^]
 * https://cloud.google.com/blog/products/gcp/red-hats-openshift-dedicated-now-generally-available-on-google-cloud[Red Hat OpenShift Dedicated on GCP^]
@@ -44,7 +45,7 @@ The Anypoint control plane features, Anypoint CLI, and the Mule Maven Plugin are
 
 [%header%autowidth.spread]
 |===
-|Support of following use-cases |AWS EKS and AWS EKS-A |IBM Openshift Offerings | AKS & GKE | VMWare Tanzu, Alibaba ACK, Rancher
+|Support of following use-cases |AWS EKS and AWS EKS-A |IBM Openshift Offerings | AKS, GKE & OKE | VMWare Tanzu, Alibaba ACK, Rancher
 | Access and use of Anypoint Control Plane including Runtime Manager, Access Management, Anypoint Monitoring, etc.  |Yes |Yes | Yes| Yes
 | Automation toolings such as the Mule Maven Plugin, Runtime Fabric APIs, and Anypoint CLI. |Yes |Yes | Yes | Yes
 | Runtime Fabric functionality support for compatible K8s versions. |Yes |Yes | Yes | Yes
@@ -76,7 +77,7 @@ MuleSoft provides the Runtime Fabric agent, Mule runtime engine (Mule), and othe
 
 ==== Runtime Fabric Core Services
 
-Anypoint Runtime Fabric and its underlying components run as Kubernetes deployment objects in EKS, AKS, GKE, or RedHat OpenShift environments. You manage the objects via Anypoint Platform.
+Anypoint Runtime Fabric and its underlying components run as Kubernetes deployment objects in EKS, AKS, GKE, OKE, or RedHat OpenShift environments. You manage the objects via Anypoint Platform.
 
 Linux-based operating systems are required for all nodes that run Runtime Fabric components in Kubernetes clusters.
 
@@ -162,7 +163,7 @@ The following table lists supported and non-supported features.
 | Support for deploying Mules and API Gateways | Supported 
 | Kubernetes and Docker a| Not included.
 
-Provide your instances of Kubernetes and Docker via Amazon EKS, AKS or GKE clusters. 
+Provide your instances of Kubernetes and Docker via Amazon EKS, AKS, GKE, or OKE clusters. 
 | Installing on any Linux distribution | Supported 
 | Node auto-scaling | Supported using AWS, Azure, Google Cloud, or RedHat OpenShift functionality 
 | External log forwarding | You can set up Log4j to forward logs to external systems. 

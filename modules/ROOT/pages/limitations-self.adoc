@@ -56,6 +56,7 @@ Anypoint Runtime Fabric works on any Linux distribution supported by:
 * Amazon EKS Anywhere (EKS-A)
 * Google Kubernetes Engine (GKE)
 * Microsoft Azure Kubernetes Service (AKS)
+* Oracle Kubernetes Engine (OKE)
 * Rancher Kubernetes Engine (RKE2)
 * Red Hat OpenShift
 * VMware Tanzu
@@ -127,7 +128,7 @@ It is common practice for applications deployed on Runtime Fabric to log directl
   
 === External Log Forwarding
 
-Anypoint Runtime Fabric does not forward logs to an external system. You are responsible for installing and managing this configuration. Any external log forwarding agent compatible with your Kubernetes environment running on Amazon EKS, AKS, or GKE can be used. Commonly used log forwarding agents include:
+Anypoint Runtime Fabric doesn't forward logs to an external system. You are responsible for installing and managing this configuration. Any external log forwarding agent compatible with your Kubernetes environment running on Amazon EKS, AKS, GKE, or OKE can be used. Commonly used log forwarding agents include:
 
 * Fluentbit
 

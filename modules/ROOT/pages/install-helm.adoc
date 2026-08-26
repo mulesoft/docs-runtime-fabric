@@ -1,6 +1,6 @@
 = Installing Runtime Fabric Using Helm
 
-You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), Alibaba Cloud Container Service for Kubernetes (ACK), Google Kubernetes Engine (GKE), Rancher Kubernetes Engine (RKE) or VMware Tanzu Kubernetes Grid installation that you manage.
+You can use Helm to install Anypoint Runtime Fabric on an Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Kubernetes Service Anywhere (Amazon EKS-A), Azure Kubernetes Service (AKS), Alibaba Cloud Container Service for Kubernetes (ACK), Google Kubernetes Engine (GKE), Oracle Kubernetes Engine (OKE), Rancher Kubernetes Engine (RKE) or VMware Tanzu Kubernetes Grid installation that you manage.
 
 == Steps to Install Runtime Fabric Using Helm
 
@@ -22,7 +22,7 @@ Before installing Anypoint Runtime Fabric in a Kubernetes environment, ensure th
 * xref:install-self-managed-network-configuration.adoc[Configured your network to support Runtime Fabric].
 * Installed and configured your Kubernetes environment as follows:
 +
-** Running an ACK, AKS, EKS, EKS-A, GKE, RKE, or VMware Tanzu Kubernetes environment. Other Kubernetes environments are not supported.
+** Running an ACK, AKS, EKS, EKS-A, GKE, OKE, RKE, or VMware Tanzu Kubernetes environment. Other Kubernetes environments aren't supported.
 ** Running a supported Kubernetes version.
 ** Running an ingress controller to send external requests to applications.
 * Installed Helm 3 or later and have privileged user permissions.
@@ -43,11 +43,12 @@ To install Runtime Fabric with Helm, first create a Runtime Fabric using Runtime
 . From Anypoint Platform, select Runtime Manager.
 . Click *Runtime Fabrics*.
 . Click *Create Runtime Fabric*.
-. Enter the name of the new Runtime Fabric, then select one of the following options:
+. Enter the name of the new Runtime Fabric, then select one of these options:
 
 * Amazon Elastic Kubernetes Service
 * Azure Kubernetes Service
 * Google Kubernetes Engine
+* Oracle Kubernetes Engine
 . Review the Support responsibility disclaimer, and if you agree, click *Accept*.
 . Click Helm.
 
