@@ -12,7 +12,7 @@ You configure HA for your applications separately by running multiple replicas a
 
 You achieve disaster recovery (DR) by backing up the cluster and restoring it after a larger disruption. MuleSoft doesn't back up your data or your cluster configuration; you own cluster backup, restore, and DR.
 
-For an overview of HA and DR across all Mule deployment models, see xref:mule-runtime::hadr-guide.adoc[High Availability and Disaster Recovery].
+For an overview of HA and DR across all Mule deployment models, see xref:hosting-home::hadr-guide.adoc[High Availability and Disaster Recovery].
 
 == High Availability Versus Disaster Recovery
 
@@ -88,7 +88,7 @@ Restore to the same cluster that the control plane lists, and use the same `rtfc
 
 == See Also
 
-* xref:mule-runtime::hadr-guide.adoc[]
+* xref:hosting-home::hadr-guide.adoc[]
 * xref:manage-backup-restore.adoc[]
 * xref:configure-horizontal-autoscaling.adoc[]
 * xref:hardening-runtime-fabric.adoc[]
