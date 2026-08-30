@@ -263,7 +263,7 @@ global:
 ----
 
 [NOTE]
-If you are configuring a Runtime Fabric BYOK for a non-US Cloud region (EU Cloud, Canada Cloud, Japan Cloud, India Cloud, or Australia Cloud), review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your cloud region.
+If you are configuring a Runtime Fabric BYOK for a non-US Cloud region (EU Cloud, Canada Cloud, Japan Cloud, India Cloud, Australia Cloud, or United Kingdom Cloud), review the changes in xref:runtime-fabric::install-self-managed-network-configuration.adoc#hostname-configuration[Hostname Configuration] for a correct configuration. Set the `rtfRegistry` property to the registry URL for your cloud region.
 
 [[required-parameters]]
 === Required Parameters
@@ -281,6 +281,7 @@ These required values are created and added to `values.yml` when you create the 
 * Japan: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 * Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net`
+* United Kingdom Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-<placeholder>.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
@@ -440,6 +441,7 @@ For example:
 * Japan Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net/charts`
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/charts`
 * Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/charts`
+* United Kingdom Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-<placeholder>.svc.sfdcfc.net/charts`
 
 == See Also
 
