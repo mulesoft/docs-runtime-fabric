@@ -44,7 +44,6 @@
   ** xref:configure-kubernetes.adoc[Configuring Kubernetes for Runtime Fabric]
     *** xref:rtf-k8s-practices.adoc[Kubernetes (K8s) Best Practices for Runtime Fabric]
     *** xref:rtf-scale.adoc[Scalability Benchmarks]
-    *** xref:rtf-cluster-config.adoc[Cluster Configurations]
     *** xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide]
     *** xref:customize-kubernetes-crd.adoc[Customizing Mule Apps Kubernetes Resources]
   ** xref:rtf-kubernetes-permissions.adoc[Runtime Fabric Kubernetes Permissions]
