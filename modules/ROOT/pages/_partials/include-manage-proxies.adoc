@@ -142,7 +142,11 @@ anypoint.platform.proxy_password=password
 Applications deployed in Runtime Fabric inherit proxy settings from the Runtime Fabric 
 cluster. You can also configure a proxy for each application. 
 
-You can set up a proxy on each connector (such as an HTTP requestor) or set up a proxy with application properties as shown in the following example. Setting up a proxy with application properties is less work if you have a large number of connectors in an application.
+You can set up a proxy on each connector (such as an HTTP requestor) or set up a proxy with application properties as shown in this example. Setting up a proxy with application properties is less work if you have a large number of connectors in an application.
+
+[NOTE]
+These application properties apply only when the Mule HTTP service uses the Grizzly implementation. Mule runtime 4.11 and later uses Netty by default. To use this JVM-level proxy configuration, add the application property `mule.http.service.implementation` with the value `GRIZZLY` in Runtime Manager. Don't set it as a `-D` JVM argument.
+
 ----
 http.nonProxyHosts=localhost|*.svc.cluster.local|*.monitoring.svc.cluster.local
 http.proxyHost=172.19.0.23
