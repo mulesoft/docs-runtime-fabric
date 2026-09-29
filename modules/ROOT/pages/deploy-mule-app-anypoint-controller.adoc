@@ -1022,7 +1022,7 @@ kubectl describe muleapplication hello-world-app -n my-apps
 
 === Status Conditions
 
-The controller reports these status conditions:
+The controller reports these status conditions. To report these conditions as ArgoCD resource health, see <<configure-muleapplication-health-in-argocd,Configure MuleApplication Health in ArgoCD>>.
 
 [%collapsible]
 .Status Condition: Applied
@@ -1359,6 +1359,7 @@ Anypoint Controller works seamlessly with GitOps and Infrastructure-as-Code tool
 Integrate Anypoint Controller with these tools:
 
 * <<argocd-integration,ArgoCD Integration>>
+* <<configure-muleapplication-health-in-argocd,Configure MuleApplication Health in ArgoCD>>
 * <<fluxcd-integration,FluxCD Integration>>
 * <<terraform-integration,Terraform Integration>>
 
@@ -1404,6 +1405,145 @@ spec:
 ----
 
 ArgoCD continuously monitors the version control repository and automatically deploys changes.
+
+[[configure-muleapplication-health-in-argocd]]
+=== Configure MuleApplication Health in ArgoCD
+
+ArgoCD sync status and resource health are independent. A `MuleApplication` can be `Synced` when its Kubernetes resource matches the manifest in Git, even when Anypoint Controller can't apply the requested configuration or the application rollout fails.
+
+ArgoCD doesn't interpret `MuleApplication.status.conditions` automatically. To report Anypoint Controller results as ArgoCD resource health, add this custom health check to the ArgoCD instance that manages your `MuleApplication` resources. Follow the https://argo-cd.readthedocs.io/en/stable/operator-manual/health/[ArgoCD custom health check documentation^] and use the configuration method for your ArgoCD installation.
+
+Use this resource-customization key:
+
+[source,console]
+----
+resource.customizations.health.rtf.mulesoft.com_MuleApplication
+----
+
+This key follows the ArgoCD naming convention `resource.customizations.health.<api-group>_<kind>`. The API version isn't included, and the `MuleApplication` kind is case-sensitive.
+
+Add this configuration:
+
+[source,yaml]
+----
+data:
+  resource.customizations.health.rtf.mulesoft.com_MuleApplication: |
+    local hs = {}
+
+    if obj.metadata ~= nil and obj.metadata.deletionTimestamp ~= nil then
+      hs.status = "Progressing"
+      hs.message = "Deletion is waiting for Anypoint Controller cleanup"
+      return hs
+    end
+
+    if obj.status == nil or obj.status.conditions == nil then
+      hs.status = "Progressing"
+      hs.message = "Waiting for Anypoint Controller to report status"
+      return hs
+    end
+
+    local applied = nil
+    local available = nil
+    local progressing = nil
+    local degraded = nil
+    local desiredSpecApplied = nil
+
+    for _, condition in ipairs(obj.status.conditions) do
+      if condition.type == "Applied" then
+        applied = condition
+      elseif condition.type == "Available" then
+        available = condition
+      elseif condition.type == "Progressing" then
+        progressing = condition
+      elseif condition.type == "Degraded" then
+        degraded = condition
+      elseif condition.type == "DesiredSpecAppliedOnCluster" then
+        desiredSpecApplied = condition
+      end
+    end
+
+    -- A desired configuration that failed to apply is terminally unhealthy
+    -- even if an older version still has ready replicas.
+    if applied ~= nil and applied.status == "False" then
+      hs.status = "Degraded"
+      hs.message = applied.message or applied.reason or "Desired configuration was not applied"
+      return hs
+    end
+
+    if degraded ~= nil and degraded.status == "True" then
+      hs.status = "Degraded"
+      hs.message = degraded.message or degraded.reason or "MuleApplication workload is degraded"
+      return hs
+    end
+
+    -- The controller can report a terminal Deployment timeout without adding
+    -- Degraded=True when it cannot derive a pod-level failure.
+    if progressing ~= nil
+      and progressing.status == "False"
+      and progressing.reason == "ProgressDeadlineExceeded" then
+      hs.status = "Degraded"
+      hs.message = progressing.message or "MuleApplication deployment exceeded its progress deadline"
+      return hs
+    end
+
+    if progressing ~= nil and progressing.status == "True" then
+      hs.status = "Progressing"
+      hs.message = progressing.message or progressing.reason or "MuleApplication rollout is progressing"
+      return hs
+    end
+
+    if desiredSpecApplied ~= nil and desiredSpecApplied.status == "False" then
+      hs.status = "Progressing"
+      hs.message = desiredSpecApplied.message or desiredSpecApplied.reason or "Waiting for the desired specification to reach the cluster"
+      return hs
+    end
+
+    if applied ~= nil and applied.status == "True"
+      and available ~= nil and available.status == "True" then
+      hs.status = "Healthy"
+      hs.message = available.message or applied.message or "MuleApplication is applied and available"
+      return hs
+    end
+
+    hs.status = "Progressing"
+    if progressing ~= nil and progressing.message ~= nil then
+      hs.message = progressing.message
+    elseif progressing ~= nil and progressing.reason ~= nil then
+      hs.message = progressing.reason
+    elseif applied ~= nil and applied.message ~= nil then
+      hs.message = applied.message
+    elseif available ~= nil and available.message ~= nil then
+      hs.message = available.message
+    else
+      hs.message = "Waiting for the current MuleApplication generation to become applied and available"
+    end
+    return hs
+----
+
+This custom health check maps these `MuleApplication` conditions:
+
+[%header%autowidth.spread]
+|===
+| MuleApplication State | ArgoCD Health | Description
+| The resource has a deletion timestamp | `Progressing` | Anypoint Controller cleanup is in progress.
+| Status or conditions aren't present | `Progressing` | Anypoint Controller hasn't reported status.
+| `Applied=False` | `Degraded` | Anypoint Controller couldn't apply the requested configuration. ArgoCD displays the controller message when available.
+| `Degraded=True` | `Degraded` | Anypoint Controller found a workload failure, such as a pod startup failure.
+| `Progressing=False` with reason `ProgressDeadlineExceeded` | `Degraded` | The Kubernetes Deployment exceeded its progress deadline. This condition can occur without `Degraded=True`. For example, an admission failure can prevent creation of a pod that Anypoint Controller can inspect.
+| `Progressing=True` | `Progressing` | A rollout is active.
+| `DesiredSpecAppliedOnCluster=False` | `Progressing` | The desired application version hasn't reached the cluster.
+| `Applied=True` and `Available=True` | `Healthy` | The configuration was accepted and at least one replica is available.
+| Any unknown or incomplete combination | `Progressing` | This health check uses a conservative fallback and displays the controller message or reason when available.
+|===
+
+[NOTE]
+====
+This customization changes only how ArgoCD interprets resource health. It doesn't change ArgoCD sync status, modify the `MuleApplication`, or resolve the underlying deployment failure. An application whose manifest was applied successfully can be `Synced` and `Degraded` at the same time.
+====
+
+`Applied=True` together with `Available=False` isn't sufficient to classify an application as failed. This combination occurs while an application is starting. `Progressing=False` isn't always a failure. Anypoint Controller also sets it with reasons such as `RolloutComplete`, `NoReplicas`, and `DeploymentNotFound`. This custom health check maps only the terminal `ProgressDeadlineExceeded` reason to `Degraded`.
+
+This customization applies to every ArgoCD-managed `MuleApplication` in that ArgoCD instance. If this resource-customization key is already configured, don't replace it until you review the existing script. ArgoCD uses one health script for each API group and kind. This script doesn't require `resource.customizations.useOpenLibs`.
 
 === FluxCD Integration
 
