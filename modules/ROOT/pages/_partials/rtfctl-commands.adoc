@@ -358,6 +358,12 @@ rtfctl update --host in1.platform.mulesoft.com
 rtfctl update --host au1.platform.mulesoft.com
 ----
 
+* Updates `rtfctl` from the United Kingdom Cloud
++
+----
+rtfctl update --host gb1.platform.mulesoft.com
+----
+
 [[wait]]
 = `wait`
 Waits for Runtime Fabric components to become ready
