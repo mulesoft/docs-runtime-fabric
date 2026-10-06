@@ -21,6 +21,7 @@ For Runtime Fabric agent version 2.6.22 and later, the monitoring sidecar sends 
 * India Cloud (port 8443, OTEL): `ingest.in1.platform.mulesoft.com`
 * Australia Cloud (port 8443, OTEL): `ingest.au1.platform.mulesoft.com`
 * United Kingdom Cloud (port 8443, OTEL): `ingest.gb1.platform.mulesoft.com`
+* MuleSoft Government Cloud Plus (port 8443, OTEL): `ingest.gprod1.platform.mulesoft.com`
 
 [NOTE]
 ====
