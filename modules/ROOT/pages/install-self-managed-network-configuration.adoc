@@ -176,11 +176,10 @@ This table lists the required hostname endpoint configurations for MuleSoft Gove
 | Port | Protocol | Hostnames | Description
 | 8443 | WSS | `runtime-manager.gprod1.platform.mulesoft.com` | Runtime Fabric message broker for interaction with the control plane (path: `/v1/connect`).
 | 443 | HTTPS | `gprod1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
-| 8443 | HTTPS | `runtime-manager.gprod1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In MuleSoft Government Cloud Plus, these services are consolidated behind a single endpoint (path: `/resolver`).
-| 8443 | HTTPS | `ingest.gprod1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
-| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-<placeholder>.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `<installer-chart-host>` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
-| 443 | HTTPS | `<docker-image-delivery-host>` | Runtime Fabric Docker image delivery.
+| 8443 | HTTPS | `runtime-manager.gprod1.platform.mulesoft.com` | Configuration Resolver and Runtime Manager services (path: `/resolver`).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp2.sfdc-pu91w7.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime and the Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `giaprod-us-gov-east-1-sfcd-ms-fabric.s3-fips.us-gov-east-1.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-gov-east-1-starport-layer-bucket.s3-fips.us-gov-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
 == Verify Outbound Connectivity
@@ -243,6 +242,5 @@ To allow different endpoints to use mutual TLS authentication to establish a con
 | United Kingdom Cloud | `runtime-manager.gb1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint, path: `/resolver`)
 | United Kingdom Cloud | `ingest.gb1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
 | MuleSoft Government Cloud Plus | `runtime-manager.gprod1.platform.mulesoft.com` | 8443 | WSS | Message broker (mTLS, path: `/v1/connect`)
-| MuleSoft Government Cloud Plus | `runtime-manager.gprod1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint, path: `/resolver`)
-| MuleSoft Government Cloud Plus | `ingest.gprod1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| MuleSoft Government Cloud Plus | `runtime-manager.gprod1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (path: `/resolver`)
 |===

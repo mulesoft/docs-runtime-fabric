@@ -282,7 +282,7 @@ These required values are created and added to `values.yml` when you create the 
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net`
 * Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net`
 * United Kingdom Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-5pakla.svc.sfdcfc.net`
-* MuleSoft Government Cloud Plus: `rtf-runtime-registry-mulesoft-cp.sfdc-<placeholder>.svc.sfdcfc.net`
+* MuleSoft Government Cloud Plus: `rtf-runtime-registry-mulesoft-cp2.sfdc-pu91w7.svc.sfdcfc.net`
 |`pullSecretName` |Registry secret |`<pull_secret>`
 |`muleLicense` |Mule license for applications |`<mule_license_key>`. Must be Base64 encoded.
 |===
@@ -443,7 +443,7 @@ For example:
 * India Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net/charts`
 * Australia Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net/charts`
 * United Kingdom Cloud: `rtf-runtime-registry-mulesoft-cp.sfdc-5pakla.svc.sfdcfc.net/charts`
-* MuleSoft Government Cloud Plus: `rtf-runtime-registry-mulesoft-cp.sfdc-<placeholder>.svc.sfdcfc.net/charts`
+* MuleSoft Government Cloud Plus: `rtf-runtime-registry-mulesoft-cp2.sfdc-pu91w7.svc.sfdcfc.net/charts`
 
 == See Also
 
