@@ -57,7 +57,8 @@ This table lists the required hostname endpoint configurations for the US Cloud.
 | 443 | HTTPS | `exchange-files.anypoint.mulesoft.com` | Anypoint Exchange for application files.
 | 443 | HTTPS | `rtf-runtime-registry.kprod.msap.io` | Runtime Fabric Docker repository.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.amazonaws.com`, `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
-| 443 | HTTPS | `runtime-fabric.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `esvc-us-east-1-sfcd-ms-fabric.s3.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `runtime-fabric.s3.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `configuration-resolver.prod.cloudhub.io` | Anypoint Configuration Resolver.
 |===
 
@@ -83,7 +84,8 @@ This table lists the required hostname endpoint configurations for the EU Cloud.
 | 443 | HTTPS | `exchange-files.eu1.anypoint.mulesoft.com` | Anypoint Exchange for application files.
 | 443 | HTTPS | `rtf-runtime-registry.kprod-eu.msap.io` | Runtime Fabric Docker repository.
 | 443 | HTTPS | `prod-eu-central-1-starport-layer-bucket.s3.amazonaws.com`, `prod-eu-central-1-starport-layer-bucket.s3.eu-central-1.amazonaws.com` | Runtime Fabric Docker image delivery.
-| 443 | HTTPS | `runtime-fabric-eu.s3.amazonaws.com` | Runtime Fabric Docker repository.
+| 443 | HTTPS | `esvc-eu-central-1-sfcd-ms-fabric.s3.eu-central-1.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `runtime-fabric-eu.s3.amazonaws.com`, `runtime-fabric-eu.s3.eu-central-1.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `configuration-resolver.prod-eu.msap.io` | Anypoint Configuration Resolver.
 |===
 
@@ -99,7 +101,8 @@ This table lists the required hostname endpoint configurations for the Canada Cl
 | 8443 | HTTPS | `runtime-manager.ca1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Canada control plane, these services are consolidated behind a single endpoint.
 | 8443 | HTTPS | `ingest.ca1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-58ktaz.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `esvc-ca-central-1-sfcd-ms-fabric.s3.ca-central-1.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
@@ -115,7 +118,8 @@ This table lists the required hostname endpoint configurations for the Japan Clo
 | 8443 | HTTPS | `runtime-manager.jp1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Japan Cloud, these services are consolidated behind a single endpoint.
 | 8443 | HTTPS | `ingest.jp1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-mchho0.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `esvc-ap-northeast-1-sfcd-ms-fabric.s3.ap-northeast-1.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
@@ -131,7 +135,8 @@ This table lists the required hostname endpoint configurations for the India Clo
 | 8443 | HTTPS | `runtime-manager.in1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the India Cloud, these services are consolidated behind a single endpoint (path: `/resolver`).
 | 8443 | HTTPS | `ingest.in1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-y37hzm.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `esvc-ap-south-1-sfcd-ms-fabric.s3.ap-south-1.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
@@ -147,7 +152,8 @@ This table lists the required hostname endpoint configurations for the Australia
 | 8443 | HTTPS | `runtime-manager.au1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the Australia Cloud, these services are consolidated behind a single endpoint (path: `/resolver`).
 | 8443 | HTTPS | `ingest.au1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-vwfla6.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `esvc-ap-southeast-2-sfcd-ms-fabric.s3.ap-southeast-2.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
@@ -163,7 +169,8 @@ This table lists the required hostname endpoint configurations for the United Ki
 | 8443 | HTTPS | `runtime-manager.gb1.platform.mulesoft.com` | Configuration Resolver, Exchange asset download, and Runtime Manager services. In the United Kingdom Cloud, these services are consolidated behind a single endpoint (path: `/resolver`).
 | 8443 | HTTPS | `ingest.gb1.platform.mulesoft.com` | xref:use-anypoint-monitoring.adoc#enable-anypoint-monitoring[Anypoint Monitoring] agent for Runtime Fabric (logs, metrics, and traces ingestion via OTEL).
 | 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp.sfdc-5pakla.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime, monitoring sidecars, and Runtime Fabric agent) are pulled from this registry.
-| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `esvc-eu-west-2-sfcd-ms-fabric.s3.eu-west-2.amazonaws.com` | Runtime Fabric agent and installer downloads. Download endpoints redirect clients to this bucket.
+| 443 | HTTPS | `esvc-us-east-2-mulesoft.s3.us-east-2.amazonaws.com` | Older Runtime Fabric agent versions, and installer and `rtfctl` artifacts.
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
