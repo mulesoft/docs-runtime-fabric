@@ -174,6 +174,21 @@ This table lists the required hostname endpoint configurations for the United Ki
 | 443 | HTTPS | `prod-us-east-1-starport-layer-bucket.s3.us-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
 |===
 
+=== MuleSoft Government Cloud Plus
+
+This table lists the required hostname endpoint configurations for MuleSoft Government Cloud Plus.
+
+[%header,cols="4*a"]
+|===
+| Port | Protocol | Hostnames | Description
+| 8443 | WSS | `runtime-manager.gprod1.platform.mulesoft.com` | Runtime Fabric message broker for interaction with the control plane (path: `/v1/connect`).
+| 443 | HTTPS | `gprod1.platform.mulesoft.com` | Anypoint Platform for agent bootstrapping and certificate renewal.
+| 8443 | HTTPS | `runtime-manager.gprod1.platform.mulesoft.com` | Configuration Resolver and Runtime Manager services (path: `/resolver`).
+| 443 | HTTPS | `rtf-runtime-registry-mulesoft-cp2.sfdc-pu91w7.svc.sfdcfc.net` | Runtime Fabric Docker and Helm chart repository. All container images (Mule runtime and the Runtime Fabric agent) are pulled from this registry.
+| 443 | HTTPS | `giaprod-us-gov-east-1-sfcd-ms-fabric.s3-fips.us-gov-east-1.amazonaws.com` | Runtime Fabric installer chart tarball. Required only for `rtfctl`-based installations.
+| 443 | HTTPS | `prod-us-gov-east-1-starport-layer-bucket.s3-fips.us-gov-east-1.amazonaws.com` | Runtime Fabric Docker image delivery.
+|===
+
 == Verify Outbound Connectivity
 
 Every Anypoint Runtime Fabric cluster requires connectivity with Anypoint control plane, and any interference with connectivity can limit functionality, resulting in application deployment failures or degraded status in Anypoint Runtime Manager.
@@ -233,4 +248,6 @@ To allow different endpoints to use mutual TLS authentication to establish a con
 | United Kingdom Cloud | `runtime-manager.gb1.platform.mulesoft.com` | 8443 | WSS | Message broker (mTLS, path: `/v1/connect`)
 | United Kingdom Cloud | `runtime-manager.gb1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (consolidated endpoint, path: `/resolver`)
 | United Kingdom Cloud | `ingest.gb1.platform.mulesoft.com` | 8443 | HTTPS | Anypoint Monitoring ingest (OTEL)
+| MuleSoft Government Cloud Plus | `runtime-manager.gprod1.platform.mulesoft.com` | 8443 | WSS | Message broker (mTLS, path: `/v1/connect`)
+| MuleSoft Government Cloud Plus | `runtime-manager.gprod1.platform.mulesoft.com` | 8443 | HTTPS | Configuration Resolver and Runtime Manager services (path: `/resolver`)
 |===
