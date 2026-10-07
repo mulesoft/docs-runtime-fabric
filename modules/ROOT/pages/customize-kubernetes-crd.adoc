@@ -270,13 +270,13 @@ Kubernetes service account tokens provide authenticated identity and authorizati
 
 While mounting service account tokens is necessary for Runtime Fabric operations, you can minimize security risk using these best practices:
 
-* **RBAC Policies**: Define restrictive Role-Based Access Control (RBAC) policies that limit each service account to only the Kubernetes API permissions it actually needs.
+* RBAC Policies: Define restrictive Role-Based Access Control (RBAC) policies that limit each service account to only the Kubernetes API permissions it actually needs.
 
-* **Minimal Scopes**: Ensure service accounts have the minimum required permissions to perform their functions. Avoid overly permissive roles.
+* Minimal Scopes: Ensure service accounts have the minimum required permissions to perform their functions. Avoid overly permissive roles.
 
-* **Network Policies**: Use Kubernetes NetworkPolicies to restrict inbound and outbound traffic from Runtime Fabric component pods to only necessary services and endpoints.
+* Network Policies: Use Kubernetes NetworkPolicies to restrict inbound and outbound traffic from Runtime Fabric component pods to only necessary services and endpoints.
 
-* **Monitoring and Audit**: Enable audit logging to track API access by service accounts and monitor for suspicious activity.
+* Monitoring and Audit: Enable audit logging to track API access by service accounts and monitor for suspicious activity.
 
 For comprehensive security guidance on protecting pod service account tokens and securing your Runtime Fabric environment, see the xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide].
 
