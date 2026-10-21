@@ -73,6 +73,7 @@ To create the pull secret, run:
 oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
+[[configure-authorized-namespaces]]
 == (Optional) Configure Authorized Namespaces
 
 You can optionally configure xref:authorized-namespaces.adoc[authorized namespaces], which enable you to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
@@ -460,6 +461,27 @@ helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICE
 
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
+
+[[restricted-scc]]
+== Clusters That Enforce a Restricted Security Context Constraint
+
+Runtime Fabric pods run under the `anyuid` security context constraint (SCC). Some hardened clusters, such as OpenShift Platform Plus environments, enforce a more restrictive SCC, such as `nonroot-v2`. On these clusters, OpenShift rejects Runtime Fabric pods when it creates them. The pods never start, so the application logs show no errors.
+
+To check whether OpenShift rejected pods because of the SCC, run:
+
+[source,copy]
+----
+oc get events -n <namespace> --sort-by='.lastTimestamp'
+----
+
+Look for `FailedCreate` events with the message `unable to validate against any security context constraint`.
+
+To run Runtime Fabric on these clusters, request a security exception that allows the `anyuid` SCC. Limit the exception to:
+
+* The Runtime Fabric service accounts listed in the `rtf` RoleBinding in <<configure-authorized-namespaces, Configure Authorized Namespaces>>
+* The Runtime Fabric namespace and the application namespaces
+
+Don't request a cluster-wide grant.
 
 == Prepare for Deploying Mule Apps to Red Hat OpenShift
 

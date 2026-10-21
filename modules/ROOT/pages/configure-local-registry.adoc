@@ -46,6 +46,13 @@ Before you can install or configure Runtime Fabric with a local registry, you mu
 
 To install Runtime Fabric, you must first synchronize the core software images to your local registry. You can perform the synchronization by either running a script automatically or executing commands manually.
 
+[IMPORTANT]
+====
+Base your synchronization on the agent manifest API that the script uses. Don't base it on listing the image tags in the MuleSoft registry, for example with a `list-tags` request. Tag listing doesn't reliably return the version tags that Runtime Fabric requires. Images then fail to synchronize without an error, and installation fails because Runtime Fabric can't find an image.
+
+The agent manifest API returns the images for one Runtime Fabric agent version. Run the synchronization for each version that you install or upgrade to.
+====
+
 [tabs]
 ====
 Synchronize Automatically:: 
