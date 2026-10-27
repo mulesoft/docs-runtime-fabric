@@ -52,7 +52,9 @@ To install Runtime Fabric, you must first synchronize the core software images t
 ====
 Base your synchronization on the agent manifest API that the script uses. Don't base it on listing the image tags in the MuleSoft registry, for example with a `list-tags` request. Tag listing doesn't reliably return the version tags that Runtime Fabric requires. Images then fail to synchronize without an error, and installation fails because Runtime Fabric can't find an image.
 
-The agent manifest API returns the images for one Runtime Fabric agent version. Run the synchronization for each version that you install or upgrade to.
+The agent manifest API returns the images for one Runtime Fabric agent version. Run the synchronization for each version that you install or upgrade to. The API doesn't list the available versions. For the versions that are available, see xref:release-notes::runtime-fabric/runtime-fabric-release-notes-3.x.x.adoc[Runtime Fabric Release Notes].
+
+On Red Hat OpenShift, the local registry doesn't serve the Runtime Fabric operator. You install the operator from the Red Hat OperatorHub catalog.
 ====
 
 [tabs]
