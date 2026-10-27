@@ -1,6 +1,6 @@
 = Timeout Reference for Runtime Fabric on OpenShift
 
-When a request times out on a deployment that uses Runtime Fabric on OpenShift, the error you see depends on which layer in the stack enforces the timeout. Use the timeout reference to identify which setting governs each layer so you can adjust the correct value.
+When a request times out on a deployment that uses Runtime Fabric on OpenShift, the error you see depends on which layer in the stack enforces the timeout. Use the timeout reference to identify which setting governs each layer so you can adjust the correct value. For the Anypoint Code Builder Deploy Project command and the Runtime Fabric agent reconcile, the timeouts aren't configurable and are included for diagnostic reference only.
 
 == Timeout Layers
 
