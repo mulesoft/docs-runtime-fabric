@@ -1,4 +1,4 @@
-= Upgrading Runtime Fabric on Red Hat OpenShift 
+= Upgrading Runtime Fabric on OpenShift
 
 Red Hat OpenShift console allows you to run upgrades automatically (default) or manually. You can change this setting in the *Subscription* tab in the Runtime Fabric Operator. 
 

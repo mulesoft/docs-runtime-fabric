@@ -1,4 +1,4 @@
-= Installing Runtime Fabric as a Kubernetes (K8s) OpenShift Operator
+= Installing Runtime Fabric on OpenShift
 
 You can install Anypoint Runtime Fabric as a Kubernetes (K8s) operator in these platforms:
 
