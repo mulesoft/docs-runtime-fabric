@@ -7,7 +7,9 @@ By default, Runtime Fabric pulls the Docker images it needs for installation, ma
 You can configure a local registry across all Runtime Fabric supported platform vendors to store Mule Docker images and Runtime Fabric software images.
 
 [IMPORTANT]
-You cannot use a local registry for installation or management of the Runtime Fabric operator on OpenShift.
+====
+You can't use a local registry for installation or management of the Runtime Fabric operator on OpenShift. The Runtime Fabric operator is installed from the Red Hat OperatorHub catalog. Your local registry can't serve it.
+====
 
 === Supported Configurations
 
@@ -18,7 +20,7 @@ You cannot use a local registry for installation or management of the Runtime Fa
 To add a local registry to an existing Runtime Fabric instance, ensure the installation is Helm-based (see xref:migrate-helm.adoc[]) and follow the steps in this page.
 
 [IMPORTANT]
-Local registry configuration is a one-way change. After you configure Runtime Fabric to use a local registry, you cannot reconfigure it to use the `rtf-runtime-registry` endpoint. To revert, you must install a new Runtime Fabric instance using the standard installation procedure.
+Local registry configuration is a one-way change. After you configure Runtime Fabric to use a local registry, you can't reconfigure it to use the `rtf-runtime-registry` endpoint. To revert, you must install a new Runtime Fabric instance using the standard installation procedure.
 
 === Synchronization and Authentication
 
@@ -26,7 +28,7 @@ You must keep your local registry synchronized with the images Runtime Fabric re
 
 * <<synch-rtf, Synchronize Runtime Fabric Core Software Images>> — synchronize automatically or manually before installation and upgrades.
 * <<synch-runtime, Synchronize Mule Runtime Images>> — synchronize manually for each runtime version you deploy.
-* Third-party dependencies required by your applications — MuleSoft does not provide tooling for this. Push all required images to your local registry before starting deployments.
+* Third-party dependencies required by your applications — MuleSoft doesn't provide tooling for this. Push all required images to your local registry before starting deployments.
 
 If your local registry requires authentication, pull secret propagation across namespaces is your responsibility. Alternatively, Runtime Fabric can synchronize your pull secret automatically if you apply this label to the secret:
 
@@ -62,7 +64,7 @@ Synchronize Automatically::
 To synchronize the dependencies images automatically, run a bash script that uses the `docker`, `curl`,  and `jq` tools.
 
 [NOTE]
-Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies cannot be retrieved using this script.
+Automated registry synchronization is available from Runtime Fabric version 2.6.0 onwards. Previous dependencies can't be retrieved using this script.
 
 Ensure that your xref:access-management::permissions-by-product.adoc#runtime-manager[Access Management permission for Runtime Manager] is set to *Read Runtime Fabric*, which enables you to query Runtime Fabrics in your organization.
 
@@ -123,7 +125,7 @@ done
 |===
 
 [NOTE]
-For Canada Cloud, Japan Cloud, India Cloud, Australia Cloud, and United Kingdom Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script does not account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
+For Canada Cloud, Japan Cloud, India Cloud, Australia Cloud, and United Kingdom Cloud, images in the SFCI registry use an `ms-` prefix in the artifact name (for example, `ms-rtf-agent` instead of `rtf-agent`). The automated script doesn't account for this prefix difference, so you must manually prepend `ms-` to each artifact name when pulling from the SFCI registry for these regions.
 
 --
 Synchronize Manually:: 

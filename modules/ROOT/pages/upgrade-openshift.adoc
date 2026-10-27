@@ -11,7 +11,7 @@ Before you upgrade Runtime Fabric on Red Hat OpenShift, make sure that:
 
 * Your cluster runs a Kubernetes version that the target Runtime Fabric version supports. For the supported Kubernetes versions for each release, see xref:release-notes::runtime-fabric/runtime-fabric-release-notes-3.x.x.adoc[Runtime Fabric Release Notes].
 +
-To check the Kubernetes version of your cluster, run:
+To check the Kubernetes version of your cluster, run this command in your terminal:
 +
 [source,copy]
 ----
@@ -41,7 +41,7 @@ This automatically triggers the upgrade of the existing Runtime Fabric instances
 
 == Verify the Upgrade
 
-To verify the upgrade, run these commands:
+To verify the upgrade, run these commands in your terminal:
 
 . Check that the operator version is the target version and that its phase is `Succeeded`:
 +
