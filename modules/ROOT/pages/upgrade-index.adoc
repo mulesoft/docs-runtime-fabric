@@ -6,9 +6,9 @@ To upgrade Anypoint Runtime Fabric, review one of the following options:
 Use the `rtfctl` command line tool to upgrade Runtime Fabric.
 * xref:upgrade-helm.adoc[Upgrading Runtime Fabric using Helm] +
 Use Helm package manager to upgrade Runtime Fabric.
-* xref:upgrade-openshift.adoc[Upgrading Runtime Fabric as a Kubernetes (K8s) Operator] +
-Use the Red Hat OpenShift console to upgrade Runtime Fabric on Red Hat OpenShift.
-* xref:upgrade-pre-requisites.adoc[Update rtfd Container Resources When Upgrading Runtime Fabric on Red Hat OpenShift]  
+* xref:upgrade-openshift.adoc[Upgrading Runtime Fabric on OpenShift] +
+Use the Red Hat OpenShift console to upgrade Runtime Fabric on OpenShift.
+* xref:upgrade-pre-requisites.adoc[Update rtfd Container Resources Before Upgrading on OpenShift]
 +
 Manually update `rtfd` container resource allocations when upgrading from version 2.6.52 or earlier to version 2.7.0 or later.
 

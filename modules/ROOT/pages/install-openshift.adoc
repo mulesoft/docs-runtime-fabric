@@ -1,6 +1,6 @@
-= Installing Runtime Fabric as a Kubernetes (K8s) Operator
+= Installing Runtime Fabric on OpenShift
 
-You can install Anypoint Runtime Fabric as a Kubernetes (K8s) operator in the following platforms:
+You can install Anypoint Runtime Fabric as a Kubernetes (K8s) operator in these platforms:
 
 * Red Hat OpenShift Service on AWS
 * Microsoft Azure Red Hat OpenShift
@@ -31,9 +31,39 @@ Before installing Runtime Fabric on Red Hat OpenShift, ensure that:
 ** A supported Kubernetes version
 ** An ingress controller to send external requests to applications
 * You have privileged user permissions to complete the installation process
-* You have access to the following URLs needed for Red Hat OpenShift registry:
+* You have access to these URLs needed for Red Hat OpenShift registry:
 ** `registry.connect.redhat.com` (See the https://access.redhat.com/articles/RegistryAuthentication[Red Hat Container Registry Authentication^])
 ** `https://rhc4tp-prod-z8cxf-image-registry-us-east-1-evenkyleffocxqvofrk.s3.dualstack.us-east-1.amazonaws.com`
+
+== Kubernetes Version Compatibility
+
+The version of the Runtime Fabric operator available in OperatorHub depends on the Kubernetes version of your OpenShift cluster. A newer operator version doesn't appear in OperatorHub if your cluster's Kubernetes version is below the minimum version that operator requires.
+
+[%header%autowidth.spread]
+|===
+|Runtime Fabric Operator |Supported Kubernetes Versions
+|3.0.277 |1.32.x, 1.33.x, 1.34.x, 1.35.x
+|3.0.102 |1.31.x, 1.32.x, 1.33.x, 1.34.x
+|===
+
+For the complete list of supported Kubernetes versions for each release, see xref:release-notes::runtime-fabric/runtime-fabric-release-notes-3.x.x.adoc[Runtime Fabric Release Notes].
+
+If a newer operator version doesn't appear in OperatorHub, run these commands in your terminal to check whether your cluster's Kubernetes version meets the minimum for that operator:
+
+. Check the currently installed operator version:
++
+[source,copy]
+----
+oc get csv -n <rtf_namespace>
+----
+. Check the Kubernetes version of your cluster:
++
+[source,copy]
+----
+oc version
+----
+
+If the Kubernetes version is below the minimum for the operator version you want to install, upgrade your OpenShift cluster before installing the operator.
 
 == Create a Runtime Fabric using Runtime Manager
 
@@ -73,13 +103,14 @@ To create the pull secret, run:
 oc create secret docker-registry <pull_secret> --namespace rtf --docker-server=<docker_registry_url> --docker-username=<docker_registry_username> --docker-password=<docker_ registry_password>
 ----
 
+[[configure-authorized-namespaces]]
 == (Optional) Configure Authorized Namespaces
 
 You can optionally configure xref:authorized-namespaces.adoc[authorized namespaces], which enable you to deploy Runtime Fabric alongside other services in a Kubernetes cluster.
 
 === Before You Begin
 
-Before configuring authorized namespaces, note the following:
+Before configuring authorized namespaces, note these requirements:
 
 * You must create the `authorized-namespaces` ConfigMap file _before_ installing Runtime Fabric. Additionally, you must name the ConfigMap, `authorized-namespaces`.
 * The `rtf:resource-metrics-collector` ClusterRole has cluster-wide permissions to `get` and `list` nodes, pods, and namespaces and has `watch` permissions for nodes. The role ClusterRole is defined as follows:
@@ -100,7 +131,7 @@ rules:
     verbs: ["watch"]
 ----
 
-. In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with the following contents:
+. In your cluster, create an additional namespace for application deployments, and add the necessary labels to the namespace. To do so, create a YAML file with this content:
 +
 [source,copy]
 ----
@@ -125,7 +156,7 @@ oc apply -f <filename>.yaml
 
 . Repeat steps 1 and 2  to add as many namespaces as you need.
 
-. Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply the following configuration in your additional namespace:
+. Create the RoleBinding for the Runtime Fabric agent ClusterRole that includes the Runtime Fabric agent ServiceAccount. To do so, apply this configuration in your additional namespace:
 +
 [source,copy]
 ----
@@ -149,7 +180,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
-. Apply the following RoleBinding template to rtf namespace and any additional namespaces:
+. Apply this RoleBinding template to the rtf namespace and any additional namespaces:
 +
 [source,copy]
 ----
@@ -297,7 +328,7 @@ data:
   APPLICATION_NAMESPACE_2: "<app_namespace_2>
 ----
 
-. If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run the following command:
+. If, after fully installing Runtime Fabric, you later add or delete any namespaces from the ConfigMap, you must restart the Runtime Fabric agent pod. To do so, run this command:
 +
 [source,copy]
 ----
@@ -326,7 +357,7 @@ To configure the Runtime Fabric operator, you supply the necessary values when p
 +
 [WARNING]
 --
-Do not change the name of the instance. Doing so can create installation errors.
+Don't change the name of the instance. Doing so can create installation errors.
 --
 
 . Add any required parameters. Refer to the Installation Parameters Reference for guidance.
@@ -336,7 +367,7 @@ If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
 
 == Installation Parameters Reference
 
-The following is an example YAML view of the installation parameters.
+This is an example YAML view of the installation parameters.
 
 [source,yaml]
 --
@@ -409,25 +440,25 @@ Before you install the license key, encode it to Base64 format.
 
 === Encode the License Key
 
-* On MacOS, run the following command:
+* On MacOS, run this command:
 +
 [source,copy]
 ----
 base64 -b 0 -i <license-file>
 ----
 +
-* On Unix, run the following command:
+* On Unix, run this command:
 +
 [source,copy]
 ----
 base64 -w0 <license-file>
 ----
 +
-* On Windows, choose one of the following:
+* On Windows, choose one of these options:
 
 ** Use a WSL or Cygwin shell that includes the base64 tool and use the above Unix command.
 ** Use the base64.exe program included with Windows git (C:\Program Files\Git\usr\bin).
-** Use the following Powershell command:
+** Use this PowerShell command:
 +
 [source,copy]
 ----
@@ -451,7 +482,7 @@ image::rtf-license-operator-2.png[Runtime Fabric instance with mulelicense]
 
 === Apply the License Key Using Helm
 
-To apply the license using Helm, run the following command:
+To apply the license using Helm, run this command:
 
 [source,copy]
 ----
@@ -461,9 +492,30 @@ helm upgrade runtime-fabric rtf/rtf-agent --set muleLicense=$BASE64_ENCODED_LICE
 include::partial$include-install-tasks.adoc[tags=ingressResource]
 include::partial$include-install-tasks.adoc[tags=validate]
 
+[[restricted-scc]]
+== Clusters That Enforce a Restricted Security Context Constraint
+
+Runtime Fabric pods run under the `anyuid` security context constraint (SCC). Some hardened clusters, such as OpenShift Platform Plus environments, enforce a more restrictive SCC, such as `nonroot-v2`. On these clusters, OpenShift rejects Runtime Fabric pods when it creates them. The pods never start, so the application logs show no errors.
+
+To check whether OpenShift rejected pods because of the SCC, run this command in your terminal:
+
+[source,copy]
+----
+oc get events -n <namespace> --sort-by='.lastTimestamp'
+----
+
+Look for `FailedCreate` events with the message `unable to validate against any security context constraint`.
+
+To run Runtime Fabric on these clusters, request a security exception that allows the `anyuid` SCC. Limit the exception to:
+
+* The Runtime Fabric service accounts listed in the `rtf` RoleBinding in <<configure-authorized-namespaces, Configure Authorized Namespaces>>
+* The Runtime Fabric namespace and the application namespaces
+
+Don't request a cluster-wide grant.
+
 == Prepare for Deploying Mule Apps to Red Hat OpenShift
 
-Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure that you've installed your Mule license key and then, perform the following steps.
+Before you deploy any Mule applications to your Red Hat OpenShift cluster, ensure that you've installed your Mule license key and then, perform these steps.
 
 Also, before attempting to deploy an Mule applications, ensure that you've installed your Mule license key.
 
