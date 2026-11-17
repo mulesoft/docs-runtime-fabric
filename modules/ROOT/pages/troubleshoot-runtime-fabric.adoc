@@ -5,14 +5,14 @@ Use this page to resolve Runtime Fabric issues. You can also use the xref:troubl
 [[troubleshoot-403-forbidden-image-pull]]
 == Troubleshoot a 403 Forbidden Image Pull
 
-A Helm install fails with `403 Forbidden` when the agent pulls `mulesoft/rtf-daemon` and `global.image.repositoryNamespace` isn't set. The Helm chart uses `mulesoft` when that value is absent. On Canada Cloud, a Hyperforce-native control plane, Runtime Manager sets `repositoryNamespace` to `sfci/mulesoft/ms-docker-image/ms-`, and the Runtime Fabric images are published under that namespace. `mulesoft/rtf-daemon` is a different path, and the registry returns `403 Forbidden`.
+A Helm install fails with `403 Forbidden` when the agent pulls `mulesoft/rtf-daemon`. The Helm chart uses `mulesoft` when `repositoryNamespace` is absent. Runtime Manager sets the correct namespace for your control plane in `values.yaml`. An install that skips this file pulls `mulesoft/rtf-daemon`, and the registry returns `403 Forbidden` when your control plane uses a different namespace.
 
 To correct the image pull:
 
 . In Runtime Manager, open the Runtime Fabric.
 . Select *Helm*.
 . Under *Download and configure the values.yaml file*, click *Download values.yaml*.
-. Confirm that `global.image.repositoryNamespace` is present. On Canada Cloud, the value is `sfci/mulesoft/ms-docker-image/ms-`.
+. Use the `repositoryNamespace` value from the downloaded file. When the file omits this key, the chart default `mulesoft` applies.
 . Rerun this command:
 +
 [source,copy]
