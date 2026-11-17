@@ -1,0 +1,21 @@
+= Troubleshooting Runtime Fabric
+
+Resolve Runtime Fabric issues with these checks. To troubleshoot further, use the xref:troubleshoot-rtf-rtfctl.adoc[RTFCTL tool].
+
+[[troubleshoot-403-forbidden-image-pull]]
+== Troubleshoot a 403 Forbidden Image Pull
+
+Helm installation fails with `403 Forbidden` when the agent pulls `mulesoft/rtf-daemon`. The Helm chart uses `mulesoft` when `repositoryNamespace` is absent. Runtime Manager sets the correct namespace for your control plane in `values.yaml`. An installation that skips this file pulls `mulesoft/rtf-daemon`, and the registry returns `403 Forbidden` when your control plane uses a different namespace.
+
+To correct the image pull.
+
+. In Runtime Manager, open the Runtime Fabric.
+. Select *Helm*.
+. Under *Download and configure the values.yaml file*, download `values.yaml`.
+. Use the `repositoryNamespace` value from the downloaded file. When the file omits `repositoryNamespace`, the chart uses `mulesoft`.
+. Rerun this command:
++
+[source,copy]
+----
+helm install runtime-fabric rtf/rtf-agent --version <VERSION_FROM_UI> -f values.yaml -n <namespace>
+----
