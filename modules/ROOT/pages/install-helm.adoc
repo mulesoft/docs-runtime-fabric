@@ -222,22 +222,22 @@ After you delete the pod, Kubernetes starts a new one.
 
 == Install Runtime Fabric
 
-To install Runtime Fabric, use the `values.yaml` file Runtime Manager generates for that Runtime Fabric. Pass that file to Helm with `-f values.yaml`. Runtime Manager writes the correct `repositoryNamespace` for your control plane in that file. When the key is absent, the chart default `mulesoft` applies.
+To install Runtime Fabric, use the `values.yaml` file that Runtime Manager generates for that Runtime Fabric. Pass that file to Helm by using `-f values.yaml`. Runtime Manager writes the correct `repositoryNamespace` for your control plane in that file.
 
 [WARNING]
 --
-Install with the `values.yaml` file from Runtime Manager. The Helm chart sets `repositoryNamespace` to `mulesoft` when the key is absent. If you omit the file, the agent pulls `mulesoft/rtf-daemon`. When your control plane uses a different namespace, the registry returns `403 Forbidden`. Use the `repositoryNamespace` value in the downloaded file.
+Install Runtime Fabric by using the `values.yaml` file from Runtime Manager. The Helm chart sets `repositoryNamespace` to `mulesoft` when `repositoryNamespace` is absent. If you omit the file, the agent pulls `mulesoft/rtf-daemon`. When your control plane uses a different namespace, the registry returns `403 Forbidden`. Use the `repositoryNamespace` value in the downloaded file.
 
 To resolve this error, see xref:troubleshoot-runtime-fabric.adoc#troubleshoot-403-forbidden-image-pull[Troubleshoot a 403 Forbidden Image Pull].
 --
 
 . In Runtime Manager, open the Runtime Fabric.
 . Select *Helm*.
-. Under *Download and configure the values.yaml file*, click *Download values.yaml*.
+. Under *Download and configure the values.yaml file*, download `values.yaml`.
 . Add any optional parameters you need.
 +
 If you use authorized namespaces, set `authorizedNamespaces` to `true`.
-. Use the `repositoryNamespace` value from the downloaded file. When the file omits this key, the chart default `mulesoft` applies.
+. Use the `repositoryNamespace` value from the downloaded file.
 . Run this command:
 +
 [source,copy]
