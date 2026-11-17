@@ -87,6 +87,7 @@
 ** xref:using-rtfctl-mule-apps.adoc[Using RTFCTL for Deployed Mule Apps]
   *** xref:manage-apps-rtfctl-tool.adoc[Managing Mule Apps Deployed to Runtime Fabric]
 ** xref:rtfctl-reference.adoc[RTFCTL Reference]
+* xref:troubleshoot-runtime-fabric.adoc[Troubleshooting Runtime Fabric]
 
 
 

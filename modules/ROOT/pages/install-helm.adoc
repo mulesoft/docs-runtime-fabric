@@ -11,7 +11,7 @@ When you use Helm to install Runtime Fabric, you:
 . Create a Docker pull secret for pulling the Runtime Fabric component images
 . Optionally, configure additional authorized namespaces
 . Add the Runtime Fabric Helm repository
-. Download the `values.yml` file and install Runtime Fabric
+. Download the `values.yaml` file and install Runtime Fabric
 . Complete install steps
 
 == Before you Begin
@@ -222,13 +222,23 @@ After you delete the pod, Kubernetes starts a new one.
 
 == Install Runtime Fabric
 
-To install Runtime Fabric, use the `values.yml` file supplied by Runtime Manager.
+To install Runtime Fabric, use the `values.yaml` file Runtime Manager generates for that Runtime Fabric. The file sets `global.image.repositoryNamespace`. Pass that file to Helm with `-f values.yaml`.
 
-. Download the `values.yml` file.
-. Add any optional parameters needed.
+[WARNING]
+--
+The Helm chart sets `repositoryNamespace` to `mulesoft` when the value is absent. On Canada Cloud, a Hyperforce-native control plane, Runtime Manager sets `repositoryNamespace` to `sfci/mulesoft/ms-docker-image/ms-`. If you install without the downloaded file, or if `repositoryNamespace` is missing from the file, the agent pulls `mulesoft/rtf-daemon`. That path doesn't exist on the Canada registry, and the registry returns `403 Forbidden`.
+
+To resolve this error, see xref:troubleshoot-runtime-fabric.adoc#troubleshoot-403-forbidden-image-pull[Troubleshoot a 403 Forbidden Image Pull].
+--
+
+. In Runtime Manager, open the Runtime Fabric.
+. Select *Helm*.
+. Under *Download and configure the values.yaml file*, click *Download values.yaml*.
+. Add any optional parameters you need.
 +
-If you’re using authorized namespaces, set `authorizedNamespaces` to `true`.
-. Run the following command:
+If you use authorized namespaces, set `authorizedNamespaces` to `true`.
+. Confirm that `global.image.repositoryNamespace` is present. On Canada Cloud, the value is `sfci/mulesoft/ms-docker-image/ms-`.
+. Run this command:
 +
 [source,copy]
 ----
