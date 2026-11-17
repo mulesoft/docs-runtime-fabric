@@ -226,7 +226,7 @@ To install Runtime Fabric, use the `values.yaml` file Runtime Manager generates 
 
 [WARNING]
 --
-The Helm chart sets `repositoryNamespace` to `mulesoft` when the value is absent. On Canada Cloud, a Hyperforce-native control plane, Runtime Manager sets `repositoryNamespace` to `sfci/mulesoft/ms-docker-image/ms-`. If you install without the downloaded file, or if `repositoryNamespace` is missing from the file, the agent pulls `mulesoft/rtf-daemon`. That path doesn't exist on the Canada registry, and the registry returns `403 Forbidden`.
+The Helm chart sets `repositoryNamespace` to `mulesoft` when the value is absent. On Canada Cloud, a Hyperforce-native control plane, Runtime Manager sets `repositoryNamespace` to `sfci/mulesoft/ms-docker-image/ms-`, and the Runtime Fabric images are published under that namespace. If you install without the downloaded file, or if `repositoryNamespace` is missing from the file, the agent pulls `mulesoft/rtf-daemon`. That path is different from the Canada Cloud image path, and the registry returns `403 Forbidden`.
 
 To resolve this error, see xref:troubleshoot-runtime-fabric.adoc#troubleshoot-403-forbidden-image-pull[Troubleshoot a 403 Forbidden Image Pull].
 --
