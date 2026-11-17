@@ -226,7 +226,7 @@ To install Runtime Fabric, use the `values.yaml` file that Runtime Manager gener
 
 [WARNING]
 --
-Install Runtime Fabric by using the `values.yaml` file from Runtime Manager. The Helm chart sets `repositoryNamespace` to `mulesoft` when `repositoryNamespace` is absent. If you omit the file, the agent pulls `mulesoft/rtf-daemon`. When your control plane uses a different namespace, the registry returns `403 Forbidden`. Use the `repositoryNamespace` value in the downloaded file.
+Install Runtime Fabric by using the `values.yaml` file from Runtime Manager. The Helm chart uses `mulesoft` when `repositoryNamespace` is absent. If you omit the file, the agent pulls `mulesoft/rtf-daemon`. When your control plane uses a different namespace, the registry returns `403 Forbidden`. Use the `repositoryNamespace` value in the downloaded file.
 
 To resolve this error, see xref:troubleshoot-runtime-fabric.adoc#troubleshoot-403-forbidden-image-pull[Troubleshoot a 403 Forbidden Image Pull].
 --
