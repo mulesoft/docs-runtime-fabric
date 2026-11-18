@@ -257,6 +257,47 @@ This setting defaults to `false`. When you enable it on Runtime Fabric 3.0.1 or 
 
 To enable the HTTP GET readiness probe for applications running on Mule runtime engine patches older than November 7, 2025, either upgrade those applications to a compatible patch or keep the feature disabled until you can upgrade.
 
+[[service-account-token-requirement]]
+== Service Account Token Mounting Requirement
+
+Runtime Fabric components (agent, mule-clusterip-service, and persistence gateway) require `automountServiceAccountToken: true` to function properly.
+
+=== Overview
+
+Kubernetes service account tokens provide authenticated identity and authorization credentials that allow pods to interact securely with the Kubernetes API server. Runtime Fabric components require these tokens for their operations.
+
+=== Security Best Practices
+
+While mounting service account tokens is necessary for Runtime Fabric operations, you can minimize security risk using these best practices:
+
+* RBAC Policies: Define restrictive Role-Based Access Control (RBAC) policies that limit each service account to only the Kubernetes API permissions it actually needs.
+
+* Minimal Scopes: Ensure service accounts have the minimum required permissions to perform their functions. Avoid overly permissive roles.
+
+* Network Policies: Use Kubernetes NetworkPolicies to restrict inbound and outbound traffic from Runtime Fabric component pods to only necessary services and endpoints.
+
+* Monitoring and Audit: Enable audit logging to track API access by service accounts and monitor for suspicious activity.
+
+For comprehensive security guidance on protecting pod service account tokens and securing your Runtime Fabric environment, see the xref:kubernetes-hardening-guide.adoc[Kubernetes Hardening Guide].
+
+=== Configuration Example
+
+When configuring service account token mounting using the Kubernetes template, set `automountServiceAccountToken: true`:
+
+[source,copy]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: KubernetesTemplate
+metadata:
+  name: mule-application
+  namespace: rtf
+spec:
+  pod:
+    automountServiceAccountToken: true
+----
+
+Runtime Fabric components (agent, mule-clusterip-service, and persistence gateway) have `automountServiceAccountToken: true` configured by default as a required setting for operation.
+
 
 == See Also
 
