@@ -61,7 +61,8 @@ Understanding the management model is critical before deploying and managing app
 * Applications created via Anypoint Controller can only be managed through the Custom Resource itself.
 * To manage existing applications using Anypoint Controller, you must redeploy them as a Kubernetes Custom Resource.
 * All configuration changes must be applied by updating the Custom Resource definition in your deployment tool and applying it to the cluster.
-* Stop and Restart functionality is not supported for applications managed by Anypoint Controller.
+* Anypoint Controller doesn't stop an application.
+* To restart an application on Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700), set `spec.lifecycle.restartGeneration` in the Mule application YAML file to a new positive integer. See <<restart-a-mule-application,Restart a Mule Application>>.
 * The Anypoint Platform Runtime Manager UI displays these applications in read-only mode.
 * Attempts to modify or delete these applications via Anypoint Platform APIs result in an error.
 
@@ -1286,6 +1287,7 @@ Anypoint Controller continuously reconciles the desired state:
 Manage your application lifecycle:
 
 * <<update-a-mule-application,Update a Mule Application>>
+* <<restart-a-mule-application,Restart a Mule Application>>
 * <<delete-a-mule-application,Delete a Mule Application>>
 
 [[update-a-mule-application]]
@@ -1317,6 +1319,72 @@ The controller detects the change and initiates the update automatically.
 
 [NOTE]
 Some fields like `target`, `businessGroup`, and `environment` are immutable and can't be changed after creation. For a complete list of mutable and immutable fields, see xref:deploy-mule-app-anypoint-controller.adoc#understanding-custom-resource-definitions[Understanding Custom Resource Definitions].
+
+[[restart-a-mule-application]]
+=== Restart a Mule Application
+
+To restart an application, edit the Mule application YAML file and apply that file to the cluster. Set one restart field in the file.
+
+On Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700), set `spec.lifecycle.restartGeneration` to a new positive integer, such as `2` or the current time in epoch seconds. The integer can be lower or higher than the current value. An earlier agent lacks the `spec.lifecycle` field, so this value doesn't restart the application.
+
+Anypoint Controller rolls the application pods once and keeps the installed application and its artifact. If you apply the same integer again, Anypoint Controller doesn't restart the application.
+
+When you change `spec.lifecycle.restartGeneration`, Anypoint Controller sets `status.observedRestartGeneration` and a `Restarted` condition.
+
+If you set `restartGeneration` to `0` or remove the field after you set a positive value, Anypoint Controller rolls the pods one more time and removes the restart annotation.
+
+To set `restartGeneration` in the YAML file.
+
+. Add `restartGeneration` under `spec.lifecycle` and set it to a new positive integer.
++
+[source,yaml]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: MuleApplication
+metadata:
+  name: hello-world-app
+  namespace: my-apps
+spec:
+  lifecycle:
+    restartGeneration: 2
+----
+[start=2]
+. Apply the updated YAML file.
+
+[source,bash]
+----
+kubectl apply -f hello-world-app.yaml
+----
+
+The same YAML file can use `spec.pod.metadata.annotations["rtf.mulesoft.com/restartedAt"]` in place of `restartGeneration`. Anypoint Controller uses the annotation when the file omits `spec.lifecycle.restartGeneration` or sets that field to `0`. A positive `restartGeneration` overwrites the annotation, and a later change to the annotation doesn't restart the application.
+
+To set the annotation in the same YAML file.
+
+. Omit `spec.lifecycle.restartGeneration`, or set that field to `0`.
+. Set `rtf.mulesoft.com/restartedAt` to a new value.
++
+[source,yaml]
+----
+apiVersion: rtf.mulesoft.com/v1
+kind: MuleApplication
+metadata:
+  name: hello-world-app
+  namespace: my-apps
+spec:
+  pod:
+    metadata:
+      annotations:
+        rtf.mulesoft.com/restartedAt: "<new-value>"
+----
+[start=3]
+. Apply the updated YAML file.
+
+[source,bash]
+----
+kubectl apply -f hello-world-app.yaml
+----
+
+Anypoint Controller doesn't stop an application.
 
 [[delete-a-mule-application]]
 === Delete a MuleApplication
