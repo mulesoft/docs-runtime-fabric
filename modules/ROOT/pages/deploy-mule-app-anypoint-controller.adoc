@@ -62,7 +62,7 @@ Understanding the management model is critical before deploying and managing app
 * To manage existing applications using Anypoint Controller, you must redeploy them as a Kubernetes Custom Resource.
 * All configuration changes must be applied by updating the Custom Resource definition in your deployment tool and applying it to the cluster.
 * Anypoint Controller doesn't stop an application.
-* To restart an application on Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700), change `spec.lifecycle.restartGeneration`. To restart with the `rtf.mulesoft.com/restartedAt` annotation, leave `restartGeneration` unset or set it to `0`. See <<restart-a-mule-application,Restart a Mule Application>>.
+* To restart an application on Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700), change `spec.lifecycle.restartGeneration`. To change the `rtf.mulesoft.com/restartedAt` annotation, leave `restartGeneration` unset or set it to `0`. See <<restart-a-mule-application,Restart a Mule Application>>.
 * The Anypoint Platform Runtime Manager UI displays these applications in read-only mode.
 * Attempts to modify or delete these applications via Anypoint Platform APIs result in an error.
 
@@ -1323,19 +1323,19 @@ Some fields like `target`, `businessGroup`, and `environment` are immutable and 
 [[restart-a-mule-application]]
 === Restart a Mule Application
 
-To restart an application, use one method. Change `spec.lifecycle.restartGeneration`, or change `spec.pod.metadata.annotations["rtf.mulesoft.com/restartedAt"]` when `restartGeneration` is unset or `0`.
+To restart an application, use one method. Change `spec.lifecycle.restartGeneration`, or change `spec.pod.metadata.annotations["rtf.mulesoft.com/restartedAt"]` when you leave `restartGeneration` unset or set it to `0`.
 
-`spec.lifecycle.restartGeneration` is available on Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700). An earlier agent has no `spec.lifecycle` field, so a change to `restartGeneration` doesn't restart the application.
+Use `spec.lifecycle.restartGeneration` on Runtime Fabric agent 3.0.41102 or later (rtfd 2.0.31700). An earlier agent lacks the `spec.lifecycle` field, so a change to `restartGeneration` doesn't restart the application.
 
 Anypoint Controller rolls the application pods once and keeps the installed application and its artifact. If you apply the same value again, Anypoint Controller doesn't restart the application.
 
-Set `restartGeneration` to a new positive integer. The new integer can be lower or higher than the current value. A counter or the current time in epoch seconds both work. A change to `spec.lifecycle.restartGeneration` sets `status.observedRestartGeneration` and a `Restarted` condition.
+Set `restartGeneration` to a new positive integer. The new integer can be lower or higher than the current value. Use a counter or the current time in epoch seconds. When you change `spec.lifecycle.restartGeneration`, Anypoint Controller sets `status.observedRestartGeneration` and a `Restarted` condition.
 
-If `restartGeneration` already has a positive value, setting the field to `0` or removing it rolls the pods one more time. Anypoint Controller removes the restart annotation.
+If you set `restartGeneration` to `0` or remove the field after you set a positive value, Anypoint Controller rolls the pods one more time and removes the restart annotation.
 
-While `restartGeneration` is a positive integer, Anypoint Controller overwrites `rtf.mulesoft.com/restartedAt` with that value. After you restart with `restartGeneration`, a change to the annotation doesn't restart the application.
+When `restartGeneration` contains a positive integer, Anypoint Controller overwrites `rtf.mulesoft.com/restartedAt` with that value. After you change `restartGeneration`, a change to the annotation doesn't restart the application.
 
-To restart with `restartGeneration`.
+To change `restartGeneration`.
 
 . Set a new positive integer in your Mule application YAML file.
 +
@@ -1353,7 +1353,7 @@ spec:
 kubectl apply -f hello-world-app.yaml
 ----
 
-To restart with the annotation, leave `restartGeneration` unset or set it to `0`, and set a new value for `rtf.mulesoft.com/restartedAt`.
+To change the annotation, leave `restartGeneration` unset or set it to `0`. Then set a new value for `rtf.mulesoft.com/restartedAt`.
 
 [source,yaml]
 ----
