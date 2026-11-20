@@ -364,6 +364,12 @@ rtfctl update --host au1.platform.mulesoft.com
 rtfctl update --host gb1.platform.mulesoft.com
 ----
 
+* Updates `rtfctl` from the Brazil Cloud
++
+----
+rtfctl update --host br1.platform.mulesoft.com
+----
+
 * Updates `rtfctl` from MuleSoft Government Cloud Plus
 +
 ----
